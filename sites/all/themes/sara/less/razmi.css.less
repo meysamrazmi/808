@@ -1,0 +1,80 @@
+/* 
+ * variable section
+ */
+/*colors*/
+@import "colors.css.less";
+
+/*shadows*/
+@z2: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+@z1: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+@z0: 0 2px 2px #edeef0;
+
+/*paddings*/
+@pad: 15px; 
+@pad-wid: 0 15px; 
+@pad-heig: 15px 0; 
+
+.paper(z1){
+	box-shadow: @z1;
+}
+.paper(z2){
+	box-shadow: @z2;
+}
+.paper(@_){
+	background: #fff;
+	border: none;
+	border-radius: 0;
+	padding: @pad;
+	box-shadow: @z0;
+}
+.absolute(...) {
+	position: absolute;
+}
+.absolute(@w:'' ; @h:'' ; @t:'' ; @r:'' ; @b:'' ; @l:'') {
+	& when not (@w = '') {width: @w;}
+	& when not (@h = '') {height: @h;}
+	& when not (@t = '') {top: @t;}
+	& when not (@r = '') {right: @r;}
+	& when not (@b = '') {bottom: @b;}
+	& when not (@l = '') {left: @l;}
+}
+.before(@content ; @font:'' ; @size:'' ; @color){
+	&:before{
+		content: "\@{content}";
+		& when (@font = '') {font-family: mat;}
+		& when not (@font = '') {font-family: @font;}
+		& when not (@size = '') {font-size: @size;}
+		& when not (@color = '') {color: @color;}
+	}
+}
+
+#user-login{
+	.item-list {
+		border-top: 1px solid #ddd;
+		margin: 50px auto 20px;
+		width: 100%;
+		text-align: center;
+		max-width: 400px;
+		a {
+			width: 280px;
+			padding: 7px;
+			text-align: center;
+			color: #fff;
+			background: #0077b5;
+			border-radius: 2px;
+			margin: 20px auto 0;
+			display: block;
+			font-size: 14px;
+			position: relative;
+			.before(f33c;'';25px;'');
+			&:before {
+				.absolute('';'';9px;'';'';9px);
+			}
+		}
+	}
+}
+
+
+
+/*media elements*/
+@import "media.css.less";

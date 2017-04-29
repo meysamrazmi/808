@@ -1,0 +1,163 @@
+body {
+  background-color: transparent !important;
+}
+
+.view-cap, .view-container-border {
+  background-color: transparent !important;
+}
+
+.mv-daynames-table {
+  background-color: transparent !important;
+  color: #555;
+  font-size: 14px;
+}
+
+.mv-event-container {
+  border: none;
+  position: absolute;
+  top: 30px;
+}
+
+.st-bg {
+  background-color: #f9f9f9;
+  border-color: white;
+  border-left-width: 6px;
+}
+
+.st-dtitle {
+  background-color: transparent;
+  border-color: transparent;
+  text-align: left;
+  padding: 3px 10px;
+  border-top-color: white;
+  font-size: 12px;
+  border-top-width: 6px;
+}
+
+.st-dtitle-nonmonth {
+  /* display: none; */
+  background-color: #fff;
+  padding: 0 0 30px 0;
+  color: transparent;
+  cursor: default;
+}
+
+td.st-dtitle.st-dtitle-today {
+font-size: 13px;
+font-weight: bold;
+color: white;
+border-right-width: 0;
+}
+
+td.st-bg.st-bg-today {
+  background-color: #ccc;
+  border-right-width: 0;
+}
+
+td.st-bg.st-bg-next {
+  border-left: 6px solid white;
+}
+
+div#viewContainer1 {
+}
+
+img#navBack1 {
+  left: 0;
+  position: absolute;
+}
+
+img#navForward1 {
+  right: 0;
+  position: absolute;
+}
+
+button#todayButton1 {
+  visibility: hidden;
+}
+
+.date-controls {
+  margin-bottom: 40px;
+}
+table.nav-table td:nth-child(5), table.nav-table td:nth-child(6), table.nav-table td:nth-child(7),table.nav-table td:nth-child(4),table.nav-table td:nth-child(3) {
+  display: none;
+}
+td.calendar-nav {
+  display: none;
+}
+
+span#calendarTitle {
+  display: none;
+}
+
+table#footer1 {
+  display: none;
+}
+
+.te-rev-scont {
+  text-align: right;
+    font-family: b yekan;
+}
+td.st-c {
+  text-align: right !important;
+  border-left: 6px solid transparent;
+  font-size: 13px;
+  font-family: 'b yekan',tahoma;
+}
+.date-top:hover {
+  border-color: transparent !important;
+}
+
+.date-picker-on {
+  border-color: transparent;
+}
+
+
+td#dateEditableBox1 {
+  margin: 0px 0vw;
+  display: inline-block;
+  width: 40vw;
+  position: absolute;
+  margin: 0 auto;
+  text-align: right;
+}
+
+#mvDaynamesTable > tbody > tr > th:nth-child(1) {
+}
+
+#mvDaynamesTable > tbody > tr > th:nth-child(1):before {
+  content: "دوشنبه";
+}
+
+#mvDaynamesTable > tbody > tr > th:nth-child(2):before {
+  content: "سه شنبه";
+}
+
+th.mv-dayname {
+  color: transparent;
+}
+
+th.mv-dayname:before {
+  color: #666;
+  font-family: b yekan;
+  font-size: 18px;
+}
+
+#mvDaynamesTable > tbody > tr > th:nth-child(3):before {
+  content: "چهارشنبه";
+}
+
+#mvDaynamesTable > tbody > tr > th:nth-child(4):before {
+  content: "پنج شنبه";
+}
+
+#mvDaynamesTable > tbody > tr > th:nth-child(5):before {
+  content: "جمعه";
+}
+
+#mvDaynamesTable > tbody > tr > th:nth-child(6):before {
+  content: "شنبه";
+}
+
+#mvDaynamesTable > tbody > tr > th:nth-child(7):before {
+  content: "یک شنبه";
+}

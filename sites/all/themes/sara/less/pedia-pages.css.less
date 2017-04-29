@@ -1,0 +1,48 @@
+/* 
+ * variable section
+ */
+/*colors*/
+@import "colors.css.less";
+
+/*shadows*/
+@z2: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+@z1: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+@z0: 0 2px 2px #edeef0;
+
+/*paddings*/
+@pad: 15px; 
+@pad-wid: 0 15px; 
+@pad-heig: 15px 0; 
+
+/*medias*/
+@1280 : ~"all and (min-width: 1280px)";
+@1200 : ~"all and (max-width: 1200px)";
+@min1200 : ~"all and (min-width: 1200px)";
+@980-1200 : ~"(min-width: 980px) and (max-width: 1200px)";
+@960 : ~"(max-width: 960px)";
+@840 : ~"(max-width: 840px)";
+@600 : ~"(max-width: 600px)";
+@480 : ~"(max-width: 480px)";
+@400 : ~"all and (max-width: 400px)";
+
+
+
+.paper(z1){
+	box-shadow: @z1;
+}
+.paper(z2){
+	box-shadow: @z2;
+}
+.paper(@_){
+	background: #fff;
+	border: none;
+	border-radius: 0;
+	padding: @pad;
+	box-shadow: @z0;
+}
+
+
+
+
+
+

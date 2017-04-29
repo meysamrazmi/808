@@ -1,0 +1,24 @@
+@font-face {
+	font-family: irans;
+	font-style: normal;
+	font-weight: normal;
+	src: url('../fonts/sans/eot/IRANSansWeb.eot');
+	src: url('../fonts/sans/eot/IRANSansWeb.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+		 url('../fonts/sans/woff2/IRANSansWeb.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('../fonts/sans/woff/IRANSansWeb.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('../fonts/sans/ttf/IRANSansWeb.ttf') format('truetype');
+}
+a,p,span,h1,h2,h3,h4,h5,h6,div,li,td,tr{
+  font-family: irans;
+  direction: rtl;
+  font-size: 13px;
+}
+[dir='ltr'] {
+  direction: ltr;
+}
+a {
+  text-decoration: none;
+}
+td {
+  padding: 0px 10px;
+}
