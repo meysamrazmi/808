@@ -187,10 +187,17 @@ function linkedin_access_token($account, $is_new = FALSE) {
 		'token_secret' => $oauth['oauth_token_secret'],
 		'type' => 'access',
 		))->execute();
-
+		
 	  //associate LinkedIn ID with uid for future use
       user_set_authmaps($account, array('authmap_linkedin' => $response['id']));
-      drupal_goto("user/$account->uid/edit/main");
+
+	  //login the user after all
+	  // user_login_submit(array(), array('uid' => $account->uid));
+	  global $user;
+	  $user = user_load($account->uid);
+	  drupal_session_regenerate();
+      drupal_set_message("برای راحتی بیشتر می توانید پسورد خود را انتخاب کنید تا بدون نیاز به LinkedIn وارد سایت شوید.");
+      drupal_goto("user/$account->uid/edit");
     }
     else {
       $uid = db_query("SELECT uid FROM {linkedin_token} WHERE token_key = :token_key AND token_secret = :token_secret AND type = :type ", array(':token_key' => $oauth['oauth_token'], ':token_secret' => $oauth['oauth_token_secret'], ':type' => 'access'))->fetchField();
