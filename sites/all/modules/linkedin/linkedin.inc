@@ -142,21 +142,26 @@ function linkedin_access_token($account, $is_new = FALSE) {
 
 	  $fields_url = "https://api.linkedin.com/v1/people/";
 	  $tokens = array('token_key' => $oauth['oauth_token'], 'token_secret' => $oauth['oauth_token_secret']);
+	  
 	  //required field for registering new user
 	  $fields = array('id', 'first-name', 'last-name', 'email-address');
+	  
 	  //User is requesting his own profile.
 	  $append = '~'. _linkedin_build_fields_request($fields, 'auth');
 	  $url = $fields_url . $append;
 	  $response = linkedin_get_fields($url, $tokens);		
+	  
 	  if (isset($response['person'])) {
 	  	$response = $response['person'];
 	  }else{//there is been an error
         drupal_set_message(t('Sorry, there is been an error parsing your request'), 'warning');
+        drupal_set_message(t('Sorry, there is been an error parsing your request'));
         drupal_goto('user/register');
 	  }
 	  $registered = user_load_by_mail($response['email-address']);
 	  if($registered->uid){// the email has been set to another user
         drupal_set_message(t('Sorry, this LinkedIn account is already associated with user !registered', array('!registered' => l($registered->name, 'user/' . $registered->uid))), 'warning');
+        drupal_set_message(t('Sorry, this LinkedIn account is already associated with user !registered', array('!registered' => l($registered->name, 'user/' . $registered->uid))));
         drupal_goto('user/'. $registered->uid);
 	  }
 	
@@ -176,14 +181,14 @@ function linkedin_access_token($account, $is_new = FALSE) {
 	  $account = user_save(NULL, $userinfo);
 		
       //save acces token for future requests
-	  $sql = array(
+	  db_insert('linkedin_token')->fields(array(
 		'uid' => $account->uid,
 		'token_key' => $oauth['oauth_token'],
 		'token_secret' => $oauth['oauth_token_secret'],
 		'type' => 'access',
-	  );
-      drupal_write_record('linkedin_token', $sql, array('uid'));
-      //associate LinkedIn ID with uid for future use
+		))->execute();
+
+	  //associate LinkedIn ID with uid for future use
       user_set_authmaps($account, array('authmap_linkedin' => $response['id']));
       drupal_goto("user/$account->uid/edit/main");
     }
@@ -582,6 +587,7 @@ function _linkedin_list_fields($type = 'auth') {
       'twitter-accounts',
       'date-of-birth',
       'main-address',
+	  'email-address',
       //        @TODO //        'relation-to-viewer', //        'proposal-comments', //        'recommendations-received',
     );
     $fields = array_merge($fields, $standard_fields);
@@ -597,11 +603,16 @@ function _proper_username($username, $i = 0){
 	}else{
 		$registered = db_query("SELECT * FROM {users} WHERE name = :name", array(':name' => $username))->fetchAssoc();
 	}
-	if($registered->uid){
+	if(isset($registered['uid']) && $registered['uid'] > 0){
 		$i++ ;
+	// echo '<pre>';
+	// print_r($registered);
+	// die();
 		return _proper_username($username, $i);
 	}
-	return ($flag)? $username : $username . $i;
+	if($flag)
+		$username = $username . $i;
+	return $username;
 }
 
 
