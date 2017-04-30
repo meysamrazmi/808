@@ -97,13 +97,14 @@
 		}
 	}
 }
-.page-reward, .page-charge, .page-login , .page-register , .page-user-password , .page-user.role-anonymous-user{
+.page-reward, .page-charge, .page-login , .page-register , .page-user-password , .page-user.role-anonymous-user:not(.profile){
 	section#main:before {
 		display: none;
 	}	
 }
 h1#page-title {
-	.page-user:not(.page-reward):not(.page-charge):not(.page-login):not(.page-register):not(.page-user-password):not(.role-anonymous-user)  & {
+	.page-user:not(.page-reward):not(.page-charge):not(.page-login):not(.page-register):not(.page-user-password):not(.role-anonymous-user)  & ,
+	.role-anonymous-user.profile & {
 		.absolute('';'';90px;230px);
 		color: #fff;
 		font-weight: 500 !important;
