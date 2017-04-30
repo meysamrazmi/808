@@ -1,0 +1,19 @@
+diff --git a/docroot/sites/all/modules/webform/webform.module b/docroot/sites/all/modules/webform/webform.module
+index b21b212..3a19025 100644
+--- a/docroot/sites/all/modules/webform/webform.module
++++ b/docroot/sites/all/modules/webform/webform.module
+@@ -5360,3 +5360,14 @@ function webform_count_terminals($a) {
+             ? array_reduce($a, function($carry, $item) {return $carry + webform_count_terminals($item);}, 0)
+             : 1;
+ }
++
++/**
++ * Function for backward module compatibility.
++ */
++function webform_client_form_includes($form, $form_state) {
++  $components = webform_components();
++  foreach ($components as $component_type => $component) {
++    webform_component_include($component_type);
++  }
++  return $form;
++}

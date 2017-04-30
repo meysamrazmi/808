@@ -1,0 +1,7 @@
+name = 808 functions
+description = "civil808 custom functions and use cases"
+dependencies[] = uc_reports
+dependencies[] = uc_roles
+dependencies[] = uc_shipping
+core = 7.x
+package = 808

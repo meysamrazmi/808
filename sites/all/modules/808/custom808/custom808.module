@@ -1,0 +1,134 @@
+<?php
+
+function in_array_r($needle, $haystack, $strict = false) {
+    foreach ($haystack as $item) {
+        if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && in_array_r($needle, $item, $strict))) {
+            return true;
+        }
+    }
+    return false;
+}
+
+/*
+ * this function will send a sms to given phone number
+ * @param:
+ * 	$to: an array of numbers that message will be sent to
+ * 	$message: text message that will be sent to phone numbers
+ * @return:
+ * 	if there is problem it will returns the error that accured during its proccess
+ */
+function send_sms($to , $message){
+	// turn off the WSDL cache
+	ini_set("soap.wsdl_cache_enabled", "0");
+	try {
+		$user = "9113546642";
+		$pass = "2929957";
+		
+		$client = new SoapClient("http://87.107.121.52/post/send.asmx?wsdl");
+		
+		$getcredit_parameters = array(
+			"username"=>$user,
+			"password"=>$pass
+		);
+		$credit = $client->GetCredit($getcredit_parameters)->GetCreditResult;
+		if(10000 > $credit){
+			$from = 'support@civil808.com';
+			$to = 'm.razmi.92@gmail.com';
+			$subject="کمبود اعتبار sms";
+			$body = "برای ارسال پیام های فروشگاه اعتبار کافی نیست.<br>
+			http://onlinepanel.ir/<br>
+			اعتبار باقی مانده: " . $credit ."ریال می باشد.";
+			simple_mail_send($from, $to, $subject, $body);
+		}
+		
+		$encoding = "UTF-8";//CP1256, CP1252
+		$textMessage = iconv($encoding, 'UTF-8//TRANSLIT', $message);
+		// if(!is_array($to)){
+			// $too = array($to);
+			// $to = $too;
+		// }
+		
+		$sendsms_parameters = array(
+			'username' => $user,
+			'password' => $pass,
+			'from' => "50009666666808",
+			'to' => $to,
+			'text' => $textMessage,
+			'isflash' => false, 
+			'udh' => "",
+			'recId' => array(0),
+			'status' => 0
+		);
+		
+		$status = $client->SendSms($sendsms_parameters)->SendSmsResult;
+
+	} catch (SoapFault $ex) {
+		echo $ex->faultstring;
+	}
+}
+
+/*
+ * this function returns the oposite translation of given string
+ *	@param:
+ * 	$string:
+ * 	$context:
+ * 	$langcode:
+ */
+function t2($string = "", $context = NULL, $langcode = '') {
+  $t = $string;
+  if ($string !== "") {
+    if ($langcode == "en") {
+      $sql = 'SELECT s.source 
+        FROM {locales_source} s
+        JOIN {locales_target} t ON s.lid = t.lid
+        WHERE t.translation = :string';
+
+      $results = db_query($sql, array(':string' => $string));
+      foreach ($results as $row) {
+        $t = $row->source;
+      }
+    } 
+    else {
+      $t = t($string, $context, array('langcode' => $langcode));
+    }
+  }
+  return $t;
+}
+
+function formatMoney($number, $fractional=false) { 
+    if ($fractional) { 
+        $number = sprintf('%.2f', $number); 
+    } 
+    while (true) { 
+        $replaced = preg_replace('/(-?\d+)(\d\d\d)/', '$1,$2', $number); 
+        if ($replaced != $number) { 
+            $number = $replaced; 
+        } else { 
+            break; 
+        } 
+    } 
+    return $number; 
+}
+
+function mdump($var){
+	global $user;
+	if($user->uid == 3300){
+ 		echo '<pre>';
+		print_r($var);
+		echo '</pre>';
+		die($die);
+ 	}
+}
+
+function array_search_r($needle,$haystack) {
+    foreach($haystack as $key=>$value) {
+        $current_key=$key;
+        if($needle===$value OR (is_array($value) && array_search_r($needle,$value) !== false)) {
+            return $current_key;
+        }
+    }
+    return false;
+}
+
+
+

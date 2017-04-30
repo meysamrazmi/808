@@ -1,0 +1,74 @@
+<?php
+/**
+ * Implementation of hook_schema
+ */
+function userpoints_share_schema() {
+  $schema['up_share_log'] = array(
+    'fields' => array(
+      'share_id' => array(
+        'type' => 'serial', 
+        'not null' => TRUE,
+      ),
+      'uid' => array(
+        'description' => 'User ID of person who has a share of entity selling',
+        'type' => 'int', 
+        'not null' => TRUE, 
+        'default' => 0,
+      ),
+      'buyer_uid' => array(
+        'description' => 'User ID of person who purchased a order or an content',
+        'type' => 'int', 
+        'not null' => TRUE, 
+        'default' => 0,
+      ),
+      'entity_id' => array(
+        'description' => 'Entity ID',
+        'type' => 'int', 
+        'not null' => TRUE, 
+        'default' => 0,
+      ),
+      'entity_type' => array(
+        'description' => 'Entity type like: order, article, news ...',
+        'type' => 'varchar', 
+        'length' => 255, 
+        'not null' => TRUE, 
+        'default' => 0,
+      ),
+      'field_id' => array(
+        'description' => 'field-collection item ID of entity field',
+        'type' => 'int', 
+        'not null' => TRUE, 
+        'default' => 0,
+      ),
+      'points' => array(
+        'type' => 'int', 
+        'not null' => TRUE, 
+        'default' => 0,
+      ),
+      'portion' => array(
+        'description' => 'percent of share that user recieves for every entity sell',
+        'type' => 'int', 
+        'not null' => TRUE, 
+        'default' => 0,
+      ),
+      'model' => array(
+        'type' => 'varchar', 
+        'length' => 255, 
+        'not null' => FALSE, 
+        'default' => '',
+      ),
+      'total' => array(
+        'type' => 'int', 
+        'not null' => TRUE, 
+        'default' => '0',
+      ),
+      'updated' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'primary key' => array('share_id'),
+  );
+  return $schema;
+}

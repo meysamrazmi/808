@@ -1,0 +1,230 @@
+<?php
+
+/**
+ * Implementation of hook_menu().
+ */
+function userpoints_share_menu() {
+  $items = array();
+  $items['admin/store/reports/sharepoints'] = array(
+    'title' => t('Share Points Reports'),
+    'description' => t('View reports for points earned by sales'),
+    'page callback' => 'up_share_history_all',
+    'access arguments' => array('view all sharepoint'),
+	'file' => 'userpoints_share.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['user/%user/sharepoints'] = array(
+    'title' => t('shop Share Points'),
+    'description' => t('View your points earned by sales'),
+    'page callback' => 'up_share_history_user',
+    'page arguments' => array(1),
+	'access callback'  => 'sharepoints_user_access',
+    'access arguments' => array('view own sharepoints' , 1),
+    'type' => MENU_LOCAL_TASK
+  );
+  return $items;
+}
+
+function userpoints_share_permission() {
+  return array(
+    'view all sharepoint' => array(
+      'title' => t('view all sharepoint'), 
+    ), 
+    'view own sharepoints' => array(
+      'title' => t('view own sharepoints'), 
+    ),
+  );
+}
+
+function sharepoints_user_access($permission = 'read privatemsg', $uid) {
+    global $user;
+
+	if(isset($uid) && $user->uid != $uid->uid){
+		return user_access('view all sharepoint', $user);
+	}else{
+		return user_access($permission, $user) || user_access('view all sharepoint', $user);
+	}
+}
+
+/**
+ * Returns the sortable table listing of a sellers orders.
+ *
+ * @param $uid
+ *   The user ID whose orders you wish to list.
+ */
+function up_share_history_user($usr) {
+  drupal_set_title(t('Share Points History') .''. $usr->name);
+  $breadcrumb = drupal_get_breadcrumb();
+  $breadcrumb[] = l(t('My account'), 'user/'. $usr->uid);
+  drupal_set_breadcrumb($breadcrumb);
+  $header = array(
+    array('data' => t('Customer'),'field' => 'buyer_uid'),
+    array('data' => t('Entity type'),'field' => 'entity_type'),
+    array('data' => t('Entity id'),'field' => 'entity_id'),
+    array('data' => t('Portion'),	'field' => 'portion'),
+    array('data' => t('Model'), 	'field' => 'model'),
+    array('data' => t('Total'), 	'field' => 'total'),
+    array('data' => t('Your Share'), 	'field' => 'points'),
+    array('data' => t('Date'), 	'field' => 'updated'),
+  ); 
+  
+  if(isset($_GET['sort']) && isset($_GET['order'])) {
+  	if($_GET['sort'] == 'asc') $sort = 'ASC';
+  	else $sort = 'DESC';
+	foreach($header as $key=>$val){
+		if(in_array($_GET['order'], $val)){
+			$sort_order = $header[$key]['field'];
+			break;
+		}
+	}
+  }
+  else {
+  	$sort = 'DESC';
+  	$sort_order = 'updated';
+  }
+    
+  $query = db_select('up_share_log', 'sl')->extend('PagerDefault');
+  $query->fields('sl', array('uid', 'buyer_uid', 'entity_id', 'entity_type', 'field_id', 'points', 'portion', 'model', 'total', 'updated'));
+  $query->condition('sl.uid', $usr->uid);
+  $query->orderBy($sort_order, $sort);
+  $results = $query->execute();
+
+  $rows = array();
+  $total_sell = $total_share = 0;
+  // Build a table based on the customer's sales.
+  foreach ($results as $sales) {
+	switch($sales->entity_type){
+		case 'uc_order':
+			$entity_id = l($sales->entity_id, '/admin/store/orders/'. $sales->entity_id);
+			$nid = db_query("SELECT nid FROM {uc_products} WHERE model = :sku", array(':sku' => $sales->model))->fetchObject();
+			$model = '<a href="/node/'. $nid->nid .'" target="_blank">'. $sales->model .'</a>';
+			break;
+		default:
+			$entity_id = $sales->entity_id;
+			$model = '<a href="/node/'. $sales->model .'" target="_blank">'. t('content') .' '. $sales->model .'</a>';
+	}
+	$buyer = ' ';
+	if($sales->buyer_uid){
+		$buyer_uid = user_load($sales->buyer_uid);
+		$buyer = '<a href="/user/'. $buyer_uid->uid .'">'. $buyer_uid->name .'</a>' ;
+	}
+	$total_sell += $sales->total;
+	$total_share += $sales->points;
+    $rows[] = array(
+      array('data' => $buyer),
+      array('data' => t($sales->entity_type)),
+      array('data' => $entity_id),
+      array('data' => $sales->portion .' %'),
+      array('data' => $model),
+      array('data' => formatMoney($sales->total)),
+      array('data' => formatMoney($sales->points)),
+      array('data' => format_date($sales->updated, 'date_time')),
+    );
+  }
+    if (!empty($rows)) {
+	array_unshift($rows, array(count($rows) . 'سفارش',
+		'<p style="text-align:center;font-weight: bold;font-size: 15px;margin: 0;">مجموع کل این صفحه</p>',
+		'','','', 
+		'<p style="font-weight: 500;font-size: 14px;margin: 0;">' . formatMoney($total_sell) .' تومان</p>',
+		'<p style="font-weight: 500;font-size: 14px;margin: 0;">' . formatMoney($total_share) .' تومان</p>',
+		'',
+	));
+  }
+
+  $build['up_share_history'] = array(
+    '#theme' => 'table', 
+    '#header' => $header, 
+    '#rows' => $rows, 
+  );
+  $build['up_share_history_pager'] = array('#theme' => 'pager');
+  return $build;
+}
+
+/**
+ * Implementation of hook_uc_order();
+ */
+function userpoints_share_uc_order($op, $order, $status) {
+  switch ($op) {
+    case 'update':
+	  $order_status = true;
+	  $status_check = true;
+	  // if($order->order_status != 'peyment_recieved' && $order->order_status != 'completed' && $order->order_status != 'sent') $order_status = true;
+	  // if($status == 'peyment_recieved' || $status == 'completed' || $status == 'sent') $status_check = true;
+      if ($order->order_status == 'completed' || $status == 'completed') {
+        if (is_array($order->products) && count($order->products)) {
+			foreach ($order->products as $product) {
+				$field_percent = db_query(_queries('field'), array(':nid' => $product->nid));
+				$total = (intval($product->qty) * intval($product->price));
+				$total_cost = (intval($product->qty) * intval($product->cost));
+				$discount = 0;
+				foreach($order->data['coupons'] as $coupon => $coupon_nid){
+					if(array_key_exists($product->nid, $coupon_nid)){
+						$discount += $coupon_nid[$product->nid]->discount;
+					}
+				}
+				$total -= $discount;
+				$total -= $total_cost;
+
+				foreach ($field_percent as $field_item){
+					$multiplier = $field_item->portion / 100;
+					$uid = $field_item->uid;
+					$is_cost = $field_item->cost;
+					
+					$query = db_query("SELECT * FROM {up_share_log} WHERE uid = :uid AND buyer_uid = :buyer_uid AND entity_id = :entity_id AND entity_type = :entity_type AND field_id = :field_id", array(':uid' => $uid, ':buyer_uid' => $order->uid, ':entity_id' => $order->order_id, ':entity_type' => 'uc_order', ':field_id' => $field_item->field_id))->fetchObject();
+					$allow_points = TRUE;
+					if (isset($query->uid) && $query->uid) {
+						$allow_points = FALSE;
+					}
+
+					$points = intval(($total * $multiplier));
+					if ($allow_points && $points > 0) {
+						$params = array (
+							'tid' => 0,
+							'uid' => $uid,
+							'points' => $points,
+							'operation' => 'product share',
+							'description' => t('A purchase has resieved for product that @uid has a share of it.', array('@uid' => $uid)),
+							'entity_id' => $order->order_id,
+							'entity_type' => 'uc_order',
+						);
+						$st = userpoints_userpointsapi($params);
+						db_insert('up_share_log')
+							->fields(array(
+							'uid' => $uid,
+							'buyer_uid' => $order->uid,
+							'entity_id' => $order->order_id,
+							'entity_type' => 'uc_order',
+							'field_id' => $field_item->field_id,
+							'points' => $points,
+							'portion' => $field_item->portion,
+							'model' => $product->model,
+							'total' => $total,
+							'updated' => time(),
+							))->execute();
+					}
+					if($is_cost) $total -= $points;
+				}  
+			}
+        }
+      }
+  }
+}
+
+function _queries($q){
+	switch ($q){
+		case 'field':
+			return "SELECT field_percent.entity_id AS nid, field_percent.field_percent_value AS field_id, field_share.field_share_value AS portion , field_user.field_user_ref_uid AS uid, is_cost.field_bool_value AS cost
+				FROM {field_data_field_percent} field_percent
+				INNER JOIN {field_data_field_share} field_share
+				INNER JOIN {field_data_field_user_ref} field_user
+				INNER JOIN {field_data_field_bool} is_cost
+				ON field_percent.field_percent_value = field_share.entity_id AND field_share.bundle = 'field_percent'
+				AND field_percent.field_percent_value = field_user.entity_id AND field_user.bundle = 'field_percent'
+				AND field_percent.field_percent_value = is_cost.entity_id AND is_cost.bundle = 'field_percent'
+				WHERE field_percent.entity_type = 'node' AND field_percent.entity_id = :nid ORDER BY cost DESC";
+			break;
+		default:
+			return null;
+	}
+}
+

@@ -1,0 +1,65 @@
+<?php
+
+/*
+ * Implements hook_node_presave().
+ * for automaticly assign image field's alt and title attribute
+ */
+function require_alt_node_presave($node) {
+
+  if(isset($node->field_image)) {
+    $node->field_image[LANGUAGE_NONE][0]['alt']=$node->title;
+    $node->field_image[LANGUAGE_NONE][0]['title']=$node->title;
+  }
+
+}
+
+/*
+ * Implements hook_field_widget_form_alter().
+ */
+function require_alt_field_widget_form_alter(&$element, &$form_state, $context) {
+  if ($context['field']['type'] == 'image' && !empty($context['instance']['settings']['alt_field'])) {
+    foreach (element_children($element) as $delta) {
+      $element[$delta]['#process'][] = 'require_alt_image_field_widget_process';
+    }   
+  }
+}
+
+
+
+/*
+ * Function to help with processing each image field.
+ */
+ 
+function require_alt_image_field_widget_process($element, &$form_state, $form) {
+  if ($element['alt']['#access']) {
+    $element['alt']['#element_validate'] = array('_image_field_validate_alt_text');
+  }
+  return $element;
+}
+
+
+
+/*
+ * Helper function to validate that alt text is provided for all image fields.
+ */
+ 
+function _image_field_validate_alt_text($element, &$form_state) {
+  if (!in_array('file_managed_file_submit', $form_state['triggering_element']['#submit'])) {
+    // If the image is not there, we do not check for empty values.
+    $parents = $element['#parents'];
+    $field = array_pop($parents);
+    $image_field = drupal_array_get_nested_value($form_state['input'], $parents);
+    // We check for the array key, so that it can be NULL (like if the user
+    // submits the form without using the "upload" button).
+    if (!array_key_exists($field, $image_field)) {
+      return;
+    }   
+    // Check if field is left emtpy.
+    elseif (empty($image_field[$field])) {
+		//$image_field[$field] = 
+      form_error($element, t('The field !title is required', array('!title' => $element['#alt'])));
+      return;
+    }   
+  }
+}
+

@@ -1,0 +1,6 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	worktree = /home/civilcom/domains/civil808.com/public_html/sites/all/modules/calendar_systems/patch/work/test

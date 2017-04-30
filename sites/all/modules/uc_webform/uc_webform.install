@@ -1,0 +1,66 @@
+<?php
+/**
+ * @file
+ * Contains install and update functions for uc_webform.
+ */
+
+/**
+ * Implementation of hook_field_schema.
+ */
+function uc_webform_schema() {
+  $schema = array(
+    'uc_webform' => array(
+      'fields' => array(
+        'nid' => array(
+          'type'      => 'int',
+          'unsigned'  => TRUE,
+          'not null'  => TRUE,
+        ),
+        'webform_nid' => array(
+          'type'      => 'int',
+          'unsigned'  => TRUE,
+          'not null'  => FALSE,
+          'default'   => 0,
+        ),
+        'submit' => array(
+          'type'      => 'int',
+          'size'      => 'tiny',
+          'unsigned'  => TRUE,
+          'not null'  => TRUE,
+          'default'   => 0,
+        ),
+      ),
+      'primary key' => array('nid'),
+    ),
+    'uc_webform_submission' => array(
+      'fields' => array(
+        'sid'   => array(
+          'type'      => 'int',
+          'unsigned'  => TRUE,
+          'not null'  => TRUE,
+        ),
+        'order_id'  => array(
+          'type'      => 'int',
+          'unsigned'  => TRUE,
+        ),
+      ),
+    ),
+  );
+
+  return $schema;
+}
+
+function uc_webform_update_7000() {
+  $schema = uc_webform_schema();
+  db_create_table('uc_webform_submission', $schema['uc_webform_submission']);
+}
+
+function uc_webform_update_7010() {
+  $schema = uc_webform_schema();
+  db_add_field('uc_webform', 'submit', $schema['uc_webform']['fields']['submit']);
+}
+
+function uc_webform_update_7020() {
+  $schema = uc_webform_schema();
+  db_change_field('uc_webform', 'webform_nid', 'webform_nid', $schema['uc_webform']['fields']['webform_nid']);
+}

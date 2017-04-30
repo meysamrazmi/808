@@ -1,0 +1,18 @@
+name = Userpoints Discounts
+description = Interfaces userpoints with ubercart, so users discount final price with points.
+package = Userpoints
+dependencies[] = userpoints
+dependencies[] = uc_order
+dependencies[] = uc_cart
+dependencies[] = uc_payment
+core = 7.x
+php = 5.x
+
+
+
+; Information added by drupal.org packaging script on 2013-10-19
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "userpoints_ubercart"
+datestamp = "1382150323"
+

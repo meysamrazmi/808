@@ -1,0 +1,6 @@
+name = Ubercart Product Actions 808
+description = Custom actions for modifying product prices based on each other using Views Bulk Operations.
+dependencies[] = uc_product
+package = 808
+core = 7.x
+version = "1"

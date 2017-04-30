@@ -1,0 +1,17 @@
+name = Userpoints Seller Points
+description = Provides necessary modifications to award a seller points when a product is purchased
+dependencies[] = userpoints
+dependencies[] = uc_order
+dependencies[] = uc_cart
+dependencies[] = uc_payment
+package = Userpoints
+core = 7.x
+php = 5.x 
+
+
+; Information added by drupal.org packaging script on 2013-10-19
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "userpoints_ubercart"
+datestamp = "1382150323"
+

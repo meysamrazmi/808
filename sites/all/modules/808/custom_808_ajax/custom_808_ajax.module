@@ -1,0 +1,89 @@
+<?php
+
+/*
+ * Implements hook_menu().
+ */
+function custom_808_ajax_menu() {
+  $items['ajax808/%/%'] = array(
+    'page callback' => 'custom_808_ajax_news_notify',
+    'type' => MENU_CALLBACK,
+	'page arguments' => array(2,3),
+    'access arguments' => array('access content'),
+	'delivery callback' => 'custom_808_ajax_callback',
+  );
+  $items['user/money/charge'] = array(
+    'page callback' => 'custom_redirect',
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access content'),
+  );
+
+  
+  return $items;
+}
+
+/**
+ * Callback to return JSON of an specific view
+ */
+function custom_808_ajax_news_notify($view , $block) {
+	global $user;
+	// this part will filter the result for site users to not see the contents when he saw it before
+	if($user->uid != 0){
+		// retrives the nids that will appears to users
+		$query = "SELECT node.nid as nid FROM megapil_808_node node WHERE (( (node.status = '1') AND (node.type IN  ('education', 'article', 'publication', 'blog', 'event', 'designteam', 'poll', 'podcast', 'projectnew', 'project')) AND (node.created > :time) ))";
+		$queryParams = array(
+			':time' => time() - (10*24*60*60) );
+		$result = db_query($query, $queryParams)->fetchAll();
+		$selected = array();
+		//for every nid, we check the user history
+		foreach($result as $row){
+			$query = "SELECT COUNT(*) AS count FROM megapil_808_accesslog a WHERE (( (a.uid = :uid) AND (a.path = :path) ))";
+			$queryParams = array(
+				':uid' => $user->uid,
+				':path' => 'node/'. $row->nid );
+			$result = db_query($query, $queryParams)->fetchAll();
+			if($result[0]->count > 0){
+				$selected [] = $row->nid;
+			}
+		}
+	}
+	
+	//send the nids that user saw them before as contextual parameters to filter the result
+	$context = isset($selected)? implode('+',$selected): '';	
+	// $output = views_embed_view($view , $block, $context);
+	$output = views_embed_view('all_new', 'pnotify_news', $context);
+	drupal_json_output(array('status' => 0, 'data' => $output));
+	drupal_exit();
+	return $output;
+}
+
+/*
+ * Implement delivery callback for "ajax808/%/%" menu item
+ * see: "custom_808_ajax_news_notify()"
+ */
+function custom_808_ajax_callback($page_callback_result) {
+   // Only render content and validates return
+  $content = is_string($page_callback_result) ? $page_callback_result :   drupal_render($page_callback_result);
+  $html = '' . drupal_get_css() . drupal_get_js() . '' . $content . '';
+  print $html;
+  drupal_page_footer(); 
+}
+
+/**
+ * Implement hook_init
+ * this function adds the user id to "Drupal.Behaviors.setting" for use in js files in the site.
+ */
+function custom_808_ajax_init() {
+  global $user;
+  drupal_add_js(array('Uid' => $user->uid), 'setting');
+}
+
+
+function custom_redirect(){
+  global $user;
+  if($user->uid){
+	header('Location: /user/'. $user->uid .'/money/charge');
+  }else{
+	header('Location: /user');
+  }
+	die();
+}

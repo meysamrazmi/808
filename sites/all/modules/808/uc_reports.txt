@@ -1,0 +1,145 @@
+/*
+ * این فایل برای راهنمایی در مورد تغییری است که در ماژول خاصی داده شده است
+ * این فایل نمیتواند به صورت patch عمل کند
+ * باید به صورت دستی تغییرات اعمال شود
+ */
+
++++ ubercart/uc_reports/uc_reports.admin.inc
+--- ubercart/uc_reports/uc_reports.admin.inc
+
+function uc_reports_products_custom() {
+
+@@ line 374 @@
+  $header = array(
+    array('data' => t('#')),
+    array('data' => t('Product'), 'field' => 'n.title'),
+    array('data' => t('Sold'), 'field' => 'sold'),
+    array('data' => t('Revenue'), 'field' => 'revenue', 'sort' => 'desc'),
++  array('data' => t('Coupon')),
+    array('data' => t('Gross'), 'field' => 'gross'),
+  );
+  
+  
+  
+@@ line 402 @@
+    $gross_csv = empty($product['gross']) ? 0 : $product['gross'];
+    $gross_cell = uc_currency_format($gross_csv);
+	/*------------*/
+  $orginal_orders = db_query("SELECT p2.order_id as order_id FROM {uc_order_products} p2 LEFT JOIN {uc_orders} o ON p2.order_id = o.order_id WHERE o.order_status IN (:statuses) AND p2.nid = :nid AND o.created >= :start AND o.created <= :end", array(':statuses' => $args['status'], ':start' => $args['start_date'], ':end' => $args['end_date'], ':nid' => $product['nid']))->FetchAll();
+
+	$total_discount = 0;
+	$coupon_names = array();
+	foreach($orginal_orders as $oid){
+		$orginal_order = uc_order_load($oid->order_id);
+		$discount = 0;
+		foreach($orginal_order->data['coupons'] as $coupon => $coupon_nid){
+			if(array_key_exists($product['nid'], $coupon_nid)){
+				$discount += $coupon_nid[$product['nid']]->discount;
+				$coupon_names[$coupon] +=1;
+			}
+		}
+		$total_discount += $discount;
+	}
+	$gross_cell = uc_currency_format($gross_csv - $total_discount);
+	$total_discount = uc_currency_format($total_discount);
+	/*------------*/
+
+    if (module_exists('uc_attribute')) {
+  
+  
+  
+  
+@@ line 460 @@
+    if ($views_column) {
+      $views = empty($product['totalcount']) ? 0 : $product['totalcount'];
+      $rows[] = array(
+        array('data' => $row_cell),
+        array('data' => $product_cell),
+        array('data' => $sold_cell),
+        array('data' => $revenue_cell),
++      array('data' => $total_discount .'<br>'. str_replace('=', ' x ',http_build_query($coupon_names,'x','<br> '))),
+        array('data' => $gross_cell),
+        array('data' => $views),
+      );
+      $csv_rows[] = array($row_cell, $product_csv, $sold_csv, $revenue_csv, $gross_csv, $views);
+    }
+    else {
+      $rows[] = array(
+        array('data' => $row_cell),
+        array('data' => $product_cell),
+        array('data' => $sold_cell),
+        array('data' => $revenue_cell),
++      array('data' => $total_discount .'<br>'. str_replace('=', ' x ',http_build_query($coupon_names,'x','<br> '))),
+        array('data' => $gross_cell),
+      );
+      $csv_rows[] = array($row_cell, $product_csv, $sold_csv, $revenue_csv, $gross_csv);
+    }
+  }  
+  
+  
+  
+@@ line 500 @@ 
++  if (arg(5) == '') {
++	$link = 'admin/store/reports/products/custom';
++  }else{
++	$link = 'admin/store/reports/products/custom/'. arg(5) .'/'. arg(6) .'/'. arg(7) ;
++  }
++  if (isset($_GET['nopage'])) {
++    $build['links']['toggle_pager'] = array(
++      '#markup' => l(t('Show paged records'), $link),
++    );
++  }
++  else {
++    $build['links']['toggle_pager'] = array(
++      '#markup' => l(t('Show all records'), $link, array('query' => array('nopage' => '1'))),
++    );
++  }
+-  if (isset($_GET['nopage'])) {
+-    $build['links']['toggle_pager'] = array(
+-      '#markup' => l(t('Show paged records'), 'admin/store/reports/products/custom'),
+-    );
+-  }
+-  else {
+-    $build['links']['toggle_pager'] = array(
+-      '#markup' => l(t('Show all records'), 'admin/store/reports/products/custom', array('query' => array('nopage' => '1'))),
+-    );
+-  }
+
+
+
+
++++ ubercart/uc_reports/uc_reports.admin.inc
+--- ubercart/uc_reports/uc_reports.admin.inc
+@@ line 541 @@
+
+function uc_reports_products_custom_form($form, &$form_state, $values) {
+
+  $form['search']['start_date'] = array(
+    '#type' => 'date',
+    '#title' => t('Start date'),
+    '#default_value' => array(
++	  'month' => date('n' , $values['start_date']),
++	  'day' => date('j' , $values['start_date']),
++	  'year' => date('Y' , $values['start_date']),
+-       'month' => format_date($values['start_date'], 'custom', 'n'),
+-       'day' => format_date($values['start_date'], 'custom', 'j'),
+-       'year' => format_date($values['start_date'], 'custom', 'Y'),
+    ),
+  );
+  $form['search']['end_date'] = array(
+    '#type' => 'date',
+    '#title' => t('End date'),
+    '#default_value' => array(
++	'month' => date('n' , $values['end_date']),
++	'day' => date('j' , $values['end_date']),
++	'year' => date('Y' , $values['end_date']),
+-	 'month' => format_date($values['end_date'], 'custom', 'n'),
+-	 'day' => format_date($values['end_date'], 'custom', 'j'),
+-	 'year' => format_date($values['end_date'], 'custom', 'Y'),
+    ),
+  );
+
+
+
+
+

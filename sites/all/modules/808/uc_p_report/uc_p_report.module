@@ -1,0 +1,165 @@
+<?php
+/**
+
+ */
+function uc_p_report_menu() {
+  $items = array();
+
+  $items['node/%/sale_report'] = array(
+    'title' => 'گزارش فروش',
+    'description' => 'View reports of users who purchased specific products',
+    'page callback' => 'uc_p_report_report',
+    'page arguments' => array(1),
+    'access callback' => 'uc_p_report_access',
+    'access arguments' => array(1),
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 100,
+  );
+
+  return $items;
+}
+
+/**
+* Access callback 
+*/
+function uc_p_report_access($nid) {
+	$node = node_load($nid);
+	global $user;
+	if(user_access('view all who bought what') || (user_access('view own who bought what') && $node->uid==$user->uid || user_has_role(9 , $user) || user_has_role(3 , $user)) ){
+		return TRUE;
+	}
+	drupal_set_message(t('You are not authorized to view who bought that item.  Please contact your site or shop administrator'), 'warning');
+	return FALSE;
+}
+
+function uc_p_report_report($product_id) {
+	if ($product_id<1){
+		drupal_set_message(t('there is a problem. please contact to support for detail.<br>code : @id , value : @val', array('@id'=> 4 , '@val' => $product_id ,)), 'error');
+		return null;
+	}
+	$node = node_load($product_id);
+	$output = "";
+
+	$header = array(
+		array('data' => t('ID'),    	'field' => 'id',    		'sql_field' => "{uc_orders}.order_id"),
+		array('data' => t('Name'), 	'field' => 'fname', 	'sql_field' => "{uc_orders}.billing_first_name"),
+		array('data' => t('Email'), 	'field' => 'email', 	'sql_field' => "{uc_orders}.primary_email"),
+		array('data' => t('Qty'),   	'field' => 'qty',   	'sql_field' => "{uc_order_products}.qty"),
+		array('data' => t('Total'), 	'field' => 'total', 	'sql_field' => "({uc_order_products}.price * {uc_order_products}.qty)"),
+		array('data' => t('Coupon')),
+		array('data' => t('Date'),  	'field' => 'date',  	'sql_field' => "{uc_orders}.created"),
+		array('data' => t('HowPay'),'field' => 'howpay','sql_field' => "{uc_orders}.payment_method"),
+		array('data' => t('Status'),	'field' => 'status',	'sql_field' => "{uc_orders}.order_status"),
+	);
+	
+	// Setting the sort conditions
+	if(isset($_GET['sort']) && isset($_GET['order'])) {
+		if($_GET['sort'] == 'asc') $sort = 'ASC';
+		else $sort = 'DESC';
+		foreach($header as $key=>$val){
+			if(in_array($_GET['order'], $val)){
+				$sort_order = $header[$key]['field'];
+				break;
+			}
+		}
+	}
+	else {
+		$sort = 'DESC';
+		$sort_order = 'Date';
+	}
+  
+	$sqsel = "  ";
+	foreach($header as $hval){
+		$sqsel .= isset($hval['sql_field'])? $hval['sql_field'] . " AS " . $hval['field'] .", " : '';
+	}
+	$sqsel .= "{uc_orders}.billing_last_name AS lname, ";
+	$sqsel .= "{uc_orders}.uid AS uid , {uc_orders}.*, {uc_order_products}.data AS orderdata ";
+	$sql = "SELECT $sqsel FROM {uc_orders} ".
+	  	" JOIN {uc_order_products}" . 
+		" ON {uc_order_products}.order_id = {uc_orders}.order_id " . 
+		" AND {uc_order_products}.nid  =  :product_id " .
+		" WHERE order_status <> 'in_checkout' AND order_status <> 'canceled' AND order_status <> 'abandoned' ".
+		" ORDER BY ". $sort_order .' '. $sort;
+	$orders = db_query($sql,array(":product_id"=>$product_id));
+
+	if (module_exists('uc_attribute')){
+	 	//Collect and unserialize the attributes.  First, the names
+	 	$attsql = "SELECT att.aid, att.ordering, att.name, IF(LENGTH(uca.label)>0,uca.label, att.name) AS label, uca.nid FROM {uc_attributes} att
+		   JOIN {uc_product_attributes} uca ON uca.aid=att.aid AND nid = :d Order By ordering, name";
+	 	$attresults = (db_query($attsql, array(":d"=>$product_id)));
+	 	foreach ($attresults as $attrow) {
+	 		$header[]=array('data'=>t($attrow->label));
+	 		$attrlist[] = array('data'=>t($attrow->label));
+	 	}
+	}
+	
+	
+	$total_discount = $total_sell = $total_qty = $row_count = 0;
+	
+	foreach ($orders as $order) {
+		$orginal_order = uc_order_load($order->id);
+		$discount = 0;
+		$has_coupon = false;
+		foreach($orginal_order->data['coupons'] as $coupon => $coupon_nid){
+			if(array_key_exists($product_id, $coupon_nid)){
+				$discount += $coupon_nid[$product_id]->discount;
+				$has_coupon = true;
+			}
+		}
+		$order->total -= $discount;
+		$total_discount += $discount;
+
+		$temparray = array();
+		$temparray[]= l('#' . $order->id ,'admin/store/orders/' . $order->id);
+		$temparray[]= l($order->fname .' '. $order->lname, 'user/' . $order->uid);
+		$temparray[]= $order->email;
+		$temparray[]= $order->qty;
+		$temparray[]= formatMoney($order->total);
+		$temparray[]= ($has_coupon)? $coupon .'<span class="badge badge-important">'. ($discount/($order->total + $discount) * 100 ) . '%</span>' : '';
+		$temparray[]= format_date($order->date, 'date_time');
+		$temparray[]= t($order->howpay);
+		$temparray[]= t($order->status);		
+
+		$email_addresses[] = $order->email;  //add to the list
+
+		$mydata=unserialize($order->orderdata);
+		$total_sell += $order->total;
+		$total_qty += $order->qty;
+		$row_count += 1;
+		
+		if (isset($attrlist)){
+			foreach ($attrlist as $myattrib) {
+				if(isset($mydata['attributes'][$myattrib['data']])){
+					$thisdatum = $mydata['attributes'][$myattrib['data']]; //might be null
+					if (is_array($thisdatum) == 1) {
+						$temparray[] = check_plain(implode(' | ', $thisdatum));
+					}
+				}else{
+					$temparray[]=NULL;
+				}
+			}
+		}
+		$rows[] = $temparray;
+		if(empty($rows)) {
+			$rows[] = array(array('data' => t('No customers found for this item'), 'colspan' => count($header)));
+		}
+	}
+	if (!empty($rows)) {
+		array_unshift($rows, array($row_count . 'سفارش',
+			'', 
+			'<p style="text-align:center;font-weight: bold;font-size: 15px;margin: 0;">مجموع کل این صفحه</p>',
+			$total_qty,
+			'<p style="text-align:center;font-weight: bold;font-size: 15px;margin: 0;">' . formatMoney($total_sell) .' تومان</p>',
+			$total_discount,
+			'','','')); 
+		$output .= theme('table' ,array('header'=>$header,'rows'=>$rows,'width' => '100%', 'class' => 'uc-sales-table'));
+		$output .= l(t('Export rows to csv file'), "admin/store/reports/uc_who_bought_what", array('query'=> array('csv'=> "TRUE", 'pid' =>$product_id)));
+		$output .= '<div class="email-addresses"><h4>Email Addresses</h4><label for="email-addresses-textarea" value="Email addresses:" /><textarea id="email-addresses-textarea" rows="5" cols="100">' . implode(', ', $email_addresses). '</textarea></div>';
+    }else{
+		$output .= "no results found please go back and pick another item";
+	}
+	return $output;
+}
+
+
+?>

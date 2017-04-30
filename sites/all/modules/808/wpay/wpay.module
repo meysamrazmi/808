@@ -1,0 +1,113 @@
+<?php	
+// the menu hook - adds the path "/webform_payment" to the site.
+	
+function wpay_menu(){
+	$items['zpayment/%/%'] = array(
+		'page callback' => 'zpayment',
+		'page arguments' => array(1,2),
+		'access arguments' => array('access content'),
+		);
+	$items['college/bank/%/%/%'] = array(
+		'title' => 'Conference bank callback',
+		'page callback' => 'webform_payment_page_bankcallback',
+		'access arguments' => array('access content'),
+		'page arguments' => array(2,3,4),
+		'description' => t('Conference bank callback'),
+		'type' => MENU_CALLBACK,
+		);
+	return $items;
+}
+
+function zpayment($nid,$sid){
+	module_load_include('inc','webform','includes/webform.submissions');
+	$web_submission = webform_get_submission($nid, $sid);
+	$node = node_load($nid);
+	$total = 0;
+
+	if($nid == 2422){
+		//$options = _extract_select_options ($node->webform['components'][18]['extra']['items']);
+		$total = intval($web_submission->data[19][0]) * intval($web_submission->data[28][0]);
+		$web_submission->data[23][0] = $total;
+		$no_payment = $web_submission->data[32];
+		$resnumber = time();
+		if(in_array( 'no' , $no_payment)){
+			$web_submission->data[27][0]= $resnumber;
+			$new_sid = webform_submission_update($node,$web_submission);
+			$message = "ثبت نام شما با موفقیت انجام شد و شماره پیگیری شما ".  $resnumber ." می باشد.";
+			drupal_set_message("با تشکر");
+			drupal_set_message($message);
+			drupal_goto('/node/'. $nid);
+		}
+	}
+	else{
+		drupal_set_message(t("There is an error in your form. please try again and if it happen again, contact support."), 'warning', FALSE);
+		drupal_goto($base_url);
+	}
+	
+	if (module_exists('civil808')) { 
+		global $user, $base_url;
+		
+		$description = 'ثبت نام کلاس خصوصی برای '. $user->name ;
+		$ReturnPath = $base_url."/college/bank/".$resnumber."/".$nid."/".$sid;
+
+		if($nid == 2422){
+			$web_submission->data[27][0]= $resnumber;
+			$web_submission->data[25][0]= 'در حال پرداخت';
+		}
+		$new_sid = webform_submission_update($node,$web_submission);
+
+		$result = zarinpal_send($total, $user->uid , $description , $resnumber, $ReturnPath ,'college', 'for vip course registration id: <a href="http://civil808.com/node/'. $nid .'/submission/'. $sid .'" target="_blank">'. $sid .'</a>' );
+	}
+}
+
+function webform_payment_page_bankcallback($resnumber,$nid,$sid){
+	$event = get_bank_event($resnumber);
+	$return_path = $base_url ."/form/". $nid;
+	if($event) {
+		$price = $event->value;
+		$result = zarinpal_receive($resnumber, $price);
+		update_bank_event($resnumber, $result['message'], $result['refnumber']);
+		
+		$node = node_load($nid);
+		module_load_include('inc','webform','includes/webform.submissions');
+		$web_submission = webform_get_submission($nid, $sid);
+
+		if($nid == 2422){
+			$web_submission->data[25][0]= $result['message'];
+			$web_submission->data[26][0]= $result['refnumber'];
+		}
+		$TEST = webform_submission_update($node,$web_submission);
+		
+		if($result['message'] == 'success') {
+			$message = "ثبت نام شما با موفقیت انجام شد و شماره پیگیری شما ".  $result['resnumber'] ."می باشد.";
+			drupal_set_message("با تشکر");
+			drupal_set_message($message);
+		}
+		else{
+			drupal_set_message(t('your registration is uncompleted. please try again or call the website support.'), 'error');	    
+		}		
+	}
+	else{
+		drupal_set_message(t('call the support for this error. and try later.'), 'error');
+	}
+	drupal_goto($return_path);
+}
+
+function _extract_select_options ($mytext) {
+    $options = $pairs = $temp_array = array();
+
+    // split text into chunks after each line-break;
+    // if not visible here, use "backslash n" as explode parameter
+    $pairs = explode("\n", $mytext);
+    // split each line into pairs of key and value
+    foreach($pairs as $pair) {
+      $temp_array = explode('|', $pair);
+      $options[trim($temp_array[0])] = $temp_array[1];
+    }
+    return $options;
+}
+
+
+
+
+

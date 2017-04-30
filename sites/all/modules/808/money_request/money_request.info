@@ -1,0 +1,5 @@
+; $Id: 
+name = money request
+description =  money request administrator page
+core = 7.x
+package = "808"

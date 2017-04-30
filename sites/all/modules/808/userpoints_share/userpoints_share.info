@@ -1,0 +1,10 @@
+name = Userpoints Share Points
+description = Provides necessary modifications to award a user points when a product or a content is purchased based on some field
+dependencies[] = userpoints
+dependencies[] = uc_order
+dependencies[] = uc_cart
+dependencies[] = uc_payment
+dependencies[] = field_collection
+package = 808
+core = 7.x
+php = 5.x 

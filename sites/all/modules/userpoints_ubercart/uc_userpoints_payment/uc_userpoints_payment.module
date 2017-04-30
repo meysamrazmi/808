@@ -1,0 +1,424 @@
+<?php
+
+define('UC_USERPOINTS_TRANS_UCPOINTS', 'userpoints_ubercart_translation_uppercase_points');
+define('UC_USERPOINTS_TRANS_LCPOINTS', 'userpoints_ubercart_translation_lowercase_points');
+define('USERPOINTS_UC_PAYMENT', 'userpoints_ubercart_payment');
+define('USERPOINTS_DISPLAY', 'userpoints_display');
+define('USERPOINTS_PAY_MODERATE', 'userpoints_pay_moderate');
+define('USERPOINTS_PAY_DISPLAY', 'userpoints_pay_display');
+define('USERPOINTS_PAY_CATEGORY', 'userpoints_pay_category');
+
+/**
+ * Implementation of hook_help().
+ */
+function uc_userpoints_payment_help($path, $arg) {
+  switch ($path) {
+    case 'admin/modules#description':
+      return t('<strong>Userpoints Payment:</strong> Interfaces userpoints with Ubercart so users can make purchases with points.');
+  }
+}
+
+/**
+ * Implementation of hook_userpoints api().
+ */
+function uc_userpoints_payment_userpoints($op, $data = NULL) {
+  switch($op) {
+    case 'setting':
+      if (module_exists('uc_cart') && module_exists('uc_payment')) {
+        $group = 'uc_userpoints_payment';
+        $form[$group] = array(
+          '#type' => 'fieldset',
+          '#collapsible' => TRUE,
+          '#collapsed' => TRUE,
+          '#title' => t('Ubercart Payment Options'),
+        );
+        $userpoints_translation = userpoints_translation();
+        $form[$group][USERPOINTS_UC_PAYMENT] = array(
+          '#type' => 'textfield',
+          '#title' => t('!Points per currency unit', $userpoints_translation),
+          '#default_value' => variable_get(USERPOINTS_UC_PAYMENT, 1),
+          '#description' => t('For example, 1 is $1/point, or 100 is $0.01 per point.', $userpoints_translation),
+          '#size' => 5,
+          '#maxlength' => 5,
+        );
+        $form[$group][USERPOINTS_DISPLAY] = array(
+          '#type' => 'select',
+          '#title' => t('Display currency, !points, or both', $userpoints_translation),
+          '#default_value' =>  variable_get(USERPOINTS_DISPLAY,2),
+          '#options' => array(1 => t('Currency'), 3 => t('Points'), 2 => t('Both')),
+        );
+        $form[$group][USERPOINTS_PAY_MODERATE] = array(
+          '#type' => 'radios',
+          '#title' => t('Moderate userpoints transaction'),
+          '#default_value' => variable_get(USERPOINTS_PAY_MODERATE, 0),
+					'#options' => array(t('No'), t('Yes')),
+        );
+        $form[$group][USERPOINTS_PAY_DISPLAY] = array(
+          '#type' => 'radios',
+          '#title' => t('Display !points details during checkout', $userpoints_translation),
+          '#default_value' => variable_get(USERPOINTS_PAY_DISPLAY, 1),
+          '#options' => array(t('No'), t('Yes')),
+        );
+        $form[$group][USERPOINTS_PAY_CATEGORY] = array(
+          '#type' => 'select',
+          '#title' => t('Payment Category'),
+          '#default_value' => variable_get(USERPOINTS_PAY_CATEGORY, NULL),
+          '#options' => userpoints_get_categories(),
+          '#description' => t('Select which category of !points to use when payment is made.', $userpoints_translation),
+        );
+        $form[$group]['renaming'] = array(
+          '#type' => 'fieldset',
+          '#collapsible' => TRUE,
+          '#collapsed' => TRUE,
+          '#title' => t('Payment method branding'),
+        );
+        $form[$group]['renaming'][UC_USERPOINTS_TRANS_UCPOINTS] = array(
+          '#type' => 'textfield',
+          '#title' => t('Name to use during checkout for the upper case version of !Points', $userpoints_translation),
+          '#description' => t('For example, "Points" or "Store credit".'),
+          '#default_value' => variable_get(UC_USERPOINTS_TRANS_UCPOINTS, 'Points'),
+          '#size' => 20,
+          '#maxlength' => 20,
+        );
+        $form[$group]['renaming'][UC_USERPOINTS_TRANS_LCPOINTS] = array(
+          '#type' => 'textfield',
+          '#title' => t('Name to use during checkout for the lower case version of !points', $userpoints_translation),
+          '#default_value' => variable_get(UC_USERPOINTS_TRANS_LCPOINTS, 'points'),
+          '#size' => 20,
+          '#maxlength' => 20,
+        );
+      }
+      return $form;
+      break;
+    case 'entity_type':
+      if ($data->entity_type == 'uc_order') {
+        $order = uc_order_load($data->entity_id);
+        if ($order) {
+          if (user_access('administer orders')) {
+            return l($data->operation, 'admin/store/orders/' . $order->order_id);
+          }
+          else {
+            return l($data->operation, 'user/' . $order->uid. '/orders/' . $order->order_id);
+          }
+        }
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function uc_userpoints_payment_theme() {
+  return array(
+    'uc_userpoints_payment_points' => array(
+      'variables' => array('points' => 0, 'units' => NULL, 'view_mode' => 'full', 'attributes' => array()),
+    ),
+  );
+}
+
+
+
+/**
+ * Implementation of hook_node_view().
+ */
+function uc_userpoints_payment_node_view($node, $view_mode, $lang_code) {
+  if (uc_product_is_product($node)) {
+    $dispStyle = variable_get(USERPOINTS_DISPLAY, 2);
+    if (module_exists('uc_userpoints_product')) {
+      $query = db_query("SELECT points FROM {uc_userpoints_products} WHERE nid = :nid", array(':nid' => $node->nid));
+      foreach ($query as $result) {
+        if ($result->points > 0) {
+          $dispStyle = 1; // you can't buy a point product with points
+          break;
+        }
+      }
+    }
+    $userpoints_uc_payment = variable_get(USERPOINTS_UC_PAYMENT, 1);
+    if (module_exists('uc_multicurrencies_store')) {
+      $target = _uc_multicurrencies_store_get_target_currency();
+      $from = variable_get('uc_currency_code', 'USD');
+      if ($from != $target) {
+        $new_price = currency_api_convert($from, $target, $userpoints_uc_payment);
+        $userpoints_uc_payment = $new_price['value'];
+      }
+    }
+    $pointCost = ceil($node->sell_price * $userpoints_uc_payment);
+    switch($dispStyle) {
+      case 2:
+        $userpoints_translation = userpoints_translation();
+        $node->content['sell_price']['#suffixes'][] = '<div class="sell-price-points">' . t('!Points: ', $userpoints_translation) . $pointCost .'</div>';
+        $node->content['display_price']['#suffixes'][] = '<div class="display-price-points">' . t('!Points: ', $userpoints_translation) . $pointCost . '</div>';
+        break;
+      case 3:
+        $userpoints_translation = userpoints_translation();
+        $node->content['sell_price_points'] = array(
+          '#theme' => 'uc_userpoints_payment_points',
+          '#points' => $pointCost,
+          '#units' => t('!Points: ', $userpoints_translation),
+          '#view_mode' => $view_mode,
+          '#attributes' => array(
+            'class' => array(
+              'sell-points',
+            ),
+          ),
+        );
+        $node->content['display_price_points'] = array(
+          '#theme' => 'uc_userpoints_payment_points',
+          '#points' => $pointCost,
+          '#units' => t('!Points: ', $userpoints_translation),
+          '#view_mode' => $view_mode,
+          '#attributes' => array(
+            'class' => array(
+              'display-price',
+            ),
+          ),
+        );
+        //remove sell_price and display_price
+        $node->content['sell_price']['#access'] = FALSE;
+        $node->content['display_price']['#access'] = FALSE;
+        break;
+    }
+  }
+}
+
+
+function theme_uc_userpoints_payment_points($variables) {
+  $output = '';
+  $attributes = isset($variables['attributes']) ? $variables['attributes'] : array();
+  if (isset($attributes['class'])) {
+    array_unshift($attributes['class'], 'product-info');
+  }
+  else {
+    $attributes['class'] = array('product-info');
+  }
+  if ($variables['points']) {
+    $output = '<div ' . drupal_attributes($attributes) . '>';
+    $output .= '<span class="uc-price-points-label">' . $variables['units'] . '</span>';
+
+    $output .= $variables['points'];
+    $output .= '</div>';
+  }
+  return $output;
+}
+
+/**
+ * Implementation of hook_uc_payment_method().
+ */
+function uc_userpoints_payment_uc_payment_method() {
+  global $user;
+  $amount = userpoints_get_current_points($user->uid, variable_get(USERPOINTS_PAY_CATEGORY, NULL));
+  if ($amount > 0 || request_uri() != '/cart/checkout') {
+    $title = t('!Points', uc_userpoints_translation());
+    if (variable_get(USERPOINTS_PAY_DISPLAY, 1)) {
+      // Display point amounts
+      if (variable_get(USERPOINTS_DISPLAY, 2) == 1) {
+        // Display currency instead of points
+        $userpoints_uc_payment = variable_get(USERPOINTS_UC_PAYMENT, 1);
+        if (module_exists('uc_multicurrencies_store')) {
+          $target = _uc_multicurrencies_store_get_target_currency();
+          $from = variable_get('uc_currency_code', 'USD');
+          if ($from != $target) {
+            $new_price = currency_api_convert($from, $target, $userpoints_uc_payment);
+            $userpoints_uc_payment = $new_price['value'];
+          }
+        }
+        $amount = theme('uc_price', array('price' => $amount / $userpoints_uc_payment));
+      }
+      $title .= ' ' . t('(total available: !amount)', array('!amount' => $amount));
+    }
+    $methods[] = array(
+      'id' => 'points',
+      'name' => t('!Points', uc_userpoints_translation()),
+      'title' => $title,
+      'desc' => t('Pay by !points.', uc_userpoints_translation()),
+      'callback' => 'uc_payment_method_points',
+      'weight' => 4,
+      'checkout' => TRUE,
+      'no_gateway' => TRUE,
+    );
+    return $methods;
+  }
+}
+
+/**
+ * Implementation of hook_uc_order().
+ */
+function uc_userpoints_payment_uc_order($op, &$arg1, $arg2) {
+  $order = $arg1;
+  $paymethod = strtolower($order->payment_method);
+  switch ($op) {
+    case 'submit':
+      // fires when the order is submitted and adds/subtracts thier points
+      if ($paymethod == 'points') {
+        uc_userpoints_payment_payment($order);
+      }
+      break;
+    case 'update':
+      // if the order is canceled we need to refund thier points because we are too lazy to do it by hand...
+      if ($arg2 == 'canceled') {
+        if (strtolower($order->payment_method) == 'points') {
+          uc_userpoints_payment_refund($order);
+        }
+      }
+      break;
+    case 'delete':	
+      if (strtolower($order->payment_method) == 'points') {
+        uc_userpoints_payment_refund($order);
+      }
+      break;
+    case 'can_delete';
+      return FALSE;
+      break;
+  }
+}
+
+/**
+ * Override userpoints_translation()
+ */
+function uc_userpoints_translation() {
+  static $trans;
+  if (!isset($trans)) {
+    $trans = array(
+      '!Points' => variable_get(UC_USERPOINTS_TRANS_UCPOINTS, 'Points'),
+      '!points' => variable_get(UC_USERPOINTS_TRANS_LCPOINTS, 'points'),
+    );
+  }
+  return $trans;
+}
+
+/*******************************************************************************
+ * Callback Functions, Forms, and Tables
+ ******************************************************************************/
+
+function uc_payment_method_points($op, &$arg1) {
+  switch ($op) {
+    case 'cart-details':
+      /**
+       *  Eventually I want to hide the points discount if its enabled.
+      **/
+      return;
+      break;
+    case 'cart-process':
+      $user_points = userpoints_get_current_points($arg1->uid, variable_get(USERPOINTS_PAY_CATEGORY, NULL));
+      $userpoints_uc_payment = variable_get(USERPOINTS_UC_PAYMENT, 1);
+      if (module_exists('uc_multicurrencies_store')) {
+        $target = _uc_multicurrencies_store_get_target_currency();
+        $from = variable_get('uc_currency_code', 'USD');
+        if ($from != $target) {
+          $new_price = currency_api_convert($from, $target, $userpoints_uc_payment);
+          $userpoints_uc_payment = $new_price['value'];
+        }
+      }
+      $order_points = ceil($arg1->order_total * $userpoints_uc_payment);
+      if ($user_points < $order_points) {
+        if (variable_get(USERPOINTS_PAY_DISPLAY, 1)) {
+          // Display point amounts
+          if (variable_get(USERPOINTS_DISPLAY, 2) == 1) {
+            // Display currency instead of points
+            $user_points = theme('uc_price', array('price' => $user_points / $userpoints_uc_payment, 'currency' => $arg1->currency));
+            $order_points = theme('uc_price', array('price' => $arg1->order_total, 'currency' => $arg1->currency));
+          }
+          drupal_set_message(t('You do not have enough !points to complete this purchase. You have @user_points, but you need @order_points. Please select another payment method.', array_merge(uc_userpoints_translation(), array('@user_points' => $user_points, '@order_points' => $order_points))), 'error');
+        }
+        else {
+          // Hide point amounts
+          drupal_set_message(t('You do not have enough !points to complete this purchase. Please select another payment method.', array_merge(uc_userpoints_translation(), array('@user_points' => $user_points, '@order_points' => $order_points))), 'error');
+        }
+        return FALSE;
+        break;
+      }
+      else {
+        return TRUE;
+        break;
+      }
+      break;
+    case 'settings':
+      // Add a few points related fields to the payment methods settings form.
+      $form['userpoints_ubercart_permission'] = array(
+        '#value' => '<div>' . t('Please adjust the settings for using points under the userpoints section ' . l('userpoints admin settings', 'admin/settings/userpoints') . '.  This area is for enabling points as payment method only.') . '</div>',
+      );
+      return $form;
+      break;
+  }
+}
+
+function uc_userpoints_payment_payment($order) {
+  global $user;
+  $userpoints_uc_payment = variable_get(USERPOINTS_UC_PAYMENT, 1);
+  if (module_exists('uc_multicurrencies_store')) {
+    $target = $order->currency;
+    $from = variable_get('uc_currency_code', 'USD');
+    if ($from != $target) {
+      $new_price = currency_api_convert($from, $target, $userpoints_uc_payment);
+      $userpoints_uc_payment = $new_price['value'];
+    }
+  }
+  $points = ceil($order->order_total * $userpoints_uc_payment);
+  $description = t('Order #!order_id paid with !points', array_merge(uc_userpoints_translation(), array('!order_id' => $order->order_id)));
+  if ($order === FALSE || uc_order_status_data($order->order_status, 'state') != 'in_checkout') {
+    print t('An error has occurred during payment.  Please contact us to ensure your order has submitted.');
+    exit();
+  }
+  if ($order->payment_method == 'points') {
+    $user_points = userpoints_get_current_points($arg1->uid, variable_get(USERPOINTS_PAY_CATEGORY, NULL));
+	if($user_points >= $points){
+		$params = array (
+		'tid' => variable_get(USERPOINTS_PAY_CATEGORY, NULL),
+		'uid' => $order->uid,
+		'points' => -$points,
+		'operation' => 'purchase',
+		'description' => $description,
+		'entity_id' => $order->order_id,
+		'entity_type' => 'uc_order',
+		'moderate' => variable_get(USERPOINTS_PAY_MODERATE, 0),
+		'display' => variable_get(USERPOINTS_PAY_DISPLAY, 1),
+		);
+		userpoints_userpointsapi($params);
+		uc_payment_enter($order->order_id, 'points', $order->order_total, $user->uid, NULL, $description);
+		db_insert('uc_up_payment_log')
+		->fields(array(
+		'uid' => $order->uid, 
+		'oid' => $order->order_id, 
+		'points' => $points,
+		))
+		->execute();	
+	}
+	else{
+		unset($form['panes']['payment']['payment_method']['#options']['points']);
+		drupal_set_message(t('You do not have enough !points to complete this purchase. Please select another payment method.', array_merge(uc_userpoints_translation(), array('@user_points' => $user_points, '@order_points' => $order_points))), 'error');
+		drupal_goto('cart/checkout');
+	}
+  }
+}
+
+function uc_userpoints_payment_refund($order) {
+  global $user;
+  $curUserId = $user->uid;
+  $oid  = $order->order_id;
+  $results = db_query("select uplog_id, points from {uc_up_payment_log} where oid = :oid and uid = :uid", array(':oid' => $oid, ':uid' => $curUserId));
+  $orderTotal = $order->order_total;
+  foreach ($results as $pointinfo) {
+    $points = intval((($pointinfo->points) * (-1)));
+    $description = t('User purchase (Ubercart Order @order_id) has been canceled.', array('@order_id' => $order->order_id));;
+    db_delete('uc_payment_receipts')
+      ->condition('method', 'Points')
+      ->condition('order_id', $oid)
+      ->execute();
+    db_delete('uc_up_payment_log')
+      ->condition('uplog_id', $pointinfo->uplog_id)
+      ->execute();
+    $params = array (
+      'tid' => variable_get('USERPOINTS_PAY_CATEGORY', NULL),
+      'uid' => $curUserId,
+      'points' => $points,
+      'operation' => 'refund',
+      'description' => $description,
+      'entity_id' => $oid,
+      'entity_type' => 'uc_order',
+      'moderate' => variable_get(USERPOINTS_PAY_MODERATE, 0),
+      'display' => variable_get(USERPOINTS_PAY_DISPLAY, 1),
+    );
+    userpoints_userpointsapi($params);
+  }
+}

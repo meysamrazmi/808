@@ -1,0 +1,5 @@
+name = required alt
+description = "make alt attribute of image required"
+core = 7.x
+version = "1"
+package = 808

@@ -1,0 +1,5 @@
+name = Views Slideshow Simple Pager
+description = Provides a simple pager for Views Slideshow.
+dependencies[] = views_slideshow
+package = Views
+core = 7.x

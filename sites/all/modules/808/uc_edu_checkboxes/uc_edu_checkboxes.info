@@ -1,0 +1,7 @@
+name = uc edu checkboxes 
+description = "enables two checkboxes for nothing :)"
+dependencies[] = uc_order
+
+core = 7.x
+version = "1"
+package = 808

@@ -1,0 +1,12 @@
+name = Ubercart Product Actions
+description = Custom actions for modifying product data using Views Bulk Operations.
+dependencies[] = uc_product
+package = Ubercart - extra
+core = 7.x
+
+; Information added by Drupal.org packaging script on 2015-04-21
+version = "7.x-1.1+2-dev"
+core = "7.x"
+project = "uc_product_actions"
+datestamp = "1429638785"
+

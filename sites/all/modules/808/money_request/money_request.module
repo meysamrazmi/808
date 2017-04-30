@@ -1,0 +1,82 @@
+<?php
+/**
+
+ */
+function money_request_menu() {
+  $items = array();
+
+	$items['admin/money/requests'] = array(
+		'title' => t('Administrate money requests'),
+		'description' => t('Administrate money requests'),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('money_request_form'),
+		'access arguments' => array('administer modules'),
+		'type' => MENU_LOCAL_TASK,
+	);
+
+  return $items;
+}
+
+function money_request_form($form, &$form_state) {
+	if (!is_array($form)) {
+		$form = array();
+	}
+	$q = db_select('m_reward_request', 'r')->extend('PagerDefault')->extend('TableSort')->limit(50);
+	$rows = $q->fields('r', array())->orderBy('date', 'DESC')->execute()->fetchAll();
+	$tabale_header = array(
+		t('ID'),
+		t('User name'),
+		t('User'),
+		t('Price'),
+		t('Date'),
+		t('Bank info')
+		);
+	$table_rows = array();
+	$completed = array();
+	foreach ($rows as $r) {
+		$user = user_load($r->uid);
+		$p = profile2_load_by_user($user);
+		$code = 'id-'. $r->id;
+		$enabled = '';
+		if ($r->state == 1) {
+			$enabled = 'disabled';
+		}
+		$table_rows[$r->id] = array(
+			'#attributes' => array('class' => array($code, $enabled)),
+			$r->id,
+			l($p['main']->field_full_name['und'][0]['value'] , 'user/'.$r->user),
+			l($user->name, 'user/'.$r->uid),
+			formatMoney($r->price) ,
+			format_date($r->date),
+			$p['bank']->field_bank_name['und'][0]['value'].'<br>'.$p['bank']->field_bank_cart_num['und'][0]['value']
+		);
+	}
+
+	$form['requests'] = array(
+	    '#type' => 'tableselect',
+	    '#header' => $tabale_header,
+	    '#options' => $table_rows,
+	);
+	$form['submit'] = array(
+		'#type' => 'submit',
+		'#value' => t('Submit'),
+	);
+
+	return $form;
+}
+
+function money_request_form_submit($form, &$form_state) {
+	foreach($form_state['complete form']['requests']['#value'] as $key =>$value){
+		$query = "UPDATE {m_reward_request} SET state = :state WHERE id = :id";
+		$queryParams = array(
+			':id' => $key,
+			':state' => 1,
+		);
+		$result = db_query($query, $queryParams);
+	}
+
+	$form_state['redirect'] = 'admin/money';
+}
+
+
+?>

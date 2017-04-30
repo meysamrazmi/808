@@ -1,0 +1,209 @@
+<?php
+
+define('UC_USERPOINTS_SELLER_EARN', 'uc_userpoints_seller_earn');
+define('UC_USERPOINTS_SELLER_DISP', 'uc_userpoints_seller_disp');
+define('UC_USERPOINTS_SELLER_HIST', 'uc_userpoints_seller_hist');
+
+/**
+ * Implementation of hook_menu().
+ */
+function uc_userpoints_seller_menu() {
+  $items = array();
+  $items['admin/store/reports/sales-points'] = array(
+    'title' => 'Sales Points Reports',
+    'description' => 'View reports for points earned by store sales',
+    'page callback' => 'uc_seller_history_all',
+    'access arguments' => array('view reports'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['user/%user/sales-points'] = array(
+    'title' => 'Sales Points',
+    'description' => 'View your points earned by sales',
+    'page callback' => 'uc_seller_history_user',
+    'page arguments' => array(1),
+    'access arguments' => array('view own userpoints'),
+    'type' => MENU_LOCAL_TASK
+  );
+  return $items;
+}
+
+/**
+ * Returns the sortable table listing of a sellers orders.
+ *
+ * @param $uid
+ *   The user ID whose orders you wish to list.
+ */
+function uc_seller_history_user($usr) {
+  drupal_set_title(t('My Sales Points History'));
+  $breadcrumb = drupal_get_breadcrumb();
+  $breadcrumb[] = l(t('My account'), 'user/'. $usr->uid);
+  drupal_set_breadcrumb($breadcrumb);
+  $header = array(
+    array('data' => t('Order #'), 'field' => 'oid'),
+    array('data' => t('Qty'), 'field' => 'qty'),
+    array('data' => t('Model'), 'field' => 'model'),
+    array('data' => t('Sell Price'), 'field' => 'sellprice'),
+    array('data' => t('Total'), 'field' => 'total_price'),
+    array('data' => t('Points'), 'field' => 'points'),
+  );
+  $query = db_select('uc_up_seller_log', 's')->extend('PagerDefault');
+  $query->join('uc_orders', 'o', 'sl.oid = o.order_id');
+  $query->fields('o', array('currency'));
+  $query->condition('uid', $usr->uid)
+    ->fields('s', array('uid', 'oid', 'points', 'qty', 'model', 'sellprice'))
+    ->addExpression('qty * sellprice', 'total_price');
+  $results = $query->execute();
+  // Build a table based on the customer's sales.
+  $rows = array();
+  foreach ($results as $sales) {
+    $rows[] = array(
+      array('data' => $sales->oid),
+      array('data' => $sales->qty),
+      array('data' => $sales->model),
+      array('data' => $sales->sellprice),
+      array('data' => theme('uc_price', array('price' => $sales->total_price, 'currency' => $sales->currency)), 'align' => 'right'),
+      array('data' => $sales->points),
+    );
+  }
+  $build['uc_seller_history'] = array(
+    '#theme' => 'table', 
+    '#header' => $header, 
+    '#rows' => $rows, 
+  );
+  $build['uc_seller_history_pager'] = array('#theme' => 'pager');
+  return $build;
+}
+
+/**
+ * Returns the sortable table listing of all sellers orders.
+ *
+ */
+function uc_seller_history_all() {
+  drupal_set_title(t('Sales Points History'));
+  $header = array(
+    array('data' => t('User'), 'field' => 'uid'),
+    array('data' => t('Order #'), 'field' => 'oid'),
+    array('data' => t('Qty'), 'field' => 'qty'),
+    array('data' => t('Model'), 'field' => 'model'),
+    array('data' => t('Sell Price'), 'field' => 'sellprice'),
+    array('data' => t('Total'), 'field' => 'total_price'),
+    array('data' => t('Points'), 'field' => 'points'),
+  );
+  $query = db_select('uc_up_seller_log', 'sl')->extend('PagerDefault');
+  $query->join('users', 'u', 'sl.uid = u.uid');
+  $query->join('uc_orders', 'o', 'sl.oid = o.order_id');
+  $query->fields('sl', array('uid', 'oid', 'points', 'qty', 'model', 'sellprice'));
+  $query->fields('u', array('name'));
+  $query->fields('o', array('currency'));
+  $query->addExpression('qty * sellprice', 'total_price');
+  $results = $query->execute();
+  // Build a table based on the customer's sales.
+  foreach ($results as $sales) {
+    $rows[] = array(
+      array('data' => l($sales->name, 'user/' . $sales->uid),),
+      array('data' => $sales->oid),
+      array('data' => $sales->qty),
+      array('data' => $sales->model),
+      array('data' => $sales->sellprice),
+      array('data' => theme('uc_price', array('price' => $sales->total_price, 'currency' => $sales->currency)), 'align' => 'right'),
+      array('data' => $sales->points),
+    );
+  }
+  $build['uc_seller_history'] = array(
+    '#theme' => 'table', 
+    '#header' => $header, 
+    '#rows' => $rows, 
+  );
+  $build['uc_seller_history_pager'] = array('#theme' => 'pager');
+  return $build;
+}
+
+/**
+ * Implementation of hook_userpoints api().
+ */
+function uc_userpoints_seller_userpoints($op, $points = 0, $uid = 0, $event = '') {
+  switch($op) {
+    case 'setting':
+      if (module_exists('uc_cart') && module_exists('uc_payment')) {
+        $group = 'uc_seller';
+        $form[$group] = array(
+          '#type' => 'fieldset',
+          '#collapsible' => TRUE,
+          '#collapsed' => TRUE,
+          '#title' => t('Ubercart Seller Options'),
+        );
+        $form[$group][UC_USERPOINTS_SELLER_EARN] = array(
+          '#type' => 'textfield',
+          '#title' => t('!Points awarded to seller purchase (multiplied by product price)', userpoints_translation()),
+          '#default_value' => variable_get(UC_USERPOINTS_SELLER_EARN, 0),
+          '#size' => 5,
+          '#maxlength' => 5,
+        );
+        $form[$group][UC_USERPOINTS_SELLER_DISP] = array(
+          '#type' => 'radios',
+          '#title' => t('Display amount of !points awarded to seller', userpoints_translation()),
+          '#default_value' => variable_get(UC_USERPOINTS_SELLER_DISP, 0),
+          '#options' => array(t('No'), t('Yes')),
+        );
+        $form[$group][UC_USERPOINTS_SELLER_HIST] = array(
+          '#type' => 'radios',
+          '#title' => t('Allow user to see transaction history under "My Account"'),
+          '#default_value' => variable_get(UC_USERPOINTS_SELLER_HIST, 1),
+          '#options' => array(t('No'), t('Yes')),
+        );
+      }
+      return $form;
+      break;
+  }
+}
+
+/**
+ * Implementation of hook_uc_order();
+ */
+function uc_userpoints_seller_uc_order($op, $order, $status) {
+  switch ($op) {
+    case 'update':
+      // We might want to add the "Order Status" to the Userpoints Ubercart options...
+      if ($order->order_status != 'completed' && ($status == 'completed' && $order->uid > 0) && ($order_user = user_load($order->uid)) !== FALSE) {
+        if (is_array($order->products) && count($order->products)) {
+          $multiplier = variable_get(UC_USERPOINTS_SELLER_EARN, 0);
+          $blnDisplay = variable_get(UC_USERPOINTS_SELLER_DISP, 0);
+          foreach ($order->products as $product) {
+            $result = db_query("select n.uid from {node} n, {uc_products} p where n.vid = p.vid and p.model = :model", array(':model' => $product->model));
+            $product_info = $result->fetchObject();
+            $query = db_query("SELECT * FROM {uc_up_seller_log} WHERE uid = :uid AND oid = :oid", array(':uid' => $product_info->uid, ':oid' => $order->order_id))->fetchObject();
+            $allow_points = TRUE;
+            if (isset($query->uid) && $query->uid) {
+              $allow_points = FALSE;
+            }
+            $total = (intval($product->qty) * intval($product->price));
+            $multiplier = variable_get(UC_USERPOINTS_SELLER_EARN, 0);
+            $points = intval(($total * $multiplier));
+            if ($allow_points && $points > 0) {
+              $params = array (
+                'tid' => 0,
+                'uid' => $product_info->uid,
+                'points' => $points,
+                'operation' => 'insert',
+                'description' => t('Someone purchased a product belonging to @uid, awarding points (Ubercart Order ID @order_id)', array('@uid' => $product_info->uid, '@order_id' => $order->order_id,)),
+                'display' => $blnDisplay,
+                'entity_id' => $order->order_id,
+                'entity_type' => 'Ubercart Transaction',
+              );
+              $st = userpoints_userpointsapi($params);
+              db_insert('uc_up_seller_log')
+                ->fields(array(
+                  'uid' => $product_info->uid,
+                  'oid' => $order->order_id,
+                  'points' => $points,
+                  'qty' => $product->qty,
+                  'model' => $product->model,
+                  'sellprice' => $product->price,
+                ))
+                ->execute();
+            }  
+          }
+        }
+      }
+  }
+}

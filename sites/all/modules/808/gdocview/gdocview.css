@@ -1,0 +1,33 @@
+#subscribe_field{
+	background-color: #101011;
+    border-color: -moz-use-text-color #292D30 #292D30;
+    border-radius: 8px 8px 8px 8px;
+    border-style: none solid solid;
+    border-width: 0 1px 1px;
+    color: #38444F;
+    font-size: 11px;
+    height: 25px;
+    padding-left: 8px;
+    width: 150px;
+}
+
+.top_downloads{
+background-image:url(/misc/4paye/tops.png);
+background-position:10px 5px;
+background-repeat:no-repeat;
+width:100%
+}
+
+.last_posts{
+background-image:url(/a.png);
+background-position:10px 5px;
+background-repeat:no-repeat;
+width:100%
+}
+
+.info{
+background-image:url(/a.png);
+background-position:10px 5px;
+background-repeat:no-repeat;
+width:100%;
+}

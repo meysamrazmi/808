@@ -1,0 +1,4 @@
+name = Webform Payment
+description = "zarinpal peyment gateway for webforms"
+core = 7.x
+package = 808

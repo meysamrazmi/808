@@ -1,0 +1,38 @@
+<?php
+/**
+ * Implements hook_services_resources().
+ */
+
+function login_services_services_resources(){
+	return array(
+       'logincheck' => array(
+         'retrieve' => array(
+           'help' => 'checks username and password from services',
+           'file' => array('type' => 'inc', 'module' => 'login_services', 'name' => 'login_services'),
+           'callback' => 'checklogin_retrieve',
+		   'access callback' => 'user_access',
+           'access arguments' => array('access content'),
+           'access arguments append' => FALSE,
+		   'args' => array(
+             array(
+               'name' => 'username',
+               'type' => 'string',
+               'description' => 'The username of user to check',
+               'source' => array('path' => 0),
+               'optional' => FALSE,
+             ),
+			 array(
+               'name' => 'password',
+               'type' => 'string',
+               'description' => 'The password of user to check',
+               'source' => array('path' => 1),
+               'optional' => FALSE,
+             ),
+           ),
+         ),
+       ),
+      );
+
+}
+
+

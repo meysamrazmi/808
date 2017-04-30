@@ -1,0 +1,221 @@
+<?php
+/*
+ * implements hook menu
+ */
+function nodepay_menu(){
+	$items['pay/node/%'] = array(
+		'title' => t('Pay for node'),
+		'page callback' => 'gdocview_pay_for_node',
+		'description' => 'Pay to view a node',
+		'access arguments' => array('access pay'),
+		'page arguments' => array(2),
+		'type' => MENU_NORMAL_ITEM,
+	);
+	
+	$items['node/%/buyed_report'] = array(
+		'title' => t('Administrate nodebuyes'),
+		'page callback' => 'nodebuyes_report',
+		'page arguments' => array(1),
+		'access callback' => 'nodepay_report',
+		'access arguments' => array(1),
+		'description' => t('Administrate nodebuyes'),
+		'type' => MENU_LOCAL_TASK,
+		'weight' => 100,
+	);
+  
+	return $items;
+}
+
+function nodepay_report($nid) {
+  $node = node_load($nid);
+  global $user;
+  if (user_has_role(9 , $user) || user_has_role(3 , $user) ) {
+	return TRUE;
+  }
+  return FALSE;
+}
+
+function gdocview_pay_for_node($nid) {
+	global $user;
+	if($user->uid < 1){
+		drupal_set_message(t('to complete this operation you must login first, !login - !regiater', array(
+			'!login' => l(t('User login'), 'user/login'),
+			'!regiater' => l(t('User register'), 'user/register'),
+		)), 'error');
+		drupal_goto("node/". $nid);
+	}
+	if($node = node_load($nid)){
+		if (isset($node->field_point_needed['und'][0])) {
+		    $points = $node->field_point_needed['und'][0]['value'];
+		}else{
+			drupal_set_message(t('خطایی در فرم رخ داده است. لطفا با پشتیبانی تماس حاصل فرمایید. کد خطا: 15'), 'error');
+			drupal_goto("node/". $nid);
+		}
+		
+		$flag = false; //default value for discount flag
+		/*
+		* برای تخفیفات ویژه نوروز که تمامی محتوا ها تخفیف داشتند
+		*
+		$flag = true;
+		$festival = 'جشنواره نوروز';
+		for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){
+			if( $node->field_isvip['und'][$i]['tid'] == 2217) // no discount will be applied
+				$flag=false;
+		}
+		if($flag){
+			$points = round(intval($points*0.6) , -2);
+			drupal_set_message('40 درصد تخفیف به مناسبت '. $festival .' برای شما اعمال شد.');			
+		}
+		*/
+		
+		$num_pts = userpoints_get_current_points($user->uid, 'all');
+		if ($num_pts < $points) {
+			drupal_set_message(t("You haven't enough point in your account, please charge your account."), 'error');
+			drupal_goto("node/$nid");
+		}
+		$description =  ($flag)? ' با 40 درصد تخفیف ' . $festival :'';
+
+	    $_sql = "INSERT INTO {m_buyed_nodes} (uid, nid, date, price, description) VALUES (:uid, :nid, :date, :price, :description)";
+		if($sht = db_query($_sql, array( ':uid' => $user->uid, ':nid' => $nid, ':date' => time(), ':price' => $points, ':description' => $description ))){
+			$desc = 'پرداخت برای محتوای #'. $nid ;
+			$desc .= $description;
+			$params = array(
+		      'uid' => $user->uid,
+		      'points' => -$points,
+		      'operation' => 'pey for node',
+  			  'description' => $desc,
+			  'entity_id' => $nid,
+			  'entity_type' => 'node',
+		    );
+		    userpoints_userpointsapi($params);
+		}else{
+			drupal_set_message(t('خطایی در فرم رخ داده است. لطفا با پشتیبانی تماس حاصل فرمایید. کد خطا: 16'), 'error');
+			drupal_goto("node/". $nid);
+		}
+		
+		$field_percent = db_query(_queries('field'), array(':nid' => $nid));
+		$total = $points;
+		$buy_id = db_select('m_buyed_nodes', 'n')->fields('n',array('id'))->condition('n.nid' , $nid)->condition('n.uid' , $user->uid)->execute()->fetchObject();
+
+		foreach ($field_percent as $field_item){
+			$multiplier = $field_item->portion / 100;
+			$uid = $field_item->uid;
+			$is_cost = $field_item->cost;
+			
+			$query = db_query("SELECT * FROM {up_share_log} WHERE uid = :uid AND buyer_uid = :buyer_uid AND entity_id = :entity_id AND entity_type = :entity_type AND field_id = :field_id", array(':uid' => $uid, ':buyer_uid' => $user->uid, ':entity_id' => $buy_id->id, ':entity_type' => $node->type, ':field_id' => $field_item->field_id))->fetchObject();
+			$allow_points = TRUE;
+			if (isset($query->uid) && $query->uid) {
+				$allow_points = FALSE;
+			}
+
+			$points = intval(($total * $multiplier));
+			if ($allow_points && $points > 0) {
+				$params = array(
+					'tid' => 0,
+					'uid' => $uid,
+					'points' => $points,
+					'operation' => 'content share',
+					'description' => t('user @uid has bought node @nid that you had a share of it.', array('@uid' => $uid , '@nid' => $nid)),
+					'entity_id' => $nid,
+					'entity_type' => 'node',
+				);
+				$st = userpoints_userpointsapi($params);
+				db_insert('up_share_log')
+					->fields(array(
+					'uid' => $uid,
+					'buyer_uid' => $user->uid,
+					'entity_id' => $buy_id->id,
+					'entity_type' => $node->type,
+					'field_id' => $field_item->field_id,
+					'points' => $points,
+					'portion' => $field_item->portion,
+					'model' => $nid,
+					'total' => $total,
+					'updated' => time(),
+					))->execute();
+			}
+			if($is_cost) $total -= $points;
+		}  
+		
+		drupal_goto("node/$nid");		
+	}
+}
+
+function nodebuyes_report($id) {
+	// Setting the sort conditions
+	if(isset($_GET['sort']) && isset($_GET['order'])) {
+		// Sort it Ascending or Descending?
+		if($_GET['sort'] == 'asc') $sort = 'ASC';
+		else $sort = 'DESC';
+		// Which column will be sorted
+		switch($_GET['order']) {
+		case 'Date':
+			$order = 'date';
+			break;
+		default:
+			$order = 'date';
+		}
+	}
+	else {
+		$sort = 'DESC';
+		$order = 'date';
+	}
+	$q = db_select('m_buyed_nodes','n')->extend('PagerDefault')->extend('TableSort')->limit(50);
+	$q->join('node', 'node', 'n.nid = node.nid');
+	$q->orderBy($order, $sort);
+	$q->fields('n', array())->fields('node', array('nid', 'title'));
+
+	if($id) $q->condition('n.nid' , intval($id));
+
+	$rows = $q->execute()->fetchAll();
+	$tabale_header = array(
+		t('index'),
+		t('User'),
+		t('Content'), 
+		t('Price'),
+		array( 'data' => t('Date'), 'field' => 'date'),
+		t('Description')
+		);
+	$table_rows = array();
+	$index = 1;
+	$total_price = 0;
+	foreach ($rows as $r) {
+		$node = node_load($r->nid);
+		$title = l(mb_substr($r->title, 0, 50,'UTF-8') .'...', 'admin/money/nodebuyes/'.$r->nid);
+		$user = user_load($r->uid);
+		if($r->type =='education') {
+			$tic = unserialize($r->value);
+			$price =0;
+			foreach($tic as $t ) {
+				$price += intval($t['price']); 
+				$title .="  |  " . $t['ticket'] . "";
+			}
+		}else{
+			$price = isset($r->price)?$r->price:$node->field_point_needed['und'][0]['value'];
+		}
+		$total_price += $price;
+		$table_rows[] = array(
+			$index ,
+			l($user->name, 'user/'.$r->uid),
+			$title,
+			formatMoney($price),
+			format_date($r->date, 'date_time'),
+			$r->description
+		);
+		$index ++ ;
+		$email_addresses[] = $user->mail;  //add to the list
+	}
+	array_unshift($table_rows , 
+		array(
+		'',
+		'' ,
+		'<p style="text-align:center;font-weight: bold;font-size: 15px;margin: 0;">مجموع کل این صفحه</p>' ,
+		'<p style="text-align:center;font-weight: bold;font-size: 15px;margin: 0;">' . formatMoney($total_price) .' تومان</p>',
+		'' ,
+		''));
+	$output = theme('table', array('header' => $tabale_header, 'rows' => $table_rows)).theme('pager');
+	$output .= '<div class="email-addresses"><h4>Email Addresses</h4><label for="email-addresses-textarea" value="Email addresses:" /><textarea id="email-addresses-textarea" rows="5" cols="500">' . implode(', ', $email_addresses). '</textarea></div>';
+	
+	return $output;
+}
+

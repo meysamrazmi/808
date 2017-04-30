@@ -1,0 +1,291 @@
+<?php
+
+/* major contributions and development by torgosPizza */
+
+define('USERPOINTS_PRODUCT_MODERATE',	'userpoints_product_moderate');
+define('USERPOINTS_PRODUCT_CATEGORY',	'userpoints_product_category');
+
+/**
+ * Implementation of hook_help().
+ */
+function uc_userpoints_product_help($path, $arg) {
+    switch ($path) {
+      case 'admin/modules#description':
+        return t('<strong>Ubercart Userpoints Product:</strong> Interfaces userpoints with Ubercart, so users can purchase points with products.');
+    }
+}
+
+/**
+ * Implementation of hook_userpoints api().
+ */
+function uc_userpoints_product_userpoints($op, $params = array()) {
+  switch($op) {
+    case 'setting':
+      if (module_exists('uc_cart') && module_exists('uc_payment')) {
+        $group = 'uc_userpoints_product';
+        $form[$group] = array(
+          '#type' => 'fieldset',
+          '#collapsible' => TRUE,
+          '#collapsed' => TRUE,
+          '#title' => t('Ubercart Product Options'),
+        );
+        $form[$group][USERPOINTS_PRODUCT_MODERATE] = array(
+          '#type' => 'radios',
+          '#title' => t('Moderate userpoints transaction'),
+          '#default_value' => variable_get(USERPOINTS_PRODUCT_MODERATE, 0), 
+          '#options' => array(t('No'), t('Yes')),
+        );
+        $form[$group][USERPOINTS_PRODUCT_CATEGORY] = array(
+          '#type' => 'select',
+          '#title' => t('Product Category'),
+          '#default_value' => variable_get(USERPOINTS_PRODUCT_CATEGORY, NULL),
+          '#options' => userpoints_get_categories(),
+          '#description' => t('Default category to assign awarded !points. This can be overridden on a per product basis', userpoints_translation()),
+        );
+      }
+      return $form;
+      break;
+  }
+}
+
+
+function uc_userpoints_product_uc_product_feature() {
+  $features[] = array(
+    'id' => 'userpoints',
+    'title' => t(variable_get(USERPOINTS_TRANS_UCPOINTS, 'Userpoints')),
+    'callback' => 'uc_userpoints_product_feature_form',
+    'delete' => 'uc_userpoints_product_feature_delete',
+    'settings' => array('uc_userpoints_product_feature_settings'),
+  );
+  return $features;
+}
+
+/**
+* Build the userpoints feature form
+*/
+function uc_userpoints_product_feature_form($form, &$form_state, $node, $feature) {
+  $points_text = variable_get(USERPOINTS_TRANS_LCPOINTS, 'Points');
+  $points = 0;
+  $nid = arg(1);
+  $res = db_query("SELECT * FROM {uc_userpoints_products} ucup, {uc_product_features} ucpf WHERE ucup.pfid = ucpf.pfid AND ucup.nid = :nid", array(':nid' => $nid));
+  foreach ($res as $pf) {
+    $points = $pf->points;
+    $tid = $pf->tid;
+  }
+  $category_options = userpoints_get_categories();
+  $category_options[-1] = t('Default !points_text Product Category', array('!points_text' => $points_text));
+  $form['nid'] = array(
+    '#type' => 'value',
+    '#value' => $nid,
+  );
+  $form['points'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Number of !points_text points', array('!points_text' => $points_text)),
+    '#description' => t('How many !points_text to give when this product is purchased.', array('!points_text' => $points_text)),
+    '#default_value' => $points,
+  );
+  $userpoints_translation = userpoints_translation();
+  $userpoints_translation['!points_text'] = $points_text;
+  $userpoints_translation['@points_links'] = l(t('Ubercart Product Options'), 'admin/settings/userpoints');
+  $form['tid'] = array(
+    '#type' => 'select',
+    '#title' => t('Product Category'),
+    '#default_value' => empty($tid)? 0 : $tid ,
+    '#options' => $category_options,
+    '#description' => t('Category to assign awarded !points. If you choose \'Default !points_text Product Category\', the category on your @points_links settings page will be used.', $userpoints_translation),
+  );
+  return uc_product_feature_form($form, $form_state, $node, $feature);
+}
+
+
+function uc_userpoints_product_feature_form_validate($form, &$form_state) {
+  if (!$form_state['values']['points'] || !is_numeric($form_state['values']['points']) || $form_state['values']['points'] < 1) {
+    form_set_error('points', 'You must enter a numeric value, greater than zero for points');
+  }
+}
+
+
+/**
+* Submit the form
+*/
+function uc_userpoints_product_feature_form_submit($form, &$form_state) {
+  $points_text = variable_get(USERPOINTS_TRANS_LCPOINTS, 'Points');
+  $tid = $form_state['values']['tid'];
+  $pfid = empty($form_state['values']['pfid'])? NULL : $form_state['values']['pfid'];
+  if ($tid > 0) {
+    $term = taxonomy_term_load($tid);
+    $term_name = $term->name;
+  }
+  elseif ($tid == '-1') {
+    $term_name = l(t('Default !points_text Product Category', array('!points_text' => $points_text)), 'admin/config/people/userpoints');
+  }
+  else {
+    // TODO handle the uncategorized properly
+    $term_name = "General";
+  }
+  $data = array(
+    'pfid' => $pfid,
+    'nid' => $form_state['values']['nid'],
+    'fid' => 'userpoints',
+    'description' => t('Product is now worth !points !points_text, assigned to the !term_name category', array('!points' => $form_state['values']['points'], '!points_text' => $points_text, '!term_name' => $term_name)),
+    'points' => $form_state['values']['points'],
+    'tid' => $tid,
+  );
+  $ret = uc_product_feature_save($data);
+  $affected_rows = db_update('uc_userpoints_products')
+    ->fields(array(
+      'points' => $data['points'],
+      'tid' => $data['tid'],
+    ))
+    ->condition('nid', $data['nid'])
+    ->condition('pfid', $data['pfid'])
+    ->execute();
+  if (!$affected_rows) {
+    $pf = db_query("SELECT pfid FROM {uc_product_features} WHERE nid = :nid AND fid = :fid", array(':nid' => $data['nid'], ':fid' => $data['fid']));
+    foreach ($pf as $row) {
+      $data['pfid'] = $row->pfid;      
+    }
+    // D6
+    // db_query("INSERT INTO {uc_userpoints_products} (pfid,nid,points,tid) VALUES (%d,%d,%d,%d)",$data['pfid'],$data['nid'],$data['points'],$data['tid']);
+    // D7
+    db_insert('uc_userpoints_products')
+      ->fields(array(
+        'pfid'=>$data['pfid'],
+        'nid'=>$data['nid'],
+        'points'=>$data['points'],
+        'tid'=>$data['tid'],
+      ))
+      ->execute();
+  }
+  $form_state['redirect'] = $ret;
+}
+
+
+/**
+ * Feature settings
+ */
+function uc_userpoints_product_feature_settings() {
+  // Nothing yet.
+}
+
+
+/**
+ * Product Feature delete function
+ */
+function uc_userpoints_product_feature_delete($feature) {
+  db_delete('uc_userpoints_products')
+    ->condition('pfid', $feature['pfid'])
+    ->execute();
+  db_delete('uc_product_features')
+    ->condition('pfid', $feature['pfid'])
+    ->execute();
+}
+
+/**
+ * Implementation of hook_uc_order();
+ */
+function uc_userpoints_product_uc_order($op, $order, $status) {
+  switch ($op) {
+    case 'update':
+      // We might want to add the "Order Status" to the Userpoints Ubercart options...
+      if ($order->order_status != 'completed' && ($status == 'completed' && $order->uid > 0) && ($order_user = user_load($order->uid)) !== FALSE) {
+        $totalPoints = 0; // this will be the total order points
+        foreach ($order->products as $product) {
+          $productPoints = 0; // This will be the product points * quantity
+          $query = db_select('uc_userpoints_products');
+          $query->condition('nid', $product->nid);
+          $query->addExpression('SUM(points)', 'sum_points');
+          $result = $query->execute()->fetchAssoc();
+          foreach ($result as $key => $value) {
+            $points = $value;
+          }
+          $query = db_select('uc_userpoints_products', 'p');
+          $query->addField('p', 'tid');
+          $query->condition('nid', $product->nid);
+          $result = $query->execute()->fetchAll();
+          foreach ($result as $row) {
+            $tid = $row->tid;
+          }
+          if ($points > 0) {
+            $productPoints = ($product->qty * $points); // Make sure we account for multiple qty of the Points product
+          }
+          if (empty($tid) || ($tid == '') || ($tid == '-1')) {
+            $tid = variable_get(USERPOINTS_PRODUCT_CATEGORY, 0);
+          }
+          $params = array (
+            'tid' => $tid,
+            'uid' => $order->uid,
+            'points' => $productPoints,
+            'operation' => 'add',
+            'description' => t('A user purchased !product containing !amount points.', array('!product' => l($product->title, 'node/' . $product->nid), '!amount' => $productPoints)),
+            'entity_id' => $order->order_id,
+            'entity_type' => 'Ubercart Transaction',
+            'moderate' => variable_get(USERPOINTS_PRODUCT_MODERATE, 0),
+          );
+          $totalPoints += $productPoints;
+          if ($productPoints > 0) {
+            userpoints_userpointsapi($params);
+            uc_order_comment_save($order->order_id, 0, t('User bought '.$productPoints.' points with product: '. $product->title .'!'), 'admin'); //Order comment per product points
+          }
+        }
+        if ($totalPoints > 0) {
+          uc_order_comment_save($order->order_id, 0, t('User bought a total of '.$totalPoints.' points on this order!'), 'admin'); //Order comment on total points
+        }
+      }
+      break;
+  }
+}
+
+/**
+* Check and make sure the user isn't trying to buy points with points.
+*  @todo: Make this configurable?
+*/
+function uc_userpoints_product_form_alter(&$form, &$form_state, $form_id) {
+  // We may need to alter the checkout form to remove invalid payment methods.
+  if ($form_id == 'uc_cart_checkout_form' && isset($form['panes']['payment'])) {
+    $order = new stdClass;
+	$order->products = uc_cart_get_contents();
+    // Make no changes if no products containing Userpoints are found.
+    if (uc_userpoints_find_points_products($order) == array()) {
+      return;
+    } else if (isset($form['panes']['payment']['payment_method']['#options']['points'])) {
+      unset($form['panes']['payment']['payment_method']['#options']['points']);
+      @drupal_set_message(t('You cannot purchase !points with !points, so that payment option has been removed.', check_plain(userpoints_translation())),'error');
+    }
+    $count = count($form['panes']['payment']['payment_method']['#options']);
+    if ($count == 0) {
+      // Display an error message if no payment methods remain.
+      drupal_set_message(t('There are no payment methods available to purchase !points with!', check_plain(userpoints_translation())), 'error');
+      drupal_set_message(t('Please contact an administrator to solve the issue.'), 'error');
+    }
+    elseif ($count == 1) {
+      // If only one payment method remains, make it the default.
+      $values = array_keys($form['panes']['payment']['payment_method']['#options']);
+      $form['panes']['payment']['payment_method']['#default_value'] = array_pop($values);
+    }
+  }
+}
+
+/**
+* Returns an array of nids associated with user's cart contents
+*
+* @param $order
+*   The order object in question.
+* @return
+*   An array of matching nids from uc_userpoints_products.
+*/
+function uc_userpoints_find_points_products($order) {
+  if (!is_array($order->products) || count($order->products) == 0) {
+    return array();
+  }
+  foreach ($order->products as $product) {
+    $nids[] = check_plain($product->nid);
+    //dsm('Nid: '.$product->nid);
+  }
+  $pointsproducts = array();
+  $results = db_query("SELECT * FROM {uc_userpoints_products} WHERE nid IN (:nids)", array(':nids'=> $nids));
+  foreach ($results as $pntproduct) {
+    $pointsproducts[] = $pntproduct;
+  }
+  return $pointsproducts;
+}

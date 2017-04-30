@@ -1,0 +1,448 @@
+<?php
+
+/**
+ * Implements hook_help().
+ */
+function uc_product_actions_help($section) {
+  switch ($section) {
+    case 'admin/help#uc_product_actions':
+      $output = '<p>'. t('The Ubercart Product Actions module provides actions that can be used in conjunction with Views Bulk Operations (VBO) to modify multiple products at once.') .'</p>';
+      $output .= '<p>'. t('Actions provided include:') .'</p>';
+      $output .= '<ul><li>'. t('Modify product weight') .'</li>';
+      $output .= '<li>'. t('Modify product list price') .'</li>';
+      $output .= '<li>'. t('Modify product cost') .'</li>';
+      $output .= '<li>'. t('Modify product sell price') .'</li>';
+      $output .= '<li>'. t('Modify default quantity to add to cart') .'</li>';
+      $output .= '<li>'. t('Modify product stock level') .'</li>';
+      $output .= '<li>'. t('Modify product stock threshold') .'</li>';
+      $output .= '<li>'. t('Enable/disable stock tracking') .'</li></ul>';
+      $output .= '<p>'. t('These actions can be used to manipulate multiple products, using three methods:') .'</p>';
+      $output .= '<ol><li>'. t('Percentage - alter values up or down by a percentage.') .'</li>';
+      $output .= '<li>'. t('Difference - alter values up or down by a fixed amount.') .'</li>';
+      $output .= '<li>'. t('Absolute - set values to a specified number.') .'</li></ol>';
+      $output .= '<p>'. t('For prices, the result will be rounded according to your store settings. For stock, values will be rounded to the nearest integer. For weight, when modifying by a percentage and the old value contains a decimal, the new value will be rounded to the same precision. For more information, see README.txt and the <a href="http://drupal.org/node/335694">VBO quickstart guide</a>.') .'</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_action_info().
+ *
+ * This function defines all custom actions added by this module.
+ */
+function uc_product_actions_action_info() {
+  return array(
+    'uc_product_actions_update_weight_action' => array(
+      'type' => 'node',
+      'label' => t('Modify product weight'),
+      'configurable' => TRUE,
+      'triggers' => array(
+        'nodeapi' => array('update'),
+      )
+    ),
+    'uc_product_actions_update_cost_action' => array(
+      'type' => 'node',
+      'label' => t('Modify product cost'),
+      'configurable' => TRUE,
+      'triggers' => array(
+        'nodeapi' => array('update'),
+      )
+    ),
+    'uc_product_actions_update_list_price_action' => array(
+      'type' => 'node',
+      'label' => t('Modify product list price'),
+      'configurable' => TRUE,
+      'triggers' => array(
+        'nodeapi' => array('update'),
+      )
+    ),
+    'uc_product_actions_update_sell_price_action' => array(
+      'type' => 'node',
+      'label' => t('Modify product sell price'),
+      'configurable' => TRUE,
+      'triggers' => array(
+        'nodeapi' => array('update'),
+      )
+    ),
+    'uc_product_actions_update_default_qty_action' => array(
+      'type' => 'node',
+      'label' => t('Modify default quantity to add to cart'),
+      'configurable' => TRUE,
+      'triggers' => array(
+        'nodeapi' => array('update'),
+      )
+    ),
+    'uc_product_actions_update_stock_action' => array(
+      'type' => 'node',
+      'label' => t('Modify product stock level'),
+      'configurable' => TRUE,
+      'triggers' => array(
+        'nodeapi' => array('update'),
+      )
+    ),
+    'uc_product_actions_update_threshold_action' => array(
+      'type' => 'node',
+      'label' => t('Modify product stock threshold'),
+      'configurable' => TRUE,
+      'triggers' => array(
+        'nodeapi' => array('update'),
+      )
+    ),
+    'uc_product_actions_update_active_action' => array(
+      'type' => 'node',
+      'label' => t('Enable/disable stock tracking'),
+      'configurable' => TRUE,
+      'triggers' => array(
+        'nodeapi' => array('update'),
+      )
+    ),
+  );
+}
+
+/**
+ * 'Modify product weight' action.
+ *
+ * @see uc_product_actions_form_builder()
+ * @see uc_product_actions_form_validator()
+ * @see uc_product_actions_form_submitter()
+ * @see uc_product_actions_action_executor()
+ */
+function uc_product_actions_update_weight_action_form($context) {
+  $form = uc_product_actions_form_builder('weight');
+  return $form;
+}
+function uc_product_actions_update_weight_action_validate($form, &$form_state) {
+  uc_product_actions_form_validator('weight', $form_state);
+}
+function uc_product_actions_update_weight_action_submit($form, $form_state) {
+  $values = uc_product_actions_form_submitter('weight', $form_state);
+  return $values;
+}
+function uc_product_actions_update_weight_action($node, $context) {
+  uc_product_actions_action_executor('weight', $node, $context);
+}
+
+/**
+ * 'Modify product cost' action.
+ *
+ * @see uc_product_actions_form_builder()
+ * @see uc_product_actions_form_validator()
+ * @see uc_product_actions_form_submitter()
+ * @see uc_product_actions_action_executor()
+ */
+function uc_product_actions_update_cost_action_form($context) {
+  $form = uc_product_actions_form_builder('cost');
+  return $form;
+}
+function uc_product_actions_update_cost_action_validate($form, &$form_state) {
+  uc_product_actions_form_validator('cost', $form_state);
+}
+function uc_product_actions_update_cost_action_submit($form, $form_state) {
+  $values = uc_product_actions_form_submitter('cost', $form_state);
+  return $values;
+}
+function uc_product_actions_update_cost_action($node, $context) {
+  uc_product_actions_action_executor('cost', $node, $context);
+}
+
+/**
+ * 'Modify product list price' action.
+ *
+ * @see uc_product_actions_form_builder()
+ * @see uc_product_actions_form_validator()
+ * @see uc_product_actions_form_submitter()
+ * @see uc_product_actions_action_executor()
+ */
+function uc_product_actions_update_list_price_action_form($context) {
+  $form = uc_product_actions_form_builder('list_price');
+  return $form;
+}
+function uc_product_actions_update_list_price_action_validate($form, &$form_state) {
+  uc_product_actions_form_validator('list_price', $form_state);
+}
+function uc_product_actions_update_list_price_action_submit($form, $form_state) {
+  $values = uc_product_actions_form_submitter('list_price', $form_state);
+  return $values;
+}
+function uc_product_actions_update_list_price_action($node, $context) {
+  uc_product_actions_action_executor('list_price', $node, $context);
+}
+
+/**
+ * 'Modify product sell price' action.
+ *
+ * @see uc_product_actions_form_builder()
+ * @see uc_product_actions_form_validator()
+ * @see uc_product_actions_form_submitter()
+ * @see uc_product_actions_action_executor()
+ */
+function uc_product_actions_update_sell_price_action_form($context) {
+  $form = uc_product_actions_form_builder('sell_price');
+  return $form;
+}
+function uc_product_actions_update_sell_price_action_validate($form, &$form_state) {
+  uc_product_actions_form_validator('sell_price', $form_state);
+}
+function uc_product_actions_update_sell_price_action_submit($form, $form_state) {
+  $values = uc_product_actions_form_submitter('sell_price', $form_state);
+  return $values;
+}
+function uc_product_actions_update_sell_price_action($node, $context) {
+  uc_product_actions_action_executor('sell_price', $node, $context);
+}
+
+/**
+ * 'Modify default quantity to add to cart' action.
+ *
+ * @see uc_product_actions_form_builder()
+ * @see uc_product_actions_form_validator()
+ * @see uc_product_actions_form_submitter()
+ * @see uc_product_actions_action_executor()
+ */
+function uc_product_actions_update_default_qty_action_form($context) {
+  $form = uc_product_actions_form_builder('default_qty');
+  return $form;
+}
+function uc_product_actions_update_default_qty_action_validate($form, &$form_state) {
+  uc_product_actions_form_validator('default_qty', $form_state);
+}
+function uc_product_actions_update_default_qty_action_submit($form, $form_state) {
+  $values = uc_product_actions_form_submitter('default_qty', $form_state);
+  return $values;
+}
+function uc_product_actions_update_default_qty_action($node, $context) {
+  uc_product_actions_action_executor('default_qty', $node, $context);
+}
+
+/**
+ * 'Modify product stock level' action.
+ *
+ * @see uc_product_actions_form_builder()
+ * @see uc_product_actions_form_validator()
+ * @see uc_product_actions_form_submitter()
+ * @see uc_product_actions_stock_action_executor()
+ */
+function uc_product_actions_update_stock_action_form($context) {
+  $form = uc_product_actions_form_builder('stock');
+  return $form;
+}
+function uc_product_actions_update_stock_action_validate($form, &$form_state) {
+  uc_product_actions_form_validator('stock', $form_state);
+}
+function uc_product_actions_update_stock_action_submit($form, $form_state) {
+  $values = uc_product_actions_form_submitter('stock', $form_state);
+  return $values;
+}
+function uc_product_actions_update_stock_action($node, $context) {
+  uc_product_actions_stock_action_executor('stock', $node, $context);
+}
+
+/**
+ * 'Modify product stock threshold' action.
+ *
+ * @see uc_product_actions_form_builder()
+ * @see uc_product_actions_form_validator()
+ * @see uc_product_actions_form_submitter()
+ * @see uc_product_actions_stock_action_executor()
+ */
+function uc_product_actions_update_threshold_action_form($context) {
+  $form = uc_product_actions_form_builder('threshold');
+  return $form;
+}
+function uc_product_actions_update_threshold_action_validate($form, &$form_state) {
+  uc_product_actions_form_validator('threshold', $form_state);
+}
+function uc_product_actions_update_threshold_action_submit($form, $form_state) {
+  $values = uc_product_actions_form_submitter('threshold', $form_state);
+  return $values;
+}
+function uc_product_actions_update_threshold_action($node, $context) {
+  uc_product_actions_stock_action_executor('threshold', $node, $context);
+}
+
+/**
+ * 'Enable/disable stock tracking' action.
+ *
+ * @see uc_product_actions_form_builder()
+ * @see uc_product_actions_form_validator()
+ * @see uc_product_actions_form_submitter()
+ * @see uc_product_actions_stock_action_executor()
+ */
+function uc_product_actions_update_active_action_form($context) {
+  $form = uc_product_actions_form_builder('active');
+  return $form;
+}
+function uc_product_actions_update_active_action_validate($form, &$form_state) {
+  uc_product_actions_form_validator('active', $form_state);
+}
+function uc_product_actions_update_active_action_submit($form, $form_state) {
+  $values = uc_product_actions_form_submitter('active', $form_state);
+  return $values;
+}
+function uc_product_actions_update_active_action($node, $context) {
+  uc_product_actions_stock_action_executor('active', $node, $context);
+}
+
+/**
+ * Build the action form.
+ */
+function uc_product_actions_form_builder($action) {
+  $action_str = str_replace('_', ' ', $action);
+
+  if (($action == 'stock' || $action == 'threshold' || $action == 'active') && !module_exists('uc_stock')) {
+    drupal_set_message(t('You must first enable the Stock module before using that operation.'), 'warning');
+    $destination = drupal_get_destination();
+    drupal_goto($destination['destination']);
+  }
+
+  if ($action == 'active') {
+    $form['active_change'] = array(
+      '#title' => t('Track stock levels'),
+      '#type' => 'radios',
+      '#options' => array(t('off'), t('on')),
+    );
+    $form['active_method'] = array(
+      '#type' => 'hidden',
+      '#value' => 'off_on',
+    );
+  }
+  else {
+    $form[$action . '_method'] = array(
+      '#title' => t('Method to modify the '. $action_str),
+      '#type' => 'select',
+      '#options' => array('percentage' => t('Percentage'), 'difference' => t('Difference'), 'absolute' => t('Absolute')),
+      '#multiple' => FALSE,
+      '#description' => t('Modify the ' . $action_str . ' by a percentage, a difference, or set to an absolute value.'),
+    );
+    $form[$action . '_change'] = array(
+      '#title' => t('Value'),
+      '#type' => 'textfield',
+      '#size' => 15,
+      '#description' => t('Enter a positive or negative numeric value for changing the ' . $action_str . ' by the selected method. Note: for prices, the result will be rounded according to your store settings. For stock, values will be rounded to the nearest integer.'),
+      '#default_value' => '',
+    );
+  }
+  return $form;
+}
+
+/**
+ * Validate the action form submission.
+ */
+function uc_product_actions_form_validator($action, &$form_state) {
+  $form_state['values'][$action . '_change'] = check_plain($form_state['values'][$action . '_change']);
+  $method = $form_state['values'][$action . '_method'];
+  if ($form_state['values'][$action . '_change'] == '') {
+    form_set_error($action . '_change', t('Please enter a value.'));
+  }
+  elseif (!is_numeric($form_state['values'][$action . '_change'])) {
+    form_set_error($action . '_change', t('Please enter a numerical value.'));
+  }
+  elseif (($method == 'percentage' || $method == 'difference') && $form_state['values'][$action . '_change'] == 0) {
+    form_set_error($action . '_change', t('Please enter a non-zero value.'));
+  }
+}
+
+/**
+ * Submit the action form values.
+ */
+function uc_product_actions_form_submitter($action, $form_state) {
+  $values = array();
+  $values[$action . '_change'] = $form_state['values'][$action . '_change'];
+  $values[$action . '_method'] = $form_state['values'][$action . '_method'];
+  return $values;
+}
+
+/**
+ * Execute the action.
+ */
+function uc_product_actions_action_executor($action, $node, $context) {
+  $current_value = $node->$action;
+  if (!is_null($current_value)) {
+    switch ($context[$action . '_method']) {
+      case 'percentage':
+        if ($current_value == 0) {
+          $new_value = 0;
+        }
+        else {
+          $change = $current_value * $context[$action . '_change'] / 100;
+          ($current_value > 0) ? $new_value = $current_value + $change : $new_value = $current_value - $change;
+        }
+        break;
+      case 'difference':
+        $new_value = $current_value + $context[$action . '_change'];
+        break;
+      case 'absolute':
+        $new_value = $context[$action . '_change'];
+        break;
+    }
+  }
+
+  // Make necessary adjustments to value.
+  if ($action == 'weight') {
+    // When modifying by a percentage and old value contains a decimal, round new value to the same precision.
+    if ($context['weight_method'] == 'percentage' && floor($current_value) != $current_value) {
+      $precision = strlen(substr(strrchr($current_value, '.'), 1));
+      $new_value = round($new_value, $precision);
+    }
+    if ($new_value < 0) $new_value = 0;  // Product weight cannot be negative.
+  }
+  else {
+    $precision = variable_get('uc_currency_prec', 2);
+    $new_value = round($new_value, $precision);
+  }
+
+  // Save modified product.
+  if (isset($new_value)) {
+    $node->$action = $new_value;
+    node_save($node);
+    // Load modified node to check if operation was processed correctly.
+    $new_node = node_load($node->nid, NULL, TRUE);
+  }
+  if (!isset($new_value) || $new_node->$action != $new_value) {
+    drupal_set_message(ucfirst($action) . t(' (@new_value): %node may not have updated properly, please check and update manually if needed.', array('%node' => $node->title, '@new_value' => $new_value)), 'warning');
+    watchdog('Ubercart product actions', ucfirst($action) . ' (@new_value): %node may not have updated properly, please check and update manually if needed.', array('%node' => $node->title, '@new_value' => $new_value), WATCHDOG_WARNING, l(t('edit'), 'node/' . $node->nid . '/edit'));
+  }
+}
+
+/**
+ * Execute the action (for stock actions).
+ */
+function uc_product_actions_stock_action_executor($action, $node, $context) {
+  $result = db_query('SELECT active, stock, threshold FROM {uc_product_stock} WHERE nid = :nid AND sku = :sku', array(':nid' => $node->nid, ':sku' => $node->model));
+  $record = $result->fetchAssoc();
+
+  if (!is_null($record[$action])) {
+    $current_value = $record[$action];
+  }
+  else {
+    $fields = array('sku' => $node->model, 'nid' => $node->nid, 'active' => 0, 'stock' => 0, 'threshold' => 0);
+    db_insert('uc_product_stock')->fields($fields)->execute();
+    $current_value = 0;
+  }
+
+  if ($action == 'active') {
+    $new_value = $context[$action . '_change'][0];
+  }
+  else {
+    switch ($context[$action . '_method']) {
+      case 'percentage':
+        if ($current_value == 0) {
+          $new_value = 0;
+        }
+        else {
+          $change = $current_value * $context[$action . '_change'] / 100;
+          ($current_value > 0) ? $new_value = $current_value + $change : $new_value = $current_value - $change;
+        }
+        break;
+      case 'difference':
+        $new_value = $current_value + $context[$action . '_change'];
+        break;
+      case 'absolute':
+        $new_value = $context[$action . '_change'];
+        break;
+    }
+  }
+
+  $fields = array(db_escape_field($action) => round($new_value));
+  db_update('uc_product_stock')->fields($fields)->condition('nid', $node->nid)->condition('sku', $node->model)->execute();
+}

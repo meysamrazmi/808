@@ -1,0 +1,12 @@
+name = Contact Plus
+description = Augments core Contact module with additional features for path redirection and form management.
+dependencies[] = contact
+configure = admin/structure/contact/settings
+core = 7.x
+
+; Information added by drupal.org packaging script on 2013-03-20
+version = "7.x-1.0"
+core = "7.x"
+project = "ContactPlus"
+datestamp = "1363789816"
+

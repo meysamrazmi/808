@@ -1,0 +1,1123 @@
+<?php
+
+/**
+ * @file
+ * Provides components to the Webform module utilizing the Ubercart package.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function uc_webform_menu() {
+  $items = array();
+
+  $items['cart/delete-form/%'] = array(
+    'title' => 'Delete',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('uc_webform_submission_delete_products_form', 2),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['uc_webform/autocomplete'] = array(
+    'title' => 'Product autocomplete',
+    'page callback' => '_uc_webform_autocomplete_products',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['node/%webform_menu/webform-results/orders'] = array(
+    'title' => 'Orders',
+    'page callback' => 'uc_webform_product_analysis',
+    'page arguments' => array(1),
+    'access callback' => 'webform_results_access',
+    'access arguments' => array(1),
+    'weight' => 5,
+    'type' => MENU_LOCAL_TASK,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function uc_webform_theme() {
+  return array(
+    'uc_webform_product_analysis' => array('variables' => array('node' => NULL)),
+  );
+}
+
+/**
+ * Provides an auto-complete list of products that do not contain attributes.
+ */
+function _uc_webform_autocomplete_products($string = '') {
+  $matches = array();
+
+  // Limit selection to only those products that do *not* contain attributes.
+  $attrib_query = db_select('uc_product_attributes', 'pa')
+    ->fields('pa', array('nid'));
+
+  $query = db_select('node', 'n')
+    ->fields('n', array('nid', 'title'))
+    ->condition('n.title', '%' . db_like($string) . '%', 'LIKE')
+    ->condition('n.nid', $attrib_query, 'NOT IN')
+    ->condition('n.status', 1, '=');
+
+  $query->join('uc_products', 'p', 'p.nid = n.nid');
+  $query->addField('p', 'model');
+
+  foreach ($query->execute() as $product) {
+    $matches[$product->nid . '_' . check_plain($product->model)] = check_plain($product->title);
+  }
+
+  drupal_json_output($matches);
+}
+
+/**
+ * Provides a simple analysis of submissions that contain products.
+ *
+ * Called when viewing the "Orders" tab from within the results section of a
+ * particular webform.
+ */
+function uc_webform_product_analysis($node, $sids = array(), $analysis_component = NULL) {
+  if (!is_array($sids)) {
+    $sids = array();
+  }
+
+  // If showing a component's details, we don't want to loose the menu tabs.
+  if ($analysis_component) {
+    $item = menu_get_item('node/' . $node->nid . '/webform-results/analysis');
+    menu_set_item(NULL, $item);
+  }
+
+  $components = isset($analysis_component) ? array($analysis_component['cid'] => $analysis_component) : $node->webform['components'];
+  $data = array();
+  $cids = array();
+  $order_status_cid = 0;
+
+  // First, find the Order Status cid.
+  foreach ($components as $cid => $component) {
+    if ($component['form_key'] == 'order_status') {
+      $order_status_cid = $component['cid'];
+    }
+  }
+
+  foreach ($components as $cid => $component) {
+    // Limit the results to product and product_list components.
+    if ($component['type'] == 'product') {
+      if ($row_data = _uc_webform_product_orders($component, $order_status_cid)) {
+        $data[$cid] = $row_data;
+      }
+      $cids[] = $component['cid'];
+    }
+    elseif ($component['type'] == 'product_list') {
+      if ($row_data = _uc_webform_product_list_orders($component, $order_status_cid)) {
+        $data[$cid] = $row_data;
+      }
+      $cids[] = $component['cid'];
+    }
+    elseif ($component['type'] == 'product_grid') {
+      if ($row_data = _uc_webform_product_grid_orders($component, $order_status_cid)) {
+        $data[$cid] = $row_data;
+      }
+      $cids[] = $component['cid'];
+    }
+  }
+
+  if (empty($cids)) {
+    return t('There are no products associated with this webform.');
+  }
+  else {
+    return theme('uc_webform_product_analysis', array(
+      'node' => $node,
+      'data' => $data,
+      'sids' => $sids,
+      'analysis_component' => $analysis_component,
+      'order_status_cid' => $order_status_cid));
+  }
+}
+
+/**
+ * Generate statistics for product components, limited to checked out webforms.
+ *
+ * This information is displayed under the "orders" tab of the webform results.
+ */
+function _uc_webform_product_orders($component, $order_status_cid) {
+
+  // First, get the list of all submission IDs for webform submissions where
+  // checkout has been completed.
+  $query = db_select('webform_submitted_data', 'wsd')
+    ->fields('wsd', array('sid'))
+    ->condition('nid', $component['nid'], '=')
+    ->condition('cid', $order_status_cid, '=')
+    ->condition('data', 'Did not complete checkout', '<>');
+
+  $sids = array();
+  foreach ($query->execute() as $submission) {
+    $sids[] = $submission->sid;
+  }
+  // Use the array of checked out submission ID's to grab only the checked out
+  // product data.
+  $product_results = array();
+  $total = 0;
+
+  if (!empty($sids)) {
+    $co_query = db_select('webform_submitted_data', 'wsd')
+      ->fields('wsd', array('no', 'data'))
+      ->condition('cid', $component['cid'], '=')
+      ->condition('nid', $component['nid'], '=')
+      ->condition('sid', $sids, 'IN');
+
+    foreach ($co_query->execute() as $co_result) {
+      if ($co_result->no == 2) {
+        $total += $co_result->data;
+      }
+    }
+  }
+
+  $product_info = explode('_', $component['extra']['product'], 2);
+  
+  if(isset($product_info[1])) {
+    $rows[0] = array(t($product_info[1]), $total);
+  }
+
+  if ($total > 0) {
+    return $rows;
+  }
+  else {
+    return NULL;
+  }
+}
+
+/**
+ * Statistics for product_list components, limited to checked out webforms.
+ *
+ * This information is displayed under the "Orders" tab of the webform results.
+ */
+function _uc_webform_product_list_orders($component, $order_status_cid) {
+
+  // First, get the list of all submission IDs for webform submissions where
+  // checkout has been completed.
+  $query = db_select('webform_submitted_data', 'wsd')
+    ->fields('wsd', array('sid'))
+    ->condition('nid', $component['nid'], '=')
+    ->condition('cid', $order_status_cid, '=')
+    ->condition('data', 'Did not complete checkout', '<>');
+
+  $sids = array();
+
+  foreach ($query->execute() as $submission) {
+    $sids[] = $submission->sid;
+  }
+
+  // Use the array of checked out submission ID's to grab only the checked out
+  // product data.
+  $product_results = array();
+  if (!empty($sids)) {
+    $co_query = db_select('webform_submitted_data', 'wsd')
+      ->fields('wsd', array('no', 'data'))
+      ->condition('cid', $component['cid'], '=')
+      ->condition('nid', $component['nid'], '=')
+      ->condition('sid', $sids, 'IN');
+
+    foreach ($co_query->execute() as $co_result) {
+      if ($co_result->no == 0) {
+        continue;
+      }
+      else {
+        if (array_key_exists($co_result->data, $product_results)) {
+          $product_results[$co_result->data] += 1;
+        }
+        else {
+          $product_results[$co_result->data] = 1;
+        }
+      }
+    }
+  }
+
+  $rows = array();
+  $count = 0;
+  foreach ($product_results as $product => $qty) {
+    $product_info = explode('_', $product, 2);
+    $product_node = node_load($product_info[0]);
+    $rows[$count] = array(check_plain($product_node->model), $qty);
+    $count++;
+  }
+
+  return $rows;
+}
+
+/**
+ * Generate statistics for product_grid components, limited to checked out
+ * webforms. This information is displayed under the "orders" tab of the
+ * webform results.
+ */
+function _uc_webform_product_grid_orders($component, $order_status_cid) {
+
+  // Build the rows of the table, including the first column.
+  $rows = array(array());
+  $header = array(array());
+  $product_nids = array();
+  foreach ($component['extra']['products'] as $product) {
+    $nid_sku = explode('_', $product, 2);
+    $product_nids[] = $nid_sku[0];
+    $product_node = node_load($nid_sku[0]);
+
+    // I use the nid_sku combination here as a key.
+    $rows[$product] = array(check_plain($product_node->title));
+  }
+
+  // Select the available option IDs and names for each product in the table.
+  $query = db_select('uc_product_options', 'po')
+    ->fields('po', array('oid'));
+  $query->join('uc_attribute_options', 'ao', 'po.oid = ao.oid');
+  $query->addField('ao', 'name');
+  $query->condition('po.nid', $product_nids, 'IN');
+
+  // Build the header row.
+  $options = array();
+  foreach ($query->execute() as $option) {
+    // Use the oid as an array key to help when quering the
+    // webform_submitted_data table (since it stores the oid instead of the
+    // option name).
+    $header[$option->oid] = check_plain($option->name);
+  }
+
+  // Get a list of all submission IDs for submissions with completed checkouts.
+  $query = db_select('webform_submitted_data', 'wsd')
+    ->fields('wsd', array('sid'))
+    ->condition('nid', $component['nid'], '=')
+    ->condition('cid', $order_status_cid, '=')
+    ->condition('data', 'Did not complete checkout', '<>');
+
+  $sids = array();
+  foreach ($query->execute() as $submission) {
+    $sids[] = $submission->sid;
+  }
+
+  // Use the array of checked out submission ID's to grab only the checked out
+  // product data.
+  $selections = array();
+  if (!empty($sids)) {
+    $co_query = db_select('webform_submitted_data', 'wsd')
+      ->fields('wsd', array('no', 'data'));
+    $co_query->addExpression('COUNT(data)', 'datacount');
+    $co_query->condition('cid', $component['cid'], '=');
+    $co_query->condition('nid', $component['nid'], '=');
+    $co_query->condition('sid', $sids, 'IN');
+    $co_query->groupBy('no');
+    $co_query->groupBy('data');
+
+    foreach ($co_query->execute() as $data) {
+      $aid_oid = explode('_', $data->data, 2);
+      // The information is stored in the DB as attribute-ID_option-ID. This
+      // line removes the attribute ID and leaves the $selections key as the
+      // option ID.
+      if (isset($aid_oid[1])) {
+        $selections[$data->no][$aid_oid[1]] = $data->datacount;
+      }
+    }
+  }
+
+  // Check to see if any completed orders include this component. Return NULL
+  // if there aren't any.
+  if (!empty($selections)) {
+    // Build up the 2D array that will be used to create the table.
+    foreach ($rows as $rkey => $rval) {
+      if ($rkey != 0) {
+        foreach ($header as $hkey => $hval) {
+          if ($hkey != 0) {
+            // $rkey = nid_sku.
+            // $hkey = option ID.
+            $rows[$rkey][] = isset($selections[$rkey][$hkey]) ? $selections[$rkey][$hkey] : 0;
+          }
+        }
+      }
+    }
+
+    $output = theme('table', array(
+      'header' => $header,
+      'rows' => $rows,
+      'attributes' => array(
+        'class' => array(
+          'webform-product-grid',
+        ),
+      ),
+    ));
+
+    return array(array(array('data' => $output, 'colspan' => 2)));
+  }
+  else {
+    return NULL;
+  }
+}
+
+/**
+ * Output the content of the Analysis page.
+ *
+ * @see webform_results_analysis()
+ */
+function theme_uc_webform_product_analysis($variables) {
+  $node = $variables['node'];
+
+  $rows = array();
+  $question_number = 0;
+  $single = isset($analysis_component);
+
+  $header = array(
+    $single ? check_plain($analysis_component['name']) : t('Q'),
+    array(
+      'data' => $single ? '&nbsp' : t('Product Selection (completed checkouts)'),
+      'colspan' => '10',
+    ),
+  );
+
+  foreach ($variables['data'] as $cid => $row_data) {
+    $question_number++;
+
+    if (is_array($row_data)) {
+      $row = array();
+      if (!$single) {
+        $row[] = array(
+          'data' => '<strong>' . $question_number . '</strong>',
+          'rowspan' => count($row_data) + 1,
+          'valign' => 'top',
+        );
+        $row[] = array(
+          'data' => '<strong>' . check_plain($node->webform['components'][$cid]['name']) . '</strong>',
+          'colspan' => '10',
+        );
+      }
+      $rows = array_merge($rows, array_merge(array($row), $row_data));
+    }
+  }
+
+  $num_no_checkout = db_select('webform_submitted_data', 'wsd')
+    ->condition('nid', $node->nid, '=')
+    ->condition('data', 'Did not complete checkout', '=')
+    ->countQuery()
+    ->execute()
+    ->fetchField();
+
+  $total_submissions = db_select('webform_submitted_data', 'wsd')
+    ->fields('wsd', array('DISTINCT sid'))
+    ->condition('nid', $node->nid, '=')
+    ->countQuery()
+    ->execute()
+    ->fetchField();
+
+  $rows[] = array(array(
+      'data' => '<strong>$</strong>',
+      'rowspan' => 4,
+      'valign' => 'top',
+    ), array(
+      'data' => '<strong>Checkout statistics</strong>',
+      'colspan' => 10,
+    ));
+  $rows[] = array(t('Total completed checkouts'), $total_submissions - $num_no_checkout);
+  $rows[] = array('<strong>' . t('Total webform submissions') . '</strong>', $total_submissions);
+
+  return theme('table', array('header' => $header, 'rows' => $rows));
+}
+
+/****************************************
+ * Form API
+ */
+
+/**
+ * Adjustment for $form['#submit'][].
+ */
+function uc_webform_form_node_submit(&$form, &$form_state) {
+}
+
+/**
+ * Form alter for add to cart.
+ */
+function uc_webform_form_uc_product_add_to_cart_form_alter(&$form, &$form_state) {
+  if (isset($form['node']['#value']->webform_nid)) {
+    // Replace standard add to cart with the webform corresponding to this
+    // product.
+  }
+}
+
+/**
+ * Form alter.
+ */
+function uc_webform_form_alter(&$form, &$form_state, $form_id) {
+  // THIS FAILS because $form['submitted']['order_status']['#default_value']
+  // is not set.
+  // Ensure that the order_status field cannot be modified with firebug, etc.
+  if ($form_id == 'webform_component_form' || $form_id == 'webform_component_edit_form') {
+    // Allow select components to change attributes/options selected for a
+    // product, i.e. via sku.
+    if ($form['type']['#value'] == 'select') {
+      $form['extra']['uc_webform_options'] = array(
+        '#title' => 'Product SKU ',
+        '#description' => 'You can choose to set what options will be selected by safe_key|option ',
+        '#type' => 'textarea',
+        '#default_value' => variable_get('uc_webform_sku_' . $form['nid']['#value'] . '_' . $form['cid']['#value'], ''),
+      );
+      $form['#submit'][] = 'uc_webform_sku_submit';
+    }
+  }
+}
+
+
+/**
+ * Adjustment for $form['#submit'][].
+ */
+function uc_webform_sku_submit(&$form, &$form_state) {
+  if (isset($form_state['values']['extra']['uc_webform_options'])) {
+    variable_set('uc_webform_sku_' . $form_state['values']['nid'] . '_' . $form_state['values']['cid'], $form_state['values']['extra']['uc_webform_options']);
+  }
+}
+
+/**
+ * Confirmation form before deleting products from a cart.
+ *
+ * When removing a single product from a cart alert the user that doing so will
+ * also remove all other products associated with the same form.
+ */
+function uc_webform_submission_delete_products_form($form, &$form_state,$wf_nid) {
+
+  $question = t('If you remove this product from your cart, all products associated with your form submission will also be removed. Are you sure you want to delete this product?');
+
+  $destination = 'cart/'.$wf_nid;
+
+  return confirm_form(array(), NULL, $destination, $question, t('Delete'), t('Cancel'));
+}
+
+/**
+ * Adjustment for $form['#submit'][].
+ */
+function uc_webform_submission_delete_products_form_submit($form, &$form_state) {
+
+  // Remove all items from the current webform submission from the cart.
+  $cart_items = uc_cart_get_contents();
+  $wf_nid = arg(2);
+  foreach ($cart_items as $cart_item) {
+    if (isset($cart_item->data['webform_sid']) && $cart_item->data['webform_nid'] == $wf_nid) {
+      uc_cart_remove_item($cart_item->nid, $cart_item->cart_id, $cart_item->data);
+    }
+  }
+
+  $form_state['redirect'] = 'cart';
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function uc_webform_form_uc_cart_view_form_alter(&$form, &$form_state) {
+  $count = 0;
+  while (isset($form['items'][$count])) {
+    if (isset($form['items'][$count]['data']['#value'])) {
+      $data = unserialize($form['items'][$count]['data']['#value']);
+      if (isset($data['webform_ctype'])) {
+        if (($data['webform_ctype'] == 'product_list') || ($data['webform_ctype'] == 'product') || ($data['webform_ctype'] == 'product_grid')) {
+          // Check to see if the product was a required field in the webform
+          // submission.
+          $component_query = db_select('webform_component', 'wc')
+            ->fields('wc', array('required', 'extra'))
+            ->condition('nid', $data['webform_nid'], '=')
+            ->condition('cid', $data['webform_cid'], '=');
+          $component_info = $component_query->execute()->fetchAssoc();
+
+          $component_info['extra'] = unserialize($component_info['extra']);
+
+          // Users may not edit the quantity of a product from the cart.
+          $form['items'][$count]['qty']['#disabled'] = TRUE;
+
+          $data_query = db_select('webform_submitted_data', 'wsd')
+            ->fields('wsd', array('data'))
+            ->condition('nid', $data['webform_nid'], '=')
+            ->condition('sid', $data['webform_sid'], '=')
+            ->condition('cid', $data['webform_cid'], '=')
+            ->condition('no', 0, '=');
+          $data_result = $data_query->execute();
+          $form['items'][$count]['qty']['#value'] = $data_result->fetchField();
+          
+          // Force the user to remove *all* webform-related products from the
+          // cart if they want to remove *one* required webform-related
+          // product from the cart.
+          //if ($component_info['required'] == 1) {
+            $form['items'][$count]['remove']['#type'] = 'item';
+            $form['items'][$count]['remove']['#markup'] = l(t('Delete'), "cart/delete-form/".$data['webform_nid'], array(
+                'query' => drupal_get_destination(),
+            ));
+          //}
+          //Remove link for registration products
+          $form['items'][$count]['desc']['#markup'] = strip_tags($form['items'][$count]['desc']['#markup']);
+         
+          if (($data['webform_ctype'] == 'product_list') || ($data['webform_ctype'] == 'product_grid')) {
+            // Users may not edit the quantity of a product_list or
+            // product_grid webform product.
+            $form['items'][$count]['qty']['#disabled'] = TRUE;
+            // If #value is not specified here, all products will be removed
+            // if any product is removed.
+            $form['items'][$count]['qty']['#value'] = 1;
+          }
+        }
+      }
+    }
+    $count++;
+  }
+}
+
+/**
+ * Override 'theme_webform_components_form($form)',
+ * found in webform.components.inc.
+ * This function will need to be updated everytime quicksketch makes a
+ * corresponding change.
+ *
+ * Remove the 'Clone', 'Edit' and 'Delete' links from the hidden Order Status
+ * component if
+ * there are products included in the webform.
+ */
+function uc_webform_webform_components_form($variables) {
+  $form = $variables['form'];
+
+  $form['components']['#attached']['library'][] = array('webform', 'admin');
+
+  drupal_add_tabledrag('webform-components', 'order', 'sibling', 'webform-weight');
+  drupal_add_tabledrag('webform-components', 'match', 'parent', 'webform-pid', 'webform-pid', 'webform-cid');
+
+  $node = $form['#node'];
+
+  $header = array(t('Label'), t('Type'), t('Value'), t('Required'), t('Weight'), array(
+    'data' => t('Operations'),
+    'colspan' => 3,
+    ),
+  );
+  $rows = array();
+
+  // Add a row containing form elements for a new item.
+  unset($form['add']['name']['#title'], $form['add_type']['#description']);
+  $form['add']['name']['#attributes']['rel'] = t('New component name');
+  $form['add']['name']['#attributes']['class'] = array('webform-default-value');
+  $form['add']['cid']['#attributes']['class'] = array('webform-cid');
+  $form['add']['pid']['#attributes']['class'] = array('webform-pid');
+  $form['add']['weight']['#attributes']['class'] = array('webform-weight');
+  $row_data = array(
+    drupal_render($form['add']['name']),
+    drupal_render($form['add']['type']),
+    '',
+    drupal_render($form['add']['required']),
+    drupal_render($form['add']['cid']) . drupal_render($form['add']['pid']) . drupal_render($form['add']['weight']),
+    array(
+      'colspan' => 3,
+      'data' => drupal_render($form['add']['add']),
+    ),
+  );
+  $add_form = array(
+    'data' => $row_data,
+    'class' => array('draggable', 'webform-add-form'),
+  );
+  $form_rendered = FALSE;
+
+  if (!empty($node->webform['components'])) {
+    $component_tree = array();
+    $page_count = 1;
+    _webform_components_tree_build($node->webform['components'], $component_tree, 0, $page_count);
+    $component_tree = _webform_components_tree_sort($component_tree);
+
+    /**
+     * Build the table rows.
+     */
+    function _webform_components_form_rows($node, $cid, $component, $level, &$form, &$rows, &$add_form) {
+      // Create presentable values.
+      if (drupal_strlen($component['value']) > 30) {
+        $component['value'] = drupal_substr($component['value'], 0, 30);
+        $component['value'] .= '...';
+      }
+      $component['value'] = check_plain($component['value']);
+
+      // Remove individual titles from the required and weight fields.
+      unset($form['components'][$cid]['required']['#title']);
+      unset($form['components'][$cid]['pid']['#title']);
+      unset($form['components'][$cid]['weight']['#title']);
+
+      // Add special classes for weight and parent fields.
+      $form['components'][$cid]['cid']['#attributes']['class'] = array('webform-cid');
+      $form['components'][$cid]['pid']['#attributes']['class'] = array('webform-pid');
+      $form['components'][$cid]['weight']['#attributes']['class'] = array('webform-weight');
+
+      // Build indentation for this row.
+      $indents = '';
+      for ($n = 1; $n <= $level; $n++) {
+        $indents .= '<div class="indentation">&nbsp;</div>';
+      }
+
+      // Add each component to a table row.
+      // Alteration: I've added this check to remove the 'Edit', 'Clone',
+      // 'Delete' links when necessary.
+      $product_form = 0;
+      foreach ($form['#node']->webform['components'] as $comp) {
+        $product_form = (($comp['type'] == 'product') || ($comp['type'] == 'product_list') || ($comp['type'] == 'product_grid')) ? 1 : 0;
+        if ($product_form == 1) {
+          break;
+        }
+      }
+
+      if (($product_form == 1) && ($component['form_key'] == 'order_status')) {
+        // Remove the Edit, Clone and Delete links.
+        $row_data = array(
+          $indents . filter_xss($component['name']),
+          t($component['type']),
+          ($component['value'] == '') ? '-' : $component['value'],
+          drupal_render($form['components'][$cid]['required']),
+          drupal_render($form['components'][$cid]['cid']) . drupal_render($form['components'][$cid]['pid']) . drupal_render($form['components'][$cid]['weight']),
+          '-',
+          '-',
+          '-',
+        );
+      }
+      else {
+        // Here is the original code.
+        $row_data = array(
+          $indents . filter_xss($component['name']),
+          t($component['type']),
+          ($component['value'] == '') ? '-' : $component['value'],
+          drupal_render($form['components'][$cid]['required']),
+          drupal_render($form['components'][$cid]['cid']) . drupal_render($form['components'][$cid]['pid']) . drupal_render($form['components'][$cid]['weight']),
+          l(t('Edit'), 'node/' . $node->nid . '/webform/components/' . $cid, array('query' => drupal_get_destination())),
+          l(t('Clone'), 'node/' . $node->nid . '/webform/components/' . $cid . '/clone', array('query' => drupal_get_destination())),
+          l(t('Delete'), 'node/' . $node->nid . '/webform/components/' . $cid . '/delete', array('query' => drupal_get_destination())),
+        );
+      }
+      $row_class = array('draggable');
+      if (!webform_component_feature($component['type'], 'group')) {
+        $row_class[] = 'tabledrag-leaf';
+      }
+      if ($component['type'] == 'pagebreak') {
+        $row_class[] = 'tabledrag-root';
+        $row_class[] = 'webform-pagebreak';
+        $row_data[0] = array(
+          'class' => array('webform-pagebreak'),
+          'data' => $row_data[0],
+        );
+      }
+      $rows[] = array(
+        'data' => $row_data,
+        'class' => $row_class,
+      );
+      if (isset($component['children']) && is_array($component['children'])) {
+        foreach ($component['children'] as $cid => $component) {
+          _webform_components_form_rows($node, $cid, $component, $level + 1, $form, $rows, $add_form);
+        }
+      }
+
+      // Add the add form if this was the last edited component.
+      if (isset($_GET['cid']) && $component['cid'] == $_GET['cid'] && $add_form) {
+        $add_form['data'][0] = $indents . $add_form['data'][0];
+        $rows[] = $add_form;
+        $add_form = FALSE;
+      }
+    }
+    foreach ($component_tree['children'] as $cid => $component) {
+      _webform_components_form_rows($node, $cid, $component, 0, $form, $rows, $add_form);
+    }
+  }
+  else {
+    $rows[] = array(array(
+      'data' => t('No Components, add a component below.'),
+      'colspan' => 9,
+      ),
+    );
+  }
+
+  // Append the add form if not already printed.
+  if ($add_form) {
+    $rows[] = $add_form;
+  }
+
+  $output = '';
+  $output .= theme('table', array(
+    'header' => $header,
+    'rows' => $rows,
+    'attributes' => array('id' => 'webform-components'),
+  ));
+  $output .= drupal_render_children($form);
+  return $output;
+}
+
+/**
+ * Implements hook_uc_order().
+ */
+function uc_webform_uc_order($op, &$arg1, $arg2) {
+  switch ($op) {
+    case 'submit':
+      foreach ($arg1->products as $product) {
+        if (isset($product->data['webform_sid'])) {
+          $message = l(t('View form submission'), 'node/' . $product->data['webform_nid'] . '/submission/' . $product->data['webform_sid']);
+
+          // Add an admin comment that links to the webform submission.
+          uc_order_comment_save($arg1->order_id, $arg1->uid, $message, 'admin');
+
+//           break;
+        }
+      }
+      break;
+
+    case 'update':
+      foreach ($arg1->products as $product) {
+        if (isset($product->data['webform_sid'])) {
+          // Update the hidden Order Status field of the webform submission.
+          $status = t('Order #') . $arg1->order_id . ': ' . drupal_strtoupper($arg2);
+          $webform_node = node_load($product->data['webform_nid']);
+          $webform_submission = webform_menu_submission_load($product->data['webform_sid'], $product->data['webform_nid']);
+          if (count($webform_node->webform['components'])) {
+            foreach ($webform_node->webform['components'] as $component) {
+              if ($component['form_key'] == 'order_status') {
+                $webform_submission->data[$component['cid']][0] = $status;
+                webform_submission_update($webform_node, $webform_submission);
+              }
+            }
+          }
+        }
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_uc_cart_item().
+ * NOTE THIS IS REMOVED in Ubercart beta 4.
+ * See http://drupal.org/node/1424852#comment-5611230
+ */
+function uc_webform_uc_cart_item($op, &$item) {
+  switch ($op) {
+    case 'remove':
+      $data = unserialize($item->data);
+      if ($data['webform_ctype'] == 'product_list') {
+        db_delete('webform_submitted_data')
+          ->condition('nid', $data['webform_nid'], '=')
+          ->condition('sid', $data['webform_sid'], '=')
+          ->condition('data', $item->nid, '=')
+          ->execute();
+      }
+      elseif ($data['webform_ctype'] == 'product') {
+        db_delete('webform_submitted_data')
+          ->condition('nid', $data['webform_nid'], '=')
+          ->condition('sid', $data['webform_sid'], '=')
+          ->condition('cid', $data['webform_cid'], '=')
+          ->execute();
+      }
+      elseif ($data['webform_ctype'] == 'product_grid') {
+        db_delete('webform_submitted_data')
+          ->condition('nid', $data['webform_nid'], '=')
+          ->condition('sid', $data['webform_sid'], '=')
+          ->condition('cid', $data['webform_cid'], '=')
+          ->execute();
+      }
+      break;
+  }
+}
+
+/****************************************
+ * Webform Hooks
+ */
+
+/**
+ * Implementation of hook_webform_component_info().
+ *
+ * Define components available to Webform.
+ *
+ * @see http://drupal.org/node/886014
+ */
+function uc_webform_webform_component_info() {
+  return array(
+    'product_list' => array(
+      'label' => t('Product list'),
+      'description' => t('Add a list of products to your webform.'),
+      'features' => array(
+        'csv' => TRUE,
+        'email' => TRUE,
+        'required' => TRUE,
+      ),
+      'file' => 'components/product_list.inc',
+    ),
+    'product' => array(
+      'label' => t('Product'),
+      'description' => t('Add a single product to your webform.'),
+      'features' => array(
+        'csv' => TRUE,
+        'email' => TRUE,
+        'required' => TRUE,
+      ),
+      'file' => 'components/product.inc',
+    ),
+    'product_grid' => array(
+      'label' => t('Product grid'),
+      'description' => t('Add a grid of products that contain attributes. Users select options.'),
+      'features' => array(
+        'csv' => TRUE,
+        'email' => TRUE,
+        'required' => TRUE,
+      ),
+      'file' => 'components/product_grid.inc',
+    ),
+    'hidden_product' => array(
+      'label' => t('Hidden product'),
+      'description' => t('A product which is not visible to the user, but which will be added to the cart with the webform submission.'),
+      'file' => 'components/hidden_product.inc',
+      'features' => array(
+        'required' => FALSE,
+        'email_address' => TRUE,
+        'email_name' => TRUE,
+        'title_display' => FALSE,
+      ),
+    ),
+  );
+}
+
+/**
+ * Respond to a Webform submission being inserted -
+ * hook_webform_submission_insert().
+ */
+function uc_webform_webform_submission_insert($node, $submission) {
+  // If the latest webform submission has products in it, remove the
+  // previous webform submission products and add the new ones. Otherwise,
+  // allow the form to be submitted without incident.
+  $remove = FALSE;
+  foreach ($node->webform['components'] as $component) {
+    if (($component['type'] == 'product_list') || ($component['type'] == 'product') || ($component['type'] == 'product_grid') || ($component['type'] == 'hidden_product')) {
+      $remove = TRUE;
+      break;
+    }
+  }
+
+  if ($remove) {
+    // Add new items to the cart.
+    foreach ($node->webform['components'] as $component) {
+      if ($component['type'] == 'product_list') {
+        if (array_key_exists($component['cid'], $submission->data)) {
+          $key = $component['cid'];
+          foreach ($submission->data[$key] as $val) {
+            // This is all very dependent on the way that the product data is
+            // stored in the webform_submitted_data table. Take a look there,
+            // and also check out the uc_webform README.txt file.
+            $product_info = explode('_', $val, 2);
+            $shippable = db_select('uc_products', 'p')
+                         ->fields('p',array('shippable'))
+                         ->condition('p.nid', $product_info[0], '=')
+                         ->execute()
+                         ->fetchField();
+
+            if (is_numeric($product_info[0])) {
+              uc_cart_add_item($product_info[0], 1, array(
+                'webform_sid' => $submission->sid,
+                'webform_nid' => $node->nid,
+                'webform_ctype' => 'product_list',
+                'webform_cid' => $component['cid'],
+                'shippable' => $shippable,
+
+              ));
+            }
+          }
+        }
+      }
+      elseif ($component['type'] == 'product') {
+        if (array_key_exists($component['cid'], $submission->data)) {
+          $key = $component['cid'];
+          // The quantity specified by the user.
+          $qty = (integer) $submission->data[$key][0];
+
+          $component_query = db_select('webform_component', 'wc')
+            ->fields('wc', array('extra'))
+            ->condition('cid', $component['cid'], '=')
+            ->condition('nid', $node->nid, '=')
+            ->execute();
+          $component_data = unserialize($component_query->fetchField());
+
+          // $product_info will contain an array with the product node ID and
+          // the selected model (sku).
+          $product_info = explode('_', $component_data['product'], 2);
+          $shippable = db_select('uc_products', 'p')
+                         ->fields('p',array('shippable'))
+                         ->condition('p.nid', $product_info[0], '=')
+                         ->execute()
+                         ->fetchField();
+
+          if ($qty > 0) {
+            uc_cart_add_item($product_info[0], $qty, array(
+              'webform_sid' => $submission->sid,
+              'webform_nid' => $node->nid,
+              'webform_ctype' => 'product',
+              'webform_cid' => $component['cid'],
+              'shippable' => $shippable,
+            ));
+          }
+        }
+      }
+      elseif ($component['type'] == 'hidden_product') {
+        if (array_key_exists($component['cid'], $submission->data)) {
+          $key = $component['cid'];
+
+          // The quantity specified by the creator of the webform.
+          $qty = (integer) $submission->data[$key][2];
+          $component_query = db_select('webform_component', 'wc')
+            ->fields('wc', array('extra'))
+            ->condition('cid', $component['cid'], '=')
+            ->condition('nid', $node->nid, '=')
+            ->execute();
+          $component_data = unserialize($component_query->fetchField());
+
+          // $product_info will contain an array with the product node ID and
+          // the selected model (sku).
+          $product_info = explode('_', $component_data['hidden_product'], 2);
+          $shippable = db_select('uc_products', 'p')
+                         ->fields('p',array('shippable'))
+                         ->condition('p.nid', $product_info[0], '=')
+                         ->execute()
+                         ->fetchField();
+
+          if ($qty > 0) {
+            uc_cart_add_item($product_info[0], $qty, array(
+              'webform_sid' => $submission->sid,
+              'webform_nid' => $node->nid,
+              'webform_ctype' => 'hidden_product',
+              'webform_cid' => $component['cid'],
+              'shippable' => $shippable,
+            ));
+          }
+        }
+      }
+      elseif ($component['type'] == 'product_grid') {
+        if (array_key_exists($component['cid'], $submission->data)) {
+          $cid = $component['cid'];
+          foreach ($submission->data[$cid] as $key => $prod_option) {
+            // This is all very dependent on the way that the product data is
+            // stored in the webform_submitted_data table. Take a look there,
+            // and also check out the uc_webform README.txt file.
+            if ($prod_option) {
+              $product_info = explode('_', $key, 2);
+              // The $prod_option variable actually contains both the attribute
+              // ID and the option ID in the form of a string: aid_oid.
+              $option_info = explode('_', $prod_option, 2);
+              $shippable = db_select('uc_products', 'p')
+                             ->fields('p',array('shippable'))
+                             ->condition('p.nid', $product_info[0], '=')
+                             ->execute()
+                             ->fetchField();
+
+              uc_cart_add_item($product_info[0], 1, array(
+                'attributes' => array(
+                  $option_info[0] => $option_info[1],
+                ),
+                'webform_sid' => $submission->sid,
+                'webform_nid' => $node->nid,
+                'webform_ctype' => 'product_grid',
+                'webform_cid' => $component['cid'],
+                'shippable' => $shippable,
+              )
+              );
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_webform_submission_delete().
+ */
+function uc_webform_webform_submission_delete($node, $submission) {
+  db_delete('uc_webform_submission')
+    ->condition('sid', $submission->sid, '=')
+      ->execute();
+}
+
+/**
+ * Implements hook_webform_submission_load(&$submissions).
+ */
+function uc_webform_webform_submission_load(&$submissions) {
+  foreach ($submissions as $delta => $submission) {
+    $query = db_select('uc_webform_submission', 'ucs')
+      ->fields('ucs')
+      ->condition('sid', $submission->sid, '=')
+      ->execute()
+      ->fetchAssoc();
+    if ($query) {
+      $submissions[$delta] = (object) array_merge((array) $submission, $query);
+    }
+  }
+}
+
+/**
+ * Implements hook_webform_submission_render_alter().
+ */
+function uc_webform_webform_submission_render_alter(&$renderable) {
+  if (!isset($renderable['#submission']->order_id)) {
+    return;
+  }
+}
+
+/**
+ * Implements hook_webform_component_insert().
+ * http://api.lullabot.com/hook_webform_component_insert/7
+ */
+function uc_webform_webform_component_insert($component) {
+  if (($component['type'] == 'product') || ($component['type'] == 'product_list') || ($component['type'] == 'product_grid') || ($component['type'] == 'hidden_product')) {
+    // Check to see whether the hidden field already exists.
+    $result = db_select('webform_component', 'wc')
+      ->fields('wc', array('cid'))
+      ->condition('nid', $component['nid'], '=')
+      ->condition('form_key', 'order_status', '=')
+      ->execute()
+      ->fetchField();
+
+    $extra = array('conditional_operator' => '=');
+    if (!$result) {
+      // Insert a hidden field into the webform.
+      $order_status_component = array(
+        'nid'       => $component['nid'],
+        'pid'       => $component['pid'],
+        'form_key'  => 'order_status',
+        'name'      => 'Order Status',
+        'type'      => 'hidden',
+        'value'     => 'Did not complete checkout',
+        'extra'     => $extra,
+        'required' => 0,
+        'weight'    => -100,
+      );
+      webform_component_insert($order_status_component);
+    }
+  }
+}
+
+/**
+ * Respond to a Webform component being updated in the database.
+ */
+function uc_webform_webform_component_update($component) {
+  if (($component['type'] == 'product') || ($component['type'] == 'product_list') || ($component['type'] == 'product_grid') || ($component['type'] == 'hidden_product')) {
+
+    // We need to check to see whether the hidden field already exists.
+    // We also need to find the max component id in the webform.
+    $query = db_select('webform_component', 'wc')
+      ->fields('wc', array('cid', 'form_key'))
+      ->condition('wc.nid', $component['nid'], '=');
+
+    $components_info['cids'] = array();
+    $components_info['form_keys'] = array();
+    foreach ($query->execute() as $result) {
+      array_push($components_info['cids'], $result->cid);
+      array_push($components_info['form_keys'], $result->form_key);
+    }
+
+    $extra = array('conditional_operator' => '=');
+    if (!in_array('order_status', $components_info['form_keys'])) {
+      // Insert a hidden field into the webform.
+      $order_status_component = array(
+        'nid' => $component['nid'],
+        'form_key' => 'order_status',
+        'name' => 'Order Status',
+        'type' => 'hidden',
+        'value' => 'Did not complete checkout',
+        'extra' => $extra,
+        'required' => 0,
+        'weight' => -100,
+      );
+      webform_component_insert($order_status_component);
+    }
+  }
+}

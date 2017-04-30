@@ -1,0 +1,11 @@
+name = User Visits
+description = "Shows who has visited a user's profile lately."
+core = 7.x
+configure = admin/config/people/user_visits
+
+; Information added by Drupal.org packaging script on 2016-06-14
+version = "7.x-1.1"
+core = "7.x"
+project = "user_visits"
+datestamp = "1465890840"
+

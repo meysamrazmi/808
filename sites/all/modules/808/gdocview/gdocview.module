@@ -1,0 +1,353 @@
+<?php
+
+define('PDFMIME', 'document');
+define('SHOP_BASE', 'http://localhost/~ahad/magento/index.php/');
+
+function gdocview_init(){
+	// $data = array(
+	// 	'name' => "fdfd",
+	// 	'pass' => "dfdfdf",
+	// 	);
+	// $object = drupal_http_request("http://localhost/~ahad/testform.php?".drupal_http_build_query($data), array('method' => 'POST', 'data' => drupal_http_build_query($data), 'headers' => array('Content-Type' => 'text/xml; charset=UTF-8'),));
+	// echo "<pre>";
+	// print_r($object);
+	// echo "</pre>";die;
+}
+
+/*
+ * implements hook menu
+ */
+function gdocview_menu(){
+	// $items['docview/%'] = array(
+	// 	'title' => t('Document Viewer'),
+	// 	'page callback' => 'gdocview_page',
+	// 	'description' => 'Show users activity information.',
+	// 	'access arguments' => array('access Google Doc View'),
+	// 	'page arguments' => array(1),
+	// 	'type' => MENU_NORMAL_ITEM,
+	// );
+	// $items['user/%/charge'] = array(
+	// 	'title' => t('Charge account'),
+	// 	'page callback' => 'drupal_get_form',
+	// 	'description' => 'Increate your points',
+	// 	'access arguments' => array('access pay'),
+	// 	'page arguments' => array('gdocview_page_charge_from', 1),
+	// 	'type' => MENU_NORMAL_ITEM,
+	// 	);
+
+	/*$items['pay/node/%'] = array(
+		'title' => t('Pay for node'),
+		'page callback' => 'gdocview_pay_for_node',
+		'description' => 'Pay to view a node',
+		'access arguments' => array('access pay'),
+		'page arguments' => array(2),
+		'type' => MENU_NORMAL_ITEM,
+	);*/
+
+	$items['partnership'] = array(
+		'title' => t('Partnership'),
+		'page callback' => 'gdocview_partnership',
+		'description' => 'Users can send contents to 808',
+		'access arguments' => array('access partnership'),
+		'page arguments' => array(2),
+		'type' => MENU_NORMAL_ITEM,
+	);
+
+	$items['admin/content/partnership'] = array(
+		'title' => t('Partnership'),
+		'page callback' => 'gdocview_partnership_admin',
+		'description' => 'Users can send contents to 808',
+		'access arguments' => array('edit partnership'),
+		'type' => MENU_LOCAL_TASK,
+	);
+
+	$items['admin/content/partnership/view/%'] = array(
+		'title' => t('View Request'),
+		'page callback' => 'gdocview_partnership_admin_view',
+		'description' => 'Users can send contents to 808',
+		'access arguments' => array('edit partnership'),
+		'page arguments' => array(4),
+		'type' => MENU_CALLBACK,
+	);
+	$items['admin/content/partnership/delete/%'] = array(
+		'title' => t('View Request'),
+		'page callback' => 'gdocview_partnership_admin_delete',
+		'description' => 'Users can send contents to 808',
+		'access arguments' => array('edit partnership'),
+		'page arguments' => array(4),
+		'type' => MENU_CALLBACK,
+	);
+
+
+	
+	return $items;
+}
+/**
+ * 
+ */
+function gdocview_page_charge_from($form, &$form_state, $uid) {
+	global $user;
+	if (!is_array($form)) {
+		$form = array();
+	}
+	$form['text'] = array(
+		'#markup' => t('charge_your_account_hint'),
+		);
+	$form['your_charge'] = array(
+		'#prefix' => '<div>',
+		'#suffix' => '</div>',
+		'#markup' => '*'.t('Your current point is <strong>!point</strong>', array('!point' => userpoints_get_current_points($user->uid, 'all'))),
+		);
+
+	$form['price'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Charge amount'),
+		'#required' => TRUE,
+		'#attributes' => array('placeholder' => t('Charge amount')),
+		);
+	$form['submit'] = array(
+		'#type' => 'submit',
+		'#value' => t('Charge account'),
+		);
+	
+	return $form;
+}
+/**
+ * Validate handler for gdocview_page_charge_from
+ */
+function gdocview_page_charge_from_validate($form, &$form_state) {
+
+	if($form_state['values']['price'] < 1000) {
+		form_set_error('price', t('Charge amount should be greater than 1000'));
+	}
+}
+
+/**
+ * Summit handler for gdocview_page_charge_from
+ */
+function gdocview_page_charge_from_submit($form, &$form_state) {
+
+}
+// /**
+//  * Implements hook_user_logout().
+//  */
+// function gdocview_user_logout($account) {
+// 	if (!isset($_GET['xx'])) {
+// 		$data = "ssid=".base64_encode($account->mail);
+// 		drupal_goto(SHOP_BASE."ttestt/start/lo?".$data);
+// 	}
+// }
+
+// function gdocview_user_login(&$edit, $account) {
+// 	$data = "ssid=".base64_encode($account->mail);
+// 	drupal_goto(SHOP_BASE."ttestt/start/li?".$data);
+// }
+
+/**
+ * Implements hook_user_update().
+ */
+function gdocview_user_update(&$edit, $account, $category) {
+	// print "<pre>";
+	// print_r($edit);
+	// print "\n";
+	// print_r($account);
+	// print "\n";
+	// print_r($category);
+	// print "\n";
+	// print "</pre>";
+	// die;
+
+	switch ($category) {
+		case 'account':
+			$_email = $edit['mail'];
+			break;
+		
+		default:
+			# code...
+			break;
+	}
+}
+/**
+ * 
+ */
+function gdocview_partnership_form($form, &$form_state, $def = 0) {
+	if (!is_array($form)) {
+		$form = array();
+	}
+
+	$form['type'] = array(
+		'#type' => 'select',
+		'#title' => t("Partnership Type"),
+		'#options' => array(
+			1 => t('Design Team'),
+			2 => t('Publication'),
+			2 => t('Publication'),
+			),
+		'#attributes' => array(
+			'class' => array('large-select')
+			),
+		);
+	
+	$form['title'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Title'),
+		'#required' => TRUE,
+		);
+	$form['body'] = array(
+		'#type' => 'text_format',
+		'#title' => t('Body'),
+		'#required' => TRUE,
+		'#format' => 'full_html'
+		);
+
+
+	$form['submit'] = array(
+
+		'#type' => 'submit',
+		'#value' => t('Submit'),
+		'#required' => TRUE,
+		);
+	if ($def) {print_r($def);
+		$form['type']['#value'] = $def->pstype;
+		$form['body']['#value'] = $def->psbody;
+		$form['title']['#value'] = $def->pstitle;
+	}
+
+	return $form;
+}
+
+/**
+ * Summit handler for gdocview_partnership_form
+ */
+function gdocview_partnership_form_submit($form, &$form_state) {
+	global $user;
+	$sql = "INSERT INTO {m_partnership_request} (psuid, pstype, pstitle, psbody, psdate) VALUES(:uid, :type, :title, :bod , :time)";
+	if(db_query($sql, array(':uid'=>$user->uid, ':type'=>$form_state['values']['type'], ':title'=>$form_state['values']['title'], ':bod'=>$form_state['values']['body']['value'], ':time'=>time())) ) {
+		drupal_set_message(t('Your content submitted successfully'), 'success');
+	} else {
+		drupal_set_message(t('Oops! please try again'), 'error');
+	}
+	// print_r($form_state);
+	// die;
+}
+
+
+function gdocview_partnership() {
+	return drupal_get_form('gdocview_partnership_form');
+}
+function gdocview_partnership_admin() {
+	$show_count = 50;
+	$sht = db_query("SELECT * FROM {m_partnership_request} ORDER BY psdate DESC");
+	$rows = array();
+	foreach ($sht as $key => $row) {
+		$u = user_load($row->psuid);
+		$rows[] = array(
+			array('data'=>$row->pstitle),
+			array('data'=>format_date($row->psdate)),
+			array('data'=>l($u->name, 'user/' . $u->uid)),
+			array('data'=>l(t('View/Edit'), 'admin/content/partnership/view/'.$row->psid).' '.l(t('Delete'), 'admin/content/partnership/delete/'.$row->psid)),
+			);
+	}
+	return theme('table', array('header'=>array(t('Title'),t('Date'),t('User'), t('Operation')), 'rows'=>$rows));
+}
+function gdocview_partnership_admin_view($id = 'error') {
+	if (!is_numeric($id)) {
+		drupal_not_found();
+	}
+	$sht = db_query("SELECT * FROM {m_partnership_request} WHERE psid = :id", array(':id'=>$id))->fetch();
+	return drupal_get_form('gdocview_partnership_form', $sht);
+}
+function gdocview_partnership_admin_delete_form($form, &$form_state, $id) {
+	$form['id'] = array(
+    '#type' => 'value',
+    '#value' => $id,
+  );
+	return confirm_form(
+        $form,
+        t('Are you sure to remove?'),
+        current_path(),
+        t('Operation can not undon'),
+        t('Delete'),
+        t('Cancel'));
+}
+function gdocview_partnership_admin_delete_form_submit($form, &$form_state) {
+	if ($form_state['values']['confirm']) {
+		if(db_query("DELETE FROM {m_partnership_request} WHERE psid = :id", array(':id'=> $form_state['values']['id']))) {
+			drupal_set_message(t('successfully removed'), 'success');
+		} else {
+			drupal_set_message(t('Oops! please try again'), 'error');
+		}
+	}
+	$form_state['redirect'] = 'admin/content/partnership';
+}
+function gdocview_partnership_admin_delete($id = 'error') {
+	if (!is_numeric($id)) {
+		drupal_not_found();
+	}
+
+	return drupal_get_form('gdocview_partnership_admin_delete_form', $id);
+}
+
+function gdocview_page($fid){
+	global $base_url;
+	if(is_numeric($fid)){
+		$path = db_result(db_query("SELECT uri FROM {file_managed} WHERE fid=%d AND type='%s'",$fid,PDFMIME));
+		if ($path){
+			$nid = db_result(db_query("SELECT id FROM {file_usage} WHERE fid=%d",$fid));
+			$node = node_load($nid);
+			drupal_set_title(t('Document Viewer').' '.$node->title);
+
+			$realpath = drupal_realpath($path);
+
+			// $output = '<div class="node"><div class="content">'."<img style='float:right;margin:5px' height='150px' src=\"http://4paye.ir/{$node->field_cover[0]['filepath']}\">".t('Book').': '.l($node->title,$node->path);
+
+			// $output .= '<br>'.t('Author').': '.l($node->taxonomy[$node->field_author[0]['value']]->name,drupal_get_path_alias('taxonomy/term/'.$node->taxonomy[$node->field_author[0]['value']]->tid));
+
+			// $output .= '<br>'.t('Category').': '.l($node->taxonomy[$node->field_category[0]['value']]->name,drupal_get_path_alias('taxonomy_vtn/term/'.$node->taxonomy[$node->field_category[0]['value']]->tid));
+			
+			// if($node->field_year[0]['value']){
+			// 	$output .= '<br>'.t('Year').': '.$node->field_year[0]['value'];
+			// }
+
+			// if($node->body){
+			// 	$output.= '<hr width="100px">';
+			// 	$len = mb_strlen($node->body,'utf-8');
+			// 	if($len > 300 )
+			// 		$output .= "<div>".mb_substr($node->body,0,300)." ...</div>";
+			// 	else
+			// 		$output .= "<div>".$node->body."</div>";
+			// }
+			$output = '</div></div>';
+			$path = str_replace(array(' ','+','#'),array('%20','%2B','%23'),$realpath);
+			
+			$output .= "<iframe src=\"http://docs.google.com/gview?url={$path}&embedded=true\" style='width:657px; height:600px;' frameborder='2'></iframe>";
+			}
+	}else{
+		drupal_not_found();
+	}
+	return $output;
+}
+
+/*
+*	implements hook perm
+*/
+function gdocview_permission(){
+	return array('access Google Doc View'  => array(
+      'title' => t('Access google doc view'),
+      'description' => t('Perform administration tasks for my module.'),
+    ),
+'access pay' => array(
+      'title' => t('Access Pay'),
+      'description' => t('Perform administration tasks for my module.'),
+    )
+, 'access partnership' => array(
+      'title' => t('Access partnership'),
+      'description' => t('Perform administration tasks for my module.'),
+    )
+, 'edit partnership' => array(
+      'title' => t('Administer partnership'),
+      'description' => t('Perform administration tasks for my module.'),
+    )
+
+);
+}

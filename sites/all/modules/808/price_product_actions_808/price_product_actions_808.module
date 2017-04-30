@@ -1,0 +1,200 @@
+<?php
+
+/**
+ * Implements hook_help().
+ */
+/* 
+function price_product_actions_808_help($section) {
+  switch ($section) {
+    case 'admin/help#price_product_actions_808':
+      $output = '<p>'. t('Ubercart Product Actions 808 workes exactly like module Ubercart Product Actions : ') . '<br>' . t('The Ubercart Product Actions module provides actions that can be used in conjunction with Views Bulk Operations (VBO) to modify multiple products at once.') .'</p>';
+      $output .= '<p>'. t('Actions provided include:') .'</p>';
+      $output .= '<li>'. t('Modify product list price') .'</li>';
+      $output .= '<li>'. t('Modify product sell price') .'</li>';
+      $output .= '<p>'. t('These actions can be used to manipulate multiple products, using three methods:') .'</p>';
+      $output .= '<ol><li>'. t('Percentage - alter values up or down by a percentage.') .'</li>';
+      $output .= '<li>'. t('Difference - alter values up or down by a fixed amount.') .'</li>';
+      $output .= '<li>'. t('Absolute - set values to a specified number.') .'</li></ol>';
+      $output .= '<p>'. t('For prices, the result will be rounded according to your store settings. For stock, values will be rounded to the nearest integer. For weight, when modifying by a percentage and the old value contains a decimal, the new value will be rounded to the same precision. For more information, see README.txt and the <a href="http://drupal.org/node/335694">VBO quickstart guide</a>.') .'</p>';
+      return $output;
+  }
+}*/
+
+/**
+ * Implements hook_action_info().
+ *
+ * This function defines all custom actions added by this module.
+ */
+function price_product_actions_808_action_info() {
+  return array(
+    'price_product_actions_808_update_list_price_action' => array(
+      'type' => 'node',
+      'label' => t('Modify product list price based on sell price'),
+      'configurable' => TRUE,
+      'triggers' => array(
+        'nodeapi' => array('update'),
+      )
+    ),
+    'price_product_actions_808_update_sell_price_action' => array(
+      'type' => 'node',
+      'label' => t('Modify product sell price based on list price'),
+      'configurable' => TRUE,
+      'triggers' => array(
+        'nodeapi' => array('update'),
+      )
+    ),
+  );
+}
+
+
+/**
+ * 'Modify product list price' action.
+ *
+ * @see price_product_actions_808_form_builder()
+ * @see price_product_actions_808_form_validator()
+ * @see price_product_actions_808_form_submitter()
+ * @see price_product_actions_808_action_executor()
+ */
+function price_product_actions_808_update_list_price_action_form($context) {
+  $form = price_product_actions_808_form_builder('list_price');
+  return $form;
+}
+function price_product_actions_808_update_list_price_action_validate($form, &$form_state) {
+  price_product_actions_808_form_validator('list_price', $form_state);
+}
+function price_product_actions_808_update_list_price_action_submit($form, $form_state) {
+  $values = price_product_actions_808_form_submitter('list_price', $form_state);
+  return $values;
+}
+function price_product_actions_808_update_list_price_action($node, $context) {
+  price_product_actions_808_action_executor('list_price', $node, $context);
+}
+
+/**
+ * 'Modify product sell price' action.
+ *
+ * @see price_product_actions_808_form_builder()
+ * @see price_product_actions_808_form_validator()
+ * @see price_product_actions_808_form_submitter()
+ * @see price_product_actions_808_action_executor()
+ */
+function price_product_actions_808_update_sell_price_action_form($context) {
+  $form = price_product_actions_808_form_builder('sell_price');
+  return $form;
+}
+function price_product_actions_808_update_sell_price_action_validate($form, &$form_state) {
+  price_product_actions_808_form_validator('sell_price', $form_state);
+}
+function price_product_actions_808_update_sell_price_action_submit($form, $form_state) {
+  $values = price_product_actions_808_form_submitter('sell_price', $form_state);
+  return $values;
+}
+function price_product_actions_808_update_sell_price_action($node, $context) {
+  price_product_actions_808_action_executor('sell_price', $node, $context);
+}
+
+/**
+ * Build the action form.
+ */
+function price_product_actions_808_form_builder($action) {
+  $action_str = str_replace('_', ' ', $action);
+
+    $form[$action . '_pmethod'] = array(
+      '#title' => t('Method to modify the  '. $action_str),
+      '#type' => 'select',
+      '#options' => array('percentage' => t('Percentage'), 'difference' => t('Difference'), 'absolute' => t('Absolute') ,'equal' => t('Equal')),
+      '#multiple' => FALSE,
+      '#description' => t('Modify the  ' . $action_str . ' by a percentage, a difference, or set to an absolute value.'),
+    );
+    $form[$action . '_pchange'] = array(
+      '#title' => t('Value'),
+      '#type' => 'textfield',
+      '#size' => 15,
+      '#description' => t('Enter a positive or  negative numeric value for changing the ' . $action_str . ' by the selected method. Note: for prices, the result will be rounded according to your store settings. For stock, values will be rounded to the nearest integer.<br> برای تخفیفات درصدی، درصد تخفیف خود را به صورت منفی وارد کنید. مثل -40'),
+      '#default_value' => '',
+    );
+  return $form;
+}
+
+/**
+ * Validate the action form submission.
+ */
+function price_product_actions_808_form_validator($action, &$form_state) {
+  $form_state['values'][$action . '_pchange'] = check_plain($form_state['values'][$action . '_pchange']);
+  $method = $form_state['values'][$action . '_pmethod'];
+  if ($form_state['values'][$action . '_pchange'] == '') {
+    form_set_error($action . '_pchange', t('Please enter a value.'));
+  }
+  elseif (!is_numeric($form_state['values'][$action . '_pchange'])) {
+    form_set_error($action . '_pchange', t('Please enter a numerical value.'));
+  }
+  elseif (($method == 'percentage' || $method == 'difference') && $form_state['values'][$action . '_pchange'] == 0) {
+    //form_set_error($action . '_pchange', t('Please enter a non-zero value.'));
+  }
+}
+
+/**
+ * Submit the action form values.
+ */
+function price_product_actions_808_form_submitter($action, $form_state) {
+  $values = array();
+  $values[$action . '_pchange'] = $form_state['values'][$action . '_pchange'];
+  $values[$action . '_pmethod'] = $form_state['values'][$action . '_pmethod'];
+  return $values;
+}
+
+/**
+ * Execute the action.
+ */
+function price_product_actions_808_action_executor($action, $node, $context) {
+  if($action == 'sell_price'){
+	$current_value = $node->list_price;
+  }
+  elseif($action == 'list_price'){
+	$current_value = $node->sell_price;
+  } 
+  else{
+    drupal_set_message(t('there is a problem in Ubercart product actions 808.'), 'warning');
+    $destination = drupal_get_destination();
+    drupal_goto($destination['destination']);  
+  }
+	  
+  if (!is_null($current_value)) {
+    switch ($context[$action . '_pmethod']) {
+      case 'percentage':
+        if ($current_value == 0) {
+          $new_value = 0;
+        }
+        else {
+          $change = $current_value * $context[$action . '_pchange'] / 100;
+          ($current_value > 0) ? $new_value = $current_value + $change : $new_value = $current_value - $change;
+        }
+        break;
+      case 'difference':
+        $new_value = $current_value + $context[$action . '_pchange'];
+        break;
+      case 'absolute':
+        $new_value = $context[$action . '_pchange'];
+        break;
+      case 'equal':
+        $new_value = $current_value;
+        break;
+    }
+  }
+
+  // Make necessary adjustments to value.
+  $precision = variable_get('uc_currency_prec', 2);
+  $new_value = round($new_value, $precision);
+
+  // Save modified product.
+  if (isset($new_value)) {
+    $node->$action = $new_value;
+    node_save($node);
+    // Load modified node to check if operation was processed correctly.
+    $new_node = node_load($node->nid, NULL, TRUE);
+  }
+  if (!isset($new_value) || $new_node->$action != $new_value) {
+    drupal_set_message(ucfirst($action) . t(' (@new_value): %node may not have updated properly, please check and update manually if needed.', array('%node' => $node->title, '@new_value' => $new_value)), 'warning');
+    watchdog('Ubercart product actions 808', ucfirst($action) . ' (@new_value): %node may not have updated properly, please check and update manually if needed.', array('%node' => $node->title, '@new_value' => $new_value), WATCHDOG_WARNING, l(t('edit'), 'node/' . $node->nid . '/edit'));
+  }
+}

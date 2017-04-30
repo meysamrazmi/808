@@ -1,0 +1,59 @@
+<?php
+/**
+ * Implementation of hook_schema
+ */
+function uc_userpoints_seller_schema() {
+  $schema['uc_up_seller_log'] = array(
+    'fields' => array(
+      'uc_up_seller_id' => array(
+        'type' => 'serial', 
+        'not null' => TRUE,
+      ),
+      'uid' => array(
+        'type' => 'int', 
+        'not null' => TRUE, 
+        'default' => 0,
+      ),
+      'oid' => array(
+        'type' => 'int', 
+        'not null' => TRUE, 
+        'default' => 0,
+      ),
+      'points' => array(
+        'type' => 'int', 
+        'not null' => TRUE, 
+        'default' => 0,
+      ),
+      'qty' => array(
+        'type' => 'int', 
+        'not null' => TRUE, 
+        'default' => 0,
+      ),
+      'model' => array(
+        'type' => 'varchar', 
+        'length' => 255, 
+        'not null' => TRUE, 
+        'default' => '',
+      ),
+      'sellprice' => array(
+        'type' => 'numeric', 
+        'precision' => 10, 
+        'scale' => 2, 
+        'not null' => TRUE, 
+        'default' => '0.00',
+      ),
+    ),
+    'primary key' => array('uc_up_seller_id'),
+  );
+  return $schema;
+}
+
+/**
+* Implementation of hook_uninstall().
+*/
+function uc_userpoints_seller_uninstall() {
+  variable_del('uc_userpoints_seller_earn');
+  variable_del('uc_userpoints_seller_disp');
+  variable_del('uc_userpoints_seller_hist');
+}
+

@@ -1,0 +1,22 @@
+name = Ubercart Webform
+description = Integrates the Ubercart and Webform modules.
+package = Webform
+core = 7.x
+
+dependencies[] = webform
+dependencies[] = uc_store
+dependencies[] = uc_order
+dependencies[] = uc_cart
+dependencies[] = uc_product
+dependencies[] = uc_attribute
+
+files[] = components/hidden_product.inc
+files[] = components/product.inc
+files[] = components/product_grid.inc
+files[] = components/product_list.inc
+; Information added by Drupal.org packaging script on 2015-06-02
+version = "7.x-3.0"
+core = "7.x"
+project = "uc_webform"
+datestamp = "1433272384"
+

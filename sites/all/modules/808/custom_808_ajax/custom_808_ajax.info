@@ -1,0 +1,5 @@
+name = custom ajax
+description = "custom ajax callbacks for 808"
+core = 7.x
+version = "1"
+package = 808

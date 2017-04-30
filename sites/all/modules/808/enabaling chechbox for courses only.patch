@@ -1,0 +1,39 @@
+/*
+ * این فایل برای راهنمایی در مورد تغییری است که در ماژول خاصی داده شده است
+ * این فایل نمیتواند به صورت patch عمل کند
+ * باید به صورت دستی تغییرات اعمال شود
+ */
+
++++ uc_webform_pane/uc_webform_pane.module
+@@ line 261 @@
+
+/**
+ * Checkout Pane callback for dynamic callback function.
+ */
+  function uc_webform_pane_uc_checkout_pane_callback($nid, $op, $order, $form = NULL, &$form_state = NULL) {
++  $flag = false;
+    switch ($op) {
+  	case 'view':
++    foreach ($order->products as $key => $product) {
++		if(in_array_r('2309',$product ->taxonomy_catalog)){
++			$flag = true;
++		}
++		if($product->type == "college"){
++			$flag = true;
++		}
++    }
++	  if($flag){
+  	    $form = _uc_webform_pane_edit_form($nid, $order->order_id, 'checkout');
+  	    $node = node_load($nid);
+  	    $body = !empty($node->body) ? $node->body[$node->language][0]['safe_value'] : '';
+  	    return array(
+  	    	'contents' => array($form),
+  	    	'description' => $body,
+  	    );
++	  }
+      break;
+      case 'process':
+        _uc_webform_pane_save($nid, $order->order_id, $form_state['values']['panes']['webform_nid' . $nid][0]); // save to database
+        return TRUE;
+        break;
+      case 'review':

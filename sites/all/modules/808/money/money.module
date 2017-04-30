@@ -1,0 +1,165 @@
+<?php
+/**
+
+ */
+function money_menu() {
+  $items = array();
+
+	$items['admin/money'] = array(
+		'title' => t('Bank actions'),
+		'page callback' => 'money_bank',
+		'access arguments' => array('administer modules'),
+		'page arguments' => array(''),
+		'description' => t('Administrate money bank actions'),
+		'type' => MENU_NORMAL_ITEM,
+	);
+	$items['admin/money/bank-log'] = array(
+		'title' => t('Bank actions'),
+		'type' => MENU_DEFAULT_LOCAL_TASK,
+		);
+	$items['admin/money/node-buyes'] = array(
+		'title' => t('Administrate nodebuyes'),
+		'page callback' => 'nodebuyes',
+		'access arguments' => array('administer modules'),
+		'page arguments' => array(),
+		'description' => t('Administrate nodebuyes'),
+		'type' => MENU_LOCAL_TASK,
+		);
+	$items['admin/money/node-buyes/%'] = array(
+		'title' => t('Administrate nodebuyes'),
+		'page callback' => 'nodebuyes',
+		'access arguments' => array('administer modules'),
+		'page arguments' => array(3),
+		'description' => t('Administrate nodebuyes'),
+		'type' => MENU_CALLBACK,
+		);
+
+
+  return $items;
+}
+
+
+
+function money_bank() {
+	$tabale_header = array(
+		t('User name'),
+		array('data' => t('User')         	,'field' => 'user'	),
+		array('data' => t('Price')        		,'field' => 'value'),
+		array('data' => t('Date')         	,'field' => 'date',	'sort' => 'DESC'),
+		array('data' => t('Type')        		,'field' => 'text'),
+		array('data' => t('Status')      		,'field' => 'status'),
+		t('refference')
+		);
+	$table_rows = array();
+
+	$q = db_select('bank_events', 'r')->extend('PagerDefault')->extend('TableSort')->limit(50);
+	$rows = $q->fields('r', array())->orderBy('date', 'DESC')->orderByHeader($tabale_header)->execute()->fetchAll();
+	
+	foreach ($rows as $r) {
+		$user = user_load($r->user);
+		$p = profile2_load_by_user($user);
+		switch($r->status){
+			case('success'):
+				$st = '<span style="color: #6c0;font-weight: bold;font-size: 15px;">'. $r->status .'</span>';
+				break;
+			case('pending'):
+				$st = '<span style="color:#008;">'. $r->status .'</span>';
+				break;
+			case('fail'):
+				$st = '<span style="color:#f00;">'. $r->status .'</span>';
+				break;
+			default:
+				$st = 'none';
+				break;
+		}
+
+		$table_rows[] = array(
+			isset($p['main']->field_full_name['und'])? l($p['main']->field_full_name['und'][0]['value'] , 'user/'.$r->user) : '',
+			l($user->name, 'user/'.$r->user),
+			formatMoney($r->value),
+			format_date($r->date),
+			$r->text,
+			$st,
+			$r->refference
+			);
+	}
+	return theme('table', array('header' => $tabale_header, 'rows' => $table_rows)).theme('pager');
+}
+
+function nodebuyes($id = 0) {
+	// Setting the sort conditions
+	if(isset($_GET['sort']) && isset($_GET['order'])) {
+		// Sort it Ascending or Descending?
+		if($_GET['sort'] == 'asc') $sort = 'ASC';
+		else $sort = 'DESC';
+		// Which column will be sorted
+		switch($_GET['order']) {
+		case 'Date':
+			$order = 'date';
+			break;
+		default:
+			$order = 'date';
+		}
+	}
+	else {
+		$sort = 'DESC';
+		$order = 'date';
+	}
+	$q = db_select('m_buyed_nodes','n')->extend('PagerDefault')->extend('TableSort')->limit(50);
+	$q->join('node', 'nn', 'n.nid = nn.nid');
+	$q->orderBy($order, $sort);
+	$q->fields('n', array())->fields('nn', array('nid', 'title'));
+
+	if($id) $q->condition('n.nid' , intval($id));
+
+	$rows = $q->execute()->fetchAll();
+	$tabale_header = array(
+		t('index'),
+		t('User'),
+		t('Content'),
+		t('Price'),
+		array( 'data' => t('Date'), 'field' => 'date'),
+		t('Description')
+		);
+	$index = 1;
+	$total_price = 0;
+	$table_rows = array();
+	foreach ($rows as $r) {
+		$node = node_load($r->nid);
+		$title = l(mb_substr($r->title, 0, 50,'UTF-8') .'...', 'admin/money/nodebuyes/'.$r->nid);
+		$user = user_load($r->uid);
+		if($r->type =='education') {
+			$tic = unserialize($r->value);
+			$price =0;
+			foreach($tic as $t ) {
+				$price += intval($t['price']); 
+				$title .="  |  " . $t['ticket'] . "";
+			}
+		}else{
+			$price = isset($r->price)?$r->price:$node->field_point_needed['und'][0]['value'];
+		}
+		$total_price += $price;
+		$table_rows[] = array(
+			$index ,
+			l($user->name, 'user/'.$r->uid),
+			$title,
+			formatMoney($price),
+			format_date($r->date, 'date_time'),
+			$r->description
+		);
+		$index ++ ;	
+	}
+	array_unshift($table_rows , 
+		array(
+		'' ,
+		'',
+		'<p style="text-align:center;font-weight: bold;font-size: 15px;margin: 0;">مجموع کل این صفحه</p>' ,
+		'<p style="text-align:center;font-weight: bold;font-size: 15px;margin: 0;">' . formatMoney($total_price) .' تومان</p>',
+		'' ,
+		''));
+	return theme('table', array('header' => $tabale_header, 'rows' => $table_rows)).theme('pager');
+}
+
+
+
+?>

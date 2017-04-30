@@ -1,0 +1,74 @@
+<?php
+/*
+
+http://stackoverflow.com/questions/15211415/drupal-ubercart-add-custom-field-to-checkout-form
+http://stackoverflow.com/questions/5158744/drupal-7-best-practice-for-a-dynamic-select-list-in-drupal-7/5159013#5159013
+
+
+*	Implements hook_checkout_pane()
+*/
+function uc_edu_checkboxes_uc_checkout_pane() {
+	$panes[] = array(
+		'id' => 'edu_pane',
+		'callback' => 'edu_checkout_pane_edu_pane', 
+		'title' => t('EDU checkboxes'),
+		'desc' => t('some description'),
+		'process' => true, 
+	);
+	return $panes;
+}
+/*
+* Callback for yourmodule_uc_checkout_pane() 
+*/
+function edu_checkout_pane_edu_pane($op, $order, $form = NULL, &$form_state = NULL) {
+	//die($op);
+	switch ($op) {
+		case 'prepare':
+		//	print_r(array('prepare'));
+		break;
+		case 'view':
+			$description = 'Your school is so great!';
+			$contents = '555 Fake Address<br />Faketown, MO. 65714</address>';
+		//	print_r(array('view'));
+			//return render($form['uc_edu_form']);
+			//return drupal_get_form('uc_edu_form');
+			return array('description' => $description, 'contents' => $contents ) ;
+			
+		case 'review':
+			$contents = 'Yo momma';
+			print_r(array('review'));
+			return $contents;
+
+		case 'process':
+			print_r(array('process'));
+		return drupal_get_form('uc_edu_form');
+	default:
+			print_r(array('default'));
+//	die();
+      break;
+	}
+
+}
+
+function uc_edu_form($form, &$form_state) {
+
+  $form['name'] = array(
+    '#type' => 'checkboxes',
+	'#options' => array(
+							'#half' => t('Closed'),
+							'#first' => t('Active')
+						),
+    '#title' => t('edu options'),
+  );
+  
+  $form['save-button'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+
+  return $form;
+}
+
+function drupalika_form_builder_function_submit($form, &$form_state) {
+  //custom_dpm($form_state['values']);
+}
