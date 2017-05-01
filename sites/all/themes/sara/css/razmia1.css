@@ -1535,11 +1535,9 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 1;
 }
 #comments .field-name-post-date {
-  font-size: 10px;
-  position: absolute;
-  color: #aaa;
-  bottom: 3px;
-  left: -40px;
+font-size: 10px;
+    color: #aaa;
+    margin-top: 5px;
 }
 div#comments {
   max-width: 850px;

@@ -94,9 +94,12 @@
 	padding: 1%;
 }
 .page-eng .eng808-course-exam-row .views-row .views-field-title a{
-	font-size: 18px;
-    line-height: 38px;
-	padding-right: 5px;
+	font-size: 17px;
+    line-height: 34px;
+    padding-right: 5px;
+}
+.page-eng div#jquery-countdown-timer-note:before {
+    content: ' تا اعلام نتایج آزمون نظام مهندسی اسفند 95 ، ';
 }
 .page-eng .eng808-course-exam-row .views-row .views-field-field-edu-duration,
 .page-eng .eng808-course-exam-row .views-row .views-field-field-edu-time{
@@ -142,7 +145,7 @@
     padding-bottom: 15px;
 }
 .page-eng .eng808-shop-region .inside {
-	padding:35px 5%;
+	padding: 0px 5% 35px 5%;
 }
 .page-eng #eng808-shop .view-content li{
 	width: 13vw !important;
@@ -155,10 +158,13 @@
 	max-width: 937px;
 	width: 100%;
 }
-.page-eng #eng808-shop{
-	padding: 32px 3% 1px 3%;
-    border-top: 1px solid gray;
-    border-bottom: 1px solid gray;
+.page-eng #eng808-shop a {
+    padding: 32px 20px;
+    background: #f9f9f9;
+    margin-bottom: 10px;
+    display: block;
+    color: black;
+    font-size: 17px;
 }
 .page-eng .jcarousel-next,
 .page-eng .jcarousel-prev{
@@ -1535,12 +1541,12 @@ div#toboggan-login-link-container {
 }
 .field-name-next-film .views-field-title a ,
 .field-name-before-film .views-field-title a {
-	padding: 4px 2px 6px 2px;
-	color: black !important;
-	display: block;
-	height: 56px;
-	overflow: hidden;
-	margin-top: -10px;
+    padding: 4px 2px 7px 2px;
+    color: black !important;
+    display: block;
+    height: 67px;
+    overflow: hidden;
+    margin-top: -10px;
 }
 /*-------------------before,next picture---------------------*/
 .page-gallery.page-picture .field-name-before-picture .views-row,

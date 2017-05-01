@@ -2357,6 +2357,7 @@ div#latest_shop {
   width: 100% !important;
 }
 .pane-shop-products .views-row,
+.page-store .node-product-kit.node-teaser,
 .page-store .node-product.node-teaser {
 /*width: 19%; */
   float: none;
@@ -4632,8 +4633,8 @@ div#block-block-26 .content a:after {
   float: right;
 }
 .important4 div.node-teaser {
-  /* background: transparent; */
-  /* box-shadow: none !important; */
+	  /* background: transparent; */
+	  /* box-shadow: none !important; */
 }
 .important4:before {
   content: "فیلم های آموزشی";
@@ -6438,7 +6439,25 @@ a.all-members {
   font-family: fanum;
   font-weight: normal;
 }
-
+textarea:focus, 
+input[type="text"]:focus, 
+input[type="password"]:focus, 
+input[type="datetime"]:focus, 
+input[type="datetime-local"]:focus, 
+input[type="date"]:focus, 
+input[type="month"]:focus,
+input[type="time"]:focus, 
+input[type="week"]:focus, 
+input[type="number"]:focus, 
+input[type="email"]:focus, 
+input[type="url"]:focus, 
+input[type="search"]:focus, 
+input[type="tel"]:focus, 
+input[type="color"]:focus, 
+.uneditable-input:focus {
+	border-color: #bababa !important;
+	box-shadow: 0px 1px 2px rgba(24,24,24,0.15) !important;
+}
 
 
 

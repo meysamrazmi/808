@@ -41,14 +41,212 @@
 	padding: @pad;
 	box-shadow: @z0;
 }
-
-
-
-.page-college .container.main{
-    width: 100%;
-    margin: 0 auto;
-    padding-bottom: 0;
+/*-----------mixin-------------*/
+.form-courses-search(){
+	form{
+		margin: 0;
+	}
+	#edit-populate-wrapper{
+		width: inherit;
+		max-width: 600px;
+		margin: 0 0 0 120px;
+		display: flex;
+		
+		label {
+			padding: 0 0px 0 25px;
+			line-height: @height;
+		}
+		.views-widget{
+			width: 100%;
+		}
+		.views-widget:before{
+			line-height: @height;
+			top: 0;
+			padding: @pad-wid;
+			color: @mat-blue;
+			font-size: 20px;
+		}
+		input {
+			padding: 20px 30px;
+			font-size: 1.1em;
+		}				
+	}
+	#edit-field-course-step-value-wrapper ,
+	#edit-field-course-type-value-wrapper{
+		float: right;
+		width: 48%;
+		padding: 8px 15px 13px;
+		margin: @pad 0 0 2%;
+		background: @mat-grey-50;
+		box-shadow: @z0;
+		
+		> label {
+			display: inline-block;
+			border-bottom: 1px solid @mat-blue;
+			font-weight: 500;
+			min-width: 120px;
+			max-width: 100%;
+			font-size: 15px;
+			margin-bottom: @pad;
+			padding-bottom: @pad /2;
+		}
+		.form-type-bef-checkbox {
+			width: 49% ;
+			margin: 0 ;
+			display: inline-flex;
+			align-items: center;
+			
+			label {
+				padding: 0 10px 0 0 ;
+				display: block ;
+				width: 100%;
+			
+			}
+		}
+	}
+	.views-submit-button {
+		display: none;
+	}
+	.filters{
+		position: absolute;
+		left: @pad;
+		top: @pad *1.3;
+		outline: none;
+		
+		&:before {
+			content: "\f415";
+			font-family: mat;
+			font-size: 24px;
+			vertical-align: middle;
+			margin: 0 -10px 0 10px;
+		}
+		&.open:before {
+			content: "\f374";
+		}
+	}
 }
+/*------------mixin-------------*/
+
+.college-front{
+	@height: 42px;
+	.form-courses-search();
+	h1#page-title,
+	#node-2408 .comment_forbidden{
+		display:none;
+	}
+	form#views-exposed-form-courses-page-5 {
+		margin: 0 auto 50px;
+		max-width: 900px;
+		width: 90%;
+		background: @mat-grey-50;
+		padding: @pad *2 @pad @pad *1.7;
+		box-shadow: @z1;
+		border-bottom: 1px solid @mat-purple-300;
+		
+		#edit-populate-wrapper {
+			margin: 0 auto;
+		}
+	}
+}
+/*--------------------------------------------------------------------------*/
+.page-college{
+	.container.main{
+		width: 100%;
+		margin: 0 auto;
+		padding-bottom: 0;
+	}
+	.span9,
+	.row{
+		margin-right: 0; 
+	}
+	.view-empty {
+		min-height: 100px;
+		text-align: center;
+		padding: 50px 20px;
+		p {
+			display: inline;
+			background: #f9f9f9;
+			border: solid #d9534f;
+			border-width: 0 5px;
+			padding: 20px 100px;
+		}
+	}
+	&:not(.page-college-search) h1.title{
+		margin-bottom:20px !important;
+	}
+	#mini-panel-college_search_left{
+		#college-elmi-block{
+			position:relative;
+			.views-row{
+				display: flex;
+				border-bottom: 1px solid #e8e5e5;
+				margin-bottom: 10px;
+				.views-field-title{
+					width: 70%;
+					margin-right: 18px;
+				}
+			}
+		}
+		#college-shop-block{
+			position:relative;
+		}
+	}
+	&:not(.page-college-search):not(.college-front) #mini-panel-college_search_left{
+		h2.pane-title{
+			font-size: 16px;
+			padding: 0px 18px;
+			border: 1px solid #eee;
+			display: inline-block;
+			background-color: #ba68c8;
+			color: white;
+			border-radius: 10px;
+			text-align: center;
+			z-index: 144;
+			margin-bottom: 40px;
+			&:before{
+				content: "\f291";
+				font-family: aw;
+				margin-left: 6px;
+			}
+			&:after{
+				position: absolute;
+				content: '';
+				width: 100%;
+				height: 1px;
+				right: 3px;
+				left: 0;
+				background-color: #ba68c8;
+				top: 42px;
+			}
+		}
+		#college-elmi-block h2.pane-title:before{
+			content: "\f0f6";
+		}
+	}
+}
+/*--------------------------------------------------------------------------*/
+.page-college-search{
+	#edit-field-course-step-value-wrapper ,
+	#edit-field-course-type-value-wrapper{
+		display: none;
+	}
+}
+/*--------------------------------------------------------------------------*/
+.page-college:not(.page-college-search):not(.page-herfe){
+	#edit-field-course-step-value-wrapper ,
+	#edit-field-course-type-value-wrapper{
+		width:100% !important;
+		box-shadow: none !important;
+		background-color: transparent !important;
+		.form-type-bef-checkbox {
+			width: 32% !important;
+			@media @480 {
+				width: 49% !important;
+			}
+		}
+	}
+}
+/*--------------------------------------------------------------------------*/
 .page-college:not(.college-front){
 	.row-highlight {
 		margin-bottom:0px !important;
@@ -97,28 +295,115 @@
 			width: 100% !important;
 		}
 	}
- 
-}
-
-.college-front{
-	@height: 42px;
-	.form-courses-search();
+	.view-courses{
+		.view-filters {
+			@height: 42px;
+			.paper(z1);
+			padding: @pad;
+			border-bottom: 1px solid @mat-purple-300;
+			margin-bottom: 20px;
+			position: relative;
+			.form-courses-search();
+		}	
+	}
 	
-	form#views-exposed-form-courses-page-5 {
-		margin: 0 auto 50px;
-		max-width: 900px;
-		width: 90%;
-		background: @mat-grey-50;
-		padding: @pad *2 @pad @pad *1.7;
-		box-shadow: @z1;
-		border-bottom: 1px solid @mat-purple-300;
-		
-		#edit-populate-wrapper {
-			margin: 0 auto;
+	@media @600 {
+		.view-courses .view-filters {
+			padding: @pad @pad @pad *5 @pad;
+			transition:all 0.3s ease;
+			
+			#edit-populate-wrapper{
+				margin: 0;
+				> label {
+					display: none;
+				}
+			}
+			#edit-field-course-step-value-wrapper,
+			#edit-field-course-type-value-wrapper{
+				width: 100%;
+				margin: @pad 0 0;
+			}
+			.filters{
+				left: calc(~'50% - 24px');
+				top: inherit;
+				bottom: @pad *2;
+				width: 36px;
+				height: 36px;
+				min-width: inherit;
+				border-radius: 50%;
+				box-shadow: @z1;
+				border: none;
+				padding: 0;
+				z-index: 1;
+	
+				span {
+					position: absolute;
+					color: #555;
+					font-weight: normal;
+					white-space: nowrap;
+					right: 0;
+					bottom: -28px;
+					transition: all 0.3s ease;
+					
+					&:before {
+						content: "\f233";
+						font-family: mat;
+						font-size: 24px;
+						vertical-align: middle;
+						margin: 0 -25px 0 5px;
+						transition:all 0.3s ease;
+					}
+				}			
+				&:before {
+					content: "\f140";
+					font-size: 36px;
+					transition: all 0.3s ease;
+					margin: 0;
+					display: block;
+				}
+				&.open{
+					bottom: -20px;
+					box-shadow: @z2;
+					
+					span {
+						font-size: 0;
+						&:before {
+							font-size:0;
+						}
+					}
+					&:before {
+						transform: rotate(180deg);
+						content: "\f140";
+					}
+				}
+			}
+			&:after {
+				content: "";
+				height: @pad *3;
+				width: 100%;
+				border-top: 1px solid @mat-grey-200;
+				background: @mat-grey-50;
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				transition:all 0.3s ease;
+			}
+			&.open{
+				padding-bottom: @pad *2;
+				margin-bottom: @pad *2;
+				
+				&:after {
+					height:0;
+				}
+			}
 		}
 	}
 }
-
+/*--------------------------------------------------------------------------*/
+.page-college:not(.page-college-search):not(.page-college-herfe) .view-courses .view-filters #edit-field-course-step-value-wrapper > label{
+	display:none;
+}
+/*--------------------------------------------------------------------------*/
 .node-college.node-teaser{
 	.paper(z0) !important;
     overflow: hidden;
@@ -315,302 +600,8 @@
 			min-height: inherit;
 		}
 	}
-	
 }
-
-
-
-.form-courses-search(){
-	form{
-		margin: 0;
-	}
-	#edit-populate-wrapper{
-		width: inherit;
-		max-width: 600px;
-		margin: 0 0 0 120px;
-		display: flex;
-		
-		label {
-			padding: 0 0px 0 25px;
-			line-height: @height;
-		}
-		.views-widget{
-			width: 100%;
-		}
-		.views-widget:before{
-			line-height: @height;
-			top: 0;
-			padding: @pad-wid;
-			color: @mat-blue;
-			font-size: 20px;
-		}
-		input {
-			padding: 20px 30px;
-			font-size: 1.1em;
-		}				
-	}
-	#edit-field-course-step-value-wrapper ,
-	#edit-field-course-type-value-wrapper{
-		float: right;
-		width: 48%;
-		padding: 8px 15px 13px;
-		margin: @pad 0 0 2%;
-		background: @mat-grey-50;
-		box-shadow: @z0;
-		
-		> label {
-			display: inline-block;
-			border-bottom: 1px solid @mat-blue;
-			font-weight: 500;
-			min-width: 120px;
-			max-width: 100%;
-			font-size: 15px;
-			margin-bottom: @pad;
-			padding-bottom: @pad /2;
-		}
-		.form-type-bef-checkbox {
-			width: 49% ;
-			margin: 0 ;
-			display: inline-flex;
-			align-items: center;
-			
-			label {
-				padding: 0 10px 0 0 ;
-				display: block ;
-				width: 100%;
-			
-			}
-		}
-	}
-	.views-submit-button {
-		display: none;
-	}
-	.filters{
-		position: absolute;
-		left: @pad;
-		top: @pad *1.3;
-		outline: none;
-		
-		&:before {
-			content: "\f415";
-			font-family: mat;
-			font-size: 24px;
-			vertical-align: middle;
-			margin: 0 -10px 0 10px;
-		}
-		&.open:before {
-			content: "\f374";
-		}
-	}
-}
-
-.page-college.college-front{
-	h1#page-title,
-	#node-2408 .comment_forbidden{
-		display:none;
-	}
-}
-
-.page-college-search{
-	#edit-field-course-step-value-wrapper ,
-	#edit-field-course-type-value-wrapper{
-		display: none;
-	}
-}
-.page-college:not(.page-college-search):not(.page-herfe){
-	#edit-field-course-step-value-wrapper ,
-	#edit-field-course-type-value-wrapper{
-		width:100% !important;
-		box-shadow: none !important;
-		background-color: transparent !important;
-		.form-type-bef-checkbox {
-			width: 32% !important;
-			@media @480 {
-				width: 49% !important;
-			}
-		}
-	}
-}
-.page-college:not(.college-front){
-	.view-courses{
-		.view-filters {
-			@height: 42px;
-			.paper(z1);
-			padding: @pad;
-			border-bottom: 1px solid @mat-purple-300;
-			margin-bottom: 20px;
-			position: relative;
-			.form-courses-search();
-		}	
-	}
-	
-	@media @600 {
-		.view-courses .view-filters {
-			padding: @pad @pad @pad *5 @pad;
-			transition:all 0.3s ease;
-			
-			#edit-populate-wrapper{
-				margin: 0;
-				> label {
-					display: none;
-				}
-			}
-			#edit-field-course-step-value-wrapper,
-			#edit-field-course-type-value-wrapper{
-				width: 100%;
-				margin: @pad 0 0;
-			}
-			.filters{
-				left: calc(~'50% - 24px');
-				top: inherit;
-				bottom: @pad *2;
-				width: 36px;
-				height: 36px;
-				min-width: inherit;
-				border-radius: 50%;
-				box-shadow: @z1;
-				border: none;
-				padding: 0;
-				z-index: 1;
-	
-				span {
-					position: absolute;
-					color: #555;
-					font-weight: normal;
-					white-space: nowrap;
-					right: 0;
-					bottom: -28px;
-					transition: all 0.3s ease;
-					
-					&:before {
-						content: "\f233";
-						font-family: mat;
-						font-size: 24px;
-						vertical-align: middle;
-						margin: 0 -25px 0 5px;
-						transition:all 0.3s ease;
-					}
-				}			
-				&:before {
-					content: "\f140";
-					font-size: 36px;
-					transition: all 0.3s ease;
-					margin: 0;
-					display: block;
-				}
-				&.open{
-					bottom: -20px;
-					box-shadow: @z2;
-					
-					span {
-						font-size: 0;
-						&:before {
-							font-size:0;
-						}
-					}
-					&:before {
-						transform: rotate(180deg);
-						content: "\f140";
-					}
-				}
-			}
-			&:after {
-				content: "";
-				height: @pad *3;
-				width: 100%;
-				border-top: 1px solid @mat-grey-200;
-				background: @mat-grey-50;
-				position: absolute;
-				right: 0;
-				bottom: 0;
-				transition:all 0.3s ease;
-			}
-			&.open{
-				padding-bottom: @pad *2;
-				margin-bottom: @pad *2;
-				
-				&:after {
-					height:0;
-				}
-			}
-		}
-	}
-}
-
-.page-college:not(.page-college-search):not(.page-college-herfe) .view-courses .view-filters #edit-field-course-step-value-wrapper > label{
-	display:none;
-}
-
-.page-college{
-	.span9,
-	.row{
-		margin-right: 0; 
-	}
-	.view-empty {
-		min-height: 100px;
-		text-align: center;
-		padding: 50px 20px;
-		p {
-			display: inline;
-			background: #f9f9f9;
-			border: solid #d9534f;
-			border-width: 0 5px;
-			padding: 20px 100px;
-		}
-	}
-	&:not(.page-college-search) h1.title{
-		margin-bottom:20px !important;
-	}
-	#mini-panel-college_search_left{
-		#college-elmi-block{
-			position:relative;
-			.views-row{
-				display: flex;
-				border-bottom: 1px solid #e8e5e5;
-				margin-bottom: 10px;
-				.views-field-title{
-					width: 70%;
-					margin-right: 18px;
-				}
-			}
-		}
-		#college-shop-block{
-			position:relative;
-		}
-	}
-	&:not(.page-college-search):not(.college-front) #mini-panel-college_search_left{
-		h2.pane-title{
-			font-size: 16px;
-			padding: 0px 18px;
-			border: 1px solid #eee;
-			display: inline-block;
-			background-color: #ba68c8;
-			color: white;
-			border-radius: 10px;
-			text-align: center;
-			z-index: 144;
-			margin-bottom: 40px;
-			&:before{
-				content: "\f291";
-				font-family: aw;
-				margin-left: 6px;
-			}
-			&:after{
-				position: absolute;
-				content: '';
-				width: 100%;
-				height: 1px;
-				right: 3px;
-				left: 0;
-				background-color: #ba68c8;
-				top: 42px;
-			}
-		}
-		#college-elmi-block h2.pane-title:before{
-			content: "\f0f6";
-		}
-	}
-}
+/*--------------------------------------------------------------------------*/
 #mini-panel-college_top{
 	.paper(z0);
 	margin-bottom:20px;
@@ -653,7 +644,7 @@
 		}
 	}
 }	
-
+/*--------------------------------------------------------------------------*/
 .region-highlight #block-menu-menu-courses-topics--2{
 	margin: 0;
     text-align: center;
@@ -746,7 +737,7 @@
 		}
 	}
 }
-
+/*--------------------------------------------------------------------------*/
 #college-section{
 	margin-top:30px;
 	max-width: 1200px;
@@ -887,9 +878,8 @@
 			.college-media();
 		} 
 	}
-	
 }
-
+/*--------------------------------------------------------------------------*/
 .node-college.view-mode-full{
 	.field-name-field-image img{
 		width:100%;
@@ -913,16 +903,24 @@
 			}
 		}
 	}
-	.group-left{
+	> .group-left{
 		background-color: white;
 		box-shadow: 0 2px 2px #edeef0;
 		margin-top: -8px;
 		padding-top: 1.5vw;
+		width: 100%;
+		float: none;
 		.field.field-name-body{
 			display: inline-block;
 			width:100%;
 			padding: 30px;
 		}
+	}
+	div#comments{
+		background-color: white;
+		padding-top: 10px !important;
+		margin-top: 20px;
+		box-shadow: @z0;
 	}
 }
 

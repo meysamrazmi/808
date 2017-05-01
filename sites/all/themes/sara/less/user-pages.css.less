@@ -521,8 +521,8 @@ h1#page-title {
 .panels-flexible-17{
 	.column {
 		width: 50%;
- 		&.right .region,
-		&.left .region-first { 
+ 		// &.left .region-first,
+		&.right .region{ 
 			.paper(z1); 
 		} 
 	}
@@ -570,12 +570,37 @@ h1#page-title {
 		flex-direction: column-reverse;
 	}
 	.region-first {
-		.paper(z1);
 		width: calc(~"40% - 15px");
 		margin-right: 15px;
 		@media @960{
 			width: 100%;
 			margin: 0;
+		}
+		.pane-content{
+			a{
+				.paper(z1);
+				margin-bottom: 10px;
+				text-align: center;
+				padding: 10px;
+				display: block;
+				position: relative;
+				color: #333 !important;
+			}
+			.linkedin a {
+				color: #fff !important;
+				background: #0077b5;
+				position: relative;
+				.before(f33c;'';25px;'');
+				&:before{ .absolute('';'';6px;'';'';9px);}
+			}
+			.vip a{
+				.before(f1a5;'';30px;#FF9800);
+				&:before{ .absolute('';'';4px;'';'';7px);}
+			}
+			.send-message a{
+				.before(f36a;'';22px;#D32F2F);
+				&:before{ .absolute('';'';10px;'';'';9px);}
+			}
 		}
 	}
 	.middle-region {
@@ -600,7 +625,7 @@ h1#page-title {
 		position: relative;
 		line-height: initial;
 		.before(f33c;'';25px;'');
-		&:before{ .absolute('';'';6px;'';'';9px); }
+		&:before{ .absolute('';'';6px;'';'';9px);}
 	}
 }
 /*
@@ -633,6 +658,7 @@ h1#page-title {
 		.linkedin-link;
 	}
 	.user-register-login();
+	input{direction: ltr;}
 }
 #user-register-form {
 	.linkedin.register{
@@ -647,6 +673,9 @@ h1#page-title {
 #edit-account{
 	.form-type-textfield {
 		padding: 0 15px;	
+	}
+	input {
+		direction: ltr;
 	}
 }
 .page-user-edit .tabs {
@@ -842,14 +871,12 @@ h1#page-title {
 	}
 }
 .password-strength {
-	.absolute(initial;'';0;'';'';0);
+	.absolute(initial;'';-4px;'';'';0);
     float: left;
     font-size: 13px;
     margin: 0 !important;
 	.password-strength-text {
-		position: absolute;
-		right: -50px;
-		top: 5px;
+		.absolute('';'';10px;-50px);
 		font-size: 11px;
 		background: #00BCD4;
 		padding: 0px 9px;
@@ -862,8 +889,12 @@ h1#page-title {
 	}
 	.password-indicator{ 
 		width: 250px;
+		background: #eee;
 		div {
 			margin-right: auto;
+			background-image: linear-gradient(45deg,rgba(255,255,255,0.5) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.6) 50%,rgba(255,255,255,.6) 75%,transparent 75%,transparent);
+			background-size: 40px 40px;
+			animation: progress-bar-stripes 3.5s linear infinite;
 		}
 	}
 }
