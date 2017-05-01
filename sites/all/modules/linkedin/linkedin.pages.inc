@@ -71,13 +71,19 @@ function linkedin_user_settings($account) {
   $output = '';
   $check = linkedin_get_profile_fields($account->uid, array('first-name', 'last-name', 'public-profile-url'), TRUE);
   if (isset($check['error-code'])) {
-    $output .= t('You must first authorize LinkedIn integration to use related features.');
     $form = drupal_get_form('linkedin_user_enable_form', $account->uid);
+	$form['linkedin_noauth_description'] = array(
+		'#markup' => '<p class="well">'. t('You must first authorize LinkedIn integration to use related features.') . '</p>',
+		'#weight' => -10,
+	);
     $output .= drupal_render($form);
   }
   else {
-    $output .= t('Your account is associated with @name !public_profile.', array('@name' => $check['first-name'] . ' ' . $check['last-name'], '!public_profile' => l($check['public-profile-url'], $check['public-profile-url'])));
     $form = drupal_get_form('linkedin_user_settings_form', $account);
+	$form['linkedin_auth_description'] = array(
+		'#markup' => '<p class="well">'. t('Your account is associated with @name !public_profile.', array('@name' => $check['first-name'] . ' ' . $check['last-name'], '!public_profile' => l($check['public-profile-url'], $check['public-profile-url']))) .'</div>',
+		'#weight' => -10,
+	);
     $output .= drupal_render($form);
   }
   return $output;
@@ -98,7 +104,8 @@ function linkedin_user_enable_form($form, $form_state, $uid) {
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Go to LinkedIn'),
-    '#suffix' => '<p class="description">' . t('You will be taken to the LinkedIn website in order to complete the process.') . '</p>',
+    '#prefix' => '<p class="description">' . t('You will be taken to the LinkedIn website in order to complete the process.') . '</p>',
+	'#weight' => 1,
   );
   return $form;
 }
@@ -119,12 +126,15 @@ function linkedin_user_settings_form($form, &$form_state, $account) {
 
   $form['submit'] = array(
     '#type' => 'submit',
-    '#value' => 'Save',
+    '#value' => t('Save'),
+	'#weight' => 1,
   );
   $form['linkedin']['reset'] = array(
     '#type' => 'submit',
     '#description' => t('Click here to unlink your LinkedIn account.'),
     '#value' => t('Unlink'),
+	'#weight' => 1,
+	'#attributes' => array('class' => array('btn-danger')),
   );
 
   return $form;
