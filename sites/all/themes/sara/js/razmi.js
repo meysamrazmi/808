@@ -720,6 +720,9 @@ if($('#user-login').length){
 	var items = $('#user-login .item-list');
 	$('#user-login .item-list').remove();
 	$('#user-login > div').append(items);
+	var register = $('.linkedin.register');
+	$('#user-register-form .linkedin.register').remove();
+	$('#user-register-form > div').prepend(register);
 }
 if($('.linkedin-num-connections').length && parseInt($('.linkedin-num-connections span:last-child').text()) > 499){
 	$('.linkedin-num-connections span:last-child').addClass('capped');
@@ -1006,7 +1009,7 @@ function initialise(){
 	
 	/*-----------------------------------------------------------------------------------------------------------------*/
 
-	if($('div#edit-support-ticket-upload .file-widget, div#edit-field-hw-video .file-widget, input#edit-picture-upload').length){
+	if($('div#edit-support-ticket-upload .file-widget, div#edit-field-hw-video .file-widget, input#edit-picture-upload, #user-profile-form .form-item input.form-file').length){
 		$.getScript('/sites/all/themes/sara/js/lib/bootstrap-filestyle.min.js', function(){
 		$(":file").filestyle({buttonText: "انتخاب فایل", buttonName: "btn-primary",placeholder: "فایلی انتخاب نشده"});
 		});

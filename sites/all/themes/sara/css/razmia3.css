@@ -6402,7 +6402,15 @@ a.all-members {
   padding: initial;
 }
 .bootstrap-filestyle input {
-  margin: initial;
+	margin: initial !important;
+	float: none !important;
+	min-width: 240px !important;
+}
+.bootstrap-filestyle + .form-submit {
+	display: none;
+}
+.group-span-filestyle label {
+	line-height: 20px !important; 
 }
 .group-span-filestyle .glyphicon {
   display: none;

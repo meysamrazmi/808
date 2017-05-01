@@ -15,6 +15,7 @@
 @1280 : ~"all and (min-width: 1280px)";
 @1200 : ~"all and (max-width: 1200px)";
 @min1200 : ~"all and (min-width: 1200px)";
+@1100 : ~"all and (max-width: 1100px)";
 @1200-980 : ~"(min-width: 980px) and (max-width: 1200px)";
 @980-769 : ~"(max-width: 979px) and (min-width: 769px)";
 @960 : ~"(max-width: 960px)";
@@ -585,9 +586,151 @@ h1#page-title {
 		}
 	}
 }
+.linkedin-link(){
+	a {
+		width: 280px;
+		padding: 7px;
+		text-align: center;
+		color: #fff;
+		background: #0077b5;
+		border-radius: 2px;
+		margin: 20px auto 0;
+		display: block;
+		font-size: 14px;
+		position: relative;
+		line-height: initial;
+		.before(f33c;'';25px;'');
+		&:before{ .absolute('';'';6px;'';'';9px); }
+	}
+}
+/*
+ *user login and register and editing section
+ */
+.user-register-login(){
+	label{
+		display: inline-block;
+		line-height: 30px;
+		margin: 0;
+	}
+	.form-item input {
+		float: left;
+		min-width: 250px;
+		width: 30%;
+		clear: both;
+		margin: 0;
+	}
+	.description {
+		padding: 5px 0;
+	}
+}
+#user-login{
+	.item-list {
+		border-top: 1px solid #ddd;
+		margin: 50px auto 20px;
+		width: 100%;
+		text-align: center;
+		max-width: 400px;
+		.linkedin-link;
+	}
+	.user-register-login();
+}
+#user-register-form {
+	.linkedin.register{
+		#user-login .item-list ;
+		margin: 0 auto;
+		border: none;
+		border-bottom: 1px solid #ddd;
+		padding-bottom: 30px;
+	}
+	.user-register-login();
+}
+#edit-account{
+	.form-type-textfield {
+		padding: 0 15px;	
+	}
+}
+.page-user-edit .tabs {
+	display: block !important;
+	.primary, h2 {
+		display: none !important;
+	}
+	&.secondary {
+		.absolute(calc(~"100% - 890px");'';245px;15px);
+		display: flex !important;
+		flex-direction: column;
+		border: none;
+		box-shadow: @z1;
+		li {
+			border: none;
+			padding: 0;
+			a {
+				width: 100%;
+				color: #555 !important;
+				border-radius: 0;
+				margin: 0;
+				border: 0;
+				padding: 10px 15px;
+				border-bottom: 1px solid #eee;
+				&.active {
+					border-right: 3px solid @mat-red;
+				}
+			}
+		}
+		@media @1100{
+			width: calc(~"100% - 830px");
+			right: 10px;
+		}
+		@media @960{
+			width: 150px;
+		}
+		@media @600{
+			width: calc(~"100% - 20px");
+			right: 10px;
+			top: 185px;
+			flex-direction: row;
+			justify-content: space-around;
+			li{
+				width: 100%;
+				text-align: center;
+				a.active{
+					border: none;
+					border-bottom: 3px solid #F44336;
+					padding: 10px 0;
+				}
+			}
+		}
+	}
+}
+#linkedin-user-settings-form,
+#linkedin-user-enable-form {
+	.paper(z1);
+	display: inline-block;
+	width: 100%;
+	.form-item-linkedin-profile-user-page-enabled {
+		display: none;
+	}
+	input#edit-reset {
+		float: right;
+	}
+}
 #user-profile-form{
-	max-width: 800px;
+	max-width: 850px;
 	margin: auto;
+	margin-left: 0;
+	@media @1100{
+		max-width: 800px;
+	}
+	@media @960{
+		max-width: calc(~"100% - 160px");
+	}
+	@media @600{
+		max-width: inherit;
+		margin-top: 120px;
+	}
+	.page-user-edit-bank &,
+	.page-user-edit-main &{
+		> div{.paper(z1);}
+	}
 	.group-header > *{
 		.paper(z1);
 		margin-bottom: 15px;
@@ -596,22 +739,8 @@ h1#page-title {
 		display: none;
 	}
 	fieldset.group-pic {
-		position: relative;
-		margin-top: 45px;
 		> legend {
-			border: none;
-			margin: 0;
-			.absolute('';'';-45px;0;'';'');
-			padding: 0px 10px 0;
-			
-			a {
-				padding: 0;
-				color: #666 !important;
-			}
-			span {
-				padding: 0 !important;
-				background: none !important;
-			}
+			display: none;
 		}
 		.fieldset-wrapper {
 			padding: 0;
@@ -635,7 +764,7 @@ h1#page-title {
 			display: none;
 		}
 	}
-	div#edit-field-image{
+	#edit-field-image{
 		margin-top: 30px;
 		legend{
 			margin: 0;
@@ -697,36 +826,6 @@ h1#page-title {
 			display: none;
 		}
 	}
-	.form-type-password-confirm{
-		.password-strength {
-			position: initial;
-			width: initial;
-			.password-strength-text {
-				position: absolute;
-				right: 50px;
-				font-size: 11px;
-				background: #00BCD4;
-				padding: 0px 9px;
-				border-radius: 5px;
-				color: #fff;
-				font-weight: normal;
-			}
-			.password-strength-title {
-				display: none;
-			}
-			.password-indicator{ 
-				width: 250px;
-				div {
-					margin-right: auto;
-				}
-			}
-		}
-		.password-parent input, .confirm-parent input {
-			float: left;
-			width: 250px;
-			direction: ltr;
-		}
-	}
 	.form-actions {
 		padding: 0;
 		input#edit-cancel {
@@ -737,6 +836,42 @@ h1#page-title {
 			float: right;
 		}
 	}
+	.user-register-login();
+	#edit-profile-main-field-publish-file .description{
+		display: none;
+	}
+}
+.password-strength {
+	.absolute(initial;'';0;'';'';0);
+    float: left;
+    font-size: 13px;
+    margin: 0 !important;
+	.password-strength-text {
+		position: absolute;
+		right: -50px;
+		top: 5px;
+		font-size: 11px;
+		background: #00BCD4;
+		padding: 0px 9px;
+		border-radius: 5px;
+		color: #fff;
+		font-weight: normal;
+	}
+	.password-strength-title {
+		display: none;
+	}
+	.password-indicator{ 
+		width: 250px;
+		div {
+			margin-right: auto;
+		}
+	}
+}
+
+div.password-confirm {
+	&:extend(.password-strength);
+	left: 260px;
+	top: 5px;
 }
 form#user-cancel-confirm-form {
 	.paper(z1);

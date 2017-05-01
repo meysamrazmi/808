@@ -470,6 +470,18 @@ input[type="button"]:hover, input[type="submit"]:hover, button:hover {
   background-color: #449d44;
   border-color: #398439;
 }
+input[type="button"].btn-danger, input[type="submit"].btn-danger, button.btn-danger, input.btn-danger{
+	background-image: none;
+	background-color: #E53935;
+	border-color: #bd362f #bd362f #802420;
+}
+input[type="button"].btn-danger:hover,
+input[type="submit"].btn-danger:hover,
+button.btn-danger:hover, 
+input.btn-danger:hover{
+	background-color: #C62828 !important;
+	border-color: #bd362f #bd362f #802420 !important;
+}
 .btn-green {
 background: #588F27;
 }

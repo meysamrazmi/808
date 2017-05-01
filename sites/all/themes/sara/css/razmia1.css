@@ -84,9 +84,8 @@ width: 100%;
 .page-gallery #comments {
   text-align: right;
   background: #fff;
-  padding: 1px 10px;
+  padding: 10px !important;
   box-shadow: 0 2px 2px #edeef0;
-  /* box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12); */
   margin-bottom: 20px;
 }
 .page-gallery.page-videos .field-name-body .field-name-body {
@@ -1197,9 +1196,6 @@ border-width: 0 0 3px 0;
   width: calc(100% - 30px);
   box-sizing: border-box;
 }
-#login-form label, #register-form label{
-	display: inline-block;
-}
 .form-item .description {
   color: #999;
   font-size: 0.75em;
@@ -1208,12 +1204,6 @@ border-width: 0 0 3px 0;
   border-bottom: 1px dashed;
   position: absolute;
   margin-top: 10px;
-}
-#login-form input,#register-form input {
-    float: left;
-    min-width: 280px;
-    width: 30%;
-	clear: both;
 }
 form#user-login, form#user-register-form {
   background: #fff;
@@ -1237,20 +1227,16 @@ form#user-login, form#user-register-form {
     clear: both;
     position: relative;
     width: 100%;
+	margin-bottom: 10px;
+}
+.password-parent label, .confirm-parent label {
+  display: inline-block;
 }
 .password-parent input, .confirm-parent input {
     left: 0;
 }
 .password-suggestions.description {
     margin-right: auto !important;
-}
-.password-strength, .password-confirm {
-    float: left;
-    font-size: 13px;
-    left: 330px;
-    margin: 0 !important;
-    position: absolute;
-    top: 0;
 }
 #edit-profile-main {
     width: 100%;
@@ -1259,15 +1245,15 @@ form#user-login, form#user-register-form {
     min-height: 30px;
 }
 .form-managed-file input {
-    background-color: #ddd;
-    border: 1px solid #aaa;
-    border-radius: 0;
-    color: #555;
-    float: none !important;
-    margin: 0 0 0 20px !important;
-    min-width: inherit !important;
-    padding: 0 20px;
-    width: auto !important;
+	background-color: #eee;
+	border: 1px solid #dbdbdb;
+	border-radius: 3px;
+	color: #555;
+	float: none !important;
+	margin: 0 0 0 20px !important;
+	min-width: inherit !important;
+	padding: 4px 6px;
+	width: auto !important;
 }
 .form-file {
     padding: 0 !important;
