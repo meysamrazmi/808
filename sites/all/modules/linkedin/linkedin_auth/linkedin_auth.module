@@ -94,13 +94,12 @@ function linkedin_auth_form_alter(&$form, &$form_state, $form_id) {
       break;
     //Register using linkedin.
     case 'user_register_form':
-      if (variable_get('linkedin_auth_bypass_register_checks', 0) == 1 && isset($_SESSION['linkedin_auth_register_bypass'])) {
-        $form_state['#redirect'] = isset($_GET['destination']) ? $_GET['destination'] : '';
-        //Only remove standard register submit, but play nicely wth other modules.
-        $key = array_keys($form['#submit'], 'user_register_submit');
-        unset($form['#submit'][$key[0]]);
-        $form['#submit'][] = 'linkedin_auth_register_form_submit';
-      }
+      if (variable_get('linkedin_auth_bypass_register_checks', 0) == 1){
+		$form['register_with_linkedin'] = array(
+          '#markup' => '<div class="linkedin register"><a href="/linkedin/register/0">'. t('register with LinkedIn') .'</a></div>',
+          '#weight' => -50,
+		);
+  	  }
       break;
   }
   return $form;
@@ -150,23 +149,4 @@ function linkedin_auth_linkedin_tie_external_login($uid, $token, $secret) {
     $_SESSION['linkedin_auth_register_bypass'] = 1;
   }
   drupal_goto('user/register');
-}
-
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
- */
-function linkedin_auth_register_form_submit($form, &$form_state) {
-  // user_external_login_register($form_state['values']['name'], 'linkedin');
-  // global $user;
-  // $account = user_save($user, $form_state['values']);
-  // if (!$account) {
-    // drupal_set_message(t("Error saving user account."), 'error');
-    // drupal_goto();
-  // }
-  // linkedin_access_token($account);
-  //Unset variables no longer needed.
-  unset($_SESSION['random']);
-  unset($_SESSION['oauth_token_secret']);
-  unset($_SESSION['linkedin_auth_register_bypass']);
 }
