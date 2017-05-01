@@ -58,8 +58,8 @@ function linkedin_profile_display_access($account) {
 	
   }
   global $user;
-  if (!user_access('access user profiles') && $user->uid != $account->uid) {
-    return FALSE;
+  if (!user_access('view content') && $user->uid != $account->uid) {
+    // return FALSE;
   }
   $check = linkedin_get_profile_fields($account->uid, array('id'));
   if (isset($check['error-code'])) { // no need to display an empty tab
