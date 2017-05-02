@@ -2213,9 +2213,15 @@ margin: 14px 13% 0 13%;
 
 
 .page-college-search #block-system-main h2{
-display:block !important;
+	display:block !important;
 }
-
+#footer #mini-panel-footer_main .pane-menu-menu-808 .last.leaf a{
+	background-color: #eee;
+    padding: 9px 31px !important;
+    display: inline-block;
+    color: black !important;
+    margin-right: 10px;
+}
 
 
 

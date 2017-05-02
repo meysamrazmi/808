@@ -1127,6 +1127,8 @@ div#block-panels-mini-peyment-guid .panel-pane.pane-custom.pane-2 {
   background-image: url(//civil808.com/sites/all/themes/sara/images/title-bg2.jpg);
   background-size: 100%;
   background-position: center 0;
+  width: 100%;
+  margin-top: -65px;
 }
 .page-article.page-software .tabs,
 .page-publication .tabs,

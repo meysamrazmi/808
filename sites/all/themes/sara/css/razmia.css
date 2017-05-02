@@ -1262,18 +1262,28 @@ width: 47% !important;
     padding-right: 5%;
 }
 .page-civil .row-2 .view-id-all_new{
-    max-height: 520px;
+	max-height: 605px;
     overflow-y: scroll;
     margin-bottom: 17px;
+	box-shadow: 2px 2px 2px #edeef0, -2px -2px 2px #edeef0;
+    padding: 12px 20px 12px 9px;
+    margin-top: 24px;
 }
 .page-civil .main-four .views-row {
-  width: 30%;
-  display: inline-block;
-  min-width: 160px;
-  overflow: hidden;
-  padding: 0 1.64705882352941%;
-  position: relative;
-  margin: 15px 1% 35px;
+    width: 28%;
+    display: inline-block;
+    min-width: 160px;
+    overflow: hidden;
+    /* padding: 0 1.64705882352941%; */
+    position: relative;
+    margin: 15px 2% 35px;
+    margin-bottom: 21px;
+    background: #fbfbfb;
+    box-shadow: 0 2px 2px #edeef0;
+    transition: all 0.2s ease;
+}
+.page-civil .main-four .views-row:hover{
+	box-shadow: rgba(0,0,0,0.156863) 0px 3px 10px, rgba(0,0,0,0.227451) 0px 3px 10px;
 }
 .row-2-left-column {
     border-image: url(../images/border-v.png) 1;
@@ -1293,24 +1303,49 @@ width: 47% !important;
   min-height: 0;
   margin: 22% 32%;
 }
-.page-civil .pane-video-gallery.pane-main .views-field-field-posterfilm:before{
-	content: '';
+.page-civil .pane-video-gallery .views-field-field-posterfilm a:before{
+    content: "\f04b";
     position: absolute;
-    min-height: 0;
-    margin: 22% 32%;
-    background-image: url(../images/play.png);
-    width: 72px;
-    height: 72px;
+	left: 44%;
+    color: white;
+    font-size: 20px;
+    font-family: aw;
+    top: 38%;
+    background-color: rgba(0, 0, 0, 0.43);
+    padding-left: 2px;
+    border-radius: 50px;
+    width: 39px;
+    height: 39px;
+    text-align: center;
+    box-sizing: border-box;
+    line-height: 40px;
 }
-.page-civil .main-four .views-row {
+.page-civil .pane-video-gallery .views-field-field-pictures a:before{ 
+	content: "\f24d";
+    position: absolute;
+    left: 0px;
+    color: white;
+    font-size: 15px;
+    font-family: aw;
+    bottom:8px;
+    background-color: rgba(0, 0, 0, 0.43);
+    padding: 0px;
+    width: 35px;
+    height: 35px;
+    box-sizing: border-box;
+    line-height: 35px;
+    text-align: center;
+}
+.page-civil .pane-video-gallery .views-field-field-posterfilm,
+.page-civil .pane-video-gallery .views-field-field-pictures{
+	position:relative;
+}
+.page-civil .main-four .views-row{
     vertical-align: top;
 }
 .main-four.low-height .views-row .views-field-title {
     transition: all 0.4s ease;
     width: 100%;
-}
-.main-four.low-height .views-row .views-field-title:hover {
-    margin-right: 5px;
 }
 .main-four.low-height .views-field-field-image img {
     height: auto;
@@ -1328,12 +1363,10 @@ width: 47% !important;
 #content .pane-video-gallery .views-field-title a {
 /*    color: #222;*/
 }
-#content .pane-video-gallery .views-field-title:hover {
-    margin-right: 5px;
-}
 #content .pane-video-gallery .views-field-title {
-    transition: all 0.4s ease;
     width: 100%;
+    padding: 4px 11px 11px;
+    height: 84px;
 }
 #content .pane-video-gallery .views-field-created {
     color: #999;
@@ -1427,19 +1460,32 @@ width: 100%;
     margin-right: 15px;
 }
 .page-civil #content .row-2 .more-link a{
-    display: block;
-    text-align: center;
-    margin: -1px 35px 0;
-    border: 1px solid #eee;
-    color: #999;
-    transition: all 0.4s ease;
+	color: #00accc !important;
+    border: 1px solid;
+    padding: 0 15px;
+	margin: 5px 15px 5px 47px;
+    left: 0;
 }
-.page-civil #content .row-2 .more-link a:hover{
-    background-color: #eee;
-    color: #000;
+.page-civil #content .row-2 .pane-all-new .more-link a{
+	margin-left: 0px;
+}
+.page-civil #content .row-2 .more-link a:after {
+	content: "\f060";
+    font-family: aw;
+    left: 0;
+    margin: 0 15px 0 0;
+    display: inline-block;
+    transition: all 0.3s;
+    font-size: 15px;
+    vertical-align: middle;
+}
+.page-civil #content .row-2 .more-link a:hover:after{
+    /* background-color: #eee; */
+    /* color: #000; */
+	margin: 0 22px 0 -7px;
 }
 .page-civil #content .pane-all-new .more-link a::before {
-    content: "+ ";
+    /* content: "+ "; */
 }
 .span4 {
     width: 30%;
