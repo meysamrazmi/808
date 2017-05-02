@@ -21,6 +21,7 @@ sites/README.txt
 sites/all/modules/README.txt
 sites/all/themes/README.txt
 lock/logs/att.txt
+lock/log.txt
 
 
 # Ignore everything but the "sites" folder ( for non core developer )
