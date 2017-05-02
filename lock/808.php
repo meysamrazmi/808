@@ -10,7 +10,7 @@ require_once('config.php');
 require_once('functions.php');
 global $conn,$nowTime;
 	
-$file_content = "/n". $nowTime ."====> ". print_r($_POST, true) . "\n";
+$file_content = "\n". $nowTime ."====> ". print_r($_POST, true) . "\n";
 file_put_contents($file, $file_content, FILE_APPEND | LOCK_EX);
 
 //$decoded = json_decode('{"action":1,"puid":"9676-f71e-c917-1c6b-32d0-3121-ed60-0231","serial":"si1-shayan","name":"ییییییییی","email":"rturt@wey.com","phone":"55555555555","package":"si1","ranber":54651}',true);
