@@ -139,7 +139,14 @@ function add_user($puid,$serial,$package){
 5: Use old serial OR new one?
 */
 function print_output($arr,$response,$extra = ""){
-	echo (encryptAES('{"action":' . $arr['action'] . ',"response":' . $response . ',"puid":"' . $arr['puid'] . '","serial":"' . $arr['serial']. '","name":"' . $arr['name']. '","email":"' . $arr['email'] . '","phone":"' . $arr['phone'] . '","package":"' . $arr['package'] . '","ranber":' . (((int)$arr['ranber'] * 73) - 320)  . ',"extra":"' . $extra . '"}'));
+	global $nowTime;
+	$output = '{"action":' . $arr['action'] . ',"response":' . $response . ',"puid":"' . $arr['puid'] . '","serial":"' . $arr['serial']. '","name":"' . $arr['name']. '","email":"' . $arr['email'] . '","phone":"' . $arr['phone'] . '","package":"' . $arr['package'] . '","ranber":' . (((int)$arr['ranber'] * 73) - 320)  . ',"extra":"' . $extra . '"}';
+
+	$file = "log.txt";
+	$file_content = $nowTime .">>>>result: ". $output . "\n";
+	file_put_contents($file, $file_content, FILE_APPEND | LOCK_EX);
+
+	echo (encryptAES($output));
 	//echo ('{"action":' . $arr['action'] . ',"response":' . $response . ',"puid":' . $arr['puid'] . ',"serial":' . $arr['serial']. ',"name":' . $arr['name']. ',"email":' . $arr['email']. ',"phone":' . $arr['phone'] . '","package":"' . $arr['package'] . '","ranber":' . (((int)$arr['ranber'] * 73) - 320)  . ',"extra":"' . $extra . '"}');
 }
  
