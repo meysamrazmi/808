@@ -74,7 +74,7 @@ function custom_808_ajax_callback($page_callback_result) {
 
 /**
  * Implement hook_init
- * this function adds the user id to "Drupal.Behaviors.setting" for use in js files in the site.
+ * this function adds the user id to "Drupal.setting" for use in js files in the site.
  */
 function custom_808_ajax_init() {
   global $user;
