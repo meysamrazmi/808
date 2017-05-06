@@ -128,7 +128,10 @@ function linkedin_access_token($account, $is_new = FALSE) {
       drupal_write_record('linkedin_token', $sql, array('uid'));
       //associate LinkedIn ID with uid for future use
       $id = linkedin_get_profile_fields($account->uid, array('id'), TRUE);
-      user_set_authmaps($account, array('authmap_linkedin' => $id['id']));
+	  //save acces token for future requests
+	  if(user_get_authmaps($response['id']) == 0){//check to see if there is no rows with exact same authname 
+		user_set_authmaps($account, array('authmap_linkedin' => $response['id']));		  
+	  }
       drupal_goto("user/$account->uid/edit/linkedin");
     }
 	elseif ($is_new) {
@@ -189,7 +192,9 @@ function linkedin_access_token($account, $is_new = FALSE) {
 		))->execute();
 		
 	  //associate LinkedIn ID with uid for future use
-      user_set_authmaps($account, array('authmap_linkedin' => $response['id']));
+	  if(user_get_authmaps($response['id']) == 0){//check to see if there is no rows with exact same authname 
+		user_set_authmaps($account, array('authmap_linkedin' => $response['id']));		  
+	  }
 
 	  //login the user after all
 	  // user_login_submit(array(), array('uid' => $account->uid));
