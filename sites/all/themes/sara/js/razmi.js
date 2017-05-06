@@ -715,6 +715,9 @@ if ($('#quicktabs-user_contents').length){
 if($('.user-sale-report').length && !$('.user-sale-report .pane-content div').length){
 	$('.user-sale-report').remove();
 }
+if($('#edit-profile-main-field-bool').length){
+	$('#edit-profile-main-field-bool').remove();
+}
 //changing the position of "login with linkedin"
 if($('#user-login').length){
 	var items = $('#user-login .item-list');
@@ -734,7 +737,17 @@ $('.linkedin-position-summary').each(function(){
 			text.addClass('rtl');
 	});
 });
-
+if($('.page-edit.page-linkedin').length){
+	$('#content > .tabs').append('<ul class="tabs secondary">'
+		+'<li class="user edit"><a href="/user/'+ Drupal.settings.Uid +'/edit">حساب</a></li>'
+		+'<li class="active user edit linkedin"><a href="/user/'+ Drupal.settings.Uid +'/edit/linkedin" class="active">Linkedin</a></li>'
+		+'<li class="user edit bank"><a href="/user/'+ Drupal.settings.Uid +'/edit/bank">بانک</a></li>'
+		+'<li class="user edit main"><a href="/user/'+ Drupal.settings.Uid +'/edit/main">اطلاعات اصلی</a></li>'
+	+'</ul>');
+}
+$('.bootstrap-filestyle > .group-span-filestyle').each(function(){
+	$(this).parents('.form-item').addClass('boot-filestyle');
+});
 /*-------------------------------------------مربوط به ویدئو------------------------------------------------------------------------------*/
 /*for iframe*/
 $('.page-iframe .mejs-overlay-play ,.page-iframe .mejs-overlay-play *').click(function(){

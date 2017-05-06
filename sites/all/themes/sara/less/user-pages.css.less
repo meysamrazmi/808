@@ -677,8 +677,20 @@ h1#page-title {
 #linkedin-user-settings-form,
 #linkedin-user-enable-form {
 	.paper(z1);
-	display: inline-block;
-	width: 100%;
+	margin: auto;
+	margin-left: 0;
+	max-width: 850px;
+	overflow: auto;
+	@media @1100{
+		max-width: 800px;
+	}
+	@media @960{
+		max-width: calc(~"100% - 160px");
+	}
+	@media @600{
+		max-width: inherit;
+		margin-top: 120px;
+	}
 	.form-item-linkedin-profile-user-page-enabled {
 		display: none;
 	}
@@ -809,6 +821,7 @@ h1#page-title {
 			float: right;
 		}
 	}
+	#edit-profile-main-field-bool ,
 	#edit-profile-main-field-publish-file .description{
 		display: none;
 	}

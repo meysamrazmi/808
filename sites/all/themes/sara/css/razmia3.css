@@ -6241,7 +6241,9 @@ input[type="color"]:focus,
 .form-item-panes-payment-payment-method [for="edit-panes-payment-payment-method-zarinpal"]:after {
 	content: "(+ 20% شارژ هدیه به مناسبت جشنواره کتاب)";
 }
-
+.boot-filestyle input[type="file"] {
+	display: none;
+}
 
 
 
