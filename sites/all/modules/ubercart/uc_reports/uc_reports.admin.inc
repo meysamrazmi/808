@@ -533,7 +533,7 @@ function uc_reports_products_custom_form($form, &$form_state, $values) {
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
-
+	//changed by meysam razmi
   $form['search']['start_date'] = array(
     '#type' => 'date',
     '#title' => t('Start date'),
