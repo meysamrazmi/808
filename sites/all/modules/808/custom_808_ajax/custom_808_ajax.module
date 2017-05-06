@@ -16,8 +16,12 @@ function custom_808_ajax_menu() {
     'type' => MENU_CALLBACK,
     'access arguments' => array('access content'),
   );
+  $items['user/edit'] = array(
+    'page callback' => 'custom_redirect1',
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access content'),
+  );
 
-  
   return $items;
 }
 
@@ -78,12 +82,24 @@ function custom_808_ajax_init() {
 }
 
 
-function custom_redirect(){
-  global $user;
-  if($user->uid){
-	header('Location: /user/'. $user->uid .'/money/charge');
-  }else{
-	header('Location: /user');
-  }
+function custom_redirect($param){
+	global $user;
+	if($user->uid){
+		if($param == 'charge'){header('Location: /user/'. $user->uid .'/money/charge');}
+		if($param == 'edit' || $param == 'messages'){
+			header('Location: /user/'. $user->uid .'/'. $param);
+		}
+	}else{
+		header('Location: /user');
+	}
+	die();
+}
+function custom_redirect1(){
+	global $user;
+	if($user->uid){
+		header('Location: /user/'. $user->uid .'/edit');
+	}else{
+		header('Location: /user');
+	}
 	die();
 }
