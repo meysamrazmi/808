@@ -35,24 +35,6 @@
 div#block-views-playlist-block-1{
   padding-bottom: calc(34.35vw + -0.04px);
 }
-div#block-block-45:after {
-    width: 27%;
-    height: 159px;
-}
-#block-block-45 div.tablightext:after {
-    font-size: 28px;
-    line-height: 28px;
-    margin-right: 16px;
-}
-#block-block-45 div.tablightext span {
-    font-size: 17px;
-}
-#block-block-45 div.tablightext {
-    width: 33%;
-}
-#block-block-45:hover div.tablightext:after {
-    margin-right: 20px;
-}
 
 }
 @media (max-width: 979px){
@@ -245,14 +227,6 @@ div#block-views-playlist-block-1{
 .node-product .field-name-product-related .view-content {
   width: 100%;
 }
-div#block-block-45:before {
-  width: 300px;
-  height: 27px;
-  right: 2%;
-}
-div#block-block-45 .content p:first-child {
-  right: 2%;
-}
 
 
 
@@ -281,16 +255,6 @@ div#block-block-45 .content p:first-child {
 .node-product.view-mode-full .add-to-cart .form-actions {
   margin: 0;
 }
-div#block-block-45:after{
-    height: 148px;
-    bottom: -67px;
-}
-div#block-block-45 .content:before {
-    width: 33%;
-}
-div#block-block-45 {
-    background-position-x: 41%;	
-}	
 	
 }
 @media all and (max-width: 768px) {
@@ -792,23 +756,9 @@ display: inline-block;
 #college-links ul li a {
   zoom: 0.8;
 }
-div#block-block-45 .content a{
-	zoom: 0.8;
-    margin-top: 10px;
-}
 .important4 .views-row {
   width: 46%;
   margin: 2%;
-}
-div#block-block-45:after {
-    width: 32%;
-    margin-bottom: -2%;
-}
-div#block-block-45 {
-    background-position-x: 38%;
-}
-div#block-block-45 .content:before {
-    width: 35%;
 }
 .node-type-product-kit div#breadcrumbb, .node-type-product div#breadcrumbb {
   display: none;
@@ -854,17 +804,6 @@ div#uc_Progressbar:before {
   right: 25px;
   left: 55px;
   width: initial;
-}
-#block-block-45 div.tablightext span {
-    font-size: 15px;
-}
-div#block-block-45 .content:before {
-    width: 42%;
-    right: 23%;
-}
-div#block-block-45:after {
-    width: 32%;
-    margin-bottom: -4%;
 }
 .page-pedia .view-display-id-page_3 .view-header a {
     top: 184px;
@@ -1040,35 +979,6 @@ div#edit-populate-wrapper {
   padding: 2% 5%;
   top: -400px;
 }
-div#block-block-45 .content p:first-child {
-  right: 5px;
-}
-div#block-block-45 span.link {
-  left: calc(50% - 70px);
-  left: 10px;
-  bottom: 0;
-  top: initial;
-  display: none;
-}
-div#block-block-45 .main-text {
-  width: 96%;
-  right: 2%;
-  border: solid #ffffff;
-  /* background: rgba(255, 255, 255, 0.4); */
-  border-width: 0 5px;
-  top: 11px;
-  bottom: inherit;
-}
-div#block-block-45 .content:before {
-    width: 47%;
-    right: 14%;
-}
-#block-block-45 div.tablightext {
-    width: 37%;
-}
-div#block-block-45 .content p:first-child {
-  right: calc(50% - 190px);
-}
 .page-shop .pane-views-exp-taxonomy-term-page-1 input#edit-submit-taxonomy-term {
   left: 13px;
   top: 22px;
@@ -1076,16 +986,6 @@ div#block-block-45 .content p:first-child {
 .click-to-open {
   left: 20px;
   bottom: -135px;
-}
-div#block-block-45 {
-    background-position-x: 34%;
-}
-div#block-block-45:after {
-    bottom: -62px;
-    width: 34%;
-}
-div#block-block-45:before {
-  right: calc(50% - 150px);
 }
 .tb-megamenu {
   max-width: 300px;
@@ -1121,16 +1021,6 @@ form.uc-cart-checkout-form {
 }
 .page-shop-landing .view-header span {
   display: none;
-}
-div#block-block-45:after {
-    display:none;
-}
-div#block-block-45 .content:before {
-    width: 55%;
-    right: 10px;
-}
-div#block-block-45 {
-    background-position-x: 33%;
 }
 .page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-widget-edit-mefibs-form-filter-type {
     max-width: 300px;
