@@ -240,7 +240,13 @@ function _linkedin_get_profile_fields($uid, $fields = array()) {
   }
 
   global $user;
-  if ($user->uid == $uid) {
+  /*
+   * we dont want to force people to sign in to their linkedin account to view other profile.
+   * and we dont care about relations between users to check if viewer has proper permission
+   * to see user's linkedin profile,
+   * so we disable the below 'if' statement and show the user linkedin profile to any viewer. :|
+   */
+  if ($user->uid == $uid || $user->uid != $uid) {
     //User is requesting his own profile.
     $tokens = $row;
     $append = '~';
