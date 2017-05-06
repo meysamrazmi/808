@@ -47,7 +47,69 @@
 		& when not (@color = '') {color: @color;}
 	}
 }
-
+//==================
+/*
+ *user login and register and editing section
+ */
+.linkedin-link(){
+	a {
+		width: 280px;
+		padding: 7px;
+		text-align: center;
+		color: #fff;
+		background: #0077b5;
+		border-radius: 2px;
+		margin: 20px auto 0;
+		display: block;
+		font-size: 14px;
+		position: relative;
+		line-height: initial;
+		.before(f33c;'';25px;'');
+		&:before{ .absolute('';'';6px;'';'';9px);}
+	}
+}
+.user-register-login(){
+	label{
+		display: inline-block;
+		line-height: 30px;
+		margin: 0;
+	}
+	.form-item input {
+		float: left;
+		min-width: 250px;
+		width: 30%;
+		clear: both;
+		margin: 0;
+	}
+	.description {
+		padding: 5px 0;
+	}
+}
+#user-login{
+	.item-list {
+		border-top: 1px solid #ddd;
+		margin: 50px auto 20px;
+		width: 100%;
+		text-align: center;
+		max-width: 400px;
+		.linkedin-link;
+	}
+	.user-register-login();
+	input{direction: ltr;}
+}
+#user-register-form {
+	.linkedin.register{
+		#user-login .item-list ;
+		margin: 0 auto;
+		border: none;
+		border-bottom: 1px solid #ddd;
+		padding-bottom: 30px;
+	}
+	.user-register-login();
+}
+#user-profile-form{
+	.user-register-login();
+}
 
 
 /*media elements*/
