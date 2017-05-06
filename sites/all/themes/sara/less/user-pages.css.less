@@ -214,6 +214,9 @@ h1#page-title {
 			color: #999;
 			white-space: nowrap;
 			overflow: hidden;
+		}
+		&.field-type-list-boolean {
+			display: none !important;
 		}		
 	}
 	dl {
@@ -868,6 +871,20 @@ h1#page-title {
 	.user-register-login();
 	#edit-profile-main-field-publish-file .description{
 		display: none;
+	}
+	#edit-profile-main-field-mobile:before,
+	#edit-profile-main-field-skills:before,
+	#edit-profile-main-field-about-me:before,
+	#edit-profile-main-field-address:before,
+	#edit-profile-main-field-job:before,
+	#edit-profile-main-field-university:before,
+	#edit-profile-main-field-education-field:before,
+	#edit-profile-main-field-education-degree:before,
+	#edit-profile-main-field-full-name:before {
+		content: "*";
+		position: absolute;
+		margin: 7px -10px 0 0;
+		color: #2196F3;
 	}
 }
 .password-strength {
