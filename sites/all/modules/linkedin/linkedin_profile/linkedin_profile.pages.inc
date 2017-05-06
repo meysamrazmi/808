@@ -8,11 +8,6 @@
  * Implementation of hook_linkedin_admin_page()
  * Add our settings to the main Linkedin settings page.
  */
-
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
- */
 function linkedin_profile_linkedin_admin_page() {
   $form = array();
 
@@ -95,11 +90,6 @@ function linkedin_profile_linkedin_admin_page() {
  * Additionnal submit for Linkedin admin page.
  * Rebuild menu router to avoid problems when switching display from/to tab
  */
-
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
- */
 function linkedin_profile_admin_submit(&$form_state) {
   menu_rebuild();
 }
@@ -107,11 +97,6 @@ function linkedin_profile_admin_submit(&$form_state) {
 /*
  * Implementation of hook_linkedin_user_settings_page
  * Add our settings to user/%user/edit/linkedin
- */
-
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
  */
 function linkedin_profile_linkedin_user_settings_page($account) {
   $elems = array();
@@ -128,11 +113,6 @@ function linkedin_profile_linkedin_user_settings_page($account) {
 
 /*
  * Page callback for user profile linkedin tab
- */
-
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
  */
 function linkedin_profile_display($account) {
   $profile = $account->linkedin;

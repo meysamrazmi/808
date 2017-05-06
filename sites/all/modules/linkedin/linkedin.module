@@ -23,11 +23,6 @@ function linkedin_init() {
 /*
  * Implements of hook_menu
  */
-
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
- */
 function linkedin_menu() {
 
   $items = array();
@@ -70,11 +65,6 @@ function linkedin_menu() {
 /*
  * Custom access callback for linkedin/token/%user
  */
-
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
- */
 function linkedin_token_access($account) {
   global $user;
   if ($account->uid > 0 && $account->uid == $user->uid) {
@@ -90,10 +80,6 @@ function linkedin_token_access($account) {
  * Custom access callback for user/%user/edit/linkedin
  */
 
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
- */
 function linkedin_user_access($account) {
   global $user;
   if ($user->uid == $account->uid) {
@@ -136,11 +122,6 @@ function linkedin_user_access($account) {
  * $uid : the uid of the user we want to access infos
  * $fields : the fields we want to retrieve, as an array (see http://developer.linkedin.com/docs/DOC-1061 for complete list).
  */
-
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
- */
 function linkedin_get_profile_fields($uid, $fields = array()) {
   module_load_include('inc', 'linkedin');
   return _linkedin_get_profile_fields($uid, $fields);
@@ -151,11 +132,6 @@ function linkedin_get_profile_fields($uid, $fields = array()) {
  * @params
  * $url : full request url to a linkedin API ressource (see API doc for syntax)
  * $tokens : the user tokens, as an array containing keys 'token_key' and 'token_secret' with their value
- */
-
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
  */
 function linkedin_get_fields($url, $tokens) {
   module_load_include('inc', 'linkedin');
@@ -168,11 +144,6 @@ function linkedin_get_fields($url, $tokens) {
  * $uid : the uid of the user we want to access infos
  * $api : the api we want to use to update. For now, only Share API is available
  * $body : The content to be sent.
- */
-
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
  */
 function linkedin_put_profile_field($uid, $body, $api = 'shares') {
   module_load_include('inc', 'linkedin');

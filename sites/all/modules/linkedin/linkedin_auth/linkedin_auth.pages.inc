@@ -7,11 +7,6 @@
 /* Implementation of hook_linkedin_admin_page
  * Add our settings to the main Linkedin settings page
  */
-
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
- */
 function linkedin_auth_linkedin_admin_page() {
   $form = array();
   $form['linkedin_auth'] = array(

@@ -7,11 +7,6 @@
 /*
  * Callback for admin settings at admin/settings/linkedin
  */
-
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
- */
 function linkedin_admin($form, &$form_state) {
   //LinkedIn API credentials
   global $base_url;
@@ -62,11 +57,6 @@ function linkedin_admin($form, &$form_state) {
 /*
  * Callback for linkedin related user settings at user/%/edit/linkedin
  */
-
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
- */
 function linkedin_user_settings($account) {
   $output = '';
   $check = linkedin_get_profile_fields($account->uid, array('first-name', 'last-name', 'public-profile-url'), TRUE);
@@ -92,11 +82,6 @@ function linkedin_user_settings($account) {
 /*
  * Take users to linkedin auth page
  */
-
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
- */
 function linkedin_user_enable_form($form, $form_state, $uid) {
   $form = array();
   $form['#user'] = $uid;
@@ -112,11 +97,6 @@ function linkedin_user_enable_form($form, $form_state, $uid) {
 
 /*
  * form for individual user settings
- */
-
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
  */
 function linkedin_user_settings_form($form, &$form_state, $account) {
   // Just fetch forms from submodules.
@@ -139,11 +119,6 @@ function linkedin_user_settings_form($form, &$form_state, $account) {
 
   return $form;
 }
-
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
- */
 function linkedin_user_settings_form_submit($form, &$form_state) {
   $op = $form_state['values']['op'];
 

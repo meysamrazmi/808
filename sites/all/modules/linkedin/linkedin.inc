@@ -9,11 +9,6 @@
  * Let the user authorize us to gain access to his profile, and store credentials.
  * Also used for login.
  */
-
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
- */
 function linkedin_access_token($account, $is_new = FALSE) {
   //Get sure library is loaded before doing anything.
   linkedin_init();
@@ -224,11 +219,6 @@ function linkedin_access_token($account, $is_new = FALSE) {
  * $uid : the uid of the user we want to access infos
  * $fields : the fields we want to retrieve, as an array (see http://developer.linkedin.com/docs/DOC-1061 for complete list).
  */
-
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
- */
 function _linkedin_get_profile_fields($uid, $fields = array()) {
   //Get sure library is loaded before doing anything.
   linkedin_init();
@@ -305,11 +295,6 @@ function _linkedin_get_profile_fields($uid, $fields = array()) {
  * $url : full request url to a linkedin API ressource (see API doc for syntax)
  * $tokens : the user tokens, as an array containing keys 'token_key' and 'token_secret' with their value
  */
-
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
- */
 function _linkedin_get_fields($url, $tokens) {
   //Get sure library is loaded before doing anything.
   linkedin_init();
@@ -341,11 +326,6 @@ function _linkedin_get_fields($url, $tokens) {
  * $uid : the uid of the user we want to access infos
  * $api : the api we want to use to update. For now, only Share API is available
  * $body : The content to be sent.
- */
-
-/**
- * @todo Please document this function.
- * @see http://drupal.org/node/1354
  */
 function _linkedin_put_profile_field($uid, $body, $api = 'shares') {
   //Get sure library is loaded before doing anything.
