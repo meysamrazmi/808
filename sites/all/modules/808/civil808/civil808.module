@@ -123,6 +123,15 @@ function civil808_menu() {
 		'type' => MENU_LOCAL_TASK,
 		'weight' => 1,
 		);
+	$items['admin/message/%/edit'] = array(
+		'title' => t('edit message'),
+		'page callback' => 'edit_messages',
+		'access arguments' => array('bypass node access'),
+		'page arguments' => array(2),
+		'file' => 'admin.inc',
+		'type' => MENU_LOCAL_TASK,
+		'weight' => 1,
+		);
 	$items['education/%/register'] = array(
 		'title' => 'ثبت نام',
 		'page callback' => 'drupal_get_form',
