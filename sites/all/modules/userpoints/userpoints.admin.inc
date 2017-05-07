@@ -299,7 +299,7 @@ function userpoints_admin_txn_validate($form, &$form_state) {
   if ((int)$form_state['values']['points'] == 0) {
     form_set_error('points', t('Amount of !points must be a positive or negative number.', userpoints_translation()));
   }
-
+  $form_state['values']['time_stamp'] = 'now';
   if (!strtotime($form_state['values']['time_stamp'])) {
     form_set_error('time_stamp', t('The provided timestamp is not a valid date.'));
   }
