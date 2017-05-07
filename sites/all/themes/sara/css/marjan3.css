@@ -1447,6 +1447,7 @@ form#user-pass .form-item input{
 }
 #block-panels-mini-user-panel #user-login-form input.form-text {
   width: 100% !important;
+  direction:ltr;
 }
 div#toboggan-login-link-container {
   display: none;

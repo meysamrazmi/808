@@ -644,6 +644,7 @@ h1#page-title {
 				border: 0;
 				padding: 10px 15px;
 				border-bottom: 1px solid #eee;
+				white-space: nowrap;
 				&.active {
 					border-right: 3px solid @mat-red;
 				}
@@ -913,6 +914,9 @@ p.description.profile-percent {
 	font-family: fanum;
 	a {
 		margin-right: 30px;
+		&:last-child {
+			display: none;
+		}
 	}
 }
 .linkedin-profile{

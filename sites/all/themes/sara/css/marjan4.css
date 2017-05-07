@@ -2454,6 +2454,7 @@ div#block-block-45 a.titr{
 		left: 5px;
 		right: initial;
 	}
+}
 @media (max-width: 500px ){
 	div#block-block-45 a.titr {
 		font-size: 18px;
@@ -2482,10 +2483,19 @@ div#block-block-45 a.titr{
 	}
 }
 
+/*------------------end of block 45 - بنر-تبلیغات-پایین-صفحه----------------------*/
 
-
-
-
+#privatemsg-new .tazakkor{
+	background: #f9f9f9;
+    padding: 10px;
+    display: block;
+    border-right: 3px solid #F44336;
+    margin: 7px 0 0 0;
+}
+#privatemsg-new h2.privatemsg-reply,
+#privatemsg-new .field-name-field-files legend{
+	display:none;
+}
 
 
 

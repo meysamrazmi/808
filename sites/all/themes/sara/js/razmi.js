@@ -948,8 +948,9 @@ $('.node-teaser.node-college .field-name-field-course-step .field-item').each(fu
 			$(this).addClass("bargozari");
 			break;
 	}
-	
 });
+
+$('#privatemsg-new .text-format-wrapper').append('<span class="tazakkor">طبق قوانین سایت، فرستادن شماره تلفن و ایمیل ممنوع می باشد و در صورت مشاهده، پیفام توسط مدیریت ویرایش می شود.</span>');
 
 }); /*===> end of document.ready-function*/
 /*#################################################*/

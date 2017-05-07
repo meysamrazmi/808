@@ -1652,8 +1652,8 @@ fieldset#edit-filter div.form-actions input {
   width: auto;
   display: inline-block;
   position: relative;
-  min-width: 130px;
-  max-width: calc(100% - 250px);
+  min-width: 210px;
+  max-width: 800px;
 }
 .others .privatemsg-message-column {
   float: left;
@@ -1683,8 +1683,8 @@ ul.privatemsg-message-actions {
   float: left;
 }
 .privatemsg-message {
-  margin: 10px 2%;
-  width: 96%;
+  width: 100%;
+  max-width:inherit;
 }
 .privatemsg-message:hover ul.privatemsg-message-actions a {
   opacity: 1;
@@ -1725,6 +1725,7 @@ div#privatemsg-list-form .container-inline {
 }
 .privatemsg-message-body {
   font-size: 12px;
+  white-space: pre-line;
 }
 div#privatemsg-list-form .container-inline .form-submit {
   padding: 5px 20px;
@@ -5509,7 +5510,7 @@ div#block-views-exp-glrnew-page-2 div#edit-populate-wrapper >div>div {
   overflow: hidden;
   position: relative;
 }
-#pbd-panel .namayandegi {
+.namayandegi {
   padding: 50px 50px;
   background: #fff;
   margin: 50px 0;
@@ -5517,7 +5518,11 @@ div#block-views-exp-glrnew-page-2 div#edit-populate-wrapper >div>div {
   position: relative;
   overflow: hidden;
 }
-#pbd-panel .namayandegi:before {
+.front .namayandegi{
+	padding: 75px 8%;
+	margin-bottom: 0;
+}
+.namayandegi:before {
   content: "SEiSMOSOFT";
   color: #999;
   font-size: 160px;
@@ -5530,7 +5535,7 @@ div#block-views-exp-glrnew-page-2 div#edit-populate-wrapper >div>div {
   line-height: 0em;
   left: 40px;
 }
-#pbd-panel .namayandegi h2:before {
+.namayandegi h2:before {
   content: "";
   position: absolute;
   width: 130px;
@@ -5540,7 +5545,7 @@ div#block-views-exp-glrnew-page-2 div#edit-populate-wrapper >div>div {
   right: 0px;
   box-shadow: rgba(136, 58, 183, 0.15) 0px 1px 6px, rgba(136, 58, 183, 0.157) 0px 1px 4px;
 }
-#pbd-panel .namayandegi h2 {
+.namayandegi h2 {
   position: relative;
 }
 #pbd-panel img.main-seismo {
@@ -5549,30 +5554,41 @@ div#block-views-exp-glrnew-page-2 div#edit-populate-wrapper >div>div {
   width: 250px;
   margin: -50px 20px 0;
 }
-#pbd-panel .namayandegi .pane-content div {
+.namayandegi .pane-content div {
   margin: 40px 50px 0px 0;
   max-width: 600px;
 }
-#pbd-panel .namayandegi .pane-content div p {
+.front .namayandegi .pane-content div {
+    max-width: 695px;
+}
+.front .namayandegi .pane-content > p > a > img {
+	margin-top: -60px;
+	margin-right:10px;
+}
+.namayandegi .pane-content div p {
   line-height: 2.4em !important;
 }
-#pbd-panel div.link-to {
+#pbd-panel div.link-to ,
+.namayandegi div.link-to {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 0 !important;
 }
-#pbd-panel div.link-to img {
+#pbd-panel div.link-to img ,
+.namayandegi div.link-to img {
   background: #fff;
   position: relative;
   padding: 6px;
   box-shadow: 0 2px 2px #edeef0;
   transition: all 0.2s;
 }
-#pbd-panel div.link-to img:hover {
+#pbd-panel div.link-to img:hover ,
+.namayandegi div.link-to img:hover {
   box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
 }
-#pbd-panel div.link-to p:first-child:before {
+#pbd-panel div.link-to p:first-child:before ,
+.namayandegi div.link-to p:first-child:before {
   content: "\f04f";
   font-family: mat;
   color: #673AB7;
@@ -5580,7 +5596,7 @@ div#block-views-exp-glrnew-page-2 div#edit-populate-wrapper >div>div {
   font-size: 20px;
   vertical-align: middle;
 }
-#pbd-panel .namayandegi .pane-content:before {
+.namayandegi .pane-content:before {
   content: "";
   width: 1px;
   height: calc(100% + 30px);
@@ -5589,7 +5605,7 @@ div#block-views-exp-glrnew-page-2 div#edit-populate-wrapper >div>div {
   top: -30px;
   right: 10px;
 }
-#pbd-panel .namayandegi .pane-content:after {
+.namayandegi .pane-content:after {
   content: "";
   width: 300px;
   height: 3px;
@@ -5598,7 +5614,7 @@ div#block-views-exp-glrnew-page-2 div#edit-populate-wrapper >div>div {
   bottom: 0;
   right: 10px;
 }
-#pbd-panel .namayandegi .pane-content {
+.namayandegi .pane-content {
   position: relative;
 }
 #pbd-panel .introduction {

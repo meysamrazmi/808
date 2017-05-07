@@ -219,6 +219,9 @@ div#edit-field-course-step-value-wrapper label {
 #college-links ul li.forth-li a{
 	background-color: #cc8;
 }
+#college-links ul li.fifth-li a{
+	background-color: #FFCA28;
+}
 #college-links ul li a{
     position: relative;
     width: 152px;
@@ -250,20 +253,19 @@ div#edit-field-course-step-value-wrapper label {
 }
 #college-links ul li.first-li a span{
 	margin-right: 15px;
-	text-align: center;
 	width: 120px;
 }
 #college-links ul li.second-li a span{
 	margin-right: 27px;
-	text-align: center;
 	width: 100px;
 }
 #college-links ul li.third-li a span{
 	padding-right: 0;
+}
+#college-links ul li a span{
 	text-align: center;
 }
 #college-links ul li.forth-li a span {
-	text-align: center;
 	padding-right: 27px;
 }
 #college-links .content{
@@ -695,6 +697,7 @@ select#edit-field-course-undertype-tid {
 	height: 100%;
 	font-size: 0px;
 	width: 125px;
+	background-color: #fbfbfb;
 }
 .page-civil .views-slideshow-controls-text-previous a{
 	background-image: url(/sites/all/themes/sara/images/arrows.png);
@@ -702,7 +705,7 @@ select#edit-field-course-undertype-tid {
 	background-position: -25px;
 	height: 40px;
 	width: 25px;
-    margin-top: 100%;
+    margin-top: 117%;
 	display: inline-block;
 }
 .page-civil div#views_slideshow_cycle_teaser_section_conference_news-block_3 {
@@ -721,6 +724,7 @@ select#edit-field-course-undertype-tid {
 	height: 100%;
 	font-size: 0px;
 	width: 125px;
+	background-color: #fbfbfb;
 }
 .page-civil .view-conference-news {
 	background: #fff;
@@ -738,7 +742,7 @@ select#edit-field-course-undertype-tid {
 	background-position: 0;
 	height: 40px;
 	width: 25px;
-    margin-top: 100%;
+    margin-top: 117%;
 	display: inline-block;
 }
 .page-civil .view-conference-news a,
@@ -749,9 +753,10 @@ select#edit-field-course-undertype-tid {
 	color:#00accc!important;
 }
 .page-civil .view-conference-news .view-content{
-	width:83%;
-	margin:auto;
-	text-align:center;
+    width: 85%;
+    margin: auto;
+    text-align: center;
+    background-color: #fbfbfb;
 }
 .page-civil .pane-conference-news .pane-title{
 	display:none;
@@ -760,7 +765,7 @@ select#edit-field-course-undertype-tid {
 	margin-bottom: 0px;
 	padding: 40px 20px 30px 20px;
 	text-align: center;
-    background: #f5f5f5;
+    background: #fbfbfb;
 }
 .page-civil .pane-conference-news .view-header p:nth-child(1) a {
 	margin-bottom: 20px !important;
