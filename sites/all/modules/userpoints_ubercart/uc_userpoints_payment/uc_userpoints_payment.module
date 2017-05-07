@@ -59,13 +59,13 @@ function uc_userpoints_payment_userpoints($op, $data = NULL) {
           '#default_value' => variable_get(USERPOINTS_PAY_DISPLAY, 1),
           '#options' => array(t('No'), t('Yes')),
         );
-        $form[$group][USERPOINTS_PAY_CATEGORY] = array(
-          '#type' => 'select',
-          '#title' => t('Payment Category'),
-          '#default_value' => variable_get(USERPOINTS_PAY_CATEGORY, NULL),
-          '#options' => userpoints_get_categories(),
-          '#description' => t('Select which category of !points to use when payment is made.', $userpoints_translation),
-        );
+        // $form[$group][USERPOINTS_PAY_CATEGORY] = array(
+          // '#type' => 'select',
+          // '#title' => t('Payment Category'),
+          // '#default_value' => variable_get(USERPOINTS_PAY_CATEGORY, NULL),
+          // '#options' => userpoints_get_categories(),
+          // '#description' => t('Select which category of !points to use when payment is made.', $userpoints_translation),
+        // );
         $form[$group]['renaming'] = array(
           '#type' => 'fieldset',
           '#collapsible' => TRUE,
@@ -207,7 +207,7 @@ function theme_uc_userpoints_payment_points($variables) {
  */
 function uc_userpoints_payment_uc_payment_method() {
   global $user;
-  $amount = userpoints_get_current_points($user->uid, variable_get(USERPOINTS_PAY_CATEGORY, NULL));
+  $amount = userpoints_get_current_points($user->uid,'all');
   if ($amount > 0 || request_uri() != '/cart/checkout') {
     $title = t('!Points', uc_userpoints_translation());
     if (variable_get(USERPOINTS_PAY_DISPLAY, 1)) {
@@ -300,7 +300,7 @@ function uc_payment_method_points($op, &$arg1) {
       return;
       break;
     case 'cart-process':
-      $user_points = userpoints_get_current_points($arg1->uid, variable_get(USERPOINTS_PAY_CATEGORY, NULL));
+      $user_points = userpoints_get_current_points($arg1->uid,'all');
       $userpoints_uc_payment = variable_get(USERPOINTS_UC_PAYMENT, 1);
       if (module_exists('uc_multicurrencies_store')) {
         $target = _uc_multicurrencies_store_get_target_currency();
@@ -361,10 +361,10 @@ function uc_userpoints_payment_payment($order) {
     exit();
   }
   if ($order->payment_method == 'points') {
-    $user_points = userpoints_get_current_points($arg1->uid, variable_get(USERPOINTS_PAY_CATEGORY, NULL));
+    $user_points = userpoints_get_current_points($arg1->uid,'all'); 
 	if($user_points >= $points){
 		$params = array (
-		'tid' => variable_get(USERPOINTS_PAY_CATEGORY, NULL),
+		// 'tid' => variable_get(USERPOINTS_PAY_CATEGORY, NULL),
 		'uid' => $order->uid,
 		'points' => -$points,
 		'operation' => 'purchase',
@@ -409,7 +409,7 @@ function uc_userpoints_payment_refund($order) {
       ->condition('uplog_id', $pointinfo->uplog_id)
       ->execute();
     $params = array (
-      'tid' => variable_get('USERPOINTS_PAY_CATEGORY', NULL),
+      // 'tid' => variable_get('USERPOINTS_PAY_CATEGORY', NULL),
       'uid' => $curUserId,
       'points' => $points,
       'operation' => 'refund',
