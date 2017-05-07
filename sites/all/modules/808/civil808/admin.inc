@@ -274,55 +274,50 @@ function civil808_page_admin_people_export_submit($from, &$form_state) {
 }
 
 function administer_messages(){
-	if(isset($_GET['sort']) && isset($_GET['order'])) {
-		if($_GET['sort'] == 'asc')
-			$sort = ' ASC';
-		else
-			$sort = ' DESC';
-	
-		switch($_GET['order']) {
-			case 'Date':
-				$order = 'm.timestamp';
-				break;
-			default:
-				$order = 'm.timestamp';
-		}
-	}
-	else {
-		$sort = ' DESC';
-		$order = 'm.timestamp';
-	}
-	
-	$user = user_load(60);
-	$query = _privatemsg_assemble_query('list', $user, 'inbox');
-	foreach ($query->execute() as $thread) {
-		// $thread->thread_id;
-	}
-
-	// $q = db_select('pm_message','m')->extend('PagerDefault')->extend('TableSort')->limit(50);
-	// $q->join('pm_index', 'thread', 'thread.mid = m.mid');
-	// $q->fields('thread', array('thread_id', 'recipient'));
-	// $q->fields('m', array('author', 'subject', 'body', 'timestamp'));
-	// $rows = $q->orderBy($order, $sort)->execute();
-	$rows = db_query("SELECT author, subject, body, timestamp FROM {pm_message} m WHERE m.mid IN (SELECT mid FROM {pm_index} th WHERE NOT th.thread_id IN (SELECT thread_id FROM {pm_index} th WHERE th.recipient IN (:uid))) ORDER BY ". $order . $sort, array(':uid' => array(60, 7072)))->fetchAll();
-	
+	$q = db_select('pm_message','pm')->extend('PagerDefault')->extend('TableSort')->limit(50);
+	$q->join('pm_index', 'thread', 'thread.mid = pm.mid AND pm.author != thread.recipient');
+	$q->fields('thread', array('thread_id', 'recipient'));
+	$q->fields('pm', array('author', 'subject', 'body', 'timestamp', 'mid'));
+	$rows = $q->orderBy('pm.timestamp', 'DESC')->execute();
+	$count = $rows->rowCount();
 	$tabale_header = array(
-		t('User'),
+		'#',
+		t('message id'),
+		t('Sender'),
+		'reciver',
+		t('Receiver'),
 		t('Subject'),
 		t('Message'),
-		array('data' => t('Date'), 'field' => 'timestamp', 'sql_field' => '{pm_message}.timestamp')
+		t('Date'),
+		'threar-id'
 	);
 	$table_rows = array();
+	$i = 0;
 	foreach ($rows as $r) {
 		$user = user_load($r->author);
-		
+		$recipient = user_load($r->recipient);
+		if($i != 0 && $table_rows[$i-1][8] == $r->thread_id && $table_rows[$i-1][1] == $r->mid){
+			$table_rows[$i-1][3] .= '<br>'. $r->recipient;
+			$table_rows[$i-1][4] .= '<br>'. l($recipient->name, 'user/'.$recipient->uid);
+			continue;
+		}
 		$table_rows[] = array(
+			$count--,
+			$r->mid,
 			l($user->name, 'user/'.$user->uid),
-			// l($r->subject, 'messages/view/'.$r->thread_id),
-			$r->subject,
+			$r->recipient,
+			l($recipient->name, 'user/'.$recipient->uid),
+			l($r->subject,'/messages/view/'. $r->thread_id),
 			nl2br($r->body),
-			format_date($r->timestamp)
+			format_date($r->timestamp),
+			$r->thread_id,
 		);
+		$i++;
 	}
 	return theme('table', array('header' => $tabale_header, 'rows' => $table_rows)).theme('pager');	
 }
+
+function edit_messages(){
+	
+}
+
