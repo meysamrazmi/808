@@ -765,6 +765,9 @@ select#edit-field-course-undertype-tid {
 	margin-bottom: 0px;
 	padding: 40px 20px 30px 20px;
 	text-align: center;
+    background: #f5f5f5;
+}
+.page-civil.front .pane-conference-news .view-header{
     background: #fbfbfb;
 }
 .page-civil .pane-conference-news .view-header p:nth-child(1) a {

@@ -912,4 +912,11 @@ div#order-pane-webform_nid3403, div#webform-client-form-3403 {
 div#order-pane-quotes, #edit-field-text {
   clear: both;
 }
-
+.page-admin-content-messages #block-system-main table th:nth-child(2), 
+.page-admin-content-messages #block-system-main table td:nth-child(2), 
+.page-admin-content-messages #block-system-main table th:nth-child(9), 
+.page-admin-content-messages #block-system-main table td:nth-child(9), 
+.page-admin-content-messages #block-system-main table th:nth-child(4), 
+.page-admin-content-messages #block-system-main table td:nth-child(4){
+	display: none;
+}

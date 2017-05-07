@@ -1094,12 +1094,13 @@ div#unavailable ,
 }
 #block-panels-mini-user-panel .pane-block-42{
 	background: #5F195D;
-	height: 160px;
+	height: 185px;
 	width: 100%;
 	margin: 0px;
 	padding: 0px;
 	color: white;
 	line-height: 20px;
+	position: relative;
 }
 #useroverlay {
 	position: fixed;
@@ -1158,6 +1159,23 @@ div#unavailable ,
 	font-weight: bold;
 	transition: all 0.2s;
 	box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
+}
+.pane-block-42 .user_turntovip a{
+    display: block;
+    position: absolute;
+    right: 0;
+    left: 0;
+    background-color: #eee;
+    padding: 10px 0;
+    text-align: center;
+    bottom: 0;
+    background-image: url(../images/back.svg);
+    /* background: linear-gradient(135deg,#f949f4 0%,#8e00f9 100%),url(../images/back.svg?ver=1.0.3); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #000000;
+    font-size: 15px;
+    /* border-bottom: 1px solid #5f195d; */
 }
 #block-panels-mini-user-panel .pane-uc-cart{
 	border-top:1px solid rgba(95, 25, 93, 0.5);
@@ -1260,7 +1278,9 @@ ul.sidebar_menu_user li.orders a:before {
     font-family: aw;
 }
 ul.sidebar_menu_user li.my-courses a:before {
-    content: '\e233';
+    /* content: '\e233'; */
+	content: "\f007";
+    font-family: aw;
 }
 ul.sidebar_menu_user li.my-nodes a:before {
     content: '\f02d';

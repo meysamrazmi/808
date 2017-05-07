@@ -2496,7 +2496,9 @@ div#block-block-45 a.titr{
 #privatemsg-new .field-name-field-files legend{
 	display:none;
 }
-
+#block-views-online-users-block{
+	position:relative;
+}
 
 
 
