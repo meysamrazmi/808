@@ -83,7 +83,7 @@ function uc_userpoints_discount_userpoints($op, $points = 0, $uid = 0, $event = 
  */
 function uc_userpoints_discount_uc_checkout_pane() {
   global $user;
-  $curUserPoints = intval(userpoints_get_current_points($user->uid, $tid = NULL));
+  $curUserPoints = intval(userpoints_get_current_points($user->uid));
   $discMethod = variable_get(USERPOINTS_DISCOUNT, 1);
   $userpoints_translation = userpoints_translation();
   if ($discMethod != 0 && ($curUserPoints > 0 || request_uri() != '/cart/checkout')) {
@@ -105,7 +105,7 @@ function uc_checkout_pane_uc_userpoints_discount($op, $order, $form = NULL, &$fo
   global $user;
   switch ($op) {
     case 'view':
-      $curUserPoints = intval(userpoints_get_current_points($user->uid, NULL));
+      $curUserPoints = intval(userpoints_get_current_points($user->uid));
       $userpoints_uc_disc = variable_get(USERPOINTS_UC_DISC, 1);
       if (module_exists('uc_multicurrencies_store')) {
         $target = _uc_multicurrencies_store_get_target_currency();
@@ -222,7 +222,7 @@ function uc_userpoints_discount_uc_order($op, &$arg1, $arg2) {
         $additional = $arg1->quote['rate'];
       }
       $orderamt = uc_userpoints_discount_discountable_total() + $additional;
-      $curUserPoints = intval(userpoints_get_current_points($order->uid, NULL));
+      $curUserPoints = intval(userpoints_get_current_points($order->uid));
       $maxdisc = ($curUserPoints / intval($userpoints_uc_disc));
       #discount value
       $ptamt = 0;
