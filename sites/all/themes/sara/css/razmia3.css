@@ -1726,6 +1726,7 @@ div#privatemsg-list-form .container-inline {
 .privatemsg-message-body {
   font-size: 12px;
   white-space: pre-line;
+  margin-top:-15px;
 }
 div#privatemsg-list-form .container-inline .form-submit {
   padding: 5px 20px;
@@ -4796,12 +4797,10 @@ div#block-block-26 .content a:after {
 .region .region-inside {
   padding: 0;
 }
-.panel-pane.user-sale-report .pager,
-.view-bought-nodes .pager {
+.panel-pane.user-sale-report .pager{
   margin: 14px 0 0 0 !important;
 }
-.panel-pane.user-sale-report .item-list,
-.view-bought-nodes .item-list {
+.panel-pane.user-sale-report .item-list{
   position: absolute;
   left: 130px;
 }
@@ -4815,28 +4814,24 @@ div#block-block-26 .content a:after {
 .view-bought-nodes .pager .pager-ellipsis {
   display: none;
 }
-.panel-pane.user-sale-report .pager a ,
-.view-bought-nodes .pager a {
+.panel-pane.user-sale-report .pager a{
   background: transparent;
   box-shadow: none;
   font-size: 0;
   padding: 0 2px;
   line-height: initial;
 }
-.panel-pane.user-sale-report .pager-next a:before,
-.view-bought-nodes .pager-next a:before {
+.panel-pane.user-sale-report .pager-next a:before{
   content: "\F141";
   font-family: mat;
   font-size: 26px;
 }
-.panel-pane.user-sale-report .pager-previous a:before ,
-.view-bought-nodes .pager-previous a:before {
+.panel-pane.user-sale-report .pager-previous a:before{
   content: "\F142";
   font-family: mat;
   font-size: 26px;
 }
-.panel-pane.user-sale-report .item-list,
-.page-user-bought-nodes .view-bought-nodes .item-list {
+.panel-pane.user-sale-report .item-list{
   position: relative; 
   left: 0;
   height: 56px;
@@ -4844,12 +4839,10 @@ div#block-block-26 .content a:after {
   text-align: left;
   padding-left: 14px;
 }
-.panel-pane.user-sale-report .pager, 
-.page-user-bought-nodes .view-bought-nodes .pager {
+.panel-pane.user-sale-report .pager{
   width: inherit;
 }
-.panel-pane.user-sale-report li.pager-current, 
-.view-bought-nodes li.pager-current {
+.panel-pane.user-sale-report li.pager-current{
   background: transparent;
   color: #666;
   border: none;
@@ -4858,8 +4851,7 @@ div#block-block-26 .content a:after {
   line-height: 2.5em;
   box-shadow: none;
 }
-.panel-pane.user-sale-report .pager a:hover, 
-.view-bought-nodes .pager a:hover {
+.panel-pane.user-sale-report .pager a:hover{
   background: #f5f5f5;
 }
 .paper {
@@ -4867,8 +4859,8 @@ div#block-block-26 .content a:after {
   padding: 15px;
   box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
 }
-div#quicktabs-user_contents .ui-tabs-panel .views-field-title a {
-  color: #666;
+#quicktabs-user_contents .ui-tabs-panel .views-field-title a {
+  color: #666 !important;
   padding: 19px 13px 19px;
   display: block;
   height: 86px;
@@ -4876,7 +4868,7 @@ div#quicktabs-user_contents .ui-tabs-panel .views-field-title a {
   font-size: 1em;
   position: relative;
 }
-div#quicktabs-user_contents .ui-tabs-panel .views-field-title a:after {
+#quicktabs-user_contents .ui-tabs-panel .views-field-title a:after {
   content: "";
   position: absolute;
   height: 20px;
@@ -4885,15 +4877,31 @@ div#quicktabs-user_contents .ui-tabs-panel .views-field-title a:after {
   background: #fbfbfb;
   bottom: 0;
 }
-div#quicktabs-user_contents .ui-tabs-panel img {
+#quicktabs-user_contents .ui-tabs-panel img {
   width: 100%;
   margin-bottom: -10px;
 }
-div#quicktabs-user_contents .ui-tabs-panel {
+.page-user .quicktabs-ui-wrapper .view-uc-orders-user tbody tr td{
+	background-color:white;
+}
+.page-user .quicktabs-ui-wrapper .ui-tabs-panel {
   padding: 0;
   position: relative;
 }
-div#quicktabs-user_contents {
+.pane-quicktabs-user-all-boughts .pane-title:before {
+    content: "\f135";
+    font-family: mat;
+    font-size: 30px;
+    color: #3f51b5;
+}
+#quicktabs-user_all_boughts .ui-tabs-nav {
+  margin-bottom:0px;
+}
+#quicktabs-user_all_boughts thead tr th {
+    border-bottom: 1px solid rgba(63, 81, 181, 0.3) !important;
+    background: #f1f1f1;
+}
+.page-user .quicktabs-ui-wrapper {
   background: #fff;
   margin-bottom: 50px;
   border: none;
@@ -4902,20 +4910,20 @@ div#quicktabs-user_contents {
 .ui-widget {
   font-size: 1em;
 }
-div#quicktabs-user_contents .node-product.node-teaser {
+#quicktabs-user_contents .node-product.node-teaser {
   width: 100%;
 }
-div#quicktabs-user_contents .node-product.node-teaser .field-items {
+#quicktabs-user_contents .node-product.node-teaser .field-items {
   float: none;
   width: inherit;
 }
-#quicktabs-user_contents .ui-tabs-nav {
+.page-user .quicktabs-ui-wrapper .ui-tabs-nav {
   display: flex;
   margin-bottom: 20px;
   position: relative;
   padding: 0;
 }
-div#quicktabs-user_contents .ui-tabs-nav li {
+.page-user .quicktabs-ui-wrapper .ui-tabs-nav li {
   width: 50%;
   float: right;
   margin: 0;
@@ -4927,8 +4935,8 @@ div#quicktabs-user_contents .ui-tabs-nav li {
   display: inline-block;
   position: relative;
 }
-div#quicktabs-user_contents .ui-tabs-nav li a {
-  color: #000;
+.page-user .quicktabs-ui-wrapper .ui-tabs-nav li a {
+  color: #000 !important;
   opacity: 0.5;
   float: none;
   display: flex;
@@ -4938,11 +4946,11 @@ div#quicktabs-user_contents .ui-tabs-nav li a {
   font-size: 1.2em;
   transition: all 0.3s ease;
 }
-div#quicktabs-user_contents .ui-tabs-nav li.ui-state-active a {
+.page-user .quicktabs-ui-wrapper .ui-tabs-nav li.ui-state-active a {
   opacity: 1;
   color: #AA00FF !important;
 }
-div#quicktabs-user_contents .ui-tabs-nav *:focus {
+.page-user .quicktabs-ui-wrapper .ui-tabs-nav *:focus {
   outline: none;
 }
 span.active-bar {
@@ -4953,7 +4961,7 @@ span.active-bar {
   z-index: 1;
   transition: all 1s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
 }
-div#quicktabs-user_contents .ui-tabs-panel:after {
+.page-user .quicktabs-ui-wrapper .ui-tabs-panel:after {
   content: "";
   position: absolute;
   width: 100%;
@@ -4965,10 +4973,10 @@ div#quicktabs-user_contents .ui-tabs-panel:after {
   transition: all 0.3s ease;
   display: none
 }
-div#quicktabs-user_contents .ui-tabs-panel.started:after {
+.page-user .quicktabs-ui-wrapper .ui-tabs-panel.started:after {
   display: block;
 }
-div#quicktabs-user_contents .ui-tabs-panel.action:after {
+.page-user .quicktabs-ui-wrapper .ui-tabs-panel.action:after {
   opacity: 1;
 }
 .node-product-kit.vijeh:before,

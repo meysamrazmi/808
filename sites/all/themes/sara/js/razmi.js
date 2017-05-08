@@ -677,29 +677,31 @@ $('th.active img').each(function(){
 $('.uc-order-action').each(function(){
 	$(this).addClass($(this).attr('title'));
 });
+
 $('div#quicktabs-user_contents .ui-tabs-panel .views-row').each(function(){
 	if($(this).children('div:nth-child(3)').length){
 		$(this).children('div:nth-child(1)').remove();
 	}
 });
-
 $('div#quicktabs-user_contents .ui-tabs-panel').each(function(){
-	$(this).append('<span><span>');
+	$(this).append('<span></span>');
 });
-if ($('#quicktabs-user_contents').length){
-	$('#quicktabs-user_contents .ui-tabs-nav').append('<span class="active-bar"></span>');
-	$('.active-bar').css({'width': $('div#quicktabs-user_contents .ui-tabs-nav li.ui-state-active').width() , 'left' : $('div#quicktabs-user_contents .ui-tabs-nav li.ui-state-active').position().left });
-	$('div#quicktabs-user_contents .ui-tabs-nav li a').click(function(e){
+if ($('.page-user .quicktabs-ui-wrapper').length){
+	$('.page-user .quicktabs-ui-wrapper .ui-tabs-nav').append('<span class="active-bar"></span>');
+	$('.active-bar').each(function(){
+		$(this).css({'width': $(this).parent().parent().find('li.ui-state-active').width() , 'left' : $(this).parent().parent().find('li.ui-state-active').position().left });
+	});
+	$('.page-user .quicktabs-ui-wrapper .ui-tabs-nav li a').click(function(e){
 		//e.preventDefault();
 		//to adjust position().left when it has an scroll
 		var ul = $(this).parent().parent();
 		if(ul[0].scrollWidth != ul.width()){
-			$('.active-bar').css({'width' : $(this).parent().width() , 'left' : $(this).parent().position().left - (ul[0].scrollWidth - ul.width() - ul.scrollLeft()) });
+			ul.find('.active-bar').css({'width' : $(this).parent().width() , 'left' : $(this).parent().position().left - (ul[0].scrollWidth - ul.width() - ul.scrollLeft()) });
 		}else{
-			$('.active-bar').css({'width' : $(this).parent().width() , 'left' : $(this).parent().position().left });
+			ul.find('.active-bar').css({'width' : $(this).parent().width() , 'left' : $(this).parent().position().left });
 		}
 
-		var hoverr = $(this).parents('#quicktabs-user_contents').children('*').eq($(this).parent().index() + 1);
+		var hoverr = $(this).parents('.page-user .quicktabs-ui-wrapper').children('*').eq($(this).parent().index() + 1);
 		hoverr.addClass('started');
 		setTimeout(function(){
 			hoverr.addClass('action');
@@ -712,6 +714,7 @@ if ($('#quicktabs-user_contents').length){
 		}, 10);
 	});
 }
+
 if($('.user-sale-report').length && !$('.user-sale-report .pane-content div').length){
 	$('.user-sale-report').remove();
 }
