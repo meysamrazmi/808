@@ -289,7 +289,8 @@ function administer_messages(){
 		t('Subject'),
 		t('Message'),
 		t('Date'),
-		'threar-id'
+		'threar-id',
+		t('Operations')
 	);
 	$table_rows = array();
 	$i = 0;
@@ -311,13 +312,103 @@ function administer_messages(){
 			nl2br($r->body),
 			format_date($r->timestamp),
 			$r->thread_id,
+			l(t('Edit'), '/messages/edit/'. $r->thread_id .'/'. $r->mid .'?destination=admin/content/messages') .'<br>'. l(t('Delete'), '/messages/delete/'. $r->thread_id .'/'. $r->mid .'?destination=admin/content/messages'),
 		);
 		$i++;
 	}
 	return theme('table', array('header' => $tabale_header, 'rows' => $table_rows)).theme('pager');	
 }
 
-function edit_messages(){
+function privatemsg_edit($form, $form_state, $thread, $message) {
+	$form['pmid'] = array(
+		'#type' => 'value',
+		'#value' => $message->mid,
+	);
+	if (isset($thread['participants'])) {
+		$recipients_plain = $thread['participants'];
+	}
+	mdump($message,true);
+	$form['body'] = array(
+		'#type' => 'text_format',
+		'#title' => t('Message'),
+		'#rows' => 6,
+		'#weight' => -3,
+		'#default_value' => $message->body,
+		'#resizable' => TRUE,
+	);
+	$form['subject'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Subject'),
+		'#size' => 50,
+		'#maxlength' => 255,
+		'#default_value' => $message->subject,
+		'#weight' => -5,
+	);
+	$url = isset($_REQUEST['destination'])? $_REQUEST['destination'] : 'messages/view/' . $message->thread_id;
+	$form['edit_destination'] = array(
+		'#type' => 'value',
+		'#value' => $url,
+	);
+	$form['actions'] = array('#type' => 'actions');	
+	$form['actions']['submit'] = array(
+		'#type' => 'submit',
+		'#value' => t('Send message'),
+		'#weight' => 49,
+	);
+	$form['actions']['cancel'] = array(
+		'#markup' => l(t('Cancel'), $url , array('attributes' => array('id' => 'edit-cancel'))),
+	);
+	field_attach_form('privatemsg_message', $message, $form, $form_state);
+	return $form;
+}
+
+function privatemsg_edit_submit($form, &$form_state) {
+	$message = $form_state['build_info']['args'][1];
+	$thread = $form_state['build_info']['args'][0];
+	$flag = false;
+	
+	$changes = array();
+	if(strcmp($form_state['values']['body']['value'], $message->body) != 0){
+		$changes['body'] = $form_state['values']['body']['value'];
+		$flag = true;
+	}
+	if(strcmp($form_state['values']['subject'], $message->subject) != 0){
+		$changes['subject'] = $form_state['values']['subject'];
+		$flag = true;
+		//to do: change hole thread subject for every message
+	}
+	
+	//handle other fields of messages
+	$message->field_files = $form_state['values']['field_files'];
+	field_attach_presave('privatemsg_message', $message);
+	field_attach_update('privatemsg_message', $message);
+
+	if($flag){
+		db_update('pm_message')
+		->fields($changes)
+		->condition('mid', $message->mid)
+		->execute();
+	}
+	$form_state['redirect'] = $form_state['values']['edit_destination'];
+}
+
+function civil808_privatemsg_message_view(){
+  $vars['message_body'] =  drupal_render($message->content);
+  if (isset($vars['mid']) && isset($vars['thread_id']) && privatemsg_user_access('delete privatemsg')) {
+    $vars['message_actions'][] = array('title' => t('Delete'), 'href' => 'messages/delete/' . $vars['thread_id'] . '/' . $vars['mid']);
+  }
+  $vars['message_anchors'][] = 'privatemsg-mid-' . $vars['mid'];
+  if (!empty($message->is_new)) {
+    $vars['message_anchors'][] = 'new';
+    $vars['new'] = drupal_ucfirst(t('new'));
+  }
+
+  // call hook_privatemsg_message_view_alter
+  drupal_alter('privatemsg_message_view', $vars);
+
+  $vars['message_actions'] = !empty($vars['message_actions']) ? theme('links', array('links' => $vars['message_actions'], 'attributes' => array('class' => array('privatemsg-message-actions', 'links', 'inline')))) : '';
 	
 }
 
+  
+  
