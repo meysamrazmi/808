@@ -1,0 +1,136 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function privatemsg_mod_menu() {
+	$items['admin/content/messages'] = array(
+		'title' => t('all messages'),
+		'page callback' => 'administer_messages',
+		'access arguments' => array('administer privatemsg settings'),
+		'file' => 'admin.inc',
+		'type' => MENU_LOCAL_TASK,
+		'weight' => 1,
+	);
+	$items['messages/edit/%privatemsg_thread/%privatemsg_message'] = array(
+		'title'           			=> t('Edit message'),
+		'page callback'   	=> 'drupal_get_form',
+		'page arguments'	=> array('privatemsg_edit', 2, 3),
+		'access callback'   	=> 'privatemsg_mod_access',
+		'access arguments' => array('edit privatemsg', 3),
+		'type'             		=> MENU_CALLBACK,
+		'weight'           		=> -10,
+	);
+	return $items;
+}
+
+/**
+ * Access callback for user account editing.
+ */
+function privatemsg_mod_access($permission, $message) {
+	global $user;
+	if(!is_object($message)){
+		$message = privatemsg_message_load($message);
+	}
+	$author = $message->author;
+	$end = $message->timestamp + (2 * 24 * 60 * 60);
+	if($user->uid == $author->uid && user_access($permission, $user) && time() < $end){
+		return true;
+	}
+	//grant all access to administrator
+	if(user_access('administer privatemsg settings', $user)){
+		return true;
+	}
+	
+	return false;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function privatemsg_mod_permission() {
+return array(
+		'edit privatemsg' => array(
+			'title' => t('Edit Privatemsg'),
+			'description' => t('edit own private messages'),
+		),
+	);
+}
+
+function privatemsg_edit($form, $form_state, $thread, $message) {
+	$form['pmid'] = array(
+		'#type' => 'value',
+		'#value' => $message->mid,
+	);
+	if (isset($thread['participants'])) {
+		$recipients_plain = $thread['participants'];
+	}
+	$form['body'] = array(
+		'#type' => 'text_format',
+		'#title' => t('Message'),
+		'#rows' => 6,
+		'#weight' => -3,
+		'#default_value' => $message->body,
+		'#resizable' => TRUE,
+	);
+	$form['subject'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Subject'),
+		'#size' => 50,
+		'#maxlength' => 255,
+		'#default_value' => $message->subject,
+		'#weight' => -5,
+	);
+	$url = isset($_REQUEST['destination'])? $_REQUEST['destination'] : 'messages/view/' . $message->thread_id;
+	$form['edit_destination'] = array(
+		'#type' => 'value',
+		'#value' => $url,
+	);
+	$form['actions'] = array('#type' => 'actions');	
+	$form['actions']['submit'] = array(
+		'#type' => 'submit',
+		'#value' => t('Send message'),
+		'#weight' => 49,
+	);
+	$form['actions']['cancel'] = array(
+		'#markup' => l(t('Cancel'), $url , array('attributes' => array('id' => 'edit-cancel'))),
+	);
+	field_attach_form('privatemsg_message', $message, $form, $form_state);
+	return $form;
+}
+
+function privatemsg_edit_submit($form, &$form_state) {
+	$message = $form_state['build_info']['args'][1];
+	$thread = $form_state['build_info']['args'][0];
+	$flag = false;
+	
+	$changes = array();
+	if(strcmp($form_state['values']['body']['value'], $message->body) != 0){
+		$changes['body'] = $form_state['values']['body']['value'];
+		$flag = true;
+	}
+	if(strcmp($form_state['values']['subject'], $message->subject) != 0){
+		$changes['subject'] = $form_state['values']['subject'];
+		$flag = true;
+		//to do: change hole thread subject for every message
+	}
+	
+	//handle other fields of messages
+	$message->field_files = $form_state['values']['field_files'];
+	field_attach_presave('privatemsg_message', $message);
+	field_attach_update('privatemsg_message', $message);
+
+	if($flag){
+		db_update('pm_message')
+		->fields($changes)
+		->condition('mid', $message->mid)
+		->execute();
+	}
+	$form_state['redirect'] = $form_state['values']['edit_destination'];
+}
+
+function privatemsg_mod_privatemsg_message_view_alter(&$vars){
+	if (isset($vars['mid']) && isset($vars['thread_id']) && privatemsg_mod_access('edit privatemsg', $vars['mid']) ) {
+		$vars['message_actions'][] = array('title' => t('Edit'), 'href' => 'messages/edit/' . $vars['thread_id'] . '/' . $vars['mid']);
+	}
+}

@@ -1,0 +1,6 @@
+name = privatemsg_mod
+description = do modification on privatemsg module
+dependencies[] = privatemsg
+version = 1
+package= 808
+core = 7.x
