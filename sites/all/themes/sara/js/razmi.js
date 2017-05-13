@@ -677,12 +677,13 @@ $('th.active img').each(function(){
 $('.uc-order-action').each(function(){
 	$(this).addClass($(this).attr('title'));
 });
-
+/*for avoiding multiple picture*/
 $('div#quicktabs-user_contents .ui-tabs-panel .views-row').each(function(){
 	if($(this).children('div:nth-child(3)').length){
 		$(this).children('div:nth-child(1)').remove();
 	}
 });
+/*for customizing active-bar under the user quick-tabs*/
 $('div#quicktabs-user_contents .ui-tabs-panel').each(function(){
 	$(this).append('<span></span>');
 });
@@ -700,7 +701,7 @@ if ($('.page-user .quicktabs-ui-wrapper').length){
 		}else{
 			ul.find('.active-bar').css({'width' : $(this).parent().width() , 'left' : $(this).parent().position().left });
 		}
-
+		/*for better changing content between tabs*/
 		var hoverr = $(this).parents('.page-user .quicktabs-ui-wrapper').children('*').eq($(this).parent().index() + 1);
 		hoverr.addClass('started');
 		setTimeout(function(){
@@ -953,7 +954,27 @@ $('.node-teaser.node-college .field-name-field-course-step .field-item').each(fu
 	}
 });
 
-$('#privatemsg-new .text-format-wrapper').append('<span class="tazakkor">طبق قوانین سایت، فرستادن شماره تلفن و ایمیل ممنوع می باشد و در صورت مشاهده، پیفام توسط مدیریت ویرایش می شود.</span>');
+$('#privatemsg-new .text-format-wrapper').append('<span class="tazakkor">طبق <a href="/landing/law" target="_blank">قوانین سایت</a> ، فرستادن شماره تلفن و ایمیل ممنوع می باشد و در صورت مشاهده، پیفام توسط مدیریت ویرایش می شود.</span>');
+
+$('td.privatemsg-list-participants a').each(function(){
+	var href = $(this).attr('href').split('/');
+var element = $(this);
+var html = '';
+var urll = "/user/"+ href[2] +"#mini-panel-user_header";
+$.ajax({url: urll, success: function(result){
+        html = $.parseHTML(result);
+var img = $(html).find('.pane-block-47 .user-pic a').html();
+	element.prepend(img);
+    }});
+});
+
+
+
+
+
+
+
+
 
 }); /*===> end of document.ready-function*/
 /*#################################################*/
@@ -1025,8 +1046,13 @@ function initialise(){
 	applyHeight($('.node-product .group-right') , $('.node-product .group-left'));
 	
 	/*-----------------------------------------------------------------------------------------------------------------*/
-
-	if($('div#edit-support-ticket-upload .file-widget, div#edit-field-hw-video .file-widget, input#edit-picture-upload, #user-profile-form .form-item input.form-file').length){
+	var boot_file_selector = $(
+	'div#edit-support-ticket-upload .file-widget'+
+	', div#edit-field-hw-video .file-widget'+
+	', input#edit-picture-upload'+
+	', #user-profile-form .form-item input.form-file'+
+	', input.form-file');
+	if(boot_file_selector.length){
 		$.getScript('/sites/all/themes/sara/js/lib/bootstrap-filestyle.min.js', function(){
 		$(":file").filestyle({buttonText: "انتخاب فایل", buttonName: "btn-primary",placeholder: "فایلی انتخاب نشده"});
 		});

@@ -470,11 +470,18 @@ input[type="button"]:hover, input[type="submit"]:hover, button:hover {
   background-color: #449d44;
   border-color: #398439;
 }
-input[type="button"].btn-danger, input[type="submit"].btn-danger, button.btn-danger, input.btn-danger{
+input[value='عزل'],
+input[value='حذف'],
+input[value='cancel'],
+input[type="button"].btn-danger, 
+input[type="submit"].btn-danger, 
+button.btn-danger, 
+input.btn-danger{
 	background-image: none;
 	background-color: #E53935;
 	border-color: #bd362f #bd362f #802420;
 }
+input[value='عزل']:hover,
 input[type="button"].btn-danger:hover,
 input[type="submit"].btn-danger:hover,
 button.btn-danger:hover, 

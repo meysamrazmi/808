@@ -2175,27 +2175,17 @@ margin: 14px 13% 0 13%;
 	color:white !important;
 }
 .page-pedia .view-display-id-page_3 .view-header a{
-    /* background: white; */
     position: absolute;
     top: 133px;
     display: block;
     padding: 2px 8px;
-    /* border-radius: 50%; */
     border: 3px solid #eae424;
     font-size: 12px;
-    /* min-width: 113px; */
-    -ms-transform: rotate(8deg);
-    /* -webkit-transform: rotate(8deg); */
-    /* transform: rotate(8deg); */
     color: rgb(255, 255, 255) !important;
     font-weight: 200;
     right: 44%;
     border-width: 1px 1px;
 	transition:all ease 0.9s;
-}
-.page-pedia .view-display-id-page_3 .view-header a:hover{
-	/* background: #eae424; */
-    /* color: black; */
 }
 .page-node-11694 .comment_forbidden,
 .page-node-14314 .comment_forbidden{
@@ -2499,8 +2489,9 @@ div#block-block-45 a.titr{
 #block-views-online-users-block{
 	position:relative;
 }
-
-
+.page-landing .field-name-body li {
+    line-height: 2.5em;
+}
 
 
 
