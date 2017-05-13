@@ -1,0 +1,136 @@
+/* 
+ * variable section
+ */
+@import "colors.css.less"; //@mat-grey-50
+
+@z2: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+@z1: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+@z0: 0 2px 2px #edeef0;
+
+@pad: 15px; 
+@pad-wid: 0 @pad; 
+@pad-heig: @pad 0; 
+
+/*medias*/
+@1280 : ~"all and (min-width: 1280px)";
+@1200 : ~"all and (max-width: 1200px)";
+@min1200 : ~"all and (min-width: 1200px)";
+@1100 : ~"all and (max-width: 1100px)";
+@1200-980 : ~"(min-width: 980px) and (max-width: 1200px)";
+@980-769 : ~"(max-width: 979px) and (min-width: 769px)";
+@960 : ~"(max-width: 960px)";
+@840 : ~"(max-width: 840px)";
+@768 : ~"(max-width: 768px)";
+@600 : ~"(max-width: 600px)";
+@480 : ~"(max-width: 480px)";
+@400 : ~"all and (max-width: 400px)";
+
+.no-acrollbar{
+	&::-webkit-scrollbar{
+		height: 0px;
+		width: 0px;
+	}
+}
+.paper(@_){
+	background: #fff;
+	border: none;
+	border-radius: 0;
+	padding: @pad;
+	box-shadow: @z0;
+}
+.paper(z){
+	box-shadow: none;
+}
+.paper(z1){
+	box-shadow: @z1;
+}
+.paper(z2){
+	box-shadow: @z2;
+}
+.absolute(...) {
+	position: absolute;
+}
+.absolute(@w:'' ; @h:'' ; @t:'' ; @r:'' ; @b:'' ; @l:'') {
+	& when not (@w = '') {width: @w;}
+	& when not (@h = '') {height: @h;}
+	& when not (@t = '') {top: @t;}
+	& when not (@r = '') {right: @r;}
+	& when not (@b = '') {bottom: @b;}
+	& when not (@l = '') {left: @l;}
+}
+.before(@content ; @font:'' ; @size:'' ; @color){
+	&:before{
+		content: "\@{content}";
+		& when (@font = '') {font-family: mat;}
+		& when not (@font = '') {font-family: @font;}
+		& when not (@size = '') {font-size: @size;}
+		& when not (@color = '') {color: @color;}
+	}
+}
+.user-img(@width:''){
+	& when not (@width = '') {width: @width;}
+	border-radius: 50%;
+	border: 2px solid #fff;
+	box-shadow: @z1;
+	overflow: hidden;
+}
+/*=============================*/
+
+.node-teaser{
+    position: relative;
+}
+/*-------bookmarks----------*/
+span.flag-bookmarks{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    a.flag{
+        font-size: 0px;
+        &:before{
+            content: '\f0c3';
+            font-family: mat;
+            font-size: 27px;
+            color: #F44336;   
+        }
+    }
+    a.unflag-action:before{
+        content:'\f0c0';
+    }
+    .flag-message {
+        top: -34px;
+        background-color: #fff;
+        width: 97px;
+        text-align: center;
+        border: 1px solid #eee;
+        padding: 4px 4px 3px 4px;
+        left: -34px;
+        font-size: 10px;
+        &:after{
+            width: 10px;
+            height: 10px;
+            border: 1px solid #eee;
+            border-width: 0 1px 1px 0;
+            content: "";
+            position: absolute;
+            bottom: -7px;
+            right: calc(50% - 5px);
+            background-color: white;
+            -ms-transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            z-index: 0;
+        }
+    }
+    .flag-throbber{
+        position: absolute;
+        top: -2px;
+        left: 3px;
+    }
+}
+
+
+
+
+
+
+
