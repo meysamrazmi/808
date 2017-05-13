@@ -114,16 +114,66 @@ function civil808_menu() {
 		'description' => t('Website options'),
 		'file' => 'admin.inc',
 		'type' => MENU_CALLBACK,
-		);
-	// $items['admin/content/messages'] = array(
-		// 'title' => t('all messages'),
-		// 'page callback' => 'administer_messages',
-		// 'access arguments' => array('bypass node access'),
-		// 'file' => 'admin.inc',
-		// 'type' => MENU_LOCAL_TASK,
-		// 'weight' => 1,
-	// );
-	// $items['messages/edit/%privatemsg_thread/%privatemsg_message'] = array(
+	);
+	//addresses module modification
+	$items['user/%user_uid_optional/edit/addresses'] = array(
+		'title' => 'Address book',
+		'description' => 'Manage your addresses',
+		'page callback' => 'uc_addresses_address_book',
+		'page arguments' => array(1, NULL),
+		'access callback' => 'civil808_uc_addresses_access',
+		'access arguments' => array('view own addresses',1),
+		'type' => MENU_LOCAL_TASK,
+		'file' => 'uc_addresses.pages.inc',
+		'file path' => drupal_get_path('module', 'uc_addresses'),
+	);
+	$items['user/%user_uid_optional/edit/addresses/add'] = array(
+		'title' => 'Add address',
+		'description' => 'Add a new address.',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('uc_addresses_get_address_form', 1, NULL),
+		'access callback' => 'civil808_uc_addresses_access',
+		'access arguments' => array('add/edit own addresses', 1),
+		'type' => MENU_LOCAL_TASK,
+		'weight' => 3,
+		'file' => 'uc_addresses.pages.inc',
+		'file path' => drupal_get_path('module', 'uc_addresses'),
+	);
+	$items['user/%user_uid_optional/edit/addresses/%uc_addresses_address'] = array(
+		'title' => 'View address',
+		'description' => 'View one saved address',
+		'load arguments' => array(1),
+		'page callback' => 'uc_addresses_list_one_address',
+		'page arguments' => array(1, 3),
+		'access callback' => 'civil808_uc_addresses_access',
+		'access arguments' => array('view own addresses', 1, 3),
+		'type' => MENU_CALLBACK,
+		'file' => 'uc_addresses.pages.inc',
+		'file path' => drupal_get_path('module', 'uc_addresses'),
+	);
+	$items['user/%user_uid_optional/edit/addresses/%uc_addresses_address/edit'] = array(
+		'title' => 'Edit address',
+		'load arguments' => array(1),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('uc_addresses_get_address_form', 1, 3),
+		'access callback' => 'civil808_uc_addresses_access',
+		'access arguments' => array('add/edit own addresses', 1, 3),
+		'type' => MENU_CALLBACK,
+		'file' => 'uc_addresses.pages.inc',
+		'file path' => drupal_get_path('module', 'uc_addresses'),
+	);
+	$items['user/%user_uid_optional/edit/addresses/%uc_addresses_address/delete'] = array(
+		'title' => 'Delete address',
+		'load arguments' => array(1),
+		'page callback' => 'uc_addresses_delete_address_confirm',
+		'page arguments' => array(1, 3),
+		'access callback' => 'civil808_uc_addresses_access',
+		'access arguments' => array('delete own addresses', 1, 3),
+		'type' => MENU_CALLBACK,
+		'file' => 'uc_addresses.pages.inc',
+		'file path' => drupal_get_path('module', 'uc_addresses'),
+	);
+  // $items['messages/edit/%privatemsg_thread/%privatemsg_message'] = array(
 		// 'title'           			=> 'Edit message',
 		// 'page callback'   	=> 'drupal_get_form',
 		// 'page arguments'	=> array('privatemsg_edit', 2, 3),
@@ -878,14 +928,47 @@ mb_substr(t('Buy ticket for event !title', array('!title' => $node->title)),0, 3
 }
 
 if(!function_exists('httpPost')) {
-function httpPost($url,$postData){
-	$ch = curl_init();  
-	curl_setopt($ch,CURLOPT_URL,$url);
-	curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
-	curl_setopt($ch,CURLOPT_HEADER, false); 
-	if(is_array($postData) and !empty($postData)){curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));}
-	$output=curl_exec($ch);
-	curl_close($ch);
-	return $output;
+	function httpPost($url,$postData){
+		$ch = curl_init();  
+		curl_setopt($ch,CURLOPT_URL,$url);
+		curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+		curl_setopt($ch,CURLOPT_HEADER, false); 
+		if(is_array($postData) and !empty($postData)){curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));}
+		$output=curl_exec($ch);
+		curl_close($ch);
+		return $output;
+	}
 }
+
+function civil808_uc_addresses_access($permission, $address_user = NULL){
+	global $user;
+	if(!is_object($address_user)){
+		$address_user = user_load($address_user);
+	}
+	if($user->uid == $address_user->uid){
+		if(user_access($permission, $address_user)){
+			return true;
+		}
+	}
+	if($permission == 'delete all addresses' || $permission == 'add/edit all addresses' || $permission == 'view all addresses' || $permission == 'view all default addresses'){
+		if(user_access($permission, $user)){
+			return true;
+		}
+	}
+	return false;
+}
+
+
+function civil808_preprocess_html(&$variables) {
+	global $user;
+	$path = drupal_get_path_alias();
+	$aliases = explode('/', $path);
+  
+	if(isset($aliases[0]) && !isset($aliases[3]) && $aliases[0] == 'user' && $aliases[2] == 'addresses' ){
+		drupal_goto("user/$user->uid/edit/addresses");
+		Header('Location: http://www.civil808.com/user/'. $user->uid .'/edit/addresses');
+		die();
+	}
+
+	
 }
