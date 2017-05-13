@@ -134,3 +134,17 @@ function privatemsg_mod_privatemsg_message_view_alter(&$vars){
 		$vars['message_actions'][] = array('title' => t('Edit'), 'href' => 'messages/edit/' . $vars['thread_id'] . '/' . $vars['mid']);
 	}
 }
+
+function privatemsg_mod_preprocess_html(&$variables) {
+	global $user;
+	$path = drupal_get_path_alias();
+	$aliases = explode('/', $path);
+  
+	if(isset($aliases[0]) && !isset($aliases[1]) && $aliases[0] == 'messages'){
+		drupal_goto("user/$user->uid/messages");
+		Header('Location: http://www.civil808.com/user/'. $user->uid .'/messages');
+		die();
+	}
+
+	
+}

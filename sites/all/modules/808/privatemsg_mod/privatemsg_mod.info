@@ -1,6 +1,8 @@
 name = privatemsg_mod
 description = do modification on privatemsg module
 dependencies[] = privatemsg
+configure = admin/content/messages
+
 version = 1
 package= 808
 core = 7.x
