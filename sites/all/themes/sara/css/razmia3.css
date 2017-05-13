@@ -524,9 +524,11 @@ form#uc-zarinpal-pay-submission-form .btn:before,
 
 .node-product-kit .field-name-field-costum-content,
 .node-product .field-name-field-costum-content {
-  font-size: 12px;
-  padding: 5px 15px;
-  margin: 35px 5px 10px !important;
+    font-size: 12px;
+    padding: 5px 15px;
+    margin: 35px 5px 10px !important;
+    overflow-y: scroll;
+    overflow: overlay;
 }
 
 .node-product-kit p,
@@ -791,59 +793,7 @@ fieldset#comments-pane .fieldset-description {
   margin: 0 10px;
   padding: 6px 12px;
 }
-.address-book .default-addresses {
-  width: 100%;
-  float: none;
-}
-.address-book .default-addresses li.address-item .list-address-wrapper, .view-uc-addresses-address-book td.address-item .list-address-wrapper {
-  background: #FFFFFF;
-  border: none;
-  padding: 5px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
-  position: relative;
-  border-right: 3px solid #338ac7;
-}
-.address-book .default-addresses li.address-item .list-address-wrapper {
-  border-right: 5px solid #6b0;
-}
-
-.list-address {
-  width: 100%;
-}
-tr.address-links {
-  position: absolute;
-  left: 0;
-  top: 0;
-  padding-top: 3px !important;
-}
-tr.address-links a {
-  box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
-  padding: 3px 10px;
-  margin: 0 5px;
-  background-color: #338ac7;
-  color: #fff !important;
-}
-.address-book > .address-links {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.address-book {
-  position: relative;
-}
-.address-book > .address-links a {
-  color: #fff !important;
-  background: #5cb85c;
-  padding: 5px 15px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
-}
 ul.primary {
-  border: none;
-}
-.page-user .address-book td.data-col {
-  padding: 2px !important;
-}
-.address-book h3 {
   border: none;
 }
 p.uc-cart-empty {
@@ -1336,12 +1286,19 @@ div#takhfifdar:before {
   background: transparent;
 }
 /*-------------------------------------------------------------------------page 1395 and store ends here----------------------------------------------------------------*/
+tr.selected td {
+	background: #f9f9f9;
+}
 th {
-  border-bottom: 1px solid #eee;
-  text-align: center;
-  height: 56px;
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.56);
+	border-bottom: 1px solid #eee;
+	text-align: center;
+	height: 56px;
+	font-weight: 500;
+	color: rgba(0, 0, 0, 0.56);
+}
+.page-user th{
+	background: #fcfcfc;
+	border-bottom: 1px solid #ddd;
 }
 th a:after {
   content: "\f045";
@@ -1620,143 +1577,6 @@ body:not(.page-user) .register .form-item label {
   padding-top: 20px;
   margin-bottom: -15px;
   overflow: hidden;
-}
-fieldset#edit-filter div.form-item label {
-  float: right;
-  font-weight: normal;
-}
-fieldset#edit-filter div.form-actions input {
-  margin: 0 10px;
-}
-.privatemsg-author-avatar img {
-  border-radius: 50%;
-  max-width: 60px;
-  border: 1px solid #eee;
-  box-shadow: 0 0 10px -5px #000;
-}
-
-.privatemsg-message-column {
-  background: #f9f9f9;
-}
-.others .privatemsg-message-column {
-  background: rgba(232, 239, 246, 0.5);
-  border: 1px solid rgba(197, 202, 233, 0.6);
-}
-.privatemsg-message-column {
-  background: #f9f9f9;
-  border-radius: 5px;
-  padding: 10px 5px 3px;
-  border: 1px solid #eee;
-  box-sizing: border-box;
-  float: right;
-  width: auto;
-  display: inline-block;
-  position: relative;
-  min-width: 210px;
-  max-width: 800px;
-}
-.others .privatemsg-message-column {
-  float: left;
-}
-.privatemsg-message-body {
-  padding: 5px;
-  margin-top: 5px;
-}
-div.privatemsg-message-information {
-  position: absolute;
-  width: auto;
-  top: 0;
-  right: 0;
-  border: none;
-  margin: 0;
-}
-.privatemsg-author-avatar {
-  float: right;
-  width: auto;
-  margin: 0 0 0px 10px;
-}
-.others .privatemsg-author-avatar {
-  float: left;
-  margin: 0 10px 0px 0px;
-}
-ul.privatemsg-message-actions {
-  float: left;
-}
-.privatemsg-message {
-  width: 100%;
-  max-width:inherit;
-}
-.privatemsg-message:hover ul.privatemsg-message-actions a {
-  opacity: 1;
-}
-.privatemsg-message ul.privatemsg-message-actions a {
-  font-size: 11px;
-  opacity: 0;
-  transition: all 0.2s;
-  color: #888 !important;
-  padding: 0px 7px;
-}
-span.privatemsg-author-name {
-  display: none;
-}
-.privatemsg-message ul.privatemsg-message-actions a:hover {
-  background: #d9534f;
-  color: #fff !important;
-}
-
-fieldset#edit-filter {
-  clear: both;
-  margin: 10px 0 50px !important;
-}
-.no-message span.message-num {
-  display: none;
-}
-fieldset#edit-filter legend {
-  background: #f9f9f9;
-  border: 1px solid #eee;
-  border-radius: 5px 5px 0 0;
-}
-
-div#privatemsg-list-form .container-inline {
-  margin: 10px 0;
-  display: inline-block;
-  width: 100%;
-  box-sizing: border-box;
-}
-.privatemsg-message-body {
-  font-size: 12px;
-  white-space: pre-line;
-  margin-top:-15px;
-}
-div#privatemsg-list-form .container-inline .form-submit {
-  padding: 5px 20px;
-}
-
-form#privatemsg-new a#edit-cancel {
-  background: #d9534f;
-  padding: 5px 20px;
-  border-color: #d43f3a;
-  display: inline-block;
-  line-height: initial;
-}
-.privatemsg-message-participants {
-  padding: 10px;
-  word-spacing: 2px;
-  border: 3px solid #c5c;
-  background: #f9f9f9;
-  border-width: 0px 5px;
-}
-.no-message .message-num {
-  display: none;
-}
-div#privatemsg-filter-tags {
-  display: none;
-}
-.privatemsg-message .new {
-  position: absolute;
-  left: 10px;
-  top: 0;
-  opacity: 0.5;
 }
 .maintenance-page {
   background: #fff;
@@ -2465,9 +2285,8 @@ div#latest_shop .pane-title:after {
   min-height: 300px !important;
 }
 .field-name-field-costum-content p, .field-name-field-costum-content {
-  margin: 0 10px 0 !important;
-  max-height: 250px;
-  overflow: overlay;
+	margin: 0 10px 0 !important;
+    max-height: 250px;
 }
 .node-product.view-mode-full,
 .node-product-kit.view-mode-full {
@@ -4654,10 +4473,16 @@ div#block-block-26 .content a:after {
   top: 17px;
   overflow: hidden;
 }
-.important4 {
+.front .important4 {
   position: relative;
-  display: inline-block;
+  display: flex;
   width: 100%;
+    justify-content: space-around;
+}
+.page-shop .important4{
+  position: relative;
+  width: 100%;
+    display: inline-block;
 }
 .important4 .pane-title {
   text-align: right;
@@ -4898,8 +4723,10 @@ div#block-block-26 .content a:after {
   margin-bottom:0px;
 }
 #quicktabs-user_all_boughts thead tr th {
-    border-bottom: 1px solid rgba(63, 81, 181, 0.3) !important;
-    background: #f1f1f1;
+	border-bottom: 1px solid rgb(238, 238, 238) !important;
+    background: #ffffff;
+    height: 42px;
+    /* background: #f1f1f1; */
 }
 .page-user .quicktabs-ui-wrapper {
   background: #fff;
@@ -4923,7 +4750,10 @@ div#block-block-26 .content a:after {
   position: relative;
   padding: 0;
 }
-.page-user .quicktabs-ui-wrapper .ui-tabs-nav li {
+.page-user .quicktabs-ui-wrapper#quicktabs-user_all_boughts .ui-tabs-nav li {
+  width: 100%;
+}
+  .page-user .quicktabs-ui-wrapper .ui-tabs-nav li {
   width: 50%;
   float: right;
   margin: 0;
@@ -6167,6 +5997,7 @@ a.all-members {
     font-family: irans;
     text-align: center;
 	flex-direction: column;
+	width:100% !important;
 }
 .me-cannotplay .description {
     background: #fff;
@@ -6199,7 +6030,7 @@ a.all-members {
     right: 15px;
 }
 .page-civil .important4 .node.third {
-	margin: 0 13.25% !important;
+/*	margin: 0 13.25% !important;*/
 	text-align: center;
 }
 .group-span-filestyle {

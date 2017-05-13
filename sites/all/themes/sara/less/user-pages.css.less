@@ -71,7 +71,7 @@
 	& when not (@width = '') {width: @width;}
 	border-radius: 50%;
 	border: 2px solid #fff;
-	box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+	box-shadow: @z1;
 	overflow: hidden;
 }
 /*=============================*/
@@ -96,6 +96,13 @@
 				height: 150px;
 			}
 		}
+	}
+	&.page-user-sharepoints #block-system-main table,
+	&.page-user-myresults #block-system-main table,
+	&.page-user-bought-nodes .view-bought-nodes table,
+	.userpoints-myuserpoints-list,
+	&.page-user-orders .view-uc-orders-user {
+		box-shadow: @z1;
 	}
 }
 .page-reward, .page-charge, .page-login , .page-register , .page-user-password , .page-user.role-anonymous-user:not(.profile){
@@ -455,6 +462,10 @@ h1#page-title {
 	.pane-title{
 		.before(f290 ;aw; 25px; @pane-color);
 	}
+	.pane-content .no-sale{
+		&:extend(.user-sale-report .pane-content .no-sale);
+        border-color: #8bc34a;
+	}
 }
 .view-uc-orders-user{
 	.views-field-order-status{
@@ -675,9 +686,7 @@ h1#page-title {
 		}
 	}
 }
-#linkedin-user-settings-form,
-#linkedin-user-enable-form {
-	.paper(z1);
+.user-edit-page-media(){
 	margin: auto;
 	margin-left: 0;
 	max-width: 850px;
@@ -692,6 +701,11 @@ h1#page-title {
 		max-width: inherit;
 		margin-top: 120px;
 	}
+}
+#linkedin-user-settings-form,
+#linkedin-user-enable-form {
+	.paper(z1);
+	.user-edit-page-media();
 	.form-item-linkedin-profile-user-page-enabled {
 		display: none;
 	}
@@ -700,19 +714,7 @@ h1#page-title {
 	}
 }
 #user-profile-form{
-	max-width: 850px;
-	margin: auto;
-	margin-left: 0;
-	@media @1100{
-		max-width: 800px;
-	}
-	@media @960{
-		max-width: calc(~"100% - 160px");
-	}
-	@media @600{
-		max-width: inherit;
-		margin-top: 120px;
-	}
+	.user-edit-page-media();
 	.page-user-edit-bank &,
 	.page-user-edit-main &{
 		> div{.paper(z1);}
@@ -826,19 +828,22 @@ h1#page-title {
 	#edit-profile-main-field-publish-file .description{
 		display: none;
 	}
-	#edit-profile-main-field-mobile:before,
-	#edit-profile-main-field-skills:before,
-	#edit-profile-main-field-about-me:before,
-	#edit-profile-main-field-address:before,
-	#edit-profile-main-field-job:before,
-	#edit-profile-main-field-university:before,
-	#edit-profile-main-field-education-field:before,
-	#edit-profile-main-field-education-degree:before,
-	#edit-profile-main-field-full-name:before {
-		content: "*";
-		position: absolute;
-		margin: 7px -10px 0 0;
-		color: #2196F3;
+	#edit-profile-main-field-mobile,
+	#edit-profile-main-field-skills,
+	#edit-profile-main-field-about-me,
+	#edit-profile-main-field-address,
+	#edit-profile-main-field-job,
+	#edit-profile-main-field-university,
+	#edit-profile-main-field-education-field,
+	#edit-profile-main-field-education-degree,
+	#edit-profile-main-field-full-name{
+		//.before(*;'inherit';'';#2196F3);
+		&:before{
+			content:"*";
+			color:#2196F3;
+			.absolute();
+			margin: 7px -10px 0 0;
+		}
 	}
 }
 .password-strength {
@@ -1017,6 +1022,82 @@ p.description.profile-percent {
 	}
 }
 
+.address-book{
+	position: relative;
+	padding: 0 5px;
+	.user-edit-page-media();
+	.address-links{
+		.absolute('';'';5px;'';'';5px);
+		padding: 0;
+		a {
+			box-shadow: @z1;
+			padding: 3px 15px 5px;
+			background-color: @mat-green;
+			color: #fff !important;
+			display: inline-block;
+		}
+	}
+	.additional-addresses {
+		width: 100%;
+		float: none;
+		li.address-item .list-address-wrapper{
+			.paper(z1);
+			position: relative;
+			tr{
+				&.address-field-address_name , 
+				&.address-field-address , 
+				&.address-field-phone {
+					td:first-child{display: none;}
+					td:last-child{padding: 5px 0;}
+				}
+				&.address-field-address_name {
+					font-size: 20px;
+					font-weight: 500;
+				}
+				.adres-conteiner > div {
+					display: inline-block;
+					margin-left: 10px;
+					padding: 0 !important;
+					&:first-child {
+						display: block;
+						margin-bottom: 10px;
+						font-size: inherit !important;
+					}
+				}
+				&.address-links {
+					td{
+						padding: 10px;
+						a {
+							color: #555 !important;
+							background: #eee;
+							box-shadow: none;
+						}
+					}
+				}
+			}
+		}
+	}
+	.default-addresses{
+		.additional-addresses;
+		> h2 {display: none;}
+		li.address-item .list-address-wrapper{
+			border-right: 3px solid @mat-green;
+		}
+	}
+	.page-user &{
+		.address-book td.data-col {
+			padding: 2px !important;
+		}
+	}
+}
+.view-uc-addresses-address-book td.address-item .list-address-wrapper {
+	&:extend(.address-book .default-addresses li.address-item .list-address-wrapper);
+	border-right: 3px solid #338ac7;
+}
+.list-address {
+  width: 100%;
+}
 
 
 /*temp*/
+
