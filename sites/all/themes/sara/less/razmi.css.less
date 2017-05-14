@@ -1,53 +1,54 @@
 /* 
- * variable section
+ * imports section
  */
-/*colors*/
-@import "colors.css.less";
+@import "colors.css.less"; //@mat-grey-50
+@import "vars.css.less"; 
 
-/*shadows*/
-@z2: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
-@z1: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-@z0: 0 2px 2px #edeef0;
-
-/*paddings*/
-@pad: 15px; 
-@pad-wid: 0 15px; 
-@pad-heig: 15px 0; 
-
-.paper(@_){
-	background: #fff;
-	border: none;
-	border-radius: 0;
-	padding: @pad;
-	box-shadow: @z0;
+//==================
+.btn-green,
+input[type="button"], 
+input[type="submit"],
+button{
+	.green-btn;
+	float: left;
 }
-.paper(z1){
-	box-shadow: @z1;
+.btn-primary{
+	.blue-btn;
 }
-.paper(z2){
-	box-shadow: @z2;
+input[value='عزل'],
+input[value='حذف'],
+input[value='cancel'],
+input[type="button"].btn-danger, 
+input[type="submit"].btn-danger, 
+button.btn-danger, 
+input.btn-danger{
+	.red-btn;
 }
-.absolute(...) {
-	position: absolute;
+#edit-cancel{
+	.btn;
 }
-.absolute(@w:'' ; @h:'' ; @t:'' ; @r:'' ; @b:'' ; @l:'') {
-	& when not (@w = '') {width: @w;}
-	& when not (@h = '') {height: @h;}
-	& when not (@t = '') {top: @t;}
-	& when not (@r = '') {right: @r;}
-	& when not (@b = '') {bottom: @b;}
-	& when not (@l = '') {left: @l;}
-}
-.before(@content ; @font:'' ; @size:'' ; @color){
-	&:before{
-		content: "\@{content}";
-		& when (@font = '') {font-family: mat;}
-		& when not (@font = '') {font-family: @font;}
-		& when not (@size = '') {font-size: @size;}
-		& when not (@color = '') {color: @color;}
+.has-wave{
+	&:not(.pos-abs){position: relative;}
+	.click-wave {
+		.absolute(100%;100%;0;0;0;0);
+		overflow: hidden;
+		div {
+			.absolute();
+			transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1) 0ms, transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+			border-radius: 50%;
+			transform: scale(0);
+			background: #999;
+			opacity: 0.3;
+		}
+		&.whiter div {
+			background: #fff;
+			opacity: 0.16;
+		}
+		.scale1 { transform: scale(1) !important;}
+		.opacity0 {	opacity: 0 !important;}
 	}
 }
-//==================
+
 /*
  *user login and register and editing section
  */
@@ -156,12 +157,7 @@ form#privatemsg-edit{
 				background: none;
 				padding: 0;
 			}
-			a{
-				color: #fff;
-				padding: 5px 15px;
-				background: #2196F3;
-				border-radius: 2px;
-			}
+			a{	.blue-btn;}
 			.summary {display: none;}
 		}
 		.fieldset-wrapper{
@@ -277,13 +273,6 @@ span.privatemsg-author-name,
 	margin-top:-15px;
     padding: 5px;
 }
-form#privatemsg-new a#edit-cancel {
-	background: #d9534f;
-	padding: 5px 20px;
-	border-color: #d43f3a;
-	display: inline-block;
-	line-height: initial;
-}
 .privatemsg-message-participants {
 	padding: 10px;
 	word-spacing: 2px;
@@ -291,16 +280,64 @@ form#privatemsg-new a#edit-cancel {
 	background: #f9f9f9;
 	border-width: 0px 5px;
 }
-
 .userpoints-myuserpoints-total {
 	display: none;
 }
-td.privatemsg-list-participants img {
-	max-width: 40px;
-	border-radius: 50%;
-	box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+td.privatemsg-list-participants{
+	max-width: 110px;
+	overflow: hidden;
+	white-space: nowrap;
+	a{
+		display: inline-block;
+		margin-left: -4px;
+		vertical-align: middle;
+		font-size: 0;
+		width: 40px;
+		border-radius: 50%;
+		box-shadow: @z1;
+		overflow: hidden;
+		height: 40px;
+		background: #f5f5f5;
+		&:nth-child(n+5){ display: none;}
+	}
+}
+.boot-filestyle input[type="file"] {
+	display: none;
+}
+.bootstrap-filestyle{
+	input {
+		margin: initial !important;
+		float: none !important;
+		min-width: 240px !important;
+	}
+	+ .form-submit {display: none;}
+	.group-span-filestyle{
+		float: none;
+		padding: initial;
+		label {
+			line-height: 30px !important;
+			height: 30px;
+			outline: none;	
+		}
+		.glyphicon {display: none;}
+	}
 }
 
-
-/*media elements*/
-@import "media.css.less";
+.progress {
+	position: relative;
+	.progress-bar {
+		background: #673AB7;
+		.absolute('';100%;'';'';'';0);
+		background-image: linear-gradient(45deg,rgba(255, 255, 255, 0.5) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.2) 50%,rgba(255,255,255,.2) 75%,transparent 75%,transparent);
+		background-size: 40px 40px;
+		animation: progress-bar-stripes 3.5s linear infinite;
+		min-width: 5%;
+		span {
+			color: #fff;
+			.absolute(40px;100%;'';calc(~"50% - 20px"));
+			text-align: center;
+			font-family: fanum;
+			font-weight: normal;
+		}
+	}
+}

@@ -623,7 +623,7 @@ form.uc-cart-checkout-form:before {
   box-shadow: none;
   padding: 0;
 }
-a#edit-cancel {
+.page-cart a#edit-cancel {
   color: #fff !important;
   border: 1px solid #1976D2;
   background-color: #2196F3;
@@ -637,7 +637,7 @@ a#edit-cancel {
 form#uc-cart-empty-confirm {
   border: none !important;
 }
-a#edit-cancel:hover {
+.page-cart a#edit-cancel:hover {
 background-color: #286090;
   border-color: #204d74;
 }
@@ -6033,47 +6033,7 @@ a.all-members {
 /*	margin: 0 13.25% !important;*/
 	text-align: center;
 }
-.group-span-filestyle {
-  float: none;
-  padding: initial;
-}
-.bootstrap-filestyle input {
-	margin: initial !important;
-	float: none !important;
-	min-width: 240px !important;
-}
-.bootstrap-filestyle + .form-submit {
-	display: none;
-}
-.group-span-filestyle label {
-	line-height: 20px !important; 
-}
-.group-span-filestyle .glyphicon {
-  display: none;
-}
-.progress {
-  position: relative;
-}
-.progress-bar {
-  background: #673AB7;
-  position: absolute;
-  height: 100%;
-  left: 0;
-  background-image: linear-gradient(45deg,rgba(255, 255, 255, 0.5) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.2) 50%,rgba(255,255,255,.2) 75%,transparent 75%,transparent);
-  background-size: 40px 40px;
-  animation: progress-bar-stripes 3.5s linear infinite;
-  min-width: 5%;
-}
-.progress-bar span {
-  color: #fff;
-  position: absolute;
-  right: calc(50% - 20px);
-  width: 40px;
-  text-align: center;
-  height: 100%;
-  font-family: fanum;
-  font-weight: normal;
-}
+
 textarea:focus, 
 input[type="text"]:focus, 
 input[type="password"]:focus, 
@@ -6096,9 +6056,7 @@ input[type="color"]:focus,
 .form-item-panes-payment-payment-method [for="edit-panes-payment-payment-method-zarinpal"]:after {
 	content: "(+ 20% شارژ هدیه به مناسبت جشنواره کتاب)";
 }
-.boot-filestyle input[type="file"] {
-	display: none;
-}
+
 
 
 

@@ -21,7 +21,6 @@ $(document).ready(function () {
 if($('.tabs').html().length < 40 ){
 	$('.tabs').css({'display' : 'none'});
 }
-
 if($('body.no-container').length){
 	$('.container.main').removeClass('container');
 }
@@ -956,18 +955,51 @@ $('.node-teaser.node-college .field-name-field-course-step .field-item').each(fu
 
 $('#privatemsg-new .text-format-wrapper').append('<span class="tazakkor">طبق <a href="/landing/law" target="_blank">قوانین سایت</a> ، فرستادن شماره تلفن و ایمیل ممنوع می باشد و در صورت مشاهده، پیفام توسط مدیریت ویرایش می شود.</span>');
 
-$('td.privatemsg-list-participants a').each(function(){
+/*-----------------------------------------------------------------------------------------------------------------*/
+$('td.privatemsg-list-participants a').each(function(i){
+	if(i > 5) return;
 	var href = $(this).attr('href').split('/');
-var element = $(this);
-var html = '';
-var urll = "/user/"+ href[2] +"#mini-panel-user_header";
-$.ajax({url: urll, success: function(result){
-        html = $.parseHTML(result);
-var img = $(html).find('.pane-block-47 .user-pic a').html();
-	element.prepend(img);
+	var element = $(this);
+	var html = '';
+	$.ajax({url: "/user/"+ href[2] +"#mini-panel-user_header", success: function(result){
+		html = $.parseHTML(result);
+		var img = $(html).find('.pane-block-47 .user-pic a').html();
+		element.prepend(img);
+		element.addClass('has-img');
     }});
 });
-
+/*-----------------------------------------------------------------------------------------------------------------*/
+// add wave action to some elements for default:
+$('.btn, button, .btn-primary, .cancel-address-link, a#edit-cancel, .btn-danger, .address-link, a.all-members, .jcarousel-next-horizontal, #footer a, input[type="submit"]').each(function(){
+	if($(this).css('position') == 'absolute'){
+		$(this).addClass('pos-abs');
+	}
+	$(this).addClass('has-wave');
+});
+$('.has-wave').each(function(){
+	$(this).prepend('<span class="click-wave"></span>');
+});
+//wave action for bottuns same as in material
+$('.has-wave').mousedown(function(parameter){
+	var element = $(this).find('.click-wave');
+	var w = element.width();
+	var h = element.height();
+	if(w < h){w = h;}
+	var x = parameter.pageX - $(this).offset().left ;
+	var y = parameter.pageY - $(this).offset().top;
+	w = w + Math.abs(w/2 - x)*2 + 10; //calculating the required minimum
+	if( !isdark( rgb2hex(element.parent().css("background-color") ) ) ){ element.addClass('whiter');}
+	element.prepend('<div style="width:'+ w +'px; height:'+ w +'px; top:'+ (y - w/2) +'px; left:'+ (x - w/2) +'px; transform:scale(0);"></div>');
+	setTimeout(function(){
+		element.find('div').addClass('scale1');
+	}, 10);
+}).on('mouseup mouseleave', function(parameter){
+	var element = $(this).find('.click-wave');
+	element.find('div').addClass('opacity0');
+	setTimeout(function(){
+		element.find('div:last-child').remove();
+	}, 1500);
+});
 
 
 
@@ -1397,3 +1429,26 @@ window.onload = function(){
 		});
 	}
 };
+//color functions
+function isdark(hexcolor){
+    var r = parseInt(hexcolor.substr(1,2),16);
+    var g = parseInt(hexcolor.substr(3,2),16);
+    var b = parseInt(hexcolor.substr(5,2),16);
+    var yiq = ((r*299)+(g*587)+(b*114))/1000;
+    return (yiq >= 158) ? true : false;
+}
+//Function to convert rgb color to hex format
+function rgb2hex(rgb) {
+	var hexDigits = new Array("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"); 
+	rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+	function hex(x) {
+		return isNaN(x) ? "00" : String(hexDigits[(x - x % 16) / 16]) + String(hexDigits[x % 16]);
+	}
+	if(typeof rgb !== 'undefined' && rgb !== null){
+		return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+	}
+	return "#ffffff";
+}
+
+
+
