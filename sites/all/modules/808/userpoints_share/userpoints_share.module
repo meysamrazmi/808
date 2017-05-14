@@ -122,22 +122,23 @@ function up_share_history_user($usr) {
     );
   }
     if (!empty($rows)) {
-	array_unshift($rows, array(count($rows) . 'سفارش',
-		'<p style="text-align:center;font-weight: bold;font-size: 15px;margin: 0;">مجموع کل این صفحه</p>',
-		'','','', 
-		'<p style="font-weight: 500;font-size: 14px;margin: 0;">' . formatMoney($total_sell) .' تومان</p>',
-		'<p style="font-weight: 500;font-size: 14px;margin: 0;">' . formatMoney($total_share) .' تومان</p>',
-		'',
-	));
-  }
-
-  $build['up_share_history'] = array(
-    '#theme' => 'table', 
-    '#header' => $header, 
-    '#rows' => $rows, 
-  );
-  $build['up_share_history_pager'] = array('#theme' => 'pager');
-  return $build;
+		array_unshift($rows, array(count($rows) . 'سفارش',
+			'<p style="text-align:center;font-weight: bold;font-size: 15px;margin: 0;">مجموع کل این صفحه</p>',
+			'','','', 
+			'<p style="font-weight: 500;font-size: 14px;margin: 0;">' . formatMoney($total_sell) .' تومان</p>',
+			'<p style="font-weight: 500;font-size: 14px;margin: 0;">' . formatMoney($total_share) .' تومان</p>',
+			'',
+		));
+		$build['up_share_history'] = array(
+			'#theme' => 'table', 
+			'#header' => $header, 
+			'#rows' => $rows, 
+		);
+		$build['up_share_history_pager'] = array('#theme' => 'pager');
+		return $build;
+	}else{
+		return '<div class="no-sale"><p>هنوز مقاله ای از شما فروخته نشده است.</p><span><a href="/cooperate" target="_blank" class="btn btn-primary has-wave">همکاری با ما</a></span></div>';
+	}
 }
 
 /**
