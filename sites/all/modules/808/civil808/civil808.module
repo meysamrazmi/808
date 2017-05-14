@@ -964,7 +964,15 @@ function civil808_preprocess_html(&$variables) {
 	$path = drupal_get_path_alias();
 	$aliases = explode('/', $path);
   
-	if(isset($aliases[0]) && !isset($aliases[3]) && $aliases[0] == 'user' && $aliases[2] == 'addresses' ){
+	if(isset($aliases[2]) && $aliases[0] == 'user' && $aliases[2] == 'addresses' ){
+		if(isset($aliases[3]) && $aliases[3] == 'add'){
+			drupal_goto("user/$user->uid/edit/addresses/add");
+			Header('Location: http://www.civil808.com/user/'. $user->uid .'/edit/addresses/add');
+		}
+		else if(isset($aliases[4]) && $aliases[4] == 'edit'){
+			drupal_goto("user/$user->uid/edit/addresses/$aliases[3]/edit");
+			Header('Location: http://www.civil808.com/user/'. $user->uid .'/edit/addresses/'. $aliases[3] .'/edit');
+		}
 		drupal_goto("user/$user->uid/edit/addresses");
 		Header('Location: http://www.civil808.com/user/'. $user->uid .'/edit/addresses');
 		die();
