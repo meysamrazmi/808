@@ -169,9 +169,20 @@ function civil808_menu() {
 		'page arguments' => array(1, 4),
 		'access callback' => 'civil808_uc_addresses_access',
 		'access arguments' => array('delete own addresses', 1, 4),
-		'type' => MENU_CALLBACK,
+		'type' => MENU_LOCAL_TASK,
 		'file' => 'uc_addresses.pages.inc',
 		'file path' => drupal_get_path('module', 'uc_addresses'),
+	);
+	
+	$items['user/%/myresults/%'] = array(
+		'title' => 'User results',
+		'page callback' => 'quiz_user_results',
+		'page arguments' => array(3),
+		'access arguments' => array(3),
+		'access callback' => 'civil808_quiz_access_my_result',
+		'type' => MENU_LOCAL_TASK,
+		'file' => 'quiz.pages.inc',
+		'file path' => drupal_get_path('module', 'quiz'),
 	);
   // $items['messages/edit/%privatemsg_thread/%privatemsg_message'] = array(
 		// 'title'           			=> 'Edit message',
@@ -972,11 +983,34 @@ function civil808_preprocess_html(&$variables) {
 		else if(isset($aliases[4]) && $aliases[4] == 'edit'){
 			drupal_goto("user/$user->uid/edit/addresses/$aliases[3]/edit");
 			Header('Location: http://www.civil808.com/user/'. $user->uid .'/edit/addresses/'. $aliases[3] .'/edit');
+		}else if(isset($aliases[4]) && $aliases[4] == 'delete'){
+			drupal_goto("user/$user->uid/edit/addresses/$aliases[3]/delete");
+			Header('Location: http://www.civil808.com/user/'. $user->uid .'/edit/addresses/'. $aliases[3] .'/delete');
 		}
 		drupal_goto("user/$user->uid/edit/addresses");
 		Header('Location: http://www.civil808.com/user/'. $user->uid .'/edit/addresses');
 		die();
+	}elseif(isset($aliases[3]) && $aliases[0] == 'user' && $aliases[1] == 'quiz' && $aliases[3] == 'userresults' ){
+		//redirecting user/quiz/%/userresults to user/%/myresults/%
+		drupal_goto("user/$user->uid/myresults/$aliases[2]");
+		Header('Location: http://www.civil808.com/user/'. $user->uid .'/myresults'. $aliases[2]);
+		die();
 	}
+}
 
-	
+/**
+ * Helper function to determine if a user has access to view a specific quiz result.
+ *
+ * @param int $rid
+ *  Result id
+ * @return boolean
+ *  True if access, false otherwise
+ */
+function civil808_quiz_access_my_result($rid) {
+  if (!user_access('view own quiz results')) {
+    return FALSE;
+  }
+  // Check if the quiz taking has been completed.
+  $time_end = db_query('SELECT time_end FROM {quiz_node_results} WHERE result_id = :result_id', array(':result_id' => $rid))->fetchField();
+  return $time_end > 0;
 }
