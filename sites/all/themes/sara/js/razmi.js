@@ -730,9 +730,11 @@ if($('#user-login').length){
 	$('#user-register-form .linkedin.register').remove();
 	$('#user-register-form > div').prepend(register);
 }
+// add plus sign '+' when user has more than 500 connection
 if($('.linkedin-num-connections').length && parseInt($('.linkedin-num-connections span:last-child').text()) > 499){
 	$('.linkedin-num-connections span:last-child').addClass('capped');
 }
+//change the direction of summery if it contains persian text
 $('.linkedin-position-summary').each(function(){
 	var text = $(this);
 	$.getScript('/sites/all/themes/sara/js/lib/persian-rex.js', function(){
@@ -740,13 +742,14 @@ $('.linkedin-position-summary').each(function(){
 			text.addClass('rtl');
 	});
 });
-if($('.page-edit.page-linkedin').length){
-	$('#content > .tabs').append('<ul class="tabs secondary">'
-		+'<li class="user edit"><a href="/user/'+ Drupal.settings.Uid +'/edit">حساب</a></li>'
-		+'<li class="active user edit linkedin"><a href="/user/'+ Drupal.settings.Uid +'/edit/linkedin" class="active">Linkedin</a></li>'
-		+'<li class="user edit bank"><a href="/user/'+ Drupal.settings.Uid +'/edit/bank">بانک</a></li>'
-		+'<li class="user edit main"><a href="/user/'+ Drupal.settings.Uid +'/edit/main">اطلاعات اصلی</a></li>'
-	+'</ul>');
+//added user secondery menu. because ther is a problem with user/edit pages
+if($('.page-edit.page-linkedin, .page-edit.page-addresses').length){
+	if($('#content > .tabs .secondary').length){
+		$('#content > .tabs .secondary').prepend('<li class="user edit"><a href="/user/'+ Drupal.settings.Uid +'/edit">حساب</a></li>'
+			+'<li class="user edit main"><a href="/user/'+ Drupal.settings.Uid +'/edit/main">اطلاعات اصلی</a></li>'
+			+'<li class="user edit bank"><a href="/user/'+ Drupal.settings.Uid +'/edit/bank">بانک</a></li>'
+		);
+	}
 }
 $('.bootstrap-filestyle > .group-span-filestyle').each(function(){
 	$(this).parents('.form-item').addClass('boot-filestyle');
@@ -970,7 +973,7 @@ $('td.privatemsg-list-participants a').each(function(i){
 });
 /*-----------------------------------------------------------------------------------------------------------------*/
 // add wave action to some elements for default:
-$('.btn, button, .btn-primary, .cancel-address-link, a#edit-cancel, .btn-danger, .address-link, a.all-members, .jcarousel-next-horizontal, #footer a, input[type="submit"]').each(function(){
+$('.btn, button, .btn-primary, .cancel-address-link, a#edit-cancel, .btn-danger, .address-link, a.all-members, .jcarousel-next-horizontal, #footer a, input[type="submit"], ul.secondary a, ul.primary li a, .ui-tabs-nav li a, .pager li>a,.userpoints-links a').each(function(){
 	if($(this).css('position') == 'absolute'){
 		$(this).addClass('pos-abs');
 	}

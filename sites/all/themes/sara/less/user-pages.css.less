@@ -1,7 +1,7 @@
 /* 
  * imports section
  */
-@import "colors.css.less"; //@mat-grey-50
+@import "colors.css.less"; //@mat-grey-50 ,red, ping, purple, deep-purple, indigo, blue, light-blue, cyan, teal, green, light-green, lime, yellow, amber, orange, deep-orange, brown, gray, blue-grey
 @import "vars.css.less"; 
 
 
@@ -20,7 +20,7 @@
 		&:before {
 			content: "";
 			.absolute(100% ; 200px ; '' ; 1px ; '' ; 1px );
-			box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+			box-shadow: @z1;
 			z-index: 1;
 			margin-top: -@pad; 
 			@media @600{
@@ -34,6 +34,20 @@
 	.userpoints-myuserpoints-list,
 	&.page-user-orders .view-uc-orders-user {
 		box-shadow: @z1;
+		~ .item-list {
+			background: #fcfcfc;
+			box-shadow: @z1;
+		}
+	}
+	&.page-user-myresults #block-system-main table {
+		+ p{
+			.paper(z1);
+			border: solid @mat-red;
+			border-width: 0 3px;
+			text-align: center;
+			margin: 20px auto 0;
+			max-width: 600px;
+		}
 	}
 }
 .page-reward, .page-charge, .page-login , .page-register , .page-user-password , .page-user.role-anonymous-user:not(.profile){
@@ -279,7 +293,7 @@ h1#page-title {
 				}
 			}
 			&:hover{
-				box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+				box-shadow: @z1;
 				height: initial;
 				&:before {
 					height: 0;
@@ -361,19 +375,17 @@ h1#page-title {
 		.no-acrollbar;
 	}
 }
+.no-sale {
+	.paper(z0);
+	text-align: center;
+	border: solid @mat-red;
+	border-width: 0 5px;
+}
 .user-sale-report {
 	@pane-color: @mat-red;
 	.user-panes();
 	.pane-title{
 		.before(f1b3 ;''; 35px; @pane-color);
-	}
-	.pane-content{
-		.no-sale {
-			.paper(z);
-			text-align: center;
-			border: solid @mat-red;
-			border-width: 0 5px;
-		}
 	}
 	thead tr th{
 		border-bottom: 1px solid fade(@pane-color , 30%) !important;
@@ -394,8 +406,7 @@ h1#page-title {
 		.before(f290 ;aw; 25px; @pane-color);
 	}
 	.pane-content .no-sale{
-		&:extend(.user-sale-report .pane-content .no-sale);
-        border-color: #8bc34a;
+        border-color: @pane-color;
 	}
 }
 .view-uc-orders-user{
@@ -447,6 +458,18 @@ h1#page-title {
 	}
 }
 .view-bought-nodes{
+	.views-exposed-widgets{
+		.paper(z1);
+		border-bottom: 1px solid @mat-blue;
+		> div {
+			display: flex;
+			margin-left: 30px;
+			justify-content: center;
+			align-items: center;
+			padding: 0;
+			label, input{margin: 0 0 0 10px;}
+		}
+	}
 	thead tr th{
 		border-bottom: 1px solid fade(@mat-indigo , 30%) !important;
 		background: #fcfcfc;
@@ -692,6 +715,10 @@ h1#page-title {
 			span{
 				background: none;
 				padding: 0;
+				border-top: 3px solid @mat-deep-purple;
+				font-size: 15px;
+				width: 100px;
+				margin-top: -2px;
 			}
 		}
 		.fieldset-wrapper{
@@ -713,6 +740,8 @@ h1#page-title {
 				border: none;
 				display: inline-flex;
 				align-items: center;
+				padding: 0;
+				margin-right: -10px;
 				.image-widget {
 					display: flex;
 					align-items: center;
@@ -959,43 +988,47 @@ p.description.profile-percent {
 		padding: 0;
 		a {.green-btn;}
 	}
+	.list-address-wrapper(){
+		.paper(z1);
+		position: relative;
+		tr{
+			border:none;
+			&.address-field-address_name , 
+			&.address-field-address , 
+			&.address-field-phone {
+				td:first-child{display: none;}
+				td:last-child{padding: 5px 0;}
+			}
+			&.address-field-address_name {
+				font-size: 20px;
+				font-weight: 500;
+			}
+			.adres-conteiner > div {
+				display: inline-block;
+				margin-left: 10px;
+				padding: 0 !important;
+				&:first-child {
+					display: block;
+					margin-bottom: 10px;
+					font-size: inherit !important;
+				}
+			}
+			&.address-links {
+				td{
+					padding: 10px;
+					a{
+						.btn;
+						.small-btn;
+					}
+				}
+			}
+		}
+	}
 	.additional-addresses {
 		width: 100%;
 		float: none;
 		li.address-item .list-address-wrapper{
-			.paper(z1);
-			position: relative;
-			tr{
-				&.address-field-address_name , 
-				&.address-field-address , 
-				&.address-field-phone {
-					td:first-child{display: none;}
-					td:last-child{padding: 5px 0;}
-				}
-				&.address-field-address_name {
-					font-size: 20px;
-					font-weight: 500;
-				}
-				.adres-conteiner > div {
-					display: inline-block;
-					margin-left: 10px;
-					padding: 0 !important;
-					&:first-child {
-						display: block;
-						margin-bottom: 10px;
-						font-size: inherit !important;
-					}
-				}
-				&.address-links {
-					td{
-						padding: 10px;
-						a{
-							.btn;
-							.small-btn;
-						}
-					}
-				}
-			}
+			.list-address-wrapper();
 		}
 	}
 	.default-addresses{
@@ -1039,7 +1072,9 @@ form#uc-addresses-get-address-form{
 				justify-content: space-between;
 				&.field-address_name {
 					order: -1;
-					margin-bottom: 15px;
+					margin-bottom: 5px;
+					border-bottom: 1px solid #eee;
+					padding-bottom: 25px;
 					.description {
 						position: absolute;
 						right: 0;
@@ -1057,10 +1092,26 @@ form#uc-addresses-get-address-form{
 			}
 		}
 	}
+	input#edit-delete{display:none;}
 	a.cancel-address-link{
 		.btn;
 	}
-	
+}
+.page-user-edit-addresses-delete #block-system-main > .content > p{
+	.user-edit-page-media();
+	padding: 10px 5px 15px;
+	font-weight: 500;
+}
+#uc-addresses-delete-address-confirm-form .list-address-wrapper{
+	.address-book .list-address-wrapper();
+}
+#uc-addresses-delete-address-confirm-form{
+	.user-edit-page-media();
+	border: none !important;
+	padding: 0 3px;
+	#edit-actions {
+		padding: 0;
+	}
 }
 
 

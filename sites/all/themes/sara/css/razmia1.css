@@ -1563,21 +1563,11 @@ form.confirmation {
   margin: 0 auto 5px;
   border: 1px solid #eee !important;
 }
-form.confirmation .form-actions > * {
-  text-align: center;
-  padding: 4px 25px;
-  border-radius: 0 !important;
-  margin: 0 !important;
-}
 #comments h2 {
   display: none;
 }
 .comment-form {
   margin: 40px auto !important;
-}
-form.confirmation .form-actions > *[value="حذف"] {
-  background-color: #d9534f;
-  border-color: #d43f3a;
 }
 #comments .messages {
   display: inline-block;

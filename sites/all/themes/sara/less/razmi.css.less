@@ -27,6 +27,9 @@ input.btn-danger{
 #edit-cancel{
 	.btn;
 }
+input, select, textarea{
+	&[disabled], &[readonly]{ opacity: 0.5;}
+}
 .has-wave{
 	&:not(.pos-abs){position: relative;}
 	.click-wave {
