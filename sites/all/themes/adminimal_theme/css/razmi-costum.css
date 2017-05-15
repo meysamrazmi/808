@@ -510,7 +510,8 @@ div#views-ajax-body .views-messages {
 .field-name-field-image table tr ,
 .field-name-field-pictures table tr {
   display: inline-flex;
-  width: 60%;
+  width: 48%;
+    vertical-align: top;
   min-width: 300px;
   position: relative;
   margin-left: 1%;
@@ -577,10 +578,6 @@ fieldset#edit-field-pictures-und thead,
   display: inline-block;
   max-width: 100%;
   overflow: overlay;
-}
-.field-name-field-image table .image-widget-data input.form-text,
-.field-name-field-pictures table .image-widget-data input.form-text {
-  max-width: 250px;
 }
 span.for-alt a {
   border: 1px solid #06f;

@@ -67,23 +67,17 @@
 		& when not (@color = '') {color: @color;}
 	}
 }
-.user-img(@width:''){
-	& when not (@width = '') {width: @width;}
-	border-radius: 50%;
-	border: 2px solid #fff;
-	box-shadow: @z1;
-	overflow: hidden;
-}
 /*=============================*/
 
 .node-teaser{
     position: relative;
 }
 /*-------bookmarks----------*/
-span.flag-bookmarks{
+li.flag-bookmarks{
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 18px;
+    left: 1px;
+    opacity: 1 !important;
     a.flag{
         font-size: 0px;
         &:before{
@@ -97,23 +91,23 @@ span.flag-bookmarks{
         content:'\f0c0';
     }
     .flag-message {
-        top: -34px;
+        top: -8px;
         background-color: #fff;
         width: 97px;
         text-align: center;
-        border: 1px solid #eee;
+        border: 1px solid #9c9898;
         padding: 4px 4px 3px 4px;
-        left: -34px;
+        left: 33px;
         font-size: 10px;
         &:after{
-            width: 10px;
-            height: 10px;
-            border: 1px solid #eee;
-            border-width: 0 1px 1px 0;
+            width: 7px;
+            height: 7px;
+            border: 1px solid #9c9898;
+            border-width: 0px 0px 1px 1px;
             content: "";
             position: absolute;
-            bottom: -7px;
-            right: calc(50% - 5px);
+            bottom: 7px;
+            left: -5px;
             background-color: white;
             -ms-transform: rotate(45deg);
             -webkit-transform: rotate(45deg);
@@ -123,14 +117,15 @@ span.flag-bookmarks{
     }
     .flag-throbber{
         position: absolute;
-        top: -2px;
+        top: -8px;
         left: 3px;
     }
 }
-
-
-
-
-
+.container #page-title {
+    margin: 0 0 0 30px;
+    @media @600{
+        font-size: 19px;
+    }
+}
 
 
