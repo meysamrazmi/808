@@ -974,6 +974,17 @@ function civil808_preprocess_html(&$variables) {
 	global $user;
 	$path = drupal_get_path_alias();
 	$aliases = explode('/', $path);
+	
+	//redirecting all english urls that shouldnt be enabled
+	global $language;
+	if($language->language == 'en'){
+		$langs = language_list();
+		$language = $langs['fa'];
+		$url = implode("/",$aliases);
+		Header('Location: http://www.civil808.com/'. $path);
+		drupal_goto($path);
+		die();
+	}
   
 	if(isset($aliases[2]) && $aliases[0] == 'user' && $aliases[2] == 'addresses' ){
 		if(isset($aliases[3]) && $aliases[3] == 'add'){
