@@ -116,7 +116,7 @@ function mdump($var){
  		echo '<pre>';
 		print_r($var);
 		echo '</pre>';
-		die($die);
+		die();
  	}
 }
 
