@@ -151,8 +151,8 @@ function sara_preprocess_node(&$variables) {
 
   $variables['date'] = '<time>'.format_date($node->created, 'custom', 'j F Y').'</time>';
     $variables['author_about_me'] = '';
-    $profile = profile2_load_by_user($variables['uid']);
-    if ($profile['main']->field_about_me) {
+    $profile = profile2_load_by_user($node->uid);
+    if (isset($profile['main']->field_about_me['und'][0])) {
         $variables['author_about_me'] = $profile['main']->field_about_me['und'][0]['value'];
     } 
 
