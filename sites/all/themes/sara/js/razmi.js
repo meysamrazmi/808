@@ -1092,6 +1092,12 @@ function initialise(){
 		$(":file").filestyle({buttonText: "انتخاب فایل", buttonName: "btn-primary",placeholder: "فایلی انتخاب نشده"});
 		});
 	}
+	
+	$('.ui-state-error .ui-pnotify-text').each(function(){
+		if($(this).text().indexOf("public_html") || $(this).text().indexOf("module")){
+			$(this).parents(".ui-widget").addClass("admin-error");
+		}
+	});
   
 }
 /*-------------------------------------------------------*/
