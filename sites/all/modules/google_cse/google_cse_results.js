@@ -6,11 +6,18 @@
 // Callback to grab search terms from the URL and feed them to Google.
 window.__gcse = {
   callback: function () {
-    var query = /.*\/search\/google\/(.+)/.exec(document.location.pathname);
-    if (query) {
+    var keys = [];
+    if (Drupal.settings.googleCSE.keys) {
+      // Get search keys passed by settings.
+      keys[1] = Drupal.settings.googleCSE.keys;
+    } else {
+      // Fallback to get keys from URL, if not set in settings.
+      keys = /.*\/search\/google\/(.+)/.exec(document.location.pathname);
+    }
+    if (keys) {
       var gcse = google.search.cse.element.getElement("google_cse");
       if (gcse) {
-        gcse.execute(decodeURIComponent(query[1]));
+        gcse.execute(decodeURIComponent(keys[1]));
       }
     }
   }
@@ -29,3 +36,22 @@ window.__gcse = {
   s.parentNode.insertBefore(gcse, s);
 }
 )();
+
+// Added to send input from search block to Google endpoint.
+// The Form API AJAX framework should probably be used here.
+(function($) {
+  Drupal.behaviors.form_submit_processor = {
+    attach: function (context, settings) {
+      $("form#google-cse-results-searchbox-form").submit(function (e) {
+        e.preventDefault();
+        keys = $('form#google-cse-results-searchbox-form #edit-query').val();
+        if (keys) {
+          var gcse = google.search.cse.element.getElement("google_cse");
+          if (gcse) {
+            gcse.execute(decodeURIComponent(keys));
+          }
+        }
+      });
+    }
+  }
+})(jQuery);

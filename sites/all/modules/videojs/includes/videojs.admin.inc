@@ -44,6 +44,21 @@ function videojs_settings_form() {
     ),
   );
 
+  $form['location']['videojs_cdn_version'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Video.js CDN version'),
+    '#default_value' => videojs_utility::getCdnVersion(),
+    '#states' => array(
+      'visible' => array(
+        ':input[name="videojs_location"]' => array('value' => 'cdn'),
+      ),
+    ),
+    '#size' => 10,
+    '#maxlength' => 20,
+    '#description' => t('For all available versions, take a look at the !releaseslink.',
+      array('!releaseslink' => l(t('Video.js releases page'), 'https://github.com/videojs/video.js/releases'))),
+  );
+
   $form['options'] = array(
     '#type' => 'fieldset',
     '#title' => t('Player defaults'),
@@ -85,7 +100,21 @@ function videojs_settings_form_validate($form, &$form_state) {
 
     case 'cdn':
     default:
-      $form_state['videojs_version'] = '4';
+      $form_state['values']['videojs_cdn_version'] = trim($form_state['values']['videojs_cdn_version']);
+      $form_state['videojs_version'] = $form_state['values']['videojs_cdn_version'];
+      if (empty($form_state['videojs_version'])) {
+        form_error($form['location']['videojs_cdn_version'], t('You must set a version when using the Video.js CDN.'));
+      }
+      else {
+        $form_state['videojs_directory'] = videojs_utility::CDN_HOST . $form_state['videojs_version'];
+        $version = videojs_get_version($form_state['videojs_directory']);
+        if (empty($version)) {
+          form_error($form['location']['videojs_cdn_version'], t('@version does not seems to be a valid Video.js version, as @path could not be found.',
+            array('@version' => $form_state['videojs_version'], '@path' => $form_state['videojs_directory'] . '/video.js')
+          ));
+          $form_state['videojs_version'] = NULL;
+        }
+      }
       break;
   }
 
@@ -112,7 +141,5 @@ function videojs_settings_form_submit($form, &$form_state) {
     }
   }
 
-  if ($form_state['values']['videojs_location'] != 'cdn') {
-    drupal_set_message(t('The Video.js library (version @version) was successfully found at %directory.', array('@version' => $form_state['videojs_version'], '%directory' => $form_state['videojs_directory'])));
-  }
+  drupal_set_message(t('The Video.js library (version @version) was successfully found at %directory.', array('@version' => $form_state['videojs_version'], '%directory' => $form_state['videojs_directory'])));
 }

@@ -354,6 +354,10 @@ function advagg_advagg_get_info_on_files_alter(&$return, $cached_data, $bypass_c
  *   Array with the css and or the js key.
  */
 function advagg_advagg_changed_files(array $files, array $types) {
+  if (module_exists('locale')) {
+    _advagg_locale_changed_files($files, $types);
+  }
+
   // Keep track of what themes have been done.
   static $themes_done;
   if (!isset($themes_done)) {
@@ -489,8 +493,6 @@ function advagg_advagg_changed_files(array $files, array $types) {
 }
 
 /**
- * Implements hook_advagg_changed_files().
- *
  * If the locale module is enabled regenerate locale translations.
  *
  * @param array $files
@@ -498,7 +500,7 @@ function advagg_advagg_changed_files(array $files, array $types) {
  * @param array $types
  *   Array with the css and or the js key.
  */
-function locale_advagg_changed_files(array $files, array $types) {
+function _advagg_locale_changed_files(array $files, array $types) {
   // Skip if no js changed.
   if (empty($types['js'])) {
     return;

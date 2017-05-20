@@ -313,110 +313,6 @@ function advagg_mod_menu() {
 }
 
 /**
- * Implements hook_js_alter().
- */
-function advagg_mod_js_alter(&$js) {
-  if (!module_exists('advagg') || !advagg_enabled()) {
-    return;
-  }
-
-  // Change google analytics inline loader to be inside of an aggregrated file.
-  if (variable_get('advagg_mod_ga_inline_to_file', ADVAGG_MOD_GA_INLINE_TO_FILE)) {
-    advagg_mod_ga_inline_to_file($js);
-  }
-
-  // Only add JS if it's actually needed.
-  if (variable_get('advagg_mod_js_remove_unused', ADVAGG_MOD_JS_REMOVE_UNUSED)) {
-    advagg_remove_js_if_not_used($js);
-  }
-
-  // Change sort order so aggregates do not get split up.
-  if (variable_get('advagg_mod_js_adjust_sort_external', ADVAGG_MOD_JS_ADJUST_SORT_EXTERNAL)
-    || variable_get('advagg_mod_js_adjust_sort_inline', ADVAGG_MOD_JS_ADJUST_SORT_INLINE)
-    || variable_get('advagg_mod_js_adjust_sort_browsers', ADVAGG_MOD_JS_ADJUST_SORT_BROWSERS)
-  ) {
-    advagg_mod_sort_css_js($js, 'js');
-  }
-
-  // Move JS to the footer.
-  advagg_mod_js_move_to_footer($js);
-
-  // Force all JS to be preprocessed.
-  if (variable_get('advagg_mod_js_preprocess', ADVAGG_MOD_JS_PREPROCESS)) {
-    foreach ($js as &$values) {
-      $values['preprocess'] = TRUE;
-      $values['cache'] = TRUE;
-    }
-    unset($values);
-  }
-
-  // Add the defer or the async tag to JS.
-  $jquery_defered = advagg_mod_js_async_defer($js);
-  // Inline JS defer.
-  advagg_mod_inline_defer($js, $jquery_defered);
-
-  // Move all async JS to the header.
-  if (variable_get('advagg_mod_js_async_in_header', ADVAGG_MOD_JS_ASYNC_IN_HEADER)) {
-    foreach ($js as &$values) {
-      // Skip if not file or external.
-      if ($values['type'] !== 'file' && $values['type'] !== 'external') {
-        continue;
-      }
-      // Skip if not async.
-      if (empty($values['async']) && empty($values['attributes']['async'])) {
-        continue;
-      }
-
-      // Move to the header with a group of 1000.
-      $values['scope'] = 'header';
-      $values['group'] = 1000;
-    }
-    unset($values);
-  }
-
-  advagg_mod_prefetch_link($js);
-}
-
-/**
- * Have the browser prefech this domain to open the connection.
- *
- * @param array $js
- *   JS array.
- */
-function advagg_mod_prefetch_link(array &$js) {
-  if (!variable_get('advagg_mod_prefetch', ADVAGG_MOD_PREFETCH)) {
-    return;
-  }
-  foreach ($js as &$values) {
-    if (!isset($values['dns_prefetch'])) {
-      continue;
-    }
-    foreach ($values['dns_prefetch'] as &$url) {
-      // Prefetch stats.g.doubleclick.net domain.
-      if (strpos($url, '//stats.g.doubleclick.net') === FALSE) {
-        continue;
-      }
-      if (variable_get('advagg_resource_hints_preconnect', ADVAGG_RESOURCE_HINTS_PRECONNECT)) {
-        $parse = @parse_url($url);
-        $inline_script = 'var preconnect_support = false; try {if (document.createElement("link").relList.supports("preconnect")) {preconnect_support = true;}} catch (e) {} if (!preconnect_support) { var prefetch = document.createElement("link"); prefetch.href = "https://' . $parse['host'] . '/robots.txt"; prefetch.rel="prefetch"; document.getElementsByTagName("head")[0].appendChild(prefetch);}';
-        $js['advagg_preconnect_support'] = array(
-          'type' => 'inline',
-          'group' => JS_LIBRARY - 1,
-          'weight' => -50000,
-          'scope_lock' => TRUE,
-          'movable' => FALSE,
-          'no_defer' => TRUE,
-          'data' => $inline_script,
-        ) + drupal_js_defaults($inline_script);
-      }
-      else {
-        $url .= '#prefetch';
-      }
-    }
-  }
-}
-
-/**
  * Implements hook_element_info_alter().
  */
 function advagg_mod_element_info_alter(&$type) {
@@ -791,7 +687,7 @@ function advagg_mod_advagg_modify_css_pre_render_alter(&$children, &$elements) {
   $type = 'external';
   // https://github.com/filamentgroup/loadCSS.
   $version = variable_get('advagg_mod_github_version_loadcss', ADVAGG_MOD_GITHUB_VERSION_LOADCSS);
-  $data = "//cdn.rawgit.com/filamentgroup/loadCSS/$version/src/loadCSS.js";
+  $data = "//cdn.rawgit.com/filamentgroup/loadCSS/v$version/src/loadCSS.js";
   $min = '';
   if (variable_get('advagg_cache_level', ADVAGG_CACHE_LEVEL) >= 0) {
     $min = '.min';
@@ -830,7 +726,7 @@ function advagg_mod_advagg_modify_css_pre_render_alter(&$children, &$elements) {
     // Make cssrelpreload available.
     $type = 'external';
     // https://github.com/filamentgroup/loadCSS.
-    $data = "//cdn.rawgit.com/filamentgroup/loadCSS/$version/src/cssrelpreload.js";
+    $data = "//cdn.rawgit.com/filamentgroup/loadCSS/v$version/src/cssrelpreload.js";
     $min = '';
     if (variable_get('advagg_cache_level', ADVAGG_CACHE_LEVEL) >= 0) {
       $min = '.min';
@@ -1005,6 +901,113 @@ function advagg_mod_advagg_current_hooks_hash_array_alter(&$aggregate_settings) 
 }
 
 // Helper Functions.
+/**
+ * Alter the js array.
+ *
+ * @param array $js
+ *   JS array.
+ */
+function advagg_mod_post_js_alter(array &$js) {
+  if (!module_exists('advagg') || !advagg_enabled()) {
+    return;
+  }
+
+  // Change google analytics inline loader to be inside of an aggregrated file.
+  if (variable_get('advagg_mod_ga_inline_to_file', ADVAGG_MOD_GA_INLINE_TO_FILE)) {
+    advagg_mod_ga_inline_to_file($js);
+  }
+
+  // Only add JS if it's actually needed.
+  if (variable_get('advagg_mod_js_remove_unused', ADVAGG_MOD_JS_REMOVE_UNUSED)) {
+    advagg_remove_js_if_not_used($js);
+  }
+
+  // Change sort order so aggregates do not get split up.
+  if (variable_get('advagg_mod_js_adjust_sort_external', ADVAGG_MOD_JS_ADJUST_SORT_EXTERNAL)
+    || variable_get('advagg_mod_js_adjust_sort_inline', ADVAGG_MOD_JS_ADJUST_SORT_INLINE)
+    || variable_get('advagg_mod_js_adjust_sort_browsers', ADVAGG_MOD_JS_ADJUST_SORT_BROWSERS)
+  ) {
+    advagg_mod_sort_css_js($js, 'js');
+  }
+
+  // Move JS to the footer.
+  advagg_mod_js_move_to_footer($js);
+
+  // Force all JS to be preprocessed.
+  if (variable_get('advagg_mod_js_preprocess', ADVAGG_MOD_JS_PREPROCESS)) {
+    foreach ($js as &$values) {
+      $values['preprocess'] = TRUE;
+      $values['cache'] = TRUE;
+    }
+    unset($values);
+  }
+
+  // Add the defer or the async tag to JS.
+  $jquery_defered = advagg_mod_js_async_defer($js);
+  // Inline JS defer.
+  advagg_mod_inline_defer($js, $jquery_defered);
+
+  // Move all async JS to the header.
+  if (variable_get('advagg_mod_js_async_in_header', ADVAGG_MOD_JS_ASYNC_IN_HEADER)) {
+    foreach ($js as &$values) {
+      // Skip if not file or external.
+      if ($values['type'] !== 'file' && $values['type'] !== 'external') {
+        continue;
+      }
+      // Skip if not async.
+      if (empty($values['async']) && empty($values['attributes']['async'])) {
+        continue;
+      }
+
+      // Move to the header with a group of 1000.
+      $values['scope'] = 'header';
+      $values['group'] = 1000;
+    }
+    unset($values);
+  }
+
+  advagg_mod_prefetch_link($js);
+}
+
+/**
+ * Have the browser prefech this domain to open the connection.
+ *
+ * @param array $js
+ *   JS array.
+ */
+function advagg_mod_prefetch_link(array &$js) {
+  if (!variable_get('advagg_mod_prefetch', ADVAGG_MOD_PREFETCH)) {
+    return;
+  }
+  foreach ($js as &$values) {
+    if (!isset($values['dns_prefetch'])) {
+      continue;
+    }
+    foreach ($values['dns_prefetch'] as &$url) {
+      // Prefetch stats.g.doubleclick.net domain.
+      if (strpos($url, '//stats.g.doubleclick.net') === FALSE) {
+        continue;
+      }
+      if (variable_get('advagg_resource_hints_preconnect', ADVAGG_RESOURCE_HINTS_PRECONNECT)) {
+        $parse = @parse_url($url);
+        $inline_script = 'var preconnect_support = false; try {if (document.createElement("link").relList.supports("preconnect")) {preconnect_support = true;}} catch (e) {} if (!preconnect_support) { var prefetch = document.createElement("link"); prefetch.href = "https://' . $parse['host'] . '/robots.txt"; prefetch.rel="prefetch"; document.getElementsByTagName("head")[0].appendChild(prefetch);}';
+        $js['advagg_preconnect_support'] = array(
+          'type' => 'inline',
+          'group' => JS_LIBRARY - 1,
+          'weight' => -50000,
+          'scope_lock' => TRUE,
+          'movable' => FALSE,
+          'no_defer' => TRUE,
+          'data' => $inline_script,
+        ) + drupal_js_defaults($inline_script);
+      }
+      else {
+        $url .= '#prefetch';
+      }
+    }
+  }
+}
+
 /**
  * Remove ajaxPageState CSS/JS if misc/ajax.js is not used.
  *

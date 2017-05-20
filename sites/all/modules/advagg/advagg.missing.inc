@@ -487,7 +487,7 @@ function advagg_htaccess_check_generate(array $files_to_save, $type, $force = FA
   $data .= "    # Serve brotli compressed ${type_upper} files if they exist and the client accepts br.\n";
   $data .= "    RewriteCond %{HTTP:Accept-encoding} br\n";
   $data .= "    RewriteCond %{REQUEST_FILENAME}\.br -s\n";
-  $data .= "    RewriteRule ^(.*)\.${type} $1\.${type}\.br [QSA]\n";
+  $data .= "    RewriteRule ^(.*)\.${type} " . '$1' . "\.${type}\.br [QSA]\n";
   if ($type === 'css') {
     $data .= "    RewriteRule \.${type}\.br$ - [T=text/${content_type},E=no-gzip:1]\n";
   }
@@ -505,7 +505,7 @@ function advagg_htaccess_check_generate(array $files_to_save, $type, $force = FA
   $data .= "    # Serve gzip compressed ${type_upper} files if they exist and the client accepts gzip.\n";
   $data .= "    RewriteCond %{HTTP:Accept-encoding} gzip\n";
   $data .= "    RewriteCond %{REQUEST_FILENAME}\.gz -s\n";
-  $data .= "    RewriteRule ^(.*)\.${type} $1\.${type}\.gz [QSA]\n";
+  $data .= "    RewriteRule ^(.*)\.${type} " . '$1' . "\.${type}\.gz [QSA]\n";
   if ($type === 'css') {
     $data .= "    RewriteRule \.${type}\.gz$ - [T=text/${content_type},E=no-gzip:1]\n";
   }

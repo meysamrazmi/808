@@ -5,7 +5,7 @@
  */
 
 /**
- * Preprocess function for videojs.tpl.php when using a playlist.
+ * Preprocess function for videojs.tpl.php.
  */
 function videojs_preprocess_videojs(&$vars) {
   videojs_add();
@@ -32,8 +32,20 @@ function videojs_preprocess_videojs(&$vars) {
   $vars['items'] = array();
   $vars['tracks'] = array();
   $vars['poster'] = NULL;
+  $vars['class'] = '';
+
+  if (!empty($vars['attributes']['class'])) {
+    $vars['class'] = implode(' ', $vars['attributes']['class']);
+  }
 
   foreach ($items as $item) {
+    
+    // Add src variables.
+    if (!empty($item['uri'])) {
+      $src = file_create_url($item['uri']);
+      $item['src'] = array('raw' => $src, 'safe' => check_plain($src));
+    }
+    
     if (empty($item['filemime'])) {
       continue;
     }
@@ -46,44 +58,50 @@ function videojs_preprocess_videojs(&$vars) {
 
       // Filter out tracks.
       if (strncmp($item['filemime'], 'text/vtt', 8) === 0) {
-        $item = $item + array(
+        // Add raw/safe for videotype var.
+        $item['filemime'] = array('raw' => $item['filemime'], 'safe' => check_plain($item['filemime']));
+        $vars['tracks'][] = $item + array(
           'default' => FALSE,
           'kind' => 'subtitles',
           'charset' => 'utf-8',
-          'description' => '',
+          'label' => '',
           'langcode' => '',
         );
-
-        // Try to find the language for subtitles.
-        if (empty($item['langcode'])) {
-          $language = videojs_utility::resolveLanguage($item['description']);
-          if ($language !== NULL) {
-            $item['langcode'] = $language[0];
-            if (empty($item['description'])) {
-              $item['description'] = $language[1];
-            }
-          }
-        }
-
-        $vars['tracks'][] = $item;
       }
 
       // Skip unplayable items.
       continue;
     }
 
-    $item['videotype'] = $codecs[$item['filemime']];
+    // Add raw/safe for videotype var.
+    $item['videotype'] = array('raw' => $codecs[$item['filemime']], 'safe' => check_plain($codecs[$item['filemime']]));
 
     $vars['items'][] = $item;
   }
 
-  // Turn the poster image URI into a URL
-  if (!empty($vars['poster'])) {
+  // Turn the poster image URI into a URL, if it isn't an URL already.
+  if (!empty($vars['poster']) && strncmp($vars['poster'], 'http://', 7) !== 0  && strncmp($vars['poster'], 'https://', 8) !== 0) {
     if (empty($vars['posterimage_style'])) {
       $vars['poster'] = file_create_url($vars['poster']);
     }
     else {
       $vars['poster'] = image_style_url($vars['posterimage_style'], $vars['poster']);
     }
+  }
+}
+
+/**
+ * Preprocess function for videojs-media-wysiwyg-preview.tpl.php.
+ */
+function videojs_preprocess_videojs_media_wysiwyg_preview(&$vars) {
+  videojs_preprocess_videojs($vars);
+
+  // If the video has no poster image, borrow one from the media module.
+  // This theme function should only be used by the media module, so assume
+  // it is loaded.
+  if (empty($vars['poster'])) {
+    $poster = drupal_get_path('module', 'media') . '/images/icons/default/video-x-generic.png';
+    $raw = file_create_url($poster);
+    $vars['poster'] = array('raw' => $raw, 'safe' => check_plain($raw));
   }
 }

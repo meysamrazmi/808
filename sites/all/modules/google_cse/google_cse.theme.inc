@@ -7,26 +7,27 @@
 
 function google_cse_get_cse_tag() {
   $display = variable_get('google_cse_custom_results_display', 'results-only');
+  $attributes = filter_xss(variable_get('google_cse_tag_attributes', 'gname="google_cse"'));
 
   switch ($display) {
     case 'overlay':
     case 'compact':
     case 'full-width':
-      return '<gcse:search gname="google_cse"></gcse:search>';
+      return '<gcse:search ' . $attributes . '></gcse:search>';
 
     case 'two-page':
-      return '<gcse:searchbox-only gname="google_cse"></gcse:searchbox-only><gcse:searchresults-only gname="google_cse"></gcse:searchresults-only>';
+      return '<gcse:searchbox-only ' . $attributes . '></gcse:searchbox-only><gcse:searchresults-only ' . $attributes . '></gcse:searchresults-only>';
 
 
     case 'two-column':
-      return '<gcse:searchbox gname="google_cse"></gcse:searchbox><gcse:searchresults gname="google_cse"></gcse:searchresults>';
+      return '<gcse:searchbox ' . $attributes . '></gcse:searchbox><gcse:searchresults ' . $attributes . '></gcse:searchresults>';
 
 
     case 'results-only':
-      return '<gcse:searchresults-only gname="google_cse"></gcse:searchresults-only>';
+      return '<gcse:searchresults-only ' . $attributes . '></gcse:searchresults-only>';
 
     case 'google-hosted':
-      return '<gcse:searchbox-only gname="google_cse"></gcse:searchbox-only>';
+      return '<gcse:searchbox-only ' . $attributes . '></gcse:searchbox-only>';
 
     default:
       watchdog('google_cse', 'Invalid custom result display %display',
@@ -38,13 +39,9 @@ function google_cse_get_cse_tag() {
  * The search results page can be themed/customized.
  */
 function template_preprocess_google_cse_results(&$variables) {
-  $query = google_cse_build_query(isset($_GET['query']) ? $_GET['query'] : '', NULL, FALSE);
   $variables['results_searchbox_form'] = $variables['form'] ? drupal_get_form('google_cse_results_searchbox_form') : '';
   $variables['cse_tag'] = google_cse_get_cse_tag();
-  $variables['noscript'] = t('!google, or enable JavaScript to view them here.', array(
-    '!google' => l(t('View the results at Google'), 'http://' . variable_get('google_cse_domain', 'www.google.com') . '/cse', array(
-      'query' => $query,
-    ))));
+  $variables['noscript'] = t('You must enable JavaScript to view the search results.');
   $variables['prefix'] = filter_xss_admin(variable_get('google_cse_results_prefix', ''));
   $variables['suffix'] = filter_xss_admin(variable_get('google_cse_results_suffix', ''));
 
@@ -75,7 +72,7 @@ function google_cse_results_searchbox_form($form, &$form_state) {
     $cof = variable_get('google_cse_cof_here', 'FORID:11');
   }
   else {
-    $form['#action'] = 'http://' . variable_get('google_cse_domain', 'www.google.com') . '/cse';
+    $form['#action'] = '//' . variable_get('google_cse_domain', 'www.google.com') . '/cse';
     $cof = variable_get('google_cse_cof_google', 'FORID:0');
   }
   $form['#method'] = 'get';

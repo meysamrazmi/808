@@ -45,6 +45,7 @@ function advagg_font_requirements($phase) {
 
   // See if locally hosted if not in dev mode.
   if (empty($lib_info)
+    || !$lib_info['installed']
     || (variable_get('advagg_font_fontfaceobserver', ADVAGG_FONT_FONTFACEOBSERVER) == 6
     && variable_get('advagg_cache_level', ADVAGG_CACHE_LEVEL) >= 0
     )
@@ -65,6 +66,7 @@ function advagg_font_requirements($phase) {
 
   // Check version.
   if (isset($lib_info['version'])
+    && !empty($lib_info['installed'])
     && !empty($version)
     && version_compare($version, $lib_info['version']) >= 1
   ) {

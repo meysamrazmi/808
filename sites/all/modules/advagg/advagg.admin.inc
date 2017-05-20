@@ -418,7 +418,7 @@ function advagg_admin_settings_form($form, $form_state) {
     $form['global']['obscure']['advagg_brotli']['#disabled'] = TRUE;
     $form['global']['obscure']['advagg_brotli']['#description'] .= ' ' . t('The <a href="@url">PHP brotli extension</a> is needed in order to enable this feature.', array('@url' => 'https://github.com/kjdev/php-ext-brotli'));
     if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-      $form['global']['obscure']['advagg_brotli']['#description'] .= ' ' . t('If running on windows this is a helpful guide on how to compile <a href="@url">PHP extensions</a>. Also noted that <a href"@iis">IIS has a Brotli extension<a/>,', array(
+      $form['global']['obscure']['advagg_brotli']['#description'] .= ' ' . t('If running on windows this is a helpful guide on how to compile <a href="@url">PHP extensions</a>. Also noted that <a href"@iis">IIS has a Brotli extension</a>,', array(
         '@url' => 'https://wiki.php.net/internals/windows/stepbystepbuild',
         '@iis' => 'https://www.iis.net/downloads/community/2016/03/iis-brotli',
       ));
@@ -429,6 +429,12 @@ function advagg_admin_settings_form($form, $form_state) {
     '#title' => t('Run advagg_ajax_render_alter()'),
     '#default_value' => variable_get('advagg_ajax_render_alter', ADVAGG_AJAX_RENDER_ALTER),
     '#description' => t('If disabled, AdvAgg will not alter the aggregates returned by ajax requests.'),
+  );
+  $form['global']['obscure']['advagg_disable_on_admin'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Do not use AdvAgg or any aggregation in the admin section.'),
+    '#default_value' => variable_get('advagg_disable_on_admin', ADVAGG_DISABLE_ON_ADMIN),
+    '#description' => t('If checked, AdvAgg will not be used in the /admin section as well as any place the admin theme is used.'),
   );
   $form['global']['obscure']['advagg_include_base_url'] = array(
     '#type' => 'checkbox',

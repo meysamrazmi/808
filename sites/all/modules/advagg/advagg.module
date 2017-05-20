@@ -303,6 +303,11 @@ define('ADVAGG_CSS_REMOVE_EMPTY_FILES', FALSE);
  */
 define('ADVAGG_JS_REMOVE_EMPTY_FILES', FALSE);
 
+/**
+ * If TRUE advagg will be disabled on admin pages.
+ */
+define('ADVAGG_DISABLE_ON_ADMIN', FALSE);
+
 
 // Core hook implementations.
 /**
@@ -414,76 +419,34 @@ function advagg_hook_info() {
  * Implements hook_module_implements_alter().
  */
 function advagg_module_implements_alter(&$implementations, $hook) {
-  // Move advagg to the top.
+  // Move advagg_theme_registry_alter to the top.
   if ($hook === 'theme_registry_alter' && array_key_exists('advagg', $implementations)) {
     $item = array('advagg' => $implementations['advagg']);
     unset($implementations['advagg']);
     $implementations = array_merge($item, $implementations);
   }
 
-  // Move advagg to the top.
+  // Move advagg_ajax_render_alter to the top.
   if ($hook === 'ajax_render_alter' && array_key_exists('advagg', $implementations)) {
     $item = array('advagg' => $implementations['advagg']);
     unset($implementations['advagg']);
     $implementations = array_merge($item, $implementations);
   }
 
-  // Move advagg to the bottom.
+  // Move advagg_element_info_alter to the bottom.
   if ($hook === 'element_info_alter' && array_key_exists('advagg', $implementations)) {
     $item = $implementations['advagg'];
     unset($implementations['advagg']);
     $implementations['advagg'] = $item;
   }
 
+  // Replace locale_js_alter with _advagg_locale_js_alter.
   if ($hook === 'js_alter' && array_key_exists('locale', $implementations)) {
-    // Replace locale with _advagg_locale.
     unset($implementations['locale']);
     $implementations['_advagg_locale'] = FALSE;
   }
 
-  if ($hook === 'js_alter' && array_key_exists('advagg', $implementations)) {
-    if (variable_get('advagg_run_alter_after_theme', ADVAGG_RUN_ALTER_AFTER_THEME)) {
-      // Remove advagg and advagg_mod; runs after drupal_alter('js', $js).
-      unset($implementations['advagg']);
-      if (array_key_exists('advagg_mod', $implementations)) {
-        unset($implementations['advagg_mod']);
-      }
-    }
-    else {
-      // Move advagg and advagg_mod to the bottom, advagg is above advagg_mod.
-      $item = $implementations['advagg'];
-      unset($implementations['advagg']);
-      $implementations['advagg'] = $item;
-      if (array_key_exists('advagg_mod', $implementations)) {
-        $item = $implementations['advagg_mod'];
-        unset($implementations['advagg_mod']);
-        $implementations['advagg_mod'] = $item;
-      }
-    }
-  }
-
-  if ($hook === 'css_alter' && array_key_exists('advagg', $implementations)) {
-    if (variable_get('advagg_run_alter_after_theme', ADVAGG_RUN_ALTER_AFTER_THEME)) {
-      // Remove advagg and advagg_mod; runs after drupal_alter('css', $css).
-      unset($implementations['advagg']);
-      if (array_key_exists('advagg_mod', $implementations)) {
-        unset($implementations['advagg_mod']);
-      }
-    }
-    else {
-      // Move advagg and advagg_mod to the bottom, advagg is above advagg_mod.
-      $item = $implementations['advagg'];
-      unset($implementations['advagg']);
-      $implementations['advagg'] = $item;
-      if (array_key_exists('advagg_mod', $implementations)) {
-        $item = $implementations['advagg_mod'];
-        unset($implementations['advagg_mod']);
-        $implementations['advagg_mod'] = $item;
-      }
-    }
-  }
-
-  // Move advagg to the bottom.
+  // Move advagg_file_url_alter to the bottom.
   if ($hook === 'file_url_alter' && array_key_exists('advagg', $implementations)) {
     $item = $implementations['advagg'];
     unset($implementations['advagg']);
@@ -491,7 +454,7 @@ function advagg_module_implements_alter(&$implementations, $hook) {
   }
 
   if ($hook === 'requirements') {
-    // Move advagg to the bottom.
+    // Move advagg_requirements to the bottom.
     if (array_key_exists('advagg', $implementations)) {
       $item = $implementations['advagg'];
       unset($implementations['advagg']);
@@ -523,7 +486,7 @@ function advagg_module_implements_alter(&$implementations, $hook) {
     }
   }
 
-  // Move advagg to the bottom.
+  // Move advagg_cron to the bottom.
   if ($hook === 'cron' && array_key_exists('advagg', $implementations)) {
     $item = $implementations['advagg'];
     unset($implementations['advagg']);
@@ -1010,258 +973,6 @@ function advagg_ajax_render_alter(&$commands) {
   }
   if (!empty($settings)) {
     array_unshift($commands, ajax_command_settings(advagg_cleanup_settings_array(drupal_array_merge_deep_array($settings['data'])), TRUE));
-  }
-}
-
-/**
- * Implements hook_js_alter().
- */
-function advagg_js_alter(&$js) {
-  // Skip if advagg is disabled.
-  if (!advagg_enabled()) {
-    return;
-  }
-
-  // Add DNS information for some of the more popular modules.
-  foreach ($js as &$value) {
-    if (!is_string($value['data'])) {
-      continue;
-    }
-    // Google Ad Manager.
-    if (strpos($value['data'], '/google_service.') !== FALSE) {
-      if (!empty($value['dns_prefetch']) && is_string($value['dns_prefetch'])) {
-        $temp = $value['dns_prefetch'];
-        unset($value['dns_prefetch']);
-        $value['dns_prefetch'] = array($temp);
-      }
-      // Domains in the google_service.js file.
-      $value['dns_prefetch'][] = 'https://csi.gstatic.com';
-      $value['dns_prefetch'][] = 'https://pubads.g.doubleclick.net';
-      $value['dns_prefetch'][] = 'https://partner.googleadservices.com';
-      $value['dns_prefetch'][] = 'https://securepubads.g.doubleclick.net';
-
-      // Domains in the google_ads.js file.
-      $value['dns_prefetch'][] = 'https://pagead2.googlesyndication.com';
-
-      // Other domains that usually get hit.
-      $value['dns_prefetch'][] = 'https://cm.g.doubleclick.net';
-      $value['dns_prefetch'][] = 'https://tpc.googlesyndication.com';
-    }
-
-    // Google Analytics.
-    if (strpos($value['data'], 'GoogleAnalyticsObject') !== FALSE
-      || strpos($value['data'], '.google-analytics.com/ga.js') !== FALSE
-    ) {
-      if (!empty($value['dns_prefetch']) && is_string($value['dns_prefetch'])) {
-        $temp = $value['dns_prefetch'];
-        unset($value['dns_prefetch']);
-        $value['dns_prefetch'] = array($temp);
-      }
-      if ($GLOBALS['is_https'] && strpos($value['data'], '.google-analytics.com/ga.js') !== FALSE) {
-        $value['dns_prefetch'][] = 'https://ssl.google-analytics.com';
-      }
-      else {
-        $value['dns_prefetch'][] = 'https://www.google-analytics.com';
-      }
-      $value['dns_prefetch'][] = 'https://stats.g.doubleclick.net';
-    }
-  }
-  unset($value);
-
-  // Fix type if it was incorrectly set.
-  if (variable_get('advagg_js_fix_type', ADVAGG_JS_FIX_TYPE)) {
-    // Get hostname and base path.
-    $mod_base_url = substr($GLOBALS['base_root'] . $GLOBALS['base_path'], strpos($GLOBALS['base_root'] . $GLOBALS['base_path'], '//') + 2);
-    $mod_base_url_len = strlen($mod_base_url);
-
-    foreach ($js as &$value) {
-      // Skip if the data is empty or not a string.
-      if (empty($value['data']) || !is_string($value['data'])) {
-        continue;
-      }
-
-      // Default to file if type is not set.
-      if (!isset($value['type'])) {
-        $value['type'] = 'file';
-      }
-
-      // Default to file if not file, inline, external, setting.
-      if ($value['type'] !== 'file'
-        && $value['type'] !== 'inline'
-        && $value['type'] !== 'external'
-        && $value['type'] !== 'setting'
-      ) {
-        if ($value['type'] === 'settings') {
-          $value['type'] = 'setting';
-        }
-        else {
-          $value['type'] = 'file';
-        }
-      }
-
-      // If type is external but doesn't start with http, https, or // change it
-      // to file.
-      if ($value['type'] === 'external'
-        && stripos($value['data'], 'http://') !== 0
-        && stripos($value['data'], 'https://') !== 0
-        && strpos($value['data'], '//') !== 0
-        ) {
-        $value['type'] = 'file';
-      }
-
-      // If type is file but it starts with http, https, or // change it to
-      // external.
-      if ($value['type'] === 'file'
-        && (stripos($value['data'], 'http://') === 0
-        || stripos($value['data'], 'https://') === 0
-        || (strpos($value['data'], '//') === 0 && strpos($value['data'], '///') === FALSE))
-        ) {
-        $value['type'] = 'external';
-      }
-
-      // If type is external and starts with http, https, or // but points to
-      // this host change to file, but move it to the top of the aggregation
-      // stack.
-      if ($value['type'] === 'external'
-        && stripos($value['data'], $mod_base_url) !== FALSE
-        && (stripos($value['data'], 'http://') === 0
-          || stripos($value['data'], 'https://') === 0
-          || strpos($value['data'], '//') === 0
-          )
-      ) {
-        $value['type'] = 'file';
-        $value['group'] = JS_LIBRARY;
-        $value['every_page'] = TRUE;
-        $value['weight'] = -40000;
-        $value['data'] = substr($value['data'], stripos($value['data'], $mod_base_url) + $mod_base_url_len);
-      }
-    }
-    unset($value);
-  }
-
-  // Remove empty JS files from the js array before it is aggregated.
-  if (variable_get('advagg_js_remove_empty_files', ADVAGG_JS_REMOVE_EMPTY_FILES)) {
-    if (variable_get('advagg_fast_filesystem', ADVAGG_FAST_FILESYSTEM)) {
-      foreach ($js as $key => $value) {
-        if ($value['type'] !== 'file') {
-          continue;
-        }
-        // Check locally.
-        if (!is_readable($value['data']) || filesize($value['data']) == 0) {
-          unset($js[$key]);
-        }
-      }
-    }
-    else {
-      module_load_include('inc', 'advagg', 'advagg');
-      $files = array();
-      foreach ($js as $key => $value) {
-        if ($value['type'] !== 'file') {
-          continue;
-        }
-        $files[$key] = $value['data'];
-      }
-      // Check cache/db.
-      $info = advagg_get_info_on_files($files);
-      foreach ($info as $key => $values) {
-        if (empty($values['filesize'])) {
-          $key = array_search($values['data'], $files);
-          if (isset($js[$key])) {
-            unset($js[$key]);
-          }
-        }
-      }
-    }
-  }
-}
-
-/**
- * Implements hook_css_alter().
- */
-function advagg_css_alter(&$css) {
-  if (!advagg_enabled()) {
-    return;
-  }
-
-  if (variable_get('advagg_css_fix_type', ADVAGG_CSS_FIX_TYPE)) {
-    // Fix type if it was incorrectly set.
-    foreach ($css as &$value) {
-      if (empty($value['data']) || !is_string($value['data'])) {
-        continue;
-      }
-
-      // Default to file if type is not set.
-      if (!isset($value['type'])) {
-        $value['type'] = 'file';
-      }
-
-      // Default to file if not file, inline, or external.
-      if ($value['type'] !== 'file'
-        && $value['type'] !== 'inline'
-        && $value['type'] !== 'external'
-      ) {
-        $value['type'] = 'file';
-      }
-
-      // If type is external but doesn't start with http, https, or // change it
-      // to file.
-      if ($value['type'] === 'external'
-        && stripos($value['data'], 'http://') !== 0
-        && stripos($value['data'], 'https://') !== 0
-        && strpos($value['data'], '//') !== 0
-        ) {
-        $value['type'] = 'file';
-      }
-
-      // If type is file but it starts with http, https, or // change it to
-      // external.
-      if ($value['type'] === 'file'
-        && (stripos($value['data'], 'http://') === 0
-          || stripos($value['data'], 'https://') === 0
-          || (strpos($value['data'], '//') === 0
-            && strpos($value['data'], '///') === FALSE
-            )
-          )
-      ) {
-        $value['type'] = 'external';
-      }
-    }
-    unset($value);
-  }
-
-  // Remove empty CSS files from the css array before it is aggregated.
-  if (variable_get('advagg_css_remove_empty_files', ADVAGG_CSS_REMOVE_EMPTY_FILES)) {
-    if (variable_get('advagg_fast_filesystem', ADVAGG_FAST_FILESYSTEM)) {
-      foreach ($css as $key => $value) {
-        if ($value['type'] !== 'file') {
-          continue;
-        }
-        // Check locally.
-        if (!is_readable($value['data']) || filesize($value['data']) == 0) {
-          unset($css[$key]);
-        }
-      }
-    }
-    else {
-      module_load_include('inc', 'advagg', 'advagg');
-      $files = array();
-      foreach ($css as $key => $value) {
-        if ($value['type'] !== 'file') {
-          continue;
-        }
-        $files[$key] = $value['data'];
-      }
-      // Check cache/db.
-      $info = advagg_get_info_on_files($files);
-      foreach ($info as $key => $values) {
-        if (empty($values['filesize'])) {
-          $key = array_search($values['data'], $files);
-          if (isset($css[$key])) {
-            unset($css[$key]);
-          }
-        }
-      }
-    }
   }
 }
 
@@ -1905,8 +1616,8 @@ function _advagg_process_html(&$variables) {
 
   // Parts of drupal_get_html_head().
   $elements = drupal_add_html_head();
-  if (is_callable('advagg_mod_html_head_alter')) {
-    advagg_mod_html_head_alter($elements);
+  if (is_callable('advagg_mod_html_head_post_alter')) {
+    advagg_mod_html_head_post_alter($elements);
   }
 
   // Get default javascript.
@@ -2239,7 +1950,7 @@ function _advagg_process_html(&$variables) {
   // Output debug info.
   if (variable_get('advagg_debug', ADVAGG_DEBUG)) {
     $debug = $GLOBALS['_advagg']['debug'];
-    if (module_exists('httprl')) {
+    if (is_callable('httprl_pr')) {
       $output = ' ' . httprl_pr($debug);
     }
     else {
@@ -2622,13 +2333,15 @@ function advagg_get_css(array $css = array(), $skip_alter = FALSE) {
 
   // Allow modules and themes to alter the CSS items.
   if (!$skip_alter) {
+    advagg_add_default_dns_lookups($css, 'css');
+    // Call hook_css_alter().
     drupal_alter('css', $css);
-    if (variable_get('advagg_run_alter_after_theme', ADVAGG_RUN_ALTER_AFTER_THEME)) {
-      // Call these advagg css_alter hooks after the theme's hooks were called.
-      advagg_css_alter($css);
-      if (module_exists('advagg_mod')) {
-        advagg_mod_css_alter($css);
-      }
+    // Call hook_css_post_alter().
+    drupal_alter('css_post', $css);
+    // Call these advagg functions after the hook_css_alter was called.
+    advagg_fix_type($css, 'css');
+    if (is_callable('advagg_mod_css_post_alter')) {
+      advagg_mod_css_post_alter($css);
     }
   }
 
@@ -2660,6 +2373,9 @@ function advagg_get_css(array $css = array(), $skip_alter = FALSE) {
       $previous_item[$basename] = $key;
     }
   }
+
+  // Remove empty files.
+  advagg_remove_empty_files($css);
 
   // Render the HTML needed to load the CSS.
   $styles = array(
@@ -2715,17 +2431,16 @@ function advagg_get_full_js(array $javascript = array(), $skip_alter = FALSE) {
 
   // Allow modules to alter the JavaScript.
   if (!$skip_alter) {
+    advagg_add_default_dns_lookups($javascript, 'js');
     // Call hook_js_alter().
     drupal_alter('js', $javascript);
-    if (variable_get('advagg_run_alter_after_theme', ADVAGG_RUN_ALTER_AFTER_THEME)) {
-      // Call these advagg js_alter hooks after the theme's hooks were called.
-      advagg_js_alter($javascript);
-      if (module_exists('advagg_mod')) {
-        advagg_mod_js_alter($javascript);
-      }
+    // Call these advagg functions after the hook_js_alter was called.
+    advagg_fix_type($javascript, 'js');
+    if (is_callable('advagg_mod_js_post_alter')) {
+      advagg_mod_js_post_alter($javascript);
     }
   }
-  elseif (module_exists('advagg_mod')) {
+  elseif (is_callable('advagg_mod_js_move_to_footer')) {
     if (variable_get('advagg_mod_js_footer', ADVAGG_MOD_JS_FOOTER) == 3) {
       advagg_mod_js_move_to_footer($javascript);
     }
@@ -2748,6 +2463,9 @@ function advagg_get_full_js(array $javascript = array(), $skip_alter = FALSE) {
       }
     }
   }
+
+  // Remove empty files.
+  advagg_remove_empty_files($javascript);
 
   return $javascript;
 }
@@ -3181,6 +2899,27 @@ function advagg_enabled() {
     }
   }
   else {
+    // Get values and fill in defaults if needed.
+    $config_path = advagg_admin_config_root_path();
+    $current_path = current_path();
+    $arg = arg();
+    $arg += array(1 => '', 2 => '', 3 => '', 4 => '');
+    $admin_theme = variable_get('admin_theme');
+    // Disable advagg if on admin page and configured to do so.
+    // AND theme is admin theme
+    // AND NOT /admin/reports/status
+    // AND NOT /admin/config/development/performance/advagg/*.
+    if (variable_get('advagg_disable_on_admin', ADVAGG_DISABLE_ON_ADMIN)
+      && $GLOBALS['theme'] === $admin_theme
+      && path_is_admin($current_path)
+      && ($arg[1] !== 'reports' && $arg[2] !== 'status')
+      && stripos($current_path, $config_path . '/advagg') !== 0
+    ) {
+      $GLOBALS['conf']['advagg_enabled'] = FALSE;
+      $GLOBALS['conf']['preprocess_css'] = FALSE;
+      $GLOBALS['conf']['preprocess_js'] = FALSE;
+    }
+
     // Allow for AdvAgg to be enabled per request.
     if (isset($_GET['advagg'])
       && $_GET['advagg'] == 1
@@ -4610,10 +4349,10 @@ function advagg_json_encode($data) {
         break;
     }
     if (!empty($error_message)) {
-      if (module_exists('httprl') && function_exists('httprl_pr')) {
+      if (is_callable('httprl_pr')) {
         $pretty_data = httprl_pr($data);
       }
-      elseif (module_exists('devel') && function_exists('kprint_r')) {
+      elseif (is_callable('kprint_r')) {
         // @ignore production_php:1
         $pretty_data = kprint_r($data, TRUE);
       }
@@ -5362,6 +5101,10 @@ function advagg_update_github_versions($target = '') {
     if (!empty($target) && $target !== $key) {
       continue;
     }
+    // Check variables; skip if not set or if not defined.
+    if (empty($values['variable_name']) || !defined($values['variable_name'])) {
+      continue;
+    }
     $remote_version = call_user_func_array($values['callback'], array($values['url']));
     $current_version = variable_get($values['variable_name'], constant(strtoupper($values['variable_name'])));
     $return[$key] = $current_version;
@@ -5374,4 +5117,216 @@ function advagg_update_github_versions($target = '') {
     return $return[$target];
   }
   return $return;
+}
+
+/**
+ * Alter the js array fixing the type key if set incorrectly.
+ *
+ * @param array $array
+ *   CSS or JS array.
+ * @param string $type
+ *   CSS or JS.
+ */
+function advagg_fix_type(array &$array, $type) {
+  // Skip if advagg is disabled.
+  if (!advagg_enabled()) {
+    return;
+  }
+
+  // Skip if setting is turned off.
+  if ($type === 'css' && !variable_get('advagg_css_fix_type', ADVAGG_CSS_FIX_TYPE)) {
+    return;
+  }
+  if ($type === 'js' && !variable_get('advagg_js_fix_type', ADVAGG_JS_FIX_TYPE)) {
+    return;
+  }
+
+  // Fix type if it was incorrectly set.
+  // Get hostname and base path.
+  $mod_base_url = substr($GLOBALS['base_root'] . $GLOBALS['base_path'], strpos($GLOBALS['base_root'] . $GLOBALS['base_path'], '//') + 2);
+  $mod_base_url_len = strlen($mod_base_url);
+
+  foreach ($array as &$value) {
+    // Skip if the data is empty or not a string.
+    if (empty($value['data']) || !is_string($value['data'])) {
+      continue;
+    }
+
+    // Default to file if type is not set.
+    if (!isset($value['type'])) {
+      $value['type'] = 'file';
+    }
+
+    // If inline, be done with processing.
+    if ($value['type'] === 'inline') {
+      continue;
+    }
+
+    // Default to file if not file, inline, external, setting.
+    if ($value['type'] !== 'file'
+      && $value['type'] !== 'inline'
+      && $value['type'] !== 'external'
+      && $value['type'] !== 'setting'
+    ) {
+      if ($value['type'] === 'settings') {
+        $value['type'] = 'setting';
+      }
+      else {
+        $value['type'] = 'file';
+      }
+    }
+
+    $lower = strtolower($value['data']);
+    $http_pos = strpos($lower, 'http://');
+    $https_pos = strpos($lower, 'https://');
+    $double_slash_pos = strpos($lower, '//');
+    $tripple_slash_pos = strpos($lower, '///');
+    $mod_base_url_pos = stripos($value['data'], $mod_base_url);
+
+    // If type is external but doesn't start with http, https, or // change it
+    // to file.
+    if ($value['type'] === 'external'
+      && $http_pos !== 0
+      && $https_pos !== 0
+      && $double_slash_pos !== 0
+      ) {
+      $value['type'] = 'file';
+    }
+
+    // If type is file but it starts with http, https, or // change it to
+    // external. Skip tripple slash for local files.
+    if ($value['type'] === 'file'
+      && ($http_pos === 0
+      || $https_pos === 0
+      || ($double_slash_pos === 0 && $tripple_slash_pos === FALSE))
+      ) {
+      $value['type'] = 'external';
+    }
+
+    // If type is external and starts with http, https, or // but points to
+    // this host change to file, but move it to the top of the aggregation
+    // stack.
+    if ($value['type'] === 'external'
+      && $mod_base_url_pos - 2 === $double_slash_pos
+      && ($http_pos === 0
+        || $https_pos === 0
+        || $double_slash_pos === 0
+        )
+    ) {
+      $value['type'] = 'file';
+      $value['group'] = JS_LIBRARY;
+      $value['every_page'] = TRUE;
+      $value['weight'] = -40000;
+      $value['data'] = substr($value['data'], $mod_base_url_pos + $mod_base_url_len);
+    }
+  }
+  unset($value);
+}
+
+/**
+ * Alter the CSS or JS array removing empty files from the aggregates.
+ *
+ * @param array $array
+ *   CSS or JS array.
+ */
+function advagg_remove_empty_files(array &$array) {
+  if (!variable_get('advagg_js_remove_empty_files', ADVAGG_JS_REMOVE_EMPTY_FILES)) {
+    return;
+  }
+
+  if (variable_get('advagg_fast_filesystem', ADVAGG_FAST_FILESYSTEM)) {
+    foreach ($array as $key => $value) {
+      if ($value['type'] !== 'file') {
+        continue;
+      }
+      // Check locally.
+      if (!is_readable($value['data']) || filesize($value['data']) == 0) {
+        unset($array[$key]);
+      }
+    }
+  }
+  else {
+    module_load_include('inc', 'advagg', 'advagg');
+    $files = array();
+    foreach ($array as $key => $value) {
+      if ($value['type'] !== 'file') {
+        continue;
+      }
+      $files[$key] = $value['data'];
+    }
+    // Check cache/db.
+    $info = advagg_get_info_on_files($files);
+    foreach ($info as $key => $values) {
+      if (empty($values['filesize'])) {
+        $key = array_search($values['data'], $files);
+        if (isset($array[$key])) {
+          unset($array[$key]);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Alter the CSS or JS array adding in DNS domain info.
+ *
+ * @param array $array
+ *   CSS or JS array.
+ * @param string $type
+ *   CSS or JS.
+ */
+function advagg_add_default_dns_lookups(array &$array, $type) {
+  // Skip if advagg is disabled.
+  if (!advagg_enabled()) {
+    return;
+  }
+  // Remove this return once CSS lookups are needed.
+  if ($type !== 'js') {
+    return;
+  }
+
+  // Add DNS information for some of the more popular modules.
+  foreach ($array as &$value) {
+    if (!is_string($value['data'])) {
+      continue;
+    }
+    // Google Ad Manager.
+    if (strpos($value['data'], '/google_service.') !== FALSE) {
+      if (!empty($value['dns_prefetch']) && is_string($value['dns_prefetch'])) {
+        $temp = $value['dns_prefetch'];
+        unset($value['dns_prefetch']);
+        $value['dns_prefetch'] = array($temp);
+      }
+      // Domains in the google_service.js file.
+      $value['dns_prefetch'][] = 'https://csi.gstatic.com';
+      $value['dns_prefetch'][] = 'https://pubads.g.doubleclick.net';
+      $value['dns_prefetch'][] = 'https://partner.googleadservices.com';
+      $value['dns_prefetch'][] = 'https://securepubads.g.doubleclick.net';
+
+      // Domains in the google_ads.js file.
+      $value['dns_prefetch'][] = 'https://pagead2.googlesyndication.com';
+
+      // Other domains that usually get hit.
+      $value['dns_prefetch'][] = 'https://cm.g.doubleclick.net';
+      $value['dns_prefetch'][] = 'https://tpc.googlesyndication.com';
+    }
+
+    // Google Analytics.
+    if (strpos($value['data'], 'GoogleAnalyticsObject') !== FALSE
+      || strpos($value['data'], '.google-analytics.com/ga.js') !== FALSE
+    ) {
+      if (!empty($value['dns_prefetch']) && is_string($value['dns_prefetch'])) {
+        $temp = $value['dns_prefetch'];
+        unset($value['dns_prefetch']);
+        $value['dns_prefetch'] = array($temp);
+      }
+      if ($GLOBALS['is_https'] && strpos($value['data'], '.google-analytics.com/ga.js') !== FALSE) {
+        $value['dns_prefetch'][] = 'https://ssl.google-analytics.com';
+      }
+      else {
+        $value['dns_prefetch'][] = 'https://www.google-analytics.com';
+      }
+      $value['dns_prefetch'][] = 'https://stats.g.doubleclick.net';
+    }
+  }
 }

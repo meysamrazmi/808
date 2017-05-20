@@ -110,6 +110,20 @@ function google_cse_admin_settings() {
     '#default_value' => variable_get('google_cse_results_display_images', TRUE),
   );
 
+  $form['google_cse']['google_cse_show_watermark'] = array(
+    '#title' => t('Show watermark in search field'),
+    '#type' => 'checkbox',
+    '#description' => t('If set, search result snippets will contain a thumbnail image'),
+    '#default_value' => variable_get('google_cse_results_display_images', TRUE),
+  );
+
+  $form['google_cse']['google_cse_tag_attributes'] = array(
+    '#title' => t('Google CSE Tag Attributes'),
+    '#type' => 'textfield',
+    '#description' => t('Enter any additional tag attributes you want in the GCSE tag. Defaults to gname="google_cse". A list of attributes can be found here: <a href="https://developers.google.com/custom-search/docs/element#supported_attributes">Google Custom Search supported attributes</a>'),
+    '#default_value' => variable_get('google_cse_tag_attributes', 'gname="google_cse"'),
+  );
+
   $form['google_cse']['sitesearch'] = array(
     '#title' => t('SiteSearch settings'),
     '#type' => 'fieldset',

@@ -346,10 +346,17 @@ function advagg_js_compress_prep(&$contents, $filename, array $aggregate_setting
     // extraneous/wrong chars at the end of the string. This work-around will
     // remove these chars if necessary. See https://www.drupal.org/node/2627468.
     // Also see https://github.com/sqmk/pecl-jsmin/issues/46.
-    $a = strrpos($contents, ';');
-    $b = strrpos($contents, '}');
-    $c = strrpos($contents, ')');
-    $contents = substr($contents, 0, 1 + max($a, $b, $c));
+    if ($compressor == 3 || $compressor == 5) {
+      $a = strrpos($contents, ';');
+      $b = strrpos($contents, '}');
+      $c = strrpos($contents, ')');
+
+      // Simple scripts can just end, check to make sure there's a
+      // match before cutting.
+      if ($a !== FALSE || $b !== FALSE || $c !== FALSE) {
+        $contents = substr($contents, 0, 1 + max($a, $b, $c));
+      }
+    }
 
     // Ensure that $contents ends with ; or }.
     if (strpbrk(substr(trim($contents), -1), ';}') === FALSE) {

@@ -43,6 +43,7 @@ function videojs_requirements($phase) {
 function videojs_uninstall() {
   variable_del('videojs_location');
   variable_del('videojs_directory');
+  variable_del('videojs_cdn_version');
 
   module_load_include('inc', 'videojs', 'includes/videojs.utility');
   $options = array_keys(videojs_utility::getDisplaySettings());

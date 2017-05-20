@@ -6,13 +6,14 @@ files[] = google_cse.install
 files[] = google_cse.module
 files[] = google_cse.admin.inc
 files[] = google_cse.theme.inc
+files[] = tests/google_cse.test
 scripts[] = google_cse.js
 stylesheets[all][] = google_cse.css
 
 
-; Information added by Drupal.org packaging script on 2015-12-10
-version = "7.x-2.4"
+; Information added by Drupal.org packaging script on 2017-04-25
+version = "7.x-2.5"
 core = "7.x"
 project = "google_cse"
-datestamp = "1449740040"
+datestamp = "1493159645"
 
