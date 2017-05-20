@@ -733,7 +733,7 @@ function edu_form($form, &$form_state, $node) {
 					$ft,
 				);
 				// disable if already buyed
-				if (array_key_exists($code, $buys)) {
+				if (is_array($buys) && array_key_exists($code, $buys)) {
 					$CSS .= ",.".$code." input";
 				}
 			}
