@@ -756,7 +756,7 @@ function edu_form($form, &$form_state, $node) {
 	*/		}
 
 			if($node->buyed_value) {
-				$c = implode(',.', array_keys($buys));
+				$c = (count($buys) > 1)? implode(',.', array_keys($buys)) : array_keys($buys)[0];
 				$t = '';
 				if(isset($node->field_costum_content['und'][0])) {
 					$t= $node->field_costum_content['und'][0]['value'];
