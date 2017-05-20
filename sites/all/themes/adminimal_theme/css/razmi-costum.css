@@ -273,16 +273,6 @@ div#edit-field-posterfilm{
 .chzn-container-single-nosearch .chzn-search {
   left: 0;
 }
-.page-node-add ul.admin-list > li:nth-child(2),
-.page-node-add ul.admin-list > li:nth-child(3),
-.page-node-add ul.admin-list > li:nth-child(10),
-.page-node-add ul.admin-list > li:nth-child(11),
-/*.page-node-add ul.admin-list > li:nth-child(12),*/
-.page-node-add ul.admin-list > li:nth-child(18),
-.page-node-add ul.admin-list > li:nth-child(20) {
-  display: none;
-  background: #eee;
-}
 div#edit-field-backend {
   /*display: none;*/
 }

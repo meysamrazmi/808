@@ -1613,11 +1613,12 @@ div#toboggan-login-link-container {
     display: block;
     font-size: 12px;
 }
-.page-gallery.page-picture .field-name-before-picture .views-field-title a{
-	padding: 4px 2px 6px 2px;
+.page-gallery.page-picture .field-name-before-picture .views-field-title a,
+.page-gallery.page-picture .field-name-next-picture .views-field-title a{
+    padding: 0px 2px 0 2px;
     color: black !important;
     display: block;
-	height: 56px;
+    height: 63px;
     overflow: hidden;
 }
 .page-gallery.page-picture .field-name-next-picture .views-row{
@@ -1659,13 +1660,7 @@ div#toboggan-login-link-container {
     display: block;
     font-size: 12px;
 }
-.page-gallery.page-picture .field-name-next-picture .views-field-title a{
-	padding: 4px 2px 6px 2px;
-    color: black !important;
-    display: block;
-	height: 56px;
-    overflow: hidden;
-}
+
 /*-------------gallery808----------------*/
 .page-college .node-product.node-teaser,
 .page-college .node-product-kit.node-teaser {
@@ -2338,11 +2333,15 @@ div#gallery808 .related img {
     margin:0px;
 }
 .page-gallery.page-videos .field-name-title,
-.page-gallery .field-name-body,
 .page-gallery .social-share{
 	background-color: white;
 	box-shadow: 0 2px 2px #edeef0 !important;
-	padding: 10px 30px;
+    padding: 26px 30px;
+}
+.page-gallery .field-name-body{
+	background-color: white;
+	box-shadow: 0 2px 2px #edeef0 !important;
+    padding: 22px 24px;
 }
 .mediaelement-download-link a {
 	font-weight: bold;
@@ -2431,7 +2430,7 @@ div#gallery808 .related img {
     padding: 18px 0px;
 }
 .node-type-college .views-field-addtocartlink.add-to-cart .form-actions input {
-	color:transparent;
+	color:transparent !important;
 }
 .page-college .panel-pane .courses .views-field-addtocartlink.add-to-cart .form-actions input {
     display:none;
