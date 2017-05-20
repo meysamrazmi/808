@@ -87,6 +87,7 @@ width: 100%;
   padding: 10px !important;
   box-shadow: 0 2px 2px #edeef0;
   margin-bottom: 20px;
+    margin-top: 34px;
 }
 .page-gallery.page-videos .field-name-body .field-name-body {
   padding: 0 !important;
@@ -270,10 +271,12 @@ display: inline-block;
   padding: 0 3px;
   font-size: 13px;
 }
-.field-name-field-last-items,
 div#block-views-glrnew-block-2 {
   background: #f5f5f5;
   padding: 10px;
+}
+.field-name-field-last-items{
+    padding: 10px;
 }
 .field-name-field-last-items {
   position: relative;
@@ -805,7 +808,6 @@ background-color: #6a0;
   border-color: #aaa ;
   border-radius: 4px;
   min-width: inherit;
-  padding: 5px 25px;
   float: none;
   margin: 20px calc(50% - 65px) 20px;
   display: inline-block;

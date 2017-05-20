@@ -209,7 +209,7 @@ td.gsc-result-info-container, .gsc-orderby-container {
 }
 table.gsc-resultsHeader,
 .gcsc-branding {
-  display: none;
+  display: none !important;
 }
 .gsc-adBlock {
   display: none !important;

@@ -195,18 +195,19 @@ ul#admin-menu-menu > li:nth-child(5), ul#admin-menu-menu > li:nth-child(6), ul#a
 }
 
 .add-to-cart .form-actions:before {
-  content: "\e116";
-  font-family: glyphi;
-  color: #fff;
-  position: absolute;
-  box-sizing: border-box;
-  font-size: 22px;
-  background: #62c965;
-  padding: 20px 13px 10px;
-  border-radius: 0 2px 2px 0;
-  cursor: pointer;
-  height: 100%;
-  transition: all 0.5s ease;
+	content: "\f112";
+    font-family: mat;
+    color: #fff;
+    position: absolute;
+    box-sizing: border-box;
+    font-size: 20px;
+    background: #62c965;
+    padding: 19px 13px 10px;
+    border-radius: 0 2px 2px 0;
+    cursor: pointer;
+    height: 100%;
+    transition: all 0.3s ease;
+    z-index: 1;
 }
 .address-pane-table tr {
   border: none;
@@ -436,12 +437,13 @@ div#cart-form-pane tbody tr:last-child {
   width: 100%;
   box-sizing: border-box;
   position: relative;
+  margin-bottom: 25px;
 }
 
 #uc-cart-view-form .form-actions #edit-update {
   border: 1px solid #ccc;
   background: #fff;
-  color: #555;
+  color: #555 !important;
   left: 150px;
 }
 #uc-cart-view-form .form-actions #edit-empty {
@@ -714,15 +716,11 @@ fieldset#billing-pane input:focus {
 }
 
 fieldset#quotes-pane input.form-submit {
-  background: #fbfbfb;
-  border: none;
-  color: #666;
-  font-weight: normal;
-  position: absolute;
-  top: 15px;
-  left: 16px;
-  font-size: inherit;
-  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+	background: #fbfbfb;
+	color: #666 !important;
+	position: absolute;
+	top: 15px;
+	left: 16px;
 }
 div#quote {
   border: none;
@@ -783,10 +781,6 @@ fieldset#comments-pane .fieldset-description {
   padding: 0;
   margin: 0;
   text-align: left;
-}
-.review-button-row .form-actions button,
-.uc-cart-checkout-form .form-actions #edit-continue {
-  padding: 6px 12px;
 }
 .back-to-cart {
   float: none;
@@ -2052,6 +2046,38 @@ body.uc-product-node ul.tabs.primary li:last-child {
   color: #444 !important;
   padding: 4px 15px 5px;
   box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
+    direction: ltr;
+    font-family: fanum;
+}
+li.pager-first a,
+li.pager-previous a,
+li.pager-last a,
+li.pager-next a {
+    color: transparent !important;
+}
+li.pager-first a:before ,
+li.pager-previous a:before ,
+li.pager-last a:before ,
+li.pager-next a:before {
+    content: "\f141";
+    font-family: mat;
+    font-size: 26px;
+    position: absolute;
+    line-height: 29px;
+    top: 0;
+    text-align: center;
+    width: 100%;
+    right: 0;
+    color: #555 !important;
+}
+li.pager-last a:before {
+	content: "\f13d";
+}
+li.pager-first a{
+	content: "\f13e";
+}
+li.pager-previous a:before{
+	content: "\f142";
 }
 .item-list .pager li.pager-current {
   display: inline-block;
@@ -3192,6 +3218,7 @@ input.short_link {
   padding: 5px 3px;
   width: 180px;
   border: none;
+        opacity: 1 !important;
 }
 .field-name-share-link {
   position: absolute;
@@ -3263,12 +3290,6 @@ div#block-taxonomy-menu-block-1--2 .block-title {
 }
 .lastgallery .views-slideshow-controls-text-next a {
   background-position: 0;
-}
-.lastgallery .views-slideshow-controls-text-previous:hover {
-  background-image: -webkit-linear-gradient(left,rgba(2,2,2,0.2) 0%,rgba(2,2,2,0) 100%);
-}
-.lastgallery .views-slideshow-controls-text-next:hover {
-  background-image: -webkit-linear-gradient(right,rgba(2,2,2,0.2) 0%,rgba(2,2,2,0) 100%);
 }
 .leftads .block-taxonomy-menu-block .content li a:before {
   content: "";
@@ -4182,14 +4203,6 @@ input#edit-populate::-webkit-input-placeholder {
   z-index: 2;
   display: none;
 }
-button.primary:hover {
-  background-color: #286090;
-  border-color: #204d74;
-}
-button.primary {
-  background-color: #2196F3;
-  border-color: #1976D2;
-}
 .click-to-open button {
   padding: 3px 15px 3px;
   border-radius: 4px;
@@ -4733,6 +4746,10 @@ div#block-block-26 .content a:after {
   margin-bottom: 50px;
   border: none;
   padding: 0;
+}
+.page-user .quicktabs-ui-wrapper li.pager-first ,
+.page-user .quicktabs-ui-wrapper lli.pager-last a:before{
+	display: none;
 }
 .ui-widget {
   font-size: 1em;
@@ -6054,7 +6071,7 @@ input[type="color"]:focus,
 	box-shadow: 0px 1px 2px rgba(24,24,24,0.15) !important;
 }
 .form-item-panes-payment-payment-method [for="edit-panes-payment-payment-method-zarinpal"]:after {
-	content: "(+ 20% شارژ هدیه به مناسبت جشنواره کتاب)";
+	content: "(+ 20% شارژ هدیه به مناسبت جشنواره کتاب)"; 
 }
 
 

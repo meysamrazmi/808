@@ -12,6 +12,9 @@ button{
 	.green-btn;
 	float: left;
 }
+input.primary,
+button.primary,
+a.primary,
 .btn-primary{
 	.blue-btn;
 }
@@ -341,6 +344,83 @@ td.privatemsg-list-participants{
 			text-align: center;
 			font-family: fanum;
 			font-weight: normal;
+		}
+	}
+}
+
+.page-404{
+	.add_redirect a{
+		.blue-btn;
+		.absolute('';'';'';150px);
+	}
+	div#page-404 {
+		max-width: 1300px;
+		margin: auto;
+		padding-bottom: 50px;
+		width: 100%;
+		.center-wrapper:nth-of-type(2) {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: row-reverse;
+			margin-bottom: 80px;
+			margin-top: 30px;	
+		    padding: 0 20px;
+			@media @600{
+				flex-direction: column;
+				> div {
+					width: 100% !important;
+				}
+			}
+		}
+		.num-404 {
+			display: block;
+			text-align: center;
+			@media @768{
+				font-size: 120px !important;	
+			}
+		}
+		#search-404{
+			.paper(z1);
+			margin: auto;
+			display: block;
+			max-width: 700px;
+			width: 100%;
+			border-bottom: 1px solid @mat-purple;
+			h4 {
+				.absolute('';'';-42px);
+			}
+			.form-item-search-block-form {
+				width: calc(~"100% - 100px");
+				input.form-text {
+					width: 100%;
+					height: 36px !important;
+					padding: 5px 15px !important;
+					margin: 0;
+				}
+			}
+		}
+	}	
+}
+.page-denied.role-authenticated-user{
+	.region-content {
+		display: none;
+	}
+	h1#page-title {
+		text-align: center;
+		padding: 50px;
+		display: block;
+		margin: 0;
+		font-weight: bold;
+		font-size: 25px;
+		&:before {
+			background: url(/sites/all/themes/sara/images/error.png) no-repeat center;
+			content: "";
+			display: block;
+			width: 200px;
+			background-size: contain;
+			height: 200px;
+			margin: 0 auto 20px;
 		}
 	}
 }
