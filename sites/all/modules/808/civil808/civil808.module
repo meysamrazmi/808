@@ -10,28 +10,26 @@ function civil808_init() {
 	if( preg_match('/saze808\.com/', $GLOBALS['base_url'] ) ) {
 		$GLOBALS['base_url']= str_replace('saze808.com', 'civil808.com', $GLOBALS['base_url']);
 	} 
-	//
 	$p = $_GET;
-			if (isset($p['rfid'])) {
-				$rfid = base64_decode($p['rfid']);
-				if(!isset($_SESSION['rfid'])) {
-					$_SESSION['rfid'] = array(
-						'rfid' => $rfid, 
-						'time' => time()
-						);
-				} else {
-					if( time() - $_SESSION['rfid']['time'] > 60 * 60 ) {
-						$_SESSION['rfid'] = array(
-						'rfid' => $rfid, 
-						'time' => time()
-						);
-					}
-				}
-			} else { // no rfid
-				if( isset($_SESSION['rfid']) && time() - $_SESSION['rfid']['time'] > 60 * 60 )
-					unset($_SESSION['rfid']);
+	if (isset($p['rfid'])) {
+		$rfid = base64_decode($p['rfid']);
+		if(!isset($_SESSION['rfid'])) {
+			$_SESSION['rfid'] = array(
+				'rfid' => $rfid, 
+				'time' => time()
+				);
+		} else {
+			if( time() - $_SESSION['rfid']['time'] > 60 * 60 ) {
+				$_SESSION['rfid'] = array(
+				'rfid' => $rfid, 
+				'time' => time()
+				);
 			}
-	// --
+		}
+	} else { // no rfid
+		if( isset($_SESSION['rfid']) && time() - $_SESSION['rfid']['time'] > 60 * 60 )
+			unset($_SESSION['rfid']);
+	}
 	$a = $_SERVER['REQUEST_URI'];
 	
 	$patern = array( "/news\/single\/(\d*)\/(.*)/", "/article\/ac\/(\d*)\/(.*)/", "/blog\/post\/(\d*)\/(.*)/");
@@ -986,6 +984,7 @@ function civil808_preprocess_html(&$variables) {
 		die();
 	}
   
+	//redirecting addresses module paes
 	if(isset($aliases[2]) && $aliases[0] == 'user' && $aliases[2] == 'addresses' ){
 		if(isset($aliases[3]) && $aliases[3] == 'add'){
 			drupal_goto("user/$user->uid/edit/addresses/add");
@@ -1001,12 +1000,24 @@ function civil808_preprocess_html(&$variables) {
 		drupal_goto("user/$user->uid/edit/addresses");
 		Header('Location: http://www.civil808.com/user/'. $user->uid .'/edit/addresses');
 		die();
-	}elseif(isset($aliases[3]) && $aliases[0] == 'user' && $aliases[1] == 'quiz' && $aliases[3] == 'userresults' ){
+	}
+	//redirecting quiz module pages
+	elseif(isset($aliases[3]) && $aliases[0] == 'user' && $aliases[1] == 'quiz' && $aliases[3] == 'userresults' ){
 		//redirecting user/quiz/%/userresults to user/%/myresults/%
 		drupal_goto("user/$user->uid/myresults/$aliases[2]");
 		Header('Location: http://www.civil808.com/user/'. $user->uid .'/myresults'. $aliases[2]);
 		die();
 	}
+	//redirecting userpoints module pages
+	elseif(isset($aliases[1]) && $aliases[0] == 'myuserpoints' && $aliases[1] == 'transaction' ){
+		//redirecting myuserpoints/transaction/% to user/%/points/%
+		array_splice($aliases, 0, 2);//removing myuserpoints/transaction
+		$url = implode('/', $aliases);
+		drupal_goto("user/$user->uid/points/$url");
+		Header('Location: http://www.civil808.com/user/'. $user->uid .'/points/'. $url);
+		die();
+	}
+	
 }
 
 /**
