@@ -1003,8 +1003,15 @@ $('.has-wave').mousedown(function(parameter){
 		element.find('div:last-child').remove();
 	}, 1500);
 });
-
-
+/*-----------------------------------------------------------------------------------------------------------------*/
+window.cleard_error_msg = false;
+var interval = setInterval( function(){
+	// stopping the Interval when the output array were finished
+	if (window.cleard_error_msg) {
+		clearInterval(interval);
+	}
+	initialise();
+},1000);
 
 
 
@@ -1096,6 +1103,7 @@ function initialise(){
 	$('.ui-state-error .ui-pnotify-text').each(function(){
 		if($(this).text().indexOf("public_html") || $(this).text().indexOf("module")){
 			$(this).parents(".ui-widget").addClass("admin-error");
+			window.cleard_error_msg = true;
 		}
 	});
   
