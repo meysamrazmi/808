@@ -843,6 +843,21 @@ a.add-to-cart {
   /* justify-content: space-around; */
   padding: 30px 20px;
 }
+body:before {
+	content: "تا 5 خرداد تمدید شد";
+	position: fixed;
+	width: 350px;
+	background: #F44336;
+	z-index: 10;
+	color: #fff;
+	text-align: center;
+	font-size: 30px;
+	right: calc(50% - 175px);
+	border-radius: 0 0 25px 25px;
+	border: 2px solid #fff;
+	border-top: 0;
+	box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+}
 
 
 
