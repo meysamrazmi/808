@@ -363,6 +363,10 @@ function uc_userpoints_payment_payment($order) {
   if ($order->payment_method == 'points') {
     $user_points = userpoints_get_current_points($arg1->uid,'all'); 
 	if($user_points >= $points){
+		//prevent transactions that are wrong or duplicated
+		if(uc_payment_balance($order) != $points){
+			$points = uc_payment_balance($order);
+		}
 		$params = array (
 		// 'tid' => variable_get(USERPOINTS_PAY_CATEGORY, NULL),
 		'uid' => $order->uid,
