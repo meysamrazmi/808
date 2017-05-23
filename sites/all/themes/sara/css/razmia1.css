@@ -87,7 +87,6 @@ width: 100%;
   padding: 10px !important;
   box-shadow: 0 2px 2px #edeef0;
   margin-bottom: 20px;
-    margin-top: 34px;
 }
 .page-gallery.page-videos .field-name-body .field-name-body {
   padding: 0 !important;
@@ -138,9 +137,6 @@ span.delimiter {
 }
 .page-gallery.page-playlist #breadcrumb .inline.last {
   width: inherit;
-}
-.page-gallery.node-type-film h1#page-title {
-  display: none;
 }
 .page-gallery .container #page-title{
   background-color: transparent!important;
@@ -1310,43 +1306,52 @@ display: none;
 }
 .social-share {
   text-align: center;
-  line-height: 50px;
-  margin: 15px 0;
-  border: 1px solid #eee;
-  padding: 15px;
-  text-indent: -50px;
-  background-color: #f9f9f9;
-  clear: both;
 }
 .social-share a{
-  text-indent: -99999px;
+  text-indent: 0px;
   height: 50px;
-  width: 50px;
+  width: 50px !important;
   border-radius: 50%;
   background: transparent url(../images/social.png) no-repeat;
   background-size: 750px;
   display: inline-block;
   float: none !important;
 }
-a.social-share-facebook{
+a.social-share-facebook,
+a.addthis_button_facebook{
 background-position: -50px -100px;
 }
-a.social-share-googleplus {
+a.social-share-googleplus,
+a.addthis_button_googleplus{
 background-position:  -100px -100px;
 }
-a.social-share-linkedin {
+a.social-share-linkedin,
+a.addthis_button_linkedin{
 background-position: -200px -100px;
 }
-a.social-share-twitter {
+a.social-share-twitter,
+a.addthis_button_twitter{
 background-position: 0px -100px;
 }
-a.social-share-pinterest {
+a.social-share-pinterest,
+a.addthis_button_pinterest_share  {
 background-position: -150px -100px;
+}
+a.social-share-telegram,
+a.addthis_button_telegram  {
+    background-position: -450px -100px;
 }
 div.social-share span {
   margin: 0 20px;
   display: inline-block;
   float: none;
+    display: none;
+}
+.page-gallery  .group-comment .fieldset-wrapper {
+    padding: 15px 0 0 0;
+}
+.field-type-addthis .field-items{
+    float: none;
 }
 #node-51 .social-share {
   display: none;

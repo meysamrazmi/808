@@ -1175,7 +1175,8 @@ div#unavailable ,
     background-size: cover;
     color: #000000;
     font-size: 15px;
-    /* border-bottom: 1px solid #5f195d; */
+    border-bottom: 1px solid #CE93D8;
+    
 }
 #block-panels-mini-user-panel .pane-uc-cart{
 	border-top:1px solid rgba(95, 25, 93, 0.5);
@@ -1423,34 +1424,24 @@ div#block-panels-mini-user-panel.no-item table.cart-block-summary {
 	padding: 0;
 	margin: 0 10px;
 }
-#block-panels-mini-user-panel #user-login-form .form-actions #edit-submit {
-	padding: 2px 20px 5px;
-}
 #block-panels-mini-user-panel #user-login-form .item-list {
   position: absolute;
   margin: 0 10px;
-}
-#block-panels-mini-user-panel #user-login-form .item-list li.first a {
-  padding: 5px 10px 6px;
-  background-color: #2196F3;
-  display: block;
-  color: #fff;
-  line-height: initial;
-  margin-bottom: 30px;
-  text-align: center;
-  border-radius: 2px;
-  box-shadow: 0 2px 2px #edeef0;
 }
 form#user-pass {
   position: relative;
 }
 
 form#user-pass div#edit-actions input {
-  height: 37px;
+    box-shadow: rgba(0, 0, 0, 0.117647) -3px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
   border-radius: 2px 0 0 2px;
-  line-height: 20px;
-  box-shadow: rgba(0, 0, 0, 0.117647) -3px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-  border: none;
+  position: absolute;
+  top: 52px;
+  left: 50px;
+}
+form#user-pass div#edit-actions{
+    padding: 0;
+    margin: 0;
 }
 form#user-pass .form-item input{
   width: calc(100% - 210px);
@@ -2332,17 +2323,26 @@ div#gallery808 .related img {
 .page-gallery #block-views-video-gallery-block-4 .block-title{
     margin:0px;
 }
-.page-gallery.page-videos .field-name-title,
 .page-gallery .social-share{
 	background-color: white;
 	box-shadow: 0 2px 2px #edeef0 !important;
     padding: 26px 30px;
 }
+.page-gallery.page-videos .field-name-title{
+}
 .page-gallery .field-name-body{
+}
+.page-gallery .group-bodys .fieldset-wrapper{
+    padding: 0px;
+}
+.page-gallery .group-bodys{
 	background-color: white;
 	box-shadow: 0 2px 2px #edeef0 !important;
-    padding: 22px 24px;
+    padding: 15px 26px;
+    position: relative;
+    margin-top: 20px; 
 }
+
 .mediaelement-download-link a {
 	font-weight: bold;
 	color: #777 !important;
@@ -2358,10 +2358,6 @@ div#gallery808 .related img {
 }
 .mediaelement-download-link {
 	text-align: left;
-}
-.page-gallery.page-videos .field-name-title,
-.page-gallery.page-videos .group-footer {
-	margin-top: 20px;
 }
 .page-gallery.page-videos .field-name-body{
 	margin-top:0px;

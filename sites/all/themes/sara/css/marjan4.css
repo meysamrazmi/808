@@ -62,9 +62,7 @@
 }
 .page-node.node-type-architect .field-name-title h1{
 	font-size: 23px;
-    margin: 20px 0px;
-    border-bottom: 3px solid #8e24aa;
-    width: 270px;
+    margin: 20px 0px 4px 0px;
     margin-right: auto;
     margin-left: auto;
     padding-bottom: 8px;
@@ -73,10 +71,6 @@
 	text-align: center;
     margin: auto;
     float: none;
-}
-.page-node.node-type-architect .field-name-field-architecttext{
-    width: 80%;
-    margin: auto;
 }
 .page-node.node-type-architect .field-name-field-architecttext .field-item{
 	font-size:13px;
@@ -145,10 +139,10 @@
 .page-node.node-type-architect .field-type-node-reference > div.field-label{
     margin: 32px auto 6px auto;
     font-size: 23px;
-    border-bottom: 3px solid #8e24aa;
-    width: 270px;
+    border-bottom: 3px solid rgb(32,206,204);
     text-align: center;
-	padding-bottom: 8px;
+    display: inline-block;
+    padding: 0 23px 8px 20px;
 }
 .page-node.node-type-architect .field-name-field-filmmortabet .node-film.node-teaser .field-name-title {
     padding: 0;

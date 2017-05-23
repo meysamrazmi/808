@@ -1044,8 +1044,8 @@ div#block-panels-mini-peyment-guid .panel-pane.pane-custom.pane-2 {
   color: rgba(255, 0, 0, 0.5);
   margin: 0 15px;
 }
-.node.node-product.view-mode-full .display-price:before {
-  content: "قیمت نهایی:";
+.node-product.view-mode-full .group-left > .display-price > span:nth-child(1) ,
+.node-product-kit.view-mode-full .group-left > .display-price > span:nth-child(1) {
   word-spacing: 0;
   padding-left: 10px;
   font-size: 17px;
@@ -2096,6 +2096,7 @@ li.pager-previous a:before{
   /* height: 38vw; */
   min-height: 430px;
   /* max-height: 550px; */
+    position: relative;
 }
 .node-product .group-left,
 .node-product-kit .group-left {
@@ -3221,14 +3222,13 @@ input.short_link {
         opacity: 1 !important;
 }
 .field-name-share-link {
-  position: absolute;
-  width: 205px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
-  height: 30px;
-  text-align: right;
-  margin-right: auto;
-  margin-top: -5px;
-  left: 10px;
+    position: relative;
+    width: 205px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
+    height: 30px;
+    text-align: right;
+    left: 10px;
+    margin: 20px auto 20px 0;
 }
 .field-name-share-link:before {
   content: "\e144";
@@ -3344,8 +3344,13 @@ div#block-taxonomy-menu-block-2--2 li:last-child, div#block-taxonomy-menu-block-
   padding: 0;
 }
 .field-name-field-gallery-tags {
-  text-align: right;
-  width: calc(100% - 210px);
+    text-align: right;
+    width: calc(100% - 210px);
+    position: absolute;
+    top: 5px;
+}
+.page-gallery .group-footer{
+    position: relative;
 }
 .field-name-field-gallery-tags > * {
   display: inline-block;
@@ -3784,7 +3789,7 @@ textarea#iframeCode {
 }
 fieldset.group-links legend {
   font-size: 0;
-  height: 20px;
+  height: 0px;
   margin: 0;
 }
 .mediaelement-video .mediaelement-download-link {
@@ -4766,6 +4771,7 @@ div#block-block-26 .content a:after {
   margin-bottom: 20px;
   position: relative;
   padding: 0;
+    border-radius: 0;
 }
 .page-user .quicktabs-ui-wrapper#quicktabs-user_all_boughts .ui-tabs-nav li {
   width: 100%;
