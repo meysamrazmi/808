@@ -809,7 +809,8 @@ h1#page-title {
     font-size: 13px;
     margin: 0 !important;
 	.password-strength-text {
-		.absolute('';'';10px;-50px);
+		.absolute('';'';'';-50px;'';102%);
+		white-space: nowrap;
 		font-size: 11px;
 		background: #00BCD4;
 		padding: 0px 9px;
@@ -1113,6 +1114,35 @@ form#uc-addresses-get-address-form{
 		padding: 0;
 	}
 }
-
+.userpoints-view-transaction{
+	#block-system-main > .content {
+		display: flex;
+		align-items: flex-start;
+		@media @960{flex-direction: column;}
+	}
+	h3 {
+		border: none;
+		margin: 0;
+		text-indent: 15px;
+		width: 0;
+	}
+	dl {
+		.paper(z1);
+		width: 100%;
+		margin: 40px 0 0 15px;
+		@media @960{ margin: 0 0 15px 0; }		
+		dt {
+			float: right;
+			width: 100px;
+			clear: right;
+			margin-left: 10px;
+		}
+		dd.userpoints-item-actions a{
+			.btn;
+			.small-btn;
+		}
+	}
+	
+}
 
 /*temp*/
