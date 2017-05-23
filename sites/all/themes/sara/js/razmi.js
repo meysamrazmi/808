@@ -365,11 +365,11 @@ klickmore($('.node-product .field-name-body') , 300);
 klickmore($('.panels-flexible-row-11-9 .panels-flexible-region') , 250);
 klickmore($('.related.videos') , 500);
 /*-------------pedia--------------*/
-if( $( ".node-type-architect").length ){
+/*if( $( ".node-type-architect").length ){
 	if ( $(".field-type-node-reference").length ){
 		klickmore($('.page-pedia.page-node .field-name-field-architecttext') , 200);
 	}
-}
+}*/
 klickmore($('#block-mefibs-mefibs-glrnew-page-2-f #edit-mefibs-form-f-dakheli-wrapper > .views-widget') , 250);
 klickmore($('#block-mefibs-mefibs-glrnew-page-2-f #edit-mefibs-form-f-noesakht-wrapper > .views-widget') , 250);
 klickmore($('.page-college #mini-panel-college_top > div > div') , 250);
@@ -973,7 +973,7 @@ $('td.privatemsg-list-participants a').each(function(i){
 });
 /*-----------------------------------------------------------------------------------------------------------------*/
 // add wave action to some elements for default:
-$('.btn, button, .btn-primary, .cancel-address-link, a#edit-cancel, .btn-danger, .address-link, a.all-members, .jcarousel-next-horizontal, #footer a, input[type="submit"], ul.secondary a, ul.primary li a, .ui-tabs-nav li a, .pager li>a,.userpoints-links a').each(function(){
+$('.btn, button, .btn-primary, .cancel-address-link, a#edit-cancel, .btn-danger, .address-link, a.all-members, .jcarousel-next-horizontal, #footer a, input[type="submit"], ul.secondary a, ul.primary li a, .ui-tabs-nav li a, .pager li > a, .userpoints-links a, .row-17-6-inside .region-first .pane-content a').each(function(){
 	if($(this).css('position') == 'absolute'){
 		$(this).addClass('pos-abs');
 	}
@@ -1101,7 +1101,7 @@ function initialise(){
 	}
 	
 	$('.ui-state-error .ui-pnotify-text').each(function(){
-		if($(this).text().indexOf("public_html") || $(this).text().indexOf("module")){
+		if($(this).text().indexOf("public_html") > 0 || $(this).text().indexOf("module") > 0){
 			$(this).parents(".ui-widget").addClass("admin-error");
 			window.cleard_error_msg = true;
 		}
