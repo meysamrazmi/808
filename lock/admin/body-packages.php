@@ -52,11 +52,6 @@ if (isset($_GET['prompt'])){
 <div class="container">
 
 <div class="column text-col flow-opposite">
-
-
-
-
-
     <div class="post-row">
 	
 		<h2 class="title-h2">آمار:</h2>
@@ -106,6 +101,7 @@ if (isset($_GET['prompt'])){
 		<tr>
 			<th>پکیج (پیش کد)</th>
 			<th>توضیح</th>
+			<th>تعداد سریال ها</th>
 			<th>تعداد کاربران</th>
 			<th>مدیریت پکیج</th>
 		</tr>
@@ -120,7 +116,11 @@ if (isset($_GET['prompt'])){
 			$alt_html = false;
 			$res_counter = 0;
 			if(strlen($packageCode) > 0){
-			$sql = "SELECT * FROM tblpackages WHERE trim(LOWER(package)) LIKE '%" . $packageCode . "%'";
+			if($packageCode == '*'){
+				$sql = "SELECT * FROM tblpackages";
+			}else{
+				$sql = "SELECT * FROM tblpackages WHERE trim(LOWER(package)) LIKE '%" . $packageCode . "%'";
+			}
 			$result = $conn->query($sql);
 			
 
@@ -136,12 +136,16 @@ if (isset($_GET['prompt'])){
 						$alt_html = !$alt_html;
 						
 						
-						$sql2 = "SELECT id FROM tblusers WHERE trim(LOWER(package)) LIKE '%" . $row['package'] . "%'";
+						$sql2 = "SELECT id FROM tblusers WHERE trim(LOWER(package)) = '" . $row['package'] . "'";
 						$result2 = $conn->query($sql2);
+						
+						$serial_sql = "SELECT count(id) AS num FROM tblserials WHERE trim(LOWER(package)) = '" . $row['package'] . "'";
+						$serials = $conn->query($serial_sql)->fetch_assoc();
 						
 						echo
 						'<td class="ltr" id="package-name-' . $row["id"] . '">' . $row["package"] . '</td> 
 						<td id="package-desc-' . $row["id"] . '">' . $row["description"] . '</td>
+						<td id="package-seials-' . $row["id"] . '">' . $serials['num'] . '</td> 
 						<td id="package-users-' . $row["id"] . '">' . $result2->num_rows . '</td> 
 						<td><a onclick="agreebox(' . $row["id"] . ')"><img class="img-delete" src="img/delete.png"></a>  <a href="javascript:edit_package(' . $row["id"] . ')"><img class="img-delete" src="img/edit.png"></a></td> 
 						</tr>';
@@ -168,39 +172,30 @@ if (isset($_GET['prompt'])){
 						$alt_html = !$alt_html;
 						
 						
-						$sql2 = "SELECT id FROM tblusers WHERE trim(LOWER(package)) LIKE '%" . $row['package'] . "%'";
+						$sql2 = "SELECT id FROM tblusers WHERE trim(LOWER(package)) = '" . $row['package'] . "'";
 						$result2 = $conn->query($sql2);
+						
+						$serial_sql = "SELECT count(id) AS num FROM tblserials WHERE trim(LOWER(package)) = '" . $row['package'] . "'";
+						$serials = $conn->query($serial_sql)->fetch_assoc();
 						
 						echo
 						'<td class="ltr" id="package-name-' . $row["id"] . '">' . $row["package"] . '</td> 
 						<td id="package-desc-' . $row["id"] . '">' . $row["description"] . '</td>
+						<td id="package-seials-' . $row["id"] . '">' . $serials['num'] . '</td> 
 						<td id="package-users-' . $row["id"] . '">' . $result2->num_rows . '</td> 
 						<td><a onclick="agreebox(' . $row["id"] . ')"><img class="img-delete" src="img/delete.png"></a>  <a href="javascript:edit_package(' . $row["id"] . ')"><img class="img-delete" src="img/edit.png"></a></td> 
 						</tr>';
 					}
 				}
-			}	
-		
-		
+			}		
 		if($res_counter == 0){
 			echo "<h3>نتیجه ای یافت نشد!</h3>";
 		}
 		?>
-	
-
-
 	</table>
 	
 		<?php } ?>
-
-		
-		
-
     </div>
-
-
-
-
 </div>
 </div>
 
