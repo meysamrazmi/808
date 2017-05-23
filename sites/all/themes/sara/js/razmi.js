@@ -716,7 +716,7 @@ if ($('.page-user .quicktabs-ui-wrapper').length){
 }
 
 if($('.user-sale-report').length && !$('.user-sale-report .pane-content div').length){
-	$('.user-sale-report').remove();
+	// $('.user-sale-report').remove();
 }
 if($('#edit-profile-main-field-bool').length){
 	$('#edit-profile-main-field-bool').remove();
@@ -754,6 +754,11 @@ if($('.page-edit.page-linkedin, .page-edit.page-addresses').length){
 $('.bootstrap-filestyle > .group-span-filestyle').each(function(){
 	$(this).parents('.form-item').addClass('boot-filestyle');
 });
+if(Drupal.settings.SameUser){
+	$('body').addClass('same-user');
+}else{
+	$('body').addClass('not-same-user');
+}
 /*-------------------------------------------مربوط به ویدئو------------------------------------------------------------------------------*/
 /*for iframe*/
 $('.page-iframe .mejs-overlay-play ,.page-iframe .mejs-overlay-play *').click(function(){
