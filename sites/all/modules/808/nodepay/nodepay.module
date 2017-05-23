@@ -191,7 +191,13 @@ function nodebuyes_report($id) {
 				$title .="  |  " . $t['ticket'] . "";
 			}
 		}else{
-			$price = isset($r->price)?$r->price:$node->field_point_needed['und'][0]['value'];
+			if (isset($r->price)) {
+				$price = $r->price;
+			}else if(isset($node->field_point_needed['und'][0])){
+				$price = $node->field_point_needed['und'][0]['value'];
+			}else{
+				$price = 0;
+			}
 		}
 		$total_price += $price;
 		$table_rows[] = array(
