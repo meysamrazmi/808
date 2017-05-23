@@ -2066,7 +2066,10 @@ li.dropdown-submenu > .tb-megamenu-submenu > .mega-dropdown-inner {
 }
 .tb-megamenu-button.first,
 .tb-megamenu-button.collapsed {
-  right: 2px;
+    right: 0px;
+    float: right;
+    height: 50px;
+    margin: 0;
 }
 .tb-megamenu{
 background: transparent;

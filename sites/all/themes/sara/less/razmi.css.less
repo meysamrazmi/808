@@ -54,7 +54,11 @@ input, select, textarea{
 		.opacity0 {	opacity: 0 !important;}
 	}
 }
-
+@-moz-document url-prefix() { 
+	.has-wave .click-wave {
+		z-index: -1;
+	}
+}
 /*
  *user login and register and editing section
  */

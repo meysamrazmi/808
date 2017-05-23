@@ -1696,7 +1696,7 @@ div#quicktabs-container-sourses {
   min-height: inherit;
   padding: 0 !important;
 }
-.node-film.node-teaser .field-type-image {
+body:not(.page-pedia.page-node) .node-film.node-teaser .field-type-image {
   width: 40%;
   display: inline-block;
   float: right;

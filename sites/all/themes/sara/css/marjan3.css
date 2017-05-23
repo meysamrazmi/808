@@ -624,7 +624,6 @@ div.content > div.cta > div.messages > h2 > a{
 	border: 1px solid #f0f1f2 !important;
 	margin-bottom: 21px;
 	padding: 0px 0px 10px 0px;
-	position: relative;
 	box-shadow: 0 2px 2px #edeef0 !important;
 	overflow: hidden !important;
 	border-radius: 4px !important;
@@ -634,7 +633,7 @@ div.content > div.cta > div.messages > h2 > a{
 .page-news.page-single #block-system-main .content .content,
 .page-article.page-ac #block-system-main .content .content{
 	margin-top:0px;
-	padding: 20px 10px 0;
+	padding: 15px;
 	clear: both;
 display: inline-block;
   width: 100%;
@@ -2340,7 +2339,6 @@ div#gallery808 .related img {
 	box-shadow: 0 2px 2px #edeef0 !important;
     padding: 15px 26px;
     position: relative;
-    margin-top: 20px; 
 }
 
 .mediaelement-download-link a {
