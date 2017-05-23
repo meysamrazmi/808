@@ -30,16 +30,6 @@ function civil808_init() {
 		if( isset($_SESSION['rfid']) && time() - $_SESSION['rfid']['time'] > 60 * 60 )
 			unset($_SESSION['rfid']);
 	}
-	$a = $_SERVER['REQUEST_URI'];
-	
-	$patern = array( "/news\/single\/(\d*)\/(.*)/", "/article\/ac\/(\d*)\/(.*)/", "/blog\/post\/(\d*)\/(.*)/");
-	$replace = array( "news/single/$1", "article/ac/$1", "blog/post/$1");
-	foreach($patern as $p ){
-		if(preg_match($p, $a)) {
-			$url = preg_replace($patern, $replace , $a);
-			drupal_goto($url);
-		}
-	}
 }
 
 function add_bank_event($price, $name, $text, $user = 0, $attr = array() ) {
