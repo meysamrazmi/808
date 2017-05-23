@@ -13,6 +13,13 @@ function userpoints_share_menu() {
 	'file' => 'userpoints_share.admin.inc',
     'type' => MENU_NORMAL_ITEM,
   );
+  $items['admin/store/reports/sharepoints/do-history'] = array(
+    'title' => t('Share Points Reports'),
+    'description' => t('View reports for points earned by sales'),
+    'page callback' => 'share_history_do',
+    'access arguments' => array('view all sharepoint'),
+    'type' => MENU_LOCAL_TASK,
+  );
   $items['user/%user/sharepoints'] = array(
     'title' => t('shop Share Points'),
     'description' => t('View your points earned by sales'),
@@ -227,5 +234,135 @@ function _queries($q){
 		default:
 			return null;
 	}
+}
+
+function share_history_do(){
+	//for orders
+/* 	$order_ids = db_query("SELECT order_id FROM `megapil_808_uc_orders` WHERE order_status IN ('completed', 'payment_received', 'sent') AND uid NOT IN (3300, 60, 3989, 1, 1211, 5045, 0) AND order_total != 0 ORDER BY `megapil_808_uc_orders`.`order_id` ASC")->fetchAll();
+
+	foreach($order_ids as $order_id){
+		$order = uc_order_load($order_id->order_id);
+		// mdump($order);
+		if (is_array($order->products) && count($order->products)) {
+			foreach ($order->products as $product) {
+				$field_percent = db_query(_queries('field'), array(':nid' => $product->nid));
+				$total = (intval($product->qty) * intval($product->price));
+				$total_cost = (intval($product->qty) * intval($product->cost));
+				$discount = 0;
+				foreach($order->data['coupons'] as $coupon => $coupon_nid){
+					if(array_key_exists($product->nid, $coupon_nid)){
+						$discount += $coupon_nid[$product->nid]->discount;
+					}
+				}
+				$total -= $discount;
+				$total -= $total_cost;
+		
+				foreach ($field_percent as $field_item){
+					$multiplier = $field_item->portion / 100;
+					$uid = $field_item->uid;
+					$is_cost = $field_item->cost;
+					
+					$query = db_query("SELECT * FROM {up_share_log} WHERE uid = :uid AND buyer_uid = :buyer_uid AND entity_id = :entity_id AND entity_type = :entity_type AND field_id = :field_id", array(':uid' => $uid, ':buyer_uid' => $order->uid, ':entity_id' => $order->order_id, ':entity_type' => 'uc_order', ':field_id' => $field_item->field_id))->fetchObject();
+					$allow_points = TRUE;
+					if (isset($query->uid) && $query->uid) {
+						$allow_points = FALSE;
+					}
+		
+					$points = intval(($total * $multiplier));
+					if ($allow_points && $points > 0) {
+						db_insert('up_share_log')
+							->fields(array(
+							'uid' => $uid,
+							'buyer_uid' => $order->uid,
+							'entity_id' => $order->order_id,
+							'entity_type' => 'uc_order',
+							'field_id' => $field_item->field_id,
+							'points' => $points,
+							'portion' => $field_item->portion,
+							'model' => $product->model,
+							'total' => $total,
+							'updated' => $order->created,
+							))->execute();
+					}
+					if($is_cost) $total -= $points;
+				}  
+			}
+		}
+	} */
+	
+	//for contents	
+/* 	$buyed_ids = db_query("SELECT * FROM {m_buyed_nodes} WHERE type = 'article'  AND uid NOT IN (3300, 60, 3989, 1, 1211, 5045, 0, 87, 59, 3047, 6690, 1138)")->fetchAll();
+	$success = $fails = $duplicat = array();
+	foreach ($buyed_ids as $row){
+		$node = node_load($row->nid);
+		if(!isset($node->nid)){
+			$fails[] = $node->nid;
+			continue;
+		}
+		if (isset($row->price)) {
+			$total = $row->price;
+		}else if(isset($node->field_point_needed['und'][0])){
+		    $total = $node->field_point_needed['und'][0]['value'];
+		}else{
+			$total = 0;
+			// mdump($node);
+			$fails[] = array('id'=> $row->id , 'nid'=>$node->nid);
+		}
+		$field_percent = db_query(_queries('field'), array(':nid' => $row->nid));
+
+		foreach ($field_percent as $field_item){
+			$multiplier = $field_item->portion / 100;
+			$uid = $field_item->uid;
+			$is_cost = $field_item->cost;
+			
+			$query = db_query("SELECT * FROM {up_share_log} WHERE 
+				uid = :uid AND 
+				buyer_uid = :buyer_uid AND
+				entity_id = :entity_id AND 
+				entity_type = :entity_type AND 
+				field_id = :field_id", 
+				array(
+					':uid' => $uid, 
+					':buyer_uid' => $row->uid, 
+					':entity_id' => $row->id, 
+					':entity_type' => $node->type, 
+					':field_id' => $field_item->field_id
+				)
+			)->fetchObject();
+			$allow_points = TRUE;
+			if (isset($query->uid) && $query->uid) {
+				$duplicat[] = $row->id;
+				$allow_points = FALSE;
+			}
+		
+			$points = intval(($total * $multiplier));
+			if ($allow_points && $points > 0) {
+				$temp = array(
+					'uid' => $uid,
+					'buyer_uid' => $row->uid,
+					'entity_id' => $row->id,
+					'entity_type' => $node->type,
+					'field_id' => $field_item->field_id,
+					'points' => $points,
+					'portion' => $field_item->portion,
+					'model' => $row->nid,
+					'total' => $total,
+					'updated' => $row->date,
+					);
+				$success[] = $temp;
+				db_insert('up_share_log')->fields($temp)->execute();
+			}
+			if($is_cost) $total -= $points;
+		}
+	}
+	
+	echo "<pre>success";
+	print_r($success);
+	echo "<hr>fails";
+	print_r($fails);
+	echo "<hr>duplicate";
+	print_r($duplicat);
+	echo "</pre>"; */
+	die();	
 }
 
