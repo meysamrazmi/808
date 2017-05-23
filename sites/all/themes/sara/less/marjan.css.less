@@ -73,18 +73,32 @@
     position: relative;
 }
 /*-------bookmarks----------*/
-li.flag-bookmarks{
+
+    
+.flag-outer-bookmarks{
     position: absolute;
     top: 18px;
     left: 1px;
     opacity: 1 !important;
+    .page-gallery &{
+    top: 15px;
+    left: 15px;
+    }
+    .page-shop &{
+    top: 11px;
+    left: 33px;
+    }
+    .page-pedia &{
+    top: 80px;
+    left: 10px;
+    }
     a.flag{
         font-size: 0px;
         &:before{
             content: '\f0c3';
             font-family: mat;
             font-size: 27px;
-            color: #F44336;   
+            color: #b9b7b7;   
         }
     }
     a.unflag-action:before{
@@ -127,5 +141,26 @@ li.flag-bookmarks{
         font-size: 19px;
     }
 }
+.page-node.page-gallery{
+    #page-title{
+        display: none !important;
+    }
+    .field-name-title h2{
+        font-size: 19px !important;
+        font-weight: 400;
+    }
+    &.page-picture div.tabs{
+        top: -9px;
+    }
+}
+
+
+
+
+
+
+
+
+
 
 
