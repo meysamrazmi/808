@@ -677,7 +677,7 @@ $('.uc-order-action').each(function(){
 	$(this).addClass($(this).attr('title'));
 });
 /*for avoiding multiple picture*/
-$('div#quicktabs-user_contents .ui-tabs-panel .views-row').each(function(){
+$('div#quicktabs-user_contents .ui-tabs-panel .views-row,div#block-quicktabs-user-bookmark .ui-tabs-panel .views-row').each(function(){
 	if($(this).children('div:nth-child(3)').length){
 		$(this).children('div:nth-child(1)').remove();
 	}

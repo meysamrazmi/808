@@ -311,7 +311,7 @@ h1#page-title {
 			color: #fff !important;
 			background-color: rgba(0, 0, 0, 0.1);
 			display: inline-block;
-			padding: 6px 12px;
+			padding: 1px 11px;
 			text-align: center;
 			user-select: none;
 			background-image: none;
@@ -384,7 +384,7 @@ h1#page-title {
 	@pane-color: @mat-red;
 	.user-panes();
 	.pane-content {
-		overflow: scroll;
+		overflow: auto;
 		overflow: overlay;
 		white-space: nowrap;
 	}
@@ -853,7 +853,8 @@ form#user-cancel-confirm-form {
 		float: left;
 	}
 }
-div#quicktabs-user_contents {
+div#quicktabs-user_contents,
+div#quicktabs-user_bookmark {
 	.ui-tabs-panel {
 		.view-content{
 			display: inline-block;
@@ -1150,5 +1151,23 @@ form#uc-addresses-get-address-form{
 	}
 	
 }
+
+.page-user-bookmarks{
+    #block-system-main{
+        display:none !important;
+    }
+    #block-quicktabs-user-bookmark{
+        .block-title{
+            display: none;
+        }
+        .content{
+            margin-top: 20px;
+            box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+        }
+    }
+}
+
+
+
 
 /*temp*/
