@@ -17,7 +17,6 @@
   <div class="content"<?php print $content_attributes; ?>>
   <?php
 	/*
-	*
 	* برای تخفیفات ویژه نوروزی و برای چاپ بنر بالاییش
 	*
 	$flag = true;
@@ -33,34 +32,14 @@
     // We hide the comments and links now so that we can render them later.
     hide($content['comments']);
     hide($content['links']);
-	
-	if ($for_vip && ($vip)){
-		print render($content);
-	}else{
+	if (!$for_vip || (!$vip)){
 		$a = new HtmlFixer();
-		$b = explode("<!--break-->", render($content));
-		$clean_html = $a->getFixedHtml($b[0]);
-		print $clean_html;
-
-    	if (isset($content['field_videomaghalat'])) {
-		   	print render($content['field_videomaghalat']);
-		}
-		if (isset($content['field_videoamozesh'])) {
-		   	print render($content['field_videoamozesh']);
-		}
-		if (isset($content['field_videoarticle'])) {
-		   	print render($content['field_videoarticle']);
-		}
-		if (isset($content['field_videoradio'])) {
-		   	print render($content['field_videoradio']);
-		}
-		if (isset($content['field_publish_file'])) {
-			print render($content['field_publish_file']);
-		}
-		if (isset($content['social-share'])) {
-			print render($content['social-share']);
-		}	
+		if (isset($content['field_files'])) {
+		    unset($content['field_files']);
+		}		
+		$content['body'][0]['#markup'] = $a->getFixedHtml(explode("<!--break-->", render($content['body'][0]['#markup']))[0]);
 	}
+	print render($content);
   ?>
   </div>
 
@@ -82,7 +61,6 @@
 				<div class="cta-icon"></div>
 				<span class="cta-label"> اعتبار مورد نیاز :</span>
 				<?php /*
-				*
 				* برای تخفیفات نوروزی
 				*
 				if($flag){
