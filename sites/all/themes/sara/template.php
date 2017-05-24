@@ -82,7 +82,20 @@ function sara_preprocess_html(&$variables) {
 	foreach($user->roles as $role) {
 		$variables['classes_array'][] = 'role-'. drupal_clean_css_identifier($role);
 	}
-  
+	
+ 	if(arg(0) == 'node' && is_numeric(arg(1))){
+		$node = node_load(arg(1));
+		if(in_array($node->type, array('article', 'podcast', 'blog', 'page', 'publication', 'education', 'designteam'))){
+			$variables['classes_array'][] = 'default-page';
+			if(in_array($node->type, array('publication', 'education', 'designteam'))){
+				$variables['classes_array'][] = 'points-needed';
+			}
+		}
+		//adding class to the body based on node field  
+		if(isset($node->field_body_classes['und'][0])){
+			$variables['classes_array'][] = $node->field_body_classes['und'][0]['value'];
+		}
+	} 
 }
 
 /**
@@ -247,11 +260,6 @@ function sara_preprocess_node(&$variables) {
       $variables['title_classes'] = 'node-title';
       break;
   }
-  
-  if(isset($node->field_body_classes['und'][0])){
-	   $classes[] = $node->field_body_classes['und'][0]['value'];
-  }
-  
 }
 
 /**
