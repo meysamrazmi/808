@@ -1,6 +1,4 @@
 <?php
-// $Id$
-
 /**
  * @file
  * Default theme implementation to display a node.
@@ -10,36 +8,9 @@
  * @see template_process()
  */
 ?>
-<?php if($node->type == 'event'): ?>
-<div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <div class="teaser-img">
-  <a href="<?php print $node_url; ?>">
-    <span class="dl"><?=format_date($node->field_time['und'][0]['value'], 'custom', 'd')?></span>
-    <span class="ds"><?=format_date($node->field_time['und'][0]['value'], 'custom', 'M Y')?>
-      <br/>
-      <?=format_date($node->field_time['und'][0]['value'], 'custom', 'H:s')?>
-    </span>
-  </a>
-  </div>
-  <div class="content"<?php print $content_attributes; ?>>
-    <h2<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
-    <?php if($submitted): ?>
-    <div class="submitted">
-      <?php print $submitted; ?>
-    </div>
-  <?php endif; ?>
-    <?php
-      // We hide the comments and links now so that we can render them later.
-      hide($content['comments']);
-      hide($content['links']);
-      print render($content);
-    ?>
-  </div>
-</div>
-<?php elseif($node->type == 'publication'): ?>
+<?php if($node->type == 'publication'): ?>
 
 <?php /*
-	*
 	* برای تخفیفات نوروزی
 	*
 	$flag = true;
@@ -91,10 +62,8 @@
 <?php else: ?>
 
 <?php /*
-	*
 	* برای تخفیفات نوروزی
 	*
-
 	$flag = true;
 		if(isset($node->field_isvip['und'])){
 			for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){

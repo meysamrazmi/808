@@ -351,13 +351,7 @@ function _sara_projectnew_comment_form_validate($form, &$form_state) {
 }
 
 function sara_preprocess_comment(&$variables) {
-/*   $comment = $variables['elements']['#comment'];
-  $uri = entity_uri('comment', $comment);
-  $uri['options'] += array('attributes' => array(
-    'class' => 'permalink',
-    'rel' => 'bookmark',
-  ));
-  $variables['permalink'] = l('#', $uri['path'], $uri['options']); */
+
 }
 
 
