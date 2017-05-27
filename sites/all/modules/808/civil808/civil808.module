@@ -1,0 +1,1017 @@
+<?php
+include 'civil808.hook.inc';
+define('ZARINPAL_MERCHANT_ID', "f44eafe8-d873-11e5-b5eb-000c295eb8fc");
+require 'htmlfixer.class.php';
+
+/**
+ * Implements hook_init().
+ */
+function civil808_init() {
+	if( preg_match('/saze808\.com/', $GLOBALS['base_url'] ) ) {
+		$GLOBALS['base_url']= str_replace('saze808.com', 'civil808.com', $GLOBALS['base_url']);
+	} 
+	$p = $_GET;
+	if (isset($p['rfid'])) {
+		$rfid = base64_decode($p['rfid']);
+		if(!isset($_SESSION['rfid'])) {
+			$_SESSION['rfid'] = array(
+				'rfid' => $rfid, 
+				'time' => time()
+				);
+		} else {
+			if( time() - $_SESSION['rfid']['time'] > 60 * 60 ) {
+				$_SESSION['rfid'] = array(
+				'rfid' => $rfid, 
+				'time' => time()
+				);
+			}
+		}
+	} else { // no rfid
+		if( isset($_SESSION['rfid']) && time() - $_SESSION['rfid']['time'] > 60 * 60 )
+			unset($_SESSION['rfid']);
+	}
+}
+
+function add_bank_event($price, $name, $text, $user = 0, $attr = array() ) {
+	$query = "INSERT INTO {bank_events} (id, user, name, value, text, date, status) VALUES (:id, :user, :name, :value, :text, :date, :status)";
+	$queryParams = array(
+		':id' => isset($attr['id'])?$attr['id']:NULL,
+		':user' => $user,
+		':name' => $name,
+		':text' => $text,
+		':value' => $price,
+		':status' => isset($attr['status'])?$attr['status']:'pending',
+		':date' => time()
+		);
+	$result = db_query($query, $queryParams, array('return' => Database::RETURN_INSERT_ID));
+	return $result;
+}
+
+function update_bank_event($id, $status, $refnum) {
+	$query = "UPDATE {bank_events} SET status = :status , date = :date, refference = :refference WHERE id = :id";
+	$queryParams = array(
+		':id' => $id,
+		':status' => $status,
+		':date' => time(),
+		':refference' => $refnum
+		);
+	$result = db_query($query, $queryParams);
+	return $result;
+}
+
+function get_bank_event($id) {
+	return db_select('bank_events', 'b')->fields('b', array()) ->condition('id', $id)->execute()->fetch();
+}
+
+/**
+ * Implements hook_menu().
+ */
+function civil808_menu() {
+	$items['admin/people/export'] = array(
+		'title' => 'Export',
+		'page callback' => 'drupal_get_form',
+		'access arguments' => array('administer modules'),
+		'page arguments' => array('civil808_page_admin_people_export'),
+		'file' => 'admin.inc',
+		'type' => MENU_LOCAL_TASK,
+		);
+	$items['admin/content/options'] = array(
+		'title' => '808 Options',
+		'page callback' => 'drupal_get_form',
+		'access arguments' => array('bypass node access'),
+		'page arguments' => array('civil808_options_808_form'),
+		'description' => t('Website options'),
+		'file' => 'admin.inc',
+		'type' => MENU_LOCAL_TASK,
+		);
+	$items['admin/content/options/addoff'] = array(
+		'title' => '808 Options',
+		'page callback' => 'drupal_get_form',
+		'access arguments' => array('bypass node access'),
+		'page arguments' => array('civil808_options_addoff_808_form'),
+		'description' => t('Website options'),
+		'file' => 'admin.inc',
+		'type' => MENU_CALLBACK,
+		);
+
+	$items['admin/content/options/deactive/%'] = array(
+		'title' => '808 Options',
+		'page callback' => 'drupal_get_form',
+		'access arguments' => array('bypass node access'),
+		'page arguments' => array('civil808_options_deactive_808_form', 4),
+		'description' => t('Website options'),
+		'file' => 'admin.inc',
+		'type' => MENU_CALLBACK,
+	);
+	//addresses module modification
+	$items['user/%user_uid_optional/edit/addresses'] = array(
+		'title' => 'Address book',
+		'description' => 'Manage your addresses',
+		'page callback' => 'uc_addresses_address_book',
+		'page arguments' => array(1, NULL),
+		'access callback' => 'civil808_uc_addresses_access',
+		'access arguments' => array('view own addresses',1),
+		'type' => MENU_LOCAL_TASK,
+		'file' => 'uc_addresses.pages.inc',
+		'file path' => drupal_get_path('module', 'uc_addresses'),
+	);
+	$items['user/%user_uid_optional/edit/addresses/add'] = array(
+		'title' => 'Add address',
+		'description' => 'Add a new address.',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('uc_addresses_get_address_form', 1, NULL),
+		'access callback' => 'civil808_uc_addresses_access',
+		'access arguments' => array('add/edit own addresses', 1),
+		'type' => MENU_LOCAL_TASK,
+		'weight' => 3,
+		'file' => 'uc_addresses.pages.inc',
+		'file path' => drupal_get_path('module', 'uc_addresses'),
+	);
+	$items['user/%user_uid_optional/edit/addresses/%uc_addresses_address'] = array(
+		'title' => 'View address',
+		'description' => 'View one saved address',
+		'load arguments' => array(1),
+		'page callback' => 'uc_addresses_list_one_address',
+		'page arguments' => array(1, 4),
+		'access callback' => 'civil808_uc_addresses_access',
+		'access arguments' => array('view own addresses', 1, 4),
+		'type' => MENU_LOCAL_TASK,
+		'file' => 'uc_addresses.pages.inc',
+		'file path' => drupal_get_path('module', 'uc_addresses'),
+	);
+	$items['user/%user_uid_optional/edit/addresses/%uc_addresses_address/edit'] = array(
+		'title' => 'Edit address',
+		'load arguments' => array(1),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('uc_addresses_get_address_form', 1, 4),
+		'access callback' => 'civil808_uc_addresses_access',
+		'access arguments' => array('add/edit own addresses', 1, 4),
+		'type' => MENU_LOCAL_TASK,
+		'file' => 'uc_addresses.pages.inc',
+		'file path' => drupal_get_path('module', 'uc_addresses'),
+	);
+	$items['user/%user_uid_optional/edit/addresses/%uc_addresses_address/delete'] = array(
+		'title' => 'Delete address',
+		'load arguments' => array(1),
+		'page callback' => 'uc_addresses_delete_address_confirm',
+		'page arguments' => array(1, 4),
+		'access callback' => 'civil808_uc_addresses_access',
+		'access arguments' => array('delete own addresses', 1, 4),
+		'type' => MENU_LOCAL_TASK,
+		'file' => 'uc_addresses.pages.inc',
+		'file path' => drupal_get_path('module', 'uc_addresses'),
+	);
+	
+	$items['user/%/myresults/%'] = array(
+		'title' => 'User results',
+		'page callback' => 'quiz_user_results',
+		'page arguments' => array(3),
+		'access arguments' => array(3),
+		'access callback' => 'civil808_quiz_access_my_result',
+		'type' => MENU_LOCAL_TASK,
+		'file' => 'quiz.pages.inc',
+		'file path' => drupal_get_path('module', 'quiz'),
+	);
+  // $items['messages/edit/%privatemsg_thread/%privatemsg_message'] = array(
+		// 'title'           			=> 'Edit message',
+		// 'page callback'   	=> 'drupal_get_form',
+		// 'page arguments'	=> array('privatemsg_edit', 2, 3),
+		// 'access arguments' => array('delete privatemsg'),
+		// 'file'             			=> 'admin.inc',
+		// 'type'             		=> MENU_CALLBACK,
+		// 'weight'           		=> -10,
+	// );
+	$items['education/%/register'] = array(
+		'title' => 'ثبت نام',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('civil808_registe_education_form',1),
+		'access arguments' => array('edit own main profile'),
+		'type' => MENU_CALLBACK
+	);
+	$items['user/%/money'] = array(
+		'title' => 'Accounting',
+		'page callback' => 'civil808_page_accounting',
+		'access callback' => 'muser_edit_access',
+		'access arguments' => array(1),
+		'page arguments' => array(1),
+		'description' => t('Accounting'),
+		'type' => MENU_LOCAL_TASK,
+		);
+	$items['user/%/money/charge'] = array(
+		'title' => 'Accounting Charge',
+		'page callback' => 'drupal_get_form',
+		'access arguments' => array('edit own main profile'),
+		'page arguments' => array('civil808_page_accounting_charge', 1),
+		'description' => t('Accounting Charge'),
+		'type' => MENU_LOCAL_ACTION,
+		);
+	$items['user/%/money/reward'] = array(
+		'title' => 'Accounting Reward',
+		'page callback' => 'drupal_get_form',
+		'access arguments' => array('edit own main profile'),
+		'page arguments' => array('civil808_page_accounting_reward', 1),
+		'description' => t('Accounting Reward'),
+		'type' => MENU_LOCAL_ACTION,
+		);
+	$items['money/bankcallback/%/%'] = array(
+		'title' => 'Accounting bank callback',
+		'page callback' => 'civil808_page_accounting_bankcallback',
+		'access arguments' => array('access content'),
+		'page arguments' => array(2,3),
+		'description' => t('Accounting bank callback'),
+		'type' => MENU_CALLBACK,
+		);
+	$items['user/edit'] = array(
+		'page callback' => 'custom_redirect',
+		'type' => MENU_CALLBACK,
+		'access arguments' => array('access content'),
+	);
+
+	return $items;
+}
+
+/**
+ * Access callback for user account editing.
+ */
+function muser_edit_access($account) {//print_r($account);
+  return (($GLOBALS['user']->uid == $account) || user_access('administer users')) && $account > 0;
+}
+
+function civil808_page_my_events_publication($uid){
+	global $user;
+	$query = db_select('node', 'n');
+	$query->join('m_buyed_nodes', 'b', 'b.nid = n.nid');
+	$query->extend('PagerDefault')->extend('TableSort')->limit(50);	
+		$rows=$query->fields('n', array()) -> fields('b' , array())
+		->condition('n.type', 'publication')
+		->condition('b.uid', $uid)
+		->execute()
+		->fetchAll();
+
+	$table_rows = array();
+	$table_header = array(
+		t('Title'),
+		t('Date'),
+		);
+
+	foreach ($rows as $row) {
+		$table_rows[] = array(
+			l($row->title, 'node/'.$row->nid),
+			format_date($row->date),
+			);
+	}
+	return theme('table', array('header'=> $table_header, 'rows' => $table_rows)).theme('pager');
+}
+
+function civil808_page_my_events_radio($uid){
+	global $user;
+	$query = db_select('node', 'n');
+	$query->join('m_buyed_nodes', 'b', 'b.nid = n.nid');
+	$query->extend('PagerDefault')->extend('TableSort')->limit(50);	
+		$rows=$query->fields('n', array()) -> fields('b' , array())
+		->condition('n.type', 'podcast')
+		->condition('b.uid', $uid)
+		->execute()
+		->fetchAll();
+
+	$table_rows = array();
+	$table_header = array(
+		t('Title'),
+		t('Date'),
+		);
+
+	foreach ($rows as $row) {
+		$table_rows[] = array(
+			l($row->title, 'node/'.$row->nid),
+			format_date($row->date),
+			);
+	}
+	return theme('table', array('header'=> $table_header, 'rows' => $table_rows)).theme('pager');
+}
+
+function civil808_page_my_events_articles($uid){
+	global $user;
+	$query = db_select('node', 'n');
+	$query->join('m_buyed_nodes', 'b', 'b.nid = n.nid');
+	$query->extend('PagerDefault')->extend('TableSort')->limit(1);	
+		$rows=$query->fields('n', array()) -> fields('b' , array())
+		->condition('n.type', 'designteam')
+		->condition('b.uid', $uid)
+		->orderBy('created', 'DESC')
+		->execute()
+		->fetchAll();
+
+	$table_rows = array();
+	$table_header = array(
+		t('Title'),
+		t('Date'),
+		);
+
+	foreach ($rows as $row) {
+		$table_rows[] = array(
+			l($row->title, 'node/'.$row->nid),
+			format_date($row->date),
+			);
+	}
+	return theme('table', array('header'=> $table_header, 'rows' => $table_rows)).theme('pager');
+}
+
+function civil808_page_my_events_education($uid){
+	global $user;
+	$query = db_select('node', 'n');
+	$query->join('m_buyed_nodes', 'b', 'b.nid = n.nid');
+	$query->extend('PagerDefault')->extend('TableSort')->limit(50);	
+		$rows=$query->fields('n', array()) -> fields('b' , array())
+		->condition('n.type', 'education')
+		->condition('b.uid', $uid)
+		->execute()
+		->fetchAll();
+
+	$table_rows = array();
+	$table_header = array(
+		t('Title'),
+		t('Course'),
+		t('Date'),
+		);
+
+	foreach ($rows as $row) {
+		$table_rows[] = array(
+			//l($row->title, 'node/'.$row->nid),
+			l($row->title, 'node/'.$row->nid),
+			//l($row->title, 'admin/money/nodebuyes/'.$row->nid),
+			$row->value,
+			format_date($row->date),
+			);
+	}
+	return theme('table', array('header'=> $table_header, 'rows' => $table_rows)).theme('pager');
+}
+
+function civil808_page_accounting($uid) {
+	global $user;
+	/*if ( !user_is_logged_in() || ($user->uid !=0 && $user->uid != $uid) ) {
+		drupal_not_found();
+	}*/
+	$query = db_select('bank_events', 'b');
+	$query->extend('PagerDefault')->extend('TableSort')->limit(50);	
+		$rows=$query->fields('b' , array())
+		->condition('b.user', $uid)
+		->execute()
+		->fetchAll();
+
+	$table_rows = array();
+	$table_header = array(
+		t('Type'),
+		t('Price'),
+		t('Date'),
+		t('Status')
+		);
+
+	foreach ($rows as $row) {
+		$table_rows[] = array(
+			t('Bank '.$row->name),
+			$row->value,
+			format_date($row->date),
+			t($row->status),
+			);
+	}
+	return theme('table', array('header'=> $table_header, 'rows' => $table_rows)).theme('pager');
+}
+
+/**
+ * 
+ */
+function civil808_page_accounting_charge($form, &$form_state, $uid) {
+	if (!is_array($form)) {
+		$form = array();
+	}
+	$form['text'] = array(
+		'#markup' => t('charge_your_account_hint'),
+		);
+	$form['your_charge'] = array(
+		'#prefix' => '<div>',
+		'#suffix' => '</div>',
+		'#markup' => t('Your current point is <strong>!point</strong>', array('!point' => formatMoney(userpoints_get_current_points($uid, 'all')))),
+		);
+	$form['uid'] = array(
+		'#type' => 'hidden',
+		'#value' => $uid,
+		);
+	$form['price'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Charge amount'),
+		'#required' => TRUE,
+		'#attributes' => array('placeholder' => t('Charge amount in toman')),
+		);
+	$form['submit'] = array(
+		'#type' => 'submit',
+		'#value' => t('Charge account'),
+		);
+		/*
+			برای تخفیفات گروهی برای 20 درصد شارژ هدیه
+		*/
+	$form['festival'] = array(
+		'#markup' => '<div id="smile">
+			<canvas>
+			</canvas>
+			<div class="festival">به مدت 10 روز همزمان با جشنواره کتاب از 20 درصد شارژ هدیه برخوردار شوید</div>
+			<div class="last-price">مبلغ نهایی شارژ: <span></span> تومان</div>
+			</div>',
+		);//*/
+	return $form;
+}
+
+/**
+ * validate handler for civil808_civil808_page_accounting_charge
+ */
+function civil808_page_accounting_charge_validate($form, &$form_state) {
+	if($form_state['values']['price'] < 1000) {
+		if($form_state['values']['uid']!=3300)
+			form_set_error('price', t('Charge amount should be greater than 1000'));
+	}
+	
+	$uid = $form_state['values']['uid'];
+	$account = user_load($uid);
+	$p = profile2_load_by_user($account);
+
+	if (empty($account) || !isset($account) || $uid<1 ){
+	/*---------------------------------------------------*/
+				$from = 'support@civil808.com';
+				$to = 'm.razmi.92@gmail.com';
+				$subject="مشکل پرداخت در ولیدیت";
+				$message = "uid = " . $uid . "<br>name = " . $p['main']->field_full_name['und'][0]['value'] . "<br>empty = " . empty($account) . "<br>account uid = " . $account->uid . "<br>numeric = " . is_numeric($uid) . "<br>";
+				simple_mail_send($from, $to, $subject, $message);
+	/*---------------------------------------------------*/
+	}
+	if(!isset($p['main']->field_full_name['und'][0]['value'])){
+		drupal_set_message(t('نام و نام خانوادگی شما کامل نشده است. لطفا پروفایل خود را از لینک <a href="/user/%uid/edit/main?destination=user/%uid/money/charge">ویرایش پروفایل</a> تکمیل کنید.' , array('%uid' => $account->uid,)) , 'error');
+	}
+
+}
+
+/**
+ * Summit handler for civil808_civil808_page_accounting_charge
+ */
+function civil808_page_accounting_charge_submit($form, &$form_state) {
+	$uid = $form_state['values']['uid'];
+	global $base_url;
+	$price = intval($form_state['values']['price']);
+	$resnumber = time();
+	$description = 'شارژ حساب کاربری';
+
+	$result = zarinpal_send($price, $uid , $description , $resnumber, $base_url."/?q=money/bankcallback/charge/".$resnumber ,'charge', 'charge' );
+	/*$result = shetab_send($price, $uid , $description , $resnumber, $base_url."/?q=money/bankcallback/charge/".$resnumber ,'charge', 'charge' );*/
+	
+}
+
+function civil808_page_accounting_bankcallback($type, $resnumber) {
+	$event = get_bank_event($resnumber);
+
+	$percent_reseler = variable_get('shop_reseler_percent', 0.02);
+	if($event) {
+		$price = $event->value;
+		
+		$result = zarinpal_receive($resnumber, $price);
+		/*$result = shetab_receive($resnumber, $price*10);*/
+
+		update_bank_event($resnumber, $result['message'], $result['refnumber']);
+		if($result['message'] == 'success') {
+			if($type == 'charge') {
+				drupal_set_message(t('charge transaction success'), 'status');
+				$params = array(
+			      'uid' => $event->user,
+			      'points' => ($price * 1.2), //برای شارژ بیشتر ($price * 1.2) // festival
+			      'operation' => t('Charge from bank'),
+			    );
+			    userpoints_userpointsapi($params);
+
+				if( isset($d['rfid']) ) {
+					$rfid = base64_decode($d['rfid']);
+					if( $user = user_load_by_mail($rfid) ){
+						// fix price
+						$price = $price * $percent_reseler;
+				
+						$params = array(
+						'uid' => $user->uid,
+						'points' => $price,
+						'operation' => t('for shop product sell reseler' ),
+						);
+						userpoints_userpointsapi($params);
+					}
+				}
+			    drupal_goto();
+			} 
+		} 
+		else {
+			if($type == 'charge') {
+				drupal_set_message(t('charge transaction fail'), 'error');
+			    drupal_goto('/user/'. $event->user .'/money/charge');
+			} 
+		}
+	}
+}
+
+function zarinpal_send($Amount , $uid , $Description , $resnumber  , $CallbackURL , $type , $type_description){
+	$user = user_load($uid);
+	$p = profile2_load_by_user($user);
+	$Email = $user->mail;
+	$Mobile = isset($p['main']->field_mobile['und'][0]['value'])? $p['main']->field_mobile['und'][0]['value'] : "";
+
+	$client = new SoapClient('https://ir.zarinpal.com/pg/services/WebGate/wsdl', array('encoding' => 'UTF-8')); 
+	$result = $client->PaymentRequest(
+		array(
+			'MerchantID' 	=> ZARINPAL_MERCHANT_ID,
+			'Amount' 	=> $Amount,
+			'Description' 	=> $Description,
+			'Email' 	=> $Email,
+			'Mobile' 	=> $Mobile,
+			'CallbackURL' 	=> $CallbackURL
+		)
+	);
+	
+	$Status = $result->Status;
+	if($Status == 100){
+		add_bank_event($Amount, $type , $type_description , $uid, array('id' => $resnumber) );
+		Header('Location: https://www.zarinpal.com/pg/StartPay/'.$result->Authority);
+		die();
+	} else {
+		drupal_set_message(t('call the support for this error. error code: %code' , array('%code' => $Status,)), 'error');
+		drupal_goto($CallbackURL);
+	}
+	
+	
+}
+
+function zarinpal_receive($resnumber , $Amount){
+	if(isset($_GET['Status']) && $_GET['Status'] == 'OK'){
+		$Authority = $_GET['Authority'];
+		$Status = $_GET['status'];
+
+		$client = new SoapClient('https://ir.zarinpal.com/pg/services/WebGate/wsdl', array('encoding' => 'UTF-8')); 
+		$result = $client->PaymentVerification(
+			array(
+				'MerchantID'	 => ZARINPAL_MERCHANT_ID,
+				'Authority' 	 => $Authority,
+				'Amount'	 => $Amount
+			)
+		);
+
+		$Status = $result->Status ;
+		$Refnumber = $result->RefID;
+		
+		if($Status == 100)// Your Peyment Code Only This Event
+		{
+			return array(
+				'message'=>'success', 
+				'resnumber' => $Resnumber, 
+				'refnumber' => $Refnumber, 
+				'price' => $Amount);
+		}else{
+			return array(
+				'message'=> 'fail(' . $Status . ')', 
+				'resnumber' => -1, 
+				'refnumber' => -1, 
+				'price' => -1);
+		}
+	}else{
+		return array(
+				'message'=>'fail', 
+				'resnumber' => -1, 
+				'refnumber' => -1, 
+				'price' => -1);
+	};
+}
+
+function civil808_page_accounting_reward($form, &$form_state, $uid) {
+	if (!is_array($form)) {
+		$form = array();
+	}
+	$form['text'] = array(
+		'#markup' => t('charge_your_account_hint'),
+		);
+	$form['your_charge'] = array(
+		'#prefix' => '<div>',
+		'#suffix' => '</div>',
+		'#markup' => t('Your current point is <strong>!point</strong>', array('!point' => formatMoney(userpoints_get_current_points($uid)))),
+		);
+	$form['uid'] = array(
+		'#type' => 'hidden',
+		'#value' => $uid,
+		);
+	$form['price'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Reward amount'),
+		'#required' => TRUE,
+		'#attributes' => array('placeholder' => t('Reward amount')),
+		);
+	$form['submit'] = array(
+		'#type' => 'submit',
+		'#value' => t('ثبت درخواست وجه'),
+		);
+	
+	return $form;
+}
+
+/**
+ * Validate handler for civil808_page_accounting_reward
+ */
+function civil808_page_accounting_reward_validate($form, &$form_state) {
+	$uid = $form_state['values']['uid'];
+	$p = profile2_load_by_user($uid);
+	if(!isset($p['bank']->field_bank_cart_num['und'][0]) || strlen($p['bank']->field_bank_cart_num['und'][0]['value']) < 16){
+		form_set_error('price', 'ابتدا باید اطلاعات حساب خود را تکمیل کنید. <a href="/user/'. $uid .'/edit/bank" target="_blank">افزودن شماره کارت</a>');
+	}
+	$points = userpoints_get_current_points($uid);
+
+	if($form_state['values']['price'] < 10000)
+		form_set_error('price', t('Your requested reward should be greater than 10,000 toman'));
+
+	if($form_state['values']['price'] > $points)
+		form_set_error('price', t('Your requested reward should be less than your points'));
+
+	if(!is_numeric($form_state['values']['price'])) 
+		form_set_error('price', t('Please enter valid amount'));
+}
+
+/**
+ * Summit handler for civil808_page_accounting_reward
+ */
+function civil808_page_accounting_reward_submit($form, &$form_state) {
+	$uid = $form_state['values']['uid'];
+	$user = user_load($uid);
+	db_insert('m_reward_request')->fields(array(
+		'uid' => $uid,
+		'price' => $form_state['values']['price'],
+		'date' => time(),
+		'state' => 0,
+		'text' => ''
+		))->execute();
+	drupal_set_message(t('Your request successfully saved'), 'status');
+
+	$from = 'info@civil808.ir';
+	$to = $user->mail  ;
+	$subject = t('Your request successfully saved');
+	$body = '<p style="text-align: right;" dir="rtl">با سلام ،</p><p style="text-align: right;" dir="rtl">درخواست واریز مبلغ  <span style="font-weight:bold;">'. formatMoney($form_state['values']['price']) .'</span>  تومان ، &nbsp;با موفقیت ثبت شد.&nbsp;در اسرع وقت به آن رسیدگی شده و مبلغ درخواستی واریز می گردد.</p><p style="text-align: right;" dir="rtl">با تشکر</p>';
+
+	$subject_admin = 'درخواست وجه از طرف '. $user->name;
+	$to_admin = 'saze808@gmail.com';
+	$body_admin = '<p style="text-align: right;" dir="rtl">درخواست واریز مبلغ  <span style="font-weight:bold;">'. formatMoney($form_state['values']['price']) .'</span>  تومان ، &nbsp;با موفقیت ثبت شد.&nbsp;</p>
+<p>&nbsp;</p><p>&nbsp;</p><p>لینک صفحه ی پرداختی ها در زیر میباشد:</p><p>&nbsp;</p><a href="http://civil808.com/admin/money"></a><p style="text-align: right;" dir="rtl">با تشکر</p>';
+
+	simple_mail_send($from, $to, $subject, $body);
+	simple_mail_send($from, $to_admin, $subject_admin, $body_admin);
+
+	$form_state['redirect'] = 'user/'.$uid.'/points';
+}
+
+function edu_form($form, &$form_state, $node) {
+	$rows = array();
+	$headers = array(
+		t('Course code'),
+		t('Course name'),
+		t('Course ostad'),
+		t('Course duration'),
+		t('Course time'),
+		t('Course price'),
+		t('Course description'),
+	);
+	$buys = array();
+	if($node->buyed_value) {
+		$buys = unserialize($node->buyed_value->value);
+	}
+	GLOBAL $user;
+	$CSS = ".select-all input";
+	$rr = array();
+	if(isset($node->field_edu_collection_c['und'][0])){
+
+		foreach ($node->field_edu_collection_c['und'] as $key => $v) {
+			$e = entity_load('field_collection_item', $v);
+			$en = $e[$v['value']];
+			$rows = array();
+			if(!isset($en->field_edu_collection['und'][0])) continue;
+			foreach ($en->field_edu_collection['und'] as $entity_id) {
+				$entity = entity_load('field_collection_item', $entity_id);
+				$code = $entity[$entity_id['value']]->field_edu_code['und'][0]['value'];
+
+				if(!empty($entity[$entity_id['value']]->field_course_code['und'][0]['value'])){
+					$title = '<a href="/node/'. $entity[$entity_id['value']]->field_course_code['und'][0]['value'] .'" target="_blank">'. $entity[$entity_id['value']]->field_edu_name['und'][0]['value'] .'</a>';
+				}else{
+					$title = isset($entity[$entity_id['value']]->field_edu_name['und']) ? $entity[$entity_id['value']]->field_edu_name['und'][0]['value'] : '';
+				}
+				$userr = '';
+				if(!empty($entity[$entity_id['value']]->field_full_name['und'][0])){
+					$ostad = $entity[$entity_id['value']]->field_full_name['und'][0]['value'];
+					if (strlen($ostad)<5){
+						$p = profile2_load_by_user(intval($ostad));
+						$userr = '<a href="/user/'. $ostad .'" target="_blank">'. $p['main']->field_full_name['und'][0]['value'] .'</a>';
+					}else{
+						$userr = $ostad;
+					}
+				}
+				isset($entity[$entity_id['value']]->field_edu_duration['und'])? $fed = $entity[$entity_id['value']]->field_edu_duration['und'][0]['value']: $fed = '';
+				isset($entity[$entity_id['value']]->field_edu_time['und'])? $fet = $entity[$entity_id['value']]->field_edu_time['und'][0]['value']: $fet = '';
+				isset($entity[$entity_id['value']]->field_edu_price['und'])? $fep = $entity[$entity_id['value']]->field_edu_price['und'][0]['value']: $fep = '';
+				isset($entity[$entity_id['value']]->field_tickets['und'])? $ft = $entity[$entity_id['value']]->field_tickets['und'][0]['value']: $ft = '';
+				$rr[$code] = $rows[$code] = array(
+					$code,
+					$title,
+					$userr,
+					$fed,
+					$fet,
+					number_format(floatval($fep)),
+						'#attributes' => array('class' => array($code)),
+					$ft,
+				);
+				// disable if already buyed
+				if (is_array($buys) && array_key_exists($code, $buys)) {
+					$CSS .= ",.".$code." input";
+				}
+			}
+			isset($en->field_collection_title['und']) ? $fct = $en->field_collection_title['und'][0]['value'] : $fct = '';
+			$form['table'.$key] = array(
+			    '#prefix' => '<h3>'. $fct .'</h3>'."<style>$CSS{display:none;}</style>",
+			    '#type' => 'tableselect',
+			    '#header' => $headers,
+			    '#options' => $rows,
+			  );
+
+			if($node->buyed_value) {
+				$c = (count($buys) > 1)? implode(',.', array_keys($buys)) : array_keys($buys)[0];
+				$t = '';
+				if(isset($node->field_costum_content['und'][0])) {
+					$t= $node->field_costum_content['und'][0]['value'];
+				}
+				$form['table']['#suffix'] = $t.'<style> .'.$c.'{background: #9FC748 !important;}</style>';
+			}
+		}
+		$form['table_count'] = array(
+			'#type'=> 'hidden',
+			'#value' => count($node->field_edu_collection_c['und']),
+		);
+
+		$form['nid'] = array(
+			'#type'=> 'hidden',
+			'#value' => $node->nid,
+		);
+		$form['rows'] = array(
+			'#type'=> 'value',
+			'#value' => $rr,
+		);
+		$form['offcode'] = array(
+			'#type'=>'textfield',
+			'#title' => t('Off code'),
+			'#attributes' => array('placeholder' => t('Off code')),
+		);
+		$form['submit'] = array(
+		'#type' => 'submit',
+		'#value' => t('Register course'),
+		);
+	}
+	return $form;
+}
+
+function edu_form_submit($form, &$form_state) {
+  if(!user_is_logged_in()) {
+    drupal_set_message(t('to complete this operation you must login first, !login - !regiater', array(
+      '!login' => l(t('User login'), 'user/login'),
+      '!regiater' => l(t('User register'), 'user/register'),
+  )), 'error');
+  } else {
+  $_SESSION['edu_data'] = $form_state['values'];
+
+  $form_state['redirect'] = 'education/'.$form_state['values']['nid']."/register";
+  }
+}
+
+/**
+ * education
+ */
+function civil808_registe_education_form($form, &$form_state, $nid) {
+	global $user;
+	$points = userpoints_get_current_points($user->uid, 'all');
+	if (!is_array($form)) {
+		$form = array();
+	}
+	$ticket = -1;
+	$value = 0;
+	if(($node = node_load($nid))) {
+		$is_selected = false;
+		$tickets = array();
+		$price = 0;
+		$form_state['input'] = $_SESSION['edu_data'];
+		for($i = 0; $i<$form_state['input']['table_count'] ; $i++)
+			foreach($form_state['input']['table'.$i] as $key => $row)
+				if($row){
+					$is_selected = true;
+					$tickets[$key] = array(
+						'ticket' => $key, 
+						'price' => intval(str_replace(',', '', $form_state['input']['rows'][$key][5]))
+						); 
+					$price += $tickets[$key]['price'];
+				}
+		if($is_selected){
+			// check copen
+			$copen = false;
+			if ($form_state['input']['offcode']) {
+				$copen = db_select('m_off_code', 'o')
+					->fields('o', array())
+					->condition('code', $form_state['input']['offcode'])
+					->condition('active', 1)
+					->execute()->fetch();
+				if(!$copen) {
+					drupal_set_message(t('Please inset valid off code'), 'error');
+					drupal_goto('node/'.$nid);
+				}
+			}
+			$off = ($copen) ? intval($copen->price) / 100 : 0;
+			if ($points * 10 < ($price - $price * $off) ) {
+				drupal_set_message(t("You haven't enough point in your account, please charge your account.").l(t('Charge account'), 'user/'.$user->uid.'/money/charge'), 'error');
+				drupal_goto('node/'.$nid);
+			}
+		} else {
+			drupal_set_message(t('Please select a course!'), 'error');
+			drupal_goto('node/'.$nid);
+		}
+	}else {
+		drupal_not_found();
+	}
+	$form['notice'] = array(
+		'#prefix' => '<div>',
+		'#suffix' => '</div>',
+		'#markup' => t('Are you sure to complete this action, it cuase to lose your !points points.', array('!points' => formatMoney(($price - $price * $off) / 10))),
+	);
+	$form['your_charge'] = array(
+		'#prefix' => '<div>',
+		'#suffix' => '</div>',
+		'#markup' => t('Your current point is <strong>!point</strong>', array('!point' => formatMoney(userpoints_get_current_points($uid, 'all')))),
+		);
+	$form['confirm'] = array(
+		'#type' => 'submit',
+		'#value' => t('Confirm'),
+		'#attributes' => array('class'=> array('btn-green'))
+		);
+	$form['cancel'] = array(
+		'#markup' => l(t('Cancel'), 'node/'.$nid),
+		'#attributes' => array('class'=> array('btn-danger'))
+		);
+	$form['nid'] = array(
+		'#type' => 'value',
+		'#value' => $nid,
+		);
+	$form['uid'] = array(
+		'#type' => 'hidden',
+		'#value' => $user->uid,
+		);
+	$form['price'] = array(
+		'#type' => 'value',
+		'#value' => $price ,
+		);
+	$form['ticket'] = array(
+		'#type' => 'hidden',
+		'#value' => $tickets,
+		);
+	$form['offcode'] = array(
+		'#type' => 'hidden',
+		'#value' => $form_state['input']['offcode'],
+		);
+	return $form;
+}
+
+/**
+ * Summit handler for civil808_registe_event_form
+ */
+function civil808_registe_education_form_submit($form, &$form_state) {
+	$uid = $form_state['values']['uid'];
+	if($form_state['values']['confirm']) {
+		$node = node_load($form_state['values']['nid']);
+		$fields = array(
+			'nid' => $form_state['values']['nid'],
+			'date' => time(),
+			'value' => serialize($form_state['values']['ticket']),
+			'type' => 'education',
+			'uid' => $uid
+			);
+		if ($form_state['values']['offcode']) {
+			$fields['off_code'] = $form_state['values']['offcode'];
+		}
+
+		if(db_insert('m_buyed_nodes')->fields($fields)->execute()) {
+			$price = $form_state['values']['price'] / 10;
+
+			if ($form_state['values']['offcode']) {
+				$row = db_select('m_off_code', 'o')
+					->fields('o', array())
+					->condition('code', $form_state['values']['offcode'])
+					->execute()->fetch();
+				$price = $price - $price * intval($row->price) / 100;
+			}
+			$params = array(
+			      'uid' => $uid,
+			      'points' => -$price,
+			      'operation' => 
+mb_substr(t('Buy ticket for event !title', array('!title' => $node->title)),0, 30),
+			    );
+		    userpoints_userpointsapi($params);
+		}
+		drupal_set_message(t('You are successfully buy course.'));
+	}
+	$form_state['redirect'] = 'node/'.$form_state['values']['nid'];
+}
+
+if(!function_exists('httpPost')) {
+	function httpPost($url,$postData){
+		$ch = curl_init();  
+		curl_setopt($ch,CURLOPT_URL,$url);
+		curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+		curl_setopt($ch,CURLOPT_HEADER, false); 
+		if(is_array($postData) and !empty($postData)){curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));}
+		$output=curl_exec($ch);
+		curl_close($ch);
+		return $output;
+	}
+}
+
+function civil808_uc_addresses_access($permission, $address_user = NULL){
+	global $user;
+	if(!is_object($address_user)){
+		$address_user = user_load($address_user);
+	}
+	if($user->uid == $address_user->uid){
+		if(user_access($permission, $address_user)){
+			return true;
+		}
+	}
+	if($permission == 'delete all addresses' || $permission == 'add/edit all addresses' || $permission == 'view all addresses' || $permission == 'view all default addresses'){
+		if(user_access($permission, $user)){
+			return true;
+		}
+	}
+	return false;
+}
+
+
+function civil808_preprocess_html(&$variables) {
+	global $user;
+	$path = drupal_get_path_alias();
+	$aliases = explode('/', $path);
+	
+	//redirecting all english urls that shouldnt be enabled
+	global $language;
+	if($language->language == 'en'){
+		$langs = language_list();
+		drupal_goto($path, array('language' => $langs['fa'], 'query' => drupal_get_destination()));
+		Header('Location: http://www.civil808.com/'. $url);
+		die();
+	}
+  
+	//redirecting addresses module paes
+	if(isset($aliases[2]) && $aliases[0] == 'user' && $aliases[2] == 'addresses' ){
+		if(isset($aliases[3]) && $aliases[3] == 'add'){
+			drupal_goto("user/$user->uid/edit/addresses/add");
+			Header('Location: http://www.civil808.com/user/'. $user->uid .'/edit/addresses/add');
+		}
+		else if(isset($aliases[4]) && $aliases[4] == 'edit'){
+			drupal_goto("user/$user->uid/edit/addresses/$aliases[3]/edit");
+			Header('Location: http://www.civil808.com/user/'. $user->uid .'/edit/addresses/'. $aliases[3] .'/edit');
+		}else if(isset($aliases[4]) && $aliases[4] == 'delete'){
+			drupal_goto("user/$user->uid/edit/addresses/$aliases[3]/delete");
+			Header('Location: http://www.civil808.com/user/'. $user->uid .'/edit/addresses/'. $aliases[3] .'/delete');
+		}
+		drupal_goto("user/$user->uid/edit/addresses");
+		Header('Location: http://www.civil808.com/user/'. $user->uid .'/edit/addresses');
+		die();
+	}
+	//redirecting quiz module pages
+	elseif(isset($aliases[3]) && $aliases[0] == 'user' && $aliases[1] == 'quiz' && $aliases[3] == 'userresults' ){
+		//redirecting user/quiz/%/userresults to user/%/myresults/%
+		drupal_goto("user/$user->uid/myresults/$aliases[2]");
+		Header('Location: http://www.civil808.com/user/'. $user->uid .'/myresults'. $aliases[2]);
+		die();
+	}
+	//redirecting userpoints module pages
+	elseif(isset($aliases[1]) && $aliases[0] == 'myuserpoints' && $aliases[1] == 'transaction' ){
+		//redirecting myuserpoints/transaction/% to user/%/points/%
+		array_splice($aliases, 0, 2);//removing myuserpoints/transaction
+		$url = implode('/', $aliases);
+		drupal_goto("user/$user->uid/points/$url");
+		Header('Location: http://www.civil808.com/user/'. $user->uid .'/points/'. $url);
+		die();
+	}
+	
+}
+
+/**
+ * Helper function to determine if a user has access to view a specific quiz result.
+ *
+ * @param int $rid
+ *  Result id
+ * @return boolean
+ *  True if access, false otherwise
+ */
+function civil808_quiz_access_my_result($rid) {
+  if (!user_access('view own quiz results')) {
+    return FALSE;
+  }
+  // Check if the quiz taking has been completed.
+  $time_end = db_query('SELECT time_end FROM {quiz_node_results} WHERE result_id = :result_id', array(':result_id' => $rid))->fetchField();
+  return $time_end > 0;
+}
