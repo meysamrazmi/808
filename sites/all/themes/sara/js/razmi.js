@@ -978,7 +978,7 @@ $('td.privatemsg-list-participants a').each(function(i){
 });
 /*-----------------------------------------------------------------------------------------------------------------*/
 // add wave action to some elements for default:
-$('.btn, button, .btn-primary, .cancel-address-link, a#edit-cancel, .btn-danger, .address-link, a.all-members, .jcarousel-next-horizontal, #footer a, input[type="submit"], ul.secondary a, ul.primary li a, .ui-tabs-nav li a, .pager li > a, .userpoints-links a, .row-17-6-inside .region-first .pane-content a').each(function(){
+$('.btn, button, .btn-primary, .cancel-address-link, a#edit-cancel, .btn-danger, .address-link, a.all-members, .jcarousel-next-horizontal, #footer a, input[type="submit"], ul.secondary a, ul.primary li a, .ui-tabs-nav li a, .pager li > a, .userpoints-links a, .row-17-6-inside .region-first .pane-content a, ul.sidebar_menu_user a').each(function(){
 	if($(this).css('position') == 'absolute'){
 		$(this).addClass('pos-abs');
 	}

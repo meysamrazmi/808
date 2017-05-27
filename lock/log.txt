@@ -397,3 +397,41 @@
 )
 
 1396-03-06 09:43:07>>>>result: {"action":1,"response":1,"puid":"03ec-14ea-0676-27a9-d568-3885-563e-9afd","serial":"sedig-65j3-4bze","name":"ابراهیم احمدی کهنعلی","email":"ebrahimahmadi24@yahoo.com","phone":"09365160377","package":"sedig","ranber":5001932,"extra":""}
+
+1396-03-06 15:27:32====> Array
+(
+    [hash] => QAeAj+owhU+58ql2xC0wl3n5Q44wdVBO82A2HpScqneH8w4fUJxrrnnCPHrxzBeIDTYDbTCKa0o+CoZndRp8szvSUoWk7qrE0+TlokLjxR6QFHGAjQwPu2Q1euHqqcEACdXILK++6JVAzrX98WCJkHbXJvPxCAGzGJCVymVAi/2px0RjqmgR14Luzm7Xz92fg4wG1wivPTNz7yitowk1hxdeGM0xR/UzRcLedKfQcCanscgUP0zKr9HRyrYeT9lqLLL7p5to2qYVlgcbPfLyCrfHT1hDBBB8LJbL7+vcYdM=
+)
+
+1396-03-06 15:27:32>>>>Array
+(
+    [action] => 1
+    [puid] => 7b36-3eec-69c7-697b-6451-5c46-ba88-2064
+    [serial] => dbaji-ngav-rmdh
+    [name] => محمدصادق ترابی
+    [email] => s.m.torabi92@gmail.com
+    [phone] => 09124355317
+    [package] => dbaji
+    [ranber] => 97921
+)
+
+1396-03-06 15:27:32>>>>result: {"action":1,"response":2,"puid":"7b36-3eec-69c7-697b-6451-5c46-ba88-2064","serial":"dbaji-ngav-rmdh","name":"محمدصادق ترابی","email":"s.m.torabi92@gmail.com","phone":"09124355317","package":"dbaji","ranber":7147913,"extra":""}
+
+1396-03-06 15:31:51====> Array
+(
+    [hash] => QAeAj+owhU+58ql2xC0wl3n5Q44wdVBO82A2HpScqneH8w4fUJxrrnnCPHrxzBeIDTYDbTCKa0o+CoZndRp8s8OB0LU/jS0QRa8di3kpmCOvLt+qWH2FG+gyYVQYvBOxhXMHbo6ssc0vpjhhZxH30Mvb1hnb1h4jq+gTsUCawILbgHukjI3eMOtN4bobEFpmy61EGYFUOn74otD7cqecOix3+FLdnEzoidZTYp5qccsx6KYqy+AYNPRFB/3OLb+4t8GRq1ab2iu8ikKvhyJikS/9FdUSoEwKyIQlYQb3YYU=
+)
+
+1396-03-06 15:31:51>>>>Array
+(
+    [action] => 1
+    [puid] => 7b36-3eec-69c7-697b-6451-5c46-ba88-2064
+    [serial] => baji-aga6-ta33
+    [name] => محمدصادق ترابی
+    [email] => s.m.torabi92@gmail.com
+    [phone] => 09124355317
+    [package] => baji
+    [ranber] => 16965
+)
+
+1396-03-06 15:31:51>>>>result: {"action":1,"response":1,"puid":"7b36-3eec-69c7-697b-6451-5c46-ba88-2064","serial":"baji-aga6-ta33","name":"محمدصادق ترابی","email":"s.m.torabi92@gmail.com","phone":"09124355317","package":"baji","ranber":1238125,"extra":""}

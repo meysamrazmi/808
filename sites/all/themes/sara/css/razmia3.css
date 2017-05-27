@@ -527,10 +527,9 @@ form#uc-zarinpal-pay-submission-form .btn:before,
 .node-product-kit .field-name-field-costum-content,
 .node-product .field-name-field-costum-content {
     font-size: 12px;
-    padding: 5px 15px;
-    margin: 35px 5px 10px !important;
-    overflow-y: scroll;
-    overflow: overlay;
+    padding: 5px 0px 5px 15px;
+    margin: 35px 10px 10px !important;
+    overflow-y: overlay;
 }
 
 .node-product-kit p,
@@ -2090,12 +2089,13 @@ li.pager-previous a:before{
 }
 .node-product .group-right,
 .node-product-kit .group-right {
-  background: #fff;
-  box-shadow: 4px 0px 6px 0px rgba(0,0,0,0.12), 4px 4px 4px -4px rgba(0,0,0,0.12);
-  /* height: 38vw; */
-  min-height: 430px;
-  /* max-height: 550px; */
+    box-shadow: 4px 0px 6px 0px rgba(0,0,0,0.12), 4px 4px 4px -4px rgba(0,0,0,0.12);
+    /* height: 38vw; */
+    min-height: 430px;
+    /* max-height: 550px; */
     position: relative;
+    background-color: rgba(252, 252, 252, 1);
+    border-left: 1px solid #eee;
 }
 .node-product .group-left,
 .node-product-kit .group-left {
@@ -2104,6 +2104,7 @@ li.pager-previous a:before{
   /* height: 38vw; */
   min-height: 430px;
   /* max-height: 550px; */
+    padding-right: 27px;
 }
 p.main-shop a {
   font-size: 30px !important;

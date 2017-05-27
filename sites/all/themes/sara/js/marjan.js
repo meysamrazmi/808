@@ -6,14 +6,14 @@ $(document).ready(function () {
     }
     
     /*adjust position of bookmark icon and admin-tabs in node-page*/
-    $('.page-node:not(.page-gallery):not(.page-shop):not(.page-pedia) .flag-outer-bookmarks').css({'top':$('#page-title').height()-23});
+    //$('.page-node:not(.page-gallery):not(.page-shop):not(.page-pedia) .flag-outer-bookmarks').css({'top':$('#page-title').height()-27});
     
-//    $('.page-college .flag-outer-bookmarks').css({'right':$('#page-title').width()+ 5});
+    //$('.page-college .flag-outer-bookmarks').css({'right':$('#page-title').width()+ 5});
     
     $('.page-node:not(.page-gallery):not(.page-shop):not(.page-pedia) div.tabs').css({'top':$('#page-title').height()});
     
-    var prowidth = $('.uc-product-node .field-name-uc-product-image img').width();
-    $('.page-node.page-shop .flag-outer-bookmarks').css({'left':((499-prowidth)/2)+18});
+    //var prowidth = $('.uc-product-node .field-name-uc-product-image img').width();
+    //$('.page-node.page-shop .flag-outer-bookmarks').css({'left':((499-prowidth)/2)+18});
     
     /*shop*/
     $('.node.node-product.view-mode-full .group-left > .display-price,.node.node-product-kit.view-mode-full .group-left > .display-price').prepend('<span>قیمت نهایی:</span>');

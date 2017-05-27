@@ -1301,35 +1301,11 @@ ul.sidebar_menu_user li.edit a:before {
 .pane-block-41 hr {
 	margin: 10px 0 5px;
 }
-ul.sidebar_menu_user li a:after {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 44%;
-	background-color: currentColor;
-	height: 100%;
-	width: 12%;
-	border-radius: 0.75em / 2em;
-	-webkit-transition: width 0.2s, height 0.2s, border-radius 0.2s, left 0.2s, top 0.2s, opacity 0.1s;
-	transition: width 0.2s, height 0.2s, border-radius 0.2s, left 0.2s, top 0.2s, opacity 0.1s;
-	text-align: center;
-	pointer-events: none;
-	opacity: 0;
-}
 .circular li a:after {
 	width: 10%;
 	height: 10%;
 	top: 50%;
 	border-radius: 30% !important;
-}
-ul.sidebar_menu_user li a:active:after, 
-ul.sidebar_menu_user li a:focus:after {
-	width: 100% !important;
-	left: 0;
-	top: 0 !important;
-	height: 100% !important;
-	opacity: 0.12;
-	border-radius: 0 !important;
 }
 #block-panels-mini-user-panel h2.block-title .message-num,
 #block-panels-mini-user-panel h2.block-title .num-items {

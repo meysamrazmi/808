@@ -79,6 +79,9 @@
 	line-height: 34px;
 	text-align:justify !important;
 }
+.page-node.node-type-architect .field-name-field-architecttext .field-item > p:nth-child(1) {
+    text-indent: 20px;
+}
 .page-node.node-type-architect .field-name-field-architecttext {
 	padding: 20px 30px;
     background-color: #fff;
