@@ -964,7 +964,7 @@ $('.node-teaser.node-college .field-name-field-course-step .field-item').each(fu
 $('#privatemsg-new .text-format-wrapper').append('<span class="tazakkor">طبق <a href="/landing/law" target="_blank">قوانین سایت</a> ، فرستادن شماره تلفن و ایمیل ممنوع می باشد و در صورت مشاهده، پیفام توسط مدیریت ویرایش می شود.</span>');
 
 /*-----------------------------------------------------------------------------------------------------------------*/
-$('td.privatemsg-list-participants a').each(function(i){
+/* $('td.privatemsg-list-participants a').each(function(i){
 	if(i > 5) return;
 	var href = $(this).attr('href').split('/');
 	var element = $(this);
@@ -975,6 +975,20 @@ $('td.privatemsg-list-participants a').each(function(i){
 		element.prepend(img);
 		element.addClass('has-img');
     }});
+}); */
+$('td.privatemsg-list-participants a, .privatemsg-message-participants a').each(function(i){
+	if(i < 3 && i > 7) return;
+	var href = $(this).attr('href').split('/');
+	var element = $(this);
+	var html = '';
+	$.ajax({
+		url: "/user/"+ href[2] +"/ajax/picture", 
+		success: function(result){
+			var img = $.parseHTML(result.data);
+			element.prepend(img);
+			element.addClass('has-img');
+    	}
+	});
 });
 /*-----------------------------------------------------------------------------------------------------------------*/
 // add wave action to some elements for default:
@@ -1018,8 +1032,13 @@ var interval = setInterval( function(){
 	initialise();
 },1000);
 
-
-
+if($('.view-represation').length){
+	$('.view-represation .views-widget-filter-rid').before('<span class="more-filter" title="فیلتر های بیشتر"></span>');
+	$('.more-filter').click(function(){
+		$(this).toggleClass('opened');
+		$(this).prevUntil('.views-widget-filter-field_full_name_value_1').animate({width:'toggle'},0);
+	});
+}
 
 
 
