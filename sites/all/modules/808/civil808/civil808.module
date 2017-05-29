@@ -172,6 +172,17 @@ function civil808_menu() {
 		'file' => 'quiz.pages.inc',
 		'file path' => drupal_get_path('module', 'quiz'),
 	);
+	
+	$items['user/%user/request-relationship'] = array(
+		'title' => 'Create a relationship',
+		'type' => MENU_LOCAL_TASK,
+		'access callback' => 'civil808_user_relationships_ui_check_access',
+		'access arguments' => array('request', 1),
+		'page callback' => 'user_relationships_ui_request_ajax',
+		'page arguments' => array(1),
+		'file' => 'user_relationships_ui.forms.inc',
+		'file path' => drupal_get_path('module', 'user_relationships_ui'),
+	);	
   // $items['messages/edit/%privatemsg_thread/%privatemsg_message'] = array(
 		// 'title'           			=> 'Edit message',
 		// 'page callback'   	=> 'drupal_get_form',
@@ -996,7 +1007,19 @@ function civil808_preprocess_html(&$variables) {
 		Header('Location: http://www.civil808.com/user/'. $user->uid .'/points/'. $url);
 		die();
 	}
-	
+	//redirecting user_ralationships module pages
+	elseif(isset($aliases[0]) && ($aliases[0] == 'relationships' || $aliases[0] == 'relationship')){
+		if(isset($aliases[2]) && $aliases[2] == 'request' && $aliases[0] == 'relationship'){
+			drupal_goto("user/$aliases[1]/request-relationship");
+			Header('Location: http://www.civil808.com/user/'. $aliases[1] .'/request-relationship');
+		}else{
+			//redirecting relationships/% to user/%uid/relationships/% exept relationship/%user/request
+			$url = implode('/', $aliases);
+			drupal_goto("user/$user->uid/$url");
+			Header('Location: http://www.civil808.com/user/'. $user->uid .'/'. $url);
+		}
+		die();
+	}	
 }
 
 /**
@@ -1014,4 +1037,71 @@ function civil808_quiz_access_my_result($rid) {
   // Check if the quiz taking has been completed.
   $time_end = db_query('SELECT time_end FROM {quiz_node_results} WHERE result_id = :result_id', array(':result_id' => $rid))->fetchField();
   return $time_end > 0;
+}
+
+/**
+ * Check access callback for user_relationships
+ * copied from module itself
+ */
+function civil808_user_relationships_ui_check_access($type, $account = NULL, $relationship_type = NULL) {
+  global $user;
+
+  if (!is_object($account)) {
+    $account = $user;
+  }
+  
+  if ($account->uid == $user->uid && $type == 'request') {
+    return FALSE;
+  }
+
+  if (!is_object($relationship_type)) {
+    $relationship_type = user_relationships_type_load($relationship_type);
+  }
+
+  if (user_access('administer user relationships')) {
+    return TRUE;
+  }
+
+  // If the user does not any have permission, deny access.
+  if (!user_relationships_can_receive($account)) {
+    return FALSE;
+  }
+
+  switch ($type) {
+    case 'view':
+      // First check if it is the current user and if he has view own
+      // permission.
+      if ($account->uid == $user->uid && user_relationships_user_access('view own @relationship relationships', $relationship_type)) {
+        return TRUE;
+      }
+
+      // If this is a different user or he doesn't have that permission,
+      // check the view all permission.
+      if (user_relationships_user_access('view all @relationship relationships', $relationship_type)) {
+        return TRUE;
+      }
+      break;
+    case 'approve':
+      // Only the administer permission allows to approve, request, delete
+      // relationships for other users, which was already checked.
+      if ($account->uid == $user->uid && user_relationships_user_access('maintain @relationship relationships', $relationship_type)) {
+        return TRUE;
+      }
+      break;
+    case 'request':
+      if (user_relationships_can_request($user, $relationship_type)) {
+        return TRUE;
+      }
+      break;
+    case 'delete':
+      // Do not allow access if this is a oneway relationship requested by another user.
+      if (is_object($relationship_type) && $relationship_type->is_oneway && $relationship_type->requester_id != $user->uid) {
+        return FALSE;
+      }
+      if ($account->uid == $user->uid && user_relationships_user_access('delete @relationship relationships', $relationship_type)) {
+        return TRUE;
+      }
+      break;
+  }
+  return FALSE;
 }
