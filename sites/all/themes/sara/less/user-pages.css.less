@@ -1168,37 +1168,54 @@ form#uc-addresses-get-address-form{
     }
 }
 
-form#privatemsg-new{
-	.ds-form{
-		.paper(z1);
-		.fieldset-wrapper {
-			padding: 15px;
-		}
-	}
-	.form-type-textfield {
-		margin: 0 0 10px 0;
-		input {
-			margin: 0;
-		}
-		label {
-			display: inline-block;
-			width: 70px;
+.view-relations{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	.view-content {margin: 0 -10px !important;}
+	> * {	width: 100%;}
+	.view-header h2 {
+		font-size: 20px;
+		display: inline-block;
+		margin: 0;
+		border-bottom: 2px solid @mat-purple;
+		min-width: 200px;
+		padding-right: 10px;
+		.before(f00e;'';29px;'');
+		&:before{
+			margin-left: 10px;
 			vertical-align: middle;
-			margin: 0;
-		}	
-	}
-	.description {
-		margin-top: 5px;
-		li{
-			margin: 0;
-			&:nth-child(2) {display: none;}
 		}
 	}
-	.form-item-body-value label {
-		display: none;
+	.attachment-before {
+		order: -1;
+		margin-bottom: 40px;	
+		.views-row{
+			.views-field-status-link{
+				margin-top: 10px;
+				.accept a {
+					position: initial;
+					border: none;
+					.small-btn;
+					&:first-child{
+						.line-btn(@mat-blue);
+						margin-left: -6px;
+					}
+				}
+			}
+		}
+		.view-empty {
+			padding: 5px 15px;
+			border: 1px solid #9C27B0;
+			border-width: 0 2px 0px 0;
+			margin-bottom: -15px;
+		}
+		.view-header h2:before{content: "\f010";}
 	}
-	.form-actions{padding: 0;}
 }
+
+
+
 
 
 /*temp*/

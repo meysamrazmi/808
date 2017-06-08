@@ -43,6 +43,11 @@
 .paper(z2){
 	box-shadow: @z2;
 }
+.no-paper{
+	background: transparent;
+	padding: 0;
+	box-shadow: none;
+}
 .absolute(...) {
 	position: absolute;
 }
@@ -54,7 +59,7 @@
 	& when not (@b = '') {bottom: @b;}
 	& when not (@l = '') {left: @l;}
 }
-.before(@content ; @font:'' ; @size:'' ; @color){
+.before(@content ; @font:'' ; @size:'' ; @color:''){
 	&:before{
 		content: "\@{content}";
 		& when (@font = '') {font-family: mat;}
@@ -120,4 +125,9 @@
 	min-width: 75px;
 	font-size: 13px;
 	padding: 0 13px;
+}
+.line-btn(@color:''){
+	border-radius: 0;
+	& when not (@color = '') {color: @color !important;}
+	border: 1px solid currentColor;
 }

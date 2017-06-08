@@ -759,6 +759,15 @@ if(Drupal.settings.SameUser){
 }else{
 	$('body').addClass('not-same-user');
 }
+$('.لغو').each(function(){
+	$(this).addClass('laghv');
+});
+$('.عزل').each(function(){
+	$(this).addClass('azl');
+});
+$('.موافقت--رد-کردن').each(function(){
+	$(this).addClass('accept');
+});
 /*-------------------------------------------مربوط به ویدئو------------------------------------------------------------------------------*/
 /*for iframe*/
 $('.page-iframe .mejs-overlay-play ,.page-iframe .mejs-overlay-play *').click(function(){
