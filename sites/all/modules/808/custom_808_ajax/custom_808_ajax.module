@@ -90,7 +90,7 @@ function custom_808_ajax_init() {
 	//if user is viewing his profile or not
   	$path = drupal_get_path_alias();
 	$aliases = explode('/', $path);
-	if(isset($aliases[1]) && $aliases[0] == 'user' && is_numeric($aliases[1]) && $user->uid == $aliases[1]){
+	if(isset($aliases[1]) && $aliases[0] == 'user' && is_numeric($aliases[1])){
 		if($user->uid == $aliases[1]){
 			drupal_add_js(array('SameUser' => true), 'setting');
 		}else{
