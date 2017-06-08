@@ -606,7 +606,7 @@ div.content > div.cta > div.messages > h2 > a{
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    padding: 30px 10px 67px 10px !important;
+    padding: 5px 10px 48px 10px!important;
     position: relative;
 	display: flex;
 	flex-direction: row-reverse;
@@ -630,12 +630,17 @@ div.content > div.cta > div.messages > h2 > a{
 	background-color: white;
 	margin-top: 13px;
 }
-.default-page #block-system-main .content .content{
+.default-page:not(.page-landing) #block-system-main .content .content{
 	margin-top:0px;
 	padding: 15px;
 	clear: both;
-display: inline-block;
-  width: 100%;
+    display: inline-block;
+    width: 100%;
+}
+.page-landing #block-system-main .content .content{
+	margin-top:0px;
+	padding: 0px;
+    
 }
 .default-page #block-system-main .content .content > *:not(.field-name-body):nth-child(3){
   clear: both;

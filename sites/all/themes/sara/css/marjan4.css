@@ -1328,9 +1328,8 @@ div#webform-ajax-wrapper-14314 .form-actions {
 }
 div#webform-ajax-wrapper-11694 .form-actions .webform-previous ,
 div#webform-ajax-wrapper-14314 .form-actions .webform-previous {
-  background: transparent;
-  color: #666;
-  border: none;
+    background: #fbfbfb !important;
+    color: #444 !important;
 } 
 #block-mefibs-mefibs-glrnew-page-2-f .views-exposed-widget{
     width: 99%;
@@ -1698,14 +1697,14 @@ div#webform-ajax-wrapper-14314 .form-actions .webform-previous {
     display: block;
 }
 #page-moshaver .pane-mortabet .views-row{
-	display: inline-block;
+    display: inline-block;
     vertical-align: top;
-    width: 18.8%;
+    width: 15.8%;
     text-align: center;
     min-width: 200px;
     background-color: white;
-    margin: 10px 2.9%;
-    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    margin: 10px 1.9%;
+    box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
     border-radius: 2px;
 }
 #page-moshaver .pane-mortabet .views-field-uc-product-image,
@@ -2482,8 +2481,11 @@ div#block-block-45 a.titr{
 .page-landing .field-name-body li {
     line-height: 2.5em;
 }
-
-
-
+.points-needed .node > div.content > div.field.field-name-field-noefile{
+    display: none;
+}
+.node-type-film .field.field-name-field-publish-file > div > div > span > a{
+    vertical-align: super;
+}
 
 

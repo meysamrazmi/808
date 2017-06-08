@@ -3247,13 +3247,6 @@ input.short_link {
 .node-article .relative-section {
   margin: 50px 0 30px;
 }
-div#block-panels-mini-sidebar-ads .pane-gloevents .views-field-title span {
-  padding: 5px;
-}
-div#block-panels-mini-sidebar-ads .pane-gloevents .views-field-title a {
-  font-size: 12px;
-  padding: 0 1%;
-}
 div#block-taxonomy-menu-block-1--2 .block-title {
   text-align: center;
   border-bottom: 1px solid #ddd;
@@ -5690,76 +5683,8 @@ div#block-views-exp-glrnew-page-2 div#edit-populate-wrapper >div>div {
 .page-winter95 .other-section table {
   box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
 }
-.view-represation .views-row {
-  width: calc(25% - 20px) !important;
-  margin: 15px 10px !important;
-  padding: 15px;
-  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-  text-align: center;
-  border-radius: 2px;
-  max-width: 300px;
-  display: inline-block;
-  vertical-align: top;
-  background: #fff;
-  float: right;
-  height: 230px;
-  position: relative;
-}
-.view-represation .views-row .views-field-counter {
-  position: absolute;
-  color: #aaa;
-}
-.view-represation .views-row img {
-  max-width: 100px;
-  border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
-  border: 3px solid #fff;
-  box-sizing: content-box;
-}
-.view-represation .view-content {
-  margin: auto;
-  max-width: 1200px;
-}
-.view-represation .view-filters {
-  max-width: 1200px;
-  padding: 15px;
-  margin: 30px auto 30px;
-  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-  border-bottom: 1px solid #9C27B0;
-  background: #fff;
-}
-.view-represation .views-field-php a {
-  position: absolute;
-  color: #555 !important;
-  left: 10px;
-  bottom: 10px;
-  padding: 0 8px;
-  border-radius: 2px;
-  transition: all 0.2s;
-  opacity: 0;
-}
-.views-row:hover .views-field-php a {
-  opacity: 1;
-}
 .views-field-nothing a:hover {
   box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-}
-.view-represation .view-filters form {
-  margin: 0;
-}
-.view-represation .view-filters form label {
-  display: block !important;
-  font-weight: 500 !important;
-  font-size: 12px;
-  line-height: initial !important;
-  margin: 4px;
-}
-.view-represation .views-exposed-widget {
-  margin: 0 10px !important;
-  width: inherit !important;
-  padding: 0 !important;
-  vertical-align: bottom;
-  min-width: inherit;
 }
 .node-type-product-kit #breadcrumbb a:hover,
 .node-type-product #breadcrumbb a:hover {

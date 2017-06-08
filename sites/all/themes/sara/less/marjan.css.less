@@ -72,8 +72,25 @@
 .node-teaser{
     position: relative;
 }
-#block-system-main > .content li{
-    line-height: 30px;
+#block-system-main > .content {
+    .field-name-body,.field-type-text-with-summary{
+        *{
+            line-height: 30px;
+        }
+        blockquote {
+            padding: 12px 12px 10px 11px;
+            margin: 12px 0px;
+            border-right: 5px solid #4DD0E1;
+            background-color: #f9f9f9;
+            p {
+                margin-bottom: 0;
+                font-size: 13px;
+                line-height: 28px !important;
+                color: #676666;
+                font-weight: normal;
+            }
+        }
+    }
 }
 /*-------bookmarks----------*/
 
@@ -147,7 +164,7 @@
         right: 7px;
     }
 }
-.container #page-title {
+body.page-node:not(.page-types):not(.role-anonymous-user) .container #page-title {
     margin: 0 34px 0 0px;
     @media @600{
         font-size: 19px;
@@ -160,6 +177,8 @@
     .field-name-title h2{
         font-size: 19px !important;
         font-weight: 400;
+    }
+    &:not(.role-anonymous-user) .field-name-title h2{
         margin-right: 24px;
     }
     &.page-picture div.tabs{
@@ -167,13 +186,232 @@
     }
 }
 
+.page-gallery-videos-playlist .field-name-title h2{
+    &:extend(.page-node.page-gallery .field-name-title h2);
+}
+
+
+.node-type-blog,
+.node-type-page{
+    .node > .content > .field-type-image {
+        float: left;
+        width: 100%;
+        margin-bottom: 13px;
+        display: inline-flex;
+        position: relative;
+        justify-content: center;
+        padding: 0px;
+    }
+}
 
 
 
-
-
-
-
-
-
+/*----------------- glo-events --------------------*/
+.pane-gloevents{
+    #block-panels-mini-sidebar-ads &{
+        background: rgb(255, 255, 255);
+        box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
+        margin-bottom: 52px;
+    }
+    h2.pane-title{
+        margin: 20px 0 10px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+        font-size: 1.1rem;
+        font-weight: normal;
+        #block-panels-mini-sidebar-ads &{
+            font-size: 1rem;
+            background-color: #5fa0d4;
+            color: white;
+            margin-bottom: 0px;
+        }
+    }
+    &:hover .pane-content .view-content::-webkit-scrollbar-thumb {
+	   visibility: visible;
+    }
+    .pane-content{
+        .view-gloevents{
+            position: relative;
+            .front &,.page-college &{
+                &:before {
+	              content: "";
+	              position: absolute;
+	              width: 100%;
+	              background: #f9f9f9;
+	              height: 18px;
+	              right: 0;
+	              bottom: 29px;
+	              z-index: 1;
+	              box-shadow: rgba(0, 0, 0, 0.156863) 0px -7px 10px -7px, rgba(0, 0, 0, 0.227451) 0px -7px 10px -7px;
+                }
+            }
+            .view-content{
+                max-height:360px;
+                overflow-y:scroll;
+                overflow-y:overlay;
+                overflow-x: hidden;
+                /*padding: 0 0 0 6px;*/
+                .page-college &{
+	               max-height:470px!important;
+                }
+                .front &,.page-college &{
+                    padding-right: 1px;
+                    padding-left: 7px;
+                }
+                &::-webkit-scrollbar-track {
+	               visibility: hidden;
+                }
+                &::-webkit-scrollbar-thumb {
+	               visibility: hidden;
+                }
+                .views-row{
+                    margin: 1px auto 10px;
+                    transition: all 0.2s;
+                    box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
+	                width: 96%;
+	                background-color: #f9f9f9;
+	                text-align: right;
+                    #block-panels-mini-sidebar-ads &{
+                        width: 100%;
+                    }
+                    &:hover{
+                        box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+                    }
+                    .views-field{
+                        vertical-align: middle; 
+                    }
+                    div,span{
+                        display: inline-block;
+                    }
+                    .views-field-title{
+                        width:100%;
+                        span {
+                            background-color: #fff;
+                            padding: 0 0 5px 0;
+                            box-sizing: border-box;
+                            width: 100%;
+                            a{
+                                color: #222!important;
+                                text-align: center;
+                                width: 100%;
+                                display: block;
+                                font-size: 12px;
+                                line-height: 20px;
+                                padding: 5px 1.5%;
+                                margin-right: -1px;
+                                max-height: 45px;
+                                overflow: hidden;
+                            }
+                        }
+                    }
+                    .views-field-field-company,
+                    .views-field-field-eventtime-1{
+	                    border-right: 2px solid;
+	                    color: #777;
+	                    height: 25px;
+	                    white-space: nowrap;
+	                    padding: 0 2% 0;
+	                    overflow: hidden;
+                        div,span{
+                            display: inline-block;
+                            direction: rtl;
+                            font-family: fanum;
+                            font-weight: normal;
+                            line-height: 16px;
+                            margin-bottom: 0;
+                            margin-left: 0px;
+                            font-size: 0.85em;
+                        }
+                    }
+                    .views-field-field-eventtime-1{
+	                    border-color: #f22;
+                    }
+                    .views-field-field-company {
+	                    border-color: #c5c;
+	                    margin-left: 2px;
+                        max-width: 48%;
+                    }
+                    .views-field-field-ifwebinar{
+                        display: inline-block;
+	                    width: 10%;
+	                    vertical-align: top;
+	                    cursor: help;
+	                    position: relative;
+	                    float: left;
+                        img{
+	                       width:20px;
+                        }
+                        &:after{
+	                       content: "";
+	                       width: 10px;
+	                       height: 10px;
+	                       background-color: #fff;
+	                       position: absolute;
+	                       transform: rotate(45deg);
+	                       margin: -16px -17px 0 7px;
+	                       border: solid #aaa;
+	                       border-width: 0 1px 1px 0;
+	                       visibility: hidden;
+	                       transition-delay: 0.3s;
+	                       top: 0;
+	                       left: 0;
+                        }
+                        &:before{
+	                        transition-delay: 0.3s;
+	                        content: "برگزاری دوره به صورت وبینار";
+	                        position: absolute;
+	                        visibility: hidden;
+	                        font: 12px b yekan;
+	                        margin: -42px -125px 0 0;
+	                        background-color: #fff;
+	                        padding: 5px 10px 7px;
+	                        border-radius: 4px;
+	                        border: 1px solid #aaa;
+                            width: 135px;
+                            transition-delay: 0.3s;
+                            border-radius: 4px;
+                            border-width: 1px;
+                            border-style: solid;
+                            border-color: rgb(170, 170, 170);
+                            border-image: initial;
+                        }
+                        &:hover:after,
+                        &:hover:before{
+	                       visibility: visible;
+	                       transition-delay: 0.5s;
+                        }
+                       
+                    }
+                }
+            }
+        }
+        .more-link{
+	        display: inline-block;
+	        padding-right: auto;
+	        padding: auto;
+	        width: 100%;
+            #block-panels-mini-sidebar-ads &{
+                position: absolute;
+                bottom: -39px;
+                background-color: white;
+                box-shadow: rgba(0,0,0,0.117647) -1px 2px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
+                padding: 9px 0;
+                text-align: center;
+                border-top: 2px solid #5fa0d4;
+            }
+           .front &,.page-college &{
+               a{
+                    text-align: center;
+                    line-height: 35px;
+                    border-radius: 2px;
+                    margin: 0 8px -25px 8px;
+                    display: block;
+                    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+                    background: #2196F3;
+                    color: #fff !important;
+               }
+           }     
+        }
+    }
+}
 

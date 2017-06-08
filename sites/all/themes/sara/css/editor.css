@@ -14,11 +14,29 @@ a,p,span,h1,h2,h3,h4,h5,h6,div,li,td,tr{
   font-size: 13px;
 }
 [dir='ltr'] {
-  direction: ltr;
+    direction: ltr;
 }
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 td {
-  padding: 0px 10px;
+    padding: 0px 10px;
 }
+*{
+    line-height: 30px;
+}
+blockquote {
+    padding: 12px 12px 10px 11px;
+    margin: 12px 0px;
+    border-right: 5px solid #4DD0E1;
+    background-color: #f9f9f9;
+}
+p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 28px !important;
+    color: #676666;
+    font-weight: normal;
+}
+
+
