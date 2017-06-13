@@ -13,8 +13,13 @@ a,p,span,h1,h2,h3,h4,h5,h6,div,li,td,tr{
   direction: rtl;
   font-size: 13px;
 }
-[dir='ltr'] {
+[dir='ltr']:not(body) {
     direction: ltr;
+}
+body{
+    direction: rtl;
+    margin: 20px 25px;
+    font-size:13px;
 }
 a {
     text-decoration: none;
@@ -38,5 +43,32 @@ p {
     color: #676666;
     font-weight: normal;
 }
-
-
+.article-links {
+    display: inline-block;
+    width: 100%;
+    text-align: center !important;
+    padding: 20px 0;
+    background: rgb(252, 252, 252);
+    border: 1px solid #f0f1f2;
+    margin: 15px 0;
+}
+.article-links a{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+ul, ol {
+    padding: 0;
+    margin: 0 25px 10px 0;
+}
+tr td,
+tr th{
+    padding: 4px 9px;
+    border: 1px solid #eee !important;
+}
+table{
+    border-collapse: collapse;
+}
+.mceItemTable,.mceItemTable caption, .mceItemVisualAid {
+    border: 0px;
+}

@@ -40,6 +40,13 @@ $(document).ready(function () {
     /*closing landing-job submittion*/
     $('.page-node-14314 #webform-client-form-14314 .form-actions,.page-node-14314 #webform-client-form-14314  .captcha').remove();
     
+    /*adjusting view-empty result for bookmarks*/
+    if($('.page-user-bookmarks #block-system-main > div > div > div.view-empty').length){
+        $('.page-user-bookmarks #block-system-main').css({
+            'display':'block'
+        });
+    }
+    
     if($('#college-elmi-block > div > div > div > div.views-row').length){
         $('#college-elmi-block > div > div > div > div.views-row').each(function(){
             if(!$(this).find('.views-field-field-image').length){

@@ -76,6 +76,9 @@
     .field-name-body,.field-type-text-with-summary{
         *{
             line-height: 30px;
+            .node-type-designteam &{
+                text-align: justify;
+            }
         }
         blockquote {
             padding: 12px 12px 10px 11px;
@@ -88,6 +91,20 @@
                 line-height: 28px !important;
                 color: #676666;
                 font-weight: normal;
+            }
+        }
+        p.article-links {
+            display: inline-block;
+            width: 100%;
+            text-align: center !important;
+            padding: 20px 0;
+            background: rgb(252, 252, 252);
+            border: 1px solid #f0f1f2;
+            margin: 15px 0;
+            a{
+                display: inline-block;
+                width: 100%;
+                text-align: center;
             }
         }
     }
@@ -414,4 +431,17 @@ body.page-node:not(.page-types):not(.role-anonymous-user) .container #page-title
         }
     }
 }
-
+#block-panels-mini-sidebar-ads #node-51{
+    .content{
+        background: #ffffff;
+        box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+        margin-bottom: 10px;
+        h2{
+            margin: 0px 0 10px;
+            text-align: center;
+            font-size: 13px;
+            background-color: #009688;
+            color: white;
+        }
+    }  
+}
