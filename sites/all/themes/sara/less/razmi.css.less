@@ -191,6 +191,7 @@ form#privatemsg-edit{
 					&#edit-save {
 						display: none;
 					}
+					.small-btn;
 				}
 			}
 		}
@@ -512,6 +513,11 @@ body:not(.role-administrator) .admin-error {
 
 
 .all-members{
+	&.view:not(.view-relations){
+		display: inline-block;
+		width: 100%;
+		margin-bottom: 30px;
+	}
 	.view-content {
 		margin: auto;
 		max-width: 1200px;
@@ -522,7 +528,7 @@ body:not(.role-administrator) .admin-error {
 		text-align: center;
 		width: calc(~"25% - 20px") !important;
 		max-width: 300px;
-		height: 230px;
+		height: 250px;
 		display: inline-block;
 		vertical-align: top;
 		float: right;
@@ -530,6 +536,10 @@ body:not(.role-administrator) .admin-error {
 		.views-field-counter {
 			.absolute('');
 			color: #aaa;
+			@media @400{	
+				right: 5px;
+				top: 5px;
+			}
 		}
 		.views-field-privatemsg-link a,
 		.views-field-php a {
@@ -537,6 +547,7 @@ body:not(.role-administrator) .admin-error {
 			.btn;
 			.small-btn;
 			opacity: 0;
+			@media @768{ opacity: 1;	}			
 		}
 		.views-field-status-link{
 			a{
@@ -546,6 +557,14 @@ body:not(.role-administrator) .admin-error {
 				border: 1px solid #aaa;
 				width: 40px;
 				border-radius: 3px;
+				text-align: center;
+				background: #fff;
+				@media @400{
+					right: inherit;
+					left: 10px;
+					top: 10px;
+					bottom: inherit;
+				}
 			}
  			.azl a{
 				.before(f008;'';24px;@mat-blue);
@@ -553,6 +572,21 @@ body:not(.role-administrator) .admin-error {
 			.laghv a{
 				.before(f150;'';22px;#666);
 			}
+			.add a{
+				.before(f014;'';22px;#666);
+			}
+			.accept{
+				margin-top: 10px;
+				a {
+					position: initial;
+					border: none;
+					.small-btn;
+					&:first-child{
+						.line-btn(@mat-blue);
+						margin-left: -6px;
+					}
+				}
+			}	
 		}
 		&:hover{
 			.views-field-status-link a,
@@ -565,13 +599,36 @@ body:not(.role-administrator) .admin-error {
 		}
 		img {
 			.user-img(100px);
+			@media @480{
+				width: 80px;
+			}
+			@media @400{
+				float: right;
+				margin: 0 0px 0 20px;
+			}
 		}
+		@media @960{
+			width: ~"calc(33.33% - 20px) !important";
+		}
+		@media @600{
+			width: ~"calc(50% - 10px) !important";
+			margin: 15px 5px !important;
+		}
+		@media @400{
+			width: ~"calc(100% - 20px) !important";
+			max-width: inherit;
+			margin: 5px 10px !important;
+			text-align: right;
+			height: inherit;
+			padding-bottom: 30px;			
+		}		
 	}
 	.view-filters {
 		.paper(z1);
 		max-width: 1200px;
-		margin: 30px auto 30px;
-		border-bottom: 1px solid #9C27B0;
+		margin: 20px auto 20px;
+		border-bottom: 1px solid @mat-purple;
+		width: ~"calc(100% - 20px)";	
 		form {
 			margin: 0;
 			label {
@@ -636,6 +693,7 @@ body:not(.role-administrator) .admin-error {
 			input,button,a{.small-btn !important;}
 			.form-submit{.red-btn;}
 		}
+		[name="user_relationships_request_confirm"] ~ .form-actions .form-submit,
 		[name="user_relationships_approve_confirm"] ~ .form-actions .form-submit{.blue-btn;}
 	}
 }

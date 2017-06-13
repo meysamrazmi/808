@@ -750,6 +750,9 @@ width: 50%;
   height: 3px;
   background: #6df;
 }
+.main-three table, .main-three tbody {
+	display: block;
+}
 .main-three .views-view-grid tr {
   display: flex;
   padding: 10px 30px;

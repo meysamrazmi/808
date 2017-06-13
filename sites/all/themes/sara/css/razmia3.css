@@ -2369,7 +2369,7 @@ div#edit-populate-wrapper input#edit-populate {
 .views-widget-per-page select {
   max-width: 96px;
   box-sizing: border-box;
-  margin: 0 2%;
+  margin: 0 2% 10px;
 }
 .views-widget-items-per-page select {
   max-width: 50px;
@@ -2513,7 +2513,7 @@ div#block-panels-mini-sidebar-ads {
   margin: 1px auto 7px;
   width: 98%;
 }
-div#node-51 h2 {
+div#node-51 > h2 {
   display: none;
 }
 .node-product.view-mode-question .display-price {
