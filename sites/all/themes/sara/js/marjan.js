@@ -47,6 +47,12 @@ $(document).ready(function () {
         });
     }
     
+    /*creating hint for bookmarks*/
+    if ($('.flag-outer-bookmarks').length){
+        $('.flag-outer-bookmarks').append('<div class="flag-hint"><span>این مطلب را به لیست نشان شده ها اضافه کنید</span></div>')
+    }
+    
+    
     if($('#college-elmi-block > div > div > div > div.views-row').length){
         $('#college-elmi-block > div > div > div > div.views-row').each(function(){
             if(!$(this).find('.views-field-field-image').length){
@@ -54,6 +60,11 @@ $(document).ready(function () {
             }
         });
     }
+    
+    
+    
+    
+    
 });
 
 /*
