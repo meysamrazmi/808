@@ -698,7 +698,51 @@ body:not(.role-administrator) .admin-error {
 	}
 }
 
-
+.joyride-tip-guide{
+	background: #fff;
+	border-radius: 2px;
+	box-shadow: @z2;
+	color: #555;
+	font-family: irans;
+	span.joyride-nub{
+		box-shadow: rgba(0, 0, 0, 0.156863) 0px 0px 7px, rgba(0, 0, 0, 0.227451) 0px 0px 4px;
+		background: #fff;
+		border: none !important;
+		width: 20px;
+		height: 20px;
+		transform: rotate(45deg);
+		z-index: -2 !important;
+		&.top {top: -10px;}
+		&.bottom {bottom: -10px;}
+		&.right {right: -10px;}
+		&.left {left: -10px;}
+	}
+	.joyride-content-wrapper {
+		z-index: 2;
+		position: relative;
+		background: #fff;
+		border-radius: 2px;
+		display: inline-block;
+		padding: 15px 15px 5px;
+		width: 100%;
+		h1,h2,h3,h4,h5,h6{
+			color: #555;
+			margin-bottom: 20px;
+		}
+		.joyride-close-tip {
+			color: #555 !important;
+			left: 10px;
+			right: inherit;
+		}
+		.joyride-next-tip{
+			.blue-btn;
+			.small-btn;
+			float: left;
+			margin: -10px 0 10px -5px;
+			&:hover{border:none !important;}
+		}
+	}
+}
 
 
 
