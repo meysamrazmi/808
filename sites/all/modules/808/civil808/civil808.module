@@ -1012,6 +1012,10 @@ function civil808_preprocess_html(&$variables) {
 		if(isset($aliases[2]) && $aliases[2] == 'request' && $aliases[0] == 'relationship'){
 			drupal_goto("user/$aliases[1]/request-relationship");
 			Header('Location: http://www.civil808.com/user/'. $aliases[1] .'/request-relationship');
+		}else if(isset($aliases[1]) && $aliases[1] == 'received'){
+			//redirect /relationships/received => /user/%/relationships
+			drupal_goto("user/$aliases[1]/relationships");
+			Header('Location: http://www.civil808.com/user/'. $aliases[1] .'/relationships');
 		}else{
 			//redirecting relationships/% to user/%uid/relationships/% exept relationship/%user/request
 			$url = implode('/', $aliases);
