@@ -85,7 +85,7 @@ input, select, textarea{
 		line-height: 30px;
 		margin: 0;
 	}
-	.form-item input {
+	.form-item:not(.form-type-checkbox) input {
 		float: left;
 		min-width: 250px;
 		width: 30%;
@@ -117,6 +117,14 @@ input, select, textarea{
 		padding-bottom: 30px;
 	}
 	.user-register-login();
+    .form-item.form-item-field-laws-und{
+        label{
+            line-height: 18px;
+        }
+        input{
+            border: 2px solid #c1c1c1;
+        }
+    }
 }
 #user-profile-form{
 	.user-register-login();
@@ -704,6 +712,10 @@ body:not(.role-administrator) .admin-error {
 	box-shadow: @z2;
 	color: #555;
 	font-family: irans;
+    p {
+        font-size: 13px;
+        line-height: 21px;
+    }
 	span.joyride-nub{
 		box-shadow: rgba(0, 0, 0, 0.156863) 0px 0px 7px, rgba(0, 0, 0, 0.227451) 0px 0px 4px;
 		background: #fff;
@@ -743,8 +755,3 @@ body:not(.role-administrator) .admin-error {
 		}
 	}
 }
-
-
-
-
-

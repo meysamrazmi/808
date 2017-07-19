@@ -1276,6 +1276,10 @@ ul.sidebar_menu_user li.accountant a:before {
     content: '\f09d';
 	font-family: aw;
 }
+ul.sidebar_menu_user li.connections a:before {
+    content: '\f00e';
+	font-family: mat;
+}
 ul.sidebar_menu_user li.orders a:before {
     content: '\f290';
     font-family: aw;

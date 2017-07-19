@@ -50,7 +50,7 @@
 		}
 	}
 }
-.page-reward, .page-charge, .page-login , .page-register , .page-user-password , .page-user.role-anonymous-user:not(.profile){
+.page-reward, .page-charge, .page-login , .page-register , .page-user-password , .page-user.role-anonymous-user:not(.page-user-){
 	section#main:before {
 		display: none;
 	}	
@@ -575,6 +575,30 @@ h1#page-title {
 				.before(f36a;'';22px;#D32F2F);
 				&:before{ .absolute('';'';10px;'';'';9px);}
 			}
+            .connections a{
+				.before(f00e;'';24px;#4CAF50);
+				&:before{ .absolute('';'';8px;'';'';9px);}
+			}
+            .joyride_start_link a{
+                .before(f186;'';22px;#2196F3);
+				&:before{ .absolute('';'';10px;'';'';9px);}
+            }
+            .laghv a{
+                .before(f150;'';22px;#4CAF50);
+				&:before{ .absolute('';'';9px;'';'';9px);}
+            }            
+            .accept a{
+                .before(f134;'';22px;#4CAF50);
+				&:before{ .absolute('';'';10px;'';'';9px);}
+            }
+            .add a{
+                .before(f339;'';22px;#4CAF50);
+				&:before{ .absolute('';'';10px;'';'';9px);}
+            }
+            .azl a{
+                .before(f008;'';22px;#4CAF50);
+				&:before{ .absolute('';'';10px;'';'';9px);}
+            }
 		}
 	}
 	.middle-region {
@@ -677,6 +701,7 @@ h1#page-title {
 }
 #user-profile-form{
 	.user-edit-page-media();
+	.page-user-edit-advisor &,
 	.page-user-edit-bank &,
 	.page-user-edit-main &{
 		.paper(z1);

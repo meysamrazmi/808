@@ -1315,9 +1315,10 @@ background-color: darkcyan;
 
 /*from razmia - about menu taxonomy block */
 #block-taxonomy-menu-block-1{
-	margin-bottom: 10px;
-	transition: all ease 0.5s;
-	border-bottom: 1px solid #aaa;
+    margin-bottom: 10px;
+    transition: all ease 0.5s;
+    background-color: #fff;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
 }
 #block-taxonomy-menu-block-1.menufix{
 	position: fixed;
@@ -1341,12 +1342,11 @@ div#block-taxonomy-menu-block-1.menufix li a {
 	height: 160px;
 }
 #block-taxonomy-menu-block-1 h2{
-	border-image: url(../images/border-h.png) 1;
-    border-width: 0 0 1px 0;
-    font-size: 20px;
-    font-family: b koodak;
-    font-weight: 100;
-	padding-right:20px;
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    line-height: 45px;
 }
 #block-taxonomy-menu-block-1 .content ul {
 	margin: 0;
@@ -1360,8 +1360,6 @@ div#block-taxonomy-menu-block-1.menufix li a {
 }
 div#block-taxonomy-menu-block-1 li a {
 	color: #666;
-    font: 13px 'b yekan';
-    border-bottom: 1px solid #eee;
     display: block;
     padding: 8px 10px 10px 0;
 }

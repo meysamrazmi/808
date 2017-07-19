@@ -408,6 +408,7 @@ td.price span {
 }
 .form-item-panes-payment-payment-method {
   float: right;
+	width: 100%;
 }
 fieldset#payment-pane .fieldset-wrapper {
   width: 100%;
@@ -2054,6 +2055,7 @@ li.pager-previous a,
 li.pager-last a,
 li.pager-next a {
     color: transparent !important;
+	position: relative;
 }
 li.pager-first a:before ,
 li.pager-previous a:before ,
@@ -5782,7 +5784,7 @@ div#smile {
   padding: 20px 5px;
   border: solid #FFC107;
   border-width: 0 5px;
- 	display: none;//جشنواره festival 
+  display: none;/*جشنواره festival */
 }
 #smile canvas {
   position: absolute;

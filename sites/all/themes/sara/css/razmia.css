@@ -1255,10 +1255,10 @@ width: 47% !important;
     font-size: 13px;
     margin: 0;
 	margin-left: 20px;
-    border-bottom: 1px dashed #ddd;
+    
 }
-.page-civil #content .pane-all-new li:hover a{
-    background-color: #f0f0f0;
+.page-civil #content .pane-all-new li:hover{
+    background-color: #fbfbfb;
 }
 .page-civil .row-2 .panels-flexible-column-4-4-inside{
     width: 89%;

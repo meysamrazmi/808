@@ -25,27 +25,7 @@ if($('body.no-container').length){
 	$('.container.main').removeClass('container');
 }
 /*-------------------------------------------------------------------------------------------------------------------------------*/
-	var fixmenu = $('.container.main #block-taxonomy-menu-block-1');
-	if (fixmenu.length){
-		var topmenu = fixmenu.offset().top;
-		topmenu = topmenu +fixmenu.height() ;
-		var endfix = $('#block-views-online-users-block').offset().top;
-		var newfix = endfix - fixmenu.height() -50;
-		
-		$(window).scroll(function () {
-			if ($(this).scrollTop() > topmenu) {
-				fixmenu.addClass("menufix");
-				$("#block-panels-mini-sidebar-ads").css("margin-top" , fixmenu.height() );
-			} 			if( $(this).scrollTop() > newfix) {
-				fixmenu.removeClass("menufix");
-				$("#block-panels-mini-sidebar-ads").css("margin-top" , 0 );
-			}
-			if( $(this).scrollTop() < topmenu) {
-				fixmenu.removeClass("menufix");
-				$("#block-panels-mini-sidebar-ads").css("margin-top" , 0 );
-			}
-		});
-	}
+
 if($('.page-saze .view-all-new').length){
 	if(!$('.page-saze .view-all-new .more-link').length){
 		$('.page-saze .view-all-new').append('<div class="more-link"><a href="/news">+ مشاهده موارد بیشتر  </a></div>');
@@ -1337,7 +1317,7 @@ Drupal.behaviors.myBehavior = {attach: function (context, settings) {
 	});
 
 	/*------------------------------------------------- مربوط به کاربر -------------------------------------------------------*/
-	$('div#quicktabs-user_contents .ui-tabs-panel .views-row').each(function(){
+	$('div#quicktabs-user_contents .ui-tabs-panel .views-row, div#block-quicktabs-user-bookmark .ui-tabs-panel .views-row,div#quicktabs-user_bookmark .ui-tabs-panel .views-row').each(function(){
 		if($(this).children('div:nth-child(3)').length){
 			$(this).children('div:nth-child(1)').remove();
 		}
@@ -1475,9 +1455,10 @@ Drupal.parseJson = function (data) {
 window.onload = function(){
 	if($('#smile').length){
 		$.getScript('/sites/all/themes/sara/js/lib/floating-dots.js', function(){
-			
+			setInterval(createDots, 1000/30);
 		});
 	}
+	
 };
 //color functions
 function isdark(hexcolor){

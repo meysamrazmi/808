@@ -327,7 +327,10 @@ div#block-views-playlist-block-1{
   padding: 10px;
   top: 1%;
 }
-#login-form label, #register-form label, #login-form input, #register-form input {
+#login-form label,
+#register-form .form-item:not(.form-item-field-laws-und) label,
+#login-form input,
+#register-form .form-item:not(.form-item-field-laws-und) input{
   display: block !important;
   max-width: 90% !important;
   width: auto !important;

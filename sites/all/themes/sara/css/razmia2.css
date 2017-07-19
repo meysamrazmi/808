@@ -1138,17 +1138,20 @@ font-family: irans;
   display: none;
 }
 .page-civil #content .pane-all-new li {
-  clear: both;
+    clear: both;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px dashed #ddd;
 }
 .page-civil #content .pane-all-new li .views-field-field-image img {
-  max-width: 40px;
+  max-width: 45px;
   border-radius: 50%;
   margin: 3px 4px 0 0;
   border: 3px solid #fff;
   box-shadow: 0 0 12px -5px #000;
 }
 .page-civil #content .pane-all-new li .views-field-field-image a {
-  float: right;
   padding: 0;
   margin-left: 10px;
   border: none;

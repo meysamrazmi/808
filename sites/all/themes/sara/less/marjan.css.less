@@ -82,7 +82,8 @@
     .field-name-body,.field-type-text-with-summary{
         *{
             line-height: 30px;
-            .node-type-designteam &{
+            .default-page:not(.page-landing) &,
+            body:not(.page-landing) &{
                 text-align: justify;
             }
         }
@@ -110,7 +111,7 @@
             a{
                 display: inline-block;
                 width: 100%;
-                text-align: center;
+                text-align: center !important;
             }
         }
     }
@@ -486,4 +487,7 @@ body.page-node:not(.page-types):not(.role-anonymous-user) .container #page-title
             color: white;
         }
     }  
+}
+.page-pedia #edit-title-wrapper > div > div {
+    display: block !important;
 }

@@ -30,7 +30,7 @@ $(document).ready(function () {
             }
         });
     }
-    $('.divanchors a , .page-moshaver a.moshaver-links').click(function(e) {
+    $('.divanchors a , .page-moshaver a.moshaver-links:not(.b)').click(function(e) {
         e.preventDefault();
         $('html, body').animate({
             scrollTop: $($(this).attr('href')).offset().top - 50
@@ -60,9 +60,25 @@ $(document).ready(function () {
             }
         });
     }
+     
+    $(".user-left-links .column-inside .region-first .pane-content .azl a").text('در ارتباط');
+    $(".page-user .main-tab .tabs.primary .myresults a").text('نتایج آزمون');
+    $("#user-register-form .field-name-field-laws label").empty();
+    $("#user-register-form .field-name-field-laws label").append('<a href="http://civil808.com/node/865" target="_blank" title="قوانین سایت">شرایط و قوانین</a>&nbsp;سایت را می پذیرم.<span class="form-required" title="این فیلد اجباری است.">*</span>');
     
-    
-    
+    /*removing administration content from user-content block*/
+    /*----------work fine but until removing it from main tab, i commenting it
+    if($('body:not(.role-administrator):not(.role-editor) .pane-quicktabs-user-contents').length){  
+	   $('body:not(.role-administrator):not(.role-editor) .pane-quicktabs-user-contents .ui-state-default').each(function(){
+	   	   if($(this).attr('aria-controls') == 'qt-user_contents-ui-tabs11'){
+	   	   	   $(this).remove();
+	   	   }
+	   });
+        if($('body:not(.role-administrator):not(.role-editor) .pane-quicktabs-user-contents div#qt-user_contents-ui-tabs11').length){
+            $('body:not(.role-administrator):not(.role-editor) .pane-quicktabs-user-contents div#qt-user_contents-ui-tabs11').remove();
+        }
+    }
+    */
     
     
 });
