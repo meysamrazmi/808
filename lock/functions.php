@@ -18,6 +18,9 @@ function checkInput($decoded){
 	$decoded['email'] = string_safer(strtolower(trim($decoded['email'])));
 	$decoded['phone'] = string_safer(strtolower(trim($decoded['phone'])));
 	$decoded['package'] = string_safer(strtolower(trim($decoded['package'])));
+	$decoded['packagename'] = string_safer(trim($decoded['packagename']));
+	$decoded['dataversion'] = string_safer(strtolower(trim($decoded['dataversion'])));
+	$decoded['version'] = string_safer(strtolower(trim($decoded['version'])));
 }
 
 
@@ -99,15 +102,14 @@ function add_user($puid,$serial,$package){
 				if ($used_count < (int)$row["max_use_count"]){
 					$used_count++;
 					$sql = "UPDATE tblserials SET use_counter='" . $used_count . "' WHERE id=" . $row["id"];
-						if ($conn->query($sql) === FALSE) {
-							//db error
-							return 3;
-						}
+					if ($conn->query($sql) === FALSE) {
+						//db error
+						return 3;
+					}
 				} else {
 					//maximum serial used_count reached
 					return 2;
 				}
-		
 		
 				//new user record
 				$sql = "INSERT INTO tblusers (puid,serial,package,date_joined) VALUES
@@ -120,9 +122,7 @@ function add_user($puid,$serial,$package){
 					//all OK
 					return 1;
 				}
-
 			}
-			
 		} else {
 				//Serial Not found
 				return 4;
@@ -143,7 +143,7 @@ function print_output($arr,$response,$extra = ""){
 	$output = '{"action":' . $arr['action'] . ',"response":' . $response . ',"puid":"' . $arr['puid'] . '","serial":"' . $arr['serial']. '","name":"' . $arr['name']. '","email":"' . $arr['email'] . '","phone":"' . $arr['phone'] . '","package":"' . $arr['package'] . '","ranber":' . (((int)$arr['ranber'] * 73) - 320)  . ',"extra":"' . $extra . '"}';
 
 	$file = "log.txt";
-	$file_content = $nowTime .">>>>result: ". $output . "\n";
+	$file_content = "خروجی \n". $nowTime ."\n". $output . "\n";
 	file_put_contents($file, $file_content, FILE_APPEND | LOCK_EX);
 
 	echo (encryptAES($output));
