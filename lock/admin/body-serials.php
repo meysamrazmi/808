@@ -8,6 +8,8 @@
         <input type="text" class="ltr" id="pop-up-serial" name="serial" required>
         <label>ظرفیت</label><br>
 		<input type="number" id="pop-up-capacity" name="max-use-count" required>
+        <label>توضیحات</label><br>
+		<textarea type="text" id="pop-up-description" name="description"></textarea>
 
 		<p id="confirmed-save"></p>
         <input type="button" id="edit-submit" onclick="submit_edits('serial')" value="ذخیره">
@@ -95,6 +97,7 @@
 			<th>ظرفیت</th>
 			<th>ظرفیت پر شده</th>
 			<th>مدیریت سریال</th>
+			<th>توضیحات</th>
 		</tr>
 		
 		<?php
@@ -109,8 +112,8 @@
 			$alt_html = false;
 			$res_counter = 0;
 			if(strlen($serial) > 0){
-			$sql = "SELECT * FROM tblserials WHERE trim(LOWER(serial)) LIKE '%" . $serial . "%'";
-			$result = $conn->query($sql);
+				$sql = "SELECT * FROM tblserials WHERE trim(LOWER(serial)) LIKE '%" . $serial . "%'";
+				$result = $conn->query($sql);
 			
 
 				if ($result->num_rows > 0) {
@@ -130,6 +133,7 @@
 						<td id="max-use-count-' . $row["id"] . '">' . $row["max_use_count"] . '</td>
 						<td id="use-counter-' . $row["id"] . '">' . $row["use_counter"] . '</td> 
 						<td><a onclick="agreebox(' . $row["id"] . ')"><img class="img-delete" src="img/delete.png"></a>  <a href="javascript:edit_serial(' . $row["id"] . ')"><img class="img-delete" src="img/edit.png"></a></td> 
+						<td id="description-' . $row["id"] . '">' . $row["description"] . '</td> 
 						</tr>';
 					}
 				}
@@ -158,6 +162,7 @@
 						<td id="max-use-count-' . $row["id"] . '">' . $row["max_use_count"] . '</td>
 						<td id="use-counter-' . $row["id"] . '">' . $row["use_counter"] . '</td> 
 						<td><a onclick="agreebox(' . $row["id"] . ')"><img class="img-delete" src="img/delete.png"></a>  <a href="javascript:edit_serial(' . $row["id"] . ')"><img class="img-delete" src="img/edit.png"></a></td> 
+						<td id="description-' . $row["id"] . '">' . $row["description"] . '</td> 
 						</tr>';
 					}
 				}
@@ -185,6 +190,7 @@
 						<td id="max-use-count-' . $row["id"] . '">' . $row["max_use_count"] . '</td>
 						<td id="use-counter-' . $row["id"] . '">' . $row["use_counter"] . '</td> 
 						<td><a onclick="agreebox(' . $row["id"] . ')"><img class="img-delete" src="img/delete.png"></a>  <a href="javascript:edit_serial(' . $row["id"] . ')"><img class="img-delete" src="img/edit.png"></a></td> 
+						<td id="description-' . $row["id"] . '">' . $row["description"] . '</td> 
 						</tr>';
 					}
 				}
@@ -212,6 +218,7 @@
 						<td id="max-use-count-' . $row["id"] . '">' . $row["max_use_count"] . '</td>
 						<td id="use-counter-' . $row["id"] . '">' . $row["use_counter"] . '</td> 
 						<td><a onclick="agreebox(' . $row["id"] . ')"><img class="img-delete" src="img/delete.png"></a>  <a href="javascript:edit_serial(' . $row["id"] . ')"><img class="img-delete" src="img/edit.png"></a></td> 
+						<td id="description-' . $row["id"] . '">' . $row["description"] . '</td> 
 						</tr>';
 					}
 				}
