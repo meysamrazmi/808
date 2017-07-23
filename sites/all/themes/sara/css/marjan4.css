@@ -1813,7 +1813,9 @@ div#webform-ajax-wrapper-14314 .form-actions .webform-previous {
 	width: 100%;
 	text-align: center;
 }
-
+.moshaver-news .moshaver-news {
+	display: flex;
+}
 
 /*-----------------landing-fajr95------------------*/
 .page-landing.page-fajr95 .field-name-body{

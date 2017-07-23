@@ -915,3 +915,6 @@ div#order-pane-quotes, #edit-field-text {
 .page-admin-content-messages #block-system-main table td:nth-child(4){
 	display: none;
 }
+span.file {
+	position: relative;
+}
