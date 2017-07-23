@@ -187,7 +187,6 @@ function userpoints_share_uc_order($op, $order, $status) {
 					$points = intval(($total * $multiplier));
 					if ($allow_points && $points > 0) {
 						$params = array (
-							'tid' => 0,
 							'uid' => $uid,
 							'points' => $points,
 							'operation' => 'product share',

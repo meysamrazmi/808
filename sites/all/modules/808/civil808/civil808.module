@@ -424,11 +424,12 @@ function civil808_page_accounting_charge($form, &$form_state, $uid) {
 		'#markup' => '<div id="smile">
 			<canvas>
 			</canvas>
-			<div class="festival">به مدت 10 روز همزمان با جشنواره کتاب از 20 درصد شارژ هدیه برخوردار شوید</div>
+			<div class="festival">تا پایان عید سعید فطر از 20 درصد شارژ هدیه برخوردار شوید</div>
 			<div class="last-price">مبلغ نهایی شارژ: <span></span> تومان</div>
 			</div>',
 		);//*/
 	return $form;
+	// return array();
 }
 
 /**
@@ -476,8 +477,6 @@ function civil808_page_accounting_charge_submit($form, &$form_state) {
 
 function civil808_page_accounting_bankcallback($type, $resnumber) {
 	$event = get_bank_event($resnumber);
-
-	$percent_reseler = variable_get('shop_reseler_percent', 0.02);
 	if($event) {
 		$price = $event->value;
 		
@@ -494,22 +493,7 @@ function civil808_page_accounting_bankcallback($type, $resnumber) {
 			      'operation' => t('Charge from bank'),
 			    );
 			    userpoints_userpointsapi($params);
-
-				if( isset($d['rfid']) ) {
-					$rfid = base64_decode($d['rfid']);
-					if( $user = user_load_by_mail($rfid) ){
-						// fix price
-						$price = $price * $percent_reseler;
-				
-						$params = array(
-						'uid' => $user->uid,
-						'points' => $price,
-						'operation' => t('for shop product sell reseler' ),
-						);
-						userpoints_userpointsapi($params);
-					}
-				}
-			    drupal_goto();
+			    drupal_goto('/user/'. $event->user);
 			} 
 		} 
 		else {
@@ -522,6 +506,27 @@ function civil808_page_accounting_bankcallback($type, $resnumber) {
 }
 
 function zarinpal_send($Amount , $uid , $Description , $resnumber  , $CallbackURL , $type , $type_description){
+	/* برای ماژول pay.ir
+	$api = variable_get('uc_pay_api', '');
+	if(variable_get('uc_pay_currency', 'toman') == 'toman'){
+		$amount = $Amount * 10;
+	}else{
+		$amount = $Amount;
+	}
+	$factorNumber = $resnumber;
+	
+	$result = send($api,$amount,$CallbackURL,$factorNumber);
+	$result = json_decode($result);
+	if($result->status) {
+		add_bank_event($Amount, $type , $type_description , $uid, array('id' => $resnumber) );		
+		Header('Location: https://pay.ir/payment/gateway/'. $result->transId);
+		die();
+
+	} else {
+		drupal_set_message(t('خطا : @error', array('@error' => $result->errorMessage)), 'error');
+		drupal_goto($CallbackURL);
+	}*/
+
 	$user = user_load($uid);
 	$p = profile2_load_by_user($user);
 	$Email = $user->mail;
@@ -548,11 +553,40 @@ function zarinpal_send($Amount , $uid , $Description , $resnumber  , $CallbackUR
 		drupal_set_message(t('call the support for this error. error code: %code' , array('%code' => $Status,)), 'error');
 		drupal_goto($CallbackURL);
 	}
-	
-	
 }
 
 function zarinpal_receive($resnumber , $Amount){
+	/* برای ماژول pay.ir
+	$transId = $_POST['transId'];
+	$api = variable_get('uc_pay_api', '');
+	if (empty($api)) {
+		$msg = t('pay.ir payment is not configured.');
+		drupal_set_message($msg, 'error');
+	}
+	
+	$result = verify($api,$transId);
+	$result = json_decode($result);
+	if ($result->status){
+		$message = t('پرداخت شما با موفقیت انجام شد. شماره تراکنش: @number', array('@number' => $transId));
+		drupal_set_message($message);
+		watchdog('pay.ir', 'pay.ir payment #%refid verification succeeded', array('%refid' => $transId), WATCHDOG_INFO);
+		return array(
+			'message'=>'success', 
+			'resnumber' => $resnumber, 
+			'refnumber' => $transId, 
+			'price' => $Amount
+		);
+	} else {
+		drupal_set_message(t('پرداخت شما ناموفق بود. پیغام خطا : @error', array('@error' => $result->errorMessage)), 'error');
+		return array(
+			'message'=>'fail', 
+			'resnumber' => -1, 
+			'refnumber' => -1, 
+			'price' => -1
+		);
+	}	*/
+	
+	
 	if(isset($_GET['Status']) && $_GET['Status'] == 'OK'){
 		$Authority = $_GET['Authority'];
 		$Status = $_GET['status'];
@@ -589,7 +623,7 @@ function zarinpal_receive($resnumber , $Amount){
 				'resnumber' => -1, 
 				'refnumber' => -1, 
 				'price' => -1);
-	};
+	}
 }
 
 function civil808_page_accounting_reward($form, &$form_state, $uid) {
