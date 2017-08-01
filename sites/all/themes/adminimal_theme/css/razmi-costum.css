@@ -918,3 +918,34 @@ div#order-pane-quotes, #edit-field-text {
 span.file {
 	position: relative;
 }
+.autocomplete-deluxe-container {
+  background: #fefefe !important;
+  border: 1px solid #dbdbdb !important;
+  box-shadow: none !important;
+  border-radius: 2px;
+  display: block !important;
+  width: 100% !important;
+}
+.autocomplete-deluxe-container input#autocomplete-deluxe-input {
+  float: none !important;
+  width: 250px !important;
+  box-shadow: 0 0px 4px #555 !important;
+  outline: none;
+  margin: 3px;
+}
+.autocomplete-deluxe-container .autocomplete-deluxe-item {
+  margin: 3px 1px 3px 5px !important;
+  line-height: 8px;
+}
+.ui-autocomplete {
+  border: 1px solid #ccc;
+  width: 250px;
+  overflow: auto !important;
+  border-radius: 0;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+}
+
+
+
+
+

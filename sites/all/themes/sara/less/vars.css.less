@@ -68,6 +68,15 @@
 		& when not (@color = '') {color: @color;}
 	}
 }
+.after(@content ; @font:'' ; @size:'' ; @color:''){
+	&:after{
+		content: "\@{content}";
+		& when (@font = '') {font-family: mat;}
+		& when not (@font = '') {font-family: @font;}
+		& when not (@size = '') {font-size: @size;}
+		& when not (@color = '') {color: @color;}
+	}
+}
 .user-img(@width:''){
 	& when not (@width = '') {width: @width;}
 	border-radius: 50%;
@@ -130,4 +139,10 @@
 	border-radius: 0;
 	& when not (@color = '') {color: @color !important;}
 	border: 1px solid currentColor;
+}
+.flex(@dir:''; @align:'' ; @justify:''){
+	display: flex;
+	& when not (@dir = '') {flex-direction: @dir;}	
+	& when not (@align = '') {align-items: @align;}	
+	& when not (@justify = '') {justify-content: @justify;}	
 }
