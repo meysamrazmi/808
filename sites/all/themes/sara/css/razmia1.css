@@ -1938,6 +1938,7 @@ div#block-panels-mini-charge .pane-title:after {
 }
 textarea#edit-message {
   max-height: 170px;
+  overflow: auto;
   overflow: overlay;
 }
 li[data-id *='8533'] > a:before {

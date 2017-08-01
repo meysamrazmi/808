@@ -1500,6 +1500,7 @@ div#slideshow img {
 }
 .eng808-nav {
   width: 100vw !important;
+  overflow: auto;
   overflow: overlay;
   position: relative !important;
   min-height: auto;
