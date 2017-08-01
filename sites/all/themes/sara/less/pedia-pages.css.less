@@ -43,7 +43,7 @@
 
 
 .node-type-architect{
-    .group-anchor .fieldset-wrapper{
+    .group-anchor > .fieldset-wrapper{
         padding:0px;
         width: 80%;
         margin: auto;
@@ -97,6 +97,9 @@
                 }
                 &.memaran:before{
                     content: "\f5ac";
+                }                
+                &.commentanch:before{
+                    content: "\f181";
                 }
                 span {
                     background-color: white;
@@ -112,27 +115,43 @@
                 &:hover span{
                     opacity: 1;
                 }
-            }
-            
+            } 
+        }
+        .group-barchab-dastebandi{
+            position: absolute;
+            bottom: 0px;
+            background-color: #f5f5f5;
+            width: 100%;
+            padding: 20px 30px;
+            right: 0;
+            > .fieldset-wrapper{
+                padding: 0px !important;
+                .field-name-field-dastebandimemar {
+                    margin-bottom: 14px;
+                }
+                .field-label {
+                    line-height: 24px;
+                    margin-left: 6px;
+                }
+                .field-item {
+                    display: inline-block;
+                    a {
+                        color: black !important;
+                        font-size: 11px;
+                        display: inline-block;
+                        /* border: 1px solid #dadada; */
+                        margin: 0 5px;
+                        padding: 3px 10px;
+                        background-color: white;
+                        box-shadow: 0px 0px 1px #dadada, 0px 1px 5px #dadada;
+                    }
+                }
+            } 
         }
     }
 }
 
-
 .page-13958 .node-unpublished {
     background-color: transparent !important;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 

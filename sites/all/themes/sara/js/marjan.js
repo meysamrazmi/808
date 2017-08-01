@@ -22,6 +22,9 @@ $(document).ready(function () {
             $('.divanchors').append('<a class="'+ anchclass +'" href="#'+anchclass+'"><span>'+spananch+'</span></a>');
             $(this).attr('id', anchclass);
         });
+        if($('.page-node.page-pedia #comments').length){
+            $('.divanchors').append('<a class="commentanch" href="#comments"><span>نظرات</span></a>');
+        }
         
         /*creating default image for pedia node refrenced node*/
         $('.page-node.page-pedia .field-type-node-reference > div.field-items > div').each(function(){
@@ -65,6 +68,14 @@ $(document).ready(function () {
     $(".page-user .main-tab .tabs.primary .myresults a").text('نتایج آزمون');
     $("#user-register-form .field-name-field-laws label").empty();
     $("#user-register-form .field-name-field-laws label").append('<a href="http://civil808.com/node/865" target="_blank" title="قوانین سایت">شرایط و قوانین</a>&nbsp;سایت را می پذیرم.<span class="form-required" title="این فیلد اجباری است.">*</span>');
+    
+    /*removing 2 taxonomy from pedia ui*/
+    $('.field-name-field-dastebandimemar .field-items .field-item').each(function() {
+	   if($(this).text() == 'رشته' || $(this).text() == 'نوع'){
+	   	$(this).remove();
+	   }
+    });
+    $('.page-pedia.page-tag h1#page-title').after('<a href="/pedia" class="mainpedia" target="_blank">صفحه اصلی دانشنامه</a>');
     
     /*removing administration content from user-content block*/
     /*----------work fine but until removing it from main tab, i commenting it

@@ -83,7 +83,7 @@
     text-indent: 20px;
 }
 .page-node.node-type-architect .field-name-field-architecttext {
-	padding: 20px 30px;
+	padding: 20px 30px 102px 30px;
     background-color: #fff;
     box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
 }
@@ -168,7 +168,8 @@
 	color:black !important;
 }
 /*----------------------------------architects-homepage------------------------------*/
-.architects-homepage .views-row {
+.architects-homepage .views-row ,
+.node-architect.node-teaser{
     width: 206px;
     display: inline-block;
     vertical-align: top;
@@ -176,6 +177,14 @@
     margin: 25px 10px 0 10px;
     border-radius: 50%;
 }
+.page-taxonomy.page-pedia div#block-system-main {
+    text-align: center;
+    margin-top: 30px;
+}
+.page-taxonomy.page-pedia #content > div.tabs {
+    display: none;
+}
+
 .node-architect.node-teaser .field-name-field-arch-picture img {
 	overflow: hidden;
     box-shadow: 0px 0px 20px -2px #aaa;
@@ -388,6 +397,22 @@
     text-align: center;
     color: #20cecc;
     margin: 0 auto;
+}
+.page-pedia.page-tag h1#page-title{
+    padding: 45px 24px 68px 24px;
+}
+.page-pedia.page-tag #content > a.mainpedia:nth-child(2) {
+    position: absolute;
+    top: 121px;
+    display: block;
+    padding: 2px 8px;
+    border: 3px solid #eae424;
+    font-size: 12px;
+    color: rgb(255,255,255) !important;
+    font-weight: 200;
+    right: calc(50% - 63px);
+    border-width: 1px 1px;
+    transition: all ease 0.9s;
 }
 
 /*---------------contact-us-------------------*/
@@ -2637,3 +2662,36 @@ form#user-login ul{
 body.page-user:not(.role-administrator):not(.role-همکاران):not(.role-editor):not(.role-vip):not(.same-user) .field-name-field-publish-file {
     display: none !important;
 }
+
+.page-user .advisor-block .pane-content > div{
+    background-color: rgb(255, 255, 255);
+    height: 60px;
+    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    border: 1px solid #673ab7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    width: 100%;
+    border-width: 0px 4px 0px 4px;
+    margin-bottom: 5px;
+}
+.page-user .advisor-block .pane-content > div .advisorbanner{
+    margin-left: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
