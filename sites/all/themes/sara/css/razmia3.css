@@ -5785,7 +5785,7 @@ div#smile {
   padding: 20px 5px;
   border: solid #FFC107;
   border-width: 0 5px;
-  display: none;/*جشنواره festival */
+  /*display: none;/*جشنواره festival */
 }
 #smile canvas {
   position: absolute;
@@ -6013,7 +6013,7 @@ input[type="color"]:focus,
 	box-shadow: 0px 1px 2px rgba(24,24,24,0.15) !important;
 }
 .form-item-panes-payment-payment-method [for="edit-panes-payment-payment-method-zarinpal"]:after {
-	/* content: "(+ 20% شارژ هدیه به مناسبت جشنواره کتاب)";  */
+	content: "(+ 20 درصد شارژ هدیه با مناسبت جشنواره تابستانه)"; 
 }
 
 

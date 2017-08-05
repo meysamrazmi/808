@@ -424,7 +424,7 @@ function civil808_page_accounting_charge($form, &$form_state, $uid) {
 		'#markup' => '<div id="smile">
 			<canvas>
 			</canvas>
-			<div class="festival">تا پایان عید سعید فطر از 20 درصد شارژ هدیه برخوردار شوید</div>
+			<div class="festival">تا پایان جشنواره تابستانی از 20 درصد شارژ هدیه برخوردار شوید</div>
 			<div class="last-price">مبلغ نهایی شارژ: <span></span> تومان</div>
 			</div>',
 		);//*/
@@ -489,7 +489,7 @@ function civil808_page_accounting_bankcallback($type, $resnumber) {
 				drupal_set_message(t('charge transaction success'), 'status');
 				$params = array(
 			      'uid' => $event->user,
-			      'points' => ($price * 1), //برای شارژ بیشتر ($price * 1.2) // festival
+			      'points' => ($price * 1.2), //برای شارژ بیشتر ($price * 1.2) // festival
 			      'operation' => t('Charge from bank'),
 			    );
 			    userpoints_userpointsapi($params);
@@ -1048,8 +1048,8 @@ function civil808_preprocess_html(&$variables) {
 			Header('Location: http://www.civil808.com/user/'. $aliases[1] .'/request-relationship');
 		}else if(isset($aliases[1]) && $aliases[1] == 'received'){
 			//redirect /relationships/received => /user/%/relationships
-			drupal_goto("user/$aliases[1]/relationships");
-			Header('Location: http://www.civil808.com/user/'. $aliases[1] .'/relationships');
+			drupal_goto("user/$user->uid/relationships");
+			Header('Location: http://www.civil808.com/user/'. $user->uid .'/relationships');
 		}else{
 			//redirecting relationships/% to user/%uid/relationships/% exept relationship/%user/request
 			$url = implode('/', $aliases);

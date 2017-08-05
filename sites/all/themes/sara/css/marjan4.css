@@ -2329,22 +2329,22 @@ body:not(.page-register) .captcha .g-recaptcha > div{
   opacity: 0;
 }
 div#block-block-45{
-	width: 100%;
-	position: fixed;
-	bottom: 0;
-	right: 0;
-	height: 74px;
-	z-index: 100;
-	background-position-x: 15%;
-	display: flex;
-	align-items: center;
-	background-color: white;
-	/* background-image: url(//civil808.com/sites/all/themes/sara/images/moon.png); */
-	background-repeat: no-repeat;
-	box-shadow: rgba(0, 0, 0, 0.156863) 0px -3px 10px;
-	border-top: 1px solid #4CAF50;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 74px;
+    z-index: 100;
+    background-position-x: 15%;
+    display: flex;
+    align-items: center;
+    /* background-color: white; */
+    /* background-image: url(//civil808.com/sites/all/themes/sara/images/rr.jpg); */
 }
-div#block-block-45:before {
+div#block-block-45 .content{
+    width: 100%;
+}
+div#block-block-45 a:before {
     content: "";
     position: absolute;
     background: rgba(0,0,0,0.2);
@@ -2352,16 +2352,31 @@ div#block-block-45:before {
     top: 0;
     bottom: 0;
 }
-div#block-block-45 a.titr{
-position: absolute;
-	top: 0;
-	padding: 17px 30px;
-	right: calc(50vw - 135px);
-	font-size: 25px;
-	color: #333;
+div#block-block-45 a{
+    display: block;
+    width: 100%;
+    height: 75px;
+    z-index: 1;
+    background-image: url(//civil808.com/sites/all/themes/sara/images/rr.jpg);
+    background-repeat: no-repeat;
+    position: relative;
 }
-div#block-block-45 a.titr span {
-	color: #4CAF50;
+div#block-block-45 .titr{
+    position: absolute;
+    top: -6px;
+    right: calc(50vw - 135px);
+    font-size: 25px;
+    color: white;
+}
+div#block-block-45 .titr span {
+	color: red;
+}
+div#block-block-45 a > img {
+    position: absolute;
+    left: 12px;
+    width: 95px;
+    transform: rotate(32deg);
+    top: -11px;
 }
 div#block-block-45 div#smile {
 	width: 100%;
@@ -2372,8 +2387,8 @@ div#block-block-45 div#smile {
 	border: none;
 	background: #fff;
 }
-div#block-block-45 a.titr:after {
-	content: "";
+div#block-block-45 .titr:after {
+	/*content: "";
 	height: 74px;
 	width: 80px;
 	left: -60px;
@@ -2382,7 +2397,7 @@ div#block-block-45 a.titr:after {
 	display: flex;
 	align-items: center;
 	background-image: url(//civil808.com/sites/all/themes/sara/images/moon.png);
-	background-repeat: no-repeat;
+	background-repeat: no-repeat;*/
 }
 #block-block-45 .text3{
     position: absolute;
@@ -2410,7 +2425,7 @@ div#block-block-45 a.titr:after {
 #block-block-45 .texts{
 	position: absolute;
 	font-size: 20px;
-	color: #333;
+	color: white;
 	top: 19px;
 	right: 4%;
 	text-align: center;
@@ -2510,6 +2525,9 @@ color: #fff;
         width: 453px;
 		height: 390px;
 	}
+    div#block-block-45 a > img {
+        display: none;
+    }
 }
 @media (max-width: 768px ){
 
@@ -2539,6 +2557,14 @@ color: #fff;
 		left: 5px;
 		right: initial;
 	}
+    div#block-block-45 .texts{
+        display: none;
+    }
+    div#block-block-45 .titr {
+    position: relative;
+    text-align: center;
+    right: auto;
+}
 }
 @media (max-width: 500px ){
 	div#block-block-45 a.titr {

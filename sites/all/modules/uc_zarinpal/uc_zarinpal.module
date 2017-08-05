@@ -122,9 +122,9 @@ function uc_zarinpal_complete_page($order_id) {
 	$params = array(
 	  'uid' => $order->uid,
 	  'points' => ($order_total / 5),
-	  'operation' => 'شارژ هدیه به مناسبت عید فطر',
+	  'operation' => 'شارژ هدیه به مناسبت جشنواره تابستانی',
 	);
-	// userpoints_userpointsapi($params); // شارژ اضافه برای جشنواره
+	userpoints_userpointsapi($params); // شارژ اضافه برای جشنواره
   
   uc_payment_enter($order->order_id, $order->payment_method, $order->order_total, 0, NULL, 'Paid Successfully');
 
