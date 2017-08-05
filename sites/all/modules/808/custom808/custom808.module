@@ -119,7 +119,24 @@ function mdump($var){
 		die();
  	}
 }
-
+function wdump($var){
+	global $user;
+	if($user->uid == 3300){
+ 		echo '<pre>';
+		print_r($var);
+		echo '</pre>';
+		die();
+ 	}
+}
+function adump($var){
+	global $user;
+	if($user->uid == 10628){
+ 		echo '<pre>';
+		print_r($var);
+		echo '</pre>';
+		die();
+ 	}
+}
 function array_search_r($needle,$haystack) {
     foreach($haystack as $key=>$value) {
         $current_key=$key;
