@@ -177,6 +177,33 @@ h1#page-title {
 	dl {
 		margin: 0;
 	}
+	.field-name-field-about-me {
+		margin-bottom: 10px;
+	}
+	
+	.field-name-user-experts {
+	a{
+		margin: 0 0 5px 5px;
+		float: right;
+		&.unconfirmed{
+			color: #888 !important;
+			vertical-align: middle;
+			font-size: small;
+			position: relative;
+			background: #eee;
+			padding-right: 25px;
+			.before(f150;'';15px); 
+			&:before{
+				position: absolute;
+				right: 5px
+			}
+		}
+	}
+	+.field-name-field-skills .field-label{
+		visibility: hidden;
+	}
+}
+
 }
 #block-panels-mini-user-header{
 	z-index: 2;
@@ -820,14 +847,12 @@ h1#page-title {
 	#edit-profile-main-field-publish-file .description{
 		display: none;
 	}
-	#edit-profile-main-field-mobile,
-	#edit-profile-main-field-skills,
-	#edit-profile-main-field-about-me,
-	#edit-profile-main-field-address,
+	#edit-profile-main-field-experts,
 	#edit-profile-main-field-job,
 	#edit-profile-main-field-university,
 	#edit-profile-main-field-education-field,
 	#edit-profile-main-field-education-degree,
+	#edit-profile-main-field-mobile,
 	#edit-profile-main-field-full-name{
 		//.before(*;'inherit';'';#2196F3);
 		&:before{
@@ -836,6 +861,10 @@ h1#page-title {
 			.absolute();
 			margin: 7px -10px 0 0;
 		}
+	}
+	
+	 .field-name-field-job-title , .field-name-field-eng-code  , .field-name-field-address{
+		display: none;
 	}
 }
 .password-strength {
@@ -913,7 +942,7 @@ p.description.profile-percent {
 	font-family: fanum;
 	a {
 		margin-right: 30px;
-		&:last-child {
+		&:nth-child(n+2){
 			display: none;
 		}
 	}
