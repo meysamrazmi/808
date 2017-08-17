@@ -8,6 +8,8 @@
         <input type="text" class="ltr" id="pop-up-serial" name="serial" required>
         <label>ظرفیت</label><br>
 		<input type="number" id="pop-up-capacity" name="max-use-count" required>
+        <label>ظرفیت پر شده</label><br>
+		<input type="number" id="pop-up-used" name="used-serials" required>
         <label>توضیحات</label><br>
 		<textarea type="text" id="pop-up-description" name="description"></textarea>
 

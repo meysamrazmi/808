@@ -5,6 +5,8 @@ if (!isset($_POST['hash'])){
 	file_put_contents($file, "nocontent\n", FILE_APPEND | LOCK_EX);
     die();
 }
+file_put_contents($file, "\n". $_POST['hash'] ."\n", FILE_APPEND | LOCK_EX);
+
 
 require_once('config.php');
 require_once('functions.php');
@@ -18,6 +20,12 @@ $file_content = "---------------------------------------------\n ورودی \n".
 file_put_contents($file, $file_content, FILE_APPEND | LOCK_EX);
 
 checkInput($decoded);
+
+/*
+ *	1: puid match on package (OK)
+ *	2: sync offline user
+ *	3: puid doesn't exist (Unknown user)
+ */
 $check_result = check_puid($decoded['puid'],$decoded['package']);
 
 switch((int)$decoded['action']){
@@ -36,15 +44,20 @@ switch((int)$decoded['action']){
 			break;
 		}
 		if ($check_result == 3){//new user
-			$is_ok = add_user($decoded['puid'],$decoded['serial'],$decoded['package']);
-			if ($is_ok == 1){
-				$is_ok = edit_detail($decoded['puid'],$decoded['name'],$decoded['email'],$decoded['phone']);
-				if ($is_ok == 1) {
+			/*1: edited (OK)
+			* 2: maximum serial used_count reached
+			* 3: db error
+			* 4: Serial Not found
+			*/
+			$result = add_user($decoded['puid'],$decoded['serial'],$decoded['package']);
+			if ($result == 1){
+				$result = edit_detail($decoded['puid'],$decoded['name'],$decoded['email'],$decoded['phone']);
+				if ($result == 1) {
 					print_output($decoded,1);
 					break;
 				}
 			}else{
-				print_output($decoded,$is_ok);
+				print_output($decoded,$result);
 				break;
 			}
 		}

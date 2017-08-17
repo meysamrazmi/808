@@ -36,6 +36,7 @@ function edit_serial(serialid){
 	$('#pop-up-serial').val($('#serial-' + serialid).text());
 	$('#pop-up-capacity').val($('#max-use-count-' + serialid).text());
 	$('#pop-up-description').val($('#description-' + serialid).text());
+	$('#pop-up-used').val($('#use-counter-' + serialid).text());
 
 	
     $(".overlay-message").show();
@@ -71,6 +72,7 @@ function submit_edits(page){
 						$('#serial-' + id).text($('#pop-up-serial').val());
 						$('#max-use-count-' + id).text($('#pop-up-capacity').val());
 						$('#description-' + id).text($('#pop-up-description').val());
+						$('#use-counter-' + id).text($('#pop-up-used').val());
 					} else if(page == 'package') {
 						var id = $("#pop-up-packageid").val();
 						$('#package-name-' + id).text($('#pop-up-packagecode').val());
@@ -96,7 +98,7 @@ function submit_edits(page){
 	
 	var query;
 	if (page == 'serial'){
-		query = "doback=edits&id=" + $('#pop-up-serialid').val() + "&max-user-count=" + $('#pop-up-capacity').val() + "&serial=" + $('#pop-up-serial').val() + "&description=" + $('#pop-up-description').val() + "&udata=" + $("#udata").val() + "&tdata=" + $("#tdata").val();
+		query = "doback=edits&id=" + $('#pop-up-serialid').val() + "&max-user-count=" + $('#pop-up-capacity').val() + "&serial=" + $('#pop-up-serial').val() + "&description=" + $('#pop-up-description').val() + "&user_counter=" + $('#pop-up-used').val() + "&udata=" + $("#udata").val() + "&tdata=" + $("#tdata").val();
 	} else if(page == 'package') {
 		query = "doback=editp&id=" + $('#pop-up-packageid').val() + "&packageCode=" + $('#pop-up-packagecode').val() + "&packageDesc=" + $('#pop-up-packagedesc').val() + "&udata=" + $("#udata").val() + "&tdata=" + $("#tdata").val();
 	} else {
