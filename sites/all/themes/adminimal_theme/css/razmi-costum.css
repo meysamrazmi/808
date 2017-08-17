@@ -944,8 +944,12 @@ span.file {
   border-radius: 0;
   box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
 }
-
-
+#views-form-experts-page .acceptخیر {
+    color: #a92d2d;
+    font-style: italic;
+    font-weight: bold;
+    opacity: 0.6;
+}
 
 
 

@@ -518,8 +518,6 @@ body:not(.role-administrator) .admin-error {
 		}
 	}
 }
-
-
 .all-members{
 	&.view:not(.view-relations){
 		display: inline-block;
@@ -536,7 +534,7 @@ body:not(.role-administrator) .admin-error {
 		text-align: center;
 		width: calc(~"25% - 20px") !important;
 		max-width: 300px;
-		height: 250px;
+		height: 300px;
 		display: inline-block;
 		vertical-align: top;
 		float: right;
@@ -621,6 +619,34 @@ body:not(.role-administrator) .admin-error {
 		.vip_icon {
 			color: @mat-amber-600;
 		}
+		
+		.views-field-field-experts {
+			white-space: nowrap;
+			overflow: hidden;
+			position: relative;
+			top: 10px;
+			
+			&:after {
+				content: "";
+				.absolute(10px; 100%; 0; ''; ''; -4px);
+				@sh : 0px 0px 15px #fff;
+				box-shadow: @sh, @sh, @sh, @sh, @sh, @sh, @sh, @sh;
+				background: #fff;
+				opacity: 0.9;
+			}
+		
+			a{
+				color:black !important;
+				background: #F5F5F5;
+				padding: 2px 8px;
+				margin: 1px;
+				text-align: center;
+				font-size: 11px;
+				display: inline-block;
+				border-radius: 2px;
+			}
+		}
+		
 		@media @960{
 			width: ~"calc(33.33% - 20px) !important";
 		}
@@ -885,7 +911,5 @@ body:not(.role-administrator) .admin-error {
 		color: @mat-amber-600;
 	}
 }
-
-
 
 

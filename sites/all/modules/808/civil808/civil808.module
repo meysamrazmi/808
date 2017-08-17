@@ -237,6 +237,15 @@ function civil808_menu() {
 		'type' => MENU_CALLBACK,
 		'access arguments' => array('access content'),
 	);
+	$items['admin/content/experts/merge'] = array(
+		'title' => t('Merge Experts'),
+		'description' => t('Merging Experts'),
+		'page callback' => array('drupal_get_form'),
+		'page arguments' => array('merge_experts_form'),
+		'access arguments' => array('administer modules'),
+		'type' => MENU_LOCAL_TASK,
+		'file' => 'admin.inc',
+	);
 
 	return $items;
 }

@@ -1,21 +1,22 @@
 var $ = jQuery;
 $(document).ready(function () {
-	var nav = $('.pane-menu-main-civil');
-	$(window).scroll(function () {
-        if ($(this).scrollTop() > 100) {
-            nav.addClass("topfix");
-        } else {
-            nav.removeClass("topfix");
-        }
-    });
-	var nava = $('.pane-menu-conference');
-	$(window).scroll(function () {
-        if ($(this).scrollTop() > 100) {
-            nava.addClass("topfixc");
-        } else {
-            nava.removeClass("topfixc");
-        }
-    });
+	
+var nav = $('.pane-menu-main-civil');
+$(window).scroll(function () {
+    if ($(this).scrollTop() > 100) {
+        nav.addClass("topfix");
+    } else {
+        nav.removeClass("topfix");
+    }
+});
+var nava = $('.pane-menu-conference');
+$(window).scroll(function () {
+    if ($(this).scrollTop() > 100) {
+        nava.addClass("topfixc");
+    } else {
+        nava.removeClass("topfixc");
+    }
+});
 /*-------------------------------------------initial part------------------------------------------------------------------------------*/
 /*hiding tabs*/
 if($('.tabs').html().length < 40 ){
@@ -32,45 +33,45 @@ if($('.page-saze .view-all-new').length){
 	}
 }
 /*---------------------------fix left block of college --------------------------------------------------------------------------
-	var fixdiv = $('.course-info');
-	if (fixdiv.length && $('.main').height() > (1.3 * fixdiv.height())){
-		var divtop = fixdiv.offset().top;
-		var footer = $('#footer');
-		
-		$(window).scroll(function () {
-			if ($(this).scrollTop() > divtop - 66) {
-				fixdiv.addClass("fixside");
-				fixdiv.removeClass("endfix");
-				fixdiv.css("margin-top", "0px" );
-			} 			if( $(this).scrollTop() > footer.offset().top - fixdiv.height() - 80) {
-				fixdiv.removeClass("fixside");
-				fixdiv.addClass("endfix");
-				height = footer.offset().top - fixdiv.height() - divtop -50;
-				$('.endfix').css("margin-top", height );
-				
-			}
-			if( $(this).scrollTop() < divtop - 75) {
-				fixdiv.removeClass("fixside");
-				fixdiv.removeClass("endfix");
-				fixdiv.css("margin-top", "0px" );
-			}
-		});
-	}
+var fixdiv = $('.course-info');
+if (fixdiv.length && $('.main').height() > (1.3 * fixdiv.height())){
+	var divtop = fixdiv.offset().top;
+	var footer = $('#footer');
+	
+	$(window).scroll(function () {
+		if ($(this).scrollTop() > divtop - 66) {
+			fixdiv.addClass("fixside");
+			fixdiv.removeClass("endfix");
+			fixdiv.css("margin-top", "0px" );
+		} 			if( $(this).scrollTop() > footer.offset().top - fixdiv.height() - 80) {
+			fixdiv.removeClass("fixside");
+			fixdiv.addClass("endfix");
+			height = footer.offset().top - fixdiv.height() - divtop -50;
+			$('.endfix').css("margin-top", height );
+			
+		}
+		if( $(this).scrollTop() < divtop - 75) {
+			fixdiv.removeClass("fixside");
+			fixdiv.removeClass("endfix");
+			fixdiv.css("margin-top", "0px" );
+		}
+	});
+}
 /*-------------------------------------------------------------------------------------------------------------------------------*/
-	/*this block is for securing a little more courses registration that user couldnt change the prices*/
-	if($('#node-1997').length){
-		var selected_text = $("#edit-submitted-courseinfo-course-cost option:selected").text();
-		var selected_value = document.getElementById("edit-submitted-courseinfo-course-cost").value;
-		document.getElementById("edit-submitted-courseinfo-course-cost").innerHTML = '<option value="'+selected_value+'">'+selected_text+'</option>';
-		
-		selected_text = $("#edit-submitted-courseinfo-course-name option:selected").text();
-		selected_value = document.getElementById("edit-submitted-courseinfo-course-name").value;
-		document.getElementById("edit-submitted-courseinfo-course-name").innerHTML = '<option value="'+selected_value+'">'+selected_text+'</option>';	
-		
-		selected_text = $("#edit-submitted-courseinfo-enabaled option:selected").text();
-		selected_value = document.getElementById("edit-submitted-courseinfo-enabaled").value;
-		document.getElementById("edit-submitted-courseinfo-enabaled").innerHTML = '<option value="'+selected_value+'">'+selected_text+'</option>';	
-	}
+/*this block is for securing a little more courses registration that user couldnt change the prices*/
+if($('#node-1997').length){
+	var selected_text = $("#edit-submitted-courseinfo-course-cost option:selected").text();
+	var selected_value = document.getElementById("edit-submitted-courseinfo-course-cost").value;
+	document.getElementById("edit-submitted-courseinfo-course-cost").innerHTML = '<option value="'+selected_value+'">'+selected_text+'</option>';
+	
+	selected_text = $("#edit-submitted-courseinfo-course-name option:selected").text();
+	selected_value = document.getElementById("edit-submitted-courseinfo-course-name").value;
+	document.getElementById("edit-submitted-courseinfo-course-name").innerHTML = '<option value="'+selected_value+'">'+selected_text+'</option>';	
+	
+	selected_text = $("#edit-submitted-courseinfo-enabaled option:selected").text();
+	selected_value = document.getElementById("edit-submitted-courseinfo-enabaled").value;
+	document.getElementById("edit-submitted-courseinfo-enabaled").innerHTML = '<option value="'+selected_value+'">'+selected_text+'</option>';	
+}
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 $('.messages').click(function() {
 	$(this).css({
@@ -81,36 +82,36 @@ $('.messages').click(function() {
 $(function() {
   /* Generic selector to be used anywhere*/
   $("div#eng-nav ul li a").click(function(e) {
-    /* Get the href dynamically*/
-    var destination = $(this).attr('href');
-    /* Prevent href=“#” link from changing the URL hash (optional)*/
-    e.preventDefault();
-    /* Animate scroll to destination*/
-    $('html, body').animate({
-      scrollTop: ($(destination).offset().top - 100)
-    }, 1000);
+	/* Get the href dynamically*/
+	var destination = $(this).attr('href');
+	/* Prevent href=“#” link from changing the URL hash (optional)*/
+	e.preventDefault();
+	/* Animate scroll to destination*/
+	$('html, body').animate({
+	  scrollTop: ($(destination).offset().top - 100)
+	}, 1000);
   });
 });
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 $(function() {
   /* Generic selector to be used anywhere*/
   $("#pbd-panel ul.pbd-menu a").click(function(e) {
-    /* Get the href dynamically*/
-    var destination = $(this).attr('href');
-    /* Prevent href=“#” link from changing the URL hash (optional)*/
-    e.preventDefault();
-    /* Animate scroll to destination*/
-    $('html, body').animate({
-      scrollTop: ($(destination).offset().top)
-    }, 1000);
+	/* Get the href dynamically*/
+	var destination = $(this).attr('href');
+	/* Prevent href=“#” link from changing the URL hash (optional)*/
+	e.preventDefault();
+	/* Animate scroll to destination*/
+	$('html, body').animate({
+	  scrollTop: ($(destination).offset().top)
+	}, 1000);
   });
 });
 
 // $(document).bind('scroll',function(e){
 $(window).scroll(function (e) {
-    $('#pbd-panel .panel-pane').each(function(){
-        if ($(this).offset().top < window.pageYOffset + 150 &&  $(this).offset().top + $(this).height() > window.pageYOffset + 150 ) {
-            // window.location.hash = $(this).attr('id');
+	$('#pbd-panel .panel-pane').each(function(){
+		if ($(this).offset().top < window.pageYOffset + 150 &&  $(this).offset().top + $(this).height() > window.pageYOffset + 150 ) {
+			// window.location.hash = $(this).attr('id');
 			// var urlId = '#' + $(this).attr('id'); 
 			// history.replaceState(null, null, urlId);
 
@@ -119,7 +120,7 @@ $(window).scroll(function (e) {
 			$('#pbd-panel ul.pbd-menu a[href$="' + $(this).attr('id') + '"]').parent().next().removeClass('active');
 		
 		}
-    });
+	});
 });
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 $(window).scroll(function(e) {
@@ -226,7 +227,7 @@ $('.tb-megamenu .nav-collapse').css({ 'max-height' : screen.height + 5 });
 $('.tb-megamenu-button').addClass('first');
 $('.tb-megamenu-button').click(function() {
   if($(this).hasClass('first')) {
-    $(this).removeClass('first');
+	$(this).removeClass('first');
   }
 });
 /*-------------------------------------------------------------------------------------------------------------------------------*/
@@ -539,8 +540,8 @@ $('#edit-panes-webform-nid3403-0-edu-2 , #edit-panes-webform-nid3403-0-edu-1').c
 
 });
 $('#edit-submitted-courseinfo-quantity').on('change', function (e) {
-    var optionSelected = $("option:selected", this);
-    var valueSelected = this.value * 120000;
+	var optionSelected = $("option:selected", this);
+	var valueSelected = this.value * 120000;
 	$('input#edit-submitted-price').val(humanizeNumber(valueSelected));
 });
 $('#edit-submitted-bdwn-prdkht-1').on('change', function (e) {
@@ -556,27 +557,27 @@ if($('.page-event').length){
 }
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 $('.comment-form').on('focus', 'textarea', function () {
-    CommentOpen();
+	CommentOpen();
 });
 // Open Notifications
 CommentOpen = function() {
-    $('.comment-form').addClass('writing');
+	$('.comment-form').addClass('writing');
 	$('.comment-form').find('.form-actions').slideDown();
-    
+	
 	$('html').unbind("click", CommentClose);
 };
 // Close Comment Form
 CommentClose = function() {
-    $('.comment-form').removeClass('writing');
+	$('.comment-form').removeClass('writing');
 	$('.comment-form').find('.form-actions').slideUp();		
 	
 	$('html').unbind("click", CommentClose);
 };
 $('.comment-form').click(function(event){
-    event.stopPropagation();
+	event.stopPropagation();
 });
 $('html').click(function(event){
-    CommentClose();
+	CommentClose();
 });
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 /*picture gallery section*/
@@ -596,17 +597,17 @@ if($('.view-glrnew').length){
 }
 /*--------*/
 $('.short_link').on("click",function(){
-    $(this).select();
+	$(this).select();
 });
 /*-----------------------------برای گالری محتوای بعدی و قبلی-------------------------------------------*/
 $(window).scroll(function () {
 	if($('.page-gallery').length){
-        if ($('#footer').offset().top - $(this).scrollTop() < 381) {
-            $('.page-gallery.page-picture .field-name-before-picture').css({'opacity':'0'});
-            $('.page-gallery.page-picture .field-name-next-picture').css({'opacity':'0'});
-            $('.page-gallery.page-videos .field-name-next-film').css({'opacity':'0'});
-            $('.page-gallery.page-videos .field-name-before-film').css({'opacity':'0'});
-        } 
+		if ($('#footer').offset().top - $(this).scrollTop() < 381) {
+			$('.page-gallery.page-picture .field-name-before-picture').css({'opacity':'0'});
+			$('.page-gallery.page-picture .field-name-next-picture').css({'opacity':'0'});
+			$('.page-gallery.page-videos .field-name-next-film').css({'opacity':'0'});
+			$('.page-gallery.page-videos .field-name-before-film').css({'opacity':'0'});
+		} 
 		else{
 			$('.page-gallery.page-picture .field-name-before-picture').css({'opacity':'1'});
 			$('.page-gallery.page-picture .field-name-next-picture').css({'opacity':'1'});
@@ -748,6 +749,16 @@ $('.عزل').each(function(){
 $('.موافقت--رد-کردن').each(function(){
 	$(this).addClass('accept');
 });
+$('.all-members .views-field-field-experts a').each(function(){
+	if($('.page-landing-members').length){
+		$(this).attr('href', '/landing/members?field_experts_tid='+$(this).text())
+	}else{
+		$(this).attr('href', '')
+	}
+});
+/*user-profile required fields*/
+$("#edit-profile-main-field-experts , #edit-profile-main-field-job , #edit-profile-main-field-university , #edit-profile-main-field-education-field , #edit-profile-main-field-education-degree , #edit-profile-main-field-mobile , #edit-profile-main-field-full-name").attr('title', 'برای تکمیل پروفایل اجباری است');
+
 /*-------------------------------------------مربوط به ویدئو------------------------------------------------------------------------------*/
 /*for iframe*/
 $('.page-iframe .mejs-overlay-play ,.page-iframe .mejs-overlay-play *').click(function(){
@@ -931,8 +942,8 @@ $('.page-pedia div#block-mefibs-8e49d13e1295a3847928ee45c286e415').append('<div 
 $('.page-pedia div#block-mefibs-8e49d13e1295a3847928ee45c286e415 div.scrollingdown').click(function(){
 	
 	$('html, body').animate({
-        scrollTop: $("#block-system-main").offset().top
-    }, 1000);
+		scrollTop: $("#block-system-main").offset().top
+	}, 1000);
 	
 });
 if($('.view-pediareverse .views-row').length && $('.view-pediareverse .views-row').html().length < 2){
@@ -950,7 +961,7 @@ $('.node-teaser.node-college .field-name-field-course-step .field-item').each(fu
 	}
 });
 
-$('#privatemsg-new .text-format-wrapper').append('<span class="tazakkor">طبق <a href="/landing/law" target="_blank">قوانین سایت</a> ، فرستادن شماره تلفن و ایمیل ممنوع می باشد و در صورت مشاهده، پیفام توسط مدیریت ویرایش می شود.</span>');
+$('#privatemsg-new .text-format-wrapper').append('<span class="tazakkor">طبق <a href="/landing/law" target="_blank">قوانین سایت</a> ، فرستادن شماره تلفن و ایمیل ممنوع می باشد و در صورت مشاهده، پیغام توسط مدیریت ویرایش می شود.</span>');
 
 /*-----------------------------------------------------------------------------------------------------------------*/
 /* $('td.privatemsg-list-participants a').each(function(i){
@@ -963,7 +974,7 @@ $('#privatemsg-new .text-format-wrapper').append('<span class="tazakkor">طبق 
 		var img = $(html).find('.pane-block-47 .user-pic a').html();
 		element.prepend(img);
 		element.addClass('has-img');
-    }});
+	}});
 }); */
 $('td.privatemsg-list-participants a, .privatemsg-message-participants a').each(function(i){
 	if(i < 3 && i > 7) return;
@@ -976,7 +987,7 @@ $('td.privatemsg-list-participants a, .privatemsg-message-participants a').each(
 			var img = $.parseHTML(result.data);
 			element.prepend(img);
 			element.addClass('has-img');
-    	}
+		}
 	});
 });
 /*-----------------------------------------------------------------------------------------------------------------*/
@@ -1028,6 +1039,8 @@ if($('.view-represation').length){
 		$(this).prevUntil('.views-widget-filter-field_full_name_value_1').animate({width:'toggle'},0);
 	});
 }
+
+
 
 
 
