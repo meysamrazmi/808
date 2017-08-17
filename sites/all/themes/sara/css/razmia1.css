@@ -238,19 +238,20 @@ display: inline-block;
 /*------------------------------videos--------------------------*/
 .page-videos .gallery.videos .views-row,
 .node-film.node-teaser {
-  display: inline-block;
-  width: 23%;
-  margin: 0 1.5% 3vw 0;
-  overflow: hidden;
-  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-  max-height: 300px;
-  vertical-align: top;
-  border: none !important;
-  box-sizing: border-box;
-  min-width: 150px;
-  position: relative;
-  background-color: #fff;
-  transition: all 0.2s;
+    display: inline-block;
+    margin: 0 1.5% 3vw 0;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    max-height: 300px;
+    min-height: 200px;
+    vertical-align: top;
+    border: none !important;
+    box-sizing: border-box;
+    min-width: 150px;
+    position: relative;
+    background-color: #fff;
+    transition: all 0.2s;
+    width: 23%;
 }
 .page-videos .gallery.videos .views-row:hover, .node-film.node-teaser:hover {
   box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12) !important;

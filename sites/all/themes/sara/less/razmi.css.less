@@ -912,4 +912,51 @@ body:not(.role-administrator) .admin-error {
 	}
 }
 
-
+.owl-carousel {
+	.owl-dots {
+		.flex('';'';center);
+		.owl-dot {
+			padding: 0 5px;
+			span:before {
+				content: "";
+				background: #aaa;
+				display: inline-block;
+				width: 15px;
+				height: 15px;
+				border-radius: 50%;
+			}
+			&.active span:before {
+				background: #333;
+			}
+		}
+	}
+	.owl-nav {
+		.flex('';'';space-around);
+		margin: 10px auto 20px;
+		width: 250px;
+		div {
+			.btn;
+			&:after, &:before {
+				font-family: mat;
+				font-size: 32px;
+				vertical-align: middle;
+				color: #2196F3;
+			}
+			&.owl-prev:before {
+				content: "\f142";
+				margin-right: -15px;
+			}
+			&.owl-next:after {
+				content: "\f141";
+				margin-left: -15px;
+			}
+		}
+	}
+	.views-row {
+		width: 100% !important;
+		max-width: none;
+		img{
+			margin: auto;
+		}
+	}	
+}

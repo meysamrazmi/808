@@ -5836,7 +5836,7 @@ div#smile {
   border: none;
   min-width: inherit;
   padding: 0;
-  color: #888;
+  color: #888 !important;
   box-shadow: none;
   font-size: 20px;
 }
