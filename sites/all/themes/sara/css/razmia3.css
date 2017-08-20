@@ -5785,7 +5785,7 @@ div#smile {
   padding: 20px 5px;
   border: solid #FFC107;
   border-width: 0 5px;
-  /*display: none;/*جشنواره festival */
+  display: none;/*جشنواره festival */
 }
 #smile canvas {
   position: absolute;

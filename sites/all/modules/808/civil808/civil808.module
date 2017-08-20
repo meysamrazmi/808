@@ -498,7 +498,7 @@ function civil808_page_accounting_bankcallback($type, $resnumber) {
 				drupal_set_message(t('charge transaction success'), 'status');
 				$params = array(
 			      'uid' => $event->user,
-			      'points' => ($price * 1.2), //برای شارژ بیشتر ($price * 1.2) // festival
+			      'points' => ($price), //برای شارژ بیشتر ($price * 1.2) // festival
 			      'operation' => t('Charge from bank'),
 			    );
 			    userpoints_userpointsapi($params);
