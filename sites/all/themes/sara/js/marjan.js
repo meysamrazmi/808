@@ -13,18 +13,23 @@ $(document).ready(function () {
     $('.node.node-product.view-mode-full .group-left > .display-price,.node.node-product-kit.view-mode-full .group-left > .display-price').prepend('<span>قیمت نهایی:</span>');
     
     /*ancher of pedia node*/
+	$('.page-node.page-pedia .view-mode-full .group-anchor > div').prepend('<div class="divanchors"></div>');
+    
     if($('.page-node.page-pedia .field-type-node-reference').length){
-        $('.page-node.page-pedia .view-mode-full .group-anchor > div').prepend('<div class="divanchors"></div>');
-        $('.page-node.page-pedia .flag-outer-bookmarks').css({'top': 91});
         $('.page-node.page-pedia .field-type-node-reference').each(function(){
             var anchclass = $(this).attr('class').split(" ")[1].substr(17);
             var spananch = $(this).find('.field-label').text().slice(0,-2);
             $('.divanchors').append('<a class="'+ anchclass +'" href="#'+anchclass+'"><span>'+spananch+'</span></a>');
             $(this).attr('id', anchclass);
+			
+			if( (window.matchMedia('(max-width: 600px)').matches && $(this).children('.field-items').children().length > 1) ||
+				(window.matchMedia('(max-width: 900px)').matches && $(this).children('.field-items').children().length > 2) ||
+				(window.matchMedia('(max-width: 1200px)').matches && $(this).children('.field-items').children().length > 3) ||
+				$(this).children('.field-items').children().length > 4
+			 ) {
+				$(this).children('.field-items').addClass('owl-carousel');
+			}			
         });
-        if($('.page-node.page-pedia #comments').length){
-            $('.divanchors').append('<a class="commentanch" href="#comments"><span>نظرات</span></a>');
-        }
         
         /*creating default image for pedia node refrenced node*/
         $('.page-node.page-pedia .field-type-node-reference > div.field-items > div').each(function(){
@@ -33,6 +38,49 @@ $(document).ready(function () {
             }
         });
     }
+
+	if($('.page-node.page-pedia .field-name-user-with-expert').length){
+		$('.field-name-user-with-expert').attr('id', 'user_experts');
+		if( (window.matchMedia('(max-width: 600px)').matches && $('.view-user-experts.view-id-user_experts > .view-content').children().length > 1) ||
+			(window.matchMedia('(max-width: 900px)').matches && $('.view-user-experts.view-id-user_experts > .view-content').children().length > 2) ||
+			(window.matchMedia('(max-width: 1200px)').matches && $('.view-user-experts.view-id-user_experts > .view-content').children().length > 3) ||
+			$('.view-user-experts.view-id-user_experts > .view-content').children().length > 4 ){
+				$('.view-user-experts.view-id-user_experts > .view-content').addClass('owl-carousel');
+		}
+		
+		$('.divanchors').append('<a class="users" href="#user_experts"><span>کاربران متخصص</span></a>');
+	}
+	
+	if($('.owl-carousel').length){
+		$.getScript('/sites/all/themes/sara/js/lib/owl.carousel.min.js', function(){
+			$('.owl-carousel').owlCarousel({
+				rtl:true,
+				loop:true,
+				margin:15,
+				responsiveClass:true,
+				nav:true,
+				responsive:{
+					0:{items:1},
+					600:{items:3},
+					1000:{items:4}
+				}
+			});
+			$('.owl-prev').text('بعدی')
+			$('.owl-next').text('قبلی')
+		})
+	}	
+    /*creating default image for pedia node refrenced node ---- with owl crousal*/
+    $('.page-node.page-pedia .field-type-node-reference > div.field-items .owl-item').each(function(){
+        if(!$(this).find('.field-type-image').length){
+            $(this).find('.group-header').prepend('<img src="http://civil808.com/sites/all/themes/sara/images/nophoto.png" width="240" height="140" alt="no-picutre">');
+        }
+    });
+
+
+	if($('.page-node.page-pedia #comments').length){
+		$('.divanchors').append('<a class="commentanch" href="#comments"><span>نظرات</span></a>');
+    }
+
     $('.divanchors a , .page-moshaver a.moshaver-links:not(.b)').click(function(e) {
         e.preventDefault();
         $('html, body').animate({
@@ -90,8 +138,6 @@ $(document).ready(function () {
         }
     }
     */
-    
-    
 });
 
 /*
@@ -106,6 +152,4 @@ function default_pic(x,w,h) {
     }
 }
 */
-
-
 
