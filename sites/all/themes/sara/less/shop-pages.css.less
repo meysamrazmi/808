@@ -3,37 +3,61 @@
  */
 /*colors*/
 @import "colors.css.less";
+@import "vars.css.less";
 
-/*shadows*/
-@z2: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
-@z1: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-@z0: 0 2px 2px #edeef0;
-
-/*paddings*/
-@pad: 15px; 
-@pad-wid: 0 15px; 
-@pad-heig: 15px 0; 
-
-.paper(z1){
-	box-shadow: @z1;
+.node-product , .node-product-kit{
+	.field-name-teacher-identity{
+		margin: 10px 0px 20px 20px;
+		position: relative;
+		
+		&:before{
+			content: "";
+			.absolute(100px; 3px;'';~"calc(50% - 60px)";-16px);
+			background: #673AB7;
+			z-index: 1;
+			border: solid #fff;
+			border-width: 0 10px;
+		}
+		.field-label{
+			font-weight: normal;
+			margin-bottom: 10px;
+		}
+		.field-items{
+			max-height: 140px;
+			overflow: hidden;
+			@media @480{ max-height: 100%;}
+			.teacher-identity {
+				margin-left: 10px;
+				margin-bottom: 10px;
+				display: inline-flex;
+				align-items: center;
+				background: #fafafa;
+				border: none;
+				border-radius: 2px 40px 40px 40px;
+				padding: 0;
+				box-shadow: @z1;
+				transition: all 0.2s ease;
+				&:hover{box-shadow: @z2;}
+				@media @480{display: flex;}
+				.user_pic img{
+					width: 60px;
+					border: 2px solid #fff;
+					box-shadow: @z1;
+					overflow: hidden;
+					border-radius: 50%;
+					margin-bottom: -7px
+				}
+				.teacher-name {
+					padding: 10px;
+					color: black !important;
+					min-width: 100px;
+				}
+			}
+		}
+		&:after{
+			content: "";
+			.absolute(100%;1px;'';0;-15px;'');
+			background: #eee;
+		}
+	}
 }
-.paper(z2){
-	box-shadow: @z2;
-}
-.paper(@_){
-	background: #fff;
-	border: none;
-	border-radius: 0;
-	padding: @pad;
-	box-shadow: @z0;
-}
-
-
-
-
-
-
-
-
-/*media elements*/
-@import "media.css.less";
