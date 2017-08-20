@@ -458,7 +458,7 @@ div#slideshow img {
   background: #f9f9f9;
   border-top: 1px solid #ddd;
   margin-top: -1px;
-  min-height: 500px;
+  min-height: 100vh;
 }
 .panels-flexible-region-15-excusive,
 .panels-flexible-region.panels-flexible-region-15-news_.panels-flexible-region-first.eng808-news-region,

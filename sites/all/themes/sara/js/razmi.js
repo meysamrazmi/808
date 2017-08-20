@@ -150,15 +150,6 @@ $(window).scroll(function(e) {
 	}
 });
 }
-var eng_nav = function(){
-if($('.eng808-nav-exclusive').length) applyHeight($('.eng808-nav-exclusive').parent().parent() , $('.eng808-nav-exclusive') , 200);
-if($('.eng808-nav-foreign').length) applyHeight($('.eng808-nav-foreign').parent().parent() , $('.eng808-nav-foreign') , 200);
-if($('.eng808-nav-exam').length) applyHeight($('.eng808-nav-exam').parent().parent() , $('.eng808-nav-exam') , 200);
-if($('.eng808-nav-courses').length) applyHeight($('.eng808-nav-courses').parent().parent() , $('.eng808-nav-courses') , 200);
-if($('.eng808-nav-news').length) applyHeight($('.eng808-nav-news').parent().parent() , $('.eng808-nav-news') , 200);
-if($('.eng808-nav-shop').length)  applyHeight($('.eng808-nav-shop').parent().parent() , $('.eng808-nav-shop') , 200);
-if($('.eng808-nav-sourses').length) applyHeight($('.eng808-nav-sourses').parent().parent() , $('.eng808-nav-sourses') , 200);
-};
 var eng_nav_fixed_do = function(){
 	if($('.eng808-nav-exclusive').length) eng_nav_fixed($('.eng808-nav-exclusive'));
 	if($('.eng808-nav-foreign').length) eng_nav_fixed($('.eng808-nav-foreign'));
@@ -169,7 +160,6 @@ var eng_nav_fixed_do = function(){
 	if($('.eng808-nav-sourses').length) eng_nav_fixed($('.eng808-nav-sourses'));
 }
 if($('.eng808-nav').length){
-	setTimeout(eng_nav, 1000);
 	eng_nav_fixed_do();
 }
 } else{
@@ -756,6 +746,24 @@ $('.all-members .views-field-field-experts a').each(function(){
 		$(this).attr('href', '')
 	}
 });
+
+if($('.view-represation').length){
+	$('.view-represation .views-widget-filter-rid').before('<span class="more-filter" title="فیلتر های بیشتر"></span>');
+	$('.more-filter').click(function(){
+		$(this).toggleClass('opened');
+		$(this).prevUntil('.views-widget-filter-field_full_name_value_1').animate({width:'toggle'},0);
+	});
+}
+if($('#edit-field-education-degree-value').val() || 
+	$('#field_education_field_value').val() || 
+	$('#edit-field-university-value').val() || 
+	$('#edit-field-job-value').val() || 
+	$('#edit-field-about-me-value').val() || 
+	$('#edit-field-experts-tid').val())
+{
+	console.log("yy");
+	$('.more-filter').click()
+}
 /*user-profile required fields*/
 $("#edit-profile-main-field-experts , #edit-profile-main-field-job , #edit-profile-main-field-university , #edit-profile-main-field-education-field , #edit-profile-main-field-education-degree , #edit-profile-main-field-mobile , #edit-profile-main-field-full-name").attr('title', 'برای تکمیل پروفایل اجباری است');
 
@@ -1032,13 +1040,7 @@ var interval = setInterval( function(){
 	initialise();
 },1000);
 
-if($('.view-represation').length){
-	$('.view-represation .views-widget-filter-rid').before('<span class="more-filter" title="فیلتر های بیشتر"></span>');
-	$('.more-filter').click(function(){
-		$(this).toggleClass('opened');
-		$(this).prevUntil('.views-widget-filter-field_full_name_value_1').animate({width:'toggle'},0);
-	});
-}
+
 
 
 
