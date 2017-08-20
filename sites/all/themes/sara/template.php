@@ -70,6 +70,9 @@ function sara_preprocess_html(&$variables) {
 		drupal_add_css(drupal_get_path('theme', 'sara') . '/less/pedia-pages.css.less');
 		break;
   }
+  if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') || strpos($_SERVER['HTTP_USER_AGENT'], 'Trident/7')){
+	  drupal_add_css(drupal_get_path('theme', 'sara') . '/less/ie.css.less');
+  }
 
   //by meysam razmi to adding classes based on logged in user
   global $user;
