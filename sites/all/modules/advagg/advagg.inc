@@ -7,7 +7,6 @@
  * These functions are needed for cache misses.
  */
 
-// Database operations.
 /**
  * Insert/Update data in advagg tables.
  *
@@ -188,10 +187,9 @@ function advagg_insert_update_files(array $files, $type) {
       'mtime' => $file_meta_data['mtime'],
       'linecount' => $file_meta_data['linecount'],
     );
-
-    // Check the file in the database.
-    if (empty($files_in_db[$filename])) {
-      try {
+    try {
+      // Check the file in the database.
+      if (empty($files_in_db[$filename])) {
         // Add in filesize_processed if the schema is 7210 or higher.
         if (drupal_get_installed_schema_version('advagg') >= 7210) {
           $record['filesize_processed'] = (int) advagg_generate_filesize_processed($filename, $type);
@@ -217,49 +215,49 @@ function advagg_insert_update_files(array $files, $type) {
           $write_done = TRUE;
         }
       }
-      catch (PDOException $e) {
-        // If it fails we don't care, the file was added to the table by another
-        // process then.
-        // Still log it if in development mode.
-        if (variable_get('advagg_cache_level', ADVAGG_CACHE_LEVEL) < 0) {
-          watchdog('advagg', 'Development Mode - Caught PDO Exception: <code>@info</code>', array('@info' => $e));
+      else {
+        // Take changes counter out of the diff equation.
+        $changes = $files_in_db[$filename]['changes'];
+        unset($files_in_db[$filename]['changes']);
+
+        // If something is different, update.
+        $diff = array_diff_assoc($record, $files_in_db[$filename]);
+        if (!empty($diff)) {
+          $diff['changes'] = $changes + 1;
+          $diff['filename_hash'] = $record['filename_hash'];
+
+          // Add in filesize_processed if the schema is 7210 or higher.
+          if (drupal_get_installed_schema_version('advagg') >= 7210) {
+            $diff['filesize_processed'] = (int) advagg_generate_filesize_processed($filename, $type);
+          }
+          if (drupal_get_installed_schema_version('advagg') >= 7212) {
+            $diff['use_strict'] = 0;
+            if ($type === 'js') {
+              $diff['use_strict'] = (int) advagg_does_js_start_with_use_strict($filename);
+              if (empty($diff['use_strict'])) {
+                $diff['use_strict'] = 0;
+              }
+            }
+          }
+
+          $return = db_merge('advagg_files')
+            ->key(array(
+              'filename_hash' => $diff['filename_hash'],
+            ))
+            ->fields($diff)
+            ->execute();
+          if ($return) {
+            $write_done = TRUE;
+          }
         }
       }
     }
-    else {
-      // Take changes counter out of the diff equation.
-      $changes = $files_in_db[$filename]['changes'];
-      unset($files_in_db[$filename]['changes']);
-
-      // If something is different, update.
-      $diff = array_diff_assoc($record, $files_in_db[$filename]);
-      if (!empty($diff)) {
-        $diff['changes'] = $changes + 1;
-        $diff['filename_hash'] = $record['filename_hash'];
-
-        // Add in filesize_processed if the schema is 7210 or higher.
-        if (drupal_get_installed_schema_version('advagg') >= 7210) {
-          $diff['filesize_processed'] = (int) advagg_generate_filesize_processed($filename, $type);
-        }
-        if (drupal_get_installed_schema_version('advagg') >= 7212) {
-          $diff['use_strict'] = 0;
-          if ($type === 'js') {
-            $diff['use_strict'] = (int) advagg_does_js_start_with_use_strict($filename);
-            if (empty($diff['use_strict'])) {
-              $diff['use_strict'] = 0;
-            }
-          }
-        }
-
-        $return = db_merge('advagg_files')
-          ->key(array(
-            'filename_hash' => $diff['filename_hash'],
-          ))
-          ->fields($diff)
-          ->execute();
-        if ($return) {
-          $write_done = TRUE;
-        }
+    catch (PDOException $e) {
+      // If it fails we don't care, the file was added to the table by another
+      // process then.
+      // Still log it if in development mode.
+      if (variable_get('advagg_cache_level', ADVAGG_CACHE_LEVEL) < 0) {
+        watchdog('advagg', 'Development Mode - Caught PDO Exception: <code>@info</code>', array('@info' => $e));
       }
     }
   }
@@ -321,12 +319,15 @@ function advagg_does_js_start_with_use_strict($filename) {
     list($contents) = advagg_get_js_aggregate_contents($file_aggregate, $aggregate_settings);
 
     // See if the js file starts with "use strict";.
+    // Trim the JS down to 24kb.
     $length = variable_get('advagg_js_header_length', ADVAGG_JS_HEADER_LENGTH);
     $header = advagg_get_js_header($contents, $length);
-    $use_strict = stripos(trim($header), '"use strict";');
+
+    // Look for the string.
+    $use_strict = stripos($header, '"use strict";');
     $strict_js = FALSE;
     if ($use_strict === FALSE) {
-      $use_strict = stripos(trim($header), "'use strict';");
+      $use_strict = stripos($header, "'use strict';");
     }
     if ($use_strict !== FALSE) {
       if ($use_strict == 0) {
@@ -340,13 +341,17 @@ function advagg_does_js_start_with_use_strict($filename) {
         $multi_line_comment = strpos($substr, '/*');
         $in_function = strpos($substr, '{');
         if ($single_line_comment !== FALSE || $multi_line_comment !== FALSE) {
+          // Remove js comments and try again.
+          advagg_remove_js_comments($header);
 
+          // Look for the string.
           $use_strict = stripos($header, '"use strict";');
           if ($use_strict === FALSE) {
             $use_strict = stripos($header, "'use strict';");
           }
+          // Get all text before "use strict"; with comments removed.
           $substr = substr($header, 0, $use_strict);
-          // Check if there is a function before this.
+          // Check if there is a function before use strict.
           $in_function = strpos($substr, '{');
         }
         if ($in_function === FALSE) {
@@ -372,6 +377,7 @@ function advagg_does_js_start_with_use_strict($filename) {
  *   The shortened JS string.
  */
 function advagg_get_js_header($content, $length) {
+  $content = trim($content);
   // Only grab the first X bytes.
   if (function_exists('mb_strcut')) {
     $header = mb_strcut($content, 0, $length);
@@ -380,8 +386,6 @@ function advagg_get_js_header($content, $length) {
     $header = substr($content, 0, $length);
   }
 
-  // Remove js comments.
-  advagg_remove_js_comments($header);
   return $header;
 }
 
@@ -410,7 +414,6 @@ function advagg_remove_js_comments(&$content) {
   );
 }
 
-// File operations.
 /**
  * Given a group of files calculate what the aggregate filename will be.
  *
@@ -638,7 +641,7 @@ function advagg_get_info_on_files(array $files, $bypass_cache = FALSE, $run_alte
     }
 
     // Get the file contents.
-    $file_contents = (string) @file_get_contents($file);
+    $file_contents = (string) @advagg_file_get_contents($file);
 
     $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
     if ($ext !== 'css' && $ext !== 'js') {
@@ -782,7 +785,6 @@ function advagg_clearstatcache($filename = NULL) {
   }
 }
 
-// Modify CSS/JS arrays.
 /**
  * Group the CSS/JS into the biggest buckets possible.
  *
@@ -893,7 +895,6 @@ function advagg_generate_groups(array $files_to_aggregate, $type) {
             $media = '';
           }
         }
-
         if (isset($file_info['browsers'])) {
           // Browsers changed.
           $diff = array_merge(array_diff_assoc($file_info['browsers'], $browsers), array_diff_assoc($browsers, $file_info['browsers']));
@@ -1051,7 +1052,7 @@ function advagg_split_css_file(array $file_info, $file_contents = '') {
 
   // Get the CSS file and break up by media queries.
   if (empty($file_contents)) {
-    $file_contents = (string) @file_get_contents($file_info['data']);
+    $file_contents = (string) @advagg_file_get_contents($file_info['data']);
   }
   $media_blocks = advagg_parse_media_blocks($file_contents);
 
@@ -1354,7 +1355,7 @@ function advagg_create_subfile($css, $overall_split, array $file_info) {
   $scheme = file_uri_scheme($new_filename);
   if ($scheme) {
     $wrapper = file_stream_wrapper_get_instance_by_scheme($scheme);
-    if ($wrapper) {
+    if ($wrapper && method_exists($wrapper, 'getDirectoryPath')) {
       // Use the wrappers directory path.
       $new_filename = $wrapper->getDirectoryPath() . '/' . file_uri_target($new_filename);
     }
@@ -1595,6 +1596,11 @@ function advagg_load_css_stylesheet($file, $optimize = TRUE, array $aggregate_se
   // Get the stylesheets contents.
   $contents = advagg_load_stylesheet($file, $optimize, TRUE, $contents);
 
+  // Resolve public:// if needed.
+  if (!advagg_is_external($file) && file_uri_scheme($file)) {
+    $file = advagg_get_relative_path($file);
+  }
+
   // Get the parent directory of this file, relative to the Drupal root.
   $css_base_url = substr($file, 0, strrpos($file, '/'));
 
@@ -1610,9 +1616,29 @@ function advagg_load_css_stylesheet($file, $optimize = TRUE, array $aggregate_se
   }
 
   // Replace the old base path with the one that was passed in.
-  $pos = strpos($css_base_url, $old_base_path);
-  if ($pos !== FALSE) {
-    $css_base_url = substr_replace($css_base_url, $GLOBALS['base_path'], $pos, strlen($old_base_path));
+  if (advagg_is_external($css_base_url) || variable_get('advagg_skip_file_create_url_inside_css', ADVAGG_SKIP_FILE_CREATE_URL_INSIDE_CSS)) {
+    $pos = strpos($css_base_url, $old_base_path);
+    if ($pos !== FALSE) {
+      $parsed_url = parse_url($css_base_url);
+      if (!empty($parsed_url['path'])) {
+        // Remove any double slash in path.
+        $parsed_url['path'] = str_replace('//', '/', $parsed_url['path']);
+
+        // Get newly recalculated position.
+        $pos = strpos($parsed_url['path'], $old_base_path);
+
+        // Replace.
+        if (strpos($parsed_url['path'], '/') !== 0 && $old_base_path === '/') {
+          // Special case if going to a subdir.
+          $parsed_url['path'] = $GLOBALS['base_path'] . $parsed_url['path'];
+        }
+        else {
+          $parsed_url['path'] = substr_replace($parsed_url['path'], $GLOBALS['base_path'], $pos, strlen($old_base_path));
+        }
+
+        $css_base_url = advagg_glue_url($parsed_url);
+      }
+    }
   }
 
   _advagg_build_css_path(array(), $css_base_url . '/', $aggregate_settings);
@@ -1680,8 +1706,31 @@ function _advagg_build_css_path(array $matches, $base = '', array $aggregate_set
     return '';
   }
 
-  // Prefix with base and remove '../' segments where possible.
+  // Prefix with base.
   $url = $_base . $matches[1];
+
+  // If advagg_file_create_url() is not being used and the $url is local, redo
+  // the $url taking the base_path into account.
+  if (!advagg_is_external($url) && variable_get('advagg_skip_file_create_url_inside_css', ADVAGG_SKIP_FILE_CREATE_URL_INSIDE_CSS)) {
+    $new_base_path = $GLOBALS['base_path'];
+    if (isset($_aggregate_settings['variables']['base_path'])) {
+      $new_base_path = $_aggregate_settings['variables']['base_path'];
+    }
+    // Remove first /.
+    $new_base_path = ltrim($new_base_path, '/');
+    $pos = FALSE;
+    // See if base_path is in the passed in $_base.
+    if (!empty($new_base_path)) {
+      $pos = strpos($_base, $new_base_path);
+    }
+    if ($pos !== FALSE) {
+      $url = substr($_base, $pos) . $matches[1];
+    }
+    else {
+      $url = $new_base_path . $_base . $matches[1];
+    }
+  }
+  // Remove '../' segments where possible.
   $last = '';
   while ($url != $last) {
     $last = $url;
@@ -1703,19 +1752,14 @@ function _advagg_build_css_path(array $matches, $base = '', array $aggregate_set
   }
   $fragment = isset($parsed_url['fragment']) ? '#' . $parsed_url['fragment'] : '';
 
-  if (variable_get('advagg_skip_file_create_url_inside_css', ADVAGG_SKIP_FILE_CREATE_URL_INSIDE_CSS)) {
-    if (isset($_aggregate_settings['variables']['base_path'])) {
-      $url = $_aggregate_settings['variables']['base_path'] . $url;
-    }
-    else {
-      $url = $GLOBALS['base_path'] . $url;
-    }
-    $query = '';
-    $fragment = '';
+  $run_file_create_url = FALSE;
+  if (!variable_get('advagg_skip_file_create_url_inside_css', ADVAGG_SKIP_FILE_CREATE_URL_INSIDE_CSS)) {
+    $run_file_create_url = TRUE;
   }
-  else {
-    $url = advagg_file_create_url($base_url, $_aggregate_settings);
+  if (empty($parsed_url['host'])) {
+    $base_url = ltrim($base_url, '/');
   }
+  $base_url = advagg_file_create_url($base_url, $_aggregate_settings, $run_file_create_url);
 
-  return 'url(' . $url . $query . $fragment . ')';
+  return 'url(' . $base_url . $query . $fragment . ')';
 }
