@@ -18,9 +18,11 @@ function checkInput($decoded){
 	$decoded['email'] = string_safer(strtolower(trim($decoded['email'])));
 	$decoded['phone'] = string_safer(strtolower(trim($decoded['phone'])));
 	$decoded['package'] = string_safer(strtolower(trim($decoded['package'])));
-	$decoded['packagename'] = string_safer(trim($decoded['packagename']));
-	$decoded['dataversion'] = string_safer(strtolower(trim($decoded['dataversion'])));
-	$decoded['version'] = string_safer(strtolower(trim($decoded['version'])));
+	if(isset($decoded['packagename'])){//the app version is the old one
+		$decoded['packagename'] = string_safer(trim($decoded['packagename']));
+		$decoded['dataversion'] = string_safer(strtolower(trim($decoded['dataversion'])));
+		$decoded['version'] = string_safer(strtolower(trim($decoded['version'])));
+	}
 }
 
 
