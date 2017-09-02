@@ -1,0 +1,149 @@
+<?php
+/*return suggestion users list*/	
+function suggestion_users($uid = 0){
+	try{
+		/*setting default user to global*/
+		if($uid == 0){
+			global $user;
+		}else{
+			$user = user_load($uid);
+		}
+		
+		/*
+		* checking user suggestions from database
+		* to see if there is any record on not
+		* this part is acting like caching system
+		*/
+		$results = db_select('user_suggestion' , 's')
+						->fields('s', array('suggestion', 'date'))
+						->condition('uid', $user->uid)
+						->execute()->fetch();
+		
+		if(count($results) == 1){
+			$now = date("Y-m-d H:i:s", time());
+			$time = (strtotime($now)-strtotime($results->date))/(60*60*24);
+			if($time > 3){ //if the suggestions are more than 3 days old, return the fresh ones
+				return find_suggestion_user($user);
+			}
+		}
+		else if(count($results) == 0){
+			return find_suggestion_user($user);
+		}
+		
+		$users_list = unserialize($results->suggestion);
+		return array_slice($users_list, 0, 10, true);
+	}catch (Exception $e) {
+		drupal_set_message($e->getMessage() , 'error');
+		watchdog('merging experts', $e->getMessage(), WATCHDOG_CRITICAL);
+	}	
+}
+
+/*
+ * helper function to find new user suggestion for given user
+ * this function is based on:
+ * user roles: advisor, vip
+ * user mutual experts
+ * users mutual relations
+ */
+function find_suggestion_user($user){
+	try{
+		$profile = profile2_load_by_user($user);
+		$suggestions = array();
+		
+		// selecting advisors
+		$results = db_select('users_roles', 'u')
+						->fields('u', array('uid'))
+						->condition('rid', 10)
+						->condition('uid', $user->uid, '<>')
+						->execute()->fetchAll();
+		
+		foreach($results as $row){
+			isset($suggestions[$row->uid]['priority'])? $suggestions[$row->uid]['priority']++ : $suggestions[$row->uid]['priority'] = 1;
+			isset($suggestions[$row->uid]['advisor'])? $suggestions[$row->uid]['advisor']++ : $suggestions[$row->uid]['advisor'] = 1;
+		}
+		
+		// finding user experts and mutual experts with others
+		if(!empty($profile['main']->field_experts['und'])){
+			$experts = array();
+			foreach($profile['main']->field_experts['und'] as $term){
+				array_push($experts, $term['tid']);
+			}
+		}
+		
+		if(isset($experts)){
+			// finding users with the same experts
+			$query = db_select('profile', 'p');
+			$query->join('field_data_field_experts', 'e', 'p.pid = e.entity_id');
+			$query->fields('p', array('uid'))
+						->condition('e.entity_type', 'profile2')
+						->condition('e.bundle', 'main')
+						->condition('e.entity_id', $profile['main']->pid , '<>')
+						->condition('e.field_experts_tid', $experts, 'IN');
+			$results = $query->execute()->fetchAll();
+			
+			foreach($results as $row){
+				isset($suggestions[$row->uid]['priority'])? $suggestions[$row->uid]['priority']++ : $suggestions[$row->uid]['priority'] = 1;
+				isset($suggestions[$row->uid]['expert'])? $suggestions[$row->uid]['expert']++ : $suggestions[$row->uid]['expert'] = 1;
+			}
+		}
+		
+		// finding user's mutual relations
+		$results = db_select('user_relationships', 'e')
+						->fields('e', array('requestee_id'))
+						->condition('requester_id', $user->uid)
+						->condition('approved', 1)
+						->execute()->fetchAll();
+		
+		//remove user's relations from suggestions
+		$first_relations = array();
+		foreach($results as $row){
+			unset($suggestions[$row->requestee_id]);
+			array_push($first_relations, $row->requestee_id);
+		}
+		
+		if(!empty($first_relations)){
+			/*finding the relations of user's relations*/
+			$relations = db_select('user_relationships', 'e')
+							->fields('e', array('requestee_id'))
+							->condition('requester_id' , $first_relations, 'IN')
+							->condition('requestee_id' , $first_relations, 'NOT IN')
+							->condition('requestee_id' , $user->uid, '<>')
+							->condition('approved', 1)
+							->execute()->fetchAll();
+			
+			foreach($relations as $row){
+				isset($suggestions[$row->requestee_id]['priority'])? $suggestions[$row->requestee_id]['priority']++ : $suggestions[$row->requestee_id]['priority'] = 1;
+				isset($suggestions[$row->requestee_id]['relation'])? $suggestions[$row->requestee_id]['relation']++ : $suggestions[$row->requestee_id]['relation'] = 1;
+			}
+		}
+		
+		// finding users with vip role
+		$results = db_select('users_roles', 'r')
+					->fields('r', array('uid'))
+					->condition('uid', array_keys($suggestions), 'IN')
+					->condition('rid', 8)
+					->execute()->fetchAll();
+		
+		foreach($results as $row){
+			isset($suggestions[$row->uid]['priority'])? $suggestions[$row->uid]['priority']++ : $suggestions[$row->uid]['priority'] = 1;
+			isset($suggestions[$row->uid]['vip'])? $suggestions[$row->uid]['vip']++ : $suggestions[$row->uid]['vip'] = 1;
+		}
+		
+		// sorting the suggestion list based on their priority
+		uasort($suggestions, function ($a , $b){ return ($a['priority'] > $b['priority']) ? -1 : 1; });
+		
+		// inserting the suggestion list to database for caching
+		$str_target_users = serialize($suggestions);
+		db_merge('user_suggestion')
+						->key(array('uid' => $user->uid))
+						->fields(array(
+							'suggestion' => $str_target_users, 
+							'date' => date("Y-m-d H:i:s", time())
+						))->execute();
+		
+		return array_slice($suggestions, 0, 10, true);
+	}catch (Exception $e) {
+		drupal_set_message($e->getMessage() , 'error');
+		watchdog('merging experts', $e->getMessage(), WATCHDOG_CRITICAL);
+	}	
+}

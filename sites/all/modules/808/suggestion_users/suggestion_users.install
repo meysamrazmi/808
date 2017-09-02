@@ -1,0 +1,30 @@
+<?php
+/**
+ * Implements hook_schema().
+ */
+function suggestion_users_schema() {
+	$schema['user_suggestion'] = array(
+		'fields' => array(
+			'uid' => array(
+		        'type' => 'int',
+		        'unsigned' => TRUE,
+		        'not null' => TRUE,
+				),
+				
+			'suggestion' => array(
+		        'type' => 'longtext',
+		        'not null' => TRUE,
+				),
+				
+			'date' => array(
+		        'type' => 'timestamp',
+		        'not null' => TRUE,
+				),
+			),
+		'primary key' => array( 'uid' ),
+		);
+
+	return $schema;
+}
+
+?>
