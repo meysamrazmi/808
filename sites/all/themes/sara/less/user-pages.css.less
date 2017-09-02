@@ -646,6 +646,7 @@ h1#page-title {
 		direction: ltr;
 	}
 }
+.page-user-affiliate .tabs ,
 .page-user-edit .tabs {
 	display: block !important;
 	.primary, h2 {
@@ -726,6 +727,47 @@ h1#page-title {
 	}
 	input#edit-reset {
 		float: right;
+	}
+}
+.page-affiliate{
+	#block-system-main{
+		min-height: 200px;
+		> .content{
+			> table,
+			> div {
+				.user-edit-page-media();
+				.paper(z1);
+			}
+		}
+	}
+	&.page-links #block-system-main > .content{
+			.user-edit-page-media();
+			.paper(z1);
+	}
+	#affiliate-reports ,
+	#affiliate-links-header{
+		h3 {
+			border-bottom: 1px solid #673AB7;
+			display: inline-block;
+			margin: 0 0 10px 0;
+			padding-left: 20px;
+		}
+		a{
+			.blue-btn;
+			.small-btn;
+			float: left;
+		}
+		span:first-child {
+			width: 130px;
+			display: inline-block;
+		}
+	}
+	#affiliate-reports {
+		display: flex;
+		 > div {
+			width: 50%;
+			margin-left: 10px;
+		}
 	}
 }
 #user-profile-form{
@@ -1168,10 +1210,10 @@ form#uc-addresses-get-address-form{
 	padding: 10px 5px 15px;
 	font-weight: 500;
 }
-#uc-addresses-delete-address-confirm-form .list-address-wrapper{
-	.address-book .list-address-wrapper();
-}
 #uc-addresses-delete-address-confirm-form{
+	.list-address-wrapper{
+		.address-book .list-address-wrapper();
+	}
 	.user-edit-page-media();
 	border: none !important;
 	padding: 0 3px;
@@ -1258,8 +1300,3 @@ form#uc-addresses-get-address-form{
 	}
 }
 
-
-
-
-
-/*temp*/

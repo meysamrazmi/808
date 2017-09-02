@@ -101,37 +101,43 @@ function uc_affiliate2_dashboard($account) {
   drupal_set_title(t('Affiliate Center'));
 
   $output = '';
-  $output .= '<div id="affiliate-sales-header"><h2>' . t('Commission History') . '</h2> <br />';
-
-  $output .=  t('Sales Today:') . " $commissions[today] <br />" .
-              t('Sales last 7 Days:') . " $commissions[week] <br />" .
-              t('Last 365 Days:') . " $commissions[year] <br /><br />";
+  $output .= '
+	<div id="affiliate-reports">
+		<div id="affiliate-sales-header">'.
+			'<h3>' . t('Commission History') . '</h3>'.
+			'<p><span>'. t('Sales Today:') .'</span><span>'. $commissions[today] .'</span></p>' .
+            '<p><span>'. t('Sales last 7 Days:') .'</span><span>'. $commissions[week] .'</span></p>' .
+            '<p><span>'. t('Last 365 Days:') .'</span><span>'. $commissions[year] .'</span></p>';
 
   $commissions_url = join('/', array('user', $account->uid, 'affiliate', 'commissions'));
   $output .= l(t('Click here for more reports.'), $commissions_url, array('query' => NULL, 'fragment' => NULL, 'absolute' => TRUE, 'html' => TRUE));
 
-  $output .= '</div>';
+  $output .= '
+		</div>';
 
-  $output .= '<br /><div id="affiliate-sales-click-count"><h2>' . t('Unique Click Count') . '</h2> <br />';
-
-  $output .= t("Today's Clicks:") . " $clicks[today] <br />" .
-             t("Last 7 Days:") . " $clicks[week] <br />" .
-             t("Last 365 Days:") . " $clicks[year] <br /><br />";
+  $output .= '
+		<div id="affiliate-sales-click-count">'.
+			'<h3>' . t('Unique Click Count') . '</h3>'.
+			'<p><span>'. t("Today's Clicks:") .'</span><span>'. $clicks[today] .'</span></p>' .
+            '<p><span>'. t("Last 7 Days:") .'</span><span>'. $clicks[week] .'</span></p>' .
+            '<p><span>'. t("Last 365 Days:") .'</span><span>'. $clicks[year] .'</span></p>';
 
   $clicks_url = join('/', array('user', $account->uid, 'affiliate', 'clicks'));
   $output .= l(t('Click here for customized click reporting.'), $clicks_url, array('query' => NULL, 'fragment' => NULL, 'absolute' => TRUE, 'html' => TRUE));
 
-  $output .= '</div>';
+  $output .= '
+		</div>
+	</div>';
 
-  $output .= '<br /><div id="affiliate-links-header"><h2>' . t('Affiliate Links') . '</h2>';
+  $output .= '<br /><div id="affiliate-links-header"><h3>' . t('Affiliate Links') . '</h3>';
   switch (variable_get('affiliate_default_link_type', 'path')) {
     case 'path':
-      $output .= t('You can append a destination page to the end of the affiliate links to redirect to a specific page,
+      $output .= '<p>'. t('You can append a destination page to the end of the affiliate links to redirect to a specific page,
                   as well as track clicks to it, i.e.
-                  @example', array('@example' => _uc_affiliate2_url('node/1', $account, array('alias' => TRUE, 'type' => 'path'))));
+                  @example', array('@example' => _uc_affiliate2_url('node/1', $account, array('alias' => TRUE, 'type' => 'path')))) . '</p>';
       break;
     case 'query':
-      $output .= t('You can link to any page on this site by adding your query argument (?a=@uid) to the end of the url, i.e. @example', array('@uid' => $account->uid, '@example' => _uc_affiliate2_url('node/1', $account, array('alias' => TRUE, 'type' => 'query'))));
+      $output .= '<p>'. t('You can link to any page on this site by adding your query argument (?a=@uid) to the end of the url, i.e. @example', array('@uid' => $account->uid, '@example' => _uc_affiliate2_url('node/1', $account, array('alias' => TRUE, 'type' => 'query')))) . '</p>';
       break;
   }
 
@@ -157,7 +163,7 @@ function uc_affiliate2_dashboard($account) {
 function uc_affiliate2_links($account) {
   $output = '';
 
-  $products = array('all' => t('Show All'));
+  $products = array('all' => t('All'));
   $products += _uc_affiliate2_get_product_list();
 
   if (count($products) > 1) {
@@ -412,8 +418,8 @@ function uc_affiliate2_commissions($account) {
     }
     $rows[] = array(
       $u,
-      $commission->order_id,
-      format_date($commission->created, 'custom', 'Y/m/d'),
+      l($commission->order_id, '/admin/store/orders/'. $commission->order_id),
+      format_date($commission->created, 'date_time'),
       $commission->commission_notes,
       uc_currency_format($commission->order_total),
       uc_currency_format($commission->commission),
@@ -438,7 +444,7 @@ function uc_affiliate2_commissions($account) {
  */
 function uc_affiliate2_clicks($account) {
   drupal_set_title(t('Unique Click count'));
-  $dates = _uc_affiliate2_predefined_range(arg(4));
+  $dates = _uc_affiliate2_predefined_range(5);
   $query = db_select('uc_affiliate2_clicks')
   ->fields('uc_affiliate2_clicks', array('time'))
   ->condition('aid', $account->uid)
@@ -461,20 +467,54 @@ function uc_affiliate2_clicks($account) {
     if(!isset($clicks[$date])) $clicks[$date]=0;
     $clicks[$date] += 1;
   }
+  // mdump($clicks);
   $total_clicks = 0;
+  $columns = array();
   foreach ($clicks as $click_str => $clicks_count) {
     $click_date = strtotime($click_str);
     $click_date_end = $click_date + 86399;
-    $link = l(date('Y/m/d', $click_date), 'user/' . $account->uid . '/affiliate/clicks/details/' . $click_date . '/' . $click_date_end);
-    $rows[] = array($link, $clicks_count);
+    $link = l(format_date($click_date , 'just_date'), 'user/' . $account->uid . '/affiliate/clicks/details/' . $click_date . '/' . $click_date_end);
+    $columns[] = format_date($click_date , 'just_date');
+	$rows[] = array($link, $clicks_count);
     $total_clicks += $clicks_count;
   }
+  $datas = $rows;
   $rows[] = array(t('Total:'), $total_clicks);
-
   // Build the output
 
-  $output = theme('table',array('header'=>$header, 'rows'=> $rows));
-
+  $output = '<div><h4>' . t('Viewing clicks for:') .'یک سال گذشته</h4>';
+  $output .= '<canvas id="myChart" width="850" height="400" style="float: left;	width: 100%;"></canvas></div><br />';
+  drupal_add_js('/sites/all/themes/sara/js/lib/Chart.min.js');
+  $output .= "<script>
+    Chart.defaults.global.defaultFontFamily = 'fanum';
+	var ctx = document.getElementById('myChart');
+	var myChart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: ". json_encode($columns) .",
+			datasets: [{
+				label: '# ". t('Unique Clicks') ."',
+				data: ". json_encode(array_column($datas, 1)) .",
+				borderColor: ['rgba(153, 102, 255, 1)'],
+				borderWidth: 1
+			}]
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero:true
+					}
+				}]
+			},
+			tooltips: {
+				mode: 'nearest'
+			}		
+		}
+	});
+  </script>"; 
+   $output .= theme('table',array('header'=>$header, 'rows'=> $rows));
+ 
   return $output;
 
   /* OLD CODE FOR REFERENCE
@@ -551,8 +591,8 @@ function uc_affiliate2_click_details($account) {
 
   $cookie_statuses = array(t('Not sent'), t('Sent (Unconfirmed)'), t('Sent (Confirmed)'));
 
-  $output = t('Viewing clicks for:') . ' ' . date('Y/m/d', arg(5)) . '<br /> <br />';
-  $output .= t('Cookie Status can be: Not sent, Sent (Unconfirmed), Sent (Confirmed).') . '<br />';
+  $output = '<div>'. t('Viewing clicks for:') . ' ' . format_date(arg(5) , 'just_date') . '<br /> <br />';
+  $output .= t('Cookie Status can be: Not sent, Sent (Unconfirmed), Sent (Confirmed).') . '</div><br />';
 
   $ip_masking = variable_get('affiliate_ip_masking', 'hide');
 
@@ -621,7 +661,7 @@ function uc_affiliate2_click_details($account) {
       $click['client_ip'],
       $click['referrer'],
       $click['destination'],
-      ($click['cookie_status'] === NULL) ? 'Not specified' : $cookie_statuses[$click['cookie_status']],
+      ($click['cookie_status'] === NULL) ? t('Not specified') : $cookie_statuses[$click['cookie_status']],
     );
 
     if ($ip_masking == 'hide') {
@@ -740,9 +780,9 @@ function uc_affiliate2_orders($account) {
     $total_sales += $order->order_total;
     $rows[] = array(
       $u,
-      $order->order_id,
-      ucwords(str_replace('_', ' ', $order->order_status)),
-      format_date($order->created, 'custom', 'm-d-Y'),
+      l($order->order_id, '/admin/store/orders/'. $order->order_id),
+      array('data' => t(str_replace('_', ' ', $order->order_status)), 'class' => $order->order_status),
+      format_date($order->created, 'date_time'),
       uc_currency_format($order->order_total),
     );
   }

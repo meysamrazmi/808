@@ -1,0 +1,302 @@
+diff --git a/sites/all/modules/uc_affiliate2/uc_affiliate2.admin.inc b/sites/all/modules/uc_affiliate2/uc_affiliate2.admin.inc
+index 7d1a8c5..d0f5b77 100644
+--- a/sites/all/modules/uc_affiliate2/uc_affiliate2.admin.inc
++++ b/sites/all/modules/uc_affiliate2/uc_affiliate2.admin.inc
+@@ -647,7 +647,7 @@ function uc_affiliate2_product_commission_form($form, $form_state, $node) {
+   );
+ 
+   $num_rules = db_select('uc_affiliate2_product_commission', 'apc')
+-    ->condition('apc', array('nid'))
++    ->fields('apc', array('nid'))
+     ->countQuery()
+     ->execute();
+   $num_rules++;
+@@ -674,7 +674,7 @@ function uc_affiliate2_product_commission_form($form, $form_state, $node) {
+   );
+   $form['product_commissions']['new']['model'] = array(
+     '#type' => 'select',
+-    '#options' => uc_product_get_models($node),
++    '#options' => uc_product_get_models($node->nid),
+   );
+   $form['product_commissions']['new']['commission_structure'] = array(
+     '#type' => 'textfield',
+diff --git a/sites/all/modules/uc_affiliate2/uc_affiliate2.js b/sites/all/modules/uc_affiliate2/uc_affiliate2.js
+index 9673c30..d38b48e 100644
+--- a/sites/all/modules/uc_affiliate2/uc_affiliate2.js
++++ b/sites/all/modules/uc_affiliate2/uc_affiliate2.js
+@@ -1,15 +1,15 @@
+-$(document).ready(function() {
++(function ($) {
+     $('#edit-products-all').click(function() {
+         new_value = false;
+         
+-        if($('#edit-products-all').attr('checked')) {
++        if($('#edit-products-all').is( ":checked" )) {
+             new_value = true;    
+         }
+         
+         $('.form-checkbox').each(function() {
+-            if(this.id != 'edit-products-all') {
+-                $('#' + this.id).attr('checked', new_value);
++            if($(this).attr('id') != 'edit-products-all') {
++                $('#' + $(this).attr('id')).prop('checked', new_value);
+             }
+         });
+     });
+-});
+\ No newline at end of file
++}(jQuery));
+diff --git a/sites/all/modules/uc_affiliate2/uc_affiliate2.module b/sites/all/modules/uc_affiliate2/uc_affiliate2.module
+index 01c0faa..4dbd3a4 100644
+--- a/sites/all/modules/uc_affiliate2/uc_affiliate2.module
++++ b/sites/all/modules/uc_affiliate2/uc_affiliate2.module
+@@ -436,7 +436,7 @@ function uc_affiliate2_views_api() {
+ }
+ 
+ function _uc_affiliate2_node_access($node) {
+-  if (in_array($node->type, module_invoke_all('product_types')) && user_access('administer products')) {
++  if (in_array($node->type, module_invoke_all('uc_product_types')) && user_access('administer products')) {
+     return TRUE;
+   }
+   return FALSE;
+@@ -540,19 +540,30 @@ function _uc_affiliate2_get_products($mode, $show = array()) {
+ 
+     $product = node_load($node->nid);
+ 
+-    $product->path = isset($product->path) ? $product->path : node_uri($node);
+-    $link = _uc_affiliate2_url($product->path['path'], $user, array('alias' => TRUE));
++    $link = _uc_affiliate2_url(node_uri($product)['path'], $user, array('alias' => TRUE));
+ 
+-    if (empty($product->uc_product_image[$product->language][0]['uri'])) {
+-      $image = 'N/A';
++    if(!empty($product->uc_product_image['und'][0]['uri'])){
++      $image = file_create_url($product->uc_product_image['und'][0]['uri']);
+     }
+-    else {
+-      $image = file_create_url($product->uc_product_image[$product->language][0]['uri']);
++	elseif(!empty($product->field_image['und'][0]['uri'])){
++      $image = file_create_url($product->field_image['und'][0]['uri']);
++    }
++    else{
++      $image = 'N/A';
+     }
+ 
++
+     $title = check_plain($product->title);
+ 
+-    $description = trim($product->body[$product->language][0]['safe_value']);
++    if(!empty($product->body['und'][0]['safe_summary']) && strlen($product->body['und'][0]['safe_summary']) > 30){
++		$description = trim($product->body['und'][0]['safe_summary']);
++    }
++	else if(!empty($product->field_costum_content['und'][0]['safe_value'])){
++		$description = trim($product->field_costum_content['und'][0]['safe_value']);
++    }
++    else{
++		$description = substr(trim($product->body['und'][0]['safe_value']), 0, 250);
++    }
+ 
+     $context = array(
+       'revision' => 'themed',
+@@ -566,13 +577,13 @@ function _uc_affiliate2_get_products($mode, $show = array()) {
+ 
+     switch ($mode) {
+       case 'csv':
+-        $output .= $title . ',';
+-        $output .= $price . ',';
++        $output .= str_replace(',', ' ', $title) . ',';
++        $output .= str_replace(',', '', $price) . ',';
+ 
+         /*According to RFC 4180 double quotes in CSV should be quoted with double quote
+         * see https://bugs.php.net/bug.php?id=50686
+         **/
+-        $output .= '"' . str_replace('"', '""', $description) . '",';
++        $output .= '"' . str_replace('"', '""', str_replace(',', '-', $description)) . '",';
+ 
+         $output .= $image . ',';
+         /*According to RFC 4180 line termination should be \r\n and not \n*/
+diff --git a/sites/all/modules/uc_affiliate2/uc_affiliate2.user.inc b/sites/all/modules/uc_affiliate2/uc_affiliate2.user.inc
+index 1da061a..ca47c2b 100644
+--- a/sites/all/modules/uc_affiliate2/uc_affiliate2.user.inc
++++ b/sites/all/modules/uc_affiliate2/uc_affiliate2.user.inc
+@@ -101,37 +101,43 @@ function uc_affiliate2_dashboard($account) {
+   drupal_set_title(t('Affiliate Center'));
+ 
+   $output = '';
+-  $output .= '<div id="affiliate-sales-header"><h2>' . t('Commission History') . '</h2> <br />';
+-
+-  $output .=  t('Sales Today:') . " $commissions[today] <br />" .
+-              t('Sales last 7 Days:') . " $commissions[week] <br />" .
+-              t('Last 365 Days:') . " $commissions[year] <br /><br />";
++  $output .= '
++	<div id="affiliate-reports">
++		<div id="affiliate-sales-header">'.
++			'<h3>' . t('Commission History') . '</h3>'.
++			'<p><span>'. t('Sales Today:') .'</span><span>'. $commissions[today] .'</span></p>' .
++            '<p><span>'. t('Sales last 7 Days:') .'</span><span>'. $commissions[week] .'</span></p>' .
++            '<p><span>'. t('Last 365 Days:') .'</span><span>'. $commissions[year] .'</span></p>';
+ 
+   $commissions_url = join('/', array('user', $account->uid, 'affiliate', 'commissions'));
+   $output .= l(t('Click here for more reports.'), $commissions_url, array('query' => NULL, 'fragment' => NULL, 'absolute' => TRUE, 'html' => TRUE));
+ 
+-  $output .= '</div>';
+-
+-  $output .= '<br /><div id="affiliate-sales-click-count"><h2>' . t('Unique Click Count') . '</h2> <br />';
++  $output .= '
++		</div>';
+ 
+-  $output .= t("Today's Clicks:") . " $clicks[today] <br />" .
+-             t("Last 7 Days:") . " $clicks[week] <br />" .
+-             t("Last 365 Days:") . " $clicks[year] <br /><br />";
++  $output .= '
++		<div id="affiliate-sales-click-count">'.
++			'<h3>' . t('Unique Click Count') . '</h3>'.
++			'<p><span>'. t("Today's Clicks:") .'</span><span>'. $clicks[today] .'</span></p>' .
++            '<p><span>'. t("Last 7 Days:") .'</span><span>'. $clicks[week] .'</span></p>' .
++            '<p><span>'. t("Last 365 Days:") .'</span><span>'. $clicks[year] .'</span></p>';
+ 
+   $clicks_url = join('/', array('user', $account->uid, 'affiliate', 'clicks'));
+   $output .= l(t('Click here for customized click reporting.'), $clicks_url, array('query' => NULL, 'fragment' => NULL, 'absolute' => TRUE, 'html' => TRUE));
+ 
+-  $output .= '</div>';
++  $output .= '
++		</div>
++	</div>';
+ 
+-  $output .= '<br /><div id="affiliate-links-header"><h2>' . t('Affiliate Links') . '</h2>';
++  $output .= '<br /><div id="affiliate-links-header"><h3>' . t('Affiliate Links') . '</h3>';
+   switch (variable_get('affiliate_default_link_type', 'path')) {
+     case 'path':
+-      $output .= t('You can append a destination page to the end of the affiliate links to redirect to a specific page,
++      $output .= '<p>'. t('You can append a destination page to the end of the affiliate links to redirect to a specific page,
+                   as well as track clicks to it, i.e.
+-                  @example', array('@example' => _uc_affiliate2_url('node/1', $account, array('alias' => TRUE, 'type' => 'path'))));
++                  @example', array('@example' => _uc_affiliate2_url('node/1', $account, array('alias' => TRUE, 'type' => 'path')))) . '</p>';
+       break;
+     case 'query':
+-      $output .= t('You can link to any page on this site by adding your query argument (?a=@uid) to the end of the url, i.e. @example', array('@uid' => $account->uid, '@example' => _uc_affiliate2_url('node/1', $account, array('alias' => TRUE, 'type' => 'query'))));
++      $output .= '<p>'. t('You can link to any page on this site by adding your query argument (?a=@uid) to the end of the url, i.e. @example', array('@uid' => $account->uid, '@example' => _uc_affiliate2_url('node/1', $account, array('alias' => TRUE, 'type' => 'query')))) . '</p>';
+       break;
+   }
+ 
+@@ -157,7 +163,7 @@ function uc_affiliate2_dashboard($account) {
+ function uc_affiliate2_links($account) {
+   $output = '';
+ 
+-  $products = array('all' => t('Show All'));
++  $products = array('all' => t('All'));
+   $products += _uc_affiliate2_get_product_list();
+ 
+   if (count($products) > 1) {
+@@ -412,8 +418,8 @@ function uc_affiliate2_commissions($account) {
+     }
+     $rows[] = array(
+       $u,
+-      $commission->order_id,
+-      format_date($commission->created, 'custom', 'Y/m/d'),
++      l($commission->order_id, '/admin/store/orders/'. $commission->order_id),
++      format_date($commission->created, 'date_time'),
+       $commission->commission_notes,
+       uc_currency_format($commission->order_total),
+       uc_currency_format($commission->commission),
+@@ -438,7 +444,7 @@ function uc_affiliate2_commissions($account) {
+  */
+ function uc_affiliate2_clicks($account) {
+   drupal_set_title(t('Unique Click count'));
+-  $dates = _uc_affiliate2_predefined_range(arg(4));
++  $dates = _uc_affiliate2_predefined_range(5);
+   $query = db_select('uc_affiliate2_clicks')
+   ->fields('uc_affiliate2_clicks', array('time'))
+   ->condition('aid', $account->uid)
+@@ -461,20 +467,54 @@ function uc_affiliate2_clicks($account) {
+     if(!isset($clicks[$date])) $clicks[$date]=0;
+     $clicks[$date] += 1;
+   }
++  // mdump($clicks);
+   $total_clicks = 0;
++  $columns = array();
+   foreach ($clicks as $click_str => $clicks_count) {
+     $click_date = strtotime($click_str);
+     $click_date_end = $click_date + 86399;
+-    $link = l(date('Y/m/d', $click_date), 'user/' . $account->uid . '/affiliate/clicks/details/' . $click_date . '/' . $click_date_end);
+-    $rows[] = array($link, $clicks_count);
++    $link = l(format_date($click_date , 'just_date'), 'user/' . $account->uid . '/affiliate/clicks/details/' . $click_date . '/' . $click_date_end);
++    $columns[] = format_date($click_date , 'just_date');
++	$rows[] = array($link, $clicks_count);
+     $total_clicks += $clicks_count;
+   }
++  $datas = $rows;
+   $rows[] = array(t('Total:'), $total_clicks);
+-
+   // Build the output
+ 
+-  $output = theme('table',array('header'=>$header, 'rows'=> $rows));
+-
++  $output = '<div><h4>' . t('Viewing clicks for:') .'یک سال گذشته</h4>';
++  $output .= '<canvas id="myChart" width="850" height="400" style="float: left;	width: 100%;"></canvas></div><br />';
++  drupal_add_js('/sites/all/themes/sara/js/lib/Chart.min.js');
++  $output .= "<script>
++    Chart.defaults.global.defaultFontFamily = 'fanum';
++	var ctx = document.getElementById('myChart');
++	var myChart = new Chart(ctx, {
++		type: 'line',
++		data: {
++			labels: ". json_encode($columns) .",
++			datasets: [{
++				label: '# ". t('Unique Clicks') ."',
++				data: ". json_encode(array_column($datas, 1)) .",
++				borderColor: ['rgba(153, 102, 255, 1)'],
++				borderWidth: 1
++			}]
++		},
++		options: {
++			scales: {
++				yAxes: [{
++					ticks: {
++						beginAtZero:true
++					}
++				}]
++			},
++			tooltips: {
++				mode: 'nearest'
++			}		
++		}
++	});
++  </script>"; 
++   $output .= theme('table',array('header'=>$header, 'rows'=> $rows));
++ 
+   return $output;
+ 
+   /* OLD CODE FOR REFERENCE
+@@ -551,8 +591,8 @@ function uc_affiliate2_click_details($account) {
+ 
+   $cookie_statuses = array(t('Not sent'), t('Sent (Unconfirmed)'), t('Sent (Confirmed)'));
+ 
+-  $output = t('Viewing clicks for:') . ' ' . date('Y/m/d', arg(5)) . '<br /> <br />';
+-  $output .= t('Cookie Status can be: Not sent, Sent (Unconfirmed), Sent (Confirmed).') . '<br />';
++  $output = '<div>'. t('Viewing clicks for:') . ' ' . format_date(arg(5) , 'just_date') . '<br /> <br />';
++  $output .= t('Cookie Status can be: Not sent, Sent (Unconfirmed), Sent (Confirmed).') . '</div><br />';
+ 
+   $ip_masking = variable_get('affiliate_ip_masking', 'hide');
+ 
+@@ -621,7 +661,7 @@ function uc_affiliate2_click_details($account) {
+       $click['client_ip'],
+       $click['referrer'],
+       $click['destination'],
+-      ($click['cookie_status'] === NULL) ? 'Not specified' : $cookie_statuses[$click['cookie_status']],
++      ($click['cookie_status'] === NULL) ? t('Not specified') : $cookie_statuses[$click['cookie_status']],
+     );
+ 
+     if ($ip_masking == 'hide') {
+@@ -740,9 +780,9 @@ function uc_affiliate2_orders($account) {
+     $total_sales += $order->order_total;
+     $rows[] = array(
+       $u,
+-      $order->order_id,
+-      ucwords(str_replace('_', ' ', $order->order_status)),
+-      format_date($order->created, 'custom', 'm-d-Y'),
++      l($order->order_id, '/admin/store/orders/'. $order->order_id),
++      array('data' => t(str_replace('_', ' ', $order->order_status)), 'class' => $order->order_status),
++      format_date($order->created, 'date_time'),
+       uc_currency_format($order->order_total),
+     );
+   }

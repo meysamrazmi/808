@@ -436,7 +436,7 @@ function uc_affiliate2_views_api() {
 }
 
 function _uc_affiliate2_node_access($node) {
-  if (in_array($node->type, module_invoke_all('product_types')) && user_access('administer products')) {
+  if (in_array($node->type, module_invoke_all('uc_product_types')) && user_access('administer products')) {
     return TRUE;
   }
   return FALSE;
@@ -540,19 +540,30 @@ function _uc_affiliate2_get_products($mode, $show = array()) {
 
     $product = node_load($node->nid);
 
-    $product->path = isset($product->path) ? $product->path : node_uri($node);
-    $link = _uc_affiliate2_url($product->path['path'], $user, array('alias' => TRUE));
+    $link = _uc_affiliate2_url(node_uri($product)['path'], $user, array('alias' => TRUE));
 
-    if (empty($product->uc_product_image[$product->language][0]['uri'])) {
+    if(!empty($product->uc_product_image['und'][0]['uri'])){
+      $image = file_create_url($product->uc_product_image['und'][0]['uri']);
+    }
+	elseif(!empty($product->field_image['und'][0]['uri'])){
+      $image = file_create_url($product->field_image['und'][0]['uri']);
+    }
+    else{
       $image = 'N/A';
     }
-    else {
-      $image = file_create_url($product->uc_product_image[$product->language][0]['uri']);
-    }
+
 
     $title = check_plain($product->title);
 
-    $description = trim($product->body[$product->language][0]['safe_value']);
+    if(!empty($product->body['und'][0]['safe_summary']) && strlen($product->body['und'][0]['safe_summary']) > 30){
+		$description = trim($product->body['und'][0]['safe_summary']);
+    }
+	else if(!empty($product->field_costum_content['und'][0]['safe_value'])){
+		$description = trim($product->field_costum_content['und'][0]['safe_value']);
+    }
+    else{
+		$description = substr(trim($product->body['und'][0]['safe_value']), 0, 250);
+    }
 
     $context = array(
       'revision' => 'themed',
@@ -566,13 +577,13 @@ function _uc_affiliate2_get_products($mode, $show = array()) {
 
     switch ($mode) {
       case 'csv':
-        $output .= $title . ',';
-        $output .= $price . ',';
+        $output .= str_replace(',', ' ', $title) . ',';
+        $output .= str_replace(',', '', $price) . ',';
 
         /*According to RFC 4180 double quotes in CSV should be quoted with double quote
         * see https://bugs.php.net/bug.php?id=50686
         **/
-        $output .= '"' . str_replace('"', '""', $description) . '",';
+        $output .= '"' . str_replace('"', '""', str_replace(',', '-', $description)) . '",';
 
         $output .= $image . ',';
         /*According to RFC 4180 line termination should be \r\n and not \n*/

@@ -647,7 +647,7 @@ function uc_affiliate2_product_commission_form($form, $form_state, $node) {
   );
 
   $num_rules = db_select('uc_affiliate2_product_commission', 'apc')
-    ->condition('apc', array('nid'))
+    ->fields('apc', array('nid'))
     ->countQuery()
     ->execute();
   $num_rules++;
@@ -674,7 +674,7 @@ function uc_affiliate2_product_commission_form($form, $form_state, $node) {
   );
   $form['product_commissions']['new']['model'] = array(
     '#type' => 'select',
-    '#options' => uc_product_get_models($node),
+    '#options' => uc_product_get_models($node->nid),
   );
   $form['product_commissions']['new']['commission_structure'] = array(
     '#type' => 'textfield',
