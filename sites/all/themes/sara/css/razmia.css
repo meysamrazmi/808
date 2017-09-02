@@ -290,7 +290,7 @@ li.comment_forbidden.first.last {
 }
 .node > .submitted {
   color: #999;
-  font-family: iransans;
+  font-family: irans;
   font-size: 12px;
 }
 .node > .submitted a, 
@@ -1203,7 +1203,7 @@ width: 47% !important;
 .page-civil .civil-slide .views_slideshow_slide .views-field-body {
   text-align: right;
   padding-left: 10%;
-  font-family: iransans;
+  font-family: irans;
   padding-top: 2%;
   padding-bottom: 11%;
   color: #fff;

@@ -553,8 +553,13 @@ body:not(.role-administrator) .admin-error {
 			.btn;
 			.small-btn;
 			opacity: 0;
-			@media @768{ opacity: 1;	}			
+			@media @768{ opacity: 1;	}
 		}
+        .views-field-php a:nth-child(2) {
+            .page-landing.page-advisor &{
+                .absolute('';'';'';10px;10px;auto);
+            }
+		}       
 		.views-field-status-link{
 			a{
 				.absolute('';'';'';10px;10px);
@@ -714,6 +719,13 @@ body:not(.role-administrator) .admin-error {
 	input.form-submit{
 		.small-btn;
 		margin-top: 28px !important;
+	}
+	.owl-item{
+		.views-row{
+			img{
+				width: 100px;
+			}
+		}
 	}
 }
 
@@ -946,6 +958,7 @@ body:not(.role-administrator) .admin-error {
 		-ms-transform: translate3d(0,0,0);
 	}
 	.owl-item{
+		padding-left: 15px;
 		-webkit-tap-highlight-color: transparent;
 		position: relative;
 		min-height: 1px;
@@ -958,7 +971,6 @@ body:not(.role-administrator) .admin-error {
 		}
 		img{
 			display: block;
-			width: 100%;
 			&.owl-lazy{transform-style: preserve-3d;}
 		}
 	}
@@ -1099,4 +1111,13 @@ body:not(.role-administrator) .admin-error {
 			margin: auto;
 		}
 	}	
+}
+
+.field-name-field-shopproduct {
+	.owl-item{
+		img{
+			display: inline-block;
+			width: 100%;
+		}
+	}
 }

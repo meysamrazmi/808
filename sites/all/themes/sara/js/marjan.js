@@ -47,10 +47,24 @@ $(document).ready(function () {
 			$('.view-user-experts.view-id-user_experts > .view-content').children().length > 4 ){
 				$('.view-user-experts.view-id-user_experts > .view-content').addClass('owl-carousel');
 		}
-		
+		if($('.view-user-experts.view-id-user_experts > .view-content').children().length = 4 ){
+            $('.view-user-experts.view-id-user_experts > .view-content .views-row').css({'float':'right'});
+        }
 		$('.divanchors').append('<a class="users" href="#user_experts"><span>کاربران متخصص</span></a>');
 	}
 	
+	
+	/*using owl in user relation page*/
+	if($('.page-user-relationships #block-views-user-experts-suggestion-users').length){
+		$('.view-display-id-suggestion_users > .view-content').addClass('owl-carousel');
+	}
+    
+    /*using owl in first page video block*/
+    if($('.front .crousal-galley .view-content').length){
+		$('.front .crousal-galley .view-content').addClass('owl-carousel');
+	}
+    
+	/*runing owl*/
 	if($('.owl-carousel').length){
 		$.getScript('/sites/all/themes/sara/js/lib/owl.carousel.min.js', function(){
 			$('.owl-carousel').owlCarousel({
