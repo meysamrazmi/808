@@ -3442,6 +3442,7 @@ div#block-taxonomy-menu-block-2--2 li:last-child, div#block-taxonomy-menu-block-
   bottom: 0;
   z-index: 100000;
   width: 100% !important;
+  padding-bottom: 56.25%;
 }
 .page-iframe .mejs-overlay-button {
   top: 40%;
@@ -5785,7 +5786,7 @@ div#smile {
   padding: 20px 5px;
   border: solid #FFC107;
   border-width: 0 5px;
-  display: none;/*جشنواره festival */
+  /* display: none;/*جشنواره festival  */
 }
 #smile canvas {
   position: absolute;
@@ -6013,7 +6014,7 @@ input[type="color"]:focus,
 	box-shadow: 0px 1px 2px rgba(24,24,24,0.15) !important;
 }
 .form-item-panes-payment-payment-method [for="edit-panes-payment-payment-method-zarinpal"]:after {
-	content: "(+ 20 درصد شارژ هدیه با مناسبت جشنواره تابستانه)"; 
+	content: "(+ 20 درصد شارژ هدیه با مناسبت جشنواره عید تا عید)";   /*به مناسبت جشنواره تابستانه*/
 }
 
 
