@@ -420,3 +420,14 @@ function merge_experts_form_submit($from, &$form_state){
 		watchdog('merging experts', $e->getMessage(), WATCHDOG_CRITICAL);
 	}
 }
+
+function developer(){
+	try{
+		global $user;
+		$p = profile2_load_by_user($user);
+		adump($p['main']);
+	}
+	catch (Exception $e) {
+		drupal_set_message($e->getMessage() , 'error');
+	}
+}

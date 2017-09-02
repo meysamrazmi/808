@@ -246,6 +246,15 @@ function civil808_menu() {
 		'type' => MENU_LOCAL_TASK,
 		'file' => 'admin.inc',
 	);
+	
+	$items['admin/developer'] = array(
+		'title' => t('developer page'),
+		'description' => t('developer page'),
+		'page callback' => 'developer',
+		'access arguments' => array('administer modules'),
+		'type' => MENU_CALLBACK,
+		'file' => 'admin.inc',
+	);
 
 	return $items;
 }
