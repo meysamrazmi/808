@@ -39,9 +39,15 @@
 		</div>
 		<div id="main">
         <?php print $body ?>
+            <div id="tabligh">
+                <a class="aaa" href="http://civil808.com/cooperate" target="_blank">همکاری با ما</a>
+                <a id="aaa2" class="aaa" href="http://civil808.com/landing/vip" target="_blank">عضویت VIP</a>
+                <a id="aaa3" class="aaa" href="http://civil808.com/landing/advisor" target="_blank">ارتباط با مشاوران</a>
+                <a id="aaa4" class="aaa" href="http://civil808.com/pedia" target="_blank">دانشنامه 808</a>
+            </div>
 		</div>
 		<div id="footer-mail">
-			<div class="first-row">
+            <div class="first-row">
 				<a href="http://civil808.com"  target="_blank">موسسه آموزشی و مهندسی ۸۰۸</a>
 			</div>
 			<div>
