@@ -746,6 +746,15 @@ $('.all-members .views-field-field-experts a').each(function(){
 		$(this).attr('href', '')
 	}
 });
+$('.all-members .views-field-status-link .add.not-login a').click(function(e){
+	e.preventDefault();
+	$('#block-panels-mini-user-panel h2.block-title').click();
+});
+$('.page-user .inside .add.not-login a').click(function(e){
+	e.preventDefault();
+	console.log('yess');
+	$('#block-panels-mini-user-panel h2.block-title').click();
+});
 
 if($('.view-represation').length){
 	$('.view-represation .views-widget-filter-rid').before('<span class="more-filter" title="فیلتر های بیشتر"></span>');

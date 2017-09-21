@@ -41,15 +41,18 @@ $(document).ready(function () {
 
 	if($('.page-node.page-pedia .field-name-user-with-expert').length){
 		$('.field-name-user-with-expert').attr('id', 'user_experts');
+		if($('.view-user-experts.view-id-user_experts > .view-content').children().length < 4){
+				$('.view-user-experts.view-id-user_experts > .view-content .views-row').css("float", "none");
+		}
+		console.log($('.view-user-experts.view-id-user_experts > .view-content').children().length);
+		console.log(window.matchMedia('(max-width: 900px)').matches);
 		if( (window.matchMedia('(max-width: 600px)').matches && $('.view-user-experts.view-id-user_experts > .view-content').children().length > 1) ||
 			(window.matchMedia('(max-width: 900px)').matches && $('.view-user-experts.view-id-user_experts > .view-content').children().length > 2) ||
 			(window.matchMedia('(max-width: 1200px)').matches && $('.view-user-experts.view-id-user_experts > .view-content').children().length > 3) ||
-			$('.view-user-experts.view-id-user_experts > .view-content').children().length > 4 ){
+			($('.view-user-experts.view-id-user_experts > .view-content').children().length > 4) ){
 				$('.view-user-experts.view-id-user_experts > .view-content').addClass('owl-carousel');
 		}
-		if($('.view-user-experts.view-id-user_experts > .view-content').children().length = 4 ){
-            $('.view-user-experts.view-id-user_experts > .view-content .views-row').css({'float':'right'});
-        }
+		
 		$('.divanchors').append('<a class="users" href="#user_experts"><span>کاربران متخصص</span></a>');
 	}
 	
@@ -75,7 +78,8 @@ $(document).ready(function () {
 				nav:true,
 				responsive:{
 					0:{items:1},
-					600:{items:3},
+					400:{items:2, margin:5},
+					700:{items:3},
 					1000:{items:4}
 				}
 			});
@@ -130,7 +134,11 @@ $(document).ready(function () {
     $(".page-user .main-tab .tabs.primary .myresults a").text('نتایج آزمون');
     $("#user-register-form .field-name-field-laws label").empty();
     $("#user-register-form .field-name-field-laws label").append('<a href="http://civil808.com/node/865" target="_blank" title="قوانین سایت">شرایط و قوانین</a>&nbsp;سایت را می پذیرم.<span class="form-required" title="این فیلد اجباری است.">*</span>');
-    
+    $('.not-logged-in.not-same-user.profile .user-left-links .add a, .not-logged-in.not-same-user.profile .user-left-links .send-message a').click(function(e){
+		e.preventDefault();
+		$('#block-panels-mini-user-panel h2.block-title').click();
+	});
+	
     /*removing 2 taxonomy from pedia ui*/
     $('.field-name-field-dastebandimemar .field-items .field-item').each(function() {
 	   if($(this).text() == 'رشته' || $(this).text() == 'نوع'){
