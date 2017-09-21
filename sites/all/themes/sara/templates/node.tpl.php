@@ -26,8 +26,10 @@
   <?php
 	global $user;
 	if (!$user->uid) {
-		$comment_forbidden = $content['links']['comment']['#links']['comment_forbidden'];
-		unset($content['links']['comment']['#links']['comment_forbidden']);
+		if ( isset($content['links']['comment']['#links']['comment_forbidden']) ){
+			$comment_forbidden = $content['links']['comment']['#links']['comment_forbidden'];
+			unset($content['links']['comment']['#links']['comment_forbidden']);
+		}
 	}
 	print render($content['links']); 
   ?>
@@ -59,11 +61,15 @@
 	
   <?php
 	if (!$user->uid) {
-		print '<li class="comment_forbidden first last"><span>';
-		print render($comment_forbidden['title']);
-		print '</span></li>';
+		if( isset($comment_forbidden) ){
+			print '<li class="comment_forbidden first last"><span>';
+			print render($comment_forbidden['title']);
+			print '</span></li>';
+		}
 	}
-	print render($content['comments']); 
+	if( $comment_count != 0 ){
+		print render($content['comments']);
+	}
   ?>
 
 </div>
