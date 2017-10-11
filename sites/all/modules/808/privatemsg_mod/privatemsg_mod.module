@@ -51,6 +51,60 @@ function privatemsg_mod_menu() {
 }
 
 /**
+ * Implementation of hook_form_alter().
+ *
+ * adding validation and submitting functions for new messages
+ * to check and prevent of multiple threads between 2 users
+ */
+function privatemsg_mod_form_alter(&$form, &$form_state, $form_id) {
+	//adding a button for writing new message
+	if($form_id == 'privatemsg_list'){
+		$form['new_message_button'] = array(
+            '#type' => 'link',
+            '#title' => t('new message'),
+            '#href' => '/messages/new',
+			'#attributes' => array('class' => 'green-btn' , 'target' => '_blank'),
+		);
+	}
+
+	if($form_id == 'privatemsg_new'){
+		array_push($form['#validate'], 'privatemsg_new_mod_validate');
+		array_push($form['#submit'], 'privatemsg_new_mod_submit');
+	}
+}
+
+function privatemsg_new_mod_validate($form, &$form_state){
+	$message = $form_state['validate_built_message'];
+	if((count($message->recipients) == 1) && !isset($message->thread_id)){
+		$author_id = $message->author->uid;
+		$recipient_id = reset($message->recipients)->uid;
+		//finding previous threads of twe users
+		$thread = db_query(
+			'SELECT DISTINCT in1.thread_id FROM {pm_index} in1 
+			JOIN {pm_index} in2 ON in1.thread_id = in2.thread_id AND in1.recipient != in2.recipient 
+			WHERE in1.recipient = :author AND in2.recipient = :recipient 
+			AND in1.thread_id NOT IN (
+				SELECT DISTINCT in1.thread_id FROM {pm_index} in1 
+				JOIN {pm_index} in2 ON in1.thread_id = in2.thread_id AND in1.recipient != in2.recipient 
+				WHERE in1.recipient = :author AND in2.recipient <> :recipient)', 
+			array(':author' => $author_id, ':recipient' => $recipient_id)
+		);
+		$thread = $thread->fetchObject();
+		if(count($thread) == 1)
+			$message->thread_id = $thread->thread_id;
+	}
+	$form_state['validate_built_message'] = $message;
+}
+
+/*
+ * redirecting user to message after submitting the form
+ */
+function privatemsg_new_mod_submit($form, &$form_state){
+	$message = $form_state['validate_built_message'];
+	$form_state['redirect'] = '/user/'. $message->author->uid . '/messages/view/'. $message->thread_id; 
+}
+
+/**
  * Access callback for user account editing.
  */
 function privatemsg_mod_access($permission, $message) {
@@ -185,7 +239,6 @@ function privatemsg_mod_preprocess_html(&$variables) {
 function privatemsg_mod_init() {
 	$path = drupal_get_path_alias();
 	$aliases = explode('/', $path);
-  
 	if(isset($aliases[0]) && $aliases[0] == 'messages'){
 		global $user;
 		if(!isset($aliases[1]) || $aliases[1] == 'list'){
@@ -193,17 +246,44 @@ function privatemsg_mod_init() {
 			die();
 		}
 		//redirecting  messages/view/% to  user/%uid/messages/view/%
-		elseif(isset($aliases[2]) && $aliases[1] == 'view'){
-			$thread = privatemsg_thread_load($aliases[2]);
-			foreach($thread['participants'] as $participant){
-				if($participant->uid == $user->uid){
-					drupal_goto("user/$user->uid/messages/view/$aliases[2]");
-					die();
+		elseif($aliases[1] == 'view'){
+			if(isset($aliases[2])){
+				$thread = privatemsg_thread_load($aliases[2]);
+				foreach($thread['participants'] as $participant){
+					if($participant->uid == $user->uid){
+						drupal_goto("user/$user->uid/messages/view/$aliases[2]");
+						die();
+					}
 				}
-			}			
+			}
+			else{
+				drupal_goto("user/$user->uid/messages/view");
+				die();
+			}
 		}
 		//redirecting message/new
 		elseif(isset($aliases[1]) && $aliases[1] == 'new'){
+			if(isset($aliases[2])){
+				//finding previous threads of twe users
+				$thread = db_query(
+					'SELECT DISTINCT in1.thread_id 
+					FROM {pm_index} in1 
+					JOIN {pm_index} in2 ON in1.thread_id = in2.thread_id AND in1.recipient != in2.recipient 
+					WHERE in1.recipient = :author AND in2.recipient = :recipient
+					AND in1.thread_id NOT IN (
+						SELECT DISTINCT in1.thread_id FROM {pm_index} in1 
+						JOIN {pm_index} in2 ON in1.thread_id = in2.thread_id AND in1.recipient != in2.recipient 
+						WHERE in1.recipient = :author AND in2.recipient <> :recipient
+					)',
+					array(':author' => $user->uid, ':recipient' => $aliases[2])
+				);
+				$thread = $thread->fetchObject();
+		
+				if((count($thread) > 0) && (isset($thread->thread_id))){
+					drupal_goto("user/$user->uid/messages/view/$thread->thread_id");
+					die();
+				}				
+			}
 			drupal_goto("user/$user->uid/$path");
 			die();
 		}
