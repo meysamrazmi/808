@@ -208,6 +208,15 @@ function userpoints_share_uc_order($op, $order, $status) {
 							'total' => $total,
 							'updated' => time(),
 							))->execute();
+							
+						$node = node_load($product->nid);
+						$user = user_load($order->uid);
+						privatemsg_new_thread(
+							array(user_load($uid)),
+							'محصولی از شما فروخته شد.',
+							'محصول ' . l($node->title, '/node/' . $node->nid) . ' توسط ' . l($user->name, '/user/' . $user->uid) . ' خریداری شده است. ',
+							array('author' => user_load(2), 'format' => 'full_html')
+						);
 					}
 					if($is_cost) $total -= $points;
 				}  

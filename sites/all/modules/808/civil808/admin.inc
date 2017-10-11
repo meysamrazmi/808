@@ -408,7 +408,7 @@ function merge_experts_form_submit($from, &$form_state){
 						array($user),
 						$message_title,
 						$message_body,
-						array('author' => user_load(60), 'format' => 'full_html')
+						array('author' => user_load(2), 'format' => 'full_html')
 					);
 					drupal_set_message('پیام خصوصی برای کاربران ارسال شد.');		
 				}

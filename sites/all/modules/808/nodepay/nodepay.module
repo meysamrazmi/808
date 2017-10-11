@@ -115,7 +115,7 @@ function gdocview_pay_for_node($nid) {
 					'uid' => $uid,
 					'points' => $points,
 					'operation' => 'content share',
-					'description' => t('user @uid has bought node @nid that you had a share of it.', array('@uid' => $uid , '@nid' => $nid)),
+					'description' => t('user @uid has bought node @nid that you had a share of it.', array('@uid' => $user->uid , '@nid' => $nid)),
 					'entity_id' => $nid,
 					'entity_type' => 'node',
 				);
@@ -133,6 +133,15 @@ function gdocview_pay_for_node($nid) {
 					'total' => $total,
 					'updated' => time(),
 					))->execute();
+					
+				
+				$node = node_load($nid);
+				privatemsg_new_thread(
+					array(user_load($uid)),
+					'محتوایی از شما فروخته شد.',
+					'محتوای ' . l($node->title, '/node/' . $nid) . ' توسط ' . l($user->name, '/user/' . $user->uid) . ' خریداری شده است. ',
+					array('author' => user_load(2), 'format' => 'full_html')
+				);
 			}
 			if($is_cost) $total -= $points;
 		}  
