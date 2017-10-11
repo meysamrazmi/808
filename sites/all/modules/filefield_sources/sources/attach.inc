@@ -206,7 +206,7 @@ function _filefield_source_attach_options($path, $extensions = FALSE) {
   if (count($files)) {
     $options = array('' => t('-- Select file --'));
     foreach ($files as $file) {
-      $options[$file->uri] = str_replace($path . '/', '', $file->uri);
+      $options[$file->uri] = transliteration_get(str_replace($path . '/', '', $file->uri));
     }
     natcasesort($options);
   }
