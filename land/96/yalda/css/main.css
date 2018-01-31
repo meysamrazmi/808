@@ -1,0 +1,387 @@
+/* 
+ _____   _           _         _                        _                  
+|_   _| | |         | |       | |                      | |                 
+  | |   | |__   __ _| |_ ___  | |_ ___  _ __ ___   __ _| |_ ___   ___  ___ 
+  | |   | '_ \ / _` | __/ _ \ | __/ _ \| '_ ` _ \ / _` | __/ _ \ / _ \/ __|
+ _| |_  | | | | (_| | ||  __/ | || (_) | | | | | | (_| | || (_) |  __/\__ \
+ \___/  |_| |_|\__,_|\__\___|  \__\___/|_| |_| |_|\__,_|\__\___/ \___||___/
+
+Oh nice, welcome to the stylesheet of dreams. 
+It has it all. Classes, ID's, comments...the whole lot:)
+Enjoy responsibly!
+@ihatetomatoes
+
+*/
+/*
+ * HTML5 Boilerplate
+ *
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+   @font-face {
+	font-family: irans;
+	font-style: normal;
+	font-weight: 500;
+	src: url('/src/fonts/sans/eot/IRANSansWeb_Medium.eot');
+	src: url('/src/fonts/sans/eot/IRANSansWeb_Medium.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+		 url('/src/fonts/sans/woff2/IRANSansWeb_Medium.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('/src/fonts/sans/woff/IRANSansWeb_Medium.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('/src/fonts/sans/ttf/IRANSansWeb_Medium.ttf') format('truetype');
+}
+@font-face {
+	font-family: lalezar;
+	font-style: normal;
+	font-weight: normal;
+	src: url('/src/fonts/lalezar/lalezar.eot');
+	src: url('/src/fonts/lalezar/lalezar.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+		 /* url('/src/fonts/lalezar/lalezar.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/ 
+		 url('/src/fonts/lalezar/lalezar.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('/src/fonts/lalezar/lalezar.ttf') format('truetype');
+}
+@font-face {
+	font-family: irans; 
+	font-style: normal;
+	font-weight: normal;
+	src: url('/src/fonts/sans/eot/IRANSansWeb.eot');
+	src: url('/src/fonts/sans/eot/IRANSansWeb.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+		 url('/src/fonts/sans/woff2/IRANSansWeb.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('/src/fonts/sans/woff/IRANSansWeb.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('/src/fonts/sans/ttf/IRANSansWeb.ttf') format('truetype');
+}
+@font-face {
+	font-family: lalezar;
+	font-style: normal;
+	font-weight: normal;
+	src: url('/src/fonts/lalezar/lalezar.eot');
+	src: url('/src/fonts/lalezar/lalezar.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+		 url('/src/fonts/lalezar/lalezar.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('/src/fonts/lalezar/lalezar.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('/src/fonts/lalezar/lalezar.ttf') format('truetype');
+}
+@font-face {
+	font-family: khordad;
+	font-style: normal;
+	font-weight: normal;
+	src: url('/src/fonts/khordad/khordad.eot');
+	src: url('/src/fonts/khordad/khordad.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+		 url('/src/fonts/khordad/khordad.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('/src/fonts/khordad/khordad.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('/src/fonts/khordad/khordad.ttf') format('truetype');
+}
+@font-face {
+	font-family: fanum;
+	font-style: normal;
+	font-weight: 100;
+	src: url('/src/fonts/sans/fanum/irsfanum.eot');
+	src: url('/src/fonts/sans/fanum/irsfanum.eot?#iefix') format('embedded-opentype'),  /* IE6-8*/
+		 url('/src/fonts/sans/fanum/irsfanum.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('/src/fonts/sans/fanum/irsfanum.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('/src/fonts/sans/fanum/irsfanum.ttf') format('truetype');
+}
+@font-face {
+	font-family:'mat';
+	src:	url('/src/fonts/material/material.eot');
+	src:	url('/src/fonts/material/material.eot?#iefix') format('embedded-opentype'),
+			url('/src/fonts/material/material.woff') format('woff'),
+			url('/src/fonts/material/material.ttf') format('truetype'),
+			url('/src/fonts/material/material.svg#materialdesigniconsregular') format('svg');
+	font-weight:normal;
+	font-style:normal;
+}
+
+#wild-text{
+    background: #0095d0;
+    margin: -40px 0 0 0;
+    z-index: 2;
+    position: relative;
+    padding: 59px 0 77px 0;
+    text-align: center;
+    width: 100%;
+    color: white;
+}
+
+   .tarikh:before {
+    content: "";
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background: url(../img/calendar.svg);
+    vertical-align: middle;
+    margin-left: 20px;
+}
+.mazaya a{
+    border-radius: 2px;
+    line-height: 30px;
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    transition: all 0.2s;
+    box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
+    outline: none;
+    color: #2196f3 !important;
+    border: 1px solid #2196f3;
+    margin: 16px 8px 12px 8px;
+    box-sizing: border-box;
+    vertical-align: top;
+    width: 109px;
+    text-decoration: none;
+}
+.mazaya{
+    text-align: center;
+    margin: 50px 0 50px 0;
+    width: 100%;
+    padding: 0;
+}
+li{
+    line-height: 26px;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin: 50px 3%;
+    padding: 87px 15px 15px 15px;
+    width: 249px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    min-height: 147px;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    font-size: 16px;
+    line-height: 29px;
+}
+li:before {
+    content: "";
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 20px 0px 30px 0px;
+    position: absolute;
+    top: -70px;
+    right: 86px;
+    box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+    border-radius: 50%;
+    background: url(http://civil808.com/sites/all/themes/sara/images/moshaver-like.svg);
+}
+li:nth-child(1):before{
+    background: url(../img/question.svg);
+    border-radius: 25px 50% 50%;
+}
+li:nth-child(2):before{
+    background: url(http://civil808.com/sites/all/themes/sara/images/moshaver-analytics-1.svg);
+}
+html {
+    font-size: 13px;
+    font-family: irans;
+      text-align: right;
+      direction:rtl;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    line-height: initial;
+  }
+  table {
+      border-collapse: collapse;
+      border-spacing: 0;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+  }
+  a{
+    text-decoration: none;
+  }
+  h1 {
+    font-size: 3.5rem;
+  }
+  
+  
+#slide-1 .bcg {
+	background-image: url(/96/daneshjoo/img/bcg_slide-1.jpg);
+}
+section#intro {
+	background: url(../img/1.jpg);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: ordi;
+	position: relative;
+	min-height: 100vh;
+	padding-bottom: 50px;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+section#intro h2 {
+	margin-bottom: 40px;
+	margin: auto;
+	font-family: fanum;
+	padding: 26px 0 0;
+	color: #333;
+	font-size: 30px;
+	border-top: 2px solid #fff;
+	text-shadow: 0 0 15px #fff, 0 0 15px #fff, 0 0 15px #fff, 0 0 15px #fff;
+}
+section#intro h2 + div {
+	font-size: 21px;
+	color: #c80022;
+	font-weight: 500;
+	font-family: fanum;
+	margin-top: 30px;
+	margin-bottom: 4px;
+	text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff;
+	padding: 20px 40px;
+	background: #ffffffa6;
+	border-radius: 15px;
+}
+section#intro h2 + div p:before {
+	content: "\f419";
+	font-family: mat;
+    font-size: 40px;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+.tarikh {
+	font-family: fanum;
+	width: 360px;
+	color: #fff;
+	text-shadow: 0 1px 1px #000;
+	background: rgba(0, 0, 0, 0.4);
+	padding: 5px 15px;
+	border-radius: 5px;
+	margin: 35px auto 0;
+	text-align: right;
+	direction: rtl;
+	font-size: 26px;
+}
+p.desc {
+  font-size: 2rem;
+	margin-top: 0;
+  /* word-spacing: 5px; */
+}
+p.desc > span {
+  font-family: fanum;
+  background: #F44336;
+  color: #fff;
+  text-shadow: none;
+  margin: 0 10px 0 20px;
+  padding: 0 10px 0 0;
+  font-weight: bold;
+  font-size: 4rem;
+  display: inline-block;
+  letter-spacing: -10px;
+  width: 60px;
+  height: 60px;
+  position: relative;
+  text-align: center;
+  box-sizing: border-box;
+  line-height: 4.8rem;
+}
+p.desc span span:first-child {
+	font-size: 1.5rem;
+	letter-spacing: 0;
+}
+p.desc span span {
+	z-index: 1;
+	position: relative;
+}
+p.desc > span:before, p.desc > span:after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 60px;
+  background: #F44336;
+  z-index: 0;
+}
+p.desc > span:before {
+    -webkit-transform: rotate(30deg);
+       -moz-transform: rotate(30deg);
+        -ms-transform: rotate(30deg);
+         -o-transform: rotate(30deg);
+}
+p.desc > span:after {
+    -webkit-transform: rotate(60deg);
+       -moz-transform: rotate(60deg);
+        -ms-transform: rotate(60deg);
+         -o-transform: rotate(60deg);
+}
+body {
+    height: auto !important;
+}
+section#questions .test {
+    background-image: url(../img/hands.jpg);
+    font-size: 2.5rem;
+    position: relative;
+    border-bottom: 2px solid #2196F3;
+    min-height: 100vh;
+    z-index: 1000;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.view-header {
+    margin: auto;
+    width: 700px;
+    max-width: 100%;
+    text-align: center;
+    font-size: 70%;
+    padding: 30px 0 0 0;
+}
+.view-header h2 {
+    color: white;
+    font-size: 40px;
+    text-shadow: 0 0 15px #333;
+}
+.view-header h4 {
+    color: #fdf28f;
+    font-size: 16px;
+    margin: 30px;
+    text-shadow: 0 0 15px #333;
+    font-weight: normal;
+}
+.blue-btn {
+  background: #fbfbfb;
+  border: none;
+  height: 36px;
+  border-radius: 2px;
+  line-height: 36px;
+  text-align: center;
+  color: #444 !important;
+  padding: 0 16px;
+  text-shadow: none;
+  display: inline-block;
+  font-size: 14px;
+  min-width: 88px;
+  transition: all 0.2s;
+  text-decoration: none;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  outline: none;
+  color: #fff !important;
+  background-color: #2196f3;
+}
+.blue-btn:hover {
+  background-color: #eee;
+}
+.blue-btn:focus {
+  background: #f5f5f5;
+  box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+}
+.blue-btn:hover {
+  background-color: #1597ff;
+}
+.blue-btn:focus {
+  background: #2196f3;
+}
+a.ask-question {
+    font-size: 17px;
+    width: 230px !important;
+    padding: 5px;
+}
+
