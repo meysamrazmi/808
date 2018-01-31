@@ -19,17 +19,21 @@ function edit_user(userid){
 	$('#pop-up-email').val($('#uemail-' + userid).text());
 	$('#pop-up-name').val($('#uname-' + userid).text());
 	$('#pop-up-phone').val($('#uphone-' + userid).text());
+	$('#pop-up-player').val($('#player-' + userid).text());
 	
   $(".overlay-message").show();
     $(".confirmed-save").hide();
 
-    var newInput = document.createElement("input");
-    newInput.type = "hidden";
-	newInput.id = "pop-up-userid";
-    newInput.name = "id";
-    newInput.value = userid;
-    document.getElementById("edit-popup").appendChild(newInput);
-  
+    if(!$("#pop-up-userid").length){
+		var newInput = document.createElement("input");
+		newInput.type = "hidden";
+		newInput.id = "pop-up-userid";
+		newInput.name = "id";
+		newInput.value = userid;
+		document.getElementById("edit-popup").appendChild(newInput);
+	}else{
+		$('#pop-up-userid').val(userid);
+	}
 }
 
 function edit_serial(serialid){
@@ -61,7 +65,7 @@ function msgbox(text){
 
 function submit_edits(page){
 	  var xmlhttp = new XMLHttpRequest();
-	  xmlhttp.onreadystatechange = function() {
+	  xmlhttp.onreadystatechange = function() { //این مرحله بعد از همه اجرا میشه و نتیجه ایجکس مشخص شده
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			  if (xmlhttp.responseText == 1){
 					$("#confirmed-save").text('ذخیره شد');
@@ -84,8 +88,10 @@ function submit_edits(page){
 						$('#uemail-' + id).text($('#pop-up-email').val());
 						$('#uname-' + id).text($('#pop-up-name').val());
 						$('#uphone-' + id).text($('#pop-up-phone').val());
+						$('#player-' + id).text($('#pop-up-player').val());
 					}
 			  } else {
+					alert(xmlhttp.responseText);
 				  	$("#confirmed-save").text('فیلدها را به درستی پر کنید');
 					$("#confirmed-save").css({"color": "#B13333"});
 				    $("#confirmed-save").show();
@@ -102,7 +108,7 @@ function submit_edits(page){
 	} else if(page == 'package') {
 		query = "doback=editp&id=" + $('#pop-up-packageid').val() + "&packageCode=" + $('#pop-up-packagecode').val() + "&packageDesc=" + $('#pop-up-packagedesc').val() + "&udata=" + $("#udata").val() + "&tdata=" + $("#tdata").val();
 	} else {
-		query = "doback=editu&id=" + $('#pop-up-userid').val() + "&name=" + $('#pop-up-name').val() + "&puid=" + $('#pop-up-puid').val() + "&email=" + $('#pop-up-email').val() + "&phone=" + $('#pop-up-phone').val() + "&serial=" + $('#pop-up-serial').val() + "&udata=" + $("#udata").val() + "&tdata=" + $("#tdata").val();
+		query = "doback=editu&id=" + $('#pop-up-userid').val() + "&name=" + $('#pop-up-name').val() + "&puid=" + $('#pop-up-puid').val() + "&email=" + $('#pop-up-email').val() + "&phone=" + $('#pop-up-phone').val() + "&serial=" + $('#pop-up-serial').val() + "&udata=" + $("#udata").val() + "&tdata=" + $("#tdata").val() + "&player=" + $("#pop-up-player").val();
     }
 	xmlhttp.send(query);
 }

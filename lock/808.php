@@ -29,15 +29,15 @@ checkInput($decoded);
 $check_result = check_puid($decoded['puid'],$decoded['package']);
 
 switch((int)$decoded['action']){
-	case 1:
+	case 1: //just this case will be called from users systems
 		if ($check_result == 1){//everything is ok
-			print_output($decoded,1);
+			print_output($decoded, 1, check_player($decoded));
 			break;
 		}
 		if ($check_result == 2){//sync offline user
-			$is_ok = edit_detail($decoded['puid'],$decoded['name'],$decoded['email'],$decoded['phone']);
+			$is_ok = edit_detail($decoded['puid'], $decoded['package'], $decoded['name'],$decoded['email'],$decoded['phone']);
 			if ($is_ok == 1) {
-				print_output($decoded,1);
+				print_output($decoded, 1, check_player($decoded));
 				break;
 			}
 			print_output($decoded,3);
@@ -51,15 +51,10 @@ switch((int)$decoded['action']){
 			*/
 			$result = add_user($decoded['puid'],$decoded['serial'],$decoded['package']);
 			if ($result == 1){
-				$result = edit_detail($decoded['puid'],$decoded['name'],$decoded['email'],$decoded['phone']);
-				if ($result == 1) {
-					print_output($decoded,1);
-					break;
-				}
-			}else{
-				print_output($decoded,$result);
-				break;
+				$ok = edit_detail($decoded['puid'], $decoded['package'], $decoded['name'],$decoded['email'],$decoded['phone']);
 			}
+			print_output($decoded,$result);
+			break;
 		}
 		print_output($decoded,3);
 		break;
@@ -77,7 +72,7 @@ switch((int)$decoded['action']){
 	case 3:
 		//Add detail of new online user  *OR*   Edit user
 		if ($check_result == 1){
-			$is_ok = edit_detail($decoded['puid'],$decoded['name'],$decoded['email'],$decoded['phone']);
+			$is_ok = edit_detail($decoded['puid'], $decoded['package'], $decoded['name'],$decoded['email'],$decoded['phone']);
 			if ($is_ok == 1) {
 				print_output($decoded,1);
 				break;

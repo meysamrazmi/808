@@ -34,24 +34,34 @@ Output:
 1: edited (OK)
 2: error
 */
-function edit_detail($puid,$name,$email,$phone){
-	    global $conn,$nowTime;
-		
-		$sql = "SELECT * FROM tblusers WHERE trim(LOWER(puid)) LIKE '" . $puid . "'";
-		$result = $conn->query($sql);
+function edit_detail($puid, $package, $name,$email,$phone){
+    global $conn,$nowTime;
+	
+	$sql = "SELECT * FROM tblusers WHERE trim(LOWER(puid)) LIKE '" . $puid . "' AND trim(LOWER(package)) LIKE '" . $package . "'";
+	$result = $conn->query($sql);
 
-		if ($result->num_rows > 0) {
-			// output data of each row
-			if ($row = $result->fetch_assoc()) {
-				$sql = "UPDATE tblusers SET uname='" . $name . "' , uemail='" . $email . "' , uphone='" . $phone . "' , date_edited='" . $nowTime . "' WHERE id=" . $row["id"];
-				if ($conn->query($sql) === TRUE) {
-					return 1;
-				}
+	if ($result->num_rows > 0) {
+		// output data of each row
+		if ($row = $result->fetch_assoc()) {
+			$sql = "UPDATE tblusers SET uname='" . $name . "' , uemail='" . $email . "' , uphone='" . $phone . "' , date_edited='" . $nowTime . "' WHERE id=" . $row["id"];
+			if ($conn->query($sql) === TRUE) {
+				return 1;
 			}
 		}
-		return 2;
+	}
+	return 2;
 }
 
+function check_player($decoded){
+    global $conn;
+	$sql = "SELECT * FROM tblusers WHERE trim(LOWER(puid)) LIKE '" . $decoded['puid'] . "' AND trim(LOWER(package)) LIKE '" . $decoded['package'] . "'";
+	$row = $conn->query($sql)->fetch_assoc();
+
+	if(!empty($row['player'])){
+		return $row['player'];
+	}
+	return '0';
+}
 
 /*
 ##check_puid##
@@ -149,7 +159,6 @@ function print_output($arr,$response,$extra = ""){
 	file_put_contents($file, $file_content, FILE_APPEND | LOCK_EX);
 
 	echo (encryptAES($output));
-	//echo ('{"action":' . $arr['action'] . ',"response":' . $response . ',"puid":' . $arr['puid'] . ',"serial":' . $arr['serial']. ',"name":' . $arr['name']. ',"email":' . $arr['email']. ',"phone":' . $arr['phone'] . '","package":"' . $arr['package'] . '","ranber":' . (((int)$arr['ranber'] * 73) - 320)  . ',"extra":"' . $extra . '"}');
 }
  
  

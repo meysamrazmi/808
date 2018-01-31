@@ -59,7 +59,8 @@ if(isset($_GET['action'])){
 			break;
 	}
 
-} elseif(isset($_POST['doback'])) {
+} 
+elseif(isset($_POST['doback'])) {
 	if (isset($_POST['udata']) && isset($_POST['tdata'])){
 		if(!check_ajax_admin($_POST['tdata'],$_POST['udata'])) die();
 	} else {
@@ -107,23 +108,19 @@ if(isset($_GET['action'])){
 			}
 		break;
 		case 'editu':
-			if(isset($_POST['id']) && is_numeric($_POST['id'])){
-				if(!isset($_POST['name'])) die();
-				if(!isset($_POST['phone'])) die();
-				if(!isset($_POST['email'])) die();
-				if(!isset($_POST['puid'])) die();
-				if(!isset($_POST['serial'])) die();
-				$name = string_safer($_POST['name']);
-				$phone = string_safer($_POST['phone']);
-				$email = string_safer($_POST['email']);
-				$puid = string_safer($_POST['puid']);
-				$serial = string_safer($_POST['serial']);
-				$id = string_safer($_POST['id']);
-				
-				$sql = "UPDATE tblusers SET uname='" . $name . "' , uemail='" . $email . "' , uphone='" . $phone . "' , puid='" . trim(strtolower($puid)) . "' , serial='" . trim(strtolower($serial)) . "' , date_edited='" . $nowTime . "' WHERE id=" . $id;
-				if ($conn->query($sql) === TRUE) {
-					echo 1;
-				}
+			if(!isset($_POST['id']) || !is_numeric($_POST['id']) || !isset($_POST['name']) || !isset($_POST['phone']) || !isset($_POST['email']) || !isset($_POST['puid']) || !isset($_POST['serial']) ) die();
+			
+			$sql = 	"UPDATE tblusers SET 
+						uname='" . string_safer($_POST['name']) . "' , 
+						uemail='" . string_safer($_POST['email']) . "' , 
+						uphone='" . string_safer($_POST['phone']) . "' , 
+						puid='" . trim(strtolower(string_safer($_POST['puid']))) . "' , 
+						serial='" . trim(strtolower(string_safer($_POST['serial']))) . "' , 
+						date_edited='" . $nowTime . "' , 
+						player='" . string_safer($_POST['player']) . "' 
+						WHERE id=" . string_safer($_POST['id']) ;
+			if ($conn->query($sql) === TRUE) {
+				echo 1;
 			}
 		break;
 		case 'editp':
