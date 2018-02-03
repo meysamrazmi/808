@@ -610,7 +610,8 @@ function _uc_affiliate2_get_products($mode, $show = array()) {
 function _uc_affiliate2_get_product_list() {
   global $user;
 
-  $product_types = uc_product_types();
+  // $product_types = uc_product_types();
+  $product_types = array("product" , "product_kit");
   $result = db_query('SELECT nid, title FROM {node} WHERE status = 1 and type IN (:placeholder) ORDER BY title ASC', array(':placeholder' => $product_types));
   if (!$result) {
     return;
@@ -726,11 +727,11 @@ function uc_affiliate2_uc_order($op, &$order, $status) {
   global $user;
 
   $statuses = variable_get('affiliate_commission_order_statuses', array('completed' => 'completed'));
-
+  
   if ($op == 'new') {
     // Start with no affiliate.
     $affiliate = 0;
-
+ 
     // If this is the user's session, and an affiliate is stored, use that.
     if ($user->uid == $order->uid && !empty($_SESSION['affiliate'])) {
       $affiliate = $_SESSION['affiliate'];
@@ -859,15 +860,17 @@ function uc_affiliate2_apply_commission($order, $affiliate_id = NULL) {
         foreach ($product_data as $model => $model_data) {
           $comm = _uc_affiliate2_get_commission($aff, $level, $pid, $model);
           $comm_pct = _uc_affiliate2_commission_is_percentage($comm);
+		  
           if ($comm_pct !== FALSE) {
             $commission += $model_data['total'] * $comm_pct / 100;
           }
           else {
-            $commission += $comm * $model_data['qty'];
+            // $commission += $comm * $model_data['qty']; 
+            $commission += $comm * $model_data['total'];
           }
         }
       }
-
+	  
       $comm = new stdClass();
       $comm->order_id = $order->order_id;
       $comm->aid = $aff;
@@ -879,7 +882,13 @@ function uc_affiliate2_apply_commission($order, $affiliate_id = NULL) {
       $comm->data = $data;
 
       //ca_pull_trigger('uc_affiliate2_apply_commission', $order, $comm); //no more needed has to be integrated with rules
-      if ($comm->commission > 0) {
+      if ($comm->commission > 0 && !($order->payment_method == "other" && $order->order_status == "in_checkout")) {
+		  $message = 'کاربری با لینک همکار فروش شما در سایت خرید کرد';
+		  $message .= '<br>';
+		  $message .= 'سهم کمیسون شما ' . $comm->commission . 'تومان است.';
+		  $message .= '<br>';
+		  $message .= '<a href = "/user/' . $comm->aid . '/affiliate/clicks" target="_blank">مشاهده آمار فروش</a>';
+		  send_pm($comm->aid, $message);
         uc_affiliate2_commission_save($comm);
       }
     }
@@ -933,6 +942,15 @@ function uc_affiliate2_commission_save($comm) {
   }
   else {
     drupal_write_record('uc_affiliate2_commission', $comm);
+	$params = array (
+		'uid' => $comm->aid,
+		'points' => $comm->commission,
+		'operation' => 'product share',
+		'description' => t('order #@order_id has been completed with your affiliate link.', array('@order_id' => $comm->order_id)),
+		'entity_id' => $comm->order_id,
+		'entity_type' => 'uc_order',
+	);
+	$st = userpoints_userpointsapi($params);
   }
   uc_order_comment_save($comm->order_id, 0, $comm->commission_notes);
 
@@ -1210,7 +1228,7 @@ function _uc_affiliate2_handle_request() {
   if (!isset($_REQUEST['a'])) {
     return;
   }
-
+  $goto = $_GET['q'];
   $account = user_load($_REQUEST['a']);
   _uc_affiliate2_register_click($account, $goto);
 }

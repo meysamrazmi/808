@@ -750,14 +750,15 @@ function uc_affiliate2_orders($account) {
       'field' => 'order_total',
     ),
   );
-
+	// adump($account);
   // Create sql to affiliate's commissions
   $query = db_select('uc_affiliate2_orders', 'ao');
   $query->innerjoin('uc_orders', 'uco', 'ao.order_id = uco.order_id');
   $query->leftjoin('users', 'u', 'uco.uid = u.uid');
   $query->fields('uco')
   ->fields('ao', array('order_id'))
-  ->fields('u', array('name'));
+  ->fields('u', array('name'))
+  ->condition('ao.aid', $account->uid);
   $query
   ->extend('TableSort')
   ->orderByHeader($header);
