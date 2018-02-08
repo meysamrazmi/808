@@ -1,0 +1,462 @@
+<?php
+/**
+ * Implements hook_services_resources().
+ */
+
+function custom_services_services_resources(){
+	return array(
+		/*
+		'logincheck' => array(
+			'retrieve' => array(
+				'help' => 'checks username and password from services',
+				'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+				'callback' => 'checklogin_retrieve',
+				'access callback' => 'user_access',
+				'access arguments' => array('access content'),
+				'access arguments append' => FALSE,
+				'args' => array(
+					array(
+						'name' => 'username',
+						'type' => 'string',
+						'description' => 'The username of user to check',
+						'source' => array('path' => 0),
+						'optional' => FALSE,
+					),
+					array(
+						'name' => 'password',
+						'type' => 'string',
+						'description' => 'The password of user to check',
+						'source' => array('path' => 1),
+						'optional' => FALSE,
+					),
+				),
+			),
+		),	   
+		*/
+		'advisorlist' => array(
+			'operations' => array(
+				'index' => array(
+					'help' => 'get list of advisor users',
+					'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+					'callback' => 'advisor_list',
+					'access callback' => 'user_access',
+					'access arguments' => array('access content'),
+					'access arguments append' => FALSE
+				)
+			)
+		),
+        'taxonomy_term' => array(
+            'relationships' => array(
+                'information' => array(
+                    'help' => 'get expert information',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+                    'callback' => 'taxonomy_information',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'tid',
+                            'optional' => False,
+                            'type' => 'int',
+                            'description' => 'tid',
+                            'source' => array('path' => 0),
+                        )
+                    )
+                ),
+            ),
+        ),
+		'node' => array(
+			'actions' => array(
+				'all_questions' => array(
+					'help' => 'get all questions',
+					'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+					'callback' => 'get_questions',
+					'access callback' => 'user_access',
+					'access arguments' => array('access content'),
+					'access arguments append' => FALSE,
+					'args' => array(
+						array(
+						  'name' => 'url',
+						  'optional' => TRUE,
+						  'type' => 'string',
+						  'description' => 'url',
+						  'source' => array('data' => 'url'),
+						  'default value' => "all_questions",
+						),
+						array(
+							'name' => 'page',
+							'optional' => TRUE,
+							'type' => 'int',
+							'description' => 'The zero-based index of the page to get, defaults to 0.',
+							'default value' => 0,
+							'source' => array('data' => 'page'),
+						)
+					)
+				),
+				'my_questions' => array(
+					'help' => 'get users questions',
+					'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+					'callback' => 'get_questions',
+					'access callback' => 'user_access',
+					'access arguments' => array('access content'),
+					'access arguments append' => FALSE,
+					'args' => array(
+						array(
+						  'name' => 'url',
+						  'optional' => TRUE,
+						  'type' => 'string',
+						  'description' => 'url',
+						  'source' => array('data' => 'url'),
+						  'default value' => "my_questions",
+						),
+						array(
+							'name' => 'page',
+							'optional' => TRUE,
+							'type' => 'int',
+							'description' => 'The zero-based index of the page to get, defaults to 0.',
+							'default value' => 0,
+							'source' => array('data' => 'page'),
+						)
+					)
+				),
+				'following_questions' => array(
+					'help' => 'get user following questions',
+					'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+					'callback' => 'get_questions',
+					'access callback' => 'user_access',
+					'access arguments' => array('access content'),
+					'access arguments append' => FALSE,
+					'args' => array(
+						array(
+						  'name' => 'url',
+						  'optional' => TRUE,
+						  'type' => 'string',
+						  'description' => 'url',
+						  'source' => array('data' => 'url'),
+						  'default value' => "following_questions",
+						),
+						array(
+							'name' => 'page',
+							'optional' => TRUE,
+							'type' => 'int',
+							'description' => 'The zero-based index of the page to get, defaults to 0.',
+							'default value' => 0,
+							'source' => array('data' => 'page'),
+						)
+					)
+				),
+				'my_experts_questions' => array(
+					'help' => 'get related to user experts questions',
+					'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+					'callback' => 'get_questions',
+					'access callback' => 'user_access',
+					'access arguments' => array('access content'),
+					'access arguments append' => FALSE,
+					'args' => array(
+						array(
+						  'name' => 'url',
+						  'optional' => TRUE,
+						  'type' => 'string',
+						  'description' => 'url',
+						  'source' => array('data' => 'url'),
+						  'default value' => "my_experts_questions",
+						),
+						array(
+							'name' => 'page',
+							'optional' => TRUE,
+							'type' => 'int',
+							'description' => 'The zero-based index of the page to get, defaults to 0.',
+							'default value' => 0,
+							'source' => array('data' => 'page'),
+						)
+					)
+				),
+                'my_answered_questions' => array(
+                    'help' => 'get related to user experts questions',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+                    'callback' => 'my_answered_questions',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'page',
+                            'optional' => TRUE,
+                            'type' => 'int',
+                            'description' => 'The zero-based index of the page to get, defaults to 0.',
+                            'default value' => 0,
+                            'source' => array('data' => 'page'),
+                        )
+                    )
+                ),
+				'pedia' => array(
+					'help' => 'get all pedia',
+					'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+					'callback' => 'get_pedia',
+					'access callback' => 'user_access',
+					'access arguments' => array('access content'),
+					'access arguments append' => FALSE,
+					'args' => array(
+						array(
+							'name' => 'page',
+							'optional' => TRUE,
+							'type' => 'int',
+							'description' => 'The zero-based index of the page to get, defaults to 0.',
+							'default value' => 0,
+							'source' => array('data' => 'page'),
+						)
+					)
+				),
+			),
+			
+			'targeted_actions' => array(
+				'edit' => array(
+					'help' => 'edit a node',
+					'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+					'callback' => 'node_edit',
+					'access callback' => 'user_access',
+					'access arguments' => array('access content'),
+					'access arguments append' => FALSE,
+					'args' => array(
+						array(
+							'name' => 'nid',
+							'optional' => FALSE,
+							'source' => array('path' => 0),
+							'type' => 'int',
+							'description' => 'The nid of the node to for edit',
+						),
+						array(
+							'name' => 'data',
+							'type' => 'array',
+							'description' => 'The question object with updated information',
+							'source' => 'data',
+							'optional' => FALSE,
+						)
+					),
+				),
+				
+				'follow' => array(
+					'help' => 'followand unfollow',
+					'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+					'callback' => 'follow_unfollow',
+					'access callback' => 'user_access',
+					'access arguments' => array('access content'),
+					'access arguments append' => FALSE,
+					'args' => array(
+						array(
+							'name' => 'nid',
+							'optional' => FALSE,
+							'source' => array('path' => 0),
+							'type' => 'int',
+							'description' => 'The nid of the node to for follow',
+						),
+						array(
+							'name' => 'data',
+							'type' => 'array',
+							'description' => 'The question object with updated information',
+							'source' => 'data',
+							'optional' => FALSE,
+						)
+					),
+				),
+				
+				'vote' => array(
+					'help' => 'question vote up and down',
+					'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+					'callback' => 'question_vote_up_down',
+					'access callback' => 'user_access',
+					'access arguments' => array('access content'),
+					'access arguments append' => FALSE,
+					'args' => array(
+						array(
+							'name' => 'nid',
+							'optional' => FALSE,
+							'source' => array('path' => 0),
+							'type' => 'int',
+							'description' => 'The nid of the node to for vote',
+						),
+						array(
+							'name' => 'data',
+							'type' => 'array',
+							'description' => 'The question object with updated information',
+							'source' => 'data',
+							'optional' => FALSE,
+						)
+					),
+				),
+			),
+
+            'relationships' => array(
+                'pedia_advisor' => array(
+                    'help' => 'advisors of a pedia',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+                    'callback' => 'pedia_advisor',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args'     => array(
+                        array(
+                            'name' => 'nid',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'The nid of the pedia whose advisors we are getting',
+                        ),
+                    ),
+                ),
+            ),
+		),
+		'comment' => array(
+			'targeted_actions' => array(
+				'edit' => array(
+					'help' => 'edit a comment',
+					'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+					'callback' => 'comment_edit',
+					'access callback' => 'user_access',
+					'access arguments' => array('access content'),
+					'access arguments append' => FALSE,
+					'args' => array(
+						array(
+							'name' => 'cid',
+							'optional' => FALSE,
+							'source' => array('path' => 0),
+							'type' => 'int',
+							'description' => 'The cid of the comment to for edit',
+						),
+						array(
+							'name' => 'data',
+							'type' => 'array',
+							'description' => 'The vote action',
+							'source' => 'data',
+							'optional' => FALSE,
+						)
+					),
+				),
+				
+				'vote' => array(
+					'help' => 'comment vote up and down',
+					'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+					'callback' => 'comment_vote_up_down',
+					'access callback' => 'user_access',
+					'access arguments' => array('access content'),
+					'access arguments append' => FALSE,
+					'args' => array(
+						array(
+							'name' => 'cid',
+							'optional' => FALSE,
+							'source' => array('path' => 0),
+							'type' => 'int',
+							'description' => 'The cid of the comment to for vote',
+						),
+						array(
+							'name' => 'data',
+							'type' => 'array',
+							'description' => 'The vote action',
+							'source' => 'data',
+							'optional' => FALSE,
+						)
+					),
+				),
+			),
+		),
+		'slideshow' => array(
+			'operations' => array(
+				'index' => array(
+					'help' => 'get slideshow items of saze page',
+					'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+					'callback' => 'slideshow_items',
+					'access callback' => 'user_access',
+					'access arguments' => array('access content'),
+					'access arguments append' => FALSE
+				)
+			)
+		),
+		'calendar' => array(
+			'operations' => array(
+				'index' => array(
+					'help' => 'get calendar items of front page',
+					'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+					'callback' => 'calendar_items',
+					'access callback' => 'user_access',
+					'access arguments' => array('access content'),
+					'access arguments append' => FALSE
+				)
+			)
+		),
+		'front_news' => array(
+			'operations' => array(
+				'index' => array(
+					'help' => 'get front_news items',
+					'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+					'callback' => 'front_news_items',
+					'access callback' => 'user_access',
+					'access arguments' => array('access content'),
+					'access arguments append' => FALSE
+				)
+			)
+		),
+        'file' => array(
+            'actions' => array(
+                'create_file' => array(
+                    'help' => 'Create a file with raw data.',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+                    'callback' => 'create_file',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                ),
+            ),
+        ),
+        'pbd' => array(
+            'operations' => array(
+                'index' => array(
+                    'help' => 'insert email for latin site',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+                    'callback' => 'latin_insert_email',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'email',
+                            'optional' => False,
+                            'type' => 'string',
+                            'description' => 'the user email',
+                            'source' => array('param' => 'email'),
+                        ),
+                    ),
+                ),
+            ),
+            'actions' => array(
+                'insert_mail' => array(
+                    'help' => 'insert email for latin site',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+                    'callback' => 'latin_insert_email',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'email',
+                            'optional' => False,
+                            'type' => 'string',
+                            'description' => 'the user email',
+                            'source' => array('data' => 'email'),
+                        ),
+                    ),
+                ),
+            ),
+        ),
+	);
+}
+
+function custom_services_form_alter(&$form, &$form_state, &$form_id){
+    if($form_id == "user_register_form"){
+        $path = arg(0);
+        if(strcmp($path, "android") == 0){
+            unset($form['captcha']);
+        }
+    }
+}
+

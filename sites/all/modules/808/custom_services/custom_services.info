@@ -1,0 +1,6 @@
+name = custom services
+description = "custom web-service"
+core = 7.x
+version = "1"
+package = 808
+dependencies[] = services
