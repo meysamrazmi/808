@@ -80,23 +80,28 @@ function uc_p_report_report($product_id) {
 		" AND {uc_order_products}.nid  =  :product_id " .
 		" WHERE order_status <> 'in_checkout' AND order_status <> 'canceled' AND order_status <> 'abandoned' ".
 		" ORDER BY ". $sort_order .' '. $sort;
-	$orders = db_query($sql,array(":product_id"=>$product_id));
+	$orders = db_query($sql,array(":product_id"=>$product_id))->fetchAll();
 
 	if (module_exists('uc_attribute')){
 	 	//Collect and unserialize the attributes.  First, the names
 	 	$attsql = "SELECT att.aid, att.ordering, att.name, IF(LENGTH(uca.label)>0,uca.label, att.name) AS label, uca.nid FROM {uc_attributes} att
 		   JOIN {uc_product_attributes} uca ON uca.aid=att.aid AND nid = :d Order By ordering, name";
 	 	$attresults = (db_query($attsql, array(":d"=>$product_id)));
-	 	foreach ($attresults as $attrow) {
+	 	foreach($attresults as $attrow) {
 	 		$header[]=array('data'=>t($attrow->label));
 	 		$attrlist[] = array('data'=>t($attrow->label));
 	 	}
 	}
 	
-	
-	$total_discount = $total_sell = $total_qty = $row_count = 0;
-	
+	$attr_total = new stdClass();
 	foreach ($orders as $order) {
+		if(!isset($attr_total->{$order->id})) 
+			$attr_total->{$order->id} = 0 ;
+		$attr_total->{$order->id} += $order->total;
+	}
+
+	$total_discount = $total_sell = $total_qty = $row_count = 0;
+	foreach($orders as $order) {
 		$orginal_order = uc_order_load($order->id);
 		$discount = 0;
 		$has_coupon = false;
@@ -106,6 +111,7 @@ function uc_p_report_report($product_id) {
 				$has_coupon = true;
 			}
 		}
+		$discount *= ($order->total / $attr_total->{$order->id});
 		$order->total -= $discount;
 		$total_discount += $discount;
 
@@ -150,7 +156,7 @@ function uc_p_report_report($product_id) {
 			'<p style="text-align:center;font-weight: bold;font-size: 15px;margin: 0;">مجموع کل این صفحه</p>',
 			$total_qty,
 			'<p style="text-align:center;font-weight: bold;font-size: 15px;margin: 0;">' . formatMoney($total_sell) .' تومان</p>',
-			$total_discount,
+			formatMoney($total_discount),
 			'','','')); 
 		$output .= theme('table' ,array('header'=>$header,'rows'=>$rows,'width' => '100%', 'class' => 'uc-sales-table'));
 		$output .= l(t('Export rows to csv file'), "admin/store/reports/uc_who_bought_what", array('query'=> array('csv'=> "TRUE", 'pid' =>$product_id)));
