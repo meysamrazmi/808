@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 /**
  * @file
@@ -918,7 +918,18 @@ function uc_affiliate2_remove_commission($order, $affiliate_id = NULL) {
     return;
   }
 
-   db_delete('uc_affiliate2_commission')->condition('order_id', $order->order_id)->execute();
+  db_delete('uc_affiliate2_commission')->condition('order_id', $order->order_id)->execute();
+  foreach($result as $row){
+  	$params = array (
+  		'uid' => $row->aid,
+  		'points' => -$row->commission,
+  		'operation' => 'product share',
+  		'description' => t('order #@order_id that was compeleted with your affiliate link has been canceled or deleted.', array('@order_id' => $row->order_id)),
+  		'entity_id' => $row->order_id,
+  		'entity_type' => 'uc_order',
+  	);
+  	$st = userpoints_userpointsapi($params);
+  }
 
   foreach ($affiliates as $affiliate) {
     $note = t('Removed commission recorded for affiliate uid: @affiliate', array('@affiliate' => $affiliate));
