@@ -159,7 +159,7 @@ function send_pm($to, $message){
  *		$nid : question id that we'll send message to its experties
  * 	$message : message text
  */
-function question_advisors($nid,$message){
+function question_advisors($nid, $message){
 	$n_expert = db_select("field_data_field_experts" , "experts")
             ->fields("experts", array("field_experts_tid"))
             ->condition("bundle" , "questions")
