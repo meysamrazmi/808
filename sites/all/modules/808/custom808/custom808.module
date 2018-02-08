@@ -119,9 +119,9 @@ function mdump($var){
 		die();
  	}
 }
-function wdump($var){
+function madump($var){
 	global $user;
-	if($user->uid == 3300){
+	if($user->uid == 3989){
  		echo '<pre>';
 		print_r($var);
 		echo '</pre>';
@@ -137,15 +137,86 @@ function adump($var){
 		die();
  	}
 }
-function array_search_r($needle,$haystack) {
-    foreach($haystack as $key=>$value) {
-        $current_key=$key;
-        if($needle===$value OR (is_array($value) && array_search_r($needle,$value) !== false)) {
-            return $current_key;
-        }
-    }
-    return false;
+
+/*
+ * sending system messages to given user
+ * @param
+ *		$to : user id that we'll send message to
+ * 	$message : message text
+ */
+function send_pm($to, $message){
+	privatemsg_new_thread(
+		array(user_load($to)),
+		t('system events'),
+		$message,
+		array('author' => user_load(2), 'format' => 'full_html')
+	);
 }
 
+/*
+ * sending system messages to advisors when a question that has experts added or accepted
+ * @param
+ *		$nid : question id that we'll send message to its experties
+ * 	$message : message text
+ */
+function question_advisors($nid,$message){
+	$n_expert = db_select("field_data_field_experts" , "experts")
+            ->fields("experts", array("field_experts_tid"))
+            ->condition("bundle" , "questions")
+            ->condition("entity_id", $nid )
+            ->execute()->fetchAll();
+	
+	//the question has at least one expert 
+	if(!empty($n_expert) && count($n_expert) > 0){
+	    $experts = array();
+	    foreach($n_expert as $e){
+	        array_push($experts, $e->field_experts_tid);
+	    }
+	    $e_users = db_select("field_data_field_experts" , "experts");
+	    $e_users->innerjoin('profile','p','p.pid = experts.entity_id');
+	    $e_users->innerjoin('users_roles','roles','roles.uid = p.uid');
+	    $result = $e_users->fields('p', array('uid'))
+					->condition("experts.entity_type", "profile2")
+					->condition("experts.field_experts_tid", $experts, "IN")
+					->condition("roles.rid", "10")
+					->execute()->fetchAll();
 
+	    $advisors = array();
+	    foreach($result as $e){    
+	        array_push($advisors, $e->uid); 
+	    }
+		
+		//prevent from sending a message to a user multiple times
+		$advisors = array_unique($advisors);
+	}
+	if(isset($advisors) && !empty($advisors) && count($advisors) > 0){
+		foreach($advisors as $uid){
+			send_pm($uid, $message);
+		}
+	}
+}
+
+/*
+ * sending system messages to followers when the question has an update
+ * @param
+ *		$node : question object that we'll send message to its followers
+ * 	$comment : comment object that we'll send message to its followers
+ */
+function question_followers($node, $comment){
+	$db_followers = db_select("flagging" , "f")
+                ->fields("f" , array("uid"))
+                ->condition("entity_id" , $node->nid)
+                ->condition("fid" , 3) //questions follow flag id
+				->condition("uid" , $comment->uid, "<>")
+                ->condition("uid" , $node->uid, "<>")
+                ->execute()->fetchAll();
+
+	$followers = array();
+	if(!empty($db_followers) && count($db_followers) > 0){
+	    foreach($db_followers as $f){
+	        array_push($followers , $f->uid);
+	    }
+	}
+	return $followers;
+}
 

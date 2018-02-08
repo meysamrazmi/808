@@ -3,5 +3,6 @@ description = "civil808 custom functions and use cases"
 dependencies[] = uc_reports
 dependencies[] = uc_roles
 dependencies[] = uc_shipping
+dependencies[] = uc_attribute
 core = 7.x
 package = 808
