@@ -133,7 +133,6 @@ function uc_coupon_display($view_type = 'active') {
     array(
       'data' => t('Code'),
       'field' => 'code',
-      'sort' => 'asc',
     ),
     array(
       'data' => t('Value'),
@@ -142,6 +141,7 @@ function uc_coupon_display($view_type = 'active') {
     array(
       'data' => t('Created'),
       'field' => 'created',
+      'sort' => 'desc',
     ),
     array(
       'data' => t('Valid from'),
@@ -176,7 +176,7 @@ function uc_coupon_display($view_type = 'active') {
 
   if (count($rows)) {
     $output = theme('table', array('header' => $header, 'rows' => $rows, 'attributes' => array('width' => '100%')));
-    $output .= theme('pager', array('tags' => NULL));
+    $output .= theme('pager', array('tags' => NULL, 'limit' => 30));
   }
   else {
     switch ($view_type) {
@@ -521,7 +521,7 @@ function uc_coupon_add_form($form, &$form_state, $coupon = NULL) {
     '#title' => t('Code length'),
     '#description' => t('The number of characters selected here will be appended to the code entered above when generating bulk coupons.'),
     '#default_value' => isset($value->data['bulk_length']) ? $value->data['bulk_length'] : NULL,
-    '#options' => drupal_map_assoc(range(8, 30)),
+    '#options' => drupal_map_assoc(range(4, 30)),
     '#disabled' => $used,
   );
 
