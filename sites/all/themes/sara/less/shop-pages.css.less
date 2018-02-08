@@ -6,7 +6,10 @@
 @import "vars.css.less";
 
 .node-product , .node-product-kit{
-	.field-name-teacher-identity{
+	.field-name-teacher-identity , .field-name-company-page{
+		&:hover .field-items .statement {
+			opacity: 1;
+		}
 		margin: 10px 0px 20px 20px;
 		position: relative;
 		
@@ -20,15 +23,37 @@
 		}
 		.field-label{
 			font-weight: normal;
-			margin-bottom: 10px;
+			margin-bottom: 15px;
+			@media @480{
+				margin-bottom: 40px;
+			}
 		}
 		.field-items{
 			max-height: 140px;
 			overflow: hidden;
 			@media @480{ max-height: 100%;}
-			.teacher-identity {
-				margin-left: 10px;
-				margin-bottom: 10px;
+			.statement {
+				position: absolute;
+				background-color: #fbfbfb;
+				box-shadow: rgba(0, 0, 0, 0.117647) 0px 0px 0px, rgba(0, 0, 0, 0.117647) 0px 1px 3px;
+				padding: 4px 10px;
+				font-size: 12px;
+				top: 0px;
+				right: 160px;
+				border: solid #8BC34A;
+				border-width: 0px 3px;
+				opacity: 0;
+				transition: all ease 0.3s;
+				@media @768{
+					opacity: 1;
+				}
+				@media @480{
+					top: 27px;
+					right: 5px;
+				}
+			}
+			.teacher-identity , .node-ref {
+				margin: 0px 5px 10px 5px;
 				display: inline-flex;
 				align-items: center;
 				background: #fafafa;
@@ -39,7 +64,7 @@
 				transition: all 0.2s ease;
 				&:hover{box-shadow: @z2;}
 				@media @480{display: flex;}
-				.user_pic img{
+				.user_pic img , .node_pic img{
 					width: 60px;
 					border: 2px solid #fff;
 					box-shadow: @z1;
@@ -47,7 +72,7 @@
 					border-radius: 50%;
 					margin-bottom: -7px
 				}
-				.teacher-name {
+				.teacher-name, .company-page-name {
 					padding: 10px;
 					color: black !important;
 					min-width: 100px;
@@ -58,6 +83,55 @@
 			content: "";
 			.absolute(100%;1px;'';0;-15px;'');
 			background: #eee;
+		}
+	}
+}
+
+
+.node-product{
+	.flag-outer-notify-product-existing-status{
+		display: none;
+	}
+	&.node-unavailable{ 
+		.group-left{
+			position: relative;
+			.field-name-unavailable, .add-to-cart{
+				display: none;
+			}
+			.flag-outer-notify-product-existing-status{
+				display: inline-flex !important;
+				clear: both;
+				float: none;
+				position: relative;
+				
+				.flag-wrapper {
+					position: initial;
+				}
+				
+				a{
+					font-size: 0px;
+					&.flag-action:before{
+						content: '\f09b';
+						font-family: mat;
+						font-size: 27px;
+						color: #b9b7b7;
+					}
+					&.unflag-action:before{
+						content: '\f09a';
+						font-family: mat;
+						font-size: 27px;
+						color: #f9a825;
+					}
+					&:after{
+						content: '';
+						position: absolute;
+						width: 100%;
+						height: 100%;
+						top: 0;
+						right: 0;
+					}
+				}
+			}
 		}
 	}
 }

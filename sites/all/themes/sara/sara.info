@@ -21,6 +21,7 @@ scripts[] = js/jquery-1.11.3.min.js
 
 scripts[] = js/razmi.js
 scripts[] = js/marjan.js
+scripts[] = js/mh.js
 scripts[] = js/pnotify.buttons.js
 scripts[] = js/app.js
 scripts[] = slide/js/modernizr.custom.js

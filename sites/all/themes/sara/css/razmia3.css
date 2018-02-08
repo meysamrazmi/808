@@ -152,11 +152,12 @@ ul#admin-menu-menu > li:nth-child(5), ul#admin-menu-menu > li:nth-child(6), ul#a
   box-sizing: border-box;
 }
 .display-price {
-  color: #4cae4c;
-  word-spacing: 10px;
-  margin: 5px 15px 15px;
-  float: right;
-  clear: both;
+	color: #4cae4c;
+    word-spacing: 10px;
+    margin: 5px 15px 15px;
+    float: none;
+    clear: both;
+    text-align: right;
 }
 .add-to-cart {
   clear: both;
@@ -208,6 +209,7 @@ ul#admin-menu-menu > li:nth-child(5), ul#admin-menu-menu > li:nth-child(6), ul#a
     height: 100%;
     transition: all 0.3s ease;
     z-index: 1;
+    display: block;
 }
 .address-pane-table tr {
   border: none;
@@ -407,7 +409,7 @@ td.price span {
   word-spacing: 5px;
 }
 .form-item-panes-payment-payment-method {
-  float: right;
+	float: right;
 	width: 100%;
 }
 fieldset#payment-pane .fieldset-wrapper {
@@ -530,7 +532,6 @@ form#uc-zarinpal-pay-submission-form .btn:before,
     font-size: 12px;
     padding: 5px 0px 5px 15px;
     margin: 35px 10px 10px !important;
-    overflow-y: auto;
     overflow-y: overlay;
 }
 
@@ -1009,7 +1010,6 @@ div#block-panels-mini-peyment-guid .panel-pane.pane-custom.pane-2 {
 .node.view-mode-full .list-price {
   margin-top: 5px;
   color: #777;
-  display: inline-block;
   float: right;
   clear: both;
   font-size: 12px;
@@ -2164,6 +2164,7 @@ p.main-shop a:hover {
 .node-product-kit .field-name-field-text, 
 .product-info.model {
   margin-top: 0px;
+  z-index: 1;
 }
 .node-product-kit .group-footer > .field,
 .node-product .group-footer > .field{
@@ -2987,10 +2988,6 @@ border-right: 4px solid #6d0;
   text-align: center;
   padding: 60px 30px;
 }
-.circular-content.4-items .views-row {
-  max-width: 23% !important;
-  margin: 1% 0.5%;
-}
 .cart-view .views-row {
   background: #fff;
   display: inline-block;
@@ -3483,6 +3480,7 @@ div#block-taxonomy-menu-block-2--2 li:last-child, div#block-taxonomy-menu-block-
   min-width: inherit !important;
   box-shadow: none;
   transition: all 0s;
+  line-height: 0 !important;
 }
 .mejs-controls .mejs-fullscreen-button button:before,
 .mejs-controls .mejs-pause button:before,
@@ -3579,6 +3577,17 @@ div#block-taxonomy-menu-block-2--2 li:last-child, div#block-taxonomy-menu-block-
   font-family: fanum;
   font-size: 13px !important;
   width: 40px;
+  line-height: 13px !important;
+}
+.me-plugin {
+	width: 100% !important;
+	height: 100% !important;
+	position: relative;
+}
+.me-plugin * {
+	position: absolute !important;
+	max-width: 100% !important;
+	max-height: 100% !important;
 }
 .mejs-controls {
   display: flex !important;
@@ -3590,6 +3599,7 @@ div#block-taxonomy-menu-block-2--2 li:last-child, div#block-taxonomy-menu-block-
 }
 .mejs-controls .mejs-time-rail span {
   height: 4px;
+ line-height: 13px !important;
 }
 .mejs-controls .mejs-time-rail .mejs-time-loaded {
   background: #fff;
@@ -4257,7 +4267,6 @@ input#edit-populate::-webkit-input-placeholder {
   float: none;
 }
 
-.page-landing .relative-section,
 .page-landing .author-section ,
 .page-landing .container #page-title {
   display: none;
@@ -4639,6 +4648,7 @@ div#block-block-26 .content a:after {
 .region .region-inside {
   padding: 0;
 }
+/*
 .panel-pane.user-sale-report .pager{
   margin: 14px 0 0 0 !important;
 }
@@ -4695,7 +4705,7 @@ div#block-block-26 .content a:after {
 }
 .panel-pane.user-sale-report .pager a:hover{
   background: #f5f5f5;
-}
+}*/
 .paper {
   background: #fbfbfb;
   padding: 15px;
@@ -4754,10 +4764,10 @@ div#block-block-26 .content a:after {
   border: none;
   padding: 0;
 }
-.page-user .quicktabs-ui-wrapper li.pager-first ,
+/* .page-user .quicktabs-ui-wrapper li.pager-first ,
 .page-user .quicktabs-ui-wrapper lli.pager-last a:before{
 	display: none;
-}
+} */
 .ui-widget {
   font-size: 1em;
 }
@@ -4777,7 +4787,8 @@ div#block-block-26 .content a:after {
   padding: 0;
     border-radius: 0;
 }
-.page-user .quicktabs-ui-wrapper#quicktabs-user_all_boughts .ui-tabs-nav li {
+.page-user .quicktabs-ui-wrapper#quicktabs-user_all_boughts .ui-tabs-nav li,
+.page-user .quicktabs-ui-wrapper#quicktabs-sold_content_tab .ui-tabs-nav li {
   width: 100%;
 }
   .page-user .quicktabs-ui-wrapper .ui-tabs-nav li {
@@ -5783,10 +5794,14 @@ div#smile {
   z-index: 1;
   background: #FffaFa;
   text-align: center;
-  padding: 20px 5px;
+  padding: 20px 50px;
   border: solid #FFC107;
   border-width: 0 5px;
   display: none;/*جشنواره festival  */
+}
+#smile .festival{
+  position: relative;
+  z-index: 5;
 }
 #smile canvas {
   position: absolute;
@@ -6014,9 +6029,64 @@ input[type="color"]:focus,
 	box-shadow: 0px 1px 2px rgba(24,24,24,0.15) !important;
 }
 .form-item-panes-payment-payment-method [for="edit-panes-payment-payment-method-zarinpal"]:after {
-	/* content: "(+ 20 درصد شارژ هدیه با مناسبت جشنواره عید تا عید)";   /*به مناسبت جشنواره تابستانه*/ */
+	 /*content: "(+ 20 درصد شارژ هدیه به مناسبت 10 امین سالگرد شروع 808)";   /*به مناسبت جشنواره تابستانه*/
 }
-
-
-
-
+#node-16782 .field-type-image img {
+	width: 100vw !important;
+	margin-bottom: 25px;
+}
+#node-16782 .relative-section li {
+	list-style: none;
+	min-width: 200px;
+	margin: 10px;
+	background: #fff;
+	padding: 5px;
+	width: 20%;
+	box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+}
+#node-16782 .relative-section li img {
+	height: 170px;
+	display: block;
+	margin: auto;
+	margin-bottom: 15px;
+}
+#node-16782 p.dastavar:before {
+	content: "";
+	background: #9C27B0;
+	height: 2px;
+	width: 500px;
+	position: absolute;
+	right: calc(50% - 250px);
+	top: 15px;
+	z-index: -1;
+}
+body.page-node-16782:before {
+	/*content: "تا 28 مهر تمدید شد";
+	font-family: fanum;
+	position: fixed;
+	width: 350px;
+	z-index: 10;
+	color: rgb(255, 255, 255);
+	text-align: center;
+	font-size: 30px;
+	right: calc(50% - 175px);
+	box-shadow: rgba(0, 0, 0, 0.157) 0px 3px 10px, rgba(0, 0, 0, 0.227) 0px 3px 10px;
+	background: rgb(244, 67, 54);
+	border-radius: 0px 0px 25px 25px;
+	border-width: 0px 2px 2px;
+	border-style: solid solid solid;
+	border-color: rgb(255, 255, 255) rgb(255, 255, 255) rgb(255, 255, 255);
+	border-image: initial;
+	border-top: 0px;
+	top: 80px;*/
+}
+body.page-node-16782.fixed:before {
+	top: 50px;
+}
+.popup_onload div#cboxContent {
+    max-width: 97vw;
+}
+.popup_onload div#cboxContent img {
+    max-width: 94vw;
+    float: right;
+}

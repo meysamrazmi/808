@@ -310,20 +310,6 @@ div#drupalchat-wrapper {
 tr.multichoice_row.odd {
   cursor: pointer;
 }
-.page-take .field-name-body {
-  font-family: yekan;
-  margin: 20px 0 50px;
-}
-input.q-skip-button {
-  float: none;
-  display: block;
-  margin-right: auto;
-  color: #08c;
-}
-.answering-form input#edit-submit {
-  margin: 0 10px;
-  padding: 3px 25px;
-}
 .content div#quiz_progress:hover {
   opacity: 0.8;
 }
@@ -1291,7 +1277,7 @@ box-shadow: none;
 .user-history dl > *:nth-child(1), .user-history dl > *:nth-child(2) {
   display: none;
 }
-.page-user .field-type-text img {
+.page-user .field-type-text:not(.field-name-field-fake-body) img {
   width: 85%;
   vertical-align: middle;
   margin-top: 10px;

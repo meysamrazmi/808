@@ -1,0 +1,487 @@
+/* 
+ * imports section
+ */
+@import "colors.css.less"; //@mat-grey-50 ,red, ping, purple, deep-purple, indigo, blue, light-blue, cyan, teal, green, light-green, lime, yellow, amber, orange, deep-orange, brown, gray, blue-grey
+@import "vars.css.less"; 
+
+
+/*=============================*/
+.page-moshaver-research{
+
+	.pane-moarrefi{
+		&:before{
+			background: linear-gradient(135deg, #673AB7 0%, #a4a4e0 100%),url(/sites/all/themes/sara/images/bg-research.jpg?ver=1.0.3) !important;
+		}
+		
+		.moshaver-title{
+			padding-top: 160px !important;
+		}
+		
+		.moshaver-subtitle{
+			color: white;
+		}
+		
+		.moshaver-alllinks{
+			margin: 80px 0px !important;
+			a{
+				margin: 5px 5px;
+			}
+		}
+		
+		.moshaver-socials{
+			margin: 60px 0px !important;
+		}
+		
+		@media @400{
+			height: 550px !important;
+			.moshaver-title{
+				padding-top: 90px !important;
+			}
+			.moshaver-alllinks{
+				margin: 60px 0px !important;
+			}
+			.moshaver-socials{
+				margin: 40px 0px !important;
+			}
+		}
+	}
+	
+	.khadamat{
+		background-color: rgba(220, 220, 220, 0.21);
+		
+		.pane-content{
+			padding: 80px 1% 8px 1%;
+			text-align: center;
+			h2{
+				position: relative;
+				padding: 20px 0px;
+				margin: 20px 0px 50px 0px;
+				&:before{
+					content: "";
+					width: 100px;
+					height: 3px;
+					display: block;
+					background: #999;
+					right: calc(~"50% - 50px");
+					bottom: 0;
+					position: absolute;
+				}
+			}
+			ol , ul{
+				text-align: center;
+				margin: 70px 0px 100px 0px;
+				@media @840{
+					margin: 70px 0px 50px 0px;
+				}
+				
+				li{
+					line-height: 2em;
+					background-color: #ffffff;
+					margin: 50px 10px;
+					padding: 100px 15px 15px 15px;
+					width: 250px;
+					border-radius: 5px;
+					display: inline-block;
+					box-shadow: @z1;
+					min-height: 250px;
+					vertical-align: middle;
+					display: inline-flex;
+					align-items: center;
+					flex-direction: column;
+					position: relative;
+					
+					&:before{
+						content: "";
+						width: 100px;	
+						height: 100px;						
+						display: block;
+						margin: 20px 0px 30px 0px;
+						position: absolute;
+						top: -70px;
+						right: 80px;
+						box-shadow: @z2;
+						border-radius: 50%;
+					}
+					&:nth-child(1):before{background: url("../images/moshaver-like.svg");}
+					&:nth-child(2):before{background: url("../images/moshaver-analytics-1.svg");}
+					&:nth-child(3):before{background: url("../images/moshaver-doc.svg");}
+					&:nth-child(4):before{background: url("../images/moshaver-analytics.svg");}
+					&:nth-child(5):before{
+						background: url("../images/moshaver-check-mark.svg");
+					    background-color: #54c0eb;
+						background-size: 65%;
+						background-position: center;
+						background-repeat: no-repeat;
+					}
+				}
+			}
+			p{
+				font-size: 14px;
+				color: #888;
+				margin: 60px;
+			}
+		}
+	}
+	
+	.research-moshaver{
+		background-color: white !important;
+		padding: 5% 0;
+		h1.pane-title{
+			position: relative;
+			padding: 0px 0px 20px 0px;
+			text-align: center;
+			font-size: 30px;
+			margin-bottom: 80px !important;
+			&:before{
+				content: "";
+				width: 100px;
+				height: 3px;
+				display: block;
+				background: #777;
+				right: calc(~"50% - 50px");
+				bottom: 0;
+				position: absolute;
+			}
+		}
+		
+		.pane-content{
+			div{
+				text-align: center;
+				.services{
+					text-align: right;
+					min-height: 385px;
+					vertical-align: top;
+					display: inline-block;
+					width: 800px;
+					padding: 30px 50px;
+					margin: 30px 20px;
+					background-color: #fefefe;
+					box-shadow: @z1;
+					h3{
+						padding: 0px 25px;
+					}
+					ul{
+						padding: 0px 5%;
+						li{
+							line-height: 2.5em;
+						}
+					}
+				}
+				
+				.moshaver-box{
+					width: 300px;
+					background: #f9f9f9;
+					box-shadow: 0 0.5px 4px rgba(0, 0, 0, 0.24);
+					padding: 20px;
+					margin: 30px 20px 100px 20px;
+					min-height: 350px;
+					display: inline-block;
+					.pic{
+						width: 130px;
+						margin: auto;
+						img{
+							box-shadow: 0 1.5px 4px rgba(0,0,0,0.24);
+							margin: 0 auto;
+							border-radius: 50%;
+						}
+					}
+					.information{
+						margin: 0px 0px 10px 0px;
+						h1{
+							font-size: 18px !important;
+							margin: 0px !important;
+						}
+						span{
+							font-size: 11px;
+							color: #b1b1b1;
+						}
+					}
+					.links{
+						a{
+							display: block;
+							width: 50%;
+							margin: 15px auto;
+						}
+						.send-article{
+							height: 40px;
+							font-size: 18px;
+							line-height: 40px;
+						}
+						.view-profile{
+							font-size: 10px;
+							width: 90px;
+							padding: 0px;
+						}
+					}
+				}
+				
+				@media @1200{
+					.services{
+						width: 600px !important;
+						padding: 30px 20px !important;
+						margin: 30px 0px !important;
+					}
+					.moshaver-box{
+						margin: 30px 20px !important;
+					}
+				}
+				
+				@media @600{
+					.services{
+						width: 370px !important;
+						padding: 10px 10px !important;
+						margin: 30px 0px !important;
+						
+						li{
+							line-height: 1.7em;
+						}
+					}
+				}
+				
+				@media @400{
+					.services{
+						width: 320px !important;
+						padding: 20px 10px !important;
+						
+						h3{
+							padding: 0px 5px;
+						}
+						
+						ul, ol{
+							margin: 0 15px 10px 0;
+							
+							li{
+								line-height: 2em;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	.buy-article{
+		    &:before{
+				content: "";
+				background-color: rgba(109, 104, 104, 0.28);
+				width: 100%;
+				top: 0px;
+				right: 0px;
+				height: 100%;
+				position: absolute;
+				z-index: -1;
+				
+			}
+			background: url(/sites/all/themes/sara/images/moshaver-article.jpg?ver=1.0.3);
+			padding: 60px 0px 100px 0px;;
+			background-size: cover;
+			z-index: 0;
+			position: relative;
+			
+		
+		h2{
+			position: relative;
+			padding: 0px 0px 20px 0px;
+			text-align: center;
+			font-size: 30px;
+			color: white;
+			&:before{
+				content: "";
+				width: 100px;
+				height: 3px;
+				display: block;
+				background: #777;
+				right: calc(~"50% - 50px");
+				bottom: 0;
+				position: absolute;
+			}
+		}
+		.guide{
+			display: block;
+			width: 800px;
+			padding: 30px 30px 70px 20px;
+			margin: 70px auto;
+			background-color: rgba(0, 0, 0, 0.21);
+			color: white;
+			font-size: 15px;
+			text-shadow: 2px 2px rgba(0, 0, 0, 0.38);
+			
+			a{
+				margin: 15px;
+				display: block;
+				width: 110px;
+				float: left;
+			}
+			
+			li{
+				line-height: 2.3em;
+			}
+			
+			ul{
+				color: #ffe0b7;
+			}
+			
+			@media @840{
+				width: 580px;
+				padding: 30px 20px 70px 10px;
+				
+				ul, ol{
+					margin: 0 25px 10px 30px !important;
+				}
+			}
+			
+			@media @600{
+				width: 400px;
+				height: 380px;
+				padding: 30px 20px 30px 10px;
+				
+				li{
+					line-height: 1.7em !important;
+				}
+			}
+		}
+		
+		@media @400{
+			padding: 50px 0px 10px 0px !important;
+			.guide{
+			    width: 325px;
+				height: 425px;
+				margin: 60px auto 100px auto;
+				padding: 30px 10px;
+				
+				ul, ol {
+					margin: 0 25px 10px 10px !important;
+				}
+			}
+		}
+	}
+	
+	.mortabet{
+		padding: 4.8% 7%;
+		background-color: #f9f9f9;
+		text-align: center;
+		
+		h2{
+			position: relative;
+			padding: 0px 0px 20px 0px;
+			text-align: center;
+			font-size: 30px;
+			color: #000;
+			margin-bottom: 80px !important;
+			&:before{
+				content: "";
+				width: 100px;
+				height: 3px;
+				display: block;
+				background: #777;
+				right: calc(~"50% - 50px");
+				bottom: 0;
+				position: absolute;
+			}
+		}
+		.views-row{
+			display: inline-block;
+			vertical-align: top;
+			width: 15.8%;
+			text-align: center;
+			min-width: 200px;
+			background-color: white;
+			margin: 10px 1.9%;
+			box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
+			border-radius: 2px;
+			.views-field-title a{
+				color: black;
+				margin: 11px auto 19px auto;
+				display: block;
+				width: 195px;
+				text-align: right;
+			}
+		}
+	}
+}
+
+.page-translator .field-name-body .field-item{
+	.lists{
+		display: inline-block;
+		text-align: right;
+		box-shadow: @z0;
+		width: 700px;
+		padding: 20px 50px;
+		margin: 50px 0px;
+		vertical-align: top;
+		background-color: #fbfbfb;
+		
+		a{
+			color: #555 !important;
+			.before('f04f', '', 13px , #673AB7);
+			&:before{padding: 0px 3px;}
+			&:hover{
+				color: #999 !important;
+				&:before{padding: 0px 5px;}
+			}
+		}
+		p{
+			font-size: 13px;
+			padding: 5px;
+			margin: 5px 0px;
+		}
+		.omran{
+			display: inline-block;
+			vertical-align: top;
+			width: 330px;
+		}
+		.memari{
+			display: inline-block;
+		}
+		
+		@media @1100{
+			margin: 30px 0px 0px 0px;
+		}
+		@media @840{
+			width: 400px;
+		}
+	}
+	.sarparast{
+		background-color: #f8f8f8;
+		box-shadow: @z1;
+		padding: 10px;
+		margin: 50px 0px;
+		width: 280px;
+		display: inline-block;
+		min-height: 370px;
+		.info{
+			span{
+				font-size: 10px;
+				color: #aaa;
+			}
+		}
+		.pic{
+			width: 140px;
+			display: block;
+			padding: 10px;
+			margin: auto;
+			img{
+				box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24);
+				margin: 0 auto;
+				border-radius: 50%;
+			}
+		}
+		.links {
+			padding: 15px;
+			margin-bottom: 10px;
+		}
+	}
+}
+
+.page-translator, .page-affiliate {
+	#content .block-views {
+		.block-title{display: none;}
+		margin-top: 35px;
+	}
+	.field-name-field-image {
+		margin-bottom:50px !important;
+	}
+	.field-name-body h2.title {
+		margin-bottom: 35px;
+	}
+}

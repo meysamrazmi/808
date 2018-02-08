@@ -69,6 +69,17 @@ function sara_preprocess_html(&$variables) {
 	case 'pedia':
 		drupal_add_css(drupal_get_path('theme', 'sara') . '/less/pedia-pages.css.less');
 		break;
+	case 'moshaver':
+		drupal_add_css(drupal_get_path('theme', 'sara') . '/less/landing-pages.css.less');
+		break;
+	case 'landing':
+		drupal_add_css(drupal_get_path('theme', 'sara') . '/less/landing-pages.css.less');
+		break;
+	case 'question':
+		drupal_add_css(drupal_get_path('theme', 'sara') . '/less/question-pages.css.less');
+		drupal_add_css(drupal_get_path('theme', 'sara') . '/less/mh.css.less');
+		drupal_add_js(drupal_get_path('theme', 'sara') . '/js/question-pages.js');
+		break;
   }
   if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') || strpos($_SERVER['HTTP_USER_AGENT'], 'Trident/7')){
 	  drupal_add_css(drupal_get_path('theme', 'sara') . '/less/ie.css.less');
@@ -98,7 +109,16 @@ function sara_preprocess_html(&$variables) {
 		if(isset($node->field_body_classes['und'][0])){
 			$variables['classes_array'][] = $node->field_body_classes['und'][0]['value'];
 		}
-	} 
+	}
+
+	
+	if($aliases[0] == 'question' && isset($aliases[1]) && is_numeric($aliases[1])){
+		$node = node_load($aliases[1]);
+		drupal_add_js(array('asker' => $node->uid), 'setting');
+		if($node->status == 0){
+			drupal_add_js(array('status' => 'not-published'), 'setting');
+		}
+	}
 }
 
 /**
@@ -354,7 +374,16 @@ function _sara_projectnew_comment_form_validate($form, &$form_state) {
 }
 
 function sara_preprocess_comment(&$variables) {
-
+	$path = drupal_get_path_alias();
+	$aliases = explode('/', $path);
+	if($aliases[0] == 'question' && isset($aliases[1]) && is_numeric($aliases[1])){
+		$comment = $variables['elements']['#comment'];
+		$author = $comment->uid;
+		$user = user_load($author);
+		if(user_has_role(10, $user) && $comment->pid == 0){
+			$variables['classes_array'][] = "author-advisor";
+		}
+	}
 }
 
 

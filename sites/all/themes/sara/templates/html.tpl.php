@@ -8,7 +8,8 @@
  * @see template_preprocess_html()
  * @see template_process()
  */
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html xml:lang="<?php print $language->language; ?>" version="XHTML+RDFa 1.0" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces; ?>>
 <head profile="<?php print $grddl_profile; ?>">
   <!-- Global site tag (gtag.js) - Google Analytics -->

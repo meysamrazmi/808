@@ -215,7 +215,7 @@ display: inline-block;
      background: none ; 
      border: 0px solid #999; 
     border-radius: 0px; 
-    /margin: 0px; 
+     margin: 0px; 
      padding: 0px; 
 }
 .gallery.pics .views-row {
@@ -1445,11 +1445,25 @@ margin-bottom: 16px;
   display: none;
 }
 .socialss a {
-  max-width: 15% !important;
+  max-width: 40px !important;
   margin: 0 0.4%;
   float: none;
   display: inline-block;
   overflow: hidden;
+}
+.social .toolbar-chrome.icon {
+  background: url(//civil808.com/sites/all/themes/sara/images/socials/chrome.png);
+  background-repeat: no-repeat;
+  background-size: 32px;
+  border-bottom: 2px solid #4cb749;
+  background-position: center;
+}
+.social .toolbar-firefox.icon {
+  background: url(//civil808.com/sites/all/themes/sara/images/socials/firefox.png);
+  background-repeat: no-repeat;
+  background-size: 32px;
+  border-bottom: 2px solid #ce5613;
+  background-position: center;
 }
 .region-footer-contact ul * {
   padding-left: 0 !important;
@@ -1509,9 +1523,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .reset-active {
   font-size: 10px;
-  font-family: b yekan;
-  color: #999;
-  margin-top: 5px;
+  color: #777;
 }
 #comments .group-footer {
   position: absolute;
@@ -1692,7 +1704,7 @@ padding: 0;
   margin-bottom: 0;
 }
 .region-ads3 #block-tb-megamenu-main-menu > div.content > div > div > ul > li.tb-megamenu-item.level-1 > div > div > div:nth-child(2) .span3 {
-  min-height: 250px;
+  min-height: 315px;
 }
 .region-ads3 #block-tb-megamenu-main-menu > div.content > div > div > ul > li.tb-megamenu-item.level-1 > div > div > div:nth-child(1) a:focus,
 .region-ads3 #block-tb-megamenu-main-menu > div.content > div > div > ul > li.tb-megamenu-item.level-1 > div > div > div:nth-child(1) a:hover {

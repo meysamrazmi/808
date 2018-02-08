@@ -39,18 +39,31 @@ $(document).ready(function () {
         });
     }
 
-	if($('.page-node.page-pedia .field-name-user-with-expert').length){
-		$('.field-name-user-with-expert').attr('id', 'user_experts');
-		if($('.view-user-experts.view-id-user_experts > .view-content').children().length < 4){
-				$('.view-user-experts.view-id-user_experts > .view-content .views-row').css("float", "none");
+	 if($('.page-node.page-pedia .field-name-user-with-expert').length){
+		$('.field-name-user-with-expert').attr('id', 'advisor_experts');
+		if($('.view-display-id-pedia_experts_advisors > .view-content').children().length < 4){
+				$('.view-display-id-pedia_experts_advisors > .view-content .views-row').css("float", "none");
 		}
-		console.log($('.view-user-experts.view-id-user_experts > .view-content').children().length);
-		console.log(window.matchMedia('(max-width: 900px)').matches);
-		if( (window.matchMedia('(max-width: 600px)').matches && $('.view-user-experts.view-id-user_experts > .view-content').children().length > 1) ||
-			(window.matchMedia('(max-width: 900px)').matches && $('.view-user-experts.view-id-user_experts > .view-content').children().length > 2) ||
-			(window.matchMedia('(max-width: 1200px)').matches && $('.view-user-experts.view-id-user_experts > .view-content').children().length > 3) ||
-			($('.view-user-experts.view-id-user_experts > .view-content').children().length > 4) ){
-				$('.view-user-experts.view-id-user_experts > .view-content').addClass('owl-carousel');
+		if( (window.matchMedia('(max-width: 600px)').matches && $('.view-display-id-pedia_experts_advisors > .view-content').children().length > 1) ||
+			(window.matchMedia('(max-width: 900px)').matches && $('.view-display-id-pedia_experts_advisors > .view-content').children().length > 2) ||
+			(window.matchMedia('(max-width: 1200px)').matches && $('.view-display-id-pedia_experts_advisors > .view-content').children().length > 3) ||
+			($('.view-display-id-pedia_experts_advisors > .view-content').children().length > 4) ){
+				$('.view-display-id-pedia_experts_advisors > .view-content').addClass('owl-carousel');
+		}
+		
+		$('.divanchors').append('<a class="advisors" href="#advisor_experts"><span>مشاوران متخصص</span></a>');
+	}
+	
+	if($('.page-node.page-pedia .field-name-all-pedia-experts-user').length){
+		$('.field-name-all-pedia-experts-user').attr('id', 'user_experts');
+		if($('.view-display-id-pedia_experts_users > .view-content').children().length < 4){
+				$('.view-display-id-pedia_experts_users > .view-content .views-row').css("float", "none");
+		}
+		if( (window.matchMedia('(max-width: 600px)').matches && $('.view-display-id-pedia_experts_users > .view-content').children().length > 1) ||
+			(window.matchMedia('(max-width: 900px)').matches && $('.view-display-id-pedia_experts_users > .view-content').children().length > 2) ||
+			(window.matchMedia('(max-width: 1200px)').matches && $('.view-display-id-pedia_experts_users > .view-content').children().length > 3) ||
+			($('.view-display-id-pedia_experts_users > .view-content').children().length > 4) ){
+				$('.view-display-id-pedia_experts_users > .view-content').addClass('owl-carousel');
 		}
 		
 		$('.divanchors').append('<a class="users" href="#user_experts"><span>کاربران متخصص</span></a>');
@@ -67,10 +80,11 @@ $(document).ready(function () {
 		$('.front .crousal-galley .view-content').addClass('owl-carousel');
 	}
     
+	
 	/*runing owl*/
 	if($('.owl-carousel').length){
 		$.getScript('/sites/all/themes/sara/js/lib/owl.carousel.min.js', function(){
-			$('.owl-carousel').owlCarousel({
+			$('.owl-carousel').not('.view-online-users .owl-carousel').owlCarousel({
 				rtl:true,
 				loop:true,
 				margin:15,
@@ -86,7 +100,43 @@ $(document).ready(function () {
 			$('.owl-prev').text('بعدی')
 			$('.owl-next').text('قبلی')
 		})
-	}	
+	}
+
+		
+	/*using owl for online-users*/
+	/* $('.view-online-users > .view-content').addClass('owl-carousel'); */
+	
+	if((window.matchMedia('(max-width: 400px)').matches && $('.view-online-users > .view-content').children().length > 2) ||
+		(window.matchMedia('(max-width: 700px)').matches && $('.view-online-users > .view-content').children().length > 4) ||
+		($('.view-online-users > .view-content').children().length > 7) ){
+			$('.view-online-users > .view-content').addClass('owl-carousel');
+	}
+	
+	if($('.view-online-users .owl-carousel').length){
+		$.getScript('/sites/all/themes/sara/js/lib/owl.carousel.min.js', function(){
+			$('.view-online-users .owl-carousel').owlCarousel({
+				rtl:true,
+				loop:true,
+				margin:15,
+				responsiveClass:true,
+				nav:true,
+				dots:false,
+				autoplay: true,
+				autoPlaySpeed: 2000,
+				
+				responsive:{
+					0:{items:2},
+					400:{items:3, margin:5},
+					700:{items:5},
+					1000:{items:8}
+				}
+			});
+			$('.owl-prev').text('')
+			$('.owl-next').text('')
+		})
+	}
+	
+	
     /*creating default image for pedia node refrenced node ---- with owl crousal*/
     $('.page-node.page-pedia .field-type-node-reference > div.field-items .owl-item').each(function(){
         if(!$(this).find('.field-type-image').length){
@@ -99,7 +149,7 @@ $(document).ready(function () {
 		$('.divanchors').append('<a class="commentanch" href="#comments"><span>نظرات</span></a>');
     }
 
-    $('.divanchors a , .page-moshaver a.moshaver-links:not(.b)').click(function(e) {
+    $('.divanchors a , .page-moshaver a.moshaver-links:not(.b) , .page-moshaver .search-links').click(function(e) {
         e.preventDefault();
         $('html, body').animate({
             scrollTop: $($(this).attr('href')).offset().top - 50
@@ -107,7 +157,7 @@ $(document).ready(function () {
     });
     
     /*closing landing-job submittion*/
-    $('.page-node-14314 #webform-client-form-14314 .form-actions,.page-node-14314 #webform-client-form-14314  .captcha').remove();
+    /*$('.page-node-14314 #webform-client-form-14314 .form-actions,.page-node-14314 #webform-client-form-14314  .captcha').remove();*/
     
     /*adjusting view-empty result for bookmarks*/
     if($('.page-user-bookmarks #block-system-main > div > div > div.view-empty').length){
@@ -120,8 +170,12 @@ $(document).ready(function () {
     if ($('.flag-outer-bookmarks').length){
         $('.flag-outer-bookmarks').append('<div class="flag-hint"><span>این مطلب را به لیست نشان شده ها اضافه کنید</span></div>')
     }
-    
-    
+	if ($('.flag-outer-notify-product-existing-status').length){
+        $('.flag-outer-notify-product-existing-status').append('<span class="flag-product-hint">زمانی که  این محصول موجود است به من اطلاع بده</span>');
+		$('.flag-outer-notify-product-existing-status').addClass('btn');
+    }
+	
+	
     if($('#college-elmi-block > div > div > div > div.views-row').length){
         $('#college-elmi-block > div > div > div > div.views-row').each(function(){
             if(!$(this).find('.views-field-field-image').length){
@@ -132,9 +186,14 @@ $(document).ready(function () {
      
     $(".user-left-links .column-inside .region-first .pane-content .azl a").text('در ارتباط');
     $(".page-user .main-tab .tabs.primary .myresults a").text('نتایج آزمون');
-    $("#user-register-form .field-name-field-laws label").empty();
-    $("#user-register-form .field-name-field-laws label").append('<a href="http://civil808.com/node/865" target="_blank" title="قوانین سایت">شرایط و قوانین</a>&nbsp;سایت را می پذیرم.<span class="form-required" title="این فیلد اجباری است.">*</span>');
-    $('.not-logged-in.not-same-user.profile .user-left-links .add a, .not-logged-in.not-same-user.profile .user-left-links .send-message a').click(function(e){
+    
+	$("#user-register-form .field-name-field-laws label").empty();
+	$("#user-register-form .field-name-field-laws label").append('<a href="http://civil808.com/node/865" target="_blank" title="قوانین سایت">شرایط و قوانین</a>&nbsp;سایت را می پذیرم.<span class="form-required" title="این فیلد اجباری است.">*</span>');
+	
+	$("#user-profile-form .field-name-field-laws label").empty();
+	$("#user-profile-form .field-name-field-laws label").append('<a href="http://civil808.com/node/865" target="_blank" title="قوانین سایت">شرایط و قوانین</a>&nbsp;سایت را می پذیرم.<span class="form-required" title="این فیلد اجباری است.">*</span>');
+    
+	$('.not-logged-in.not-same-user.profile .user-left-links .add a, .not-logged-in.not-same-user.profile .user-left-links .send-message a').click(function(e){
 		e.preventDefault();
 		$('#block-panels-mini-user-panel h2.block-title').click();
 	});
@@ -145,7 +204,9 @@ $(document).ready(function () {
 	   	$(this).remove();
 	   }
     });
-    $('.page-pedia.page-tag h1#page-title').after('<a href="/pedia" class="mainpedia" target="_blank">صفحه اصلی دانشنامه</a>');
+	$('.page-pedia.page-tag h1#page-title').after('<a href="/pedia" class="mainpedia" target="_blank">صفحه اصلی دانشنامه</a>');
+	
+	
     
     /*removing administration content from user-content block*/
     /*----------work fine but until removing it from main tab, i commenting it

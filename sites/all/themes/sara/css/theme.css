@@ -586,12 +586,7 @@ display: block;
     margin: 0;
 }
 .comment-form .form-submit {
-  display: block;
-  float: left;
-  padding: 4px 15px 5px;
   margin-right: 10px;
-  border-radius: 2px;
-  box-shadow: 0 2px 2px #edeef0;
 }
 .comment-form .form-actions {
 border: none;

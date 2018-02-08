@@ -13,6 +13,7 @@
 @1100 : ~"all and (max-width: 1100px)";
 @1200-980 : ~"(min-width: 980px) and (max-width: 1200px)";
 @980-769 : ~"(max-width: 979px) and (min-width: 769px)";
+@992 : ~"(max-width: 992px)";
 @960 : ~"(max-width: 960px)";
 @840 : ~"(max-width: 840px)";
 @768 : ~"(max-width: 768px)";
@@ -84,7 +85,7 @@
 	box-shadow: @z1;
 	overflow: hidden;
 }
-.btn{
+.btn(){
 	background: #fbfbfb;
 	border: none;
 	height: 36px;
@@ -107,28 +108,28 @@
 		box-shadow: @z2;
 	}
 }
-.red-btn{
+.red-btn(){
 	.btn;
 	background: @mat-red;
 	color: #fff !important;
 	&:hover{ background-color: @mat-red-400;}
 	&:focus{ background: @mat-red;}
 }
-.green-btn{
+.green-btn(){
 	.btn;
 	color: #fff !important;
 	background-color: @mat-green;
 	&:hover{ background-color: saturate(@mat-green, 10%);}
 	&:focus{ background: @mat-green;}
 }
-.blue-btn{
+.blue-btn(){
 	.btn;
 	color: #fff !important;
 	background-color: @mat-blue;
 	&:hover{ background-color: saturate(@mat-blue, 10%);}
 	&:focus{ background: @mat-blue;}
 }
-.small-btn{
+.small-btn(){
 	line-height: 30px;
 	height: 30px;
 	min-width: 75px;
@@ -145,4 +146,26 @@
 	& when not (@dir = '') {flex-direction: @dir;}	
 	& when not (@align = '') {align-items: @align;}	
 	& when not (@justify = '') {justify-content: @justify;}	
+}
+/*--------------------------------webkits-----------------------------*/
+.border-radius(@radius) {
+    -webkit-border-radius: @radius;
+       -moz-border-radius: @radius;
+            border-radius: @radius;
+}
+.box-shadow(@arguments) {
+    -webkit-box-shadow: @arguments;
+       -moz-box-shadow: @arguments;
+            box-shadow: @arguments;
+}
+.transform(@arguments){
+	-ms-transform: @arguments;
+	-webkit-transform: @arguments;
+	transform: @arguments;
+}
+.background-size(@value){
+	background-size: @value;
+	-webkit-background-size: @value;
+	-moz-background-size: @value;
+	-o-background-size: @value;
 }

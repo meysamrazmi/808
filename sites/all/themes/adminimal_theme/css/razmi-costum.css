@@ -321,7 +321,7 @@ fieldset#edit-alternatives-0-answer-format,
   display: block !important;
 }
 #edit-alternatives fieldset fieldset {
-  min-height: 110px;
+  min-height: 60px;
   border-top: none;
   margin: 0;
   padding: 0;
@@ -740,22 +740,26 @@ fieldset legend {
 
 /*---------------quiz----------------------*/
 
-.page-node-add-multichoice #edit-alternatives #edit-alternatives-0,
-.page-node-add-multichoice #edit-alternatives #edit-alternatives-1,
-.page-node-add-multichoice #edit-alternatives #edit-alternatives-2,
-.page-node-add-multichoice #edit-alternatives #edit-alternatives-3{
+#edit-alternatives #edit-alternatives-0,
+#edit-alternatives #edit-alternatives-1,
+#edit-alternatives #edit-alternatives-2,
+#edit-alternatives #edit-alternatives-3{
 	width: 49%;
     display: inline-block;
 	vertical-align:top;
+	padding-top: 0;
 }
-.page-node-add-multichoice #edit-alternatives thead{
+#edit-alternatives thead{
 	display:none;
 }
-.page-node-add-multichoice #edit-alternatives .form-item label {
+#edit-alternatives .form-item label {
     font-size: 12px !important;
 }
-.page-node-add-multichoice #edit-alternatives .form-type-textarea > label{
+#edit-alternatives .form-type-textarea > label{
 	display:none;
+}
+#edit-alternatives .description {
+	display: none;
 }
 /*-------------page-orders-----------------*/
 

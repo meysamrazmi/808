@@ -32,31 +32,6 @@ if($('.page-saze .view-all-new').length){
 		$('.page-saze .view-all-new').append('<div class="more-link"><a href="/news">+ مشاهده موارد بیشتر  </a></div>');
 	}
 }
-/*---------------------------fix left block of college --------------------------------------------------------------------------
-var fixdiv = $('.course-info');
-if (fixdiv.length && $('.main').height() > (1.3 * fixdiv.height())){
-	var divtop = fixdiv.offset().top;
-	var footer = $('#footer');
-	
-	$(window).scroll(function () {
-		if ($(this).scrollTop() > divtop - 66) {
-			fixdiv.addClass("fixside");
-			fixdiv.removeClass("endfix");
-			fixdiv.css("margin-top", "0px" );
-		} 			if( $(this).scrollTop() > footer.offset().top - fixdiv.height() - 80) {
-			fixdiv.removeClass("fixside");
-			fixdiv.addClass("endfix");
-			height = footer.offset().top - fixdiv.height() - divtop -50;
-			$('.endfix').css("margin-top", height );
-			
-		}
-		if( $(this).scrollTop() < divtop - 75) {
-			fixdiv.removeClass("fixside");
-			fixdiv.removeClass("endfix");
-			fixdiv.css("margin-top", "0px" );
-		}
-	});
-}
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 /*this block is for securing a little more courses registration that user couldnt change the prices*/
 if($('#node-1997').length){
@@ -546,24 +521,23 @@ if($('.page-event').length){
 	$('.container.main').removeClass('container');
 }
 /*-------------------------------------------------------------------------------------------------------------------------------*/
-$('.comment-form').on('focus', 'textarea', function () {
-	CommentOpen();
+var comments = $('body:not(.node-type-questions) .comment-form');
+comments.on('focus', 'textarea', function () {
+	CommentOpen($(this));
 });
 // Open Notifications
-CommentOpen = function() {
-	$('.comment-form').addClass('writing');
-	$('.comment-form').find('.form-actions').slideDown();
+CommentOpen = function(comment) {
+	comment.addClass('writing').find('.form-actions').slideDown();
 	
 	$('html').unbind("click", CommentClose);
 };
-// Close Comment Form
 CommentClose = function() {
-	$('.comment-form').removeClass('writing');
-	$('.comment-form').find('.form-actions').slideUp();		
+	comments.removeClass('writing');
+	comments.find('.form-actions').slideUp();		
 	
-	$('html').unbind("click", CommentClose);
+//	$('html').unbind("click", CommentClose);
 };
-$('.comment-form').click(function(event){
+comments.click(function(event){
 	event.stopPropagation();
 });
 $('html').click(function(event){
@@ -607,10 +581,74 @@ $(window).scroll(function () {
 	}
 });
 /*-------------------------------------------مربوط به کاربر------------------------------------------------------------------------------*/
+
+/*question-tab*/
+var select = $('.page-user-myquestions #quicktabs-user_questions_tab #qt-user_questions_tab-ui-tabs3');
+select.find('td.views-field-field-prove-advisor').each(function(){
+	if($(this).text() == 1){
+		$(this).addClass("advisor-proved");
+		$(this).attr("title" , "تایید شده توسط مشاور");
+	}else if($(this).text() == 0){
+		$(this).addClass("no-advisor-prove");
+		$(this).attr("title" , "تایید نشده");
+	}
+	$(this).text("");
+});
+select.find('td.views-field-field-prove-asker').each(function(){
+	if($(this).text() == 1){
+		$(this).addClass("asker-proved");
+		$(this).attr("title" , "تایید شده توسط نویسنده سوال");
+	}else if($(this).text() == 0){
+		$(this).addClass("no-asker-prove");
+		$(this).attr("title" , "تایید نشده");
+	}
+	$(this).text("");
+});
+
+/*bookmark table*/
+if(!$('.page-user #block-system-main .content .pane-quicktabs-user-bookmark').length){
+	$('.page-user #block-system-main .content .row-17-main-row .region-17-center-inside').prepend('<div class="pane-quicktabs pane-quicktabs-user-bookmark"><h2 class="pane-title">نشان شده ها</h2><div class="pane-content empty-msg"><span> هیچ محتوایی نشان نشده است. </span><span>با کلیک بر روی آیکن <span class="icon"></span> در کنار هر محتوا، آن را به لیست نشان شده های خود بیفزایید.</span><a class="btn btn-primary" target="_blank" href="/pedia">محتوای تخصصی</a></div></div>');
+}
+
+/*userpoints section*/
+if($('.page-user-points #userpoints-list-transactions tbody .empty.message').length){
+	$('.page-user-points #userpoints-list-transactions').css({'display' : 'none'});
+	$('.page-user-points #block-system-main .content').append('<div class="empty-userpoint"><span>برای شما هیچ اعتباری ثبت نشده است!</span><a href="/user/money/charge" class="btn btn-primary" target="_blank">افزایش اعتبار</a></div>');
+}
+
+/*solded content*/
+if($('.user-sale-report #qt-sold_content_tab-ui-tabs1 .item-list').length){
+	$('.user-sale-report #qt-sold_content_tab-ui-tabs1 .item-list a').each(function(){
+		$url = $(this).attr('href');
+		$(this).attr('href', $url+'#quicktabs-sold_content_tab=0');
+	});
+}
+if($('.user-sale-report #qt-sold_content_tab-ui-tabs2 .item-list').length){
+	$('.user-sale-report #qt-sold_content_tab-ui-tabs2 .item-list a').each(function(){
+		$url = $(this).attr('href');
+		$(this).attr('href', $url+'#quicktabs-sold_content_tab=1');
+	});
+}
+if($('.user-sale-report #qt-sold_content_tab-ui-tabs3 .item-list').length){
+	$('.user-sale-report #qt-sold_content_tab-ui-tabs3 .item-list a').each(function(){
+		$url = $(this).attr('href');
+		$(this).attr('href', $url+'#quicktabs-sold_content_tab=2');
+	});
+}	
+
 /*messages section*/
 $('.privatemsg-author-name a').each(function(){
 	$(this).parents('.privatemsg-message').addClass('others');
 });
+if($('.privatemsg-message-participants a').length){
+	var temp = $('.privatemsg-message-participants a').attr('href').split("/");
+	if(temp[2] == "2"){
+		$('.page-user-messages-view form').css({'display' : 'none'});
+	}
+}
+
+$('form#privatemsg-new #edit-recipient').after('<div class="advisor-link"><a title="میتوانید با مشاوران اختصاصی سایت رفع اشکال کنید" class="btn small-btn" href="/landing/advisor">لیست مشاوران</a></div>');
+
 /*login section*/
 $('#login-link').text('ورود');
 $('#register-link').text('ثبت نام');
@@ -750,14 +788,9 @@ $('.all-members .views-field-status-link .add.not-login a').click(function(e){
 	e.preventDefault();
 	$('#block-panels-mini-user-panel h2.block-title').click();
 });
-$('.page-user .inside .add.not-login a').click(function(e){
-	e.preventDefault();
-	console.log('yess');
-	$('#block-panels-mini-user-panel h2.block-title').click();
-});
 
 if($('.view-represation').length){
-	$('.view-represation .views-widget-filter-rid').before('<span class="more-filter" title="فیلتر های بیشتر"></span>');
+	$('.view-represation .views-widget-filter-field_experts_tid').before('<span class="more-filter" title="فیلتر های بیشتر"></span>');
 	$('.more-filter').click(function(){
 		$(this).toggleClass('opened');
 		$(this).prevUntil('.views-widget-filter-field_full_name_value_1').animate({width:'toggle'},0);
@@ -767,10 +800,8 @@ if($('#edit-field-education-degree-value').val() ||
 	$('#field_education_field_value').val() || 
 	$('#edit-field-university-value').val() || 
 	$('#edit-field-job-value').val() || 
-	$('#edit-field-about-me-value').val() || 
-	$('#edit-field-experts-tid').val())
+	$('#edit-field-about-me-value').val())
 {
-	console.log("yy");
 	$('.more-filter').click()
 }
 /*user-profile required fields*/
@@ -939,7 +970,7 @@ if($('.menu-column').length){
 }
 /*-----------------------------------------------------------------------------------------------------------------*/
 $('input#edit-price').keyup(function(){
-	$(this).parents('form').find('#smile span').text((parseInt($(this).val(),10) * 1.2));
+	$(this).parents('form').find('#smile span').text((parseInt($(this).val()/** 1.2*/,10)));
 });
 /*-----------------------------------------------------------------------------------------------------------------*/
 if($('.page-college-search').length && $('.view-courses .views-exposed-widgets .filters').length == 0){
@@ -1055,6 +1086,10 @@ var interval = setInterval( function(){
 
 
 
+
+
+
+
 }); /*===> end of document.ready-function*/
 /*#################################################*/
 $(window).resize(function() {
@@ -1126,8 +1161,7 @@ function initialise(){
 	
 	/*-----------------------------------------------------------------------------------------------------------------*/
 	var boot_file_selector = $(
-	'div#edit-support-ticket-upload .file-widget'+
-	', div#edit-field-hw-video .file-widget'+
+	'div#edit-support-ticket-upload .file-widget, div#edit-field-hw-video .file-widget'+
 	', input#edit-picture-upload'+
 	', #user-profile-form .form-item input.form-file'+
 	', input.form-file');
@@ -1138,7 +1172,7 @@ function initialise(){
 	}
 	
 	$('.ui-state-error .ui-pnotify-text').each(function(){
-		if($(this).text().indexOf("public_html") > 0 || $(this).text().indexOf("module") > 0){
+		if($(this).text().indexOf("public_html") > 0 || $(this).text().indexOf("module") > 0 || $(this).text().indexOf("Undefined") > 0 ){
 			$(this).parents(".ui-widget").addClass("admin-error");
 			window.cleard_error_msg = true;
 		}
@@ -1339,6 +1373,12 @@ Drupal.behaviors.myBehavior = {attach: function (context, settings) {
 	$('.field-name-unavailable').each(function(){
 		$(this).parent().children('.add-to-cart').css({'display' : 'none'});
 	});
+	$('.group-left .field-name-unavailable #unavailable').parents(".node").addClass("node-unavailable");
+	// $('.group-footer  .view-relative-contents  .view-content').children().each(function(){
+		// if($(this).children().children('.field-name-unavailable').length){
+			// $(this).children().children('.add-to-cart').css({'display' : 'none'});
+		// }
+	// });
 
 	/*------------------------------------------------- مربوط به کاربر -------------------------------------------------------*/
 	$('div#quicktabs-user_contents .ui-tabs-panel .views-row, div#block-quicktabs-user-bookmark .ui-tabs-panel .views-row,div#quicktabs-user_bookmark .ui-tabs-panel .views-row').each(function(){
@@ -1351,6 +1391,7 @@ Drupal.behaviors.myBehavior = {attach: function (context, settings) {
 			$(this).text('نظر خود را بنویسید');
 		}
 	});
+if($('.form-managed-file').find('.file-resup-wrapper').length){$('.form-managed-file').addClass('has-resumeable')}
 
 
 	$('#block-block-45').find('.close-banner').click(function(){
@@ -1368,8 +1409,12 @@ Drupal.behaviors.myBehavior = {attach: function (context, settings) {
 		$('[id*=edit-panes-payment-payment-method-other] ~ span').slideDown();
 	});
 	
-	
-	
+	if($('.page-user-myresults #block-system-main > .content').children().length == 0){
+		$('.page-user-myresults #block-system-main').css({'display' : 'none'});
+	}
+	else if($('.page-user-myresults #block-system-main > .content').children().length > 0){
+		$('.page-user-myresults .empty-result').css({'display' : 'none'});
+	}
 }};
 /*----------------------------------------------------------------------*/
 /*

@@ -6,8 +6,55 @@
 
 
 /*=============================*/
-.node-type-architect{
-    .group-anchor > .fieldset-wrapper{
+.page-13958 .node-unpublished {
+    background-color: transparent !important;
+}
+.field-name-user-with-expert, .field-name-all-pedia-experts-user {
+    text-align: center;
+	.field-label {
+		margin: 32px auto 6px auto;
+		font-size: 23px;
+		border-bottom: 3px solid rgb(32,206,204);
+		text-align: center;
+		display: inline-block;
+		padding: 0 23px 8px 20px;
+	}
+}
+.field-name-field-porojhe .owl-carousel .node-gallerynew.node-teaser{
+	width:auto;
+}
+.page-node.node-type-architect .field-name-title h1{
+	font-size: 23px;
+    margin: 20px 0px 4px 0px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-bottom: 8px;
+}
+.page-node.node-type-architect .social-share {
+    background-color: white;
+    width: 82.5%;
+    margin: 20px auto 0 auto;
+}
+.node-type-architect .pane-shop-products .views-row{
+    width: 23.5%;
+}
+
+.page-node.node-type-architect .view-mode-full > .group-header {
+    > .field-name-field-arch-picture img{
+        display: block;
+        border-radius: 100%;
+        overflow: hidden;
+        box-shadow: 0px 0px 20px -2px #aaa;
+        padding: 0px !important;
+        float: none !important;
+        margin: auto;
+    }
+    > .field-name-title{
+        text-align: center;
+        margin: auto;
+        float: none;
+    }
+    > .group-anchor > .fieldset-wrapper{
         padding:0px;
         width: 80%;
         margin: auto;
@@ -65,8 +112,11 @@
                 &.commentanch:before{
                     content: "\f181";
                 }
-				&.users:before{
-                	content: "\f006"
+                &.advisors:before{
+                    content: "\f008";
+                }
+                &.users:before{
+                    content: "\f006";
                 }
                 span {
                     background-color: white;
@@ -83,6 +133,17 @@
                     opacity: 1;
                 }
             } 
+        }
+        .field-name-field-architecttext{
+            padding: 20px 30px 102px 30px;
+            background-color: #fff;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
+            .field-item{
+                font-size:13px;
+                > *:nth-child(1) {
+                    text-indent: 20px;
+                }
+            }
         }
         .group-barchab-dastebandi{
             position: absolute;
@@ -116,27 +177,90 @@
             } 
         }
     }
+    .field-type-node-reference{
+        width: 80%;
+        margin: auto;
+        text-align: center;
+        > .field-items > .field-item,
+        > .field-items .owl-item > .field-item{
+	        width: 200px;
+            display: inline-block;
+            vertical-align: top;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            padding: 0px;
+            margin: 14px 14px;
+            &:hover{
+                box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            }
+        }
+        &:not(.field-name-field-shopproduct) > .field-items{
+            > .field-item > div,
+            .owl-item > .field-item > div{
+                width: 100%;
+                padding: 0px;
+                height: 205px;
+                overflow: hidden;
+                padding-bottom: 0 !important;
+                box-shadow: none;
+                background-color: transparent;
+                margin: 0;
+                min-height: 205px;
+                max-height: 205px;
+            }
+            > .field-item .group-header .field-name-field-pictures,
+            .owl-item > .field-item .group-header .field-name-field-pictures{
+	            display:block;
+            }
+            > .field-item .group-header .field-name-title h2,
+            .owl-item > .field-item .group-header .field-name-title h2{
+                margin:0px;
+                a{
+                    padding: 0px 10px 0px 10px;
+                    text-align: right;
+                    font-size: 13px;
+                    font-weight: 400;
+                    line-height: 23px;
+                    max-height: 73px;
+                    overflow: hidden;
+                    &:hover{
+                        color:black !important;
+                    }
+                }
+            }
+            .owl-item > .field-item .group-header .field-name-title h2 a{
+                margin-top: 10px; 
+            }
+        }
+        &.field-name-field-shopproduct{
+            > .field-items > .field-item ,
+            > .field-items .owl-item > .field-item{
+	            background-color: #fff;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            }
+            .node-product.node-teaser,
+            .node-product-kit.node-teaser{
+	            width:100%;
+	            margin: 0px !important;
+            }
+        }
+        &.field-name-field-filmmortabet .node-film.node-teaser{
+            &:hover {
+                box-shadow: none !important;
+            }
+            .field-name-title {
+                padding: 10px 5px;
+                margin: 0;
+            }
+        }
+        > div.field-label {
+            margin: 32px auto 6px auto;
+            font-size: 23px;
+            border-bottom: 3px solid rgb(32,206,204);
+            text-align: center;
+            display: inline-block;
+            padding: 0 23px 8px 20px;
+        }
+    }
 }
 
-.page-13958 .node-unpublished {
-    background-color: transparent !important;
-}
-
-.field-name-user-with-expert {
-    text-align: center;
-	.field-label {
-		margin: 32px auto 6px auto;
-		font-size: 23px;
-		border-bottom: 3px solid rgb(32,206,204);
-		text-align: center;
-		display: inline-block;
-		padding: 0 23px 8px 20px;
-	}
-}
-
-.page-pedia .all-members .views-row {
-	float: none;
-}
-.field-name-field-porojhe .owl-carousel .node-gallerynew.node-teaser{
-	width:auto;
-}

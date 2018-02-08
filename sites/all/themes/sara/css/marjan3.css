@@ -99,7 +99,7 @@
     padding-right: 5px;
 }
 .page-eng div#jquery-countdown-timer-note:before {
-    content: ' تا آزمون ورود به حرفه نظام مهندسی 96 ، ';
+    content: ' تاریخ اعلام نتایج آزمون مهر 96 , ';
 }
 .page-eng .eng808-course-exam-row .views-row .views-field-field-edu-duration,
 .page-eng .eng808-course-exam-row .views-row .views-field-field-edu-time{
@@ -1014,10 +1014,6 @@ div#unavailable ,
     height: 18px;
     margin-right: 8px;
 }
-.node-product.view-mode-full .field-name-unavailable{
-	clear:both;
-	float:right;
-}
 .node-product .group-footer .field.field-name-unavailable {
     background: transparent;
     box-shadow: none;
@@ -1295,6 +1291,19 @@ ul.sidebar_menu_user li.my-nodes a:before {
 }
 ul.sidebar_menu_user li.logout a:before {
 	content: "\e017";
+}
+ul.sidebar_menu_user li.qyestions a:before {
+    content: "?";
+    font-family: irans;
+    border: 1px solid;
+    line-height: 24px;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 17px;
+    margin: 0 -2px 0 10px;
 }
 ul.sidebar_menu_user li.profile-edit a:before {
   content: "\f3eb";
