@@ -119,12 +119,13 @@ function uc_zarinpal_complete_page($order_id) {
   watchdog('zarinpal', 'Zarinpal payment #%refid verification succeeded', array('%refid' => $refid), WATCHDOG_INFO);
   $message = t('Payment successful. Refernce: %refid', array('%refid' => $refid));
   
+  
 	$params = array(
 	  'uid' => $order->uid,
 	  'points' => ($order_total / 5),
-	  'operation' => 'شارژ هدیه به مناسبت جشنواره تابستانی',
+	  'operation' => 'شارژ هدیه به مناسبت جشنواره روز دانشجو',
 	);
-	 // userpoints_userpointsapi($params); // شارژ اضافه برای جشنواره */
+	/*userpoints_userpointsapi($params);  /*شارژ اضافه برای جشنواره */
   
   uc_payment_enter($order->order_id, $order->payment_method, $order->order_total, 0, NULL, 'Paid Successfully');
 

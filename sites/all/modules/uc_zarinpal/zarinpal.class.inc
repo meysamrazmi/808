@@ -350,7 +350,7 @@ class Zarinpal {
       '%msg' => $msg,
     ));
 
-    return $message;
+    return ($code != 101)? $message : '';
   }
 }
 

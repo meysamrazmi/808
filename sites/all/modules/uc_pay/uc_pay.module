@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 function uc_pay_uc_payment_gateway() {
   $gateways['uc_pay'] = array(
     'title' => t('pay.ir Gateway'),
