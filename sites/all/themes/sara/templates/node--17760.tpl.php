@@ -5,11 +5,11 @@
     <?php
     //sis3_VP8.webm,sis3_x264.mp4
     $video_attrs = array(
-    	'src' => '/sites/default/files/filed/files/sis3_VP8.webm',
+    	'src' => '/sites/default/files/filed/files/node_18129-sis3_vp8.webm',
     	'width' => '840px',
-    	'height' => '447px',
-    	'videoWidth' => '840px',
-    	'videoHeight' => '447px',
+        'height' => '447px',
+        'videoWidth' => '840px',
+        'videoHeight' => '447px',
     	'controls' => true,
     );
     $video_sett =  array(
@@ -52,8 +52,7 @@
 <section class="second">
     <h2 class="text"> ثبت نام در کارگاه + تهیه بلیط رونمایی از نرم افزار SeismoBuild </h2>
 	<div class="takhfifat">
-		<p>با احتساب <span>10 %</span> تخفیف زودهنگام تا 22 بهمن ماه</p>
-		<p>و<span>5 %</span> تخفیف بیشتر به ازای اضافه شدن هر نفر تا سقف 20 درصد</p>
+		<p>و<span>5 %</span> تخفیف به ازای اضافه شدن هر نفر تا سقف 20 درصد</p>
 	</div>
 	<div class="tickets">
 		<div>
@@ -65,8 +64,7 @@
                     <div class="tarikh">شنبه 28 بهمن 1396 </div>
                     <div class="makan"> هتل المپیک </div>
                     <div class="zaman"> ساعت 4 تا 8 عصر </div>
-					<div class="ghabl mablagh"> 200 هزار تومان </div>
-                    <div class="mablagh"> 180 هزار تومان </div>
+                    <div class="mablagh"> 200 هزار تومان </div>
                     <img src="/sites/all/themes/sara/images/azadi-tower.png" width="150px" height="auto" style="opacity:0.1;">
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
@@ -78,8 +76,7 @@
                     <div class="tarikh"> سه شنبه 24 بهمن 1396 </div>
                     <div class="makan"> هتل پردیسان مشهد </div>
                     <div class="zaman"> ساعت 4 تا 8 عصر </div>
-					<div class="ghabl mablagh"> 100 هزار تومان </div>
-                    <div class="mablagh"> 90 هزار تومان </div>
+                    <div class="mablagh"> 100 هزار تومان </div>
                     <img src="/sites/all/themes/sara/images/mashad.png" width="330px" height="auto" style="left:20px;">
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
@@ -93,21 +90,20 @@
                     <div class="tarikh"> پنج شنبه 26 بهمن 1396 </div>
                     <div class="makan"> هتل پارس تبریز </div>
                     <div class="zaman"> ساعت 3 تا 7 عصر </div>
-					<div class="ghabl mablagh"> 100 هزار تومان </div>
-                    <div class="mablagh"> 90 هزار تومان </div>
+                    <div class="mablagh"> 100 هزار تومان </div>
                     <img src="/sites/all/themes/sara/images/tabriz.png" width="200px" height="auto" style="opacity: 0.3;">
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
 		    </a>
-            <a href="/cart/add/p17782_a54o173?destination=cart" target="_blank">
+            <a href="">
                 <div class="gerdali"></div>
                 <div class="city-name"><span> اصفهان </span></div>
                 <div> 
                     <div class="tarikh"> یک شنبه 29 بهمن 1396 </div>
                     <div class="makan"> هتل پارسیان کوثر </div>
                     <div class="zaman"> ساعت 3 تا 7 عصر </div>
-					<div class="ghabl mablagh"> 100 هزار تومان </div>
-                    <div class="mablagh"> 90 هزار تومان </div>
+					<!--<div class="ghabl mablagh"> 100 هزار تومان </div>-->
+                    <div class="mablagh"> 100 هزار تومان </div>
                     <img src="/sites/all/themes/sara/images/esfehan.png" width="330px" height="auto" style="left:20px;">
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
@@ -148,7 +144,9 @@
                         <div> مدیر اجرایی کمپانی SeismoSoft </div>
                     </div>
                 </div>
-                <div class="des-down"> ارزیابی و مقاوم‌سازی ساختمان‌های بتنی موجود و حل مثال با کمک نرم‌افزار  SeismoBuild و SeismoStruct (ارائه سمینار به زبان انگلیسی)</div>
+                <div class="des-down"> ارزیابی و مقاوم‌سازی ساختمان‌های بتنی موجود و حل مثال با کمک نرم‌افزار  SeismoBuild و SeismoStruct (ارائه سمینار به زبان انگلیسی) 
+                <a href="http://civil808.com/sites/default/files/importviaftp/SeismoSoft-Civil808-Presentation-Feb%2C2018.pdf"> خلاصه ای از فایل سخنرانی </a>
+            </div>
             </div>
         </div>
         <div class="timebox time2">
@@ -200,7 +198,7 @@
 
     <h2 style="margin-bottom: 60px;">نظر پروفسور حسن مقدم در ارتباط با چهارمین همایش طراحی عملکردی</h2>
     <?php
-    $video_attrs = array(
+    $video_attrs2 = array(
         'src' => '/sites/default/files/filed/files/node_18110-amoozesh_vp8.webm',
         'width' => '840px',
         'height' => '447px',
@@ -208,10 +206,10 @@
         'videoHeight' => '447px',
         'controls' => true,
     );
-    $video_sett =  array(
+    $video_sett2 =  array(
         'download_link' => true,
     );
-    print theme('mediaelement_video', array('attributes' => $video_attrs, 'settings' => $video_sett));
+    print theme('mediaelement_video', array('attributes' => $video_attrs2, 'settings' => $video_sett2));
     ?>
     <p style="margin: 50px;"></p>
 </section>
@@ -377,7 +375,32 @@
     </div>
 </section>
 
+<a class="v-en" href="http://civil808.com/seismosoft" target="_blank" > ورود به نسخه <b> EN </b> </a>
+
 <style>
+    a.v-en {
+        position: fixed;
+        bottom: -195px;
+        left: -131px;
+        z-index: 100;
+        background-color: #673ab77a;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        transition: width 0.8s,height 0.8s;
+        font-size: 16px;
+        padding: 40px 61px 0 0;
+        color: #000 !important;
+    }
+    a.v-en:hover {
+        width: 303px;
+        height: 303px;
+    }
+    a.v-en b {
+        display: block;
+        padding-right: 25px;
+        /*color: #E65100;*/
+    }
     section.timing{
         position: relative;
     }
@@ -423,6 +446,17 @@
     }
     .des-down {
         padding: 15px;
+    }
+    .time1 .des-down a{
+        display: block;
+        margin: 6px 0 -1px 0;
+        color: #0076bd !important;
+    }
+    .time1 .des-down a:before {
+        content: '\f225';
+        font-family: mat;
+        font-size: 18px;
+        vertical-align: middle;
     }
     .timebox {
         text-align: center;
@@ -497,9 +531,12 @@
             content: " ";
             position: absolute;
             width: 2px;
-            height: 112px;
+            height: 127px;
             background-color: #d1b5e2;
             top: 28px;
+        }
+        .timebox.time3 .circle:after {
+            height: 112px;
         }
         .timebox.time2 .circle:after {
             height: 102px;
@@ -538,7 +575,7 @@
             height: 30px;
         }
         .timebox.time1 .circle:after {
-            height: 203px;
+            height: 212px;
         }
         .timebox.time2 .circle:after {
             height: 188px;
