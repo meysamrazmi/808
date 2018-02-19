@@ -1032,18 +1032,18 @@ function privatemsg_sql_list($account, $argument = 'list') {
     ->condition('pmi.type', array('hidden', 'user'))
     ->condition('pmi.deleted', 0);
   $query->setCountQuery($count_query);
-
-
+	
   // Required columns
   $query->addField('pmi', 'thread_id');
-  $query->addExpression('MIN(pm.subject)', 'subject');
+  // $query->addExpression('MIN(pm.subject)', 'subject');
+  $query->addExpression('SUBSTRING(pm.body, 1 , 200)', 'subject');
   $query->addExpression('MAX(pm.timestamp)', 'last_updated');
   $query->addExpression('MAX(pm.has_tokens)', 'has_tokens');
   $query->addExpression('SUM(pmi.is_new)', 'is_new');
-
+  
   // Load enabled columns
   $fields = array_filter(variable_get('privatemsg_display_fields', array('participants')));
-
+  
   if (in_array('count', $fields)) {
     // We only want the distinct number of messages in this thread.
     $query->addExpression('COUNT(distinct pmi.mid)', 'count');
@@ -1064,8 +1064,18 @@ function privatemsg_sql_list($account, $argument = 'list') {
   if (in_array('thread_started', $fields)) {
     $query->addExpression('MIN(pm.timestamp)', 'thread_started');
   }
+  
+	$q = db_select('pm_index','pi')->groupBy('thread_id');
+	$q->addExpression('MAX(mid)', 'max_mid');
+	$q = $q->execute()->fetchAll();
+	$arr = array();
+	foreach($q as $row){
+		array_push($arr, $row->max_mid);
+	}
+		
   return $query
     ->condition('pmi.recipient', $account->uid)
+	->condition('pmi.mid', $arr, 'IN')
     ->condition('pmi.type', array('hidden', 'user'))
     ->condition('pmi.deleted', 0)
     ->groupBy('pmi.thread_id')
@@ -1622,7 +1632,26 @@ function privatemsg_new_thread($recipients, $subject, $body = NULL, $options = a
   if (!isset($message->format)) {
     $message->format = filter_default_format($message->author);
   }
-
+	
+	if((count($message->recipients) == 1) && !isset($message->thread_id)){
+		$author_id = $message->author->uid;
+		$recipient_id = reset($message->recipients)->uid;
+		//finding previous threads of twe users
+		$thread = db_query(
+			'SELECT DISTINCT in1.thread_id FROM {pm_index} in1 
+			JOIN {pm_index} in2 ON in1.thread_id = in2.thread_id AND in1.recipient != in2.recipient 
+			WHERE in1.recipient = :author AND in2.recipient = :recipient 
+			AND in1.thread_id NOT IN (
+				SELECT DISTINCT in1.thread_id FROM {pm_index} in1 
+				JOIN {pm_index} in2 ON in1.thread_id = in2.thread_id AND in1.recipient != in2.recipient 
+				WHERE in1.recipient = :author AND in2.recipient <> :recipient)', 
+			array(':author' => $author_id, ':recipient' => $recipient_id)
+		);
+		$thread = $thread->fetchObject();
+		if(count($thread) == 1)
+			$message->thread_id = $thread->thread_id;
+	}
+	
   $validated = _privatemsg_validate_message($message);
   if ($validated['success']) {
     $validated['message'] = _privatemsg_send($message);

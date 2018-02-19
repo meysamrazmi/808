@@ -156,7 +156,7 @@ function privatemsg_list_page($argument = 'list', $uid = NULL) {
 
 function privatemsg_list($form, &$form_state, $argument, $account) {
   drupal_add_css(drupal_get_path('module', 'privatemsg') . '/styles/privatemsg-list.css');
-
+	
   // If this is an AJAX request, update $_GET['q'] so that table sorting and
   // similar links are using the correct base path.
   if ($_GET['q'] == 'system/ajax') {
@@ -169,7 +169,7 @@ function privatemsg_list($form, &$form_state, $argument, $account) {
 
   // Load the table columns.
   $columns = array_merge(array('subject', 'last_updated'), array_filter(variable_get('privatemsg_display_fields', array('participants'))));
-
+	
   // Load the themed list headers based on the available data.
   $headers = _privatemsg_list_headers($columns);
 
@@ -192,15 +192,21 @@ function privatemsg_list($form, &$form_state, $argument, $account) {
   );
 
   $query = _privatemsg_assemble_query('list', $account, $argument);
+  
   $i = 0;
   foreach ($query->execute() as $row) {
+	  $row->subject = strip_tags($row->subject);
+	  $row->subject = substr($row->subject, 0, 150);
+	  if(strlen($row->subject) >= 148) $row->subject = $row->subject . '...'; 
+	  $row->subject = mb_convert_encoding($row->subject, "UTF-8", "auto");
+	  
     // Store the raw row data.
     $form['updated']['list']['#options'][$row->thread_id] = (array)$row;
     // Tableselect sorts the options, set a weight so that the order doesn't get
     // changed.
     $form['updated']['list']['#options'][$row->thread_id]['#weight'] = $i++;
   }
-
+	
   if (!empty($form['updated']['list']['#options'])) {
     $form['updated']['actions'] = _privatemsg_action_form($argument);
   }
@@ -210,6 +216,7 @@ function privatemsg_list($form, &$form_state, $argument, $account) {
 
   // Define checkboxes, pager and theme
   $form['updated']['pager'] = array('#markup' => theme('pager'), '#weight' => 20);
+    
   return $form;
 }
 

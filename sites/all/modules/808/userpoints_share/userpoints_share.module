@@ -190,7 +190,7 @@ function userpoints_share_uc_order($op, $order, $status) {
 							'uid' => $uid,
 							'points' => $points,
 							'operation' => 'product share',
-							'description' => t('A purchase has resieved for product that @uid has a share of it.', array('@uid' => $uid)),
+							'description' => t('A purchase has recieved for product that @uid has a share of it.', array('@uid' => $uid)),
 							'entity_id' => $order->order_id,
 							'entity_type' => 'uc_order',
 						);

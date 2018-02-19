@@ -262,7 +262,8 @@ function privatemsg_mod_init() {
 			}
 		}
 		//redirecting message/new
-		elseif(isset($aliases[1]) && $aliases[1] == 'new'){
+		 elseif(isset($aliases[1]) && $aliases[1] == 'new'){
+
 			if(isset($aliases[2])){
 				//finding previous threads of twe users
 				$thread = db_query(
@@ -270,6 +271,7 @@ function privatemsg_mod_init() {
 					FROM {pm_index} in1 
 					JOIN {pm_index} in2 ON in1.thread_id = in2.thread_id AND in1.recipient != in2.recipient 
 					WHERE in1.recipient = :author AND in2.recipient = :recipient
+					AND in1.deleted = 0
 					AND in1.thread_id NOT IN (
 						SELECT DISTINCT in1.thread_id FROM {pm_index} in1 
 						JOIN {pm_index} in2 ON in1.thread_id = in2.thread_id AND in1.recipient != in2.recipient 
@@ -278,15 +280,15 @@ function privatemsg_mod_init() {
 					array(':author' => $user->uid, ':recipient' => $aliases[2])
 				);
 				$thread = $thread->fetchObject();
-		
 				if((count($thread) > 0) && (isset($thread->thread_id))){
 					drupal_goto("user/$user->uid/messages/view/$thread->thread_id");
 					die();
-				}				
+				}
 			}
+								
 			drupal_goto("user/$user->uid/$path");
 			die();
-		}
+		} 
 	}
 }
 
