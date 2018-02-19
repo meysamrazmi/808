@@ -105,7 +105,9 @@ function get_questions($url, $page){
 	elseif($url == "my_questions"){
 		global $user;
 		$query = db_select('node' , 'n');
+        $query->leftJoin('field_data_body' , 'b' , 'n.nid = b.entity_id');
 		$query->fields('n' , array('nid' , 'title' , 'created' , 'changed' , 'status'));
+        $query->addField('b' , 'body_value' , 'body');
 		$query->condition('n.type', 'questions');
 		$query->condition('n.uid', $user->uid);
 		$query->orderBy('changed', 'DESC');
@@ -257,6 +259,8 @@ function node_edit($nid, $data){
 	$node->title = $data['title'];
 	$node->body['und'][0]['value'] = $data['body'];
 	$node->field_experts = $data['field_experts'];
+    if(isset($data['field_files']) && !empty($data['field_files'])) $node->field_files = $data['field_files'];
+    else $node->field_files = [];
 	node_save($node);
 	return $node;
 }
@@ -270,8 +274,8 @@ function comment_edit($cid, $data){
 	$comment = comment_load($cid);
 	$comment->comment_body[$comment->language][0]['value'] = $data['body'];
 	$comment->comment_body[$comment->language][0]['safe_value'] = $data['body'];
-	if(isset($data['field_prove_advisor'])) $comment->field_prove_advisor = $data['field_prove_advisor'];
-	if(isset($data['field_prove_asker'])) $comment->field_prove_asker = $data['field_prove_asker'];
+    if(isset($data['field_files']) && !empty($data['field_files'])) $comment->field_files = $data['field_files'];
+    else $comment->field_files = [];
 	comment_save($comment);
 	return $comment;
 }
@@ -293,6 +297,58 @@ function comment_vote_up_down($cid, $data){
 	$votes['uid'] = $user->uid;
 	votingapi_set_votes($votes);
 	return $votes;
+}
+/* prove a comment by advisor*/
+function comment_prove_by_advisor($cid, $data=1){
+
+    global $user;
+	if(!isset($user->roles['10']) || strcmp($user->roles['10'], 'مشاور') != 0){
+	    return false;
+    }
+
+    $comment = comment_load($cid);
+
+	$query = db_select('comment' , 'c');
+	$query->join('field_data_field_prove_advisor' , 'advisor' , 'c.cid = advisor.entity_id');
+	$query->fields('c' , array('cid'));
+	$query->condition('c.nid' , $comment->nid);
+	$query->condition('advisor.field_prove_advisor_value' , 1);
+	$result = $query->execute()->fetchAll();
+	if(!empty($result) && count($result) > 0) return false;
+
+	if($comment->field_prove_advisor['und']['0']['value'] == 0){
+		$comment->field_prove_advisor['und']['0']['value'] = 1;
+		comment_save($comment);
+		return true;
+	}
+	else return false;
+}
+/* prove a comment by asker of question*/
+function comment_prove_by_asker($cid, $data=1){
+    $comment = comment_load($cid);
+
+    $query = db_select('comment' , 'c');
+    $query->join('field_data_field_prove_asker' , 'asker' , 'c.cid = asker.entity_id');
+    $query->fields('c' , array('cid'));
+    $query->condition('c.nid' , $comment->nid);
+    $query->condition('asker.field_prove_asker_value' , 1);
+    $result = $query->execute()->fetchAll();
+    if(!empty($result) && count($result) > 0) return false;
+
+    $query = db_select('node' , 'n');
+    $query->join('comment' , 'c' , 'c.nid = n.nid');
+    $query->fields('n' , array('uid'));
+    $query->condition('c.cid' , $cid);
+    $result = $query->execute()->fetch();
+    global $user;
+    if($user->uid != $result->uid) return false;
+
+	if($comment->field_prove_asker['und']['0']['value'] == 0){
+		$comment->field_prove_asker['und']['0']['value'] = 1;
+		comment_save($comment);
+		return true;
+	}
+	else return false;
 }
 /*
  * end of comment part
@@ -554,14 +610,17 @@ function taxonomy_information($tid){
     return ['question_count' => $question_count, 'user_count' => $user_count, 'pic' => $picture , 'tid' => $tid, 'nid' => $nid];
 }
 
-/**/
+/*upload file on site*/
 function create_file(){
-    return $_FILES;
     $files =  $_FILES;
-
-    foreach($files as $field_name => $file_name){
-
+    foreach ($files as $file_name => $file_info){
+        $_FILES["files"]["name"][$file_name] = $file_info['name'];
+        $_FILES["files"]["tmp_name"][$file_name] = $file_info['tmp_name'];
+        $_FILES["files"]["size"][$file_name] = $file_info['size'];
+        $_FILES["files"]["error"][$file_name] = $file_info['error'];
     }
+    /*function address : services module /resources /file_resource.inc*/
+    return _file_resource_create_raw();
 }
 
 /*retrieve uids information function*/

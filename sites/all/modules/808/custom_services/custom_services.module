@@ -358,6 +358,56 @@ function custom_services_services_resources(){
 						)
 					),
 				),
+				
+				'prove_advisor' => array(
+					'help' => 'prove a comment by advisor',
+					'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+					'callback' => 'comment_prove_by_advisor',
+					'access callback' => 'user_access',
+					'access arguments' => array('access content'),
+					'access arguments append' => FALSE,
+					'args' => array(
+						array(
+							'name' => 'cid',
+							'optional' => FALSE,
+							'source' => array('path' => 0),
+							'type' => 'int',
+							'description' => 'The cid of the comment to for prove',
+						),
+						array(
+							'name' => 'data',
+							'type' => 'array',
+							'description' => 'The prove action',
+							'source' => 'data',
+							'optional' => True,
+						)
+					),
+				),
+				
+				'prove_asker' => array(
+					'help' => 'prove a comment by asker',
+					'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+					'callback' => 'comment_prove_by_asker',
+					'access callback' => 'user_access',
+					'access arguments' => array('access content'),
+					'access arguments append' => FALSE,
+					'args' => array(
+						array(
+							'name' => 'cid',
+							'optional' => FALSE,
+							'source' => array('path' => 0),
+							'type' => 'int',
+							'description' => 'The cid of the comment to for prove',
+						),
+						array(
+							'name' => 'data',
+							'type' => 'array',
+							'description' => 'The prove action',
+							'source' => 'data',
+							'optional' => True,
+						)
+					),
+				),
 			),
 		),
 		'slideshow' => array(

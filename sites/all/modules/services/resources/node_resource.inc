@@ -316,6 +316,23 @@ function _node_resource_retrieve($nid) {
 		$query->condition('v.entity_id' , $node->nid);
 		$query->condition('v.uid' , $user->uid);
 		$user_vote = $query->execute()->fetchObject();
+		
+		$query = db_select('field_data_field_prove_advisor' , 'f');
+		$query->join('comment' , 'c' , 'f.entity_id = c.cid');
+		$query->fields('f' , array('entity_id'));
+		$query->condition('c.nid', $nid);
+		$query->condition('f.field_prove_advisor_value', 1);
+		$result = $query->execute()->fetchAll();
+		if(!empty($result) && count($result)>0)  $node->prove_advisor = 1;
+		
+		$query = db_select('field_data_field_prove_asker' , 'f');
+		$query->join('comment' , 'c' , 'f.entity_id = c.cid');
+		$query->fields('f' , array('entity_id'));
+		$query->condition('c.nid', $nid);
+		$query->condition('f.field_prove_asker_value', 1);
+		$result = $query->execute()->fetchAll();
+		if(!empty($result) && count($result)>0)  $node->prove_asker = 1;
+		
 		return ["node" => $node, "author" => $author, "vote_points" => $vote_points , "user_vote" => $user_vote->value];
 	}
 	if($node->type == "architect"){
@@ -389,6 +406,7 @@ function _node_resource_create($node) {
 	$newNode->body['und'][0]['summary'] = '';
 	$newNode->body['und'][0]['format'] = 'full_html';
 	$newNode->field_experts  = $node['field_experts'];
+	if(isset($node['field_files']) && !empty($node['field_files'])) $newNode->field_files  = $node['field_files'];
 	$newNode->uid  = $user->uid;
 	$newNode->language = 'fa';
 	$newNode->status = 0;
@@ -781,6 +799,26 @@ function _node_resource_load_node_comments($nid, $page=0) {
 			$comments[$vote->entity_id]->comment_vote_points = $vote->vote_points;
 		}
 		
+		$query = db_select('comment' , 'c');
+		$query->join('field_data_field_prove_advisor', 'f' , 'c.cid = f.entity_id');
+		$query->fields('c', array('cid'));
+		$query->condition('c.cid', $cids, "IN");
+		$query->condition('f.field_prove_advisor_value', 1);
+		$results = $query->execute()->fetchAll();
+		foreach($results as $result){
+			$comments[$result->cid]->prove_advisor = 1;
+		}
+		
+		$query = db_select('comment' , 'c');
+		$query->join('field_data_field_prove_asker', 'f' , 'c.cid = f.entity_id');
+		$query->fields('c', array('cid'));
+		$query->condition('c.cid', $cids, "IN");
+		$query->condition('f.field_prove_asker_value', 1);
+        $results = $query->execute()->fetchAll();
+		foreach($results as $result){
+			$comments[$result->cid]->prove_asker = 1;
+		}
+		
 		global $user;
 		$query = db_select('votingapi_vote', 'v');
 		$query->fields('v' , array('entity_id', 'value'));
@@ -820,7 +858,25 @@ function _node_resource_load_node_comments($nid, $page=0) {
 		foreach($comments as $comment){
 			array_push($return_comments, $comment);
 		}
-		return ["comments" => $return_comments, "authors" => $return_authors];
+		$response = ["comments" => $return_comments, "authors" => $return_authors];
+		if($page == 0){
+			$query = db_select('comment' , 'c');
+			$query->join('field_data_field_prove_advisor', 'f' , 'c.cid = f.entity_id');
+			$query->fields('c', array('cid'));
+			$query->condition('c.nid', $nid);
+			$query->condition('f.field_prove_advisor_value', 1);
+			$result = $query->execute()->fetchAll();
+			if(!empty($result) && count($result) > 0) $response["prove_advisor"] = 1; 
+			
+			$query = db_select('comment' , 'c');
+			$query->join('field_data_field_prove_asker', 'f' , 'c.cid = f.entity_id');
+			$query->fields('c', array('cid'));
+			$query->condition('c.nid', $nid);
+			$query->condition('f.field_prove_asker_value', 1);
+			$result = $query->execute()->fetchAll();
+			if(!empty($result) && count($result) > 0) $response["prove_asker"] = 1; 
+		}
+		return $response;
 	}
 	return ["comments" => array()];
 }

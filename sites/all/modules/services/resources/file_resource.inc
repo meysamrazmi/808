@@ -208,8 +208,6 @@ function _file_resource_create($file) {
  *   Array of file objects with URIS to access them
  */
 function _file_resource_create_raw() {
-    return $_FILES;
-
   $files = array();
   foreach ($_FILES['files']['name'] as $field_name => $file_name) {
     // Sanitize the user-input file name before saving to the file system.
@@ -233,10 +231,13 @@ function _file_resource_create_raw() {
       // Required to be able to reference this file.
       file_usage_add($file, 'services', 'files', $file->fid);
 
+      /*
       $files[] = array(
         'fid' => $file->fid,
         'uri' => services_resource_uri(array('file', $file->fid)),
       );
+      */
+        $files[$field_name] = $file;
     }
     else {
       return services_error(t('An unknown error occured'), 500);

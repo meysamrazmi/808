@@ -214,6 +214,7 @@ function _comment_resource_create($comment) {
 	$new_comment->name = $user->name;
 	$new_comment->mail = $user->mail;
 	$new_comment->language = 'und';
+    if(isset($comment['field_files']) && !empty($comment['field_files'])) $new_comment->field_files = $comment['field_files'];
 	$new_comment->comment_body[$new_comment->language][0]['value'] = $comment['body'];
 	if(isset($comment['pid']) && !empty($comment['pid'])) $new_comment->pid = $comment['pid'];
 	else $new_comment->pid = 0;
