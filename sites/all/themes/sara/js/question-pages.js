@@ -50,7 +50,7 @@ $(document).ready(function(){
         a.attr('target', '_blank');
     });
     $('.page-question-list .views-field-field-experts a').each(function(){
-        $(this).attr('href', '/question/list?field_experts_tid='+$(this).text())
+        $(this).attr('href', '/question/list?field_experts_tid='+$(this).text());
     });
     
     /*check question is published or not*/
@@ -110,8 +110,9 @@ $(document).ready(function(){
         body.find('.content .comment').each(function(){
             var comment_id = $(this).prev().attr('id');
             var cid = comment_id.substr(comment_id.indexOf("-") + 1);
-            $(this).find('.group-left ul').append('<li id="'+ cid +'" class="asker_aprove"><a>تایید نویسنده سوال</a></li>');
-            
+            if(!$(this).parent().hasClass("indented")) {
+                $(this).find('.group-left ul').append('<li id="' + cid + '" class="asker_aprove"><a>تایید نویسنده سوال</a></li>');
+            }
         });
     }
     if((advisor_prove == 0) && (body.hasClass('role-advisor') || body.hasClass('role-administrator'))){
@@ -119,7 +120,9 @@ $(document).ready(function(){
             if(!$(this).hasClass("author-advisor")){
                 var comment_id = $(this).prev().attr('id');
                 var cid = comment_id.substr(comment_id.indexOf("-") + 1);
-                $(this).find('.group-left ul').append('<li id="'+ cid +'" class="advisor_aprove"><a>تایید مشاور</a></li>');
+                if(!$(this).parent().hasClass("indented")) {
+                    $(this).find('.group-left ul').append('<li id="' + cid + '" class="advisor_aprove"><a>تایید مشاور</a></li>');
+                }
             }
         });
     }
