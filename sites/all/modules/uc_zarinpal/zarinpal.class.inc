@@ -230,7 +230,7 @@ class Zarinpal {
       $client->soap_defencoding = 'UTF-8';
       $res = $client->call('PaymentVerification', array($args));
 
-      if (isset($res['Status']) && ($res['Status'] == 100)) {
+      if (isset($res['Status']) && ($res['Status'] == 100 || $res['Status'] == 101)) {
         $refid = $res['RefID'];
       }
       else {
@@ -245,7 +245,7 @@ class Zarinpal {
       $client = new SoapClient($wsdl, array('encoding' => 'UTF-8'));
       $res = $client->PaymentVerification($args);
 
-      if (isset($res->Status) && ($res->Status == 100)) {
+      if (isset($res->Status) && ($res->Status == 100 || $res['Status'] == 101)) {
         $refid = $res->RefID;
       }
       else {
@@ -350,7 +350,7 @@ class Zarinpal {
       '%msg' => $msg,
     ));
 
-    return ($code != 101)? $message : '';
+    return $message;
   }
 }
 
