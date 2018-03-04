@@ -1,6 +1,39 @@
 <img src="/sites/all/themes/sara/images/conference4.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
 
+<section id="pbd">
+    <div class="wh">
+        <h2 data-aos="zoom-in-up" data-aos-delay="400" class="aos-init aos-animate"> گزارش برگزاری چهارمین همایش طراحی عملکردی در شهر های مختلف کشور  </h2>
+        <div data-aos="zoom-out" data-aos-delay="900" class="aboutus aos-init aos-animate">                 
+            <div class="sec-li li">
+                <span class="laptop">
+                    <!-- http://land.waterhouse.ir/conf/images/laptop.png -->
+                    <img src="http://land.civil808.com/96/engineer/images/pbd.jpg" width="530" height="auto" alt="اپلیکیشن اندروید 808 پلاس" title="اپلیکیشن اندروید 808 پلاس">
+                </span>
+                <div>
+                    <div>چهارمين همايش طراحي عملكردي امسال در شهر هاي مختلف كشور از ٢٤ تا ٢٩ بهمن به صورت فشرده و پشت سر هم برگزار شد در اين ارتباط آنچه مهم است بيان شود موارد زير است:</div>
+                    <ol>
+                        <li>
+                            اين همايش توسط موسسه ٨٠٨ به طور كاملا مستقل و متاسفانه عليرغم درخواست های همكاری صورت گرفته بدون كوچكترين كمكي از سوی هيچيك از نهاد هاي مرتبط با دانشگاه، نظام مهندسی، انجمن هاي علمی عمرانی وزارت علوم و نهاد های دولتی كشور برگزار شد و حتی در مواردی متاسفانه دست انداز هايی توسط عوامل هريك از نهاد های ذكر شده در برابر برگزاری مستقل اين برنامه انجام گرفت كه ذكر موارد متعدد جزئيات آنرا به بعد موكول ميكنيم
+                        </li>
+                        <li>
+                            استقبال و حضور نزديك به سيصد نَفَر از علاقه مندان به اين موضوع كاملا تخصصی نشان از اراده مهندسينی دارد كه فارغ از هر إلزامي فقط به فراگيری علم جهت اجرا و توسعه كشور عزيزمان می انديشند
+                        </li>
+                        <li>
+                            بعد از تجربه سه دوره همايش طراحي عملكردی از سال ٩٢ از آنجا كه عزم ٨٠٨ حل مسأله مقاوم سازی و پرهيز از ارائه صرفا حرف هاي تكراری تئوری بوده است اينبار برأی اولين بار تجربه برگزاری برنامه ای كاملا كاربردی با تركيب همه سه عامل مورد نياز برأی حل مسأله طراحی عملكردی و مقاوم سازی ساختمان ها از قبيل تئوری دانش ، قابليت نرم افزار و روش های اجرا در كنار هم داشتيم در انتها از تمام همكارانی كه طی اين مدت در حمايت رسانه ای و معنوی اين برنامه به ما كمك كردند تشكر ميكنيم و اميد داريم با هم براي حل معضل ساخت سازه های أيمن برای هم ميهنانمان گام های مؤثر برداريم.<br> مجتبي اصغری ،مدير موسسه ٨٠٨، ٣٠ بهمن١٣٩٦
+                        </li>
+                    </ol>
+                    <a class="poster view" href="http://civil808.com/node/18244" target="_blank"> مشاهده گالری تصاویر </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="moarrefi" style="text-align: center;padding: 50px 0;" >
+    <!--<div class="link-hamayesh">
+        <a href="/node/18244" target="_blank">مجموعه تصاویر چهارمین همایش ملی طراحی عملکردی در شهر تهران</a>
+    </div>-->
+
     <h2 style="margin-bottom: 50px;"> فیلم معرفی </h2>
     <?php
     //sis3_VP8.webm,sis3_x264.mp4
@@ -1157,16 +1190,19 @@
     .bought-tickets a.muted {
     	opacity: 0.7;
     }
-    @media (max-width: 768px){
-    	.plus808 h2{
-    		font-size: 29px;
-    	}
-    	.plus808 h4{
-    		margin: 29px 0 29px 0;
-    	}
+    @media (max-width: 768px) {
+        .plus808 h2 {
+            font-size: 29px;
+        }
+
+        .plus808 h4 {
+            margin: 29px 0 29px 0;
+        }
+
         .owl-carousel .owl-dots {
             overflow: hidden;
         }
+    }
     @media (max-width: 850px){
     	.tickets > div {
     		flex-direction: column;
@@ -1199,7 +1235,200 @@
     		padding-left: 10px;
     	}
     }
-    
+
+    .link-hamayesh{
+        width: 70%;
+        background-color: #ffffff;
+        padding: 20px;
+        margin: 0px auto 50px auto;
+        border: solid #b39dd9;
+        border-width: 0px 3px;
+        box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    }
+
+    .link-hamayesh a{
+        color: #909090 !important;
+        font-size: 16px;
+    }
+    .link-hamayesh a:hover{
+        color: #c0c0c0 !important;
+    }
+
+    @media (max-width: 768px) {
+        .link-hamayesh{
+            width: 90%;
+        }
+    }
+    @media (max-width: 480px) {
+        .link-hamayesh a{
+            font-size: 13px;
+        }
+    }
+
+    /*--------------------aplication-section--------------------*/
+#pbd .wh{
+	width: calc(100% - 30px);
+	max-width: 1100px;
+	margin: auto;
+	text-align: center;
+	padding: 80px 15px;
+	z-index: 1;
+	position: relative;
+}
+#pbd h2{
+	font-size: 24px;
+	text-align: center;
+	position: relative;
+	font-weight:500px;
+	line-height: 40px;
+}
+#pbd h2:before {
+	content: "";
+	position: absolute;
+	width: 130px;
+	height: 3px;
+	background: #883ab7;
+	bottom: -10px;
+	right: calc(50% - 65px);
+	box-shadow: rgba(136,58,183,0.15) 0px 1px 6px, rgba(136,58,183,0.157) 0px 1px 4px;
+}
+#pbd{
+	background-color: #f5f5f5;
+}
+#pbd img{
+	position: absolute;
+	left: -60px;
+	bottom: 82px;
+	width: 446px;
+}
+#pbd .sec-li > div{
+	background-color: rgba(255, 255, 255, 0.85);
+	box-shadow: rgba(0, 0, 0, 0.156863) 0px 1px 6px, rgba(0, 0, 0, 0.227451) 0px 1px 6px;
+	max-width: 1067px;
+	width: 100%;
+	margin: auto;
+	box-sizing: border-box;
+	padding: 23px 3.5% 36px 37%;
+	text-align: right;
+}
+#pbd .sec-li > div li,
+#pbd .sec-li > div div{
+	text-align:justify;
+}
+#pbd .sec-li > div div{
+	margin-right: 16px;
+	margin-bottom: -9px;
+}
+#pbd .sec-li > div{
+	padding: 23px 0.5% 36px 37%;
+	font-family: fanum;
+    text-align: center;
+    font-size: 14.3px;
+    line-height: 30px;
+}
+#pbd .sec-li > div p,
+#pbd .sec-li > div li,
+#pbd .sec-li > div ol{
+    font-size: 14.3px;
+    line-height: 30px;
+}
+#pbd .sec-li > div ol{
+    -webkit-margin-after: 14.3px;
+    -webkit-margin-before: 14.3px;
+    -webkit-margin-end: 0px;
+    -webkit-margin-start: 0px;
+    -webkit-padding-start: 40px;
+    list-style-type: decimal;
+    text-align: center;
+}
+#pbd .sec-li > div > p{
+	text-align: justify;
+}
+#pbd .sec-li > div li{
+	text-align:right;
+}
+#pbd .aboutus {
+	text-align: right;
+	font-size: 1.1rem;
+	line-height: 30px;
+	display: inline-block;
+	width: 100%;
+	margin-top: 45px;
+    margin-bottom: 30px;
+    position:relative;
+}
+a.poster {
+	border-radius: 2px;
+	line-height: 36px;
+	text-align: center;
+	padding: 0 10px 0 16px;
+	display: inline-block;
+	font-size: 14px;
+	transition: all 0.2s;
+	box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
+	outline: none;
+	color: #2196f3 !important;
+	border: 1px solid #2196f3;
+	margin: 11px 8px -10px 8px;
+	box-sizing: border-box;
+	vertical-align: top;
+	width: auto;
+}
+a.poster:before {
+	content: '\f1da';
+	font-family: mat;
+	padding: 0 0 0 5px;
+	font-size: 18px;
+	display: inline-block;
+	vertical-align: bottom;
+}
+a.poster.view:before {
+	content: '\f349';
+}
+
+@media (max-width: 1200px){
+	#pbd .sec-li > div{
+		padding: 24px 0.5% 36px 46%;
+	}
+	#pbd img{
+		position: absolute;
+        left: 3%;
+        width: 42%;
+        top: 2vw;
+	}
+}
+
+@media (max-width: 992px){
+	#pbd img {
+		position: absolute;
+        width: 285px;
+        top: -13px;
+        right: calc(50% - 141px);
+	}
+	#pbd .sec-li > div {
+		padding: 37px 2% 37px 5%;
+        margin-top: 243px;
+	}
+}
+@media (max-width: 500px) {
+	
+	#pbd .sec-li > div {
+    margin-top: 230px;
+    padding: 50px 0% 37px 5%;
+	}
+	#pbd ol{
+		padding-right: 31px;
+	}
+	#pbd img{
+		width: 300px;
+		top: -23px;
+		right: calc(50% - 150px);
+	}
+	#pbd .wh {
+    padding: 8vh 0 10vh 0;
+	}
+	
+}
 </style>
 
 

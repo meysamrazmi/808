@@ -422,6 +422,11 @@ function merge_experts_form_submit($from, &$form_state){
 }
 
 function developer(){
-    $node = node_load(17063);
-    adump($node);
+    $order = uc_order_load(8628);
+//    foreach($order->line_items as $row){
+//        if(strcmp($row["type"] , "coupon") == 0){
+//            adump($order);
+//        }
+//    }
+    adump($order);
 }

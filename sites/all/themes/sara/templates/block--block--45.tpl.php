@@ -3,12 +3,12 @@
         <div class="content">
 	        <span class="close-banner">X</span>
             <?php // echo '<div id="smile"><canvas style="display: block;"></canvas></div>' ?>
-            <a href="http://civil808.com/conference/4" target="_blank" style="border-top: 3px solid #92278f; ">
+            <a href="http://land.civil808.com/96/engineer" target="_blank" style="/*border-top: 3px solid #E91E63;*/ ">
             <?php  //echo <p class="textimg"></p> ?>
             <?php  //echo <p class="titr"><img src="/sites/all/themes/sara/images/title-daneshjoo.png"></p> ?>
             <?php  //echo <p class="texts"> ?>
             <?php  //echo '<span class="texttt">20<span >%</span></span><span class="text1"> شارژ هدیه</span><span class="text4">+</span><span class="text2">ارسال رایگان</span>' ;?>
-            <?php  //echo '<span class="text5"> تا 28 مهر ماه تمدید شد !!</span></p>' ;?> 
+            
             <?php //echo '<p class="text6"><span>یک ماه عضویت vip</span><span>به ازای تکمیل پروفایل خود در سایت</span></p>'; ?>
             <?php //echo '<p class="text6"><span class="row1"><span style="color: #960a00;">20 %</span><span> شارژ هدیه</span></span><span>ارسال رایگان پستی </span></p>'; ?>
             <?php /*echo <div class="background-nim"><img src="/sites/all/themes/sara/images/yaldatemp.png"></div>
@@ -16,7 +16,7 @@
             <div> زمستان امسال با <p class="inner-p"><span> 808 </span> <span> + </span></p> در کنار شما هستیم </div>
             <p> کلیک کنید و تخفیف های شب یلدا و قابلیت های سیستم پرسش و پاسخ جدید ما را ببینید !! </p>
             </div>
-            */ ?> 
+             
             <div class="back-right">
                 <img src="/sites/all/themes/sara/images/tabriz.png" width="150px" height="auto" style="opacity: 0.3;vertical-align: top;">
                 <img src="/sites/all/themes/sara/images/mashad.png" width="200px" height="auto" style="vertical-align: top;margin-right: 27px;">
@@ -24,8 +24,12 @@
             <div class="back-left">
                 <img src="/sites/all/themes/sara/images/azadi-tower.png" width="110px" height="auto" style="opacity: 0.1;vertical-align: top;">
                 <img src="/sites/all/themes/sara/images/esfehan.png" width="240px" height="auto" style="vertical-align: top;margin-right: 27px;">
+            </div>*/ ?>
+            <div>
+            <div class="middle-text"> جشنواره فروش ویژه ۸۰۸  به مناسبت روز مهندس </div>
+            <?php  echo '<span class="text5"> تا پایان 6 اسفند تمدید شد! </span></p>' ;?> 
             </div>
-            <div class="middle-text"> چهارمین همایش ملی طراحی عملکردی سازه ها </div>
+            
             </a>
         </div>
     </div>
