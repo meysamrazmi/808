@@ -27,6 +27,50 @@ function advisor_list(){
 				->execute()->fetchAll();
 	return $query;
 }
+function advisors_info($page){
+    $query = db_select('users' , 'user');
+    $query->join('profile', 'profile', 'user.uid = profile.uid');
+    $query->join('users_roles', 'roles', 'profile.uid = roles.uid');
+    $query->leftJoin('field_data_field_full_name', 'name', 'name.entity_id = profile.pid');
+    $query->leftJoin('file_managed', 'file', 'user.picture = file.fid');
+    $query->fields('user', array('uid', 'name', 'mail', 'created'));
+    $query->addField('name', 'field_full_name_value', 'complete_name');
+    $query->addField('file', 'uri', 'picture');
+    $query->condition('roles.rid', 10);
+    $query->condition('name.bundle', 'main');
+    $query->condition('name.entity_type', 'profile2');
+    $query->condition('profile.type', 'main');
+    $query->range($page*10, 10);
+    $results = $query->execute()->fetchAll();
+    $return_info = array();
+    if(!empty($results)){
+        $info = array();
+        $uids = array();
+        foreach($results as $result){
+            $result->send_message = "http://civil808.com/messages/new/" . $result->uid;
+            $result->view_profile = "http://civil808.com/user/" . $result->uid . "/advisor";
+            array_push($uids, $result->uid);
+            $info[$result->uid] = $result;
+        }
+
+        $query = db_select('profile' , 'profile');
+        $query->leftJoin('field_data_field_darbareye', 'darbareye', 'darbareye.entity_id = profile.pid');
+        $query->fields('profile', array('uid'));
+        $query->addField('darbareye', 'field_darbareye_value', 'darbareye');
+        $query->condition('darbareye.bundle', 'advisor');
+        $query->condition('darbareye.entity_type', 'profile2');
+        $query->condition('profile.type', 'advisor');
+        $query->condition('profile.uid' , $uids , 'IN');
+        $results = $query->execute()->fetchAll();
+        foreach ($results as $result){
+            $info[$result->uid]->darbareye = $result->darbareye;
+        }
+        foreach($info as $row){
+            array_push($return_info, $row);
+        }
+    }
+    return $return_info;
+}
 
 /*question part*/
 /*return the if user follow a question or not*/
@@ -159,6 +203,7 @@ function get_questions($url, $page){
 			}
 			array_push($nids, $row->nid);
 			$row->feild_experts = array();
+			$row->field_files = array();
 			$questions[$row->nid] = $row;
 		}
 
@@ -220,6 +265,19 @@ function get_questions($url, $page){
 		foreach($results as $result){
 			$questions[$result->nid]->comment_count = $result->comment_count;
 		}
+
+        /*add each question it's file*/
+        $query = db_select('field_data_field_files' , 'feild_file');
+        $query->join('file_managed' , 'file' , 'file.fid = feild_file.field_files_fid');
+        $query->fields('feild_file', array('entity_id'));
+        $query->fields('file', array('fid' , 'filename', 'uri' ,  'filemime' , 'filesize' , 'type' , 'timestamp'));
+        $query->condition('feild_file.entity_id' , $nids , 'IN');
+        $query->condition('feild_file.entity_type' , 'node');
+        $query->condition('feild_file.bundle' , 'questions');
+        $results = $query->execute()->fetchAll();
+        foreach($results as $result){
+            array_push($questions[$result->entity_id]->field_files, $result);
+        }
 
 		$return_questions = array();
 		foreach($questions as $q){
@@ -427,13 +485,11 @@ function front_news_items(){
 function get_pedia($page){
     /*list of pedia items*/
 	$query = db_select('node' , 'n');
-	$query->leftJoin('field_data_field_architecttext' , 't' , 'n.nid = t.entity_id');
 	$query->fields('n' , array('nid' , 'uid' , 'title' , 'created' , 'changed' , 'status'));
-	$query->addField('t' , 'field_architecttext_value' , 'body');
 	$query->condition('n.type', 'architect');
 	$query->condition('n.status', 1);
 	$query->orderBy('changed', 'DESC');
-	$query->range($page*10, 10);
+	$query->range($page*24, 24);
 	$nodes = $query->execute()->fetchAll();
 	
 	if(!empty($nodes)){
@@ -623,7 +679,7 @@ function create_file(){
     return _file_resource_create_raw();
 }
 
-/*retrieve uids information function*/
+/*retrieve uids information function*
 function user_information($uids = array()){
     $query = db_select('users' , 'u');
     $query->leftJoin('file_managed' , 'f' , 'u.picture = f.fid');
