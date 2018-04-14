@@ -5,34 +5,526 @@
 
 function custom_services_services_resources(){
 	return array(
-		/*
-		'logincheck' => array(
-			'retrieve' => array(
-				'help' => 'checks username and password from services',
-				'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
-				'callback' => 'checklogin_retrieve',
-				'access callback' => 'user_access',
-				'access arguments' => array('access content'),
-				'access arguments append' => FALSE,
-				'args' => array(
-					array(
-						'name' => 'username',
-						'type' => 'string',
-						'description' => 'The username of user to check',
-						'source' => array('path' => 0),
-						'optional' => FALSE,
-					),
-					array(
-						'name' => 'password',
-						'type' => 'string',
-						'description' => 'The password of user to check',
-						'source' => array('path' => 1),
-						'optional' => FALSE,
-					),
-				),
-			),
-		),	   
-		*/
+        'questions' => array(
+            'operations' => array(
+                'index' => array(
+                    'help' => 'return all the questions',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'question_resource'),
+                    'callback' => 'question_resource_index',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('param' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'domain',
+                            'type' => 'string',
+                            'description' => 'The domain of list.',
+                            'source' => array('param' => 'domain'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'page',
+                            'type' => 'int',
+                            'description' => 'The page of list.',
+                            'source' => array('param' => 'page'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('param' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+                'retrieve' => array(
+                    'help' => 'Retrieve a question',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'question_resource'),
+                    'callback' => 'question_resource_retrieve',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('param' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'nid',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'The nid of the question to retrieve',
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('param' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+                'create' => array(
+                    'help' => 'Create a question',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'question_resource'),
+                    'callback' => 'question_resource_create',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('param' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'question',
+                            'optional' => FALSE,
+                            'source' => 'data',
+                            'description' => 'The question data to create',
+                            'type' => 'array',
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('param' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+            ),
+            'actions' => array(),
+            'targeted_actions' => array(
+                'edit' => array(
+                    'help' => 'Retrieve a question',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'question_resource'),
+                    'callback' => 'question_resource_edit',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('param' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'nid',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'The nid of the question to update',
+                        ),
+                        array(
+                            'name' => 'question',
+                            'optional' => FALSE,
+                            'source' => 'data',
+                            'description' => 'The question data to update',
+                            'type' => 'array',
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('param' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+                'follow' => array(
+                    'help' => 'Follow a question',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'question_resource'),
+                    'callback' => 'question_resource_follow',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('param' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'nid',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'The nid of the question to follow',
+                        ),
+                        array(
+                            'name' => 'data',
+                            'type' => 'array',
+                            'description' => 'Follow or unfollow data',
+                            'source' => 'data',
+                            'optional' => FALSE,
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('param' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+                'vote' => array(
+                    'help' => 'Vote a question',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'question_resource'),
+                    'callback' => 'question_resource_vote',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('param' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'nid',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'The nid of the question to vote',
+                        ),
+                        array(
+                            'name' => 'data',
+                            'type' => 'array',
+                            'description' => 'Vote up or down',
+                            'source' => 'data',
+                            'optional' => FALSE,
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('param' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+            ),
+            'relationships' => array(
+            ),
+        ),
+		'pedia' => array(
+		    'operations' => array(
+		        'index' => array(
+                    'help' => 'return all pedia',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'pedia_resource'),
+                    'callback' => 'pedia_resource_index',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('param' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'page',
+                            'type' => 'int',
+                            'description' => 'The page of list.',
+                            'source' => array('param' => 'page'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('param' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+		        'retrieve' => array(
+                    'help' => 'Retrieve a pedia',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'pedia_resource'),
+                    'callback' => 'pedia_resource_retrieve',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('param' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'nid',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'The nid of the pedia to retrieve',
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('param' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+            ),
+		    'actions' => array(),
+		    'targeted_actions' => array(),
+		    'relationships' => array(
+		        'advisors' => array(
+                    'help' => 'List of advisors of the pedia',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'pedia_resource'),
+                    'callback' => 'pedia_resource_advisors_list',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('param' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'nid',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'The nid of the pedia for getting its advisors',
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('param' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+            ),
+        ),
+		'news' => array(
+		    'operations' => array(
+                'index' => array(
+                    'help' => 'return the news',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'news_resource'),
+                    'callback' => 'news_resource_index',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('param' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'domain',
+                            'type' => 'string',
+                            'description' => 'The domain of list.',
+                            'source' => array('param' => 'domain'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'page',
+                            'type' => 'int',
+                            'description' => 'The page of list.',
+                            'source' => array('param' => 'page'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('param' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+                'retrieve' => array(
+                'help' => 'Retrieve a news',
+                'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'news_resource'),
+                'callback' => 'news_resource_retrieve',
+                'access callback' => 'user_access',
+                'access arguments' => array('access content'),
+                'access arguments append' => FALSE,
+                'args' => array(
+                    array(
+                        'name' => 'hash',
+                        'type' => 'string',
+                        'description' => 'The hash of url.',
+                        'source' => array('param' => 'hash'),
+                        'optional' => False,
+                    ),
+                    array(
+                        'name' => 'nid',
+                        'optional' => FALSE,
+                        'source' => array('path' => 0),
+                        'type' => 'int',
+                        'description' => 'The nid of the pedia to retrieve',
+                    ),
+                    array(
+                        'name' => 'version',
+                        'type' => 'int',
+                        'description' => 'The version of app.',
+                        'source' => array('param' => 'version'),
+                        'optional' => TRUE,
+                        'default value' => 0,
+                    ),
+                ),
+            ),
+            ),
+        ),
+        'user' => array(
+            'relationships' => array(
+                'purchased_products' => array(
+                    'help' => 'list of product that the user bought',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'user_resource'),
+                    'callback' => 'user_resource_purchased_products_list',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('param' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'uid',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'The uid of the user for getting list',
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('param' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                )
+            ),
+        ),
+        'latin_news' => array(
+            'operations' => array(
+                'index' => array(
+                    'help' => 'return all latin news',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_news_resource'),
+                    'callback' => 'latin_news_resource_index',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('param' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'page',
+                            'type' => 'int',
+                            'description' => 'The page of list.',
+                            'source' => array('param' => 'page'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('param' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+                'retrieve' => array(
+                    'help' => 'retrieve a latin news',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_news_resource'),
+                    'callback' => 'latin_news_resource_retrieve',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('param' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'nid',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'The nid of the news to retrieve',
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('param' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+            ),
+        ),
+
 		'advisorlist' => array(
 			'operations' => array(
 				'index' => array(
@@ -43,7 +535,27 @@ function custom_services_services_resources(){
 					'access arguments' => array('access content'),
 					'access arguments append' => FALSE
 				)
-			)
+			),
+            'actions' => array(
+                'info' => array(
+                    'help' => 'return list of advisors',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+                    'callback' => 'advisors_info',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'page',
+                            'optional' => TRUE,
+                            'type' => 'int',
+                            'description' => 'The zero-based index of the page to get, defaults to 0.',
+                            'default value' => 0,
+                            'source' => array('data' => 'page'),
+                        )
+                    )
+                ),
+            ),
 		),
         'taxonomy_term' => array(
             'relationships' => array(
@@ -301,7 +813,7 @@ function custom_services_services_resources(){
                             'optional' => FALSE,
                             'source' => array('path' => 0),
                             'type' => 'int',
-                            'description' => 'The nid of the pedia whose advisors we are getting',
+                            'description' => 'The nid of the pedia that we are getting its advisors',
                         ),
                     ),
                 ),
@@ -498,6 +1010,58 @@ function custom_services_services_resources(){
                 ),
             ),
         ),
+
+        'test' => array(
+            'operations' => array(
+                'index' => array(
+                    'help' => '',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+                    'callback' => 'test',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'optional' => False,
+                            'type' => 'string',
+                            'description' => 'hash code',
+                            'source' => array('param' => 'hash'),
+                        ),
+                    ),
+                ),
+            ),
+        ),
+
+
+        /*
+		'logincheck' => array(
+			'retrieve' => array(
+				'help' => 'checks username and password from services',
+				'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'custom_services'),
+				'callback' => 'checklogin_retrieve',
+				'access callback' => 'user_access',
+				'access arguments' => array('access content'),
+				'access arguments append' => FALSE,
+				'args' => array(
+					array(
+						'name' => 'username',
+						'type' => 'string',
+						'description' => 'The username of user to check',
+						'source' => array('path' => 0),
+						'optional' => FALSE,
+					),
+					array(
+						'name' => 'password',
+						'type' => 'string',
+						'description' => 'The password of user to check',
+						'source' => array('path' => 1),
+						'optional' => FALSE,
+					),
+				),
+			),
+		),
+		*/
 	);
 }
 
@@ -510,3 +1074,18 @@ function custom_services_form_alter(&$form, &$form_state, &$form_id){
     }
 }
 
+function hash_true($hash , $resource){
+    $new_hash = hash_hmac("sha256" , $resource , "@Civil808Android@Saze808@" , false);
+    if(strcmp($hash, $new_hash) == 0) return true;
+    return false;
+}
+
+function user_information($uids = array()){
+    $query = db_select('users' , 'u');
+    $query->leftJoin('file_managed' , 'f' , 'u.picture = f.fid');
+    $query->fields('u' , array('uid' , 'name' , 'mail'));
+    $query->addField('f' , 'uri' , 'picture');
+    if(!empty($uids)) $query->condition('u.uid', $uids, 'IN');
+    $result = $query->execute()->fetchAll();
+    return $result;
+}
