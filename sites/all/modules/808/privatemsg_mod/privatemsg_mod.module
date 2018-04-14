@@ -75,9 +75,9 @@ function privatemsg_mod_form_alter(&$form, &$form_state, $form_id) {
 
 function privatemsg_new_mod_validate($form, &$form_state){
 	$message = $form_state['validate_built_message'];
-	if((count($message->recipients) == 1) && !isset($message->thread_id)){
+	$recipient = reset($message->recipients);
+	if(count($message->recipients) == 1 && !isset($message->thread_id) && $recipient->type == 'user'){
 		$author_id = $message->author->uid;
-		$recipient_id = reset($message->recipients)->uid;
 		//finding previous threads of twe users
 		$thread = db_query(
 			'SELECT DISTINCT in1.thread_id FROM {pm_index} in1 
@@ -87,7 +87,7 @@ function privatemsg_new_mod_validate($form, &$form_state){
 				SELECT DISTINCT in1.thread_id FROM {pm_index} in1 
 				JOIN {pm_index} in2 ON in1.thread_id = in2.thread_id AND in1.recipient != in2.recipient 
 				WHERE in1.recipient = :author AND in2.recipient <> :recipient)', 
-			array(':author' => $author_id, ':recipient' => $recipient_id)
+			array(':author' => $author_id, ':recipient' => $recipient->uid)
 		);
 		$thread = $thread->fetchObject();
 		if(count($thread) == 1)
@@ -250,7 +250,7 @@ function privatemsg_mod_init() {
 			if(isset($aliases[2])){
 				$thread = privatemsg_thread_load($aliases[2]);
 				foreach($thread['participants'] as $participant){
-					if($participant->uid == $user->uid){
+					if($participant->type == 'user' && $participant->uid == $user->uid){
 						drupal_goto("user/$user->uid/messages/view/$aliases[2]");
 						die();
 					}
@@ -314,7 +314,10 @@ function privatemsg_mod_view_access($account, $thread) {
 	if (privatemsg_user_access('read privatemsg') || privatemsg_user_access('read all private messages')) {
 		global $user;
 		foreach($thread['participants'] as $participant){
-			if($participant->uid == $account->uid && ($user->uid == $account->uid || privatemsg_user_access('read all private messages'))){
+			if((($participant->type == 'user' && $participant->uid == $account->uid) || 
+				($participant->type == 'role' && isset($account->roles[$participant->recipient]))
+				) && 
+				($user->uid == $account->uid || privatemsg_user_access('read all private messages'))){
 				return TRUE;
 			}
 		}
