@@ -847,6 +847,12 @@ function uc_affiliate2_apply_commission($order, $affiliate_id = NULL) {
       'total' => $price,
     );
   }
+    $admins = db_select("users_roles" , "r")
+            ->fields('r' , array('uid'))
+            ->condition('uid' , $aff)
+            ->condition('rid' , 3)
+            ->execute()->fetchAll();
+    if(!empty($admins) && count($admins) > 0) return;
 
   // write commission records
   foreach ($affcom as $affid => $data) {
@@ -856,6 +862,7 @@ function uc_affiliate2_apply_commission($order, $affiliate_id = NULL) {
 
       // calculate the commission for this affiliate/level
       $commission = 0;
+      $percentage = 0;
       foreach ($data['products'] as $pid => $product_data) {
         foreach ($product_data as $model => $model_data) {
           $comm = _uc_affiliate2_get_commission($aff, $level, $pid, $model);
@@ -863,14 +870,22 @@ function uc_affiliate2_apply_commission($order, $affiliate_id = NULL) {
 		  
           if ($comm_pct !== FALSE) {
             $commission += $model_data['total'] * $comm_pct / 100;
+            $percentage = ($comm_pct/100);
           }
           else {
             // $commission += $comm * $model_data['qty']; 
             $commission += $comm * $model_data['total'];
+            $percentage = $comm;
           }
         }
       }
-	  
+
+      $coupon_amount = 0;
+      foreach ($order->line_items as $row){
+          if(strcmp($row["type"] , "coupon") == 0) $coupon_amount += $row["amount"];
+      }
+      $commission = $commission + ($percentage * $coupon_amount); //$coupon_amount is negative
+
       $comm = new stdClass();
       $comm->order_id = $order->order_id;
       $comm->aid = $aff;
@@ -918,13 +933,21 @@ function uc_affiliate2_remove_commission($order, $affiliate_id = NULL) {
     return;
   }
 
+  $points = db_select('uc_affiliate2_commission' , 'aff')
+        ->fields('aff' , array('commission_id' , 'aid' , 'order_id' , 'commission'))
+        ->condition('order_id' , $order->order_id)
+        ->condition('aid' , $affiliates , 'IN')
+        ->execute()->fetchAll();
+
+
   db_delete('uc_affiliate2_commission')->condition('order_id', $order->order_id)->execute();
-  foreach($result as $row){
+
+  foreach($points as $row){
   	$params = array (
   		'uid' => $row->aid,
   		'points' => -$row->commission,
   		'operation' => 'product share',
-  		'description' => t('order #@order_id that was compeleted with your affiliate link has been canceled or deleted.', array('@order_id' => $row->order_id)),
+  		'description' => t('order #@order_id was canceled or deleted.', array('@order_id' => $row->order_id)),
   		'entity_id' => $row->order_id,
   		'entity_type' => 'uc_order',
   	);

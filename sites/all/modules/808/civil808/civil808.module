@@ -442,10 +442,11 @@ function civil808_page_accounting_charge($form, &$form_state, $uid) {
 		'#markup' => '<div id="smile">
 			<canvas>
 			</canvas>
-			<div class="festival">20% شارژ هدیه به مناسبت روز مهندس</div>
+			<div class="festival">20% شارژ هدیه به مناسبت جشنواره نوروزی 808</div>
 			<div class="last-price">مبلغ نهایی شارژ: <span></span> تومان</div>
 			</div>',
-		);*/
+		);
+		*/
 	return $form;
 	// return array();
 }

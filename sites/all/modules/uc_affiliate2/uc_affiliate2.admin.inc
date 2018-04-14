@@ -626,6 +626,20 @@ function uc_affiliate2_order_remove_commissions($form, $form_state, $order_id, $
 }
 
 function uc_affiliate2_order_remove_commissions_submit($form, &$form_state) {
+    $commission = db_select('uc_affiliate2_commission', 'comm')
+                    ->fields('comm' , array('commission_id' , 'order_id' , 'aid' , 'commission'))
+                    ->condition('commission_id', $form_state['values']['commission_id'])
+                    ->execute()->fetch();
+    $params = array (
+        'uid' => $commission->aid,
+        'points' => -$commission->commission,
+        'operation' => 'product share',
+        'description' => t('The commission for order #@order_id was deleted.', array('@order_id' => $commission->order_id)),
+        'entity_id' => $commission->order_id,
+        'entity_type' => 'uc_order',
+    );
+    $st = userpoints_userpointsapi($params);
+
   db_delete('uc_affiliate2_commission')
   ->condition('commission_id', $form_state['values']['commission_id'], '=')
   ->execute();
