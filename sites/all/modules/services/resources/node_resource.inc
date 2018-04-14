@@ -456,11 +456,12 @@ function _node_resource_create($node) {
   $nid = $form_state['nid'];
   // Only add the URI for servers that support it.
   $node = array('nid' => $nid);
-  */
+  *
   if ($uri = services_resource_uri(array('node', $nid))) {
     $node['uri'] = $uri;
   }
   return $node;
+	*/
 }
 
 /*

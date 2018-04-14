@@ -421,12 +421,49 @@ function merge_experts_form_submit($from, &$form_state){
 	}
 }
 
-function developer(){
-    $order = uc_order_load(8628);
-//    foreach($order->line_items as $row){
-//        if(strcmp($row["type"] , "coupon") == 0){
-//            adump($order);
-//        }
-//    }
-    adump($order);
+function developer()
+{
+    $query = db_select('m_buyed_nodes', 'buyed');
+    $query->join('node', 'node', 'buyed.nid = node.nid');
+//    $query->join('field_data_field_files', 'field_file', 'node.nid = field_file.entity_id');
+//    $query->join('file_managed', 'file', 'field_file.field_files_fid = file.fid');
+    $query->join('users', 'user', 'node.uid = user.uid');
+    $query->leftJoin('field_data_field_point_needed', 'price', 'buyed.nid = price.entity_id');
+    $query->fields('buyed', array('nid', 'date', 'price'));
+    $query->fields('node', array('title'));
+//    $query->fields('file', array('uri' , 'filesize'));
+    $query->fields('user', array('uid', 'name'));
+    $query->fields('price', array('field_point_needed_value'));
+    $query->condition('buyed.uid', 13356);
+    $query->condition('buyed.type', 'article');
+    $query->condition('node.type', 'publication');
+//    $query->condition('field_file.entity_type', 'node');
+//    $query->condition('field_file.bundle', 'publication');
+     $results= $query->execute()->fetchAll();
+
+    $nids = array();
+    $buyed_nodes = array();
+    foreach ($results as $row){
+        array_push($nids , $row->nid);
+        $buyed_nodes[$row->nid] = $row;
+        $buyed_nodes[$row->nid]->files = array();
+    }
+
+    $query = db_select('field_data_field_files' , 'field_file');
+    $query->join('file_managed' , 'file' , 'field_file.field_files_fid = file.fid');
+    $query->fields('field_file', array('entity_id'));
+    $query->fields('file', array('uri' , 'filesize'));
+    $query->condition('field_file.entity_id', $nids , 'IN');
+    $query->condition('field_file.entity_type', 'node');
+    $query->condition('field_file.bundle', 'publication');
+    $files = $query->execute()->fetchAll();
+    foreach($files as $file){
+        array_push($buyed_nodes[$file->entity_id]->files , $file);
+    }
+    $return_buyed_nodes = array();
+    foreach($buyed_nodes as $buyed_node){
+        foreach ($buyed_node->files as $file) unset($file->entity_id);
+        array_push($return_buyed_nodes, $buyed_node);
+    }
+    adump($return_buyed_nodes);
 }
