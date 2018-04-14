@@ -1,20 +1,11 @@
 var $ = jQuery;
 $(document).ready(function () {
 	
-var nav = $('.pane-menu-main-civil');
 $(window).scroll(function () {
     if ($(this).scrollTop() > 100) {
-        nav.addClass("topfix");
+        $('.pane-menu-main-civil').addClass("topfix");
     } else {
-        nav.removeClass("topfix");
-    }
-});
-var nava = $('.pane-menu-conference');
-$(window).scroll(function () {
-    if ($(this).scrollTop() > 100) {
-        nava.addClass("topfixc");
-    } else {
-        nava.removeClass("topfixc");
+        $('.pane-menu-main-civil').removeClass("topfix");
     }
 });
 /*-------------------------------------------initial part------------------------------------------------------------------------------*/
