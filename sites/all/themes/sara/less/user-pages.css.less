@@ -33,34 +33,6 @@
 					display: none;
 				}
 			}
-			
-			.pane-content.empty-msg{
-				background-color: white;
-				padding: 25px;
-				text-align: center;
-				border: solid #9C27B0;
-				border-width: 0px 5px;
-				span{
-					display: block;
-					margin: 0px 0px 10px 0px;
-				}
-				span.icon{
-					display: inline;
-					margin: 18px;
-					position: relative;
-					.before(f0c3, 'mat', 20px, #949494);
-					&:before{
-						position: absolute;
-						right: -17px;
-						border: 2px solid #d8d8d8;
-						border-radius: 50%;
-						background-color: #f3f3f3;
-						padding: 3px;
-						top: -10px;
-						margin: 5px 0px;
-					}
-				}
-			}
 		}
 		@media @980-769 {
 			margin: 0 !important;
@@ -75,6 +47,33 @@
 			margin-top: -@pad; 
 			@media @600{
 				height: 150px;
+			}
+		}
+		.pane-content.empty-msg{
+			background-color: white;
+			padding: 25px;
+			text-align: center;
+			border: solid #9C27B0;
+			border-width: 0px 5px;
+			span{
+				display: block;
+				margin: 0px 0px 10px 0px;
+			}
+			span.icon{
+				display: inline;
+				margin: 18px;
+				position: relative;
+				.before(f0c3, 'mat', 20px, #949494);
+				&:before{
+					position: absolute;
+					right: -17px;
+					border: 2px solid #d8d8d8;
+					border-radius: 50%;
+					background-color: #f3f3f3;
+					padding: 3px;
+					top: -10px;
+					margin: 5px 0px;
+				}
 			}
 		}
 	}
@@ -1635,6 +1634,37 @@ form#uc-addresses-get-address-form{
 			a{
 				margin: 0px 5px;
 			}
+		}
+	}
+}
+
+.page-user-register,
+.page-user-login{
+	#block-block-59{
+		text-align: center;
+		margin-top: -30px;
+		a.poster {
+			background: url(../images/mostaghim.png) no-repeat;
+			width: 150px;
+			height: 48px;
+			display: inline-block;
+			opacity: 0.9;
+			-webkit-transition: all 150ms ease 0s;
+			-ms-transition: all 150ms ease 0s;
+			-moz-transition: all 150ms ease 0s;
+			margin: 12px 8px -17px 8px;
+		}
+		a.poster.cafebazaar {
+			background: url(../images/cafebazaar.png) no-repeat;
+		}
+		a.poster.googleplay {
+			background: url(../images/googleplay.png) no-repeat;
+		}
+		a.poster.ios {
+			background: url(../images/ios.png) no-repeat;
+		}
+		a.poster.view:before {
+			content: '\f349';
 		}
 	}
 }

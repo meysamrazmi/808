@@ -1367,10 +1367,14 @@ td {
   box-shadow: 0 1px 3px 0px rgba(0,0,0,.1);
   box-sizing: border-box;
   overflow: hidden;
-  margin-bottom: 15px;
+  margin-bottom: -7px;
 }
 #mini-panel-sidebar_ads table {
   border: none;
+  margin-top: 0px;
+}
+#block-panels-mini-sidebar-ads #node-51 .content h2 {
+  display:none !important;
 }
 .panels-flexible-row-1-main-row.panels-flexible-row-last img {
   margin: 0 0 -5px 0 !important;

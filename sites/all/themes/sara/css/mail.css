@@ -39,14 +39,14 @@
 		 url('../fonts/sans/ttf/IRANSansWeb_UltraLight.ttf') format('truetype');
 }
 @font-face {
-font-family: "yekan";
-src: 	url(../fonts/yekan/bYekan.eot);
-src: 	url(../fonts/yekan/bYekan.eot?#iefix) format("embedded-opentype"), 
-		url(../fonts/yekan/bYekan.woff) format("woff"), 
-		url(../fonts/yekan/bYekan.ttf) format("truetype"), 
-		url(../fonts/yekan/bYekan.svg#BYekan) format("svg");
-font-weight: normal;
-font-style: normal
+    font-family: "yekan";
+    src: 	url(../fonts/yekan/bYekan.eot);
+    src: 	url(../fonts/yekan/bYekan.eot?#iefix) format("embedded-opentype"), 
+            url(../fonts/yekan/bYekan.woff) format("woff"), 
+            url(../fonts/yekan/bYekan.ttf) format("truetype"), 
+            url(../fonts/yekan/bYekan.svg#BYekan) format("svg");
+    font-weight: normal;
+    font-style: normal;
 }
 
 *:not(img){
@@ -127,7 +127,7 @@ a.aaa{
     border-bottom: 2px solid #3F51B5;
     padding: 2px 17px;
     display: inline-block!important;
-    margin: 12px 22px 0 22px;
+    margin: 12px 5px 0 5px;
     font-size: 12px!important;
     background-color: #f5f5f5;
     border-radius: 4px;
@@ -147,6 +147,9 @@ a.aaa{
 }
 #tabligh #aaa5{
     border-bottom-color:#00bcd4;
+}
+#tabligh #aaa6{
+    border-bottom-color:#7b1fa2;
 }
 #tabligh{
     text-align: center; 

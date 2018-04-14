@@ -613,7 +613,7 @@ if(!$('.page-user #block-system-main .content .pane-quicktabs-user-bookmark').le
 /*userpoints section*/
 if($('.page-user-points #userpoints-list-transactions tbody .empty.message').length){
 	$('.page-user-points #userpoints-list-transactions').css({'display' : 'none'});
-	$('.page-user-points #block-system-main .content').append('<div class="empty-userpoint"><span>برای شما هیچ اعتباری ثبت نشده است!</span><a href="/user/money/charge" class="btn btn-primary" target="_blank">افزایش اعتبار</a></div>');
+	$('.page-user-points #block-system-main .content').append('<div class="empty-userpoint"><span>برای شما هیچ اعتباری ثبت نشده است!</span><a href="/user/' + Drupal.settings.Uid + '/money/charge" class="btn btn-primary" target="_blank">افزایش اعتبار</a></div>');
 }
 
 /*solded content*/
@@ -970,7 +970,7 @@ if($('.menu-column').length){
 }
 /*-----------------------------------------------------------------------------------------------------------------*/
 $('input#edit-price').keyup(function(){
-	$(this).parents('form').find('#smile span').text((parseInt($(this).val()/** 1.2*/,10)));
+	$(this).parents('form').find('#smile span').text((parseInt($(this).val()/* *1.2*/,10)));
 });
 /*-----------------------------------------------------------------------------------------------------------------*/
 if($('.page-college-search').length && $('.view-courses .views-exposed-widgets .filters').length == 0){

@@ -1058,6 +1058,7 @@ transition: all 0.3s ease;
 .civil-slide .views-row-2 .views-field-body a {
   font-size: 14px;
   position: relative;
+  color: white !important;
 }
 .civil-slide .third-slide p:before {
   content: "\e013";

@@ -1,371 +1,373 @@
 <?php if(!isset($_COOKIE['banner'])): ?>
-    <div id="block-block-45" class="block block-block contextual-links-region first odd">
-        <div class="content">
-	        <span class="close-banner">X</span>
-            <?php // echo '<div id="smile"><canvas style="display: block;"></canvas></div>' ?>
-            <a href="http://land.civil808.com/96/engineer" target="_blank" style="/*border-top: 3px solid #E91E63;*/ ">
-            <?php  //echo <p class="textimg"></p> ?>
-            <?php  //echo <p class="titr"><img src="/sites/all/themes/sara/images/title-daneshjoo.png"></p> ?>
-            <?php  //echo <p class="texts"> ?>
-            <?php  //echo '<span class="texttt">20<span >%</span></span><span class="text1"> شارژ هدیه</span><span class="text4">+</span><span class="text2">ارسال رایگان</span>' ;?>
-            
-            <?php //echo '<p class="text6"><span>یک ماه عضویت vip</span><span>به ازای تکمیل پروفایل خود در سایت</span></p>'; ?>
-            <?php //echo '<p class="text6"><span class="row1"><span style="color: #960a00;">20 %</span><span> شارژ هدیه</span></span><span>ارسال رایگان پستی </span></p>'; ?>
-            <?php /*echo <div class="background-nim"><img src="/sites/all/themes/sara/images/yaldatemp.png"></div>
-            <div class="text-nim">
-            <div> زمستان امسال با <p class="inner-p"><span> 808 </span> <span> + </span></p> در کنار شما هستیم </div>
-            <p> کلیک کنید و تخفیف های شب یلدا و قابلیت های سیستم پرسش و پاسخ جدید ما را ببینید !! </p>
-            </div>
-             
-            <div class="back-right">
-                <img src="/sites/all/themes/sara/images/tabriz.png" width="150px" height="auto" style="opacity: 0.3;vertical-align: top;">
-                <img src="/sites/all/themes/sara/images/mashad.png" width="200px" height="auto" style="vertical-align: top;margin-right: 27px;">
-            </div>
-            <div class="back-left">
-                <img src="/sites/all/themes/sara/images/azadi-tower.png" width="110px" height="auto" style="opacity: 0.1;vertical-align: top;">
-                <img src="/sites/all/themes/sara/images/esfehan.png" width="240px" height="auto" style="vertical-align: top;margin-right: 27px;">
-            </div>*/ ?>
-            <div>
-            <div class="middle-text"> جشنواره فروش ویژه ۸۰۸  به مناسبت روز مهندس </div>
-            <?php  echo '<span class="text5"> تا پایان 6 اسفند تمدید شد! </span></p>' ;?> 
-            </div>
-            
-            </a>
-        </div>
-    </div>
+<div id="block-block-45" class="block block-block contextual-links-region first odd">
+	
+    <div class="content">
+	<span class="close-banner">X</span>
+	<a href="http://land.civil808.com/97/eid" target="_blank">
+		<span style="background: #F44336;color: #fff;position: absolute;right: calc(50% - 110px);visibility: visible;padding: 0px 25px;font-size: 17px;width: 220px;top: -3px;border-radius: 0 0 15px 15px;border: 1px solid #fff;">تا 13 فروردین تمدید شد</span>
+		<div class="tablightext">
+			<span>
+			تا <span style="color: #F44336;font-family:fanum;font-size: 21px;display: inline-block;line-height: 26px;padding: 0 3px;">50%</span> تخفیف رو از دست ندید
+			</span>
+		</div>
+	</a>
+	<?php
+	/*دهه فجر
+	<span class="close-banner">X</span>
+	<a href="http://land.civil808.com/fajr95" target="_blank">
+		<p>
+			<span style="font-size: 50px;height: 40px;display: inline-block;vertical-align: top;line-height: 45px;z-index: 1;position: relative;">۲۰</span>
+			<span style="font-size: 20px;vertical-align: top;line-height: 20px;z-index: 1;position: relative;">%</span>
+		</p>
+		<p>
+			<span class="main-text">جشنواره فروش فصلی پاییز و روز دانشجو <span style="letter-spacing: -1px;font-weight: normal;font-size: 17px;margin: 0 10px 0 0;text-decoration: line-through;color: #FF7043;">تا ۱۶ آذر</span><span style="letter-spacing: -1px;font-weight: normal;font-size: 17px;margin: 0 10px 0 0;color: #49ff00;font-size: 20px;">تا ۲۰ آذر</span><span style="letter-spacing: -1px;font-weight: normal;font-size: 18px;background: #F44336;padding: 2px 10px;border-radius: 4px;position: absolute;width: 85px;transform: rotate(0deg);top: 0px;text-shadow: 0 0 1px #F44336;margin-right: 40px;border: 1px solid #ffffff;">تمدید شد</span></span>
+		</p>   
+		<span class="" style="display: inline;padding: 3px 15px;border-radius: 15px;background: #f80;background: linear-gradient(to bottom left, #FFC107 ,#F44336);font-size: 14px;letter-spacing: 0px;display: block;width: 100px;margin: -23px auto 0;line-height: 16px;text-shadow: 0 0 10px #000;display: none;">تا ۱۶ آذر</span>
+		<span class="link">کلیک کنید</span>
+	</a>
+	*/?>
+</div>
+</div>
+
+<style>
+
+div#block-block-45 {
+	background: url(http://civil808.com/sites/all/themes/sara/images/bg-sabz2.png);
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	border-top: 3px solid #8bb65d;
+	height: 70px;
+	z-index: 100;
+	background-position-x: center;
+	background-size: cover;
+	display: flex;
+	align-items: center;
+	background-color:white;
+}	
+div#block-block-45:before {
+  content: "";
+  position: absolute;
+  background: url(../images/20percent.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 340px;
+  height: 30px;
+  right: 5%;
+  visibility: hidden;
+}
+div#block-block-45 span.link {
+  position: absolute;
+  left: 50px;
+  top: 8px;
+  font-size: 17px;
+  border: 2px solid;
+  padding: 3px 20px 3px 40px;
+  border-radius: 35px;
+  background: rgba(255, 255, 255, 0.19);
+  text-shadow: 0 0 8px #000;
+}
+div#block-block-45 .content a {
+  color: #fff !important;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+div#block-block-45 .content a > * {
+  visibility: hidden;
+}
+div#block-block-45 .content p:first-child {
+  visibility: visible;
+  position: absolute;
+  right: 5%;
+  top: -3px;
+  font-weight: bold;
+  box-shadow: rgba(0, 0, 0, 0.247059) 0px 10px 45px, rgba(0, 0, 0, 0.219608) 0px 9px 18px;
+  font-family: fanum;
+  background: #F44336;
+  padding: 8px 0px 0 4px;
+  letter-spacing: -7px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 0;
+}
+div#block-block-45 .content p:first-child:before {
+  -webkit-transform: rotate(30deg);
+  -moz-transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  -o-transform: rotate(30deg);
+}
+div#block-block-45 .content p:first-child:before, div#block-block-45 .content p:first-child:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 50px;
+  background: #F44336;
+  z-index: 0;
+}
+div#block-block-45 .content p:first-child:after {
+  -webkit-transform: rotate(60deg);
+  -moz-transform: rotate(60deg);
+  -ms-transform: rotate(60deg);
+  -o-transform: rotate(60deg);
+}
+div#block-block-45 .main-text {
+  font-size: 21px;
+  text-shadow: 0 0 10px #000;
+  border-bottom: 2px solid;
+  border-right: 5px solid;
+  padding: 0px 30px;
+  position: absolute;
+  right: 60px;
+  bottom: 4px;
+  font-weight: 500;
+}
+div#block-block-45 span.link:after {
+  content: "\f04d";
+  font-family: mat;
+  position: absolute;
+  padding: 3px 0px 4px 0;
+  font-size: 22px;
+  transition: all 0.3s ease;
+}
+div#block-block-45:hover span.link:after {
+  padding: 3px 7px 4px 0;
+}
+div#block-block-45:after {
+	content: "";
+    position: absolute;
+    background: url(http://civil808.com/sites/all/themes/sara/images/gol.png);
+    background-repeat: no-repeat;
+    width: 27%;
+    height: 159px;
+    right: 0;
+    background-size: 90%;
+    -ms-transform: rotate(17deg);
+    -webkit-transform: rotate(17deg);
+    transform: rotate(17deg);
+    bottom: -54px;
+}
+div#block-block-45 .content {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+div#block-block-45 .content:before {
+    background: url(/sites/all/themes/sara/images/font96.png);
+    background-repeat: no-repeat;
+    width: 24%;
+    height: 53px;
+    background-position: center;
+    background-size: 80%;
+    right: 31%;
+    content:"";
+    position: absolute;
+}
+
+#block-block-45 div.tablightext{
+    position: absolute;
+    left: 0px;
+    height: 60px;
+    width: 36%;
+    z-index: 36;
+    text-align: center;
+    padding-top: 18px;
+}
+#block-block-45 div.tablightext span{
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    height: 57px;
+    text-align: center;
+    visibility: visible;
+    vertical-align: top;
+}
+#block-block-45 div.tablightext:after {
+    content: "\f104";
+    font-size: 38px;
+    font-family: aw;
+    color: black;
+    visibility: visible;
+    line-height: 23px;
+    margin-right: 29px;
+    transition: all ease 0.5s;
+    position: absolute;
+}
+#block-block-45:hover div.tablightext:after {
+    margin-right: 50px;
+}
+.close-banner {
+  position: absolute;
+  top: -25px;
+  left: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+}
+.close-banner:hover:before {
+  opacity: 1;
+  left: 30px;
+}
+.close-banner:before {
+  content: "بستن تبلیغ";
+  position: absolute;
+  left: -30px;
+  color: #555;
+  font-size: 12px;
+  line-height: 20px;
+  transition: all 0.1s;
+  white-space: nowrap;
+  opacity: 0;
+}
+
+@media (max-width: 1200px){
+div#block-block-45:after {
+    width: 27%;
+    height: 159px;
+}
+#block-block-45 div.tablightext:after {
+    font-size: 28px;
+    line-height: 28px;
+    margin-right: 16px;
+}
+#block-block-45 div.tablightext span {
+    font-size: 17px;
+}
+#block-block-45 div.tablightext {
+    width: 33%;
+}
+#block-block-45:hover div.tablightext:after {
+    margin-right: 20px;
+}
+}
+
+@media (max-width: 979px){
+div#block-block-45:before {
+  width: 300px;
+  height: 27px;
+  right: 2%;
+}
+div#block-block-45 .content p:first-child {
+  right: 2%;
+}
+}
+
+@media (max-width: 979px) and (min-width: 769px){
+div#block-block-45:after{
+    height: 148px;
+    bottom: -67px;
+}
+div#block-block-45 .content:before {
+    width: 33%;
+}
+div#block-block-45 {
+    background-position-x: 41%;	
+}
+}
+
+@media all and (max-width: 768px) {
+div#block-block-45 .content a{
+	zoom: 0.8;
+    margin-top: 10px;
+}
+div#block-block-45:after {
+    width: 32%;
+    margin-bottom: -2%;
+}
+div#block-block-45 {
+    background-position-x: 38%;
+}
+div#block-block-45 .content:before {
+    width: 35%;
+}
+}
+
+@media all and (max-width: 600px) {
+	#block-block-45 div.tablightext span {
+    font-size: 15px;
+}
+div#block-block-45 .content:before {
+    width: 42%;
+    right: 23%;
+}
+div#block-block-45:after {
+    width: 32%;
+    margin-bottom: -4%;
+}
+}
+
+@media all and (max-width: 500px) {
+div#block-block-45 .content p:first-child {
+  right: 5px;
+}
+div#block-block-45 span.link {
+  left: calc(50% - 70px);
+  left: 10px;
+  bottom: 0;
+  top: initial;
+  display: none;
+}
+div#block-block-45 .main-text {
+  width: 96%;
+  right: 2%;
+  border: solid #ffffff;
+  /* background: rgba(255, 255, 255, 0.4); */
+  border-width: 0 5px;
+  top: 11px;
+  bottom: inherit;
+}
+div#block-block-45 .content:before {
+    width: 47%;
+    right: 14%;
+}
+#block-block-45 div.tablightext {
+    width: 37%;
+}
+div#block-block-45 .content p:first-child {
+  right: calc(50% - 190px);
+}
+div#block-block-45 {
+    background-position-x: 34%;
+}
+div#block-block-45:after {
+    bottom: -62px;
+    width: 34%;
+}
+div#block-block-45:before {
+  right: calc(50% - 150px);
+}
+}
+
+@media all and (max-width: 400px) {
+div#block-block-45:after {
+    display:none;
+}
+div#block-block-45 .content:before {
+    width: 55%;
+    right: 10px;
+}
+div#block-block-45 {
+    background-position-x: 33%;
+}
+}
+
+</style>
+
+
+
 <?php endif;?>
 
-<!-- old css code for this block -->
-<style>
-    div#block-block-45 .titr{
-      position: absolute;
-      top: 19px;
-      right: calc(50vw - 195px);
-      font-size: 25px;
-      color: white;
-  }
-  div#block-block-45 .titr img{
-      width: 420px;
-  }
-  div#block-block-45 .titr span {
-      color: red;
-  }
-  div#block-block-45 a > img {
-      position: absolute;
-      left: 12px;
-      width: 95px;
-      transform: rotate(32deg);
-      top: -11px;
-  }
-  div#block-block-45 div#smile {
-      width: 100%;
-      position: absolute;
-      z-index: 0;
-      top: 0;
-      height: 100%;
-      border: none;
-      background: #fff;
-  }
-  div#block-block-45 .titr:after {
-      /*content: "";
-      height: 74px;
-      width: 80px;
-      left: -60px;
-      top: 0;
-      position: absolute;
-      display: flex;
-      align-items: center;
-      background-image: url(//civil808.com/sites/all/themes/sara/images/moon.png);
-      background-repeat: no-repeat;*/
-  }
-  #block-block-45 .text3{
-      position: absolute;
-      border-radius: 50%;
-      background-color: #FDD835;
-      width: 0px;
-      transition: all ease 0.2s;
-      top: 35px;
-      left: 104px;
-      height: 4px;
-      z-index: 100;
-      width: 0px;
-      opacity: 0;
-  }
-  #block-block-45:hover .text3{
-      left: -276px;
-      top: -45px;
-      width: 514px;
-      height: 454px;
-      opacity: 1;
-  }
-  #block-block-45:hover span.more{
-      color:black;
-  }
-  #block-block-45 .texts{
-      position: absolute;
-      font-size: 20px;
-      color: #444;
-      top: 19px;
-      right: 4%;
-      text-align: center;
-      padding: 2px 15px;
-  }
-  #block-block-45 .textimg{
-      position: absolute;
-      top: -51px;
-      right: 0;
-      padding: 2px 15px;
-      background-image: url(http://civil808.com/sites/all/themes/sara/images/pencil.png);
-      height: 138px;
-      width: 240px;
-      background-position: center;
-      background-size: cover;
-  }
-  #block-block-45 a.more{
-      position: absolute;
-      /* top: 63px; */
-      /* right: 103px; */
-      font-size: 16px;
-      left: 2%;
-      top: 26px;
-      z-index: 102;
-      color: #333;
-  }
-  #block-block-45 a.more:after {
-      content: "\f141";
-      font-family: mat;
-      vertical-align: sub;
-      margin-right: 5px;
-  }
-  #block-block-45 .text1{
-      margin-right: 12px;
-  }
-  #block-block-45 .text2{
-      color: red;
-      text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff;
-      background: #eee;
-      padding: 0 10px;
-      border-radius: 5px;
-      display: inline-block;
-  }
-  #block-block-45 .text4{
-      margin: 0 7px;
-  }
-  #block-block-45 span.texttt {
-      background: #f00;
-      width: 45px;
-      display: inline-block;
-      line-height: 40px;
-      position: absolute;
-      z-index: 1;
-      margin-left: 12px;
-      font-family: fanum;
-      margin: -40px -40px 0 0;
-      font-size: 40px;
-      font-weight: bold;
-      padding-left: 10px;
-      padding-top: 5px;
-      letter-spacing: -8px;
-      color: #fff;
-  }
-  #block-block-45 span.texttt:before,
-  #block-block-45 span.texttt:after {
-      content: "";
-      position: absolute;
-      width: 45px;
-      height: 45px;
-      background: #f00;
-      right: 0;
-      top: 0;
-      z-index: -1;
-  }
-  #block-block-45 span.texttt:before {
-      transform: rotate(60deg);
-  }
-  #block-block-45 span.texttt:after {
-      transform: rotate(120deg);
-  }
-  #block-block-45 span.texttt span{
-      position: absolute;
-      font-size: 20px;
-      top: 0px;
-      left: 1px;
-      letter-spacing: 0;
-  }
-  #block-block-45 .text5 {
-      /*margin: 0 25px 0 0;*/
-      font-family: fanum;
-  }
-  #block-block-45 p.text6 {
-      position: absolute;
-      left: 67px;
-      height: 52px;
-      margin-top: 4px;
-      font-size: 13px;
-      line-height: 33px;
-  }
-  #block-block-45 p.text6 > span {
-      display: block;
-      text-align: center;
-      color: #fff;
-      font-size: 15px;
-  }
-  #block-block-45 p.text6 span.row1:after {
-      /*content: "\f1a5";
-      font-family: mat;
-      float: left;
-      position: absolute;
-      bottom: 21px;
-      margin-right: 4px;
-      font-size: 25px;
-      color: #fcd201;*/
-      content: "+";
-      font-family: mat;
-      float: left;
-      position: absolute;
-      bottom: 20px;
-      margin-right: 9px;
-      font-size: 26px;
-      color: #960a00;
-      font-weight: bold;
-  }
-  
-  #block-block-45 p.text6 span.row1 {
-      /*border-bottom: 2px solid #fcd201;
-      text-align: right;
-      padding: 0 37px 0 59px;
-      font-size: 16px;
-      color: white;*/
-      border-bottom: 2px solid #fcd201;
-      text-align: right;
-      padding: 0 35px 0 59px;
-      font-size: 16px;
-      color: white;
-  }
-  @media all and (max-width:1200px){
-      #block-block-45 .texts{
-          font-size: 16px;
-          top: 21px;
-      }
-      div#block-block-45 .titr {
-          right: calc(50vw - 183px);
-      }
-      #block-block-45 p.text6 {
-          left: 22px;
-      }
-      #block-block-45 p.text6 span:first-child {
-          font-size: 13px;
-      }
-  }
-  @media (max-width: 979px ){
-      div#block-block-45 a.titr {
-      right: calc(50vw - 106px);
-      font-size: 23px;
-      }
-      #block-block-45 a.more {
-          left: 1%;
-          font-size: 13px;
-          top: 28px;
-      }
-      #block-block-45:hover .text3 {
-          width: 453px;
-          height: 390px;
-      }
-      div#block-block-45 a > img {
-          display: none;
-      }
-      #block-block-45 .texts{
-          display: flex;
-          flex-direction: column;
-          top: 3px;
-          right: 6%;
-      }
-      #block-block-45 .text4{
-          display: none;
-      }
-      #block-block-45 span.text1:after {
-          content: " + ";
-      }
-      div#block-block-45 .titr {
-          right: calc(50vw - 119px);
-      }
-      #block-block-45 p.text6 {
-          display : none;
-      }
-  }
-  @media (max-width: 768px ){
-      div#block-block-45 .titr {
-          right: calc(50vw - 71px);
-          width: 341px;
-      }
-      #block-block-45 p.text6 {
-          display: none;
-      }
-  }
-  @media (max-width: 660px ){
-      div#block-block-45 a.titr {
-      left: 70px;
-      right: inherit;
-      }
-      div#block-block-45 .more,
-      div#block-block-45 .text3{
-          display:none;
-      }
-      .close-banner {
-          left: 5px;
-          right: initial;
-      }
-      div#block-block-45 .texts{
-          display: none;
-      }
-      div#block-block-45 .titr {
-          position: relative;
-          text-align: center;
-          right: calc(50vw - 113px);
-      }
-      #block-block-45 p.textimg {
-          background-size: 77%;
-          background-repeat: no-repeat;
-          right: -22px;
-          width: 200px;
-          top: auto;
-          bottom: -34px;
-      }
-  }
-  @media (max-width: 500px ){
-      div#block-block-45 a.titr {
-          font-size: 18px;
-          line-height: 15px;
-          padding: 15px 0;
-      }
-      #block-block-45 .texts {
-          display: flex;
-          flex-direction: column;
-          top: 3px;
-          right: 8%;
-      }
-      div#block-block-45 .titr {
-          position: relative;
-          text-align: center;
-          right: auto;
-          margin: auto;
-          width: 300px;
-          top: 23px;
-      }
-      #block-block-45 p.textimg {
-          display: none;
-      }
-  }
-  @media (max-width: 400px ){
-      #block-block-45 .texts {
-      flex-direction: row;
-      top: 15px;
-      }
-      div#block-block-45 a.titr {
-      color: #fff;
-      }
-  div#block-block-45 a.titr span {
-      color: #fff;
-  }
-  }
-</style>
+
+

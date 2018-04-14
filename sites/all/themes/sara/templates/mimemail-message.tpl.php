@@ -41,7 +41,8 @@
                 <a class="aaa" href="http://civil808.com/cooperate" target="_blank">همکاری با ما</a>
                 <a id="aaa2" class="aaa" href="http://civil808.com/question/list" target="_blank"> پرسش و پاسخ </a>
                 <a id="aaa3" class="aaa" href="http://civil808.com/landing/advisor" target="_blank">ارتباط با مشاوران</a>
-                <a id="aaa4" class="aaa" href="http://civil808.com/pedia" target="_blank">دانشنامه 808</a>
+				<a id="aaa4" class="aaa" href="http://civil808.com/pedia" target="_blank">دانشنامه 808</a>
+				<a id="aaa6" class="aaa" href="http://civil808.com/app" target="_blank"> اپلیکیشن 808 پلاس </a>
                 <a id="aaa5" class="aaa" href="http://civil808.com/node/2" target="_blank"> درباره ما </a>
             </div>
 		</div>
@@ -50,7 +51,7 @@
 				<a href="http://civil808.com"  target="_blank">موسسه آموزشی و مهندسی ۸۰۸</a>
 			</div>
 			<div style="margin: 23px;color:#333;">
-				<span>تهران ، پل گیشا ، ابتدای فروزانفر ، جنب بانک صادرات، پلاک 1، واحد 7</span><span> ، </span><span>تلفن : 88272694 - 021</span>
+				<span style="line-height: 28px;" >تهران ، پل گیشا ، ابتدای فروزانفر ، جنب بانک صادرات، پلاک 1، واحد 7</span><span style="line-height: 28px;"> ، </span><span style="line-height: 28px;">تلفن : 88272694 - 021</span>
 			</div>
 			<div>
 				<div class="socialss">	

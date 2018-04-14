@@ -1993,6 +1993,9 @@ $('.dd + .dd').remove();
 .uid-3989.page-node-results.node-type-quiz .quiz-report-score-container {
     display: none !important;
 }
+.uid-3989.page-node-results.node-type-quiz.page-node table {
+    margin: 0px 0 !important;
+}
 .uid-3989.page-node-results.node-type-quiz .question_type_name {
     display: none;
 }
@@ -2014,7 +2017,7 @@ $('.dd + .dd').remove();
 }
 .uid-3989.page-node-results.node-type-quiz div.quiz-report .dd {
 	/* display: none; */
-    margin: 0 10px 0 0%!important;
+    margin: 0 3px 0 7px!important;
     display: inline-block;
     width: 45%;
     vertical-align: middle;
@@ -2038,15 +2041,16 @@ $('.dd + .dd').remove();
 }
 .uid-3989.page-node-results.node-type-quiz div.quiz-report > span {
     display: inline-block;
-    vertical-align: top;
     border: 2px solid #eeeeee;
-    padding: 3px 9px;
     border-radius: 50%;
     font-family: fanum;
     margin-top: 26px;
-    font-size: 16px;
-    width: 3%;
+    font-size: 11px;
+    width: 25px;
     text-align: center;
+    height: 27px;
+    vertical-align: text-bottom;
+    padding-top: 3px;
 }
 .uid-3989.page-node-results.node-type-quiz .with-sidebar .span9 {
     margin: auto;
@@ -2075,6 +2079,9 @@ $('.dd + .dd').remove();
 }
 .uid-3989.page-node-results.node-type-quiz div#quiz_score_percent {
     display: none;
+}
+.uid-3989.page-node-results.node-type-quiz .online-users-section{
+    display:none;
 }
 
 
