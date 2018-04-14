@@ -1,21 +1,32 @@
 var $ = jQuery;
 $(document).ready(function () {
 	
-var nav = $('.pane-menu-main-civil');
 $(window).scroll(function () {
     if ($(this).scrollTop() > 100) {
-        nav.addClass("topfix");
+        $('.pane-menu-main-civil').addClass("topfix");
     } else {
-        nav.removeClass("topfix");
+        $('.pane-menu-main-civil').removeClass("topfix");
     }
 });
-var nava = $('.pane-menu-conference');
-$(window).scroll(function () {
-    if ($(this).scrollTop() > 100) {
-        nava.addClass("topfixc");
-    } else {
-        nava.removeClass("topfixc");
-    }
+if($('#backtotop').length == 0) {
+	$("body").append("<div id='backtotop'>بالای صفحه</div>");
+}
+$(window).scroll(function() {
+	if($(this).scrollTop() > 500) {
+		$('#backtotop').fadeIn();	
+	} else {
+		$('#backtotop').fadeOut();
+	}
+});
+
+$('#backtotop').click(function() {
+    $("html, body").bind("scroll mousedown DOMMouseScroll mousewheel keyup", function() {
+		$('html, body').stop();
+	});
+	$('html,body').animate({ scrollTop: 0 }, 1200, function() {
+		$("html, body").unbind("scroll mousedown DOMMouseScroll mousewheel keyup");
+	});
+	return false;
 });
 /*-------------------------------------------initial part------------------------------------------------------------------------------*/
 /*hiding tabs*/
