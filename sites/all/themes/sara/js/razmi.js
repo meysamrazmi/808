@@ -23,10 +23,8 @@ $('#backtotop').click(function() {
     $("html, body").bind("scroll mousedown DOMMouseScroll mousewheel keyup", function() {
 		$('html, body').stop();
 	});
-	$('html,body').animate({ scrollTop: 0 }, 1200, function() {
-		$("html, body").unbind("scroll mousedown DOMMouseScroll mousewheel keyup");
-	});
-	return false;
+	$('html,body').animate({ scrollTop: 0 }, 1200);
+	return false; 
 });
 /*-------------------------------------------initial part------------------------------------------------------------------------------*/
 /*hiding tabs*/
