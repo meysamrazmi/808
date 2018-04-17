@@ -1,8 +1,20 @@
+From f480c3b28a0cbdda7755f08f963da199e58cc92f Mon Sep 17 00:00:00 2001
+From: meysamrazmi <m.razmi.92@gmail.com>
+Date: Tue, 10 Apr 2018 08:49:47 +0430
+Subject: [PATCH] addig calendar_systems patch
+
+---
+ includes/common.inc                         |   18 ++++++++++++++++--
+ modules/simpletest/tests/system_test.module |    8 ++++++++
+ modules/system/system.api.php               |   20 ++++++++++++++++++++
+ modules/system/system.test                  |   24 ++++++++++++++++++++++++
+ 4 files changed, 68 insertions(+), 2 deletions(-)
+
 diff --git a/includes/common.inc b/includes/common.inc
-index c6303ef..f93f75e 100644
+index d7dc47f..67466c0 100644
 --- a/includes/common.inc
 +++ b/includes/common.inc
-@@ -2057,16 +2057,30 @@ function format_date($timestamp, $type = 'medium', $format = '', $timezone = NUL
+@@ -2066,16 +2066,30 @@ function format_date($timestamp, $type = 'medium', $format = '', $timezone = NUL
    // input string.
    // Paired backslashes are isolated to prevent errors in read-ahead evaluation.
    // The read-ahead expression ensures that A matches, but not \A.
@@ -36,27 +48,29 @@ index c6303ef..f93f75e 100644
  
  /**
 diff --git a/modules/simpletest/tests/system_test.module b/modules/simpletest/tests/system_test.module
-index 3d5a11a..53d4da5 100644
+index fef539a..323dbbc 100644
 --- a/modules/simpletest/tests/system_test.module
 +++ b/modules/simpletest/tests/system_test.module
-@@ -482,3 +482,11 @@ function system_test_request_destination() {
-   // information.
-   exit;
+@@ -486,6 +486,14 @@ function system_test_get_destination() {
  }
-+
-+/**
+ 
+ /**
 + * Implements hook_format_date_alter().
 + */
 +function system_test_format_date_alter(&$formatted_date, array $context) {
 +  // Reverse the date string for testing purposes.
 +  $formatted_date = strrev($formatted_date);
 +}
-\ No newline at end of file
++
++/**
+  * Page callback to print out $_REQUEST['destination'] for testing.
+  */
+ function system_test_request_destination() {
 diff --git a/modules/system/system.api.php b/modules/system/system.api.php
-index 4576f81..c02af5f 100644
+index f1855b9..8a5e7f3 100644
 --- a/modules/system/system.api.php
 +++ b/modules/system/system.api.php
-@@ -4788,6 +4788,26 @@ function hook_filetransfer_info_alter(&$filetransfer_info) {
+@@ -4818,6 +4818,26 @@ function hook_filetransfer_info_alter(&$filetransfer_info) {
  }
  
  /**
@@ -84,10 +98,10 @@ index 4576f81..c02af5f 100644
   */
  
 diff --git a/modules/system/system.test b/modules/system/system.test
-index 95b4353..7172bd0 100644
+index 9eaf562..fa18581 100644
 --- a/modules/system/system.test
 +++ b/modules/system/system.test
-@@ -1440,6 +1440,30 @@ class DateTimeFunctionalTest extends DrupalWebTestCase {
+@@ -1459,6 +1459,30 @@ class DateTimeFunctionalTest extends DrupalWebTestCase {
        ->fetchColumn();
      $this->assertFalse($format, 'Localized date format for disabled language is ignored.');
    }
@@ -117,4 +131,7 @@ index 95b4353..7172bd0 100644
 +  }
  }
  
- class PageTitleFiltering extends DrupalWebTestCase {
+ /**
+-- 
+1.7.1
+

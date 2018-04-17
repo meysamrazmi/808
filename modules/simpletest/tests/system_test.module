@@ -486,6 +486,14 @@ function system_test_get_destination() {
 }
 
 /**
+ * Implements hook_format_date_alter().
+ */
+function system_test_format_date_alter(&$formatted_date, array $context) {
+  // Reverse the date string for testing purposes.
+  $formatted_date = strrev($formatted_date);
+}
+
+/**
  * Page callback to print out $_REQUEST['destination'] for testing.
  */
 function system_test_request_destination() {
