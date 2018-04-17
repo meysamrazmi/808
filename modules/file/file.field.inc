@@ -240,7 +240,11 @@ function file_field_insert($entity_type, $entity, $field, $instance, $langcode, 
   list($id, $vid, $bundle) = entity_extract_ids($entity_type, $entity);
 
   // Add a new usage of each uploaded file.
-  foreach ($items as $item) {
+  foreach ($items as $delta => $item) {
+    if (empty($item['fid'])) {
+      unset($items[$delta]);
+      continue;
+    }
     $file = (object) $item;
     file_usage_add($file, 'file', $entity_type, $id);
   }
@@ -298,7 +302,11 @@ function file_field_update($entity_type, $entity, $field, $instance, $langcode, 
   }
 
   // Add new usage entries for newly added files.
-  foreach ($items as $item) {
+  foreach ($items as $delta => $item) { 
+    if (empty($item['fid'])) {
+      unset($items[$delta]);
+      continue;
+    }
     if (!in_array($item['fid'], $original_fids)) {
       $file = (object) $item;
       file_usage_add($file, 'file', $entity_type, $id);
