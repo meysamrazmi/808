@@ -32,9 +32,7 @@ cron.php
 install.php
 update.php
 xmlrpc.php
-/includes
 /misc
-/modules
 /profiles
 /scripts
 /themes
