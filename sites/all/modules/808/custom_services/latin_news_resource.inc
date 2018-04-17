@@ -35,18 +35,26 @@ function list_of_latin_news_version_one($page){
 function retrieve_a_latin_news_version_one($nid){
     $query = db_select('node' , 'node');
     $query->leftJoin('field_data_body', 'body', 'body.entity_id = node.nid');
-    $query->leftJoin('field_data_field_image', 'image', 'image.entity_id = node.nid');
-    $query->join('file_managed', 'file', 'file.fid = image.field_image_fid');
     $query->leftJoin('field_data_field_eventtime', 'eventtime', 'eventtime.entity_id = node.nid');
     $query->leftJoin('field_data_field_company', 'company', 'company.entity_id = node.nid');
     $query->leftJoin('field_data_field_ifwebinar', 'ifwebinar', 'ifwebinar.entity_id = node.nid');
     $query->fields('node' , array('title'));
     $query->fields('body' , array('body_value'));
-    $query->fields('file' , array('filename' , 'uri'));
     $query->fields('eventtime' , array('field_eventtime_value'));
     $query->fields('company' , array('field_company_value'));
     $query->fields('ifwebinar' , array('field_ifwebinar_value'));
     $query->condition('node.nid' , $nid);
     $latin_news = $query->execute()->fetch();
-    return ["news" => $latin_news];
+
+    $query = db_select('field_data_field_image' , 'field_image');
+    $query->join('file_managed', 'file', 'file.fid = field_image.field_image_fid');
+    $query->fields('file' , array('filename' , 'uri'));
+    $query->condition('field_image.entity_id' , $nid);
+    $query->condition('field_image.entity_type' , 'node');
+    $query->condition('field_image.bundle' , 'article');
+    $news_image = $query->execute()->fetch();
+
+    if(!empty($news_image)){ $latin_news->filename = $news_image->filename; $latin_news->uri = $news_image->uri; }
+
+    return ["latin_news" => $latin_news];
 }
