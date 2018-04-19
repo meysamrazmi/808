@@ -1,44 +1,1 @@
-<?php
-/**
- * Implements hook_schema().
- */
-function civil808_schema() {
-	$schema['m_reward_request'] = array(
-		'fields' => array(
-			'id' => array(
-				'description' => t('Primary Key ID'),
-		        'type' => 'serial',
-		        'unsigned' => TRUE,
-		        'not null' => TRUE,
-				),
-			'uid' => array(
-		        'type' => 'int',
-		        'unsigned' => TRUE,
-		        'not null' => TRUE,
-				),
-			'price' => array(
-		        'type' => 'int',
-				),
-			'date' => array(
-		        'type' => 'int',
-		        'unsigned' => TRUE,
-		        'not null' => TRUE,
-				),
-			'state' => array(
-				'description' => t('active, closed, completed and ...'),
-		        'type' => 'int',
-		        'unsigned' => TRUE,
-		        'not null' => TRUE,
-				),
-			'text' => array(
-		        'type' => 'text',
-		        'not null' => TRUE,
-				),
-			),
-		'primary key' => array( 'id' ),
-		);
-
-	return $schema;
-}
-
-?>
+<?php/** * Implements hook_schema(). */function civil808_schema() {	$schema['m_reward_request'] = array(		'fields' => array(			'id' => array(				'description' => t('Primary Key ID'),		        'type' => 'serial',		        'unsigned' => TRUE,		        'not null' => TRUE,				),			'uid' => array(		        'type' => 'int',		        'unsigned' => TRUE,		        'not null' => TRUE,				),			'price' => array(		        'type' => 'int',				),			'date' => array(		        'type' => 'int',		        'unsigned' => TRUE,		        'not null' => TRUE,				),			'state' => array(				'description' => t('active, closed, completed and ...'),		        'type' => 'int',		        'unsigned' => TRUE,		        'not null' => TRUE,				),			'text' => array(		        'type' => 'text',		        'not null' => TRUE,				),			),		'primary key' => array( 'id' ),		);	return $schema;}?>
