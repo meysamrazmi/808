@@ -1,6 +1,7 @@
 # Ignore configuration files that may contain sensitive information.
 sites/*/*settings*.php
 lock/confing.php
+.idea/
 
 # Ignore paths that contain generated content.
 files/
@@ -57,3 +58,4 @@ google*.html
 *.mp4
 *.webm
 *.mp3
+
