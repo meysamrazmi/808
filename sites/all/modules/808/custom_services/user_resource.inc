@@ -1,38 +1,1 @@
-<?php
-
-function user_resource_purchased_products_list($hash , $uid , $version){
-    if(!(hash_true($hash , "user"))) return "failed to access";
-    if($version == 0){
-        return list_of__user_purchased_products_version_one($uid);
-    }
-    return "This version not supported";
-}
-
-function list_of__user_purchased_products_version_one($uid){
-    global $user;
-    if($user->uid != $uid) return ["ebook" => array()];
-    $query = db_select('m_buyed_nodes', 'buyed');
-    $query->join('node', 'node', 'buyed.nid = node.nid');
-    $query->join('field_data_field_files', 'field_file', 'node.nid = field_file.entity_id');
-    $query->join('file_managed', 'file', 'field_file.field_files_fid = file.fid');
-    $query->join('users', 'user', 'node.uid = user.uid');
-    $query->leftJoin('field_data_field_point_needed', 'price', 'buyed.nid = price.entity_id');
-    $query->fields('buyed', array('nid', 'date', 'price'));
-    $query->fields('node', array('title'));
-    $query->fields('file', array('uri' , 'filesize'));
-    $query->fields('user', array('uid', 'name'));
-    $query->fields('price', array('field_point_needed_value'));
-    $query->condition('buyed.uid', $uid);
-    $query->condition('buyed.type', 'article');
-    $query->condition('node.type', 'publication');
-    $query->condition('field_file.entity_type', 'node');
-    $query->condition('field_file.bundle', 'publication');
-    $buyed_nodes = $query->execute()->fetchAll();
-    foreach ($buyed_nodes as $node) {
-        if(empty($node->price) && !empty($node->field_point_needed_value)){
-            $node->price =  $node->field_point_needed_value;
-        }
-        unset($node->field_point_needed_value);
-    }
-    return ["ebook" => $buyed_nodes];
-}
+<?phpfunction user_resource_login($hash , $user_name_email, $password , $version){    if(!(hash_true($hash , "user"))) return "failed to access";    if($version == 0){        return login_version_one($user_name_email, $password);    }    return "This version not supported";}function user_resource_purchased_products_list($hash , $uid , $version){    if(!(hash_true($hash , "user"))) return "failed to access";    if($version == 0){        return list_of__user_purchased_products_version_one($uid);    }    return "This version not supported";}function login_version_one($user_name_email, $password){    global $user;    if ($user->uid) {        return 'Already logged in';    }    $query =  db_select('users' , 'user');    $query->fields('user', array('name' , 'status'));    $db_or = db_or();    $db_or->condition('user.name', $user_name_email , 'LIKE');    $db_or->condition('user.mail', $user_name_email , 'LIKE');    $query->condition($db_or);    $result = $query->execute()->fetchObject();    if(empty($result)){        return "This user is not exist!";    }    elseif($result->status == 0){        return  "This user is blocked";    }    else{        $username = $result->name;    }    $uid = user_authenticate($username, $password);    if ($uid) {        $user = user_data($uid);        if ($user->uid) {            user_login_finalize();            $result = new stdClass();            $result->sessid = session_id();            $result->session_name = session_name();            $result->token = drupal_get_token('services');            $result->user = $user;            $profile = profile2_load_by_user($user);            $result->profile = $profile;            return $result;        }    }    return 'Wrong username or password.';}function list_of__user_purchased_products_version_one($uid){    global $user;    if($user->uid != $uid) return ["ebook" => array()];    $query = db_select('m_buyed_nodes', 'buyed');    $query->join('node', 'node', 'buyed.nid = node.nid');    $query->join('users', 'user', 'node.uid = user.uid');    $query->leftJoin('field_data_field_point_needed', 'price', 'buyed.nid = price.entity_id');    $query->fields('buyed', array('nid', 'date', 'price'));    $query->fields('node', array('title'));    $query->fields('user', array('uid', 'name'));    $query->fields('price', array('field_point_needed_value'));    $query->condition('buyed.uid', $uid);    $query->condition('buyed.type', 'article');    $query->condition('node.type', 'publication');    $results= $query->execute()->fetchAll();    $buyed_nodes = array();    $nids = array();    foreach ($results as $result){        if(empty($result->price) && !empty($result->field_point_needed_value)){            $result->price =  $result->field_point_needed_value;        }        unset($result->field_point_needed_value);        $buyed_nodes[$result->nid] = $result;        $buyed_nodes[$result->nid]->files = array();        array_push($nids , $result->nid);    }    $query = db_select('field_data_field_files' , 'field_file');    $query->join('file_managed' , 'file' , 'field_file.field_files_fid = file.fid');    $query->fields('field_file', array('entity_id'));    $query->fields('file', array('uri' , 'filesize'));    $query->condition('field_file.entity_id', $nids , 'IN');    $query->condition('field_file.entity_type', 'node');    $query->condition('field_file.bundle', 'publication');    $query->condition('file.filemime', 'application/pdf');    $files = $query->execute()->fetchAll();    foreach($files as $file){        array_push($buyed_nodes[$file->entity_id]->files , $file);    }    $return_buyed_nodes = array();    foreach($buyed_nodes as $buyed_node){        foreach ($buyed_node->files as $file) unset($file->entity_id);        array_push($return_buyed_nodes, $buyed_node);    }    return ["ebook" => $return_buyed_nodes];}function user_data($uid){    $query = db_select('users' , 'user');    $query->leftJoin('file_managed' , 'image' , 'user.picture = image.fid');    $query->fields('user' , array('uid' , 'name' , 'mail' , 'created' , 'login'));    $query->addField('image' , 'uri' , 'picture');    $query->condition('user.uid' , $uid);    $user = $query->execute()->fetch();    $query = db_select('users_roles' , 'user_role');    $query->join('role' , 'role' , 'user_role.rid = role.rid');    $query->fields('role', array('rid' , 'name'));    $query->condition('user_role.uid' , $uid);    $results = $query->execute()->fetchAll();    $roles = array();    foreach ($results as $result) {        $roles[$result->rid] = $result->name;    }    $user->roles = $roles;    return $user;}
