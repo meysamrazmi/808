@@ -7,10 +7,10 @@ function content_resource_index($hash , $type , $language , $page , $version){
     }
     return "This version not supported";
 }
-function content_resource_retrieve($hash , $nid , $domain , $version){
+function content_resource_retrieve($hash , $nid , $version){
     if(!(hash_true($hash , "content"))) return "failed to access";
     if($version == 0){
-        return retrieve_a_content_version_one($nid , $domain);
+        return retrieve_a_content_version_one($nid);
     }
     return "This version not supported";
 }
@@ -42,7 +42,6 @@ function list_of_contents_version_one($type , $language ,  $page){
     $contents = $query->execute()->fetchAll();
     return ["content" => $contents];
 }
-
 
 function retrieve_a_content_version_one($nid){
     $query = db_select('node' , 'node');
