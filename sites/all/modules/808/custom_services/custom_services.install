@@ -1,1 +1,94 @@
-<?php/** * Implements hook_schema(). */function custom_services_schema() {    $schema['api_app_version'] = array(        'fields' => array(            'id' => array(                'type' => 'serial',                'unsigned' => TRUE,                'not null' => TRUE,                'description' => t('Primary Key : id'),            ),            'vid' => array(                'type' => 'varchar',                'length' => 40,                'not null' => TRUE,                'default' => '',                'description' => t('Unique Version of app'),            ),            'description' => array(                'type' => 'text',                'not null' => False,                'description' => t('Description about this version'),            ),            'force_update' => array(                'type' => 'int',                'not null' => False,                'default' => 0,                'description' => t('This version should update'),            ),            'update_link' => array(                'type' => 'varchar',                'length' => 255,                'not null' => False,                'default' => '',                'description' => t('This link of new version'),            ),            'ebook_key' => array(                'type' => 'varchar',                'length' => 255,                'not null' => False,                'default' => '',                'description' => t('key code for decrypt e-books'),            ),            'app_type' => array(                'type' => 'varchar',                'length' => 40,                'not null' => TRUE,                'default' => '',                'description' => t('The type of apps'),            ),            'created' => array(                'type' => 'int',                'not null' => TRUE,                'default' => 0,                'description' => 'Timestamp for when new version was created.',            ),        ),        'primary key' => array('id'),        'unique keys' => array(            'unique_fields' => array('vid' , 'app_type'),        ),    );    return $schema;}/* * Implementation of hook_install()*/function custom_services_install() {    $success = drupal_install_schema('custom_services');    if ($success) {        drupal_set_message(st('custom_services module installed successfully.'));    }    else {        drupal_set_message(st('The installation of custom_services module failed.'), 'error');    }}/* * Implementation of hook_uninstall()*/function custom_services_uninstall() {    $success = drupal_uninstall_schema('custom_services');    if ($success) {        drupal_set_message(st('custom_services module uninstalled successfully.'));    }    else {        drupal_set_message(st('The uninstall of custom_services module failed.'), 'error');    }}
+<?php
+/**
+ * Implements hook_schema().
+ */
+function custom_services_schema() {
+    $schema['api_app_version'] = array(
+        'fields' => array(
+            'id' => array(
+                'type' => 'serial',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'description' => t('Primary Key : id'),
+            ),
+            'vid' => array(
+                'type' => 'varchar',
+                'length' => 40,
+                'not null' => TRUE,
+                'default' => '',
+                'description' => t('Unique Version of app'),
+            ),
+            'description' => array(
+                'type' => 'text',
+                'not null' => False,
+                'description' => t('Description about this version'),
+            ),
+            'force_update' => array(
+                'type' => 'int',
+                'not null' => False,
+                'default' => 0,
+                'description' => t('This version should update'),
+            ),
+            'update_link' => array(
+                'type' => 'varchar',
+                'length' => 255,
+                'not null' => False,
+                'default' => '',
+                'description' => t('This link of new version'),
+            ),
+            'ebook_key' => array(
+                'type' => 'varchar',
+                'length' => 255,
+                'not null' => False,
+                'default' => '',
+                'description' => t('key code for decrypt e-books'),
+            ),
+            'app_type' => array(
+                'type' => 'varchar',
+                'length' => 40,
+                'not null' => TRUE,
+                'default' => '',
+                'description' => t('The type of apps'),
+            ),
+            'created' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+                'default' => 0,
+                'description' => 'Timestamp for when new version was created.',
+            ),
+        ),
+
+        'primary key' => array('id'),
+        'unique keys' => array(
+            'unique_fields' => array('vid' , 'app_type'),
+        ),
+    );
+
+    return $schema;
+}
+
+/*
+ * Implementation of hook_install()
+*/
+function custom_services_install() {
+    $success = drupal_install_schema('custom_services');
+    if ($success) {
+        drupal_set_message(st('custom_services module installed successfully.'));
+    }
+    else {
+        drupal_set_message(st('The installation of custom_services module failed.'), 'error');
+    }
+}
+
+/*
+ * Implementation of hook_uninstall()
+*/
+function custom_services_uninstall() {
+    $success = drupal_uninstall_schema('custom_services');
+    if ($success) {
+        drupal_set_message(st('custom_services module uninstalled successfully.'));
+    }
+    else {
+        drupal_set_message(st('The uninstall of custom_services module failed.'), 'error');
+    }
+}

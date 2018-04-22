@@ -48,7 +48,7 @@ Support
 Credits
 -------
 - Specification:      Robert Douglass
-- Original author:    Károly Négyesi
+- Original author:    Kï¿½roly Nï¿½gyesi
 - Update to Drupal 5: Wim Mostrey and riverfr0zen
 - Maintainers: Angela Byron, westwesterson, mbutcher, sivaji, turadg, falcon
 

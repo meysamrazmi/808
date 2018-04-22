@@ -5,7 +5,7 @@
 function nodepay_menu(){
 	$items['pay/node/%'] = array(
 		'title' => t('Pay for node'),
-		'page callback' => 'gdocview_pay_for_node',
+		'page callback' => 'pay_for_node',
 		'description' => 'Pay to view a node',
 		'access arguments' => array('access pay'),
 		'page arguments' => array(2),
@@ -35,7 +35,7 @@ function nodepay_report($nid) {
   return FALSE;
 }
 
-function gdocview_pay_for_node($nid) {
+function pay_for_node($nid) {
 	global $user;
 	if($user->uid < 1){
 		drupal_set_message(t('to complete this operation you must login first, !login - !regiater', array(
