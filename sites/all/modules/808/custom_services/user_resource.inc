@@ -42,6 +42,11 @@ function login_version_one($user_name_email, $password){
 
     $uid = user_authenticate($username, $password);
 
+    /*
+     * @todo
+     * check flood for attempting to login frequently
+     * */
+
     if ($uid) {
         $user = user_data($uid);
 

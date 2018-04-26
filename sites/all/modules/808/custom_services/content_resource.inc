@@ -79,6 +79,11 @@ function retrieve_a_content_version_one($nid){
         $query->condition('field_file_published.bundle', 'publication');
         $sample_file = $query->execute()->fetchAll();
 
+        /*
+         * @todo
+         * add e-book file if e-book is free
+         * */
+
         /*add field full name of author to e-book*/
         $query = db_select('field_data_field_full_name' , 'name');
         $query->join('profile' , 'profile' , 'profile.pid = name.entity_id');
