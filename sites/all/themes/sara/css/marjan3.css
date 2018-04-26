@@ -600,27 +600,13 @@ div.content > div.cta > div.messages > h2 > a{
     border-radius: 0px;
     line-height: 25px;
 }
-.cta,
-.cta-new{
-    width: 100%;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 5px 10px 48px 10px!important;
-    position: relative;
-	display: flex;
-	flex-direction: row-reverse;
-	justify-content: center;
-}
-.cta-new-vip{
-    padding: 30px 10px 51px 10px !important;
-}
+
 .default-page #block-system-main .content .content,
 .default-page .author-section,
 .default-page .relatives,
 .default-page #comments,
 .default-page .block-poll,
-.default-page .cta-new{
+.default-page .node-pay{
 	border: 1px solid #f0f1f2 !important;
 	margin-bottom: 21px;
 	padding: 0px 0px 10px 0px;
@@ -640,7 +626,6 @@ div.content > div.cta > div.messages > h2 > a{
 .page-landing #block-system-main .content .content{
 	margin-top:0px;
 	padding: 0px;
-    
 }
 .default-page #block-system-main .content .content > *:not(.field-name-body):nth-child(3){
   clear: both;
@@ -649,137 +634,6 @@ div.content > div.cta > div.messages > h2 > a{
     padding: 0px;
 	background-color: transparent;
 	box-shadow: none;
-}
-.cta-new .cta-2-column,
-.cta-new .cta-1-column {
-  width: 50%;
-  padding: 15px;
-}
-.cta-new .cta-label{
-	display: inline-block;
-    width: 40%;
-	vertical-align:top;
-}
-.cta-new .cta-meghdar{
-	display: inline-block;
-    width: 50%;
-	vertical-align:top;
-	  position: relative;
-}
-span.bef-price {
-  position: absolute;
-  font-size: 12px;
-  font-weight: normal;
-  color: #f30;
-  padding: 1px 10px;
-  text-decoration: line-through;
-  top: 0;
-  left: 0;
-}
-.cta-label{
-	font-size: 16px;
-    line-height: 38px;
-    margin-right: 34px;
-    font-family: yekan;
-}
-.cta-2-row{
-	border-bottom: 1px solid #ccc;
-  margin: 5px 0;
-  display: flex;
-}
-.cta-1-row{
-	border-bottom: 1px solid #ccc;
-  margin: 5px 0;
-}
-.cta-2-row .cta-icon:before{
-	content: "\e148";
-	font-family: glyphi;
-    font-size: 19px;
-    color: #ccc;
-    position: absolute;
-	line-height:40px;
-}
-.cta-1-row .cta-icon:before {
-    content: "\e022";
-    font-family: glyphi;
-    font-size: 19px;
-    color: #ccc;
-    position: absolute;
-	line-height:40px;
-}
-.cta-meghdar,
-.cta-meghdar div div div{
-	font-size: 15px;
-	margin: 0;
-	font-weight: 500;
-}
-.cta-btn {
-    width: 10%;
-    padding: 8px;
-    background: #337ab7;
-    text-align: center;
-    border-color: #2e6da4;
-    position: absolute;
-    bottom: 25px;
-    right: 222px;
-}
-.cta-2-btn{
-	right: 64px;
-}
-.cta-btn:hover{
-    background-color: #2e6da4;
-}
-.cta-btn a {
-    color: white!important;
-    font-size: 12px;
-}
-.cta-2-column .cta-btn{
-	width: 17%;
-    background-color: #5cb85c;
-    right: inherit;
-    left: 44px;
-}
-.cta-2-column .cta-btn:hover{
-	background-color: #4cae4c;
-}
-.cta-2-column h2:before {
-	color: #ccc;
-    content: open-quote;
-    font-size: 4em;
-    line-height: 0.1em;
-    margin-right: 0.25em;
-    vertical-align: -0.4em;
-    visibility: hidden;
-}
-.cta-2-column h2,.cta-2-column h3,.cta-2-column h4 {
-	background: #f9f9f9;
-	border-right: 5px solid #ccc;
-	padding: 0.5em 10px;
-	quotes: "“" "”" "‘" "’";
-	position: relative;
-	font-size: 15px;
-}
-.cta-2-column h2:after {
-	font-family:b yekan !important;
-    content: close-quote;
-    color: #ccc;
-    font-size: 4em;
-    line-height: 0.1em;
-    margin-right: 0.25em;
-    vertical-align: -0.4em;
-    position: absolute;
-    right: 0px;
-}
-.cta-free:after{
-	display:none;
-}
-.cta-free{
-	background-color: #f5f5f5 !important;
-    border-right: 5px solid #5CB85D !important;
-    padding: 2px 0px 2px 15px !important;
-}
-.cta-free h2{
-	color:#5CB85D !important;
 }
 .points-needed div#takhfifdar:before {
     font-size: 19px;

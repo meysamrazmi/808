@@ -2,6 +2,7 @@
 sites/*/*settings*.php
 lock/confing.php
 .idea/
+lock/log.txt
 
 # Ignore paths that contain generated content.
 files/

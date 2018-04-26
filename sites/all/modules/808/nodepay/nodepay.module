@@ -1,11 +1,11 @@
 <?php
 /*
- * implements hook menu
+ * implements hook_menu()
  */
 function nodepay_menu(){
     $items['pay/node/%'] = array(
         'title' => t('Pay for node'),
-        'page callback' => 'gdocview_pay_for_node',
+        'page callback' => 'pay_for_node',
         'description' => 'Pay to view a node',
         'access arguments' => array('access pay'),
         'page arguments' => array(2),
@@ -27,7 +27,6 @@ function nodepay_menu(){
 }
 
 function nodepay_report($nid) {
-    $node = node_load($nid);
     global $user;
     if (user_has_role(9 , $user) || user_has_role(3 , $user) ) {
         return TRUE;
@@ -35,12 +34,12 @@ function nodepay_report($nid) {
     return FALSE;
 }
 
-function gdocview_pay_for_node($nid) {
+function pay_for_node($nid) {
     global $user;
     if($user->uid < 1){
-        drupal_set_message(t('to complete this operation you must login first, !login - !regiater', array(
+        drupal_set_message(t('to complete this operation you must login first, !login - !register', array(
             '!login' => l(t('User login'), 'user/login'),
-            '!regiater' => l(t('User register'), 'user/register'),
+            '!register' => l(t('User register'), 'user/register'),
         )), 'error');
         drupal_goto("node/". $nid);
     }
@@ -68,12 +67,17 @@ function gdocview_pay_for_node($nid) {
         }
         */
 
+        $description =  ($flag)? ' با 40 درصد تخفیف ' . $festival :'';
+        if(isset($user->roles[8])){ //for vip user only
+            $description .= ', با 10 درصد تخفیف vip';
+            $points *= 0.9;
+        }
+
         $num_pts = userpoints_get_current_points($user->uid, 'all');
         if ($num_pts < $points) {
             drupal_set_message(t("You haven't enough point in your account, please charge your account."), 'error');
             drupal_goto("node/$nid");
         }
-        $description =  ($flag)? ' با 40 درصد تخفیف ' . $festival :'';
 
         $_sql = "INSERT INTO {m_buyed_nodes} (uid, nid, date, price, description) VALUES (:uid, :nid, :date, :price, :description)";
         if($sht = db_query($_sql, array( ':uid' => $user->uid, ':nid' => $nid, ':date' => time(), ':price' => $points, ':description' => $description ))){

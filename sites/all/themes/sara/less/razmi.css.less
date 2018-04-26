@@ -1411,3 +1411,71 @@ form .field-type-file{
 	.before(f623;'';24px);
 }
 
+.node-pay{
+	width: 100%;
+	padding: @pad !important;
+	display: inline-block;
+	> div {
+		width: 50%;
+		float: right;
+		@media @480{
+			width: 100%;
+			float: none;
+		}
+	}
+	.col-1 .cta-row{
+		border-bottom: 1px solid #ccc;
+		margin: 5px 0;
+		line-height: 35px;
+		white-space: nowrap;
+	}
+	.col-2 {
+		padding-left: 15px;
+		@media @480{
+			padding: 0;
+			margin-bottom: 15px;
+		}
+		h2 {
+			background: #f9f9f9;
+			border-right: 3px solid #ccc;
+			padding: 5px 10px;
+			font-size: 15px;
+			line-height: 2em;
+			.before(f27e;'';24px);
+		}
+	}
+	.n-label{
+		display: inline-block;
+		width: 40%;
+	}
+	.meghdar{
+		display: inline-block;
+		width: 50%;
+		font-size: 15px;
+		font-weight: 500;
+	}
+	.cta-1-row .cta-icon{
+		.before(f214;'';19px;#ccc);
+	}
+	.cta-2-row{
+		border-bottom: 1px solid #ccc;
+		margin: 5px 0;
+		display: flex;
+		.cta-icon {.before(f1b3;'';19px;#ccc);}
+	}
+	.cta-free{
+		border-right: 3px solid #4CAF50 !important;
+		padding: 2px 5px !important;
+		h2{ color:#5CB85D !important;}
+	}
+	.bef-price {
+		.absolute('';'';0;'';'';0);
+		font-size: 12px;
+		font-weight: normal;
+		color: #f30;
+		padding: 1px 10px;
+		text-decoration: line-through;
+	}
+}
+
+
