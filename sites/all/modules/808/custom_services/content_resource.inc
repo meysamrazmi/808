@@ -14,8 +14,33 @@ function content_resource_retrieve($hash , $nid , $version){
     }
     return "This version not supported";
 }
+function content_resource_search($hash , $type , $value , $version){
+    if(!(hash_true($hash , "content"))) return "failed to access";
 
-function list_of_contents_version_one($type , $language ,  $page){
+    if($version == 0) {
+        $query = db_select("node", "node");
+        $query->fields('node', array('nid'));
+        $query->condition('node.title', '%' . $value . '%', 'LIKE');
+        $query->condition('node.type' , $type);
+        $nid1 = $query->execute()->fetchAll();
+
+        $query = db_select("field_data_body", "body");
+        $query->addField('body', 'entity_id', 'nid');
+        $query->condition('body.body_value', '%' . $value . '%', 'LIKE');
+        $query->condition('body.entity_type' , 'node');
+        $query->condition('body.bundle' , $type);
+        $nid2 = $query->execute()->fetchAll();
+
+        $nids = array_merge($nid1, $nid2);
+        $custom_list = array();
+        foreach ($nids as $row) array_push($custom_list, $row->nid);
+
+        return list_of_contents_version_one($type, 'fa', 0, $custom_list);
+    }
+    return "This version not supported";
+}
+
+function list_of_contents_version_one($type , $language ,  $page , $custom_list = array()){
 
     $query = db_select('node' , 'node');
     $query->fields('node' , array('nid' , 'type' , 'title' , 'uid' , 'changed'));
@@ -33,7 +58,8 @@ function list_of_contents_version_one($type , $language ,  $page){
         $query->condition('profile.type', 'main');
         $query->condition('name.entity_type' , 'profile2');
         $query->condition('name.bundle' , 'main');
-        $query->range($page*20 , 20);
+        if(!empty($custom_list)) $query->condition('node.nid' , $custom_list , 'IN');
+        else $query->range($page*20 , 20);
         $db_contents = $query->execute()->fetchAll();
 
         $nids = array();
