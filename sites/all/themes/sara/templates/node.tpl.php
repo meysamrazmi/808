@@ -58,7 +58,14 @@
 		</div>
 	</div>
   <?php endif; ?>
-	
+
+  <?php if($node->type == 'publication' && $relative_nodes): ?>
+      <div class="relatives">
+          <h2 class="title comment-form"><?=t('Relative contents')?></h2>
+          <?php print theme('links', array('links'=>$relative_nodes)); ?>
+      </div>
+  <?php endif; ?>
+
   <?php
 	if (!$user->uid) {
 		if( isset($comment_forbidden) ){
@@ -67,9 +74,7 @@
 			print '</span></li>';
 		}
 	}
-	if( $comment_count != 0 ){
-		print render($content['comments']);
-	}
+  print render($content['comments']);
   ?>
 
 </div>
