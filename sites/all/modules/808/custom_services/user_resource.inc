@@ -75,15 +75,20 @@ function list_of__user_purchased_products_version_one($uid){
 
     $query = db_select('m_buyed_nodes', 'buyed');
     $query->join('node', 'node', 'buyed.nid = node.nid');
-    $query->join('users', 'user', 'node.uid = user.uid');
-    $query->leftJoin('field_data_field_point_needed', 'price', 'buyed.nid = price.entity_id');
+    $query->join('field_data_field_point_needed' , 'price' , 'node.nid = price.entity_id');
+    $query->leftJoin('profile' , 'profile' , 'profile.uid = node.uid');
+    $query->join('field_data_field_full_name' , 'name' , 'name.entity_id = profile.pid');
     $query->fields('buyed', array('nid', 'date', 'price'));
-    $query->fields('node', array('title'));
-    $query->fields('user', array('uid', 'name'));
-    $query->fields('price', array('field_point_needed_value'));
+    $query->fields('node', array('title' , 'type' , 'uid' , 'changed'));
+    $query->addField('price' , 'field_point_needed_value' , 'price');
+    $query->addField('name' , 'field_full_name_value' , 'author_name');
     $query->condition('buyed.uid', $uid);
     $query->condition('buyed.type', 'article');
     $query->condition('node.type', 'publication');
+    $query->condition('price.bundle', 'publication');
+    $query->condition('profile.type', 'main');
+    $query->condition('name.entity_type' , 'profile2');
+    $query->condition('name.bundle' , 'main');
     $results= $query->execute()->fetchAll();
 
     $buyed_nodes = array();
@@ -110,15 +115,26 @@ function list_of__user_purchased_products_version_one($uid){
     $files = $query->execute()->fetchAll();
 
     foreach($files as $file){
-        array_push($buyed_nodes[$file->entity_id]->files , $file);
-    }
-    $return_buyed_nodes = array();
-    foreach($buyed_nodes as $buyed_node){
-        foreach ($buyed_node->files as $file) unset($file->entity_id);
-        array_push($return_buyed_nodes, $buyed_node);
+        $id = $file->entity_id;
+        unset($file->entity_id);
+        array_push($buyed_nodes[$id]->files , $file);
     }
 
-    return ["ebook" => $return_buyed_nodes];
+    $query = db_select('file_managed' , 'image');
+    $query->join('field_data_field_image' , 'field_image' , 'image.fid = field_image.field_image_fid');
+    $query->addField('image' , 'uri' , 'picture');
+    $query->addField('field_image' , 'entity_id' , 'nid');
+    $query->condition('field_image.bundle', 'publication');
+    $query->condition('field_image.entity_id', $nids , 'IN');
+    $results = $query->execute()->fetchAll();
+
+    foreach ($results as $row){
+        $buyed_nodes[$row->nid]->picture = $row->picture;
+    }
+
+    $buyed_ebook = array_values($buyed_nodes);
+
+    return ["ebook" => $buyed_ebook];
 }
 
 function user_data($uid){
