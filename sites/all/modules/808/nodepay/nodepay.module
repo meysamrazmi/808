@@ -245,7 +245,7 @@ function nodepay_uc_order($op, $order, $arg) {
     if ($op == 'presave') {
         //check to see if order is in checkout or not
         if (uc_order_status_data($order->order_status, 'state') == 'in_checkout') {
-            $subtotal = $items_count = 0;
+            $subtotal = $vip_items_count = $not_vip_items_count = 0;
             // searching matched products price for calculating discount
             if (is_array($order->products) && count($order->products)) {
                 foreach ($order->products as $product) {
@@ -259,10 +259,10 @@ function nodepay_uc_order($op, $order, $arg) {
                     }
                 }
             }
-            $vip_line_item = array();
+            $vip_line_item = $not_vip_line_item = array();
             foreach ($order->line_items as $index => $line) {
                 if ($line['type'] == 'vip'){
-                    if($items_count > 0 || $subtotal == 0){
+                    if($vip_items_count > 0 || $subtotal == 0){
                         //there is no matched product for discount or
                         //there is more than 1 line item by mistake, so delete it
                         uc_order_delete_line_item($line['line_item_id']);
@@ -270,27 +270,56 @@ function nodepay_uc_order($op, $order, $arg) {
                     }else{
                         $vip_line_item = $line;
                         $vip_line_item['index'] = $index;
-                        $items_count ++;
+                        $vip_items_count ++;
+                    }
+                }
+                else if ($line['type'] == 'not_vip'){
+                    if($not_vip_items_count > 0 || $subtotal == 0){
+                        //there is no matched product for discount or
+                        //there is more than 1 line item by mistake, so delete it
+                        uc_order_delete_line_item($line['line_item_id']);
+                    }else{
+                        $not_vip_line_item = $line;
+                        $not_vip_line_item['index'] = $index;
+                        $not_vip_items_count ++;
                     }
                 }
             }
             // Handle line items.
             $user = user_load($order->uid);
+            // there is already a line_item in order
             if (isset($vip_line_item['amount']) && $vip_line_item['amount'] != 0) {
+                // still a vip user
                 if(in_array('Vip', $user->roles)){
-                    $line =& $order->line_items[$vip_line_item['index']];
-                    uc_order_update_line_item($line['line_item_id'], '10% تخفیف کاربران VIP', -$subtotal / 10);
-                    if((-$subtotal / 10) != $line['amount']){
-                        drupal_set_message('آیتم '. $line['title'] .'با مبلغ '. (-$subtotal / 10) .' در سفارش شما به روز شد');
+                    uc_order_update_line_item($vip_line_item['line_item_id'], '10% تخفیف کاربران VIP', -$subtotal / 10);
+                    if((-$subtotal / 10) != $vip_line_item['amount']){
+                        drupal_set_message('آیتم '. $vip_line_item['title'] .'با مبلغ '. (-$subtotal / 10) .' در سفارش شما به روز شد');
                     }
-                } else {
-                    uc_order_delete_line_item($line['line_item_id']);
-                    drupal_set_message('آیتم '. $line['title'] .'از سفارش شما حذف شد');
+                }
+                //not a vip user anymore
+                else {
+                    // notify user to become vip again
+                    $order->line_items[] = uc_order_line_item_add($order->order_id, 'not_vip','برای کاربران VIP',-$subtotal / 10,4);
+
+                    uc_order_delete_line_item($vip_line_item['line_item_id']);
+                    drupal_set_message('آیتم '. $vip_line_item['title'] .'از سفارش شما حذف شد');
                 }
             }
-            else if(in_array('Vip', $user->roles) && $subtotal != 0){
-                drupal_set_message('10% تخفیف کاربران VIP با مبلغ '. (-$subtotal / 10) .' به سفارش شما افزوده شد.');
-                $order->line_items[] = uc_order_line_item_add($order->order_id, 'vip','10% تخفیف کاربران VIP',-$subtotal / 10,3);
+            else if($subtotal != 0){
+                if(in_array('Vip', $user->roles)){
+                    $order->line_items[] = uc_order_line_item_add($order->order_id, 'vip','10% تخفیف کاربران VIP',-$subtotal / 10,3);
+                    drupal_set_message('10% تخفیف کاربران VIP با مبلغ '. (-$subtotal / 10) .' به سفارش شما افزوده شد.');
+
+                    //if user become vip newly and there was a not_vip line_item in order
+                    if (isset($not_vip_line_item['amount']) && $not_vip_line_item['amount'] != 0)
+                        uc_order_delete_line_item($not_vip_line_item['line_item_id']);
+                }
+                else{
+                    if (isset($not_vip_line_item['amount']) && $not_vip_line_item['amount'] != 0)
+                        uc_order_update_line_item($not_vip_line_item['line_item_id'], 'برای کاربران VIP', -$subtotal / 10);
+                    else
+                        $order->line_items[] = uc_order_line_item_add($order->order_id, 'not_vip','برای کاربران VIP',-$subtotal / 10,4);
+                }
             }
         }
         usort($order->line_items, 'uc_weight_sort');
@@ -310,5 +339,39 @@ function nodepay_uc_line_item() {
         'calculated' => TRUE,
         'display_only' => FALSE
     );
+    $items['not_vip'] = array(
+        'title' => 'برای کاربران VIP',
+        'weight' => 4,
+        'default' => FALSE,
+        'stored' => FALSE,
+        'add_list' => FALSE,
+        'calculated' => FALSE,
+        'display_only' => false,
+        'callback' => 'not_vip_line_item'
+    );
     return $items;
+}
+function not_vip_line_item($op, $order) {
+    switch ($op) {
+        case 'display':
+            $subtotal = 0;
+            if (is_array($order->products) && count($order->products)) {
+                foreach ($order->products as $product) {
+                    $node = node_load($product->nid);
+                    if($node->type == 'college'){
+                        $subtotal += ($product->qty * $product->price);
+                    }
+                    //todo: make this section based on site setting
+                    else if(in_array_r('2441', $node->field_backend)){ // 2441 is for "پکیج های s1 تا s30 "
+                        $subtotal += ($product->qty * $product->price);
+                    }
+                }
+            }
+            $lines[] = array(
+                'id' => 'not_vip',
+                'title' => 'برای کاربران VIP',
+                'amount' => -$subtotal/10,
+            );
+            return $lines;
+    }
 }

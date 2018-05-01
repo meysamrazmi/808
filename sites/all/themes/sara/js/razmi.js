@@ -223,6 +223,9 @@ $('div#cart-form-pane td.remove').click(function(){
 	$(this).children('input')[0].click();
 });
 $('.uc-cart-checkout-form .form-actions #edit-cancel').replaceWith('<a href="/cart" id="edit-cancel" class="back-to-cart">بازگشت به سبد خرید</a>');
+$('tr.line-item-not_vip td').click(function(){
+	$(location).attr('href', '/landing/vip')
+})
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 prices();
 /*thid line code os for adding class to every backend item*/
