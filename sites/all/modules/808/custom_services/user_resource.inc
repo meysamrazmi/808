@@ -80,7 +80,7 @@ function list_of__user_purchased_products_version_one($uid){
     $query->join('field_data_field_full_name' , 'name' , 'name.entity_id = profile.pid');
     $query->fields('buyed', array('nid', 'date', 'price'));
     $query->fields('node', array('title' , 'type' , 'uid' , 'changed'));
-    $query->addField('price' , 'field_point_needed_value' , 'price');
+    $query->addField('price' , 'field_point_needed_value' , 'field_point_needed_value');
     $query->addField('name' , 'field_full_name_value' , 'author_name');
     $query->condition('buyed.uid', $uid);
     $query->condition('buyed.type', 'article');
@@ -113,7 +113,6 @@ function list_of__user_purchased_products_version_one($uid){
     $query->condition('field_file.bundle', 'publication');
     $query->condition('file.filemime', 'application/pdf');
     $files = $query->execute()->fetchAll();
-
     foreach($files as $file){
         $id = $file->entity_id;
         unset($file->entity_id);
@@ -127,9 +126,18 @@ function list_of__user_purchased_products_version_one($uid){
     $query->condition('field_image.bundle', 'publication');
     $query->condition('field_image.entity_id', $nids , 'IN');
     $results = $query->execute()->fetchAll();
-
     foreach ($results as $row){
         $buyed_nodes[$row->nid]->picture = $row->picture;
+    }
+
+    $query = db_select('field_data_field_pagenumber' , 'page_number');
+    $query->addField('page_number' , 'field_pagenumber_value' , 'page_number');
+    $query->addField('page_number' , 'entity_id' , 'nid');
+    $query->condition('page_number.entity_id' , $nids , 'IN');
+    $query->condition('page_number.bundle' , 'publication');
+    $results = $query->execute()->fetchAll();
+    foreach ($results as $row){
+        $buyed_nodes[$row->nid]->page_number = $row->page_number;
     }
 
     $buyed_ebook = array_values($buyed_nodes);

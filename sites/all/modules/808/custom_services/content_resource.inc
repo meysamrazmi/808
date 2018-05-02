@@ -24,6 +24,7 @@ function content_resource_search($hash , $type , $value , $version){
         $query->condition('node.type' , $type);
         $nid1 = $query->execute()->fetchAll();
 
+
         $query = db_select("field_data_body", "body");
         $query->addField('body', 'entity_id', 'nid');
         $query->condition('body.body_value', '%' . $value . '%', 'LIKE');
@@ -34,8 +35,10 @@ function content_resource_search($hash , $type , $value , $version){
         $nids = array_merge($nid1, $nid2);
         $custom_list = array();
         foreach ($nids as $row) array_push($custom_list, $row->nid);
-
-        return list_of_contents_version_one($type, 'fa', 0, $custom_list);
+        if(!empty($custom_list))
+            return list_of_contents_version_one($type, 'fa', 0, $custom_list);
+        else
+            return ["content" => array()];
     }
     return "This version not supported";
 }
@@ -58,29 +61,43 @@ function list_of_contents_version_one($type , $language ,  $page , $custom_list 
         $query->condition('profile.type', 'main');
         $query->condition('name.entity_type' , 'profile2');
         $query->condition('name.bundle' , 'main');
+
         if(!empty($custom_list)) $query->condition('node.nid' , $custom_list , 'IN');
         else $query->range($page*24 , 24);
         $db_contents = $query->execute()->fetchAll();
 
-        $nids = array();
-        $temp_contents = array();
-        foreach ($db_contents as $row){
-            array_push($nids , $row->nid);
-            $temp_contents[$row->nid] = $row;
-        }
+        if(count($db_contents) > 0) {
+            $nids = array();
+            $temp_contents = array();
+            foreach ($db_contents as $row) {
+                array_push($nids, $row->nid);
+                $temp_contents[$row->nid] = $row;
+            }
 
-        $query = db_select('file_managed' , 'image');
-        $query->join('field_data_field_image' , 'field_image' , 'image.fid = field_image.field_image_fid');
-        $query->addField('image' , 'uri' , 'picture');
-        $query->addField('field_image' , 'entity_id' , 'nid');
-        $query->condition('field_image.bundle', 'publication');
-        $query->condition('field_image.entity_id', $nids , 'IN');
-        $results = $query->execute()->fetchAll();
-        foreach ($results as $row){
-            $temp_contents[$row->nid]->picture = $row->picture;
-        }
+            $query = db_select('file_managed', 'image');
+            $query->join('field_data_field_image', 'field_image', 'image.fid = field_image.field_image_fid');
+            $query->addField('image', 'uri', 'picture');
+            $query->addField('field_image', 'entity_id', 'nid');
+            $query->condition('field_image.bundle', 'publication');
+            $query->condition('field_image.entity_id', $nids, 'IN');
+            $results = $query->execute()->fetchAll();
+            foreach ($results as $row) {
+                $temp_contents[$row->nid]->picture = $row->picture;
+            }
 
-        $contents = array_values($temp_contents);
+            $query = db_select('field_data_field_pagenumber' , 'page_number');
+            $query->addField('page_number' , 'field_pagenumber_value' , 'page_number');
+            $query->addField('page_number' , 'entity_id' , 'nid');
+            $query->condition('page_number.entity_id' , $nids , 'IN');
+            $query->condition('page_number.bundle' , 'publication');
+            $results = $query->execute()->fetchAll();
+            foreach ($results as $row) {
+                $temp_contents[$row->nid]->page_number = $row->page_number;
+            }
+
+            $contents = array_values($temp_contents);
+        }
+        else $contents = array();
     }
     else {
         /*
@@ -146,6 +163,7 @@ function retrieve_a_content_version_one($nid){
             $query->condition('price.bundle', 'publication');
             $price = $query->execute()->fetch();
         }
+
         if((isset($user_buyed) && !empty($user_buyed)) || isset($price) && (empty($price) || $price->price == 0)){
             $query = db_select('field_data_field_files' , 'field_file');
             $query->join('file_managed' , 'file' , 'field_file.field_files_fid = file.fid');
@@ -163,7 +181,6 @@ function retrieve_a_content_version_one($nid){
                 }
             }
         }
-
 
         return ["ebook" => $node];
     }
