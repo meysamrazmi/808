@@ -215,7 +215,7 @@
 							در حال حاضر می توانید نسخه آزمایشی (بتا) این اپلیکیشن را دانلود کنید.
 							<br>
 							<div style="max-width: 324px;text-align: center;margin-top: 11px;">
-								<a class="poster download mostaghim" href="http://civil808.com/app/src/808plusV1.1.2.apk" target="_self">  </a>
+								<a class="poster download mostaghim" href="http://civil808.com/app/src/808plus.apk" target="_self">  </a>
 								<a class="poster download cafebazaar" href="https://cafebazaar.ir/app/com.civil808/?l=fa" target="_blank"></a>
 								<a class="poster download googleplay" href="https://play.google.com/store/apps/details?id=com.civil808" target="_target"></a>
 								<a class="poster download ios" href="#" target="_self" title="به زودی"></a>
