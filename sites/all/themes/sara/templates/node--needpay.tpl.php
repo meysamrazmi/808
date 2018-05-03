@@ -45,7 +45,7 @@
 
   <?php if (!$for_vip || (!$vip)): ?>
   <div class="node-pay">
-        <div class="col-2">
+      <div class="col-2">
           <h2 class="">
               <? if ($for_vip){
                   echo $is_content_available_vip['message'];
@@ -60,16 +60,29 @@
               <a href="/user/<?php echo $user->uid;?>/money/charge" class="btn-primary" target="_blank">شارژ حساب</a>
           </div>
       </div>
-    	<div class="col-1">
-			<div class="cta-1-row cta-row">
+      <div class="col-1">
+          <div class="cta-1-row cta-row">
 				<span class="cta-icon"></span>
 				<span class="n-label">نوع فایل دریافتی :</span>
 				<span class="meghdar"><?php  print (isset($content['field_noefile']))? render($content['field_noefile']) : '';	?></span>
-			</div>
-			<div class="cta-2-row cta-row">
-				<div class="cta-icon"></div>
-				<span class="n-label"> اعتبار مورد نیاز :</span>
-				<?php /*
+          </div>
+          <div class="cta-2-row cta-row">
+              <div class="cta-icon"></div>
+              <span class="n-label"> اعتبار مورد نیاز :</span>
+              <?php /*
+				* برای تخفیفات نوروزی
+				*
+				if($flag){
+					print '<span class="meghdar takhfif">' . (intval($point_needed)*0.6) .' تومان <span class="bef-price">' . $point_needed . ' تومان </span></span>';
+				} else{
+					 print '<span class="meghdar">' . $point_needed .' تومان </span>';
+				 }*/?>
+              <span class="meghdar" style="color: #F44336;"><?php print formatMoney($point_needed);?> تومان</span>
+          </div>
+          <div class="cta-2-row cta-row">
+              <div class="cta-icon"></div>
+              <span class="n-label">برای کاربران vip :</span>
+              <?php /*
 				* برای تخفیفات نوروزی
 				*
 				if($flag){
@@ -77,27 +90,13 @@
 				} else{
 					 print '<span class="meghdar">' . $point_needed .' تومان </span>';
 				 }*/
-					print '<span class="meghdar" style="color: #F44336;">' . formatMoney($point_needed) .' تومان </span>';
-				 ?>
-			</div>
-            <div class="cta-2-row cta-row">
-                <div class="cta-icon"></div>
-                <span class="n-label">برای کاربران vip :</span>
-                <?php /*
-				* برای تخفیفات نوروزی
-				*
-				if($flag){
-					print '<span class="meghdar takhfif">' . (intval($point_needed)*0.6) .' تومان <span class="bef-price">' . $point_needed . ' تومان </span></span>';
-				} else{
-					 print '<span class="meghdar">' . $point_needed .' تومان </span>';
-				 }*/
-                print '<span class="meghdar" style="color: #4CAF50;">' . formatMoney(($point_needed * 0.9)) .' تومان </span>';
-                ?>
-            </div>
+              print '<span class="meghdar" style="color: #4CAF50;">' . formatMoney(($point_needed * 0.9)) .' تومان </span>';
+              ?>
+          </div>
             <a href="/pay/node/<?php echo $node->nid; ?>" class="btn-green" style="margin-top: 15px;" target="_blank">پرداخت و مشاهده محتوا</a>
-			</div>
-		</div>
-	</div>
+      </div>
+  </div>
+
   <?php endif; ?>  
   <?php
 	if (!$user->uid) {
