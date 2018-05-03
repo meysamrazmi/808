@@ -121,6 +121,8 @@ function retrieve_a_content_version_one($nid){
     $query->condition('body.bundle', 'publication');
     $node = $query->execute()->fetch();
 
+    if(empty($node) || count($node) == 0) return ["ebook" => $node];
+
     $node->body = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $node->body);
     if(strpos($node->body, "<!--break-->") != false) $node->body = substr($node->body, 0, strpos($node->body, "<!--break-->"));
 
