@@ -42,6 +42,11 @@ function login_version_one($user_name_email, $password){
 
     $uid = user_authenticate($username, $password);
 
+    /*
+     * @todo
+     * check flood for attempting to login frequently
+     * */
+
     if ($uid) {
         $user = user_data($uid);
 
@@ -70,50 +75,79 @@ function list_of__user_purchased_products_version_one($uid){
 
     $query = db_select('m_buyed_nodes', 'buyed');
     $query->join('node', 'node', 'buyed.nid = node.nid');
-    $query->join('users', 'user', 'node.uid = user.uid');
-    $query->leftJoin('field_data_field_point_needed', 'price', 'buyed.nid = price.entity_id');
+    $query->join('field_data_field_point_needed' , 'price' , 'node.nid = price.entity_id');
+    $query->leftJoin('profile' , 'profile' , 'profile.uid = node.uid');
+    $query->join('field_data_field_full_name' , 'name' , 'name.entity_id = profile.pid');
     $query->fields('buyed', array('nid', 'date', 'price'));
-    $query->fields('node', array('title'));
-    $query->fields('user', array('uid', 'name'));
-    $query->fields('price', array('field_point_needed_value'));
+    $query->fields('node', array('title' , 'type' , 'uid' , 'changed'));
+    $query->addField('price' , 'field_point_needed_value' , 'field_point_needed_value');
+    $query->addField('name' , 'field_full_name_value' , 'author_name');
     $query->condition('buyed.uid', $uid);
     $query->condition('buyed.type', 'article');
     $query->condition('node.type', 'publication');
+    $query->condition('price.bundle', 'publication');
+    $query->condition('profile.type', 'main');
+    $query->condition('name.entity_type' , 'profile2');
+    $query->condition('name.bundle' , 'main');
     $results= $query->execute()->fetchAll();
+	
+	if(!empty($results) && count($results) > 0){
+		$buyed_nodes = array();
+		$nids = array();
+		foreach ($results as $result){
+			if(empty($result->price) && !empty($result->field_point_needed_value)){
+				$result->price =  $result->field_point_needed_value;
+			}
+			unset($result->field_point_needed_value);
 
-    $buyed_nodes = array();
-    $nids = array();
-    foreach ($results as $result){
-        if(empty($result->price) && !empty($result->field_point_needed_value)){
-            $result->price =  $result->field_point_needed_value;
-        }
-        unset($result->field_point_needed_value);
+			$buyed_nodes[$result->nid] = $result;
+			$buyed_nodes[$result->nid]->files = array();
+			array_push($nids , $result->nid);
+		}
 
-        $buyed_nodes[$result->nid] = $result;
-        $buyed_nodes[$result->nid]->files = array();
-        array_push($nids , $result->nid);
-    }
+		$query = db_select('field_data_field_files' , 'field_file');
+		$query->join('file_managed' , 'file' , 'field_file.field_files_fid = file.fid');
+		$query->fields('field_file', array('entity_id'));
+		$query->fields('file', array('uri' , 'filesize'));
+		$query->condition('field_file.entity_id', $nids , 'IN');
+		$query->condition('field_file.entity_type', 'node');
+		$query->condition('field_file.bundle', 'publication');
+		$query->condition('file.filemime', 'application/pdf');
+		$files = $query->execute()->fetchAll();
+		foreach($files as $file){
+			$id = $file->entity_id;
+			unset($file->entity_id);
+			array_push($buyed_nodes[$id]->files , $file);
+		}
 
-    $query = db_select('field_data_field_files' , 'field_file');
-    $query->join('file_managed' , 'file' , 'field_file.field_files_fid = file.fid');
-    $query->fields('field_file', array('entity_id'));
-    $query->fields('file', array('uri' , 'filesize'));
-    $query->condition('field_file.entity_id', $nids , 'IN');
-    $query->condition('field_file.entity_type', 'node');
-    $query->condition('field_file.bundle', 'publication');
-    $query->condition('file.filemime', 'application/pdf');
-    $files = $query->execute()->fetchAll();
+		$query = db_select('file_managed' , 'image');
+		$query->join('field_data_field_image' , 'field_image' , 'image.fid = field_image.field_image_fid');
+		$query->addField('image' , 'uri' , 'picture');
+		$query->addField('field_image' , 'entity_id' , 'nid');
+		$query->condition('field_image.bundle', 'publication');
+		$query->condition('field_image.entity_id', $nids , 'IN');
+		$results = $query->execute()->fetchAll();
+		foreach ($results as $row){
+			$buyed_nodes[$row->nid]->picture = $row->picture;
+		}
 
-    foreach($files as $file){
-        array_push($buyed_nodes[$file->entity_id]->files , $file);
-    }
-    $return_buyed_nodes = array();
-    foreach($buyed_nodes as $buyed_node){
-        foreach ($buyed_node->files as $file) unset($file->entity_id);
-        array_push($return_buyed_nodes, $buyed_node);
-    }
+		$query = db_select('field_data_field_pagenumber' , 'page_number');
+		$query->addField('page_number' , 'field_pagenumber_value' , 'page_number');
+		$query->addField('page_number' , 'entity_id' , 'nid');
+		$query->condition('page_number.entity_id' , $nids , 'IN');
+		$query->condition('page_number.bundle' , 'publication');
+		$results = $query->execute()->fetchAll();
+		foreach ($results as $row){
+			$buyed_nodes[$row->nid]->page_number = $row->page_number;
+		}
 
-    return ["ebook" => $return_buyed_nodes];
+		$buyed_ebook = array_values($buyed_nodes);
+
+		return ["ebook" => $buyed_ebook];
+	}
+	else{
+		return ["ebook" => array()];
+	}
 }
 
 function user_data($uid){

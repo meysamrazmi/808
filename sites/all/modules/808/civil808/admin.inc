@@ -426,9 +426,16 @@ function developer()
 //    $new_hash = hash_hmac("sha256" , "content" , "@Civil808Android@Saze808@" , false);
 //    adump($new_hash);
 
-    $user= user_load(10628);
-    adump(profile2_load_by_user($user));
-
+    $query = db_select('field_data_field_files' , 'field_file');
+//    $query->join('file_managed' , 'file' , 'field_file.field_files_fid = file.fid');
+    $query->fields('field_file' , array('entity_id'));
+//    $query->fields('file', array('uri' , 'filesize'));
+    $query->condition('field_file.entity_id', 596);
+//            $query->condition('field_file.entity_type', 'node');
+//            $query->condition('field_file.bundle', 'publication');
+//            $query->condition('file.filemime', 'application/pdf');
+    $files = $query->execute()->fetchAll();
+    adump($files);
     die();
 
 }
