@@ -20,6 +20,13 @@ $(function() {
       easing: 'ease-in-sine',
       delay: 100,
     });
-	
+
+    
+    $('.vip').click(function(){
+        $('.vip-div').toggleClass('open').slideToggle()
+    })
+    $('.point').click(function(){
+        $('.point-div').toggleClass('open').slideToggle()
+    })
 
 });

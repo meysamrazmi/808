@@ -2,49 +2,49 @@
 	font-family: irans;
 	font-style: normal;
 	font-weight: 500;
-	src: url('/land/src/fonts/sans/eot/IRANSansWeb_Medium.eot');
-	src: url('/land/src/fonts/sans/eot/IRANSansWeb_Medium.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
-		 url('/land/src/fonts/sans/woff2/IRANSansWeb_Medium.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-		 url('/land/src/fonts/sans/woff/IRANSansWeb_Medium.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-		 url('/land/src/fonts/sans/ttf/IRANSansWeb_Medium.ttf') format('truetype');
+	src: url('/src/fonts/sans/eot/IRANSansWeb_Medium.eot');
+	src: url('/src/fonts/sans/eot/IRANSansWeb_Medium.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+		 url('/src/fonts/sans/woff2/IRANSansWeb_Medium.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('/src/fonts/sans/woff/IRANSansWeb_Medium.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('/src/fonts/sans/ttf/IRANSansWeb_Medium.ttf') format('truetype');
 }
 @font-face {
 	font-family: irans;
 	font-style: normal;
 	font-weight: normal; 
-	src: url('/land/src/fonts/sans/eot/IRANSansWeb.eot');
-	src: url('/land/src/fonts/sans/eot/IRANSansWeb.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
-		 url('/land/src/fonts/sans/woff2/IRANSansWeb.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-		 url('/land/src/fonts/sans/woff/IRANSansWeb.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-		 url('/land/src/fonts/sans/ttf/IRANSansWeb.ttf') format('truetype');
+	src: url('/src/fonts/sans/eot/IRANSansWeb.eot');
+	src: url('/src/fonts/sans/eot/IRANSansWeb.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+		 url('/src/fonts/sans/woff2/IRANSansWeb.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('/src/fonts/sans/woff/IRANSansWeb.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('/src/fonts/sans/ttf/IRANSansWeb.ttf') format('truetype');
 }
 @font-face {
 	font-family: lalezar;
 	font-style: normal;
 	font-weight: normal;
-	src: url('/land/src/fonts/lalezar/lalezar.eot');
-	src: url('/land/src/fonts/lalezar/lalezar.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
-		 url('/land/src/fonts/lalezar/lalezar.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-		 url('/land/src/fonts/lalezar/lalezar.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-		 url('/land/src/fonts/lalezar/lalezar.ttf') format('truetype');
+	src: url('/src/fonts/lalezar/lalezar.eot');
+	src: url('/src/fonts/lalezar/lalezar.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+		 url('/src/fonts/lalezar/lalezar.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('/src/fonts/lalezar/lalezar.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('/src/fonts/lalezar/lalezar.ttf') format('truetype');
 }
 @font-face {
 	font-family: fanum;
 	font-style: normal;
 	font-weight: 100;
-	src: url('/land/src/fonts/sans/fanum/irsfanum.eot');
-	src: url('/land/src/fonts/sans/fanum/irsfanum.eot?#iefix') format('embedded-opentype'),  /* IE6-8*/
-		 url('/land/src/fonts/sans/fanum/irsfanum.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-		 url('/land/src/fonts/sans/fanum/irsfanum.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-		 url('/land/src/fonts/sans/fanum/irsfanum.ttf') format('truetype');
+	src: url('/src/fonts/sans/fanum/irsfanum.eot');
+	src: url('/src/fonts/sans/fanum/irsfanum.eot?#iefix') format('embedded-opentype'),  /* IE6-8*/
+		 url('/src/fonts/sans/fanum/irsfanum.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('/src/fonts/sans/fanum/irsfanum.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('/src/fonts/sans/fanum/irsfanum.ttf') format('truetype');
 }
 @font-face {
 	font-family:'mat';
-	src:	url('/land/src/fonts/material/material.eot');
-	src:	url('/land/src/fonts/material/material.eot?#iefix') format('embedded-opentype'),
-			url('/land/src/fonts/material/material.woff') format('woff'),
-			url('/land/src/fonts/material/material.ttf') format('truetype'),
-			url('/land/src/fonts/material/material.svg#materialdesigniconsregular') format('svg');
+	src:	url('/src/fonts/material/material.eot');
+	src:	url('/src/fonts/material/material.eot?#iefix') format('embedded-opentype'),
+			url('/src/fonts/material/material.woff') format('woff'),
+			url('/src/fonts/material/material.ttf') format('truetype'),
+			url('/src/fonts/material/material.svg#materialdesigniconsregular') format('svg');
 	font-weight:normal;
 	font-style:normal;
 }
@@ -117,7 +117,7 @@ section#intro .cover{
 	width: 100%;
 	min-height: 100vh;
 	height: 100%;
-	background: url(/land/97/bookfair/images/book-near-gol.jpg) no-repeat;
+	background: url(/97/bookfair/images/book-near-gol.jpg) no-repeat;
 	background-size: cover;
 	display: flex;
 	align-items: center;
@@ -162,7 +162,7 @@ section#intro .cover .inner > div.with-pic span.pic{
 	margin: 0 -4px 0 11px;
 }
 section#intro .cover .inner > div.with-pic:nth-of-type(2) span.pic{
-	background: url(/land/97/bookfair/images/percentage.svg);
+	background: url(/97/bookfair/images/percentage.svg);
 	background-repeat: no-repeat;
 	background-color: white;
 	border-radius: 50%;
@@ -176,7 +176,7 @@ section#intro .cover .inner > div.with-pic:nth-of-type(2) span:not(.pic){
 	color: #F44336;
 }
 section#intro .cover .inner > div.with-pic:nth-of-type(3) span.pic{
-	background: url(/land/97/bookfair/images/smartphone.svg);
+	background: url(/97/bookfair/images/smartphone.svg);
 	background-color: white;
 	border-radius: 50%;
 	background-size: 70%;
@@ -185,7 +185,7 @@ section#intro .cover .inner > div.with-pic:nth-of-type(3) span.pic{
 	box-shadow: 0 1px 1px #607D8B;
 }
 section#intro .cover .inner > div.with-pic:nth-of-type(4) span.pic{
-	background: url(/land/97/bookfair/images/award.svg);
+	background: url(/97/bookfair/images/award.svg);
 	background-color: white;
 	border-radius: 50%;
 	background-size: 65%;
@@ -194,16 +194,19 @@ section#intro .cover .inner > div.with-pic:nth-of-type(4) span.pic{
 	box-shadow: 0 1px 1px #FF9800;
 }
 /*-----------------------------section#first---------------------------*/
+section#first {
+	padding: 30px 5px;
+}
 section#first .h2-pic{
-	background: url(/land/97/bookfair/images/percentage.svg);
+	background: url(/97/bookfair/images/percentage.svg);
 	background-repeat: no-repeat;
 	background-color: white;
 	border-radius: 50%;
 	background-size: 50%;
 	background-position: center;
 	box-shadow: 0 1px 1px #FF5722;
-	width: 60px;
-	height: 60px;
+	width: 100px;
+	height: 100px;
 	display: block;
 	margin-left: 15px;
 	margin: 30px auto -11px auto;
@@ -212,7 +215,8 @@ section#first .h2-pic{
 section h2{
 	text-align: center;
 	font-family: Lalezar;
-	font-size: 30px;
+	font-size: 35px;
+	margin: 30px 0 15px;
 }
 section#first .inner{
 	display: flex;
@@ -222,14 +226,72 @@ section#first .inner{
 }
 section#first .inner .before{
 	background: #fff;
-	margin: 20px 0 80px 0;
-	padding: 30px 50px 50px 70px;
+	padding: 15px 15px;
 	box-sizing: border-box;
 	box-shadow: rgba(0, 0, 0, 0.156863) 0px 1px 1px, rgba(0, 0, 0, 0.227451) 0px 0px 8px;
-	min-width: 613px;
-	font-size: 14px;
-	line-height: 30px;
-	min-width: 881px;
+	line-height: 35px;
+	max-width: 880px;
+	width: 100%;
+	margin-bottom: 50px;
+}
+section#first .inside > div:not(.vip-div):not(.point-div):before {
+	content: "\f135";
+	font-family: mat;
+	vertical-align: middle;
+	margin: 0 0 0 15px;
+	font-size: 24px;
+	color: #6f03d2;
+}
+section#first .inside b {
+	font-size: 15px;
+	font-weight: normal;
+	padding: 0 7px;
+	/* background: rgba(103, 58, 183, 0.1); */
+	margin: 0 5px;
+	/*border: 1px dotted #673AB7; */
+	border-width: 0 2px;
+	color: #673AB7;
+}
+.point:after,
+.vip:after {
+	content: "\f045";
+	/* content: "..."; */
+	font-family: mat;
+	font-size: 18px;
+	color: #673AB7;
+	display: inline-block;
+	width: 45px;
+	height: 16px;
+	line-height: 16px;
+	text-align: center;
+	vertical-align: middle;
+	border: 1px solid;
+	border-radius: 15px;
+	margin: 0 10px;
+	visibility: hidden;
+}
+.point span {
+	background: #eee;
+	margin-left: 5px;
+	border-radius: 15px;
+	padding: 0 8px;
+	font-size: 12px;
+}
+.point-div,
+.vip-div {
+	position: relative;
+	padding: 15px 40px 15px 0;
+}
+.point-div:before,
+.vip-div:before {
+	content: "";
+	width: 1px;
+	top: -2px;
+	bottom: 0;
+	position: absolute;
+	/* background: #673AB7; */
+	right: 12px;
+	border-right: 1px dotted #673AB7;
 }
 section#first .inner .before a{
 	border-radius: 2px;
@@ -240,9 +302,9 @@ section#first .inner .before a{
 	transition: all 0.2s;
 	box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
 	outline: none;
-	color: #2196f3 !important;
-	border: 1px solid #2196f3;
-	margin: 21px auto -11px auto;
+	color: #673AB7 !important;
+	border: 1px solid #673AB7;
+	/* margin: 21px auto -11px auto; */
 	box-sizing: border-box;
 	vertical-align: top;
 	width: 169px;
@@ -257,7 +319,7 @@ section#first .inner .after{
 	box-shadow: rgba(0, 0, 0, 0.156863) 3px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 0px 10px;
 }
 section#first .inner .became-icon{
-	background: url(/land/97/bookfair/images/back.svg);
+	background: url(/97/bookfair/images/back.svg);
 
 }
 
@@ -1228,7 +1290,7 @@ a.poster.view:before {
 
 
 section#aplication {
-	padding: 50px 0;
+	padding: 50px 0 120px;
 }
 
 .wh .view-header {
@@ -1247,8 +1309,16 @@ section#aplication {
 
 }
 @media (max-width:840px) {
-
-
+	section#intro .cover h1 {
+		font-size: 3.5rem;
+	}
+	section#intro .cover .inner {
+		background: rgba(255, 255, 255, 0.6);
+		padding: 15px;
+		border-radius: 15px;
+		margin: auto;
+		max-width: 96%;
+	}
 }
 @media (max-width:360px) {
 

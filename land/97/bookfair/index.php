@@ -38,29 +38,35 @@
             <div class="inner" >
                 <div class="before">
                     <div class="inside">
-                        <div><b>در زمان جشنواره</b> از تخفیفات ویژه آن استفاده کنید</div>
-                        <div>در هر زمان از کدهای تخفیف می توانید استفاده کنید</div>
-                        <h3>همچنین با عضویت VIP از تخفیف ها و مزایای آن بهره مند شوید</h3>
-                        <div>کسب امتیاز با:</div>
-                        <ul>
-                            <li><span>10</span><span>%</span> تخفیف همیشگی دوره های آموزشی، فیلم های آموزشی 808 و ایبوک ها</li>
-                            <li>امکان مشاهده محصولات خریداری شده و فروخته شده دیگر کاربران سایت</li>
-                            <li>امکان مشاهده تعدادی از ایبوک های سایت به صورت رایگان</li>
-                            <li>نمایش کاربری شما در لیست کاربران ویژه سایت</li>
-                        </ul>
-                        <a href="http://civil808.com/landing/vip">عضو vip شوید</a>
-                        <h3>امتیاز جمع کنید، شارژ هدیه دریافت کنید</h3>
-                        <div>به زودی با تعامل در سایت و فعالیت بیشتر، امتیاز بگیرید و از شارژ هدیه آن استفاده کنید</div>
-                        <div>کسب امتیاز با:</div>
-                        <ul>
-                            <li>عضویت در سایت</li>
-                            <li>تکمیل پروفایل کاربری</li>
-                            <li>مشارکت در سیستم پرسش و پاسخ</li>
-                            <li>خرید از سایت</li>
-                            <li>مشارکت در نظرسنجی محصولات خریداری شده از سایت</li>
-                        </ul>
+                        <div>در زمان <b>جشنواره ها</b> از بیشترین میزان تخفیف های 808 ویژه ی هر جشنواره استفاده کنید.</div>
+                        <div>می توانید به صورت همیشگی از کد های تخفیف در سایت استفاده کنید که به مناسبت های گوناگون در اختیارتان قرار می گیرد.</div>
+                        <div class="vip">با <b>عضویت VIP</b> در سایت از مزایای آن بهره مند شوید</div>
+                        <div class="vip-div" >از مزایایی عضویت VIP در سایت:
+                            <ul>
+                                <li><span>10</span><span>%</span> تخفیف همیشگی در دوره ها، فیلم های آموزشی 808 و ایبوک ها که مستقیم اعمال میشوند.</li>
+                                <li>امکان مشاهده محصولات خریداری شده و فروخته شده دیگر کاربران سایت</li>
+                                <li>امکان مشاهده تعدادی از ایبوک های سایت به صورت رایگان</li>
+                                <li>نمایش کاربری شما در لیست کاربران ویژه سایت</li>
+                                <li>و ...</li>
+                            </ul>
+                            <a href="http://civil808.com/landing/vip">عضو vip شوید</a>
+                        </div>
+                        <div class="point"><span>به زودی </span>امتیاز جمع کنید، شارژ هدیه مستقیم دریافت کنید</div>
+                        <div class="point-div">
+                            <div>با تعامل در سایت و فعالیت بیشتر، امتیاز بگیرید و از شارژ هدیه آن استفاده کنید</div>
+                            <div>راه های کسب امتیاز:</div>
+                            <ul>
+                                <li>عضویت در سایت</li>
+                                <li>تکمیل پروفایل کاربری</li>
+                                <li>مشارکت در سیستم پرسش و پاسخ</li>
+                                <li>خرید از سایت</li>
+                                <li>مشارکت در نظرسنجی محصولات خریداری شده از سایت</li>
+                                <li>و ...</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+
                 <!--<div class="became-icon">
                 </div>
                 <div class="after">
@@ -71,9 +77,9 @@
         </section>
 
         <section>
-            <div class="test" style="background-image: url(/land/97/bookfair/images/abstrac-background.jpg);background-size: cover;border-bottom: 1px solid #555;min-height: calc(100vh - 160px);padding: 80px 0;background-position: center;">
+            <div class="test" style="background-image: url(/97/bookfair/images/abstrac-background.jpg);background-size: cover;border-bottom: 1px solid #555;min-height: calc(100vh - 160px);padding: 80px 0;background-position: center;">
                 <div id="slide-2">
-                    <h2 data-aos="fade-up" style="font-size: 30px;">تخفیف های ویژه 808 همزمان با نمایشگاه کتاب</h2>
+                    <h2 data-aos="fade-up">همزمان با نمایشگاه کتاب</h2>
                     <p data-aos="fade-up">این تخفیف ها مربوط به زمان جشنواره هستند برای دریافت تخیف بین زمان جشنواره ها بخش بالا را مطالعه کنید.</p>
                 </div>
 
@@ -94,7 +100,7 @@
 						</span>
                         <b>ایبوک</b> می توانید کتاب های خود را در قالب نسخه الکترونیک، از طریق وبسایت 808 منتشر کنید.
 
-                        <a href="http://civil808.com/node/9969" rel="nofollow"> دریافت مشاوره  </a>
+                        <a href="http://Civil808.com/publication"> ليست ايبوك ها  </a>
                     </li>
                     <li>
                         <span class="hexa">
@@ -106,6 +112,9 @@
                         <a href="http://civil808.com/shop/product/p/mefibs-form-f-type/0__2221/mefibs-form-f-sort_by/sticky/mefibs-form-f-sort_order/DESC/mefibs-form-f-items_per_page/24/mefibs-form-f-mefibs_block_id/f" rel="nofollow"> لیست کتاب ها </a>
                     </li>
                 </ol>
+                <p style="	text-align: center;	padding: 15px;	font-size: 15px;white-space: pre;	max-width: 480px;	margin: auto;	border: solid #9C27B0;	border-width: 0 3px;	background: rgba(255, 255, 255, 0.5);">
+شما هم ميتوانيد كتب يا ايبوك خود را در سايت ٨٠٨ عرضه كنيد ،
+جهت اطلاع از شيوه همكاری با ما تماس بگيريد</p>
             </div>
         </section>
 
@@ -116,7 +125,7 @@
                 <div data-aos="zoom-out" data-aos-delay="900" class="aboutus aos-init aos-animate">
                     <div class="sec-li li">
 						<span class="icon-laptop">
-							<img class="phone" src="http://civil808.com/app/images/cellphone2.png" width="530" height="auto" alt="اپلیکیشن اندروید 808 پلاس" title="اپلیکیشن اندروید 808 پلاس">
+							<img class="phone" src="./images/cellphone2.png" width="530" height="auto" alt="اپلیکیشن اندروید 808 پلاس" title="اپلیکیشن اندروید 808 پلاس">
 						</span>
                         <div>
                             <p style="font-weight:bold;"> در آپدیت جدید اپلیکیشن 808 می توانید ایبوک ها را در گوشی خود مطالعه کنید  </p>
@@ -129,7 +138,7 @@
                             در حال حاضر می توانید نسخه آزمایشی (بتا) این اپلیکیشن را دانلود کنید.
                             <br>
                             <div style="max-width: 324px;text-align: center;margin-top: 11px;">
-                                <a class="poster download mostaghim" href="http://civil808.com/app/src/808plusV1.1.2.apk" target="_self">  </a>
+                                <a class="poster download mostaghim" href="http://civil808.com/app/src/808plus.apk" target="_self">  </a>
                                 <a class="poster download cafebazaar" href="https://cafebazaar.ir/app/com.civil808/?l=fa" target="_blank"></a>
                                 <a class="poster download googleplay" href="https://play.google.com/store/apps/details?id=com.civil808" target="_target"></a>
                                 <a class="poster download ios" href="#" target="_self" title="به زودی"></a>

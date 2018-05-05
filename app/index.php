@@ -76,20 +76,22 @@
 				<div data-aos="zoom-out" data-aos-delay="900" class="aboutus">                 
 					<div class="sec-li li">
 						<span class="icon-laptop">
-							<img class="phone" src="./images/cellphone2.png" width="530" height="auto" alt="اپلیکیشن اندروید 808 پلاس" title="اپلیکیشن اندروید 808 پلاس">
+							<img class="phone" src="./images/cellphone3.png" width="530" height="auto" alt="اپلیکیشن اندروید 808 پلاس" title="اپلیکیشن اندروید 808 پلاس">
 						</span>
 						<div>
 							<p style="font-weight:bold;"> چرا اپلیکیشن 808 پلاس را نصب کنیم؟ </p>
-							<li> مشاهده آخرین اخبار و مقالات تحلیلی وب سایت 808 </li>
-							<li> مشاهده تقویم آموزشی عمران و معماری کشور </li>
+							<li> مشاهده آخرین اخبار، مقالات تحلیلی و تقویم آموزشی عمران و معماری کشور </li>
 							<li> مشاهده دانشنامه های تخصصی عمران و معماری </li>
-							<li> استفاده از سیستم پرسش و پاسخ 808 </li>
-							<li> امکان ارتباط با مشاوران سایت </li>
-							<a href="http://civil808.com/node/18321" target="_blank">  بیشتر بخوانید ...</a><br>
-							در حال حاضر می توانید نسخه آزمایشی (بتا) این اپلیکیشن را دانلود کنید.
-							</br>
+							<li> استفاده از سیستم پرسش و پاسخ 808 و ارتباط با مشاوران سایت </li>
+							
+							<p style="font-weight:bold;"> آپدیت اردیبشهت 97 </p>
+                            <li> لیست ایبوک های سایت به همراه مشخصات و امکان جستجو</li>
+                            <li> مشاهده ایبوک های خریداری شده و مطالعه آن ها</li>
+                            <li> خرید ایبوک مورد نظر کاربر </li>
+
+							<a href="http://civil808.com/node/18321" target="_blank">  بیشتر بخوانید ...</a>
 							<div style="max-width: 324px;text-align: center;margin-top: 11px;">
-								<a class="poster download mostaghim" href="./src/808plusV1.1.2.apk" target="_self" >  </a>
+								<a class="poster download mostaghim" href="./src/808plus.apk" target="_self" >  </a>
 								<a class="poster download cafebazaar" href="https://cafebazaar.ir/app/com.civil808/?l=fa" target="_blank"></a>
 								<a class="poster download googleplay" href="https://play.google.com/store/apps/details?id=com.civil808" target="_blank"></a>
 								<a class="poster download ios" href="#" target="_self" title="به زودی"></a>
