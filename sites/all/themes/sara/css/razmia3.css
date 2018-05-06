@@ -159,6 +159,19 @@ ul#admin-menu-menu > li:nth-child(5), ul#admin-menu-menu > li:nth-child(6), ul#a
     clear: both;
     text-align: right;
 }
+.vip-price .title {
+    unicode-bidi: isolate;
+    margin-left: 15px;
+    font-size: 16px;
+}
+.vip-price {
+    margin: 5px 8px 15px;
+}
+.vip-price .uc-price {
+    color: #4cae4c;
+    font-weight: bold;
+    font-size: 17px;
+}
 .add-to-cart {
   clear: both;
 }
@@ -166,7 +179,42 @@ ul#admin-menu-menu > li:nth-child(5), ul#admin-menu-menu > li:nth-child(6), ul#a
   color: #777;
   padding: 0 5px;
 }
-
+.list-price.vip-enabled {
+    float: none !important;
+}
+.display-price.vip-enabled {
+    font-size: 12px;
+    font-weight: normal;
+    word-spacing: normal;
+    color: #F44336;
+    margin: 5px 5px 15px;
+}
+.display-price.vip-enabled .uc-price {
+    text-decoration: line-through;
+}
+.display-price.vip-enabled span:first-child {
+    font-size: 12px !important;
+}
+.node-teaser .display-price.vip-enabled {
+    margin-bottom: 0 !important;
+    font-weight: normal !important;
+    margin-top: -16px !important;
+}
+.node-teaser .vip-price .uc-price {
+    font-weight: normal !important;
+    font-size: 14px;
+}
+.node-teaser .vip-price {
+    margin: 0;
+    width: inherit !important;
+    min-width: 140px;
+    padding: 0px 10px 5px 5px;
+    color: #388e3c;
+    word-spacing: 3px;
+    text-align: right;
+    float: right;
+    clear: right;
+}
 .add-to-cart .attributes select {
   width: 220px;
   background-color: #f9f9f9;
@@ -194,7 +242,9 @@ ul#admin-menu-menu > li:nth-child(5), ul#admin-menu-menu > li:nth-child(6), ul#a
   box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
   line-height: 26px;
 }
-
+.node-teaser .vip-price .title {
+    display: none;
+}
 .add-to-cart .form-actions:before {
 	content: "\f112";
     font-family: mat;
@@ -1153,6 +1203,7 @@ span.uc-takhfif-label {
   padding: 3px 5px;
   background: #f9f9f9;
   margin-left: 5px;
+    unicode-bidi: isolate;
 }
 
 .node-teaser span.uc-price-label,
@@ -5801,7 +5852,7 @@ div#smile {
   padding: 20px 50px;
   border: solid #FFC107;
   border-width: 0 5px;
-  display: none;/*جشنواره festival  */
+  /*display: none;!*جشنواره festival  *!*/
 }
 #smile .festival{
   position: relative;

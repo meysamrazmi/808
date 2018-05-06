@@ -110,7 +110,7 @@ function civil808_menu() {
 		'page callback' => 'uc_addresses_address_book',
 		'page arguments' => array(1, NULL),
 		'access callback' => 'civil808_uc_addresses_access',
-		'access arguments' => array('view own addresses',1),
+		'access arguments' => array('view',1),
 		'type' => MENU_LOCAL_TASK,
 		'file' => 'uc_addresses.pages.inc',
 		'file path' => drupal_get_path('module', 'uc_addresses'),
@@ -121,7 +121,7 @@ function civil808_menu() {
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array('uc_addresses_get_address_form', 1, NULL),
 		'access callback' => 'civil808_uc_addresses_access',
-		'access arguments' => array('add/edit own addresses', 1),
+		'access arguments' => array('add/edit', 1),
 		'type' => MENU_LOCAL_TASK,
 		'weight' => 3,
 		'file' => 'uc_addresses.pages.inc',
@@ -134,7 +134,7 @@ function civil808_menu() {
 		'page callback' => 'uc_addresses_list_one_address',
 		'page arguments' => array(1, 4),
 		'access callback' => 'civil808_uc_addresses_access',
-		'access arguments' => array('view own addresses', 1, 4),
+		'access arguments' => array('view', 1, 4),
 		'type' => MENU_LOCAL_TASK,
 		'file' => 'uc_addresses.pages.inc',
 		'file path' => drupal_get_path('module', 'uc_addresses'),
@@ -145,7 +145,7 @@ function civil808_menu() {
 		'page callback' => 'drupal_get_form',
 		'page arguments' => array('uc_addresses_get_address_form', 1, 4),
 		'access callback' => 'civil808_uc_addresses_access',
-		'access arguments' => array('add/edit own addresses', 1, 4),
+		'access arguments' => array('add/edit', 1, 4),
 		'type' => MENU_LOCAL_TASK,
 		'file' => 'uc_addresses.pages.inc',
 		'file path' => drupal_get_path('module', 'uc_addresses'),
@@ -156,7 +156,7 @@ function civil808_menu() {
 		'page callback' => 'uc_addresses_delete_address_confirm',
 		'page arguments' => array(1, 4),
 		'access callback' => 'civil808_uc_addresses_access',
-		'access arguments' => array('delete own addresses', 1, 4),
+		'access arguments' => array('delete', 1),
 		'type' => MENU_LOCAL_TASK,
 		'file' => 'uc_addresses.pages.inc',
 		'file path' => drupal_get_path('module', 'uc_addresses'),
@@ -437,7 +437,7 @@ function civil808_page_accounting_charge($form, &$form_state, $uid) {
 		);
 		/*
 		*	برای تخفیفات گروهی برای 20 درصد شارژ هدیه
-		*
+		*/
 	$form['festival'] = array(
 		'#markup' => '<div id="smile">
 			<canvas>
@@ -446,7 +446,7 @@ function civil808_page_accounting_charge($form, &$form_state, $uid) {
 			<div class="last-price">مبلغ نهایی شارژ: <span></span> تومان</div>
 			</div>',
 		);
-		*/
+		/**/
 	return $form;
 	// return array();
 }
@@ -508,7 +508,7 @@ function civil808_page_accounting_bankcallback($type, $resnumber) {
 				drupal_set_message(t('charge transaction success'), 'status');
 				$params = array(
 			      'uid' => $event->user,
-			      'points' => ($price), /*شارژ اضافه برای جشنواره*/
+			      'points' => ($price * 1.2), /*شارژ اضافه برای جشنواره*/
 			      'operation' => t('Charge from bank'),
 			    );
 			    userpoints_userpointsapi($params);
@@ -604,8 +604,6 @@ function zarinpal_receive($resnumber , $Amount){
 			'price' => -1
 		);
 	}	*/
-	
-	
 	if(isset($_GET['Status']) && $_GET['Status'] == 'OK'){
 		$Authority = $_GET['Authority'];
 		$Status = $_GET['status'];
@@ -626,7 +624,7 @@ function zarinpal_receive($resnumber , $Amount){
 		{
 			return array(
 				'message'=>'success', 
-				'resnumber' => $Resnumber, 
+				'resnumber' => $resnumber,
 				'refnumber' => $Refnumber, 
 				'price' => $Amount);
 		}else{
@@ -998,20 +996,14 @@ if(!function_exists('httpPost')) {
 
 function civil808_uc_addresses_access($permission, $address_user = NULL){
 	global $user;
+	if($user->uid < 1) return false;
 	if(!is_object($address_user)){
 		$address_user = user_load($address_user);
 	}
-	if($user->uid == $address_user->uid){
-		if(user_access($permission, $address_user)){
-			return true;
-		}
-	}
-	if($permission == 'delete all addresses' || $permission == 'add/edit all addresses' || $permission == 'view all addresses' || $permission == 'view all default addresses'){
-		if(user_access($permission, $user)){
-			return true;
-		}
-	}
-	return false;
+	if($user->uid == $address_user->uid)
+		return user_access($permission . ' own addresses');
+	else
+		return user_access($permission . ' all addresses');
 }
 
 
@@ -1025,7 +1017,6 @@ function civil808_preprocess_html(&$variables) {
 	if($language->language == 'en'){
 		$langs = language_list();
 		drupal_goto($path, array('language' => $langs['fa'], 'query' => drupal_get_destination()));
-		Header('Location: http://www.civil808.com/'. $url);
 		die();
 	}
   

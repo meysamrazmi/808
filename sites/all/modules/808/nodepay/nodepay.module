@@ -54,23 +54,23 @@ function pay_for_node($nid) {
         $flag = false; //default value for discount flag
         /*
         * برای تخفیفات ویژه نوروز که تمامی محتوا ها تخفیف داشتند
-        *
+        */
         $flag = true;
-        $festival = 'جشنواره نوروز';
+        $festival = 'جشنواره کتاب 97';
         for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){
             if( $node->field_isvip['und'][$i]['tid'] == 2217) // no discount will be applied
                 $flag=false;
         }
         if($flag){
-            $points = round(intval($points*0.6) , -2);
-            drupal_set_message('40 درصد تخفیف به مناسبت '. $festival .' برای شما اعمال شد.');
+            $points = round(intval($points * 0.75) , -2);
+            drupal_set_message('25 درصد تخفیف به مناسبت '. $festival .' برای شما اعمال شد.');
         }
-        */
+        /**/
 
-        $description =  ($flag)? ' با 40 درصد تخفیف ' . $festival :'';
+        $description =  ($flag)? ' با 25 درصد تخفیف ' . $festival :'';
         if(isset($user->roles[8])){ //for vip user only
             $description .= ', با 10 درصد تخفیف vip';
-            $points *= 0.9;
+            //$points *= 0.9;
         }
 
         $num_pts = userpoints_get_current_points($user->uid, 'all');

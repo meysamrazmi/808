@@ -622,6 +622,7 @@ div.content > div.cta > div.messages > h2 > a{
 	clear: both;
     display: inline-block;
     width: 100%;
+	position: relative;
 }
 .page-landing #block-system-main .content .content{
 	margin-top:0px;
