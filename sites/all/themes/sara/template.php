@@ -178,12 +178,21 @@ function sara_preprocess_node(&$variables) {
       $variables['buyed_value'] = $is_buyed->value;
     else
       $variables['buyed_value'] = -1;
-  } else if($variables['elements']['#view_mode'] != 'teaser' && $node->type == 'education') {
+  }
+  else if($variables['elements']['#view_mode'] != 'teaser' && $node->type == 'education') {
     $is_buyed = db_select('m_buyed_nodes','e')->fields('e', array())->condition('uid', $user->uid)->condition('nid', $node->nid)->execute()->fetch();
     $variables['buyed_value'] = $is_buyed;
     $node->buyed_value = $is_buyed;
     $variables['edu_form'] = drupal_get_form('edu_form', $node);
   }
+	//todo: make this section based on site setting
+	//for vip discount
+	if($node->type == 'college'){
+		$variables['classes_array'][] = 'apply-vip-discount';
+	}
+	else if(($node->type == 'product' || $node->type == 'product_kit') && in_array_r('2441', $node->field_backend)){ // 2441 is for "پکیج های s1 تا s30 "
+		$variables['classes_array'][] = 'apply-vip-discount';
+	}
 
   $variables['date'] = '<time>'.format_date($node->created, 'custom', 'j F Y').'</time>';
     $variables['author_about_me'] = '';

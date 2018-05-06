@@ -1358,7 +1358,7 @@ function prices() {
             (is_teaser)? el.children('.list-price').css('visibility','hidden') : el.children('.list-price').css('display','none')
 
 			//there is no other discount enabled so we show vip price
-            if(!el.find('.vip-price').length && (!is_teaser || $('.role-Vip').length)) {
+            if(!el.find('.vip-price').length && (!is_teaser || $('.role-Vip').length) && $(this).hasClass('apply-vip-discount')) {
             	//for full view mode or teaser mode just when he is vip
                 el.children('.display-price')
                     .after('<div class="vip-price"><span class="title">قیمت برای کاربران <a href="/landing/vip" class="" style="color: #512DA8;border-bottom: 1px dotted;" target="_blank">VIP</a>:</span><span class="uc-price">' + money_format(display_price * 0.9) + ' تومان</span></div>')
@@ -1398,7 +1398,7 @@ function prices() {
 			el.find('.list-price').css('visibility','hidden');
 
             //there is no other discount enabled so we show vip price
-			if(!el.find('.vip-price').length && $('.role-Vip').length) {
+			if(!el.find('.vip-price').length && $('.role-Vip').length && $(this).hasClass('apply-vip-discount')) {
 				el.addClass('vijeh')
 				.children('.display-price')
 					.after('<div class="vip-price"><span class="uc-price">' + money_format(display_price * 0.9) + ' تومان</span></div>')
