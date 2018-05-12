@@ -22,9 +22,13 @@ function content_resource_search($hash , $type , $value , $version){
         $query->fields('node', array('nid'));
         $query->condition('node.title', '%' . $value . '%', 'LIKE');
         $query->condition('node.type' , $type);
+        $query->condition('node.status' , 1);
         $nid1 = $query->execute()->fetchAll();
 
-
+        /*
+         * @todo
+         * Subtract the body that is not published
+         * */
         $query = db_select("field_data_body", "body");
         $query->addField('body', 'entity_id', 'nid');
         $query->condition('body.body_value', '%' . $value . '%', 'LIKE');

@@ -955,5 +955,7 @@ span.file {
     opacity: 0.6;
 }
 
-
-
+.page-node-edit.node-type-publication .field-name-field-point-needed .description{
+  color: red;
+  font-weight: bold;
+}

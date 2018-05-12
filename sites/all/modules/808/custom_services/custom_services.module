@@ -427,7 +427,40 @@ function custom_services_services_resources(){
                     ),
                 ),
             ),
-		    'actions' => array(),
+		    'actions' => array(
+                'search' => array(
+                    'help' => 'Search in E-Books',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'pedia_resource'),
+                    'callback' => 'pedia_resource_search',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('data' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'value',
+                            'type' => 'string',
+                            'description' => 'a value that used for search',
+                            'source' => array('data' => 'value'),
+                            'optional' => FALSE,
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('data' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+            ),
 		    'targeted_actions' => array(),
 		    'relationships' => array(
 		        'advisors' => array(

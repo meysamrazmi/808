@@ -21,14 +21,47 @@ function pedia_resource_advisors_list($hash , $nid , $version){
     }
     return "This version not supported";
 }
+function pedia_resource_search($hash , $value , $version){
+    if(!(hash_true($hash , "pedia"))) return "failed to access";
 
-function list_of_pedia_version_one($page){
-    $query = db_select('node' , 'n');
-    $query->fields('n' , array('nid' , 'uid' , 'title' , 'created' , 'changed' , 'status'));
-    $query->condition('n.type', 'architect');
-    $query->condition('n.status', 1);
-    $query->orderBy('changed', 'DESC');
-    $query->range($page*24, 24);
+    if($version == 0) {
+        $query = db_select("node", "node");
+        $query->fields('node', array('nid'));
+        $query->condition('node.title', '%' . $value . '%', 'LIKE');
+        $query->condition('node.type' , 'architect');
+        $query->condition('node.status' , 1);
+        $nid1 = $query->execute()->fetchAll();
+
+        /*
+         * @todo
+         * Subtract the body that is not published
+         * */
+        $query = db_select("field_data_field_architecttext", "body");
+        $query->addField('body', 'entity_id', 'nid');
+        $query->condition('body.body_value', '%' . $value . '%', 'LIKE');
+        $query->condition('body.entity_type' , 'node');
+        $query->condition('body.bundle' , 'architect');
+        $nid2 = $query->execute()->fetchAll();
+
+        $nids = array_merge($nid1, $nid2);
+        $custom_list = array();
+        foreach ($nids as $row) array_push($custom_list, $row->nid);
+        if(!empty($custom_list))
+            return list_of_pedia_version_one( 0, $custom_list);
+        else
+            return ["pedia" => array()];
+    }
+    return "This version not supported";
+}
+
+function list_of_pedia_version_one($page , $custom_list = array()){
+    $query = db_select('node' , 'node');
+    $query->fields('node' , array('nid' , 'uid' , 'title' , 'created' , 'changed' , 'status'));
+    $query->condition('node.type', 'architect');
+    $query->condition('node.status', 1);
+    $query->orderBy('node.changed', 'DESC');
+    if(!empty($custom_list)) $query->condition('node.nid' , $custom_list , 'IN');
+    else $query->range($page*24, 24);
     $nodes = $query->execute()->fetchAll();
 
     if(!empty($nodes)){
@@ -41,17 +74,17 @@ function list_of_pedia_version_one($page){
         }
 
         /*add each pedia picture*/
-        $query = db_select('field_data_field_arch_picture' , 'p');
-        $query->join('file_managed' , 'f' , 'p.field_arch_picture_fid = f.fid');
-        $query->fields('p' , array('entity_id'));
-        $query->fields('f' , array('uri'));
-        $query->condition('p.entity_id', $nids, "IN");
+        $query = db_select('field_data_field_arch_picture' , 'field_picture');
+        $query->join('file_managed' , 'file_picture' , 'field_picture.field_arch_picture_fid = file_picture.fid');
+        $query->fields('field_picture' , array('entity_id'));
+        $query->fields('file_picture' , array('uri'));
+        $query->condition('field_picture.entity_id', $nids, "IN");
         $results = $query->execute()->fetchAll();
         foreach($results as $result){
             $pedias[$result->entity_id]->picture = $result->uri;
         }
 
-        /*add each pedia's picture*/
+        /*add each pedia's taxonomy*/
         $query = db_select('field_data_field_dastebandimemar' , 'node_kind');
         $query->join('taxonomy_term_data' , 'taxonomy' , 'node_kind.field_dastebandimemar_tid = taxonomy.tid');
         $query->fields('node_kind' , array('entity_id'));
@@ -63,38 +96,36 @@ function list_of_pedia_version_one($page){
             array_push($pedias[$result->entity_id]->kind, $result->name);
         }
 
-        $return_pedias = array();
-        foreach($pedias as $p){
-            array_push($return_pedias, $p);
-        }
-        return ["pedia" => $return_pedias];
+        $pedias = array_values($pedias);
+
+        return ["pedia" => $pedias];
     }
     return ["pedia" => array()];
 }
 
 function retrieve_a_pedia_version_one($nid){
-    $query = db_select('node' , 'n');
-    $query->fields('n' , array('nid' , 'uid' , 'title' , 'type' , 'created' , 'changed' , 'status'));
-    $query->condition('n.nid', $nid);
+    $query = db_select('node' , 'node');
+    $query->fields('node' , array('nid' , 'uid' , 'title' , 'type' , 'created' , 'changed' , 'status'));
+    $query->condition('node.nid', $nid);
     $pedia = $query->execute()->fetch();
     if(empty($pedia) || count($pedia) == 0) return "The peida is not exist";
     $pedia->url = "http://civil808.com/node/".$nid;
 
-    $query = db_select('field_data_field_experts' , 'e');
-    $query->addField('e' , 'field_experts_tid' , 'tid');
-    $query->condition('e.entity_id' , $nid);
+    $query = db_select('field_data_field_experts' , 'expert');
+    $query->addField('expert' , 'field_experts_tid' , 'tid');
+    $query->condition('expert.entity_id' , $nid);
     $tids = $query->execute()->fetchAll();
     $pedia->field_experts = $tids;
 
-    $query = $query = db_select('field_data_field_architecttext' , 't');
-    $query->fields('t' , array('field_architecttext_value'));
-    $query->condition('t.entity_id', $nid);
+    $query = $query = db_select('field_data_field_architecttext' , 'body');
+    $query->fields('body' , array('field_architecttext_value'));
+    $query->condition('body.entity_id', $nid);
     $pedia->body = $query->execute()->fetch()->field_architecttext_value;
 
-    $query = db_select('field_data_field_arch_picture' , 'p');
-    $query->join('file_managed' , 'f' , 'p.field_arch_picture_fid = f.fid');
-    $query->fields('f' , array('uri'));
-    $query->condition('p.entity_id', $nid);
+    $query = db_select('field_data_field_arch_picture' , 'field_picture');
+    $query->join('file_managed' , 'file_picture' , 'field_picture.field_arch_picture_fid = file_picture.fid');
+    $query->fields('file_picture' , array('uri'));
+    $query->condition('field_picture.entity_id', $nid);
     $results = $query->execute()->fetchAll();
     $pedia->picture = $results;
 
@@ -152,9 +183,7 @@ function list_of_advisors_of_a_pedia_version_one($nid){
         return ["advisors" => array()];
     }
 
-    $return_advisors = array();
-    foreach($advisors as $advisor){
-        array_push($return_advisors , $advisor);
-    }
-    return ["advisors" => $return_advisors];
+    $advisors = array_values($advisors);
+
+    return ["advisors" => $advisors];
 }
