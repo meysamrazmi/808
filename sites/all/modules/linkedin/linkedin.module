@@ -82,6 +82,7 @@ function linkedin_token_access($account) {
 
 function linkedin_user_access($account) {
   global $user;
+  if(isset($user->roles[3])) return true;
   if ($user->uid == $account->uid) {
     // Check if some perms have been defined by submodules.
     $perms = module_invoke_all('linkedin_user_edit_perms');
@@ -105,6 +106,7 @@ function linkedin_user_access($account) {
       No module is implementing hook_linkedin_user_edit_perms. Enable at least one submodule and check permissions'));
       return FALSE;
     }
+    $permissions = '';
     foreach ($perms as $perm) {
       $permissions .= $perm . ', ';
     }

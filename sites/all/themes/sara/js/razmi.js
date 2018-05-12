@@ -982,7 +982,7 @@ if($('.menu-column').length){
 }
 /*-----------------------------------------------------------------------------------------------------------------*/
 $('input#edit-price').keyup(function(){
-	$(this).parents('form').find('#smile span').text((parseInt($(this).val()/* *1.2*/,10)));
+	$(this).parents('form').find('#smile span').text((parseInt($(this).val() * 1.2,10)));
 });
 /*-----------------------------------------------------------------------------------------------------------------*/
 if($('.page-college-search').length && $('.view-courses .views-exposed-widgets .filters').length == 0){
@@ -1340,41 +1340,83 @@ function shop_filter_open(){
    $('#mini-panel-shop_sidebar .panel-pane').slideDown();
 }
 function prices() {
-	$('.node-product , .node-product-kit').each(function(i){
-		var list_price = parseInt($(this).children('div').children('.list-price').find('.uc-price').text().split(" تومان")[0].split(",").join(""));
-		var display_price = parseInt($(this).children('div').children('.display-price').find('.uc-price').text().split(" تومان")[0].split(",").join(""));
-		
-		var list_price_teaser = parseInt($(this).children('.list-price').find('.uc-price').text().split(" تومان")[0].split(",").join(""));
-		var display_price_teaser = parseInt($(this).children('.display-price').find('.uc-price').text().split(" تومان")[0].split(",").join(""));
-		
-		if (list_price <= display_price || list_price_teaser <= display_price_teaser){
-			$(this).children('div').children('.list-price').css('display','none');
-			$(this).children('.list-price').css('visibility','hidden');
-		}else{
-			if(!$(this).children('div').find('.list-price .uc-takhfif').length){
-				$(this).children('div').children('.list-price').append('<div class="product-info uc-takhfif"><span class="uc-takhfif-label">تخفیف شما: </span><span class="uc-takhfif">' + (list_price - display_price) + ' تومان</span></div>');
-			}
-			if(!$(this).find('.list-price .uc-takhfif').length){
-				$(this).children('.list-price').append('<div class="product-info uc-takhfif"><span class="uc-takhfif-label">تخفیف شما: </span><span class="uc-takhfif">' + (list_price_teaser - display_price_teaser) + ' تومان</span></div>');
-			}
-			if($(this).children('div').find('.list-price .uc-takhfif').length || $(this).find('.list-price .uc-takhfif').length){
-				$(this).addClass('vijeh');	
-			}
-		}
-	});
-	$('.node-product .node-product').each(function(i){
-		var list_price = parseInt($(this).find('.list-price').find('.uc-price').text().split(" تومان")[0].split(",").join(""));
-		var display_price = parseInt($(this).find('.display-price').find('.uc-price').text().split(" تومان")[0].split(",").join(""));
+	$('.node-product , .node-product-kit').each(function(){
+	    // prevent relative products to be parsed
+	    if($(this).parents('.node-product').length || $(this).parents('.node-product-kit').length)
+	        return
+
+        var el = $(this)
+        var is_teaser = true
+        if(!$(this).hasClass('node-teaser')){
+	        el = $(this).children('div')
+            is_teaser = false
+        }
+		var list_price = get_uc_price(el.children('.list-price'));
+		var display_price = get_uc_price(el.children('.display-price'));
 		
 		if (list_price <= display_price){
-			$(this).find('.list-price').css('visibility','hidden');
+            (is_teaser)? el.children('.list-price').css('visibility','hidden') : el.children('.list-price').css('display','none')
+
+			//there is no other discount enabled so we show vip price
+            if(!el.find('.vip-price').length && (!is_teaser || $('.role-Vip').length) && $(this).hasClass('apply-vip-discount')) {
+            	//for full view mode or teaser mode just when he is vip
+                el.children('.display-price')
+                    .after('<div class="vip-price"><span class="title">قیمت برای کاربران <a href="/landing/vip" class="" style="color: #512DA8;border-bottom: 1px dotted;" target="_blank">VIP</a>:</span><span class="uc-price">' + money_format(display_price * 0.9) + ' تومان</span></div>')
+                    .find('.uc-price').css('color','rgba(244, 67, 54, 0.8)');
+
+                if ($('.role-Vip').length) {
+                    el.find('.vip-price')
+                        .append(uc_discount_theme(display_price * 0.1, '10% تخفیف VIP: '))
+                        .find('.title').text('قیمت برای شما:')
+                    el.children('.display-price').addClass('vip-enabled')
+                    $(this).addClass('vijeh');
+                }
+            }
 		}else{
-			if(!$(this).find('.list-price .uc-takhfif').length){
-				$(this).find('.list-price').append('<div class="product-info uc-takhfif"><span class="uc-takhfif-label">تخفیف شما: </span><span class="uc-takhfif">' + (list_price - display_price) + ' تومان</span></div>');
-			}
-			$(this).addClass('vijeh');
+			if(!el.find('.list-price .uc-takhfif').length)
+				el.children('.list-price').append(uc_discount_theme(list_price - display_price))
+			$(this).addClass('vijeh')
 		}
 	});
+	//deal with relative products
+	$('.node-product, .node-product-kit').find('.node-product').each(product_teaser_prices);
+	$('.node-product, .node-product-kit').find('.node-product-kit').each(product_teaser_prices);
+
+	// theme for uc_discount
+    function uc_discount_theme(price , title){
+        if(title === undefined) title = 'تخفیف شما: '
+        return '<div class="product-info uc-takhfif"><span class="uc-takhfif-label">'+ title +'</span><span class="uc-takhfif">' + money_format(price) + ' تومان</span></div>'
+    }
+
+    //for relative products
+    function product_teaser_prices(){
+		var el = $(this)
+        var list_price = get_uc_price(el.find('.list-price'));
+        var display_price = get_uc_price(el.find('.display-price'));
+
+        if (list_price <= display_price){
+			el.find('.list-price').css('visibility','hidden');
+
+            //there is no other discount enabled so we show vip price
+			if(!el.find('.vip-price').length && $('.role-Vip').length && $(this).hasClass('apply-vip-discount')) {
+				el.addClass('vijeh')
+				.children('.display-price')
+					.after('<div class="vip-price"><span class="uc-price">' + money_format(display_price * 0.9) + ' تومان</span></div>')
+					.find('.uc-price').css('color','rgba(244, 67, 54, 0.8)');
+
+				el.children('.display-price').addClass('vip-enabled')
+			}
+        }else{
+            if(!el.find('.list-price .uc-takhfif').length)
+				el.find('.list-price').append(uc_discount_theme(list_price - display_price));
+			el.addClass('vijeh');
+        }
+    }
+
+    // return number value of uc_price
+    function get_uc_price(el){
+        return parseInt(el.find('.uc-price').text().split(" تومان")[0].split(",").join(""))
+    }
 }
 
 /*for firing some scripts after ajax */
@@ -1562,5 +1604,8 @@ function rgb2hex(rgb) {
 	return "#ffffff";
 }
 
+function money_format(x){
+    return parseFloat(x, 10).toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,").toString()
+}
 
 

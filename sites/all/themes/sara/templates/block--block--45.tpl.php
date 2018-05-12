@@ -3,13 +3,41 @@
 	
     <div class="content">
 	<span class="close-banner">X</span>
-	<a href="http://land.civil808.com/97/eid" target="_blank">
-		<span style="background: #F44336;color: #fff;position: absolute;right: calc(50% - 110px);visibility: visible;padding: 0px 25px;font-size: 17px;width: 220px;top: -3px;border-radius: 0 0 15px 15px;border: 1px solid #fff;">تا 13 فروردین تمدید شد</span>
-		<div class="tablightext">
+	<a href="http://land.civil808.com/97/bookfair" target="_blank">
+		<!--<span style="background: #F44336;color: #fff;position: absolute;right: calc(50% - 110px);visibility: visible;padding: 0px 25px;font-size: 17px;width: 220px;top: -3px;border-radius: 0 0 15px 15px;border: 1px solid #fff;">تا 13 فروردین تمدید شد</span>-->
+		<!--<div class="tablightext">
 			<span>
 			تا <span style="color: #F44336;font-family:fanum;font-size: 21px;display: inline-block;line-height: 26px;padding: 0 3px;">50%</span> تخفیف رو از دست ندید
 			</span>
-		</div>
+		</div>-->
+        <div class="with-pic"><span class="pic"></span> تا <span>25</span><span>%</span>
+            تخفیف کتاب و ایبوک
+        </div>
+        <div class="pic2" style="
+    position: absolute;
+    bottom: 7px;
+    right: 89px;
+    visibility: visible !important;
+    color: black;
+">
+            <span style="
+    font-weight: bold;
+    padding: 0 4px 0 2px;
+    color: #F44336;
+">+</span>
+            <span style="
+    font-weight: bold;
+    padding: 0 4px 0 2px;
+    color: #F44336;
+">20</span><span style="
+    font-weight: bold;
+    padding: 0 4px 0 2px;
+    color: #F44336;
+">%</span>
+            شارژ هدیه
+        </div>
+
+        <div class="new-title">جشنواره کتاب و کتاب خوانی 808</div>
 	</a>
 	<?php
 	/*دهه فجر
@@ -30,22 +58,79 @@
 </div>
 
 <style>
+    div.with-pic {
+        display: flex;
+        /* align-items: center; */
+        /* justify-content: right; */
+        font-size: 15px;
+        margin: 0;
+        font-family: fanum;
+        color: #000;
+        text-shadow: 0 1px 1px #fff;
+        position: absolute;
+        right: 22px;
+        top: 10px;
+        visibility: visible !important;
+    }
+    div.with-pic span.pic {
+
+        background: url(http://civil808.com/land/97/bookfair/images/percentage.svg);
+        background-repeat: no-repeat;
+        background-color: white;
+        border-radius: 50%;
+        background-size: 50%;
+        background-position: center;
+        box-shadow: 0 1px 1px #FF5722;
+        width: 40px;
+        height: 40px;
+        display: block;
+        margin-left: 15px;
+        margin: 3px -4px 0px 13px;
+        visibility: visible !important;
+    }
+    div.with-pic span:not(.pic) {
+        font-weight: bold;
+        padding: 0 4px 0 2px;
+        color: #F44336;
+    }
 
 div#block-block-45 {
-	background: url(http://civil808.com/sites/all/themes/sara/images/bg-sabz2.png);
-	width: 100%;
-	position: fixed;
-	bottom: 0;
-	right: 0;
-	border-top: 3px solid #8bb65d;
-	height: 70px;
-	z-index: 100;
-	background-position-x: center;
-	background-size: cover;
-	display: flex;
-	align-items: center;
-	background-color:white;
-}	
+    /* background: url(http://civil808.com/sites/all/themes/sara/images/book-banner.jpg); */
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    border-top: 3px solid #795548;
+    height: 70px;
+    z-index: 100;
+    background-position-x: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    background-color: #ecede8;
+}
+div#block-block-45:after {
+
+    content: "";
+    position: absolute;
+    background: url(http://civil808.com/sites/all/themes/sara/images/bookandvup.jpg);
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 70px;
+    left: 9%;
+    top: 0px;
+    background-size: 96%;
+}
+div#block-block-45 .content a > div.new-title{
+    visibility: visible;
+    background: url(http://civil808.com/sites/all/themes/sara/images/jashnvare-png.png);
+    font-size: 0px;
+    width: 300px;
+    height: 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 15px auto 0 auto;
+}
 div#block-block-45:before {
   content: "";
   position: absolute;
@@ -140,27 +225,14 @@ div#block-block-45 span.link:after {
 div#block-block-45:hover span.link:after {
   padding: 3px 7px 4px 0;
 }
-div#block-block-45:after {
-	content: "";
-    position: absolute;
-    background: url(http://civil808.com/sites/all/themes/sara/images/gol.png);
-    background-repeat: no-repeat;
-    width: 27%;
-    height: 159px;
-    right: 0;
-    background-size: 90%;
-    -ms-transform: rotate(17deg);
-    -webkit-transform: rotate(17deg);
-    transform: rotate(17deg);
-    bottom: -54px;
-}
+
 div#block-block-45 .content {
   display: flex;
   align-items: center;
   height: 100%;
 }
 div#block-block-45 .content:before {
-    background: url(/sites/all/themes/sara/images/font96.png);
+    /*background: url(/sites/all/themes/sara/images/font96.png);*/
     background-repeat: no-repeat;
     width: 24%;
     height: 53px;
@@ -233,134 +305,42 @@ div#block-block-45 .content:before {
 }
 
 @media (max-width: 1200px){
-div#block-block-45:after {
-    width: 27%;
-    height: 159px;
-}
-#block-block-45 div.tablightext:after {
-    font-size: 28px;
-    line-height: 28px;
-    margin-right: 16px;
-}
-#block-block-45 div.tablightext span {
-    font-size: 17px;
-}
-#block-block-45 div.tablightext {
-    width: 33%;
-}
-#block-block-45:hover div.tablightext:after {
-    margin-right: 20px;
-}
+
 }
 
 @media (max-width: 979px){
-div#block-block-45:before {
-  width: 300px;
-  height: 27px;
-  right: 2%;
-}
-div#block-block-45 .content p:first-child {
-  right: 2%;
-}
+    .with-pic,.pic2{
+        display:none !important;
+    }
+    .new-title{
+    text-align: right !important;
+    margin-right: 15px !important;
+    }
+
 }
 
 @media (max-width: 979px) and (min-width: 769px){
-div#block-block-45:after{
-    height: 148px;
-    bottom: -67px;
-}
-div#block-block-45 .content:before {
-    width: 33%;
-}
-div#block-block-45 {
-    background-position-x: 41%;	
-}
-}
+
 
 @media all and (max-width: 768px) {
-div#block-block-45 .content a{
-	zoom: 0.8;
-    margin-top: 10px;
-}
-div#block-block-45:after {
-    width: 32%;
-    margin-bottom: -2%;
-}
-div#block-block-45 {
-    background-position-x: 38%;
-}
-div#block-block-45 .content:before {
-    width: 35%;
-}
 }
 
 @media all and (max-width: 600px) {
-	#block-block-45 div.tablightext span {
-    font-size: 15px;
-}
-div#block-block-45 .content:before {
-    width: 42%;
-    right: 23%;
-}
-div#block-block-45:after {
-    width: 32%;
-    margin-bottom: -4%;
-}
+    div#block-block-45 .content a > div.new-title{
+        text-align: center !important;
+        margin-right: 0px !important;
+    }
+    div#block-block-45:after{
+        display: none !important;
+    }
 }
 
 @media all and (max-width: 500px) {
-div#block-block-45 .content p:first-child {
-  right: 5px;
-}
-div#block-block-45 span.link {
-  left: calc(50% - 70px);
-  left: 10px;
-  bottom: 0;
-  top: initial;
-  display: none;
-}
-div#block-block-45 .main-text {
-  width: 96%;
-  right: 2%;
-  border: solid #ffffff;
-  /* background: rgba(255, 255, 255, 0.4); */
-  border-width: 0 5px;
-  top: 11px;
-  bottom: inherit;
-}
-div#block-block-45 .content:before {
-    width: 47%;
-    right: 14%;
-}
-#block-block-45 div.tablightext {
-    width: 37%;
-}
-div#block-block-45 .content p:first-child {
-  right: calc(50% - 190px);
-}
-div#block-block-45 {
-    background-position-x: 34%;
-}
-div#block-block-45:after {
-    bottom: -62px;
-    width: 34%;
-}
-div#block-block-45:before {
-  right: calc(50% - 150px);
-}
+
 }
 
 @media all and (max-width: 400px) {
-div#block-block-45:after {
-    display:none;
-}
-div#block-block-45 .content:before {
-    width: 55%;
-    right: 10px;
-}
-div#block-block-45 {
-    background-position-x: 33%;
-}
+
 }
 
 </style>
