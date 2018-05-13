@@ -75,13 +75,13 @@
               <div class="cta-icon"></div>
               <?php
 				if($festival){ //festival time
-                    print '<span class="n-label" style="width: 80%;">با 25درصد تخفیف جشنواره کتاب :</span><span class="meghdar" style="color: #4CAF50;">' . formatMoney(($point_needed * 0.75)) .' تومان </span>';
+                    print '<span class="n-label" style="width: 80%;">با 25درصد تخفیف جشنواره کتاب :</span><span class="meghdar" style="color: #4CAF50;">' . formatMoney(round(($point_needed * 0.75), -1)) .' تومان </span>';
 				} else { //normal vip discount
-                    print '<span class="n-label">برای کاربران vip :</span><span class="meghdar" style="color: #4CAF50;">' . formatMoney(($point_needed * 0.9)) .' تومان </span>';
+                    print '<span class="n-label">برای کاربران vip :</span><span class="meghdar" style="color: #4CAF50;">' . formatMoney(round(($point_needed * 0.9), -1)) .' تومان </span>';
 				 }
               ?>
           </div>
-            <a href="/pay/node/<?php echo $node->nid; ?>" class="btn-green" style="margin-top: 15px;" target="_blank">پرداخت و مشاهده محتوا</a>
+            <a href="/pay/node/<?php echo $node->nid; ?>" class="btn-green" style="margin-top: 15px;">پرداخت و مشاهده محتوا</a>
       </div>
   </div>
 

@@ -61,23 +61,22 @@ function pay_for_node($nid) {
             if( $node->field_isvip['und'][$i]['tid'] == 2217) // no discount will be applied
                 $flag=false;
         }
-        if($flag){
-            $points = round(intval($points * 0.75) , -2);
-            drupal_set_message('25 درصد تخفیف به مناسبت '. $festival .' برای شما اعمال شد.');
-        }
+        if($flag)
+            $points = round(intval($points * 0.75) , -1);
         /**/
 
         $description =  ($flag)? ' با 25 درصد تخفیف ' . $festival :'';
         if(isset($user->roles[8])){ //for vip user only
             $description .= ', با 10 درصد تخفیف vip';
-            //$points *= 0.9;
+//	        $points = round(intval($points * 0.9) , -1);
         }
-
         $num_pts = userpoints_get_current_points($user->uid, 'all');
         if ($num_pts < $points) {
             drupal_set_message(t("You haven't enough point in your account, please charge your account."), 'error');
             drupal_goto("node/$nid");
         }
+	    if($flag)
+		    drupal_set_message('25 درصد تخفیف به مناسبت '. $festival .' برای شما اعمال شد.');
 
         $_sql = "INSERT INTO {m_buyed_nodes} (uid, nid, date, price, description) VALUES (:uid, :nid, :date, :price, :description)";
         if($sht = db_query($_sql, array( ':uid' => $user->uid, ':nid' => $nid, ':date' => time(), ':price' => $points, ':description' => $description ))){
@@ -92,6 +91,7 @@ function pay_for_node($nid) {
                 'entity_type' => 'node',
             );
             userpoints_userpointsapi($params);
+	        drupal_set_message('خرید محتوا انجام شد و مبلغ '. $points .' از اعتبار شما کسر شد.');
         }else{
             drupal_set_message(t('خطایی در فرم رخ داده است. لطفا با پشتیبانی تماس حاصل فرمایید. کد خطا: 16'), 'error');
             drupal_goto("node/". $nid);
@@ -137,7 +137,6 @@ function pay_for_node($nid) {
                         'total' => $total,
                         'updated' => time(),
                     ))->execute();
-
 
                 $node = node_load($nid);
                 privatemsg_new_thread(
