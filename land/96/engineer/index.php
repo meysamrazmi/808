@@ -87,7 +87,7 @@
 							<li> امکان ارتباط با مشاوران سایت </li>
 							در حال حاضر می توانید نسخه آزمایشی (بتا) این اپلیکیشن را دانلود کنید.
 							</br>
-							<a class="poster download" href="./src/808plus.apk" target="_self" download="808plus"> دانلود اپلیکیشن اندروید </a>
+							<a class="poster download" href="http://civil808.com/app/src/808plus.apk" target="_self" download="808plus"> دانلود اپلیکیشن اندروید </a>
 						</div>
 					</div>
 				</div>

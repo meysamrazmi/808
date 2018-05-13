@@ -1153,12 +1153,10 @@ body.page-publication.page-types,
 body.page-article.page-store {
   background: #f5f5f5;
 }
-.page-article.page-software .container .region-content:before,
-.page-publication.page-types .container .region-content:before,
-.page-article.page-store .container .region-content:before {
-  /*content: ""; /*برای تخفیف ویژه نوروزی*/
+.page-publication.page-types .container .region-content:before{
+  content: ""; /*برای تخفیف ویژه نوروزی*/
   position: absolute;
-  background-image: url(../images/baner1.png);
+  background-image: url(../images/ebook-mini-banner.png);
   width: 250px;
   height: 90px;
   left: -10px;

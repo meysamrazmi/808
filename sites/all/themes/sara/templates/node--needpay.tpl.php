@@ -94,6 +94,12 @@
 	print render($content['links']); 
   ?>
 
+    <?php if ($node->type == 'publication'): ?>
+        <div class="app-ebook">
+            <a href="/app" target="_blank"><img src="/sites/all/themes/sara/images/app-wild-banner3.jpg"/>
+        </div>
+    <?php endif; ?>
+
   <?php if ($display_submitted): ?>
 	<div class="author-section">
 		<h5 class="author-section-title">درباره نویسنده</h5>

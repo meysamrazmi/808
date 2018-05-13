@@ -61,7 +61,7 @@ function list_of_contents_version_one($type , $language ,  $page , $custom_list 
         $query->condition('profile.type', 'main');
         $query->condition('name.entity_type' , 'profile2');
         $query->condition('name.bundle' , 'main');
-
+        $query->orderBy('node.nid' , 'DESC');
         if(!empty($custom_list)) $query->condition('node.nid' , $custom_list , 'IN');
         else $query->range($page*24 , 24);
         $db_contents = $query->execute()->fetchAll();
