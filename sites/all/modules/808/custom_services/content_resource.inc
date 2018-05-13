@@ -22,13 +22,8 @@ function content_resource_search($hash , $type , $value , $version){
         $query->fields('node', array('nid'));
         $query->condition('node.title', '%' . $value . '%', 'LIKE');
         $query->condition('node.type' , $type);
-        $query->condition('node.status' , 1);
         $nid1 = $query->execute()->fetchAll();
 
-        /*
-         * @todo
-         * Subtract the body that is not published
-         * */
         $query = db_select("field_data_body", "body");
         $query->addField('body', 'entity_id', 'nid');
         $query->condition('body.body_value', '%' . $value . '%', 'LIKE');
@@ -56,6 +51,7 @@ function list_of_contents_version_one($type , $language ,  $page , $custom_list 
     $query->condition('node.type' , $type);
 
     if($type == "publication"){
+        /*add price, author name to e-book*/
         $query->join('field_data_field_point_needed' , 'price' , 'node.nid = price.entity_id');
         $query->leftJoin('profile' , 'profile' , 'profile.uid = node.uid');
         $query->join('field_data_field_full_name' , 'name' , 'name.entity_id = profile.pid');
@@ -78,6 +74,7 @@ function list_of_contents_version_one($type , $language ,  $page , $custom_list 
                 $temp_contents[$row->nid] = $row;
             }
 
+            /*add e-book image*/
             $query = db_select('file_managed', 'image');
             $query->join('field_data_field_image', 'field_image', 'image.fid = field_image.field_image_fid');
             $query->addField('image', 'uri', 'picture');
@@ -89,6 +86,7 @@ function list_of_contents_version_one($type , $language ,  $page , $custom_list 
                 $temp_contents[$row->nid]->picture = $row->picture;
             }
 
+            /*add e-book page number*/
             $query = db_select('field_data_field_pagenumber' , 'page_number');
             $query->addField('page_number' , 'field_pagenumber_value' , 'page_number');
             $query->addField('page_number' , 'entity_id' , 'nid');
@@ -197,42 +195,3 @@ function retrieve_a_content_version_one($nid){
      * */
     return ["node" => array()];
 }
-
-
-
-
-
-
-
-/*
-   $nids = array();
-   $ebooks_index = array();
-   foreach ($ebooks as $row){
-       array_push($nids , $row->nid);
-       $ebooks_index[$row->nid] = $row;
-   }
-   $query = db_select('field_data_field_image' , 'field_image');
-   $query->join('file_managed' , 'image' , 'field_image.field_image_fid = image.fid');
-   $query->addField('field_image' , 'entity_id' , 'nid');
-   $query->addField('image' , 'uri' , 'picture');
-   $query->condition('field_image.entity_id' , $nids , 'IN');
-   $query->condition('field_image.bundle', 'publication');
-   $results = $query->execute()->fetchAll();
-   foreach ($results as $result){
-       $ebooks_index[$result->nid]->picture = $result->picture;
-   }
-   $query = db_select('field_data_field_publish_file' , 'field_file_published');
-   $query->join('file_managed' , 'file_published' , 'field_file_published.field_publish_file_fid = file_published.fid');
-   $query->addField('field_file_published' , 'entity_id' , 'nid');
-   $query->addField('file_published' , 'uri' , 'sample_file');
-   $query->condition('field_file_published.entity_id' , $nids , 'IN');
-   $query->condition('field_file_published.bundle', 'publication');
-   $results = $query->execute()->fetchAll();
-   foreach ($results as $result){
-       $ebooks_index[$result->nid]->sample_file = $result->sample_file;
-   }
-   $ebooks = array();
-   foreach ($ebooks_index as $row){
-       array_push($ebooks , $row);
-   }
-   */

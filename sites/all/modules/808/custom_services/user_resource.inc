@@ -1,9 +1,9 @@
 <?php
 
-function user_resource_login($hash , $user_name_email, $password , $version){
+function user_resource_login($hash , $username_email, $password , $version){
     if(!(hash_true($hash , "user"))) return "failed to access";
     if($version == 0){
-        return login_version_one($user_name_email, $password);
+        return login_version_one($username_email, $password);
     }
     return "This version not supported";
 }
@@ -15,7 +15,7 @@ function user_resource_purchased_products_list($hash , $uid , $version){
     return "This version not supported";
 }
 
-function login_version_one($user_name_email, $password){
+function login_version_one($username_email, $password){
     global $user;
 
     if ($user->uid) {
@@ -25,8 +25,8 @@ function login_version_one($user_name_email, $password){
     $query =  db_select('users' , 'user');
     $query->fields('user', array('name' , 'status'));
     $db_or = db_or();
-    $db_or->condition('user.name', $user_name_email , 'LIKE');
-    $db_or->condition('user.mail', $user_name_email , 'LIKE');
+    $db_or->condition('user.name', $username_email , 'LIKE');
+    $db_or->condition('user.mail', $username_email , 'LIKE');
     $query->condition($db_or);
     $result = $query->execute()->fetchObject();
 
@@ -71,7 +71,8 @@ function login_version_one($user_name_email, $password){
 
 function list_of__user_purchased_products_version_one($uid){
     global $user;
-    if($user->uid != $uid) return ["ebook" => array()];
+
+    if($user->uid != $uid && !in_array('administrator' , $user->roles)) return ["ebook" => array()];
 
     $query = db_select('m_buyed_nodes', 'buyed');
     $query->join('node', 'node', 'buyed.nid = node.nid');
