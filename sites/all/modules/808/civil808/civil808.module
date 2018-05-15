@@ -162,7 +162,7 @@ function civil808_menu() {
 		'file path' => drupal_get_path('module', 'uc_addresses'),
 	);
 	
-	$items['user/%/myresults/%'] = array(
+	$items['user/%user/quiz/%quiz_rid/results'] = array(
 		'title' => 'User results',
 		'page callback' => 'quiz_user_results',
 		'page arguments' => array(3),
@@ -202,12 +202,12 @@ function civil808_menu() {
 	$items['user/%/money'] = array(
 		'title' => 'Accounting',
 		'page callback' => 'civil808_page_accounting',
-		'access callback' => 'muser_edit_access',
 		'access arguments' => array(1),
+		'access callback' => 'muser_edit_access',
 		'page arguments' => array(1),
 		'description' => t('Accounting'),
 		'type' => MENU_LOCAL_TASK,
-		);
+	);
 	$items['user/%/money/charge'] = array(
 		'title' => 'Accounting Charge',
 		'page callback' => 'drupal_get_form',
@@ -262,8 +262,9 @@ function civil808_menu() {
 /**
  * Access callback for user account editing.
  */
-function muser_edit_access($account) {//print_r($account);
-  return (($GLOBALS['user']->uid == $account) || user_access('administer users')) && $account > 0;
+function muser_edit_access($uid) {
+	global $user;
+	return ($user->uid == $uid || isset($user->roles[3]))? true : false ;
 }
 
 function civil808_page_my_events_publication($uid){
@@ -376,13 +377,9 @@ function civil808_page_my_events_education($uid){
 }
 
 function civil808_page_accounting($uid) {
-	global $user;
-	/*if ( !user_is_logged_in() || ($user->uid !=0 && $user->uid != $uid) ) {
-		drupal_not_found();
-	}*/
 	$query = db_select('bank_events', 'b');
-	$query->extend('PagerDefault')->extend('TableSort')->limit(50);	
-		$rows=$query->fields('b' , array())
+	$query->extend('PagerDefault')->extend('TableSort')->limit(50);
+	$rows=$query->fields('b' , array())
 		->condition('b.user', $uid)
 		->execute()
 		->fetchAll();
@@ -393,7 +390,7 @@ function civil808_page_accounting($uid) {
 		t('Price'),
 		t('Date'),
 		t('Status')
-		);
+	);
 
 	foreach ($rows as $row) {
 		$table_rows[] = array(
@@ -401,7 +398,7 @@ function civil808_page_accounting($uid) {
 			$row->value,
 			format_date($row->date),
 			t($row->status),
-			);
+		);
 	}
 	return theme('table', array('header'=> $table_header, 'rows' => $table_rows)).theme('pager');
 }
@@ -1040,9 +1037,7 @@ function civil808_preprocess_html(&$variables) {
 	//redirecting quiz module pages
 	elseif(isset($aliases[3]) && $aliases[0] == 'user' && $aliases[1] == 'quiz' && $aliases[3] == 'userresults' ){
 		//redirecting user/quiz/%/userresults to user/%/myresults/%
-		drupal_goto("user/$user->uid/myresults/$aliases[2]");
-		Header('Location: http://www.civil808.com/user/'. $user->uid .'/myresults'. $aliases[2]);
-		die();
+		drupal_goto("user/$user->uid/quiz/$aliases[2]/results");
 	}
 	//redirecting userpoints module pages
 	elseif(isset($aliases[1]) && $aliases[0] == 'myuserpoints' && $aliases[1] == 'transaction' ){

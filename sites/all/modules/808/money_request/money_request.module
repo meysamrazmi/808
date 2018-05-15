@@ -44,7 +44,7 @@ function money_request_form($form, &$form_state) {
 		$table_rows[$r->id] = array(
 			'#attributes' => array('class' => array($code, $enabled)),
 			$r->id,
-			l($p['main']->field_full_name['und'][0]['value'] , 'user/'.$r->user),
+			l($p['main']->field_full_name['und'][0]['value'] , 'user/'.$r->uid),
 			l($user->name, 'user/'.$r->uid),
 			formatMoney($r->price) ,
 			format_date($r->date),
