@@ -1,48 +1,49 @@
 <?php
 
 function question_resource_index($hash , $domain , $page , $version){
-    if(!(hash_true($hash , "question"))) return "failed to access";
+    if(!(hash_true($hash , "question"))) return services_error(t('Failed to access'), 403);
     if($version == 0){
         return list_of_questions_version_one($domain , $page);
     }
-    return "This version not supported";
+    return services_error(t('This version is not supported'), 404);
 }
 function question_resource_retrieve($hash , $nid , $version){
-    if(!(hash_true($hash , "question"))) return "failed to access";
+    if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 403);
     if($version == 0){
         return retrieve_a_question_version_one($nid);
     }
-    return "This version not supported";
+    return services_error(t('This version is not supported'), 404);
 }
 function question_resource_create($hash , $question , $version){
-    if(!(hash_true($hash , "question"))) return "failed to access";
+    if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 403);
     if($version == 0){
         return create_a_question_version_one($question);
     }
-    return "This version not supported";
+    return services_error(t('This version is not supported'), 404);
 }
 function question_resource_edit($hash , $nid , $question , $version){
-    if(!(hash_true($hash , "question"))) return "failed to access";
+    if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 403);
     if($version == 0){
         return edit_a_question_version_one($nid , $question);
     }
-    return "This version not supported";
+    return services_error(t('This version is not supported'), 404);
 }
 function question_resource_follow($hash , $nid , $data , $version){
-    if(!(hash_true($hash , "question"))) return "failed to access";
+    if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 403);
     if($version == 0){
         return follow_a_question_version_one($nid , $data);
     }
-    return "This version not supported";
+    return services_error(t('This version is not supported'), 404);
 }
 function question_resource_vote($hash , $nid , $data , $version){
-    if(!(hash_true($hash , "question"))) return "failed to access";
+    if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 403);
     if($version == 0){
         return vote_a_question_version_one($nid , $data);
     }
-    return "This version not supported";
+    return services_error(t('This version is not supported'), 404);
 }
 
+/*------------------------index-----------------------------------*/
 function list_of_questions_version_one($domain , $page){
     switch ($domain){
         case "all_questions" :
@@ -86,7 +87,7 @@ function list_of_questions_version_one($domain , $page){
     }
 
     /*add each question's experts*/
-    $results = add_experts($nids);
+    $results = question_experts($nids);
     foreach($results as $result){
         $tid = new stdClass();
         $tid->tid = $result->field_experts_tid;
@@ -123,17 +124,13 @@ function list_of_questions_version_one($domain , $page){
         array_push($questions[$result->entity_id]->field_files, $result);
     }
 
-    $return_questions = array();
-    foreach($questions as $q){
-        array_push($return_questions, $q);
-    }
+    $questions = array_values($questions);
     if($domain == "all_questions"){
-        $users = user_information($uids);
-        return ["questions" => $return_questions, "users" => $users];
+        $users = user_information($uids); /*get information about users that ask the questions*/
+        return ["questions" => $questions, "users" => $users];
     }
-    return ["questions" => $return_questions];
+    return ["questions" => $questions];
 }
-
 function all_questions(){
     $query = db_select('node' , 'n');
     $query->leftJoin('field_data_body' , 'b' , 'n.nid = b.entity_id');
@@ -143,7 +140,6 @@ function all_questions(){
     $query->condition('n.status', 1);
     return $query;
 }
-
 function my_questions(){
     global $user;
     $query = db_select('node' , 'n');
@@ -154,7 +150,6 @@ function my_questions(){
     $query->condition('n.uid', $user->uid);
     return $query;
 }
-
 function following_questions(){
     global $user;
     $query = db_select('node' , 'n');
@@ -166,7 +161,6 @@ function following_questions(){
     $query->condition("f.uid" , $user->uid);
     return $query;
 }
-
 function my_experts_questions(){
     global $user;
     $profile = profile2_load_by_user($user);
@@ -187,7 +181,6 @@ function my_experts_questions(){
     }
     else return null;
 }
-
 function my_answered_questions($page){
     global $user;
     $query = db_select('comment' , 'comment');
@@ -208,7 +201,8 @@ function my_answered_questions($page){
     return ["questions" => $comments];
 }
 
-function add_experts($nids){
+/*Experts of questions*/
+function question_experts($nids){
     $query = db_select('field_data_field_experts' , 'e');
     $query->fields('e' , array('entity_id' , 'field_experts_tid'));
     $query->condition('e.entity_id', $nids, "IN");
@@ -216,6 +210,7 @@ function add_experts($nids){
     return $results;
 }
 
+/*number of comments that an expert left for a question*/
 function number_of_experts_answered($nids){
     $query = db_select('comment' , 'c');
     $query->join('users_roles' , 'r' , 'c.uid = r.uid');
@@ -228,6 +223,7 @@ function number_of_experts_answered($nids){
     return $results;
 }
 
+/*return the comments that proved by advisor*/
 function answer_with_prove_by_advisor($nids){
     $query = db_select('comment' , 'c');
     $query->join('field_data_field_prove_advisor', 'f' , 'c.cid = f.entity_id');
@@ -239,6 +235,7 @@ function answer_with_prove_by_advisor($nids){
     return $results;
 }
 
+/*return the comments that proved by asker*/
 function answer_with_prove_by_asker($nids){
     $query = db_select('comment' , 'c');
     $query->join('field_data_field_prove_asker', 'f' , 'c.cid = f.entity_id');
@@ -250,6 +247,7 @@ function answer_with_prove_by_asker($nids){
     return $results;
 }
 
+/*return the count of comments on each question*/
 function count_of_answers($nids){
     $query = db_select('comment' , 'c');
     $query->fields('c', array('nid'));
@@ -260,6 +258,7 @@ function count_of_answers($nids){
     return $results;
 }
 
+/*return the files of each question*/
 function files_of_question($nids){
     $query = db_select('field_data_field_files' , 'feild_file');
     $query->join('file_managed' , 'file' , 'file.fid = feild_file.field_files_fid');
@@ -272,6 +271,7 @@ function files_of_question($nids){
     return $results;
 }
 
+/*---------------------------retrieve--------------------------------*/
 function retrieve_a_question_version_one($nid){
     $query = db_select('node' , 'n');
     $query->leftJoin('field_data_body' , 'b' , 'n.nid = b.entity_id');
@@ -279,18 +279,20 @@ function retrieve_a_question_version_one($nid){
     $query->addField('b' , 'body_value' , 'body');
     $query->condition('n.nid', $nid);
     $node = $query->execute()->fetch();
-    if(strcmp($node->type , "questions") != 0 || empty($node)) return "Wrong ID";
+    if(strcmp($node->type , "questions") != 0 || empty($node))  return services_error(t('Wrong ID'), 404);
 
     $node->url = "http://civil808.com/node/".$nid;
 
     global $user;
 
+    /*add tids of a question*/
     $query = db_select('field_data_field_experts' , 'e');
     $query->addField('e' , 'field_experts_tid' , 'tid');
     $query->condition('e.entity_id' , $nid);
     $tids = $query->execute()->fetchAll();
     $node->field_experts = $tids;
 
+    /*add files of a question*/
     $query = db_select('field_data_field_files' , 'feild_file');
     $query->join('file_managed' , 'file' , 'file.fid = feild_file.field_files_fid');
     $query->fields('file', array('fid' , 'filename', 'uri' ,  'filemime' , 'filesize' , 'type' , 'timestamp'));
@@ -300,15 +302,16 @@ function retrieve_a_question_version_one($nid){
     $results = $query->execute()->fetchAll();
     if(!empty($results)) $node->field_files = $results;
 
+    /*check if user follow a question or not*/
     $query = db_select('flagging' , 'f')
         ->condition('fid' , 3)
         ->condition('entity_id' , $nid)
         ->condition('uid' , $user->uid);
     $count = $query->countQuery()->execute()->fetchField();
-
     if($count > 0) $node->follow_status = 1;
     else $node->follow_status = 0;
 
+    /*return the picture of the author*/
     $query = db_select('users' , 'u');
     $query->leftJoin('file_managed' , 'f' , 'u.picture = f.fid');
     $query->fields('u' , array('uid' , 'name' , 'mail' , 'created'));
@@ -316,6 +319,7 @@ function retrieve_a_question_version_one($nid){
     $query->condition('u.uid', $node->uid);
     $author = $query->execute()->fetch();
 
+    /*get the question total vote points*/
     $criteria = array();
     $criteria['entity_id'] = $node->nid;
     $criteria['entity_type'] = "node";
@@ -323,6 +327,7 @@ function retrieve_a_question_version_one($nid){
     $vote_points = votingapi_select_results($criteria);
     $vote_points = $vote_points[0]['value'];
 
+    /*check if user vote to the question and his/her point*/
     $query = db_select('votingapi_vote', 'v');
     $query->fields('v' , array('value'));
     $query->condition('v.entity_type' , 'node');
@@ -330,6 +335,7 @@ function retrieve_a_question_version_one($nid){
     $query->condition('v.uid' , $user->uid);
     $user_vote = $query->execute()->fetchObject();
 
+    /*check if the question has comment that proved by advisor or not*/
     $query = db_select('field_data_field_prove_advisor' , 'f');
     $query->join('comment' , 'c' , 'f.entity_id = c.cid');
     $query->fields('f' , array('entity_id'));
@@ -338,6 +344,7 @@ function retrieve_a_question_version_one($nid){
     $result = $query->execute()->fetchAll();
     if(!empty($result) && count($result)>0)  $node->prove_advisor = 1;
 
+    /*check if the question has comment that proved by asker or not*/
     $query = db_select('field_data_field_prove_asker' , 'f');
     $query->join('comment' , 'c' , 'f.entity_id = c.cid');
     $query->fields('f' , array('entity_id'));
@@ -349,6 +356,7 @@ function retrieve_a_question_version_one($nid){
     return ["question" => $node, "author" => $author, "vote_points" => $vote_points , "user_vote" => $user_vote->value];
 }
 
+/*----------------------------create-------------------------------*/
 function create_a_question_version_one($question){
     global $user;
     $newQuestion= new stdClass();
@@ -368,6 +376,7 @@ function create_a_question_version_one($question){
     return $newQuestion;
 }
 
+/*----------------------------update-------------------------------*/
 function edit_a_questions_version_one($nid , $question){
     $newQuestion = node_load($nid);
     $newQuestion->title = $question['title'];
@@ -379,6 +388,7 @@ function edit_a_questions_version_one($nid , $question){
     return $newQuestion;
 }
 
+/*----------------------------follow-------------------------------*/
 function follow_a_question_version_one($nid , $data){
     global $user;
     if(!isset($data['action']) && empty($data['action'])) return "error! action is empty";
@@ -407,7 +417,7 @@ function follow_a_question_version_one($nid , $data){
     }
     return "error";
 }
-
+/*return if the user has followed a question or not*/
 function follow_status($nid , $uid){
     $query = db_select('flagging' , 'f')
         ->condition('fid' , 3)
@@ -419,6 +429,7 @@ function follow_status($nid , $uid){
     else return 0;
 }
 
+/*-----------------------------vote------------------------------*/
 function vote_a_question_version_one($nid , $data){
     global $user;
     if(!isset($data['action']) && empty($data['action'])) return "error! action is empty";
@@ -437,3 +448,5 @@ function vote_a_question_version_one($nid , $data){
     votingapi_set_votes($votes);
     return $votes;
 }
+
+/*------------------------------End-----------------------------*/
