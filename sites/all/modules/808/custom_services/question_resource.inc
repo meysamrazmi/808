@@ -62,7 +62,7 @@ function list_of_questions_version_one($domain , $page){
             return my_answered_questions($page);
             break;
         default:
-            return "domain is not exist";
+            return services_error(t('domain is not exist'), 404);
             break;
     }
     if($query != null){
