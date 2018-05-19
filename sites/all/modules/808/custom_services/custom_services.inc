@@ -474,6 +474,7 @@ function front_news_items(){
 				->fields('node' , array('nid', 'title', 'created'))
 				->condition('node.status' , 1)
 				->condition('type' , array('education', 'article', 'publication', 'blog', 'designteam', 'poll', 'podcast', 'projectnew', 'project'), 'IN')
+				->condition('language' , 'fa')
 				->orderBy('node.created', 'DESC')
 				->range(0, 20)
 				->execute()->fetchAll();
