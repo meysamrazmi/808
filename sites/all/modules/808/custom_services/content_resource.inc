@@ -152,6 +152,8 @@ function retrieve_a_content_version_one($nid){
 
         /*add the file of e-book if user bought it or it is free*/
         global $user;
+
+        /*check if user has been bought E-book or not*/
         if($user->uid > 0) {
             $query = db_select('m_buyed_nodes', 'buyed');
             $query->fields('buyed', array('id', 'uid', 'nid'));
@@ -159,6 +161,8 @@ function retrieve_a_content_version_one($nid){
             $query->condition('buyed.nid', $nid);
             $user_buyed = $query->execute()->fetch();
         }
+
+        /*get price for check that is Free or not*/
         if(!isset($user_buyed) || empty($user_buyed)) {
             $query = db_select('field_data_field_point_needed', 'price');
             $query->addField('price', 'field_point_needed_value', 'price');
@@ -168,7 +172,19 @@ function retrieve_a_content_version_one($nid){
             $price = $query->execute()->fetch();
         }
 
-        if((isset($user_buyed) && !empty($user_buyed)) || isset($price) && (empty($price) || $price->price == 0)){
+        /*check if it is Free for VIP*/
+        if(!isset($user_buyed) || empty($user_buyed)) {
+            $query = db_select('field_data_field_isvip', 'vip');
+            $query->fields('vip', array('field_isvip_tid'));
+            $query->condition('vip.entity_id', $nid);
+            $query->condition('vip.bundle', 'publication');
+            $query->condition('vip.field_isvip_tid', 1760);
+            $vip = $query->execute()->fetch();
+        }
+        if((isset($user_buyed) && !empty($user_buyed)) ||
+            (isset($price) && (empty($price) || ($price->price == 0))) ||
+            (isset($vip) && !empty($vip) && in_array('Vip' , $user->roles))
+            ){
             $query = db_select('field_data_field_files' , 'field_file');
             $query->join('file_managed' , 'file' , 'field_file.field_files_fid = file.fid');
             $query->fields('file', array('uri' , 'filesize'));
