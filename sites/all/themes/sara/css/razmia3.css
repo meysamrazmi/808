@@ -1154,7 +1154,7 @@ body.page-article.page-store {
   background: #f5f5f5;
 }
 .page-publication.page-types .container .region-content:before{
-  content: ""; /*برای تخفیف ویژه نوروزی*/
+    /*content: ""; برای تخفیف ویژه نوروزی*/
   position: absolute;
   background-image: url(../images/ebook-mini-banner.png);
   width: 250px;
