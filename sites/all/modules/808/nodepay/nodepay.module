@@ -256,6 +256,9 @@ function nodepay_uc_order($op, $order, $arg) {
                     else if(in_array_r('2441', $node->field_backend)){ // 2441 is for "پکیج های s1 تا s30 "
                         $subtotal += ($product->qty * $product->price);
                     }
+                    elseif($node->nid == 19074){
+                        $subtotal += ($product->qty * $product->price);
+                    }
                 }
             }
             $vip_line_item = $not_vip_line_item = array();
@@ -361,7 +364,10 @@ function not_vip_line_item($op, $order) {
                         $subtotal += ($product->qty * $product->price);
                     }
                     //todo: make this section based on site setting
-                    else if(in_array_r('2441', $node->field_backend)){ // 2441 is for "پکیج های s1 تا s30 "
+                    elseif(in_array_r('2441', $node->field_backend)){ // 2441 is for "پکیج های s1 تا s30 "
+                        $subtotal += ($product->qty * $product->price);
+                    }
+                    elseif($node->nid == 19074){
                         $subtotal += ($product->qty * $product->price);
                     }
                 }

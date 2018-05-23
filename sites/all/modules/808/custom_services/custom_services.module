@@ -849,6 +849,121 @@ function custom_services_services_resources(){
                 ),
             ),
         ),
+        'payment' => array(
+            'operations' => array(
+                'index'  => array(),
+                'retrieve' => array(),
+                'create' => array(),
+            ),
+            'actions' => array(
+                'pre_payment' => array(
+                    'help' => 'request before payment in app',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'payment_resource'),
+                    'callback' => 'pre_payment',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('data' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'type',
+                            'type' => 'string',
+                            'description' => 'The type of payment',
+                            'source' => array('data' => 'type'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'price',
+                            'type' => 'int',
+                            'description' => 'The price for charge.',
+                            'source' => array('data' => 'price'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('data' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+                'final_payment' => array(
+                    'help' => 'request for verify payment in app',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'payment_resource'),
+                    'callback' => 'final_payment',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('data' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'data',
+                            'type' => 'array',
+                            'description' => 'The data for transaction',
+                            'source' => 'data',
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('data' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+            ),
+            'targeted_actions' => array(),
+            'relationships' => array(
+                'status' => array(
+                    'help' => 'request for status of the transaction',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'payment_resource'),
+                    'callback' => 'get_status',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('param' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'id',
+                            'type' => 'int',
+                            'description' => 'The id of transaction',
+                            'source' => array('path' => 0),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('data' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+            ),
+        ),
 
 
 		'advisorlist' => array(
