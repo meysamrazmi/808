@@ -19,7 +19,7 @@
 	/*
 	* برای تخفیفات ویژه نوروزی و برای چاپ بنر بالاییش
 	*/
-  $festival = true;
+  $festival = false;
 	if(isset($node->field_isvip['und'])){
 		for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){
 			if( $node->field_isvip['und'][$i]['tid'] == 2217) // no discount will be applied
@@ -94,7 +94,7 @@
 	print render($content['links']); 
   ?>
 
-    <?php if ($node->type == 'publication'): ?>
+    <?php if ($node->type == 'publication'): /*advertise for showing Ebooks in app*/?>
         <div class="app-ebook">
             <a href="/app" target="_blank"><img src="/sites/all/themes/sara/images/app-wild-banner3.jpg"/>
         </div>
