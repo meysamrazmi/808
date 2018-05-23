@@ -1,4 +1,4 @@
-<img src="/sites/default/files/attachfromftp/pbdcourse-poster6.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
+<img src="/sites/default/files/attachfromftp/node-19072/pbdcourse-poster.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
 
 <section class="kargah-sec">
     <h2>دوره جامع آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها</h2>
@@ -12,196 +12,135 @@
                 <li>آشنایی با سیستم های نوین کنترل ارتعاشات لرزه ای</li>
                 <li>حل مثال عملی با استفاده از نرم افزارهای SeismoSoft و CSI</li>
             </ul>
-            <p><strong>مزایای شرکت در دوره:</strong></p>
+            <p><strong>پکیج همراه با دوره:</strong></p>
             <ul>
                 <li>ارائه License کوتاه مدت نرم افزارهای SeismoSoft با امکانات کامل به صورت رایگان به شرکت کنندگان</li>
-                <li>اعطای گواهینامه از موسسه 808 به عنوان نماینده رسمی SeismoSoft در ایران</li>
+                <li>
+                    اعطای گواهینامه از موسسه 808 به عنوان نماینده رسمی SeismoSoft در ایران
+                </li>
                 <li>معرفی دانش اموختگان برتر پایان دوره به صنعت برای پروژه های مقاوم سازی و بهسازی لرزه ای</li>
+                <a href="/sites/default/files/attachfromftp/node-19072/certificate-sample.jpg" style="margin-top: 9px;" class="btn" target="_blank">نمونه گواهینامه</a>
             </ul>
             <p class="important">
             </p>
         </div>
         <div class="lecturer">
             <img src="http://civil808.com/sites/default/files/styles/200x200/public/moghaddam.jpg?itok=YYWfCg4P" width="150px" height="auto">
-            <p><strong> مدرس </strong></p>
-            <h3> پروفسور حسن مقدم </h3>
+            <p style="margin: 10px 0 0 0"><strong> مدرس </strong></p>
+            <h3 style="margin:5px"> پروفسور حسن مقدم </h3>
             <p> استاد دانشگاه صنعتی شریف </p>
-            <a href="http://civil808.com/node/18098">رزومه</a>
+            <a href="/node/18098" target="_blank" class="btn btn-primary">رزومه</a>
         </div>
     </div>
+</section>
+
+<section style="margin: 50px 0 80px 0;">
+<h2 style="margin-bottom: 50px;"> فیلم معرفی </h2>
+<?php
+//sis3_VP8.webm,sis3_x264.mp4
+$video_attrs = array(
+    'src' => '/sites/default/files/filed/files/node_18110-amoozesh_vp8.webm',
+    'width' => '840px',
+    'height' => '447px',
+    'videoWidth' => '840px',
+    'videoHeight' => '447px',
+    'controls' => true,
+);
+$video_sett =  array(
+    'download_link' => true,
+);
+print theme('mediaelement_video', array('attributes' => $video_attrs, 'settings' => $video_sett));
+//'poster ' => '/sites/default/files/conference-4-film' ,
+?>
 </section>
 
 <section class="second">
     <h2 class="text"> ثبت نام در دوره جامع آموزش اصول محاسبات + حل مثال عملی با نرم افزارهای SeismoSoft و CSI </h2>
 	<div class="takhfifat">
-		<p><span>20 %</span> تخفیف برای اعضای VIP</p>
+        <p>
+            <span>10 %</span>تخفیف برای اعضای VIP، <a href="/landing/vip" target="_blank">عضو ویژه شوید</a>        </p>
 	</div>
 	<div class="tickets">
 		<div>
             <a href="/cart/add/p19074_a62o194?destination=cart" target="_blank">
-                <div class="gerdali"></div>
                 <div class="city-name"><span>دوره جامع آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها</span></div>
-                <div>
+                <div class="inner-text">
                     <p class="text"> مدرس: پروفسور حسن مقدم </p>
-                    <div class="tarikh">پنج شنبه 7 تیر 1397 </div>
+                    <div class="tarikh">5 و 6 تیر ماه 1397</div>
                     <div class="makan"> دانشگاه صنعتی شریف، سالن انجمن فارغ التحصیلان </div>
                     <div class="zaman"> 20 ساعت </div>
-                    <div class="mablagh"> 400 هزار تومان </div>
-                    <img src="/sites/all/themes/sara/images/azadi-tower.png" width="150px" height="auto" style="opacity:0.1;">
+                    <div class="mablagh"> 400,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
 		    </a>
 		    <a href="/cart/add/p19074_a62o195?destination=cart" target="_blank">
-                <div class="gerdali"></div>
                 <div class="city-name"><span>دوره جامع آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها
  + به همراه تدریس نرم افزار توسط تیم مدرسین موسسه 808</span></div>
-                <div>
-                    <div class="tarikh"> با هماهنگی شرکت کنندگان </div>
-                    <div class="makan"> موسسه 808 </div>
-                    <div class="zaman"> با هماهنگی شرکت کنندگان </div>
-                    <div class="mablagh"> 1200000 تومان </div>
-                    <img src="/sites/all/themes/sara/images/mashad.png" width="330px" height="auto" style="left:20px;">
+                <div class="inner-text">
+                    <p class="text"> مدرس: پروفسور حسن مقدم + تیم مدرسین موسسه 808 </p>
+                    <p class="important" style="margin: 10px 12px 5px 0;font-weight: bold;background-color: #f5f5f5;padding: 6px 14px;display: inline-block;">به همراه پکیج مخصوص دوره</p>
+                    <div class="tarikh"> شروع از 5 تیر ماه 1397 </div>
+                    <div class="makan"> دانشگاه صنعتی شریف، سالن انجمن فارغ التحصیلان </div>
+                    <div class="zaman"> 60 ساعت </div>
+                    <div class="mablagh"> 1,200,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
 		    </a>
         </div>
-	</div>
+        <!--<div class="bought-tickets">سوال های خود را می توانید از طریق شماره تماس موسسه و سیستم پیغام خصوصی با ما در میان بگذارید.</div>
+	</div>-->
 
 </section>
 
-<section id="ebooks">
-    <h2> برنامه های مرتبط با همایش </h2>
-    <div class="aks3">
-        <a href="/node/17950" target="_blank">
-            <img src="/sites/all/themes/sara/images/khabar1.jpg" width="350" height="350" >
-        </a>
-        <a href="/node/17867" target="_blank">
-            <img src="/sites/all/themes/sara/images/khabar2.jpg" width="350" height="350" >
-        </a>
-        <a href="/node/17928" target="_blank">
-            <img src="/sites/all/themes/sara/images/khabar3.jpg" width="350" height="350" >
-        </a>
+<section style="margin: 110px 0 100px 0;">
+    <h2> نماینده رسمی seismosoft در ایران </h2>
+    <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">موسسه آموزشی مهندسی 808 نماینده رسمی شرکت seismosoft در ایران است</p>
+    <div class="seis-box">
+        <div class="seis-text">
+            <p>
+                به اطلاع مهندسان گرامی میرسانیم موسسه 808 مفتخر است به عنوان
+                <a href="http://seismosoft.com/contacts" rel="nofollow" target="_blank">نماینده رسمی شرکت Seismosoft در ایران</a>
+                ،امکان تهیه نسخه کامل این نرم‌افزار تجاری را در ایران برای علاقه‌مندان (کلیه شرکت‌های مشاوره در زمینه طراحی و مقاوم‌سازی سازه‌ها) فراهم آورد.
+                برای خرید نرم افزار های SeismoBuild 2018 و SeismoStruct 2018 می توانید با این شماره  02188272694 تماس بگیرید.
+            </p>
+            <div>
+                <div> قیمت نرم افزار SeismoBuild 2018 به یورو : </div>
+                <span>€1000</span>
+                <br>
+                <div> قیمت نرم افزار SeismoStruct 2018 به یورو :</div>
+                <span>€1000</span>
+            </div>
+            <p style="    display: block;
+    clear: both;
+    border-right: 3px solid #F44336;
+    padding: 5px 10px 5px 0;
+    margin: 22px 0;
+    font-size: 14px;">خرید همزمان هر دو نرم افزار شامل 10 درصد تخفیف می شود :
+                <b style="font-family: Tahoma;">1800€</b>
+            </p>
+            <a href="/pbd/seismobuild" target="_blank" class="btn btn-primary" style="    margin: auto;
+    display: block;
+    width: 220px;">اطلاعات بیشتر</a>
+        </div>
+        <img src="/sites/all/themes/sara/images/seismosoft.png" alt="نرم افزار SeismoBuild منتشر شد (دانلود نسخه دمو  و مشاهده فیلم و کاتالوگ معرفی)" title="نرم افزار SeismoBuild منتشر شد (دانلود نسخه دمو  و مشاهده فیلم و کاتالوگ معرفی)" style="margin-right: -34px;" class="main-seismo">
     </div>
-    <h2> در 808 بیشتر بخوانید </h2>
-	<p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">لیستی از مطالب مرتبط، فیلم های آموزشی، محصولات فروشگاه و ...در رابطه  با این همایش را میتوانید در سایت مشاهده کنید</p>
-    <div class="owl-carousel">
-        <div class="row">
-            <a href="/node/13694" target="_blank"><img src="/sites/default/files/styles/270x223/public/field/image/node_13694.jpg?itok=ODnTXcch" width="300" height="170" alt="گزارش بازدید سازه 808 از دفتر شرکت SeismoSoft در کشور یونان" title="گزارش بازدید سازه 808 از دفتر شرکت SeismoSoft در کشور یونان"></a>    
-            <a href="/node/13694" target="_blank" class="title"> گزارش بازدید سازه 808 از دفتر شرکت SeismoSoft در کشور یونان </a>
-        </div>
-        <div class="row">
-            <a href="/node/9436" target="_blank"><img src="/sites/default/files/styles/270x223/public/field/image/node_9436-photo375916600721786626.jpg?itok=v3rZQ3AL" width="300" height="170" alt="گزارش تصویری و ویدئویی از سخنرانی آشنایی با قابلیت های آنالیر غیرخطی نرم افزار SeismoStruct در طراحی عملکردی سازه ها به همراه لینک دانلود فایل سخنرانی" title="گزارش تصویری و ویدئویی از سخنرانی آشنایی با قابلیت های آنالیر غیرخطی نرم افزار SeismoStruct در طراحی عملکردی سازه ها به همراه لینک دانلود فایل سخنرانی"></a>    
-            <a href="/node/9436" target="_blank" class="title"> سخنرانی آشنایی با قابلیت های آنالیز غیرخطی نرم افزار SeismoStruct </a>
-        </div>
-        <div class="row">
-            <a href="/gallery/videos/playlist/2474/3641" target="_blank"><img src="/sites/default/files/field/image/node_3641-seismostruct12.jpg" width="300" height="170" ></a>    
-            <a href="/gallery/videos/playlist/2474/3641" target="_blank" class="title"> آموزش SeismoStruct بخش SeismoStruct v7.0 New Features </a>
-        </div>
-        <div class="row">
-            <a href="/pbd/seismobuild" target="_blank"><img src="/sites/default/files/styles/270x500_no-crop_/public/field/image/node_11955_0.jpg?itok=AzO-X1Yu"></a>    
-            <a href="/pbd/seismobuild" target="_blank" class="title"> دانلود نسخه دمو و مشاهده فیلم و کاتالوگ معرفی نرم افزار SeismoBuild </a>
-        </div>
-        <div class="row">
-            <a href="/node/11955" target="_blank"><img src="/sites/default/files/new__jpg/seismosoft-build.jpg"></a>    
-            <a href="/node/11955" target="_blank" class="title"> تصاویری از محیط نرم افزاری SeismoBuild </a>
-        </div>
-        <div class="row">
-            <a href="/node/2359" target="_blank"><img src="/sites/default/files/field/image/seismo-struct.jpg"></a>    
-            <a href="/node/2359" target="_blank" class="title">دانلود رایگان نرم افزار نسخه غیر تجاری Seismostruct ورژن 7.0.4</a>
-        </div>
-        <div class="row">
-            <a href="/node/9457" target="_blank"><img src="/sites/default/files/styles/270x223/public/field/image/node_9457-photo_2016-06-11_17-53-17.jpg?itok=ENmIUsHa"></a>    
-            <a href="/node/9475" target="_blank" class="title"> معرفی مجموعه نرم‌افزارهای SeismoSoft </a>
-        </div>
-        <div class="row">
-            <a href="/node/11526" target="_blank"><img src="/sites/default/files/styles/270x223/public/field/image/node_11526.jpg?itok=ydZ5pHFL"></a>    
-            <a href="/node/11526" target="_blank" class="title">ایبوک ۱۲۱: راهنمای جامع نرم افزار SeismoStruct</a>
-        </div>
-        <div class="row">
-            <a href="/node/14107" target="_blank"><img src="/sites/default/files/styles/270x223/public/field/image/node_14107.jpg?itok=fJcWZ6c-"></a>    
-            <a href="/node/14107" target="_blank" class="title">ایبوک ۱۳۹: آموزش نرم افزار SeismoBuild 2016</a>
-        </div>
-        <div class="row">
-            <a href="/node/16937" target="_blank"><img src="/sites/default/files/styles/200x200/public/siesmostruct-1.jpg?itok=Bt25VpC4"></a>    
-            <a href="/node/16937" target="_blank" class="title"> نرم افزار Seismostruct</a>
-        </div>
-        <div class="row">
-            <a href="/node/14807" target="_blank"><img src="/sites/default/files/styles/200x200/public/node_11613.jpg?itok=SLfoKfaH"></a>    
-            <a href="/node/14807" target="_blank" class="title"> نرم افزار سایسمو بیلد، SeismoBuild </a>
-        </div>
-        <div class="row">
-            <a href="/node/16049" target="_blank"><img src="/sites/default/files/styles/200x200/public/213vreftek-negative29ms-offset.png?itok=jDpmPXj2"></a>    
-            <a href="/node/16049" target="_blank" class="title"> نرم افزار Seismosignal </a>
-        </div>
-        <div class="row">
-            <a href="/node/15910" target="_blank"><img src="/sites/default/files/styles/270x223/public/field/image/node_15910.jpg?itok=IM8kJPL7"></a>    
-            <a href="/node/15910" target="_blank" class="title"> فیلم آموزش تحلیل IDA با نرم افزار SeismoStruct </a>
-        </div>
-        <div class="row">
-            <a href="/node/15862" target="_blank"><img src="/sites/default/files/styles/270x223/public/field/image/node_15862.jpg?itok=HY6uKz8L"></a>    
-            <a href="/node/15862" target="_blank" class="title"> فیلم آموزشی ارزیابی عملکرد لرزه ای سازه ها به روش IDA </a>
-        </div>
-        <div class="row">
-            <a href="/node/15803" target="_blank"><img src="/sites/default/files/styles/270x223/public/field/image/node_15803.jpg?itok=IXPLkZuS"></a>    
-            <a href="/node/15803" target="_blank" class="title"> پکیج فیلم آموزش تحلیل های غیرخطی پیشرفته IDA با استفاده از نرم افزار SeismoStruct </a>
-        </div>
-        <div class="row">
-            <a href="/node/15000" target="_blank"><img src="/sites/default/files/new__jpg/seismosoft-build.jpg"></a>    
-            <a href="/node/15000" target="_blank" class="title">ویرایش سوم نرم افزار 2016 SeismoBuild منتشر شد </a>
-        </div>
-        <div class="row">
-            <a href="/node/13995" target="_blank"><img src="/sites/default/files/styles/270x223/public/field/image/node_13761.jpg?itok=Yi3algIJ"></a>    
-            <a href="/node/13995" target="_blank" class="title"> فیلم آموزش روند مدل سازی دیوار برشی فولادی در نرم افزار SeismoStruct </a>
-        </div>
-        <div class="row">
-            <a href="/node/11974" target="_blank"><img src="/sites/default/files/styles/270x223/public/field/image/node_11627_0.jpg?itok=DTFxQkgg"></a>    
-            <a href="/node/11974" target="_blank" class="title"> فیلم آموزشی اصول مدلسازی قاب خمشی فولادی در برنامه SeismoStruct </a>
-        </div>
-        <div class="row">
-            <a href="/node/5541" target="_blank"><img src="/sites/default/files/styles/270x223/public/field/image/node_5541.jpg?itok=FI4i9OHK"></a>    
-            <a href="/node/5541" target="_blank" class="title"> پکیج فیلم آموزش تحلیل‌های IDA و نرم‌افزار Seismostruct </a>
-        </div>
-        <div class="row">
-            <a href="/node/5505" target="_blank"><img src="/sites/default/files/styles/270x223/public/field/image/node_5505.jpg?itok=KIXTcNyO"></a>    
-            <a href="/node/5505" target="_blank" class="title"> مجموعه فیلم آموزشی نرم افزار Seismostruct </a>
-        </div>
-        <div class="row">
-            <a href="/node/5478" target="_blank"><img src="/sites/default/files/styles/270x223/public/field/image/node_5478.jpg?itok=o3qzWP13"></a>    
-            <a href="/node/5478" target="_blank" class="title"> استفاده و مدل سازی جداگرها و میراگرها در کنترل ارتعاشات لرزه ای سازه </a>
-        </div>
-        <div class="row">
-            <a href="/node/5475" target="_blank"><img src="/sites/default/files/styles/270x223/public/field/image/node_1517.jpg?itok=EbcAM2qH"></a>    
-            <a href="/node/5475" target="_blank" class="title"> فیلم آموزش نرم افزار Seismosignal و بررسی Site Effect </a>
-        </div>
 </section>
 
-<section class="third">
-    <h2> دوره های آنلاین در حال ثبت نام </h2>
-    <div class="inside">
-    <a href="/node/17448" target="_blank">
-        <span class="icon"></span>
-        <div class="esm">ثبت نام در دوره آنلاین مقاوم سازی و بهسازی لرزه ای کاربردی سازه های موجود</div>
-    </a>
-    <a target="_blank" href="/node/17449">
-        <span class="icon"></span>
-            <div class="esm">ثبت نام در دوره حضوری جامع طراحی عملکردی و بهسازی لرزه ای با نرم افزار SAP2000</div>
-    </a>
-    <a href="/node/5558" target="_blank">
-        <span class="icon"></span>
-        <div class="esm"> ثبت نام در دوره جامع طراحی عملکردی و بهسازی لرزه‌ای با نرم‌افزار SAP2000 </div>
-    </a>
-    <a target="_blank" href="/college/course-vip">
-        <span class="icon"></span>
-        <div class="esm"> ثبت نام در کلاس ها و مشاوره های خصوصی </div>
-    </a>
-    </div>
+<section id="pbd-panel" class="pane-tags-content">
+    <h2> محصولات مرتبط </h2>
+    <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">برای مشاهده سایر محتواهای مرتبط به <a href="/pbd/fa" target="_blank">این صفحه</a> مراجعه کنید </p>
+    <?php
+    $args1 = 2455;
+    $args2 = 'product';
+    print views_embed_view('tags_content', 'block_3', $args1 , $args2 ); ?>
 </section>
 
 <section class="plus808">
     <div class="inner">
-        <h2> بخش پرسش و پاسخ 808 پلاس </h2>
-	    <h4> سوالات خود را از متخصصان سایت بپرسید </h4>
-        <a class="ask-question btn blue-btn " href="/question/list" target="_blank"> لیست سوالات </a>
+        <h2>  ثبت نام در کلاس ها و مشاوره های خصوصی </h2>
+        <h4> اگر دوره مورد نظر خود را پیدا نکردید، با مدرس دلخواه خود آموزش ببینید </h4>
+        <a class="ask-question btn btn-primary" href="/college/course-vip" target="_blank"> درخواست کلاس </a>
+        <a class="ask-question btn" href="/question/list" target="_blank">پرسش و پاسخ</a>
     </div>
 </section>
 
@@ -212,7 +151,7 @@
         <h3> موسسه آموزشی مهندسی 808 </h3><a href="http://seismosoft.com/contacts" target="_blank"> نماینده رسمی شرکت SeismoSoft در ایران </a>
     </div>
     <div class="hamin">
-        <h2> حامیان ما در برگزاری این همایش </h2>
+        <h2> حامیان </h2>
         <div class="logos">
             <div>
                 <img src="/sites/all/themes/sara/images/logo-seismosoft.png" width="250px" height="auto" style="margin-bottom: 17px;">
@@ -228,6 +167,77 @@
 
 
 <style>
+    .seis-box{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .seis-text > div > div {
+        font-size: 15px;
+        font-weight: bold;
+        color: #9C27B0;
+        float: right;
+        clear: right;
+        margin: 0 0 0 14px;
+    }
+    .seis-text > div > span {
+        font-weight: bold;
+        font-size: 17px;
+        font-family: Tahoma;
+        display: block;
+        padding: 1px 0;
+    }
+    .seis-text{
+        max-width: 615px;
+        padding: 2% 2%;
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
+        color: #555 !important;
+        min-height: 150px;
+        margin: 33px 10px;
+        position: relative;
+        text-align: justify;
+        z-index: 2;
+    }
+    .seis-text p{
+        font-size: 14px;
+        line-height: 32px;
+    }
+    section.plus808 a {
+        margin: 0 10px;
+    }
+    section:not('.plus808') h2{
+        position: relative;
+    }
+    section:not('.plus808') h2:before{
+        content: "";
+        position: absolute;
+        width: 130px;
+        height: 3px;
+        background: #883ab7;
+        bottom: -10px;
+        right: calc(50% - 65px);
+        box-shadow: rgba(136,58,183,0.15) 0px 1px 6px, rgba(136,58,183,0.157) 0px 1px 4px;
+    }
+    #pbd-panel{
+        width: 90%;
+        margin: 50px auto 130px auto;
+    }
+    h2{
+        text-align: center;
+    }
+    #pbd-panel > div{
+        margin-top: 65px !important;
+    }
+    .page-node-19072 #pbd-panel .node-product.node-teaser{
+        margin:1% 10px !important;
+    }
+    .views_slideshow_main .views-slideshow-cycle-main-frame,
+    .views_slideshow_main .views_slideshow_slide {
+        width: 100% !important;
+    }
     a.v-en {
         position: fixed;
         bottom: -195px;
@@ -358,6 +368,9 @@
         }
     }
     @media (max-width:768px){
+        .seis-box img{
+            display: none;
+        }
         section.timing .timing-wh {
             align-items: center;
             justify-content: center;
@@ -476,10 +489,6 @@
         right: calc(50% - 65px);
         box-shadow: rgba(136,58,183,0.15) 0px 1px 6px, rgba(136,58,183,0.157) 0px 1px 4px;
     }
-    .kargah-sec h2:before,
-    section.first h2:before{
-    	right:0px !important;
-    }
     .fifth h2 {
     	margin: 10px auto 80px;
         font-size: 25px;
@@ -568,7 +577,7 @@
     	width: 640px;
     	margin-left: 50px;
     }
-    p.important{
+    .important{
         padding: 0px 13px;
         border: 1px solid #FF5722;
         /* margin: 20px 30px 30px 30px; */
@@ -610,12 +619,12 @@
     	margin: 50px auto;
     }
     .tickets > div {
-    	display: flex;
-    	align-items: stretch;
+        display: flex;
+        justify-content: space-evenly;
     }
     .tickets a{
         display: inline-flex;
-        width: 50%;
+        width: 500px;
         padding: 15px;
         background: #fff;
         border-radius: 5px;
@@ -626,38 +635,10 @@
         margin: 10px 15px;
         position: relative;
         z-index: 10;
-    	text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff;
-    }
-    .gerdali {
-        position: absolute;
-        top: calc( 50% - 25px);
-        right: -28px;
-        width: 50px;
-        height: 50px;
-        background-color: #f9f9f9;
-        border-radius: 50%;
-        box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.12);
-        transform: rotate(0deg);
-    }
-    .gerdali:before {
-        content: "";
-        position: absolute;
-        width: 50%;
-        height: 100%;
-        top: 0;
-        right: 0px;
-        background: #f9f9f9;
-    	border-radius: 0 50% 50% 0;
-    }
-    .tickets a div.city-name span {
-    	width: 80px;
-    	height: 80px;
-    	display: flex;
-    	justify-content: center;
-    	align-items: center;
+        text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff;
+        flex-direction: column;
     }
     .tickets a div.city-name {
-        width: 80px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -665,28 +646,30 @@
         /* border: 2px solid #2196F3; */
         color: #9C27B0;
         font-weight: 500;
-        font-size: 20px;
-        padding: 0 15px 0 20px;
+        font-size: 18px;
+        padding: 6px 15px 0px 15px;
         position: relative;
         box-sizing: content-box;
-        margin-left: 20px;
+        line-height: 38px;
     }
     .tickets a div.city-name:after {
-    	content: "";
-    	height: 100%;
-    	position: absolute;
-    	left: 0;
-    	top: 0;
-    	width: 1px;
-    	border-right: 4px dotted #aaa;
+        content: "";
+        position: absolute;
+        left: 4%;
+        bottom: -16px;
+        height: 1px;
+        border-bottom: 4px dotted #aaa;
+        width: 83%;
+        right: 4%;
+    }
+    .tickets a .inner-text{
+        margin: 30px 20px 0 40px;
     }
     p.text {
-    	font-size: 14px;
-    	line-height: 31px;
-    	border: solid #F44336;
-    	border-width: 0px 2px 2px 0px;
-    	padding: 2px 10px;
-    	border-radius: 30px;
+        font-size: 15px;
+        padding: 3px 13px;
+        margin-bottom: 0;
+        font-weight: 500;
     }
     .tarikh,
     .mablagh,
@@ -914,6 +897,15 @@
         right: 0;
         height: 100%;
     }
+    section.plus808:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        background-color: #000000ab;
+    }
     .plus808 .inner{
     	z-index: 10;
         position: relative;
@@ -921,14 +913,14 @@
     }
     .plus808 h2{
         color: white;
-        font-size: 44px;
+        font-size: 33px;
         text-shadow: 0 0 15px #333;
     }
     .plus808 h4{
-        color: #FDD835;
+        color: #FFEB3B;
         font-size: 16px;
-        margin: 39px 0 29px 0;
-        text-shadow: 0px 1px 7px #000;
+        margin: 39px 0 41px 0;
+        text-shadow: 1px 1px 7px #000;
         font-weight: normal;
     }
     
@@ -976,8 +968,10 @@
     	background: #ffffff;
     }
     .bought-tickets {
-    	margin: 100px 20px 80px;
-    	text-align: center;
+        margin: 82px 20px 80px;
+        text-align: center;
+        font-size: 15px;
+        color: #888;
     }
     
     .bought-tickets a {
@@ -1052,10 +1046,22 @@
     }
     @media (max-width: 400px){
     	.tickets a div.city-name {
-    		width: 40px;
-    		margin-left: 0;
-    		padding-left: 10px;
+            font-size: 17px;
+            padding: 3px 8px;
     	}
+        .tickets a .inner-text {
+            margin: 27px 0px 0 40px;
+        }
+        .takhfifat p {
+            margin: 5px 9px;
+            padding: 8px;
+            font-size: 11px;
+        }
+        .takhfifat p:before {
+            margin: -8px -4px -8px 0px;
+            width: 32px;
+            height: 32px;
+        }
     }
 
     .link-hamayesh{
@@ -1251,6 +1257,17 @@ a.poster.view:before {
 	}
 	
 }
+    #block-system-main > .content:before {
+        /*content: "";*/
+        position: absolute;
+        background-color: #f3e5f585;
+        width: 186%;
+        top: 509px;
+        z-index: 0;
+        right: 0;
+        height: 1321px;
+        transform: skew(-68deg);
+    }
 </style>
 
 
