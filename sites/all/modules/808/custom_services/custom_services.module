@@ -964,6 +964,52 @@ function custom_services_services_resources(){
                 ),
             ),
         ),
+		'order' => array(
+		    'operations' => array(),
+            'actions' => array(
+                'by_user_point' => array(
+                    'help' => 'make order by user point',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'order_resource'),
+                    'callback' => 'make_order_by_user_point',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('data' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'type',
+                            'type' => 'string',
+                            'description' => 'The type of order',
+                            'source' => array('data' => 'type'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'data',
+                            'type' => 'array',
+                            'description' => 'The type of order',
+                            'source' => 'data',
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('data' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+            ),
+            'targeted_actions' => array(),
+            'relationships' => array(),
+        ),
 
 
 		'advisorlist' => array(

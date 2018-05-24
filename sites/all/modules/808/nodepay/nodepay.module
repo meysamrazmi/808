@@ -34,123 +34,132 @@ function nodepay_report($nid) {
     return FALSE;
 }
 
-function pay_for_node($nid) {
+function pay_for_node($nid , $ws_api = false) {
     global $user;
     if($user->uid < 1){
+        if($ws_api) return "LoginError";
         drupal_set_message(t('to complete this operation you must login first, !login - !register', array(
             '!login' => l(t('User login'), 'user/login'),
             '!register' => l(t('User register'), 'user/register'),
         )), 'error');
         drupal_goto("node/". $nid);
     }
-    if($node = node_load($nid)){
-        if (isset($node->field_point_needed['und'][0])) {
-            $points = $node->field_point_needed['und'][0]['value'];
-        }else{
-            drupal_set_message(t('خطایی در فرم رخ داده است. لطفا با پشتیبانی تماس حاصل فرمایید. کد خطا: 15'), 'error');
-            drupal_goto("node/". $nid);
-        }
+    $node = node_load($nid);
+    if(empty($node)){
+        if($ws_api) return "NodeError";
+        drupal_set_message(t('این محتوا وجود ندارد'), 'error');
+        drupal_goto("/");
+    }
+    if (isset($node->field_point_needed['und'][0])) {
+        $points = $node->field_point_needed['und'][0]['value'];
+    }else{
+        if($ws_api) return "PriceError";
+        drupal_set_message(t('خطایی در فرم رخ داده است. لطفا با پشتیبانی تماس حاصل فرمایید. کد خطا: 15'), 'error');
+        drupal_goto("node/". $nid);
+    }
 
-        $flag = false; //default value for discount flag
-        /*
-        * برای تخفیفات ویژه نوروز که تمامی محتوا ها تخفیف داشتند
-        */
-        $flag = true;
-        $festival = 'جشنواره کتاب 97';
-        for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){
-            if( $node->field_isvip['und'][$i]['tid'] == 2217) // no discount will be applied
-                $flag=false;
-        }
-        if($flag)
-            $points = round(intval($points * 0.75) , -1);
-        /**/
+    $flag = false; //default value for discount flag
+    /*
+    * برای تخفیفات ویژه نوروز که تمامی محتوا ها تخفیف داشتند
+    *
+    $flag = true;
+    $festival = 'جشنواره کتاب 97';
+    for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){
+        if( $node->field_isvip['und'][$i]['tid'] == 2217) // no discount will be applied
+            $flag=false;
+    }
+    if($flag)
+        $points = round(intval($points * 0.75) , -1);
+    */
 
-        $description =  ($flag)? ' با 25 درصد تخفیف ' . $festival :'';
-        if(isset($user->roles[8])){ //for vip user only
-            $description .= ', با 10 درصد تخفیف vip';
+    $description =  ($flag)? ' با 25 درصد تخفیف ' . $festival :'';
+    if(isset($user->roles[8])){ //for vip user only
+        $description .= ', با 10 درصد تخفیف vip';
 //	        $points = round(intval($points * 0.9) , -1);
-        }
-        $num_pts = userpoints_get_current_points($user->uid, 'all');
-        if ($num_pts < $points) {
-            drupal_set_message(t("You haven't enough point in your account, please charge your account."), 'error');
-            drupal_goto("node/$nid");
-        }
-	    if($flag)
-		    drupal_set_message('25 درصد تخفیف به مناسبت '. $festival .' برای شما اعمال شد.');
+    }
+    $num_pts = userpoints_get_current_points($user->uid, 'all');
+    if ($num_pts < $points) {
+        if($ws_api) return "UserPointError";
+        drupal_set_message(t("You haven't enough point in your account, please charge your account."), 'error');
+        drupal_goto("node/$nid");
+    }
+    if($flag)
+        drupal_set_message('25 درصد تخفیف به مناسبت '. $festival .' برای شما اعمال شد.');
 
-        $_sql = "INSERT INTO {m_buyed_nodes} (uid, nid, date, price, description) VALUES (:uid, :nid, :date, :price, :description)";
-        if($sht = db_query($_sql, array( ':uid' => $user->uid, ':nid' => $nid, ':date' => time(), ':price' => $points, ':description' => $description ))){
-            $desc = 'پرداخت برای محتوای #'. $nid ;
-            $desc .= $description;
+    $_sql = "INSERT INTO {m_buyed_nodes} (uid, nid, date, price, description) VALUES (:uid, :nid, :date, :price, :description)";
+    if($sht = db_query($_sql, array( ':uid' => $user->uid, ':nid' => $nid, ':date' => time(), ':price' => $points, ':description' => $description ))){
+        $desc = 'پرداخت برای محتوای #'. $nid ;
+        $desc .= $description;
+        $params = array(
+            'uid' => $user->uid,
+            'points' => -$points,
+            'operation' => 'pey for node',
+            'description' => $desc,
+            'entity_id' => $nid,
+            'entity_type' => 'node',
+        );
+        userpoints_userpointsapi($params);
+        drupal_set_message('خرید محتوا انجام شد و مبلغ '. $points .' از اعتبار شما کسر شد.');
+    }else{
+        if($ws_api) return "DatabaseError";
+        drupal_set_message(t('خطایی در فرم رخ داده است. لطفا با پشتیبانی تماس حاصل فرمایید. کد خطا: 16'), 'error');
+        drupal_goto("node/". $nid);
+    }
+
+    $field_percent = db_query(_queries('field'), array(':nid' => $nid));
+    $total = $points;
+    $buy_id = db_select('m_buyed_nodes', 'n')->fields('n',array('id'))->condition('n.nid' , $nid)->condition('n.uid' , $user->uid)->execute()->fetchObject();
+
+    foreach ($field_percent as $field_item){
+        $multiplier = $field_item->portion / 100;
+        $uid = $field_item->uid;
+        $is_cost = $field_item->cost;
+
+        $query = db_query("SELECT * FROM {up_share_log} WHERE uid = :uid AND buyer_uid = :buyer_uid AND entity_id = :entity_id AND entity_type = :entity_type AND field_id = :field_id", array(':uid' => $uid, ':buyer_uid' => $user->uid, ':entity_id' => $buy_id->id, ':entity_type' => $node->type, ':field_id' => $field_item->field_id))->fetchObject();
+        $allow_points = TRUE;
+        if (isset($query->uid) && $query->uid) {
+            $allow_points = FALSE;
+        }
+
+        $points = intval(($total * $multiplier));
+        if ($allow_points && $points > 0) {
             $params = array(
-                'uid' => $user->uid,
-                'points' => -$points,
-                'operation' => 'pey for node',
-                'description' => $desc,
+                'tid' => 0,
+                'uid' => $uid,
+                'points' => $points,
+                'operation' => 'content share',
+                'description' => t('user @uid has bought node @nid that you had a share of it.', array('@uid' => $user->uid , '@nid' => $nid)),
                 'entity_id' => $nid,
                 'entity_type' => 'node',
             );
-            userpoints_userpointsapi($params);
-	        drupal_set_message('خرید محتوا انجام شد و مبلغ '. $points .' از اعتبار شما کسر شد.');
-        }else{
-            drupal_set_message(t('خطایی در فرم رخ داده است. لطفا با پشتیبانی تماس حاصل فرمایید. کد خطا: 16'), 'error');
-            drupal_goto("node/". $nid);
-        }
-
-        $field_percent = db_query(_queries('field'), array(':nid' => $nid));
-        $total = $points;
-        $buy_id = db_select('m_buyed_nodes', 'n')->fields('n',array('id'))->condition('n.nid' , $nid)->condition('n.uid' , $user->uid)->execute()->fetchObject();
-
-        foreach ($field_percent as $field_item){
-            $multiplier = $field_item->portion / 100;
-            $uid = $field_item->uid;
-            $is_cost = $field_item->cost;
-
-            $query = db_query("SELECT * FROM {up_share_log} WHERE uid = :uid AND buyer_uid = :buyer_uid AND entity_id = :entity_id AND entity_type = :entity_type AND field_id = :field_id", array(':uid' => $uid, ':buyer_uid' => $user->uid, ':entity_id' => $buy_id->id, ':entity_type' => $node->type, ':field_id' => $field_item->field_id))->fetchObject();
-            $allow_points = TRUE;
-            if (isset($query->uid) && $query->uid) {
-                $allow_points = FALSE;
-            }
-
-            $points = intval(($total * $multiplier));
-            if ($allow_points && $points > 0) {
-                $params = array(
-                    'tid' => 0,
+            $st = userpoints_userpointsapi($params);
+            db_insert('up_share_log')
+                ->fields(array(
                     'uid' => $uid,
+                    'buyer_uid' => $user->uid,
+                    'entity_id' => $buy_id->id,
+                    'entity_type' => $node->type,
+                    'field_id' => $field_item->field_id,
                     'points' => $points,
-                    'operation' => 'content share',
-                    'description' => t('user @uid has bought node @nid that you had a share of it.', array('@uid' => $user->uid , '@nid' => $nid)),
-                    'entity_id' => $nid,
-                    'entity_type' => 'node',
-                );
-                $st = userpoints_userpointsapi($params);
-                db_insert('up_share_log')
-                    ->fields(array(
-                        'uid' => $uid,
-                        'buyer_uid' => $user->uid,
-                        'entity_id' => $buy_id->id,
-                        'entity_type' => $node->type,
-                        'field_id' => $field_item->field_id,
-                        'points' => $points,
-                        'portion' => $field_item->portion,
-                        'model' => $nid,
-                        'total' => $total,
-                        'updated' => time(),
-                    ))->execute();
+                    'portion' => $field_item->portion,
+                    'model' => $nid,
+                    'total' => $total,
+                    'updated' => time(),
+                ))->execute();
 
-                $node = node_load($nid);
-                privatemsg_new_thread(
-                    array(user_load($uid)),
-                    'محتوایی از شما فروخته شد.',
-                    'محتوای ' . l($node->title, '/node/' . $nid) . ' توسط ' . l($user->name, '/user/' . $user->uid) . ' خریداری شده است. ',
-                    array('author' => user_load(2), 'format' => 'full_html')
-                );
-            }
-            if($is_cost) $total -= $points;
+            $node = node_load($nid);
+            privatemsg_new_thread(
+                array(user_load($uid)),
+                'محتوایی از شما فروخته شد.',
+                'محتوای ' . l($node->title, '/node/' . $nid) . ' توسط ' . l($user->name, '/user/' . $user->uid) . ' خریداری شده است. ',
+                array('author' => user_load(2), 'format' => 'full_html')
+            );
         }
-
-        drupal_goto("node/$nid");
+        if($is_cost) $total -= $points;
     }
+
+    if($ws_api) return $buy_id;
+    drupal_goto("node/$nid");
 }
 
 function nodebuyes_report($id) {
