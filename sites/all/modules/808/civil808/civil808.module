@@ -444,7 +444,6 @@ function civil808_page_accounting_charge($form, &$form_state, $uid) {
 			</div>',
 		);
 		*/
-		/**/
 	return $form;
 	// return array();
 }
