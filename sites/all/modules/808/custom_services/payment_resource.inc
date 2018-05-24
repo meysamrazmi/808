@@ -35,12 +35,18 @@ function final_payment($hash , $data , $version){
         if($data['status'] != 'success' && $data['status'] != 'fail') return services_error(t('Status is not valid'), 401);
         if(!isset($data['refnumber']) || empty($data['refnumber'])) return services_error(t('reference number is required'), 401);
 
+        $record = bank_events_record($data['id']);
+        if(empty($record) || count($record) == 0) return services_error(t('Id is incorrect'), 401);
+        if($record->status != "pending"){
+            $response["description"] = "This record is completed before!";
+            $response["status"] = $record->status;
+            return ["response" => $response];
+        }
+
         update_bank_event($data['id'], $data['status'], $data['refnumber']);
 
-        $query = db_select('bank_events' , 'bank');
-        $query->fields('bank' , array('id' , 'user' , 'status' , 'value'));
-        $query->condition('bank.id' , $data['id']);
-        $result = $query->execute()->fetch();
+
+        $result = bank_events_record($data['id']);
 
         /*
          * @todo apply discount for festivals
@@ -69,12 +75,17 @@ function get_status($hash , $id , $version){
     if(!(hash_true($hash , "payment"))) return services_error(t('Failed to access'), 403);
 
     if($version == 0){
-        $query = db_select('bank_events' , 'bank');
-        $query->fields('bank' , array('status'));
-        $query->condition('bank.id' , $id);
-        $result = $query->execute()->fetch();
-
+        $result = bank_events_record($id);
         return ["status" => $result->status];
     }
     return services_error(t('The Service is not supported'), 404);
+}
+
+/*------------------------common functions-----------------------------*/
+function bank_events_record($id){
+    $query = db_select('bank_events' , 'bank');
+    $query->fields('bank' , array('id' , 'user' , 'status' , 'value'));
+    $query->condition('bank.id' , $id);
+    $result = $query->execute()->fetch();
+    return $result;
 }
