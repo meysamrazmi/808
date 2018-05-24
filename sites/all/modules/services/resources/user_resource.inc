@@ -391,6 +391,7 @@ function _user_resource_create($account) {
 	$user_login->session_name = $user['session_name'];
 	$user_login->token = $user['token'];
 	$new_user = user_load($user['uid']);
+	$new_user->userpoint = userpoints_get_current_points($new_user->uid, 'all');
 	$profile = profile2_load_by_user($new_user);
     return ["login_data" => $user_login, "user_data" => $new_user, "profile" => $profile];
   }
@@ -651,6 +652,7 @@ function _user_resource_login($username, $password) {
 
       services_remove_user_data($account);
 
+        $account->userpoint = userpoints_get_current_points($user->uid, 'all'); /*added by ali*/
       $return->user = $account;
 	  
 		/*added by ali*/

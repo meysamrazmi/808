@@ -58,9 +58,11 @@ function login_version_one($username_email, $password){
             $result->session_name = session_name();
             $result->token = drupal_get_token('services');
 
+            $user->userpoint = userpoints_get_current_points($user->uid, 'all');
             $result->user = $user;
 
             $profile = profile2_load_by_user($user);
+
             $result->profile = $profile;
 
             return $result;
