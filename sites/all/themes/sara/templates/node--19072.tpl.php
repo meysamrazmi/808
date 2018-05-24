@@ -2,7 +2,8 @@
 
 <section class="kargah-sec">
     <h2>دوره جامع آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها</h2>
-    <div class="first-row">
+    <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره فقط حضوری و بدون ضبط فیلم است.</p>
+    <div class="first-row" style="margin-top: 40px;">
         <div>
             <p> ویژه مهندسین عمران شاغل در صنایع فعال در حوزه مقاوم سازی و سازمان های مرتبط و دانشجویان</p>
             <p><strong> معرفی دوره:</strong></p>
@@ -11,6 +12,7 @@
                 <li>طراحی عملکردی در آیین نامه ها</li>
                 <li>آشنایی با سیستم های نوین کنترل ارتعاشات لرزه ای</li>
                 <li>حل مثال عملی با استفاده از نرم افزارهای SeismoSoft و CSI</li>
+                <a href="/sites/default/files/attachfromftp/node-19072/pbdcourse-topics.pdf" style="margin-top: 9px;" class="btn" target="_blank">سرفصل های دوره</a>
             </ul>
             <p><strong>پکیج همراه با دوره:</strong></p>
             <ul>
@@ -35,23 +37,27 @@
 </section>
 
 <section style="margin: 50px 0 80px 0;">
-<h2 style="margin-bottom: 50px;"> فیلم معرفی </h2>
-<?php
-//sis3_VP8.webm,sis3_x264.mp4
-$video_attrs = array(
-    'src' => '/sites/default/files/filed/files/node_18110-amoozesh_vp8.webm',
-    'width' => '840px',
-    'height' => '447px',
-    'videoWidth' => '840px',
-    'videoHeight' => '447px',
-    'controls' => true,
-);
-$video_sett =  array(
-    'download_link' => true,
-);
-print theme('mediaelement_video', array('attributes' => $video_attrs, 'settings' => $video_sett));
-//'poster ' => '/sites/default/files/conference-4-film' ,
-?>
+    <h2> مصاحبه با پروفسور حسن مقدم با موضوع طراحی عملكردی سازه ها و بررسی گزارشات زلزله كرمانشاه </h2>
+    <p style="text-align: center;margin-bottom: 40px;margin-top: 30px;	font-size: 15px;color: #888;">برای مشاهده کامل مصاحبه
+        <a href="/node/18099" target="_blank">کلیک کنید.</a>
+    </p>
+    <?php
+    //sis3_VP8.webm,sis3_x264.mp4
+    $video_attrs = array(
+        'src' => '/sites/default/files/filed/files/node_18110-amoozesh_vp8.webm',
+        'width' => '840px',
+        'height' => '447px',
+        'videoWidth' => '840px',
+        'videoHeight' => '447px',
+        'controls' => true,
+    );
+    $video_sett =  array(
+        'download_link' => true,
+        'download_text' => 'download'
+    );
+    print theme('mediaelement_video', array('attributes' => $video_attrs, 'settings' => $video_sett));
+    //'poster ' => '/sites/default/files/conference-4-film' ,
+    ?>
 </section>
 
 <section class="second">
@@ -66,6 +72,7 @@ print theme('mediaelement_video', array('attributes' => $video_attrs, 'settings'
                 <div class="city-name"><span>دوره جامع آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها</span></div>
                 <div class="inner-text">
                     <p class="text"> مدرس: پروفسور حسن مقدم </p>
+                    <p style="padding: 9px 12px 0px 0px;">شامل پذیرایی ناهار</p>
                     <div class="tarikh">5 و 6 تیر ماه 1397</div>
                     <div class="makan"> دانشگاه صنعتی شریف، سالن انجمن فارغ التحصیلان </div>
                     <div class="zaman"> 20 ساعت </div>
@@ -78,8 +85,11 @@ print theme('mediaelement_video', array('attributes' => $video_attrs, 'settings'
  + به همراه تدریس نرم افزار توسط تیم مدرسین موسسه 808</span></div>
                 <div class="inner-text">
                     <p class="text"> مدرس: پروفسور حسن مقدم + تیم مدرسین موسسه 808 </p>
-                    <p class="important" style="margin: 10px 12px 5px 0;font-weight: bold;background-color: #f5f5f5;padding: 6px 14px;display: inline-block;">به همراه پکیج مخصوص دوره</p>
-                    <div class="tarikh"> شروع از 5 تیر ماه 1397 </div>
+                    <p style="padding: 9px 12px 0px 0px;"> شامل پذیرایی ناهار در 2 روز اول </p>
+                    <p class="important" style="margin: 2px 12px 5px 0;font-weight: bold;background-color: #f5f5f5;padding: 6px 14px;display: inline-block;">به همراه پکیج مخصوص
+                        و پروژه پایان دوره
+                    </p>
+                    <div class="tarikh"> 5 تا 8، 14 و 15 تیر ماه 1397 </div>
                     <div class="makan"> دانشگاه صنعتی شریف، سالن انجمن فارغ التحصیلان </div>
                     <div class="zaman"> 60 ساعت </div>
                     <div class="mablagh"> 1,200,000 تومان </div>
@@ -90,6 +100,18 @@ print theme('mediaelement_video', array('attributes' => $video_attrs, 'settings'
         <!--<div class="bought-tickets">سوال های خود را می توانید از طریق شماره تماس موسسه و سیستم پیغام خصوصی با ما در میان بگذارید.</div>
 	</div>-->
 
+</section>
+
+<section id="more-data">
+    <h2>توضیحات دوره</h2>
+    <p style="text-align: center;margin-bottom: 40px;margin-top: 30px;	font-size: 15px;color: #888;">
+        لطفا قبل از شرکت در دوره توضیحات زیر را مطالعه کنید.
+    </p>
+    <div style="max-width: 1100px;
+    margin: 46px auto;
+    text-align: justify;">
+        <ol><li>این دوره به صورت فشرده طراحی شده است تا متقاضیان بتوانند در مدت زمان کم از امکانات فراهم شده استفاده کنند. شرکت کنندگان محترمی که از شهرهای دیگر تشریف می آورند، می توانند از طریق تماس تلفنی با موسسه، شماره نزدیک ترین پانسیون ها (با قیمت مناسب) به محل برگزاری دوره (دانشگاه صنعتی شریف) را جهت رزرو محل اقامت خود دریافت کنند.</li><li>پکیج صرفا به شرکت کنندگانی تعلق می گیرد که دوره را به صورت کامل (هر دو دوره ی تئوری و نرم افزاری) ثبت نام کنند.</li><li>در روزهای برگزاری دوره تئوری پذیرایی ناهار انجام خواهد شد.</li><li>دوره نرم افزاری همراه با ارائه پروژه پایان دوره به شرکت کنندگان تعریف شده است که پس از انجام پروژه و داوری آن توسط جناب پروفسور مقدم، افرادی که موفق به گذراندن کامل دوره می شوند ضمن معرفی در سایت جهت انجام پروژه های اجرایی واقعی به صنعت معرفی می گردند.</li><li>این دوره با تدریس جناب پروفسور مقدم، یکی از افراد موثر و پیشرو جهانی در علم طراحی عملکردی سازه ها و <strong>برای اولین بار در کشور با سرفصل انحصاری موسسه 808 فقط به صورت حضوری (بدون ضبط فیلم) برگزار می شود</strong>. امکان استفاده از License قانونی نرم افزارهای مورد استفاده به همراه معرفی دانش آموختگان برتر به صنعت از جمله دیگر مزایای انحصاری این دوره در راستای هدف اتصال دانش به صنعت و حل مساله مقاوم سازی سازه ها می باشد که برای اولین بار و به جهت اهمیت موضوع طراحی عملکردی در کشور توسط تیم موسسه 808، برای شرکت کنندگان فراهم شده است. امید است این دوره مورد استفاده همه مهندسان عمران کشور در جهت ساخت سازه های ایمن در برابر زلزله قرار گیرد.</li></ol>
+    </div>
 </section>
 
 <section style="margin: 110px 0 100px 0;">
@@ -122,7 +144,7 @@ print theme('mediaelement_video', array('attributes' => $video_attrs, 'settings'
     display: block;
     width: 220px;">اطلاعات بیشتر</a>
         </div>
-        <img src="/sites/all/themes/sara/images/seismosoft.png" alt="نرم افزار SeismoBuild منتشر شد (دانلود نسخه دمو  و مشاهده فیلم و کاتالوگ معرفی)" title="نرم افزار SeismoBuild منتشر شد (دانلود نسخه دمو  و مشاهده فیلم و کاتالوگ معرفی)" style="margin-right: -34px;" class="main-seismo">
+        <img src="/sites/all/themes/sara/images/seismosoft.png" alt="نرم افزار SeismoBuild منتشر شد (دانلود نسخه دمو  و مشاهده فیلم و کاتالوگ معرفی)" title="نرم افزار SeismoBuild منتشر شد (دانلود نسخه دمو  و مشاهده فیلم و کاتالوگ معرفی)" style="margin-right: 10px;" class="main-seismo">
     </div>
 </section>
 
@@ -155,11 +177,15 @@ print theme('mediaelement_video', array('attributes' => $video_attrs, 'settings'
         <div class="logos">
             <div>
                 <img src="/sites/all/themes/sara/images/logo-seismosoft.png" width="250px" height="auto" style="margin-bottom: 17px;">
-                <h3> شرکت SeismoSoft </h3>
+                <a style="color:black" href="http://www.seismosoft.com/" target="_blank">
+                    <h3>شرکت SeismoSoft</h3>
+                </a>
             </div>
             <div>
                 <img src="/sites/all/themes/sara/images/logo-behsaz.png" width="125px" height="auto">
-                <h3> شرکت مهندسی بهساز اندیشان تهران </h3>
+                <a style="color:black" href="http://www.behsazandishan.com/" target="_blank">
+                    <h3>شرکت مهندسی بهساز اندیشان تهران</h3>
+                </a>
             </div>
         </div>
     </div>
@@ -167,6 +193,21 @@ print theme('mediaelement_video', array('attributes' => $video_attrs, 'settings'
 
 
 <style>
+    #more-data{
+        margin: 86px 20px;
+    }
+    #more-data li{
+        line-height:29px;
+    }
+    .tickets > div > a:nth-child(2){
+        width: 700px;
+    }
+    .mediaelement-download-link a{
+        font-size:0px;
+    }
+    .mediaelement-download-link a:after{
+        font-size: 13px;
+    }
     .seis-box{
         position: relative;
         display: flex;
@@ -493,12 +534,6 @@ print theme('mediaelement_video', array('attributes' => $video_attrs, 'settings'
     	margin: 10px auto 80px;
         font-size: 25px;
         display: block;
-    }
-    .kargah-sec h2 {
-    	margin-bottom: 50px;
-    	font-size: 22px;
-    	max-width: 1200px;
-    	margin: 0 auto 50px;
     }
     section.second h2 {
     	text-align: center;
@@ -1025,7 +1060,7 @@ print theme('mediaelement_video', array('attributes' => $video_attrs, 'settings'
     	}
     	.tickets a {
     		display: flex;
-    		width: auto;
+    		width: auto !important;
     	}
     }
     @media (max-width: 600px){
