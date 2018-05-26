@@ -1,18 +1,18 @@
 <?php
 
 function user_resource_login($hash , $username_email, $password , $version){
-    if(!(hash_true($hash , "user"))) return "failed to access";
+    if(!(hash_true($hash , "user"))) services_error(t('Failed to access'), 10);
     if($version == 0){
         return login_version_one($username_email, $password);
     }
-    return "This version not supported";
+    return services_error(t('This version is not supported'), 11);
 }
 function user_resource_purchased_products_list($hash , $uid , $version){
-    if(!(hash_true($hash , "user"))) return "failed to access";
+    if(!(hash_true($hash , "user"))) services_error(t('Failed to access'), 10);
     if($version == 0){
         return list_of__user_purchased_products_version_one($uid);
     }
-    return "This version not supported";
+    return services_error(t('This version is not supported'), 11);
 }
 
 function login_version_one($username_email, $password){

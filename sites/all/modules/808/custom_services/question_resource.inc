@@ -1,46 +1,46 @@
 <?php
 
 function question_resource_index($hash , $domain , $page , $version){
-    if(!(hash_true($hash , "question"))) return services_error(t('Failed to access'), 403);
+    if(!(hash_true($hash , "question"))) return services_error(t('Failed to access'), 10);
     if($version == 0){
         return list_of_questions_version_one($domain , $page);
     }
-    return services_error(t('This version is not supported'), 404);
+    return services_error(t('This version is not supported'), 11);
 }
 function question_resource_retrieve($hash , $nid , $version){
-    if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 403);
+    if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 10);
     if($version == 0){
         return retrieve_a_question_version_one($nid);
     }
-    return services_error(t('This version is not supported'), 404);
+    return services_error(t('This version is not supported'), 11);
 }
 function question_resource_create($hash , $question , $version){
-    if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 403);
+    if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 10);
     if($version == 0){
         return create_a_question_version_one($question);
     }
-    return services_error(t('This version is not supported'), 404);
+    return services_error(t('This version is not supported'), 11);
 }
 function question_resource_edit($hash , $nid , $question , $version){
-    if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 403);
+    if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 10);
     if($version == 0){
         return edit_a_question_version_one($nid , $question);
     }
-    return services_error(t('This version is not supported'), 404);
+    return services_error(t('This version is not supported'), 11);
 }
 function question_resource_follow($hash , $nid , $data , $version){
-    if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 403);
+    if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 10);
     if($version == 0){
         return follow_a_question_version_one($nid , $data);
     }
-    return services_error(t('This version is not supported'), 404);
+    return services_error(t('This version is not supported'), 11);
 }
 function question_resource_vote($hash , $nid , $data , $version){
-    if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 403);
+    if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 10);
     if($version == 0){
         return vote_a_question_version_one($nid , $data);
     }
-    return services_error(t('This version is not supported'), 404);
+    return services_error(t('This version is not supported'), 11);
 }
 
 /*------------------------index-----------------------------------*/
@@ -62,7 +62,7 @@ function list_of_questions_version_one($domain , $page){
             return my_answered_questions($page);
             break;
         default:
-            return services_error(t('domain is not exist'), 404);
+            return services_error(t('Domain is not exist'), 12);
             break;
     }
     if($query != null){
@@ -279,7 +279,7 @@ function retrieve_a_question_version_one($nid){
     $query->addField('b' , 'body_value' , 'body');
     $query->condition('n.nid', $nid);
     $node = $query->execute()->fetch();
-    if(strcmp($node->type , "questions") != 0 || empty($node))  return services_error(t('Wrong ID'), 404);
+    if(strcmp($node->type , "questions") != 0 || empty($node))  return services_error(t('Wrong ID'), 16);
 
     $node->url = "http://civil808.com/node/".$nid;
 
@@ -432,11 +432,11 @@ function follow_status($nid , $uid){
 /*-----------------------------vote------------------------------*/
 function vote_a_question_version_one($nid , $data){
     global $user;
-    if(!isset($data['action']) && empty($data['action'])) return "error! action is empty";
+    if(!isset($data['action']) && empty($data['action'])) return services_error(t('Action is required!'), 15);
 
     if($data['action'] == "up") $value = 1;
     elseif($data['action'] == "down") $value = -1;
-    else return "error";
+    else return services_error(t('Wrong action!'), 16);;
 
     $votes = array();
     $votes['entity_type'] = "node";

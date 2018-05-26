@@ -1,21 +1,21 @@
 <?php
 
 function content_resource_index($hash , $type , $language , $page , $version){
-    if(!(hash_true($hash , "content"))) return "failed to access";
+    if(!(hash_true($hash , "content"))) return services_error(t('Failed to access'), 10);
     if($version == 0){
         return list_of_contents_version_one($type , $language , $page);
     }
-    return "This version not supported";
+    return services_error(t('This version is not supported'), 11);
 }
 function content_resource_retrieve($hash , $nid , $version){
-    if(!(hash_true($hash , "content"))) return "failed to access";
+    if(!(hash_true($hash , "content"))) return services_error(t('Failed to access'), 10);
     if($version == 0){
         return retrieve_a_content_version_one($nid);
     }
-    return "This version not supported";
+    return services_error(t('This version is not supported'), 11);
 }
 function content_resource_search($hash , $type , $value , $version){
-    if(!(hash_true($hash , "content"))) return "failed to access";
+    if(!(hash_true($hash , "content"))) return services_error(t('Failed to access'), 10);
 
     if($version == 0) {
         $query = db_select("node", "node");
@@ -39,7 +39,7 @@ function content_resource_search($hash , $type , $value , $version){
         else
             return ["content" => array()];
     }
-    return "This version not supported";
+    return services_error(t('This version is not supported'), 11);
 }
 
 function list_of_contents_version_one($type , $language ,  $page , $custom_list = array()){

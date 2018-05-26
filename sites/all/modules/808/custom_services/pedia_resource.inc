@@ -1,28 +1,28 @@
 <?php
 
 function pedia_resource_index($hash , $page , $version){
-    if(!(hash_true($hash , "pedia"))) return "failed to access";
+    if(!(hash_true($hash , "pedia"))) return services_error(t('Failed to access'), 10);
     if($version == 0){
         return list_of_pedia_version_one($page);
     }
-    return "This version not supported";
+    return services_error(t('This version is not supported'), 11);
 }
 function pedia_resource_retrieve($hash , $nid , $version){
-    if(!(hash_true($hash , "pedia"))) return "failed to access";
+    if(!(hash_true($hash , "pedia"))) return services_error(t('Failed to access'), 10);
     if($version == 0){
         return retrieve_a_pedia_version_one($nid);
     }
-    return "This version not supported";
+    return services_error(t('This version is not supported'), 11);
 }
 function pedia_resource_advisors_list($hash , $nid , $version){
-    if(!(hash_true($hash , "pedia"))) return "failed to access";
+    if(!(hash_true($hash , "pedia"))) return services_error(t('Failed to access'), 10);
     if($version == 0){
         return list_of_advisors_of_a_pedia_version_one($nid);
     }
-    return "This version not supported";
+    return services_error(t('This version is not supported'), 11);
 }
 function pedia_resource_search($hash , $value , $version){
-    if(!(hash_true($hash , "pedia"))) return "failed to access";
+    if(!(hash_true($hash , "pedia"))) return services_error(t('Failed to access'), 10);
 
     if($version == 0) {
         $query = db_select("node", "node");
@@ -46,7 +46,7 @@ function pedia_resource_search($hash , $value , $version){
         else
             return ["pedia" => array()];
     }
-    return "This version not supported";
+    return services_error(t('This version is not supported'), 11);
 }
 
 function list_of_pedia_version_one($page , $custom_list = array()){

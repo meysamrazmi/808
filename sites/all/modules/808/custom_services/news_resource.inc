@@ -1,18 +1,18 @@
 <?php
 
 function news_resource_index($hash , $domain , $page , $version){
-    if(!(hash_true($hash , "news"))) return "failed to access";
+    if(!(hash_true($hash , "news"))) return services_error(t('Failed to access'), 10);
     if($version == 0){
         return list_of_news_version_one($domain , $page);
     }
-    return "This version not supported";
+    return services_error(t('This version is not supported'), 11);
 }
 function news_resource_retrieve($hash , $nid , $version){
-    if(!(hash_true($hash , "news"))) return "failed to access";
+    if(!(hash_true($hash , "news"))) return services_error(t('Failed to access'), 10);
     if($version == 0){
         return retrieve_a_news_version_one($nid);
     }
-    return "This version not supported";
+    return services_error(t('This version is not supported'), 11);
 }
 
 function list_of_news_version_one($domain , $page){
@@ -24,7 +24,7 @@ function list_of_news_version_one($domain , $page){
             return front_news();
             break;
         default:
-            return "domain is not exist";
+            return services_error(t('Domain is not exist'), 12);
             break;
     }
 }
