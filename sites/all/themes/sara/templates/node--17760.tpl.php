@@ -409,7 +409,7 @@
     </div>
 </section>
 
-<a class="v-en" href="http://civil808.com/seismosoft" target="_blank" > ورود به نسخه <b> EN </b> </a>
+<a class="v-en" href="http://civil808.com/en" target="_blank" > ورود به نسخه <b> EN </b> </a>
 
 <style>
     a.v-en {
