@@ -1,5 +1,6 @@
 <?php
 
+/*---------------------actions part------------------------------------*/
 function user_resource_login($hash , $username_email, $password , $version){
     if(!(hash_true($hash , "user"))) services_error(t('Failed to access'), 10);
     if($version == 0){
@@ -7,6 +8,16 @@ function user_resource_login($hash , $username_email, $password , $version){
     }
     return services_error(t('This version is not supported'), 11);
 }
+function user_resource_register($hash , $data, $version){
+    if(!(hash_true($hash , "user"))) services_error(t('Failed to access'), 10);
+    if($version == 0){
+        return register_version_one($data);
+    }
+    return services_error(t('This version is not supported'), 11);
+}
+
+
+/*---------------------relationships part------------------------------*/
 function user_resource_purchased_products_list($hash , $uid , $version){
     if(!(hash_true($hash , "user"))) services_error(t('Failed to access'), 10);
     if($version == 0){
@@ -15,13 +26,17 @@ function user_resource_purchased_products_list($hash , $uid , $version){
     return services_error(t('This version is not supported'), 11);
 }
 
-function login_version_one($username_email, $password){
-    global $user;
 
-    if ($user->uid) {
-        return 'Already logged in';
+/*---------------------functions part----------------------------------*/
+function login_version_one($username_email, $password){
+
+    /*check if user is login or not*/
+    global $user;
+    if ($user->uid > 0) {
+        return services_error(t("User is already logged in!") , 18);
     }
 
+    /*check if user is exist and unblocked*/
     $query =  db_select('users' , 'user');
     $query->fields('user', array('name' , 'status'));
     $db_or = db_or();
@@ -29,17 +44,17 @@ function login_version_one($username_email, $password){
     $db_or->condition('user.mail', $username_email , 'LIKE');
     $query->condition($db_or);
     $result = $query->execute()->fetchObject();
-
     if(empty($result)){
-        return "This user is not exist!";
+        return services_error(t("User is not exist!") , 17);
     }
     elseif($result->status == 0){
-        return  "This user is blocked";
+        return  services_error(t("User is blocked!") , 18);
     }
     else{
         $username = $result->name;
     }
 
+    /*check the truth of username and password*/
     $uid = user_authenticate($username, $password);
 
     /*
@@ -69,6 +84,65 @@ function login_version_one($username_email, $password){
         }
     }
     return 'Wrong username or password.';
+}
+
+/**
+ * @param $data
+ * @return Profile|stdClass|void
+ */
+function register_version_one($data){
+    /*check input correctness*/
+    if(!isset($data['username']) || empty($data['username'])) return services_error(t("Username is required!") , 15);
+    if(!isset($data['password']) || empty($data['password'])) return services_error(t("Password is required!") , 15);
+    if(!isset($data['email']) || empty($data['email'])) return services_error(t("Email is required!") , 15);
+    if(!isset($data['full_name']) || empty($data['full_name'])) return services_error("Full name is required!" , 15);
+    if(!isset($data['mobile']) || empty($data['mobile'])) return services_error(t("Mobile is required!") , 15);
+
+    /*check if user is logged in!*/
+    global $user;
+    if($user->uid > 0) return services_error(t("User is already logged in!") , 18);
+
+    /*check if this username or email is duplicate*/
+    $query = db_select("users", "user");
+    $query->fields("user" , array("name" , "mail"));
+    $db_or = db_or();
+    $db_or->condition('user.name', $data['username'] , 'LIKE');
+    $db_or->condition('user.mail', $data['email'] , 'LIKE');
+    $query->condition($db_or);
+    $result = $query->execute()->fetchObject();
+    if(!empty($result)) return services_error(t("User with username: @username or E-mail: @email is exist!" , array("@username" => $data["username"] , "@email" => $data["email"])) , 18);
+
+    /*create new user*/
+    $new_user = array(
+        'name' => $data['username'],
+        'pass' => $data['password'],
+        'mail' => $data['email'],
+        'status' => 1,
+        'init' => $data['email'],
+        'roles' => array(
+            DRUPAL_AUTHENTICATED_RID => 'authenticated user',
+        ),
+        'field_some_custom_field' => array('und' => array(0 => array('value' => 1))),
+    );
+    $user = user_save('', $new_user);
+
+    /*create profile for new user*/
+    $profile = profile2_create(array('type' => 'main', 'uid' => $user->uid));
+    $profile->field_full_name['und'][0]['value'] = $data['full_name'];
+    $profile->field_mobile['und'][0]['value'] = $data['mobile'];
+    profile2_save($profile);
+    $profile = profile2_load_by_user($user);
+
+    /*login user*/
+    user_login_finalize();
+    $login = new stdClass();
+    $login->sessid = session_id();
+    $login->session_name = session_name();
+    $login->token = drupal_get_token('services');
+
+    $user->userpoint = 0; /*new user has no point*/
+
+    return ["login_data" => $login ,  "user" => $user , "profile" => $profile];
 }
 
 function list_of__user_purchased_products_version_one($uid){
