@@ -2,7 +2,7 @@
  * imports section
  */
 @import "colors.css.less"; //@mat-grey-50 ,red, ping, purple, deep-purple, indigo, blue, light-blue, cyan, teal, green, light-green, lime, yellow, amber, orange, deep-orange, brown, gray, blue-grey
-@import "vars.css.less"; 
+@import "vars.css.less";
 
 
 /*=============================*/
@@ -11,6 +11,8 @@
 		.region-content {
 			background: transparent;
 			box-shadow: none;
+			@media @980-769{overflow: hidden;}
+			@media @768{overflow: hidden;}
 			.advertising_block {
 				position: absolute;
 				top: 500px;
@@ -44,7 +46,7 @@
 			.absolute(100% ; 200px ; '' ; 1px ; '' ; 1px );
 			box-shadow: @z1;
 			z-index: 1;
-			margin-top: -@pad; 
+			margin-top: -@pad;
 			@media @600{
 				height: 150px;
 			}
@@ -156,7 +158,7 @@
 .page-reward, .page-charge, .page-login , .page-register , .page-user-password , .page-user.role-anonymous-user:not(.page-user-){
 	section#main:before {
 		display: none;
-	}	
+	}
 }
 h1#page-title {
 	.page-user:not(.page-reward):not(.page-charge):not(.page-login):not(.page-register):not(.page-user-password):not(.role-anonymous-user)  & ,
@@ -203,20 +205,21 @@ h1#page-title {
 	}
 }
 .user-roles {
-    word-spacing: 4px;
+	word-spacing: 4px;
 	color: #fff;
 	margin: 140px 210px 10px 0;
 	display: inline-flex;
 	text-shadow: 0 0 10px #000;
 	z-index: 2;
 	white-space: nowrap;
+	overflow: hidden;
 	span{
 		border-bottom: 1px solid #fff;
 		margin-left: 20px;
 	}
 	@media @600 {
 		margin: 80px 130px 10px 0;
-		max-width: calc(100vw - 150px);
+		max-width: calc(~"100vw - 150px");
 	}
 	@media @400{
 		visibility: hidden;
@@ -286,50 +289,50 @@ h1#page-title {
 	}
 	
 	.field-name-user-experts {
-	a{
-		margin: 0 0 5px 5px;
-		float: right;
-		&.unconfirmed{
-			color: #888 !important;
-			vertical-align: middle;
-			font-size: small;
-			position: relative;
-			background: #eee;
-			padding-right: 25px;
-			.before(f150;'';15px); 
-			&:before{
-				position: absolute;
-				right: 5px
+		a{
+			margin: 0 0 5px 5px;
+			float: right;
+			&.unconfirmed{
+				color: #888 !important;
+				vertical-align: middle;
+				font-size: small;
+				position: relative;
+				background: #eee;
+				padding-right: 25px;
+				.before(f150;'';15px);
+				&:before{
+					position: absolute;
+					right: 5px
+				}
+			}
+			
+			&.add-expert {
+				&:before{
+					content: "\f419";
+					font-family: mat;
+					color: #4caf50;
+				}
 			}
 		}
-		
-		&.add-expert {
-			&:before{
-				content: "\f419";
-				font-family: mat;
-				color: #4caf50;
-			}
+		+.field-name-field-skills .field-label{
+			visibility: hidden;
 		}
 	}
-	+.field-name-field-skills .field-label{
-		visibility: hidden;
-	}
-}
-
+	
 }
 #block-panels-mini-user-header{
 	z-index: 2;
 	position: relative;
 	margin-bottom: 60px;
 	.page-reward & ,.page-charge &, .page-login & ,.page-register &{
-		display: none; 
+		display: none;
 	}
 }
 .panel-separator {
 	display: none;
 }
 .pane-page-tabs {
-	.absolute('';'';'';calc(~"50% - 50vw - 2px");-42px);		
+	.absolute('';'';'';calc(~"50% - 50vw - 0px");-42px);
 	background: #eee;
 	z-index: 0;
 	width: 100vw;
@@ -357,7 +360,7 @@ h1#page-title {
 						border-bottom: 2px solid;
 						line-height: 38px;
 						padding-top: 2px;
-					}					
+					}
 				}
 			}
 		}
@@ -398,7 +401,7 @@ h1#page-title {
 		height: 100%;
 		display: flex;
 		align-items: center;
-	    margin: 0;
+		margin: 0;
 	}
 	ul.userpoints-points {
 		position: relative;
@@ -497,7 +500,7 @@ h1#page-title {
 			vertical-align: middle;
 			margin: 10px;
 		}
-	}	
+	}
 	.pane-content{box-shadow: @z1;}
 	.view{overflow: auto;}
 	th {white-space: nowrap;}
@@ -538,10 +541,10 @@ h1#page-title {
 		border-bottom: 0px !important;
 		background: #fff;
 	}
-	.quicktabs-ui-wrapper { 
+	.quicktabs-ui-wrapper {
 		.ui-tabs-nav {
 			margin-bottom: 0px !important;
-		} 
+		}
 	}
 }
 .pane-bought-nodes{
@@ -558,7 +561,7 @@ h1#page-title {
 		.before(f290 ;aw; 25px; @pane-color);
 	}
 	.pane-content .no-sale{
-        border-color: @pane-color;
+		border-color: @pane-color;
 	}
 }
 .view-uc-orders-user{
@@ -571,7 +574,7 @@ h1#page-title {
 	}
 	thead tr th{
 		border-bottom: 1px solid fade(@mat-light-green , 30%) !important;
-		background: #fcfcfc;			
+		background: #fcfcfc;
 	}
 	.views-field-actions {
 		display: flex;
@@ -641,10 +644,10 @@ h1#page-title {
 .panels-flexible-17{
 	.column {
 		width: 50%;
- 		// &.left .region-first,
-		&.right .region{ 
-			.paper(z1); 
-		} 
+		// &.left .region-first,
+		&.right .region{
+			.paper(z1);
+		}
 	}
 	.column-17-3{
 		@media @960{
@@ -721,35 +724,35 @@ h1#page-title {
 				.before(f36a;'';22px;#D32F2F);
 				&:before{ .absolute('';'';10px;'';'';9px);}
 			}
-            .connections a{
+			.connections a{
 				.before(f00e;'';24px;#4CAF50);
 				&:before{ .absolute('';'';8px;'';'';9px);}
 			}
-            .joyride_start_link a{
-                .before(f186;'';22px;#2196F3);
+			.joyride_start_link a{
+				.before(f186;'';22px;#2196F3);
 				&:before{ .absolute('';'';10px;'';'';9px);}
-            }
-            .laghv a{
-                .before(f150;'';22px;#4CAF50);
+			}
+			.laghv a{
+				.before(f150;'';22px;#4CAF50);
 				&:before{ .absolute('';'';9px;'';'';9px);}
-            }            
-            .accept a{
-                .before(f134;'';22px;#4CAF50);
+			}
+			.accept a{
+				.before(f134;'';22px;#4CAF50);
 				&:before{ .absolute('';'';10px;'';'';9px);}
-            }
-            .add a{
-                .before(f339;'';22px;#4CAF50);
+			}
+			.add a{
+				.before(f339;'';22px;#4CAF50);
 				&:before{ .absolute('';'';10px;'';'';9px);}
-            }
-            .azl a{
-                .before(f008;'';22px;#4CAF50);
+			}
+			.azl a{
+				.before(f008;'';22px;#4CAF50);
 				&:before{ .absolute('';'';10px;'';'';9px);}
-            }
+			}
 			.conference a{
 				padding-left: 25px;
-                .before(f518;'';26px;#bd471d);
+				.before(f518;'';26px;#bd471d);
 				&:before{ .absolute('';'';20px;'';'';6px);}
-            }
+			}
 		}
 	}
 	.middle-region {
@@ -762,7 +765,7 @@ h1#page-title {
 }
 #edit-account{
 	.form-type-textfield {
-		padding: 0 15px;	
+		padding: 0 15px;
 	}
 	input {
 		direction: ltr;
@@ -899,8 +902,8 @@ h1#page-title {
 		}
 	}
 	&.page-links #block-system-main > .content{
-			.user-edit-page-media();
-			.paper(z1);
+		.user-edit-page-media();
+		.paper(z1);
 	}
 	#affiliate-reports ,
 	#affiliate-links-header{
@@ -922,7 +925,7 @@ h1#page-title {
 	}
 	#affiliate-reports {
 		display: flex;
-		 > div {
+		> div {
 			width: 50%;
 			margin-left: 10px;
 		}
@@ -959,8 +962,8 @@ h1#page-title {
 		legend{	display: none;}
 		.user-picture {
 			margin-left: 20px;
-            float: right;
-            max-width: 150px;
+			float: right;
+			max-width: 150px;
 			@media @768{
 				float: none;
 				margin: auto;
@@ -1068,15 +1071,15 @@ h1#page-title {
 		}
 	}
 	
-	 .field-name-field-job-title , .field-name-field-eng-code  , .field-name-field-address{
+	.field-name-field-job-title , .field-name-field-eng-code  , .field-name-field-address{
 		display: none;
 	}
 }
 .password-strength {
 	.absolute(initial;'';-4px;'';'';0);
-    float: left;
-    font-size: 13px;
-    margin: 0 !important;
+	float: left;
+	font-size: 13px;
+	margin: 0 !important;
 	.password-strength-text {
 		.absolute('';'';'';-50px;'';102%);
 		white-space: nowrap;
@@ -1090,7 +1093,7 @@ h1#page-title {
 	.password-strength-title {
 		display: none;
 	}
-	.password-indicator{ 
+	.password-indicator{
 		width: 250px;
 		background: #eee;
 		div {
@@ -1209,14 +1212,14 @@ p.description.profile-percent {
 	&.head-info{
 		margin-bottom: 50px;
 	}
-
+	
 }
 .linkedin-positions{
 	> h2 {
 		text-align: left;
 		.before(f0d7;'';35px;#0077b5);
 		&:before{
-			vertical-align: middle; 
+			vertical-align: middle;
 			margin: 0 15px 0 5px;
 		}
 	}
@@ -1264,8 +1267,8 @@ p.description.profile-percent {
 		position: relative;
 		tr{
 			border:none;
-			&.address-field-address_name , 
-			&.address-field-address , 
+			&.address-field-address_name ,
+			&.address-field-address ,
 			&.address-field-phone {
 				td:first-child{display: none;}
 				td:last-child{padding: 5px 0;}
@@ -1320,7 +1323,7 @@ p.description.profile-percent {
 	border-right: 3px solid #338ac7;
 }
 .list-address {
-  width: 100%;
+	width: 100%;
 }
 form#uc-addresses-get-address-form{
 	.user-edit-page-media();
@@ -1400,7 +1403,7 @@ form#uc-addresses-get-address-form{
 		.paper(z1);
 		width: 100%;
 		margin: 40px 0 0 15px;
-		@media @960{ margin: 0 0 15px 0; }		
+		@media @960{ margin: 0 0 15px 0; }
 		dt {
 			float: right;
 			width: 100px;
@@ -1416,18 +1419,18 @@ form#uc-addresses-get-address-form{
 }
 
 .page-user-bookmarks{
-    #block-system-main{
-        display:none;
-    }
-    #block-quicktabs-user-bookmark{
-        .block-title{
-            display: none;
-        }
-        .content{
-            margin-top: 20px;
-            box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-        }
-    }
+	#block-system-main{
+		display:none;
+	}
+	#block-quicktabs-user-bookmark{
+		.block-title{
+			display: none;
+		}
+		.content{
+			margin-top: 20px;
+			box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+		}
+	}
 }
 
 .view-relations{
@@ -1483,7 +1486,7 @@ form#uc-addresses-get-address-form{
 			}
 		}
 		.views-field-rid{
-		    margin: 5px 0px;
+			margin: 5px 0px;
 		}
 		
 	}
@@ -1536,7 +1539,7 @@ form#uc-addresses-get-address-form{
 		font-family: fanum;
 	}
 	.picture {
-	    display: inline-flex;
+		display: inline-flex;
 		white-space: nowrap;
 		img {
 			border-radius: 50%;
@@ -1547,7 +1550,7 @@ form#uc-addresses-get-address-form{
 		}
 		a {
 			&:before{
-			    content: "\f04d";
+				content: "\f04d";
 				font-family: mat;
 				font-size: 24px;
 				line-height: 45px;
