@@ -9,6 +9,7 @@ files/
 sites/*/files
 sites/*/private
 sites/default/
+en/
 
 # Ignore default text files
 robots.txt
