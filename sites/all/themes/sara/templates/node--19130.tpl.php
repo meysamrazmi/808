@@ -5,7 +5,7 @@
     <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره به صورت حضوری و آنلاین برگزار می شود.</p>
     <div class="first-row" style="margin-top: 40px;">
         <div>
-            <p>همایش آشنایی با آزمون ورود به حرفه داخلی و خارجی در رشته های عمران و معماری، صبح تا عصر سه شنبه ۲۹ خرداد ماه، به صورت آنلاین و حضوری در محل انجمن فارغ التحصیلان دانشگاه صنعتی شریف برگزار می شود.</p>
+            <p>همایش آشنایی با آزمون ورود به حرفه داخلی و خارجی در رشته های عمران و معماری، صبح تا عصر سه شنبه ۲۹ خرداد ماه، به صورت آنلاین و حضوری، توسط موسسه آموزشی مهندسی ۸۰۸ در محل انجمن فارغ التحصیلان دانشگاه صنعتی شریف برگزار می شود.</p>
             <p><strong> سرفصل های دوره:</strong></p>
             <ul>
                 <li>معرفی آزمون‌های ورود به حرفه داخل و خارج از کشور</li>
@@ -34,9 +34,10 @@
                         <div> دکتری معماری، استاد دانشگاه و مؤلف بیش از 60 جلد کتاب </div>
                     </div>
                 </div>
-                <div class="des-down"> ارزیابی و مقاوم‌سازی ساختمان‌های بتنی موجود و حل مثال با کمک نرم‌افزار  SeismoBuild و SeismoStruct (ارائه سمینار به زبان انگلیسی)
-                    <a href="http://civil808.com/sites/default/files/importviaftp/SeismoSoft-Civil808-Presentation-Feb%2C2018.pdf"> خلاصه ای از فایل سخنرانی
-                    </a>
+                <div class="des-down">
+                    آزمون معماری طراحی، همراه با معرفی ابزارهای کمکی قبولی در آزمون
+                    <!--<a href="http://civil808.com/sites/default/files/importviaftp/SeismoSoft-Civil808-Presentation-Feb%2C2018.pdf"> خلاصه ای از فایل سخنرانی
+                    </a>-->
                 </div>
             </div>
         </div>
@@ -52,9 +53,10 @@
                         <div> کارشناس ارشد سازه - مدرس دوره های ورود به حرفه </div>
                     </div>
                 </div>
-                <div class="des-down"> ارزیابی و مقاوم‌سازی ساختمان‌های بتنی موجود و حل مثال با کمک نرم‌افزار  SeismoBuild و SeismoStruct (ارائه سمینار به زبان انگلیسی)
-                    <a href="http://civil808.com/sites/default/files/importviaftp/SeismoSoft-Civil808-Presentation-Feb%2C2018.pdf"> خلاصه ای از فایل سخنرانی
-                    </a>
+                <div class="des-down">
+                    آزمون عمران (محاسبات-نظارت-اجرا) و آزمون معماری (نظارت-اجرا)، همراه با معرفی ابزارهای کمکی قبولی در آزمون
+                    <!--<a href="http://civil808.com/sites/default/files/importviaftp/SeismoSoft-Civil808-Presentation-Feb%2C2018.pdf"> خلاصه ای از فایل سخنرانی
+                    </a>-->
                 </div>
             </div>
         </div>
@@ -70,41 +72,43 @@
                         <div> کارشناس ارشد عمران خاک و پی - مشاوره جهت اخذ مدارک EIT و PE </div>
                     </div>
                 </div>
-                <div class="des-down"> ارزیابی و مقاوم‌سازی ساختمان‌های بتنی موجود و حل مثال با کمک نرم‌افزار  SeismoBuild و SeismoStruct (ارائه سمینار به زبان انگلیسی)
-                    <a href="http://civil808.com/sites/default/files/importviaftp/SeismoSoft-Civil808-Presentation-Feb%2C2018.pdf"> خلاصه ای از فایل سخنرانی
-                    </a>
+                <div class="des-down">
+                    آزمون‌های بین‌المللی (FE، PE، ARE)، همراه با معرفی ابزارهای کمکی قبولی در آزمون
+                    <!--<a href="http://civil808.com/sites/default/files/importviaftp/SeismoSoft-Civil808-Presentation-Feb%2C2018.pdf"> خلاصه ای از فایل سخنرانی
+                    </a>-->
                 </div>
             </div>
         </div>
-        <!--<div class="timebox time4">
-            <div class="moddat"> 10 دقیقه </div>
-            <div class="circle"></div>
-            <div class="line"></div>
-            <div class="description">
-                <div class="des-top">
-                    <img src="/sites/default/files/styles/200x200/public/pictures/picture-3285-1432283826.jpg?itok=f-JCzw4Y" alt="" width="100px" height="100px">
-                    <div class="des-left">
-                        <b> گروه سخنرانان	 </b>
-                        <div> پنل پرسش و پاسخ </div>
-                    </div>
-                </div>
-                <div class="des-down"> همراه با ارائه توضیحات تکمیلی از سایر نرم‌افزارهای کمپانی Seismosoft </div>
-            </div>
-        </div>-->
     </div>
 </section>
 
 <section class="second">
     <h2 class="text"> ثبت نام در همایش آشنایی با آزمون آمادگی ورود به حرفه داخلی و خارجی، رشته عمران و معماری </h2>
+    <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;"> علاوه بر این دوره شما می توانید در
+        <a href="/college/herfe" target="_blank" class="title"> ترم جاری ورود به حرفه </a>
+        ثبت نام کنید.
+    </p>
     <div class="tickets">
         <div>
-            <a href="/cart/add/p19131?destination=cart" target="_blank">
-                <!--<div class="city-name"><span>دوره جامع آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها</span></div>-->
+            <a href="/cart/add/p19131_a63o196?destination=cart" target="_blank">
+                <div class="city-name"><span>ثبت نام در دوره به صورت حضوری</span></div>
                 <div class="inner-text">
-                    <p class="text"> برنامه زمان بندی و نام اساتید را می توانید در بخش بالا مشاهده کنید </p>
+                    <!--<p class="text"> برنامه زمان بندی و نام اساتید را می توانید در بخش بالا مشاهده کنید </p>-->
                     <p style="padding: 9px 12px 0px 0px;">به همراه پذیرایی</p>
                     <div class="tarikh">سه شنبه 29 خرداد ماه 1397</div>
                     <div class="makan"> دانشگاه صنعتی شریف، سالن انجمن فارغ التحصیلان </div>
+                    <div class="zaman"> صبح تا عصر </div>
+                    <div class="mablagh"> 10,000 تومان </div>
+                </div>
+                <span class="sabtenam"> ثبت نام </span>
+            </a>
+            <a href="/cart/add/p19131_a63o197?destination=cart" target="_blank">
+                <div class="city-name"><span>ثبت نام در دوره به صورت آنلاین</span></div>
+                <div class="inner-text">
+                    <!--<p class="text"> برنامه زمان بندی و نام اساتید را می توانید در بخش بالا مشاهده کنید </p>-->
+                    <p style="padding: 9px 12px 0px 0px;">به همراه ارسال فیلم وبینار به ایمیل ثبت نام کنندگاه بعد از برگزاری همایش</p>
+                    <div class="tarikh">سه شنبه 29 خرداد ماه 1397</div>
+                    <div class="makan"> ارسال لینک ورود به وبینار زنده </div>
                     <div class="zaman"> صبح تا عصر </div>
                     <div class="mablagh"> 10,000 تومان </div>
                 </div>
@@ -193,28 +197,6 @@
     </div>
 </section>
 
-<!--<section class="third">
-    <h2> دوره های آنلاین در حال ثبت نام </h2>
-    <div class="inside">
-        <a href="/node/17448" target="_blank">
-            <span class="icon"></span>
-            <div class="esm">ثبت نام در دوره آنلاین مقاوم سازی و بهسازی لرزه ای کاربردی سازه های موجود</div>
-        </a>
-        <a target="_blank" href="/node/17449">
-            <span class="icon"></span>
-            <div class="esm">ثبت نام در دوره حضوری جامع طراحی عملکردی و بهسازی لرزه ای با نرم افزار SAP2000</div>
-        </a>
-        <a href="/node/5558" target="_blank">
-            <span class="icon"></span>
-            <div class="esm"> ثبت نام در دوره جامع طراحی عملکردی و بهسازی لرزه‌ای با نرم‌افزار SAP2000 </div>
-        </a>
-        <a target="_blank" href="/college/course-vip">
-            <span class="icon"></span>
-            <div class="esm"> ثبت نام در کلاس ها و مشاوره های خصوصی </div>
-        </a>
-    </div>
-</section>-->
-
 <section class="plus808">
     <div class="inner">
         <h2>  ثبت نام در کلاس ها و مشاوره های خصوصی </h2>
@@ -224,29 +206,30 @@
     </div>
 </section>
 
-<section class="fifth">
-    <div class="mojri">
-        <h2> برگزارکننده </h2>
-        <img src="/sites/all/themes/sara/images/808-logo.png" width="200px" height="auto">
-        <h3> موسسه آموزشی مهندسی 808 </h3><a href="http://seismosoft.com/contacts" target="_blank"> نماینده رسمی شرکت SeismoSoft در ایران </a>
+<section class="third">
+    <h2> آموزش های آمادگی ورود به حرفه </h2>
+    <div class="inside">
+        <a href="/eng" target="_blank">
+            <span class="icon"></span>
+            <div class="esm">صفحه اختصاصی ورود به حرفه</div>
+        </a>
+        <a href="/college/herfe" target="_blank">
+            <span class="icon"></span>
+            <div class="esm">دوره های آنلاین ورود به حرفه</div>
+        </a>
+        <a href="/landing/exam" target="_blank">
+            <span class="icon"></span>
+            <div class="esm">آزمون های آزمایشی</div>
+        </a>
+        <a href="http://civil808.com/shop/product/p/mefibs-form-f-quiz/0__2250/mefibs-form-f-sort_by/sticky/mefibs-form-f-sort_order/DESC/mefibs-form-f-items_per_page/24/mefibs-form-f-mefibs_block_id/f" target="_blank">
+            <span class="icon"></span>
+            <div class="esm">فروشگاه محصولات مرتبط</div>
+        </a>
+        <a target="_blank" href="/taxonomy/term/2212">
+            <span class="icon"></span>
+            <div class="esm">گالری فیلم های آموزشی</div>
+        </a>
     </div>
-    <!--<div class="hamin">
-        <h2> حامیان </h2>
-        <div class="logos">
-            <div>
-                <img src="/sites/all/themes/sara/images/logo-seismosoft.png" width="250px" height="auto" style="margin-bottom: 17px;">
-                <a style="color:black" href="http://www.seismosoft.com/" target="_blank">
-                    <h3>شرکت SeismoSoft</h3>
-                </a>
-            </div>
-            <div>
-                <img src="/sites/all/themes/sara/images/logo-behsaz.png" width="125px" height="auto">
-                <a style="color:black" href="http://www.behsazandishan.com/" target="_blank">
-                    <h3>شرکت مهندسی بهساز اندیشان تهران</h3>
-                </a>
-            </div>
-        </div>
-    </div>-->
 </section>
 
 <style>
@@ -264,9 +247,6 @@
     }
     #more-data li{
         line-height:29px;
-    }
-    .tickets > div > a:nth-child(2){
-        width: 700px;
     }
     .mediaelement-download-link a{
         font-size:0px;
@@ -506,10 +486,10 @@
             top: 28px;
         }
         .timebox.time3 .circle:after {
-            height: 112px;
+            height: 0px;
         }
         .timebox.time2 .circle:after {
-            height: 102px;
+            height: 125px;
         }
         .timebox.time4 .circle:after {
             display:none;
@@ -545,13 +525,13 @@
             height: 30px;
         }
         .timebox.time1 .circle:after {
-            height: 212px;
+            height: 205px;
         }
         .timebox.time2 .circle:after {
-            height: 188px;
+            height: 211px;
         }
         .timebox.time3 .circle:after {
-            height: 177px;
+            height: 0px;
         }
         .des-left {
             text-align: center;
@@ -724,7 +704,7 @@
     }
     .tickets a{
         display: inline-flex;
-        width: 640px;
+        width: 500px;
         padding: 15px;
         background: #fff;
         border-radius: 5px;
@@ -732,7 +712,7 @@
         color: #555 !important;
         min-height: 150px;
         align-items: stretch;
-        margin: 10px 15px;
+        margin: 38px 15px 14px 15px;
         position: relative;
         z-index: 10;
         text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff;
@@ -829,7 +809,7 @@
         z-index: -1;
     }
     section.third {
-        padding: 70px 50px 50px;
+        padding: 70px 50px 80px;
         z-index: 3;
         text-align: center;
     }
@@ -843,7 +823,7 @@
         background-color: #fff;
         border-radius: 50%;
         height: 200px;
-        margin: 20px 4%;
+        margin: 20px 1%;
         box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
         vertical-align: top;
     }
@@ -865,22 +845,24 @@
         margin-bottom: 12px;
     }
     section.third a .icon:before {
-        margin-top: 25px;
+        margin: 44px 0 20px 0;
         display: block;
         color: #9c27b0;
-        content: '\f517';
+        content: "\f428";
         font-family: mat;
-        font-size: 49px;
+        font-size: 62px;
     }
     section.third a:nth-child(2) .icon:before {
-        content: '\f428';
+        content: "\f517";
     }
     section.third a:nth-child(3) .icon:before {
-        content: "\f3e1";
+        content: "\f3ed";
     }
-    section.third a:first-child .icon:before {
-        content: "\f379";
-        font-size: 43px;
+    section.third a:nth-child(4) .icon:before {
+        content: "\f111";
+    }
+    section.third a:nth-child(5) .icon:before {
+        content: "\f22f";
     }
     .logos{
         text-align: center;

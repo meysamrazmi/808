@@ -75,7 +75,7 @@
                     <p style="padding: 9px 12px 0px 0px;">شامل پذیرایی ناهار</p>
                     <div class="tarikh">5 و 6 تیر ماه 1397</div>
                     <div class="makan"> دانشگاه صنعتی شریف، سالن انجمن فارغ التحصیلان </div>
-                    <div class="zaman"> 20 ساعت </div>
+                    <div class="zaman"> ساعت 8 تا 19 (جمعا 20 ساعت) </div>
                     <div class="mablagh"> 400,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
