@@ -101,12 +101,25 @@ function list_of_contents_version_one($type , $language ,  $page , $custom_list 
         }
         else $contents = array();
     }
+    if($type == "podcast"){
+        $query->leftJoin("field_data_field_image" , "field_image" , "node.nid = field_image.entity_id and field_image.delta = 1 and field_image.bundle = 'podcast'");
+        $query->leftJoin("file_managed" , "file_image" , "field_image.field_image_fid = file_image.fid");
+        $query->leftJoin("field_data_field_episode" , "field_episode" , "node.nid = field_episode.entity_id and field_episode.bundle = 'podcast'");
+        $query->leftJoin("file_managed" , "file_episode" , "field_episode.field_episode_fid = file_episode.fid");
+        $query->leftJoin("field_data_field_episode_remote" , "episode_remote" , "node.nid = episode_remote.entity_id and episode_remote.bundle = 'podcast'");
+        $query->addField('file_image' , 'uri' , 'picture');
+        $query->addField('file_episode' , 'uri' , 'audio');
+        $query->addField('episode_remote' , 'field_episode_remote_value' , 'audio_remote');
+        $query->orderBy("node.nid" , "DESC");
+        $query->range($page*24, 24);
+        $contents = $query->execute()->fetchAll();
+    }
     else {
         /*
      * @todo
      * return other node type
      * */
-        return ["content" => array()];
+        $contents =  array();
     }
 
 
