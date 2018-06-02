@@ -56,11 +56,11 @@ function front_news(){
 }
 
 function retrieve_a_news_version_one($nid){
-    $query = db_select('node' , 'node');
-    $query->leftJoin('field_data_body', 'body', 'body.entity_id = node.nid');
-    $query->leftJoin('field_data_field_eventtime', 'eventtime', 'eventtime.entity_id = node.nid');
-    $query->leftJoin('field_data_field_company', 'company', 'company.entity_id = node.nid');
-    $query->leftJoin('field_data_field_ifwebinar', 'ifwebinar', 'ifwebinar.entity_id = node.nid');
+    $query = db_select("node" , "node");
+    $query->leftJoin("field_data_body", "body", "body.entity_id = node.nid body.bundle = 'article' ");
+    $query->leftJoin("field_data_field_eventtime", "eventtime", "eventtime.entity_id = node.nid and eventtime.bundle = 'article' ");
+    $query->leftJoin("field_data_field_company", "company", "company.entity_id = node.nid  and company.bundle = 'article' ");
+    $query->leftJoin("field_data_field_ifwebinar", "ifwebinar", "ifwebinar.entity_id = node.nid  and ifwebinar.bundle = 'article' ");
     $query->fields('node' , array('title'));
     $query->fields('body' , array('body_value'));
     $query->fields('eventtime' , array('field_eventtime_value'));

@@ -52,16 +52,12 @@ function list_of_contents_version_one($type , $language ,  $page , $custom_list 
 
     if($type == "publication"){
         /*add price, author name to e-book*/
-        $query->join('field_data_field_point_needed' , 'price' , 'node.nid = price.entity_id');
-        $query->leftJoin('profile' , 'profile' , 'profile.uid = node.uid');
-        $query->join('field_data_field_full_name' , 'name' , 'name.entity_id = profile.pid');
-        $query->addField('price' , 'field_point_needed_value' , 'price');
-        $query->addField('name' , 'field_full_name_value' , 'author_name');
-        $query->condition('price.bundle', 'publication');
-        $query->condition('profile.type', 'main');
-        $query->condition('name.entity_type' , 'profile2');
-        $query->condition('name.bundle' , 'main');
-        $query->orderBy('node.nid' , 'DESC');
+        $query->join("field_data_field_point_needed" , "price" , "node.nid = price.entity_id  and price.bundle = 'publication'");
+        $query->leftJoin("profile" , "profile" , "profile.uid = node.uid and profile.type = 'main'");
+        $query->join("field_data_field_full_name" , "name" , "name.entity_id = profile.pid and name.entity_type = 'profile2' and name.bundle = 'main'");
+        $query->addField("price" , "field_point_needed_value" , "price");
+        $query->addField("name" , "field_full_name_value" , "author_name");
+        $query->orderBy("node.nid" , "DESC");
         if(!empty($custom_list)) $query->condition('node.nid' , $custom_list , 'IN');
         else $query->range($page*24 , 24);
         $db_contents = $query->execute()->fetchAll();
@@ -75,11 +71,10 @@ function list_of_contents_version_one($type , $language ,  $page , $custom_list 
             }
 
             /*add e-book image*/
-            $query = db_select('file_managed', 'image');
-            $query->join('field_data_field_image', 'field_image', 'image.fid = field_image.field_image_fid');
+            $query = db_select("file_managed", "image");
+            $query->join("field_data_field_image", "field_image", "image.fid = field_image.field_image_fid and field_image.bundle = 'publication'");
             $query->addField('image', 'uri', 'picture');
             $query->addField('field_image', 'entity_id', 'nid');
-            $query->condition('field_image.bundle', 'publication');
             $query->condition('field_image.entity_id', $nids, 'IN');
             $results = $query->execute()->fetchAll();
             foreach ($results as $row) {
@@ -101,7 +96,7 @@ function list_of_contents_version_one($type , $language ,  $page , $custom_list 
         }
         else $contents = array();
     }
-    if($type == "podcast"){
+    elseif($type == "podcast"){
         $query->leftJoin("field_data_field_image" , "field_image" , "node.nid = field_image.entity_id and field_image.delta = 1 and field_image.bundle = 'podcast'");
         $query->leftJoin("file_managed" , "file_image" , "field_image.field_image_fid = file_image.fid");
         $query->leftJoin("field_data_field_episode" , "field_episode" , "node.nid = field_episode.entity_id and field_episode.bundle = 'podcast'");
@@ -127,13 +122,12 @@ function list_of_contents_version_one($type , $language ,  $page , $custom_list 
 }
 
 function retrieve_a_content_version_one($nid){
-    $query = db_select('node' , 'node');
-    $query->leftJoin('field_data_body' , 'body' , 'node.nid = body.entity_id');
+    $query = db_select("node" , "node");
+    $query->leftJoin("field_data_body" , "body" , "node.nid = body.entity_id and body.bundle = 'publication'");
     $query->fields('node' , array('nid' , 'type' , 'title' , 'uid' , 'changed'));
     $query->addField('body' , 'body_value' , 'body');
     $query->condition('node.status' , 1);
     $query->condition('node.nid' , $nid);
-    $query->condition('body.bundle', 'publication');
     $node = $query->execute()->fetch();
 
     if(empty($node) || count($node) == 0) return ["ebook" => $node];
@@ -143,21 +137,17 @@ function retrieve_a_content_version_one($nid){
 
     if($node->type == "publication"){
         /*add publish_file to e-book*/
-        $query = db_select('field_data_field_publish_file' , 'field_file_published');
-        $query->join('file_managed' , 'file_published' , 'field_file_published.field_publish_file_fid = file_published.fid');
+        $query = db_select("field_data_field_publish_file" , "field_file_published");
+        $query->join("file_managed" , "file_published" , "field_file_published.field_publish_file_fid = file_published.fid and field_file_published.bundle = 'publication' and field_file_published.entity_id = " . $nid);
         $query->addField('field_file_published' , 'entity_id' , 'nid');
         $query->addField('file_published' , 'uri' , 'sample_file');
-        $query->condition('field_file_published.entity_id' , $nid);
-        $query->condition('field_file_published.bundle', 'publication');
         $sample_file = $query->execute()->fetch();
         $node->sample_file = $sample_file->sample_file;
 
         /*add field about author to e-book*/
-        $query = db_select('field_data_field_about_me' , 'about_me');
-        $query->join('profile' , 'profile' , 'profile.pid = about_me.entity_id');
+        $query = db_select("field_data_field_about_me" , "about_me");
+        $query->join("profile" , "profile" , "profile.pid = about_me.entity_id and profile.type = 'main' and profile.uid = " . $node->uid);
         $query->addField('about_me' , 'field_about_me_value' , 'about_author');
-        $query->condition('profile.uid' , $node->uid);
-        $query->condition('profile.type' , 'main');
         $query->condition('about_me.entity_type' , 'profile2');
         $query->condition('about_me.bundle' , 'main');
         $about_author = $query->execute()->fetch();
@@ -198,13 +188,12 @@ function retrieve_a_content_version_one($nid){
             (isset($price) && (empty($price) || ($price->price == 0))) ||
             (isset($vip) && !empty($vip) && in_array('Vip' , $user->roles))
             ){
-            $query = db_select('field_data_field_files' , 'field_file');
-            $query->join('file_managed' , 'file' , 'field_file.field_files_fid = file.fid');
+            $query = db_select("field_data_field_files" , "field_file");
+            $query->join("file_managed" , "file" , "field_file.field_files_fid = file.fid and file.filemime = 'application/pdf' ");
             $query->fields('file', array('uri' , 'filesize'));
             $query->condition('field_file.entity_id', $nid);
             $query->condition('field_file.entity_type', 'node');
             $query->condition('field_file.bundle', 'publication');
-            $query->condition('file.filemime', 'application/pdf');
             $files = $query->execute()->fetchAll();
 
             if(!empty($files)){

@@ -425,17 +425,92 @@ function developer()
 {
 //    $new_hash = hash_hmac("sha256" , "content" , "@Civil808Android@Saze808@" , false);
 //    adump($new_hash);
+/*
+    $node = node_load(887);
+    switch ($node->type){
+        case 'designteam' :
+            $query = db_select("field_data_field_maghalat" , "pedia");
+            $query->condition('pedia.field_maghalat_nid' , $node->nid);
+            break;
+        case 'article' :
+            $query = db_select("field_data_field_akhbar" , "pedia");
+            $query->condition('pedia.field_akhbar_nid' , $node->nid);
+            break;
+        case 'publication' :
+            $query = db_select("field_data_field_entesharat" , "pedia");
+            $query->condition('pedia.field_entesharat_nid' , $node->nid);
+            break;
+        case 'gallerynew' :
+            $query = db_select("field_data_field_porojhe" , "pedia");
+            $query->condition('pedia.field_porojhe_nid' , $node->nid);
+            break;
+        case 'product' :
+            $query = db_select("field_data_field_shopproduct" , "pedia");
+            $query->condition('pedia.field_shopproduct_nid' , $node->nid);
+            break;
+        case 'podcast' :
+            $query = db_select("field_data_field_podcast808" , "pedia");
+            $query->condition('pedia.field_podcast808_nid' , $node->nid);
+            break;
+        case 'education || college' :
+            $query = db_select("field_data_field_edu_college" , "pedia");
+            $query->condition('pedia.field_edu_college_nid' , $node->nid);
+            break;
+        case 'film' :
+            $query = db_select("field_data_field_filmmortabet" , "pedia");
+            $query->condition('pedia.field_filmmortabet_nid' , $node->nid);
+            break;
+        default:
+            return 0;
+    }
 
-    $query = db_select('field_data_field_files' , 'field_file');
-//    $query->join('file_managed' , 'file' , 'field_file.field_files_fid = file.fid');
-    $query->fields('field_file' , array('entity_id'));
-//    $query->fields('file', array('uri' , 'filesize'));
-    $query->condition('field_file.entity_id', 596);
-//            $query->condition('field_file.entity_type', 'node');
-//            $query->condition('field_file.bundle', 'publication');
-//            $query->condition('file.filemime', 'application/pdf');
-    $files = $query->execute()->fetchAll();
-    adump($files);
+    $query->fields('pedia' , array('entity_id'));
+    $result = $query->execute()->fetchAll();
+
+    $pedias = array();
+    foreach ($result as $row) array_push($pedias , $row->entity_id);
+
+    $query = db_select('field_data_field_experts' , 'pedia_expert');
+    $query->join('field_data_field_experts' , 'question_expert' , 'pedia_expert.field_experts_tid = question_expert.field_experts_tid');
+    $query->condition('pedia_expert.bundle' , 'architect');
+    $query->condition('pedia_expert.entity_id' , $pedias , 'IN');
+    $query->condition('question_expert.bundle' , 'questions');
+    $query->fields('question_expert' , array('entity_id'));
+    $result = $query->execute()->fetchAll();
+
+    $questions_nid= array();
+    foreach ($result as $row) array_push($questions_nid , $row->entity_id);
+
+    $query = db_select('node' , 'node');
+    $query->fields('node' , array('nid' ,'title'));
+    $query->condition('node.nid' , $questions_nid , 'IN');
+    $query->orderBy('node.nid' , 'DESC');
+    $query->range(0, 3);
+    $questions = $query->execute()->fetchAll();
+
+    /*
+    foreach($questions as $row) {
+        print $row->title;
+        print '<br/>';
+    }*/
+
+
+    $query = db_select('node' , 'node');
+    $query->fields('node' , array('nid' , 'type' , 'title' , 'uid' , 'changed'));
+    $query->condition('node.status' , 1);
+    $query->condition('node.language' , 'fa');
+    $query->condition('node.type' , 'podcast');
+    $query->leftJoin("field_data_field_episode_remote" , "episode_remote" , "node.nid = episode_remote.entity_id and episode_remote.bundle = 'podcast'");
+    $query->leftJoin("field_data_field_image" , "field_image" , "node.nid = field_image.entity_id and field_image.delta = 1 and field_image.bundle = 'podcast'");
+    $query->leftJoin("file_managed" , "file_image" , "field_image.field_image_fid = file_image.fid");
+    $query->leftJoin("field_data_field_episode" , "field_episode" , "node.nid = field_episode.entity_id and field_episode.bundle = 'podcast'");
+    $query->leftJoin("file_managed" , "file_episode" , "field_episode.field_episode_fid = file_episode.fid");
+    $query->addField('file_image' , 'uri' , 'picture');
+    $query->addField('file_episode' , 'uri' , 'audio');
+    $query->addField('episode_remote' , 'field_episode_remote_value' , 'audio_remote');
+    $query->orderBy("node.nid" , "DESC");
+    $contents = $query->execute()->fetchAll();
+    adump($contents);
     die();
 
 }
