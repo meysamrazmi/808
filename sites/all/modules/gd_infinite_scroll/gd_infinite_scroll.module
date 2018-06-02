@@ -81,7 +81,7 @@ function gd_infinite_scroll_menu() {
 
   $infinite_scroll_menu = array(
     'file' => 'includes/gd_infinite_scroll.admin.inc',
-    'file path' => drupal_get_path('module', 'infinite_scroll'),
+    'file path' => drupal_get_path('module', 'gd_infinite_scroll'),
     'access arguments' => array('edit gd infinite scroll settings'),
     'menu' => 'management',
     'type' => MENU_NORMAL_ITEM,
