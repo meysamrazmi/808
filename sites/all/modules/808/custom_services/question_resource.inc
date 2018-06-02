@@ -28,6 +28,26 @@ function question_resource_edit($hash , $nid , $question , $version){
     }
     return services_error(t('This version is not supported'), 11);
 }
+function question_resource_delete($hash , $nid , $version){
+    if(!(hash_true($hash , "question"))) return services_error(t('Failed to access'), 10);
+    if($version == 0){
+        global $user;
+        $node = db_select("node")
+            ->fields("node" , array("nid" , "uid"))
+            ->condition("nid" , $nid)
+            ->condition("type" , "questions")
+            ->execute()->fetch();
+        if(!empty($node)){
+            if($user->uid == $node->uid || in_array('administrator' , $user->roles))
+                node_delete($nid);
+            else
+                return services_error(t('You have not permission to this action!'), 18);
+        }
+        else return services_error(t('Wrong Nid!'), 16);
+        return true;
+    }
+    return services_error(t('This version is not supported'), 11);
+}
 function question_resource_follow($hash , $nid , $data , $version){
     if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 10);
     if($version == 0){
