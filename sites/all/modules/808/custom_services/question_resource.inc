@@ -42,12 +42,39 @@ function question_resource_vote($hash , $nid , $data , $version){
     }
     return services_error(t('This version is not supported'), 11);
 }
+function question_resource_search($hash , $value , $version){
+    if(!(hash_true($hash , "question"))) return services_error(t('Failed to access'), 10);
+
+    if($version == 0) {
+        $query = db_select("node", "node");
+        $query->fields('node', array('nid'));
+        $query->condition('node.title', '%' . $value . '%', 'LIKE');
+        $query->condition('node.type' , 'questions');
+        $nid1 = $query->execute()->fetchAll();
+
+        $query = db_select("field_data_body", "body");
+        $query->addField('body', 'entity_id', 'nid');
+        $query->condition('body.body_value', '%' . $value . '%', 'LIKE');
+        $query->condition('body.entity_type' , 'node');
+        $query->condition('body.bundle' , 'questions');
+        $nid2 = $query->execute()->fetchAll();
+
+        $nids = array_merge($nid1, $nid2);
+        $custom_list = array();
+        foreach ($nids as $row) array_push($custom_list, $row->nid);
+        if(!empty($custom_list))
+            return list_of_questions_version_one("all_questions" , 0 , $custom_list);
+        else
+            return ["questions" => array()];
+    }
+    return services_error(t('This version is not supported'), 11);
+}
 
 /*------------------------index-----------------------------------*/
-function list_of_questions_version_one($domain , $page){
+function list_of_questions_version_one($domain , $page , $custom_list = array()){
     switch ($domain){
         case "all_questions" :
-            $query = all_questions();
+            $query = all_questions($custom_list);
             break;
         case "my_questions" :
             $query = my_questions();
@@ -67,7 +94,7 @@ function list_of_questions_version_one($domain , $page){
     }
     if($query != null){
         $query->orderBy('changed', 'DESC');
-        $query->range($page*10, 10);
+        if(empty($custom_list))$query->range($page*10, 10);
         $results = $query->execute()->fetchAll();
     }
     else return ["questions" => array()];
@@ -131,13 +158,14 @@ function list_of_questions_version_one($domain , $page){
     }
     return ["questions" => $questions];
 }
-function all_questions(){
+function all_questions($custom_list){
     $query = db_select('node' , 'node');
     $query->leftJoin('field_data_body' , 'body' , 'node.nid = body.entity_id');
     $query->fields('node' , array('nid' , 'uid' , 'title' , 'created' , 'changed' , 'status'));
     $query->addField('body' , 'body_value' , 'body');
     $query->condition('node.type', 'questions');
     $query->condition('node.status', 1);
+    if(!empty($custom_list))$query->condition('node.nid' , $custom_list, 'IN');
     return $query;
 }
 function my_questions(){
