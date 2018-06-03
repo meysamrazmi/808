@@ -52,33 +52,33 @@ function sara_preprocess_html(&$variables) {
   //adding less files based on their addresses to have a faster loading
   switch($aliases[0]){
 	case 'user':
-		drupal_add_css(drupal_get_path('theme', 'sara') . '/less/user-pages.css.less');
+		drupal_add_css(drupal_get_path('theme', 'sara') . '/css/less/user-pages.min.css');
 		break;
 	case 'shop':
-		drupal_add_css(drupal_get_path('theme', 'sara') . '/less/shop-pages.css.less');
+		drupal_add_css(drupal_get_path('theme', 'sara') . '/css/less/shop-pages.min.css');
 		break;
 	case 'college':
-		drupal_add_css(drupal_get_path('theme', 'sara') . '/less/college-pages.css.less');
+		drupal_add_css(drupal_get_path('theme', 'sara') . '/css/less/college-pages.min.css');
 		break;
 	case 'colleges':
-		drupal_add_css(drupal_get_path('theme', 'sara') . '/less/college-pages.css.less');
+		drupal_add_css(drupal_get_path('theme', 'sara') . '/css/less/college-pages.min.css');
 		break;
 	case 'gallery':
-		drupal_add_css(drupal_get_path('theme', 'sara') . '/less/gallery-pages.css.less');
+		drupal_add_css(drupal_get_path('theme', 'sara') . '/css/less/gallery-pages.min.css');
 		break;
 	case 'pedia':
-		drupal_add_css(drupal_get_path('theme', 'sara') . '/less/pedia-pages.css.less');
+		drupal_add_css(drupal_get_path('theme', 'sara') . '/css/less/pedia-pages.min.css');
 		break;
 	case 'moshaver':
-		drupal_add_css(drupal_get_path('theme', 'sara') . '/less/landing-pages.css.less');
+		drupal_add_css(drupal_get_path('theme', 'sara') . '/css/less/landing-pages.min.css');
 		break;
 	case 'landing':
-		drupal_add_css(drupal_get_path('theme', 'sara') . '/less/landing-pages.css.less');
+		drupal_add_css(drupal_get_path('theme', 'sara') . '/css/less/landing-pages.min.css');
 		break;
 	case 'question':
-		drupal_add_css(drupal_get_path('theme', 'sara') . '/less/question-pages.css.less');
-		drupal_add_css(drupal_get_path('theme', 'sara') . '/less/mh.css.less');
-		drupal_add_js(drupal_get_path('theme', 'sara') . '/js/question-pages.js');
+		drupal_add_css(drupal_get_path('theme', 'sara') . '/css/less/question-pages.min.css');
+		drupal_add_css(drupal_get_path('theme', 'sara') . '/ss/less/mh.min.css');
+		drupal_add_js(drupal_get_path('theme', 'sara') . '/js/question-pages.min.js');
 		break;
   }
   if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') || strpos($_SERVER['HTTP_USER_AGENT'], 'Trident/7')){
