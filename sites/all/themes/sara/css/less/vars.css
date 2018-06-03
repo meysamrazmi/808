@@ -1,0 +1,12 @@
+/*medias*/ 
+/*mixins*/
+.no-acrollbar::-webkit-scrollbar {
+  height: 0px;
+  width: 0px;
+}
+.no-paper {
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+}
+/*--------------------------------webkits-----------------------------*/

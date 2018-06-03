@@ -1,4 +1,4 @@
-/* 
+/*
  * variable section
  */
 /*colors*/
@@ -12,7 +12,7 @@
 /*paddings*/
 @pad: 15px; 
 @pad-wid: 0 15px; 
-@pad-heig: 15px 0; 
+@pad-heig: 15px 0;
 
 /*medias*/
 @1280 : ~"all and (min-width: 1280px)";
@@ -659,6 +659,9 @@
 		margin-bottom: 0px !important;
 		padding-bottom: 1px;
 	}
+	ul li.leaf.active a:hover:after{
+		&:extend(.region-highlight #block-menu-menu-courses-topics--2 li.leaf a:hover:after);
+	}
 	li.leaf{
 		display: inline-block;
 		width: 10%;
@@ -687,7 +690,7 @@
 				right: 50%;
 				transition: all 0.4s ease;
 			}
-			&:hover:after:extend(.region-highlight #block-menu-menu-courses-topics--2 ul li.leaf.active a:hover:after){
+			&:hover:after{
 				width: 100%;
 				right: 0;
 			}
