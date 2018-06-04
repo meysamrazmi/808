@@ -62,10 +62,13 @@
 
 <section class="second">
     <h2 class="text"> ثبت نام در دوره جامع آموزش اصول محاسبات + حل مثال عملی با نرم افزارهای SeismoSoft و CSI </h2>
-	<div class="takhfifat">
+	<div class="takhfifat" style="margin-bottom: 15px;">
         <p>
             <span>10 %</span>تخفیف برای اعضای VIP، <a href="/landing/vip" target="_blank">عضو ویژه شوید</a>        </p>
 	</div>
+    <div class="takhfifat">
+        <p>و<span>5 %</span> تخفیف به ازای اضافه شدن هر نفر تا سقف 20 درصد</p>
+    </div>
 	<div class="tickets">
 		<div>
             <a href="/cart/add/p19074_a62o194?destination=cart" target="_blank">
@@ -132,6 +135,10 @@
                 <a href="http://seismosoft.com/contacts" rel="nofollow" target="_blank">نماینده رسمی شرکت Seismosoft در ایران</a>
                 ،امکان تهیه نسخه کامل این نرم‌افزار تجاری را در ایران برای علاقه‌مندان (کلیه شرکت‌های مشاوره در زمینه طراحی و مقاوم‌سازی سازه‌ها) فراهم آورد.
                 برای خرید نرم افزار های SeismoBuild 2018 و SeismoStruct 2018 می توانید با این شماره  02188272694 تماس بگیرید.
+                <br>
+                <a href="/node/19157" target="_blank">
+                    آخرین ورژن نرم افزار های Seismosoft منطبق با آیین نامه ASCE آمریکا منتشر شد (نسخه ۲۰۱۸)
+                </a>
             </p>
             <div>
                 <div> قیمت نرم افزار SeismoBuild 2018 به یورو : </div>
@@ -182,6 +189,12 @@
     </div>
     <div class="hamin">
         <h2> حامیان </h2>
+        <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;margin-bottom: 35px;">
+            برای مشاهده "اطلاعیه دعوت به همکاری از کلیه شرکت های فعال در حوزه مقاوم سازی و بهسازی لرزه ای سازه ها"
+            <a href="/node/19152" target="_blank">
+              کلیک کنید.
+            </a>
+        </p>
         <div class="logos">
             <div>
                 <img src="/sites/all/themes/sara/images/logo-seismosoft.png" width="250px" height="auto" style="margin-bottom: 17px;">
@@ -553,7 +566,7 @@
     }
     .hamin h2 {
         margin-top: 95px;
-        margin-bottom: 80px;
+        margin-bottom: 35px;
     }
     section.third h2 {
         text-align: center;
