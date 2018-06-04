@@ -1,4 +1,4 @@
-/*  
+/* 
  * imports section
  */
 /*medias*/
@@ -1706,14 +1706,14 @@ body:not(.uid-10628):not(.uid-3300):not(.uid-3989) .admin-error {
 }
 #page-moshaver .pane-tags-content .views-slideshow-controls-top {
   position: absolute;
-  width: calc(100% + 100px);
+  width: calc(100% - -100px);
   height: 100%;
   right: -50px;
 }
 #page-moshaver .pane-tags-content .views-slideshow-controls-text {
   position: absolute;
   width: 100%;
-  height: calc(100% + 50px);
+  height: calc(100% - -50px);
   margin-top: -25px;
   background: #f9f9f9;
   border-width: 1px 0;

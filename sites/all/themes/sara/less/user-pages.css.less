@@ -332,11 +332,11 @@ h1#page-title {
 	display: none;
 }
 .pane-page-tabs {
-	.absolute('';'';'';calc(~"50% - 50vw - 0px");-42px);
+	.absolute('';'';'';calc(~"50% - 50vw");-42px);
 	background: #eee;
 	z-index: 0;
 	width: 100vw;
-	padding: 0 calc(~"50vw - 50% + 180px") 0 calc(~"50vw - 50% - 0px");
+	padding: 0px calc(~"50vw - 50% - -180px") 0px calc(~"50vw - 50%");
 	ul {
 		margin: 0;
 		padding: 0;
@@ -366,7 +366,7 @@ h1#page-title {
 		}
 	}
 	@media @600{
-		padding: ~"0 calc(50vw - 50% + 110px) 0 calc(50vw - 50% - 5px)";
+		padding: ~"0 calc(50vw - 50% - -110px) 0 calc(50vw - 50% - 5px)";
 	}
 }
 &.profile {
