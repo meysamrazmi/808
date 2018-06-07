@@ -27,18 +27,20 @@
             <div class="circle"></div>
             <div class="line"></div>
             <div class="description">
-                <div class="des-top">
-                    <img src="/sites/default/files/attachfromftp/node-19130/seddigh.jpg" alt="دکتر مرتضی صدیق" width="100px" height="100px">
-                    <div class="des-left">
-                        <b> مرتضی صدیق </b>
-                        <div> دکتری معماری، استاد دانشگاه و مؤلف بیش از 60 جلد کتاب </div>
+                <a href="/node/14544" style="color: black" target="_blank">
+                    <div class="des-top">
+                        <img src="/sites/default/files/attachfromftp/node-19130/seddigh.jpg" alt="دکتر مرتضی صدیق" width="100px" height="100px">
+                        <div class="des-left">
+                            <b> مرتضی صدیق </b>
+                            <div> دکتری معماری، استاد دانشگاه و مؤلف بیش از 60 جلد کتاب </div>
+                        </div>
                     </div>
-                </div>
-                <div class="des-down">
-                    آزمون معماری طراحی، همراه با معرفی ابزارهای کمکی قبولی در آزمون
-                    <!--<a href="http://civil808.com/sites/default/files/importviaftp/SeismoSoft-Civil808-Presentation-Feb%2C2018.pdf"> خلاصه ای از فایل سخنرانی
-                    </a>-->
-                </div>
+                    <div class="des-down">
+                        آزمون معماری طراحی، همراه با معرفی ابزارهای کمکی قبولی در آزمون
+                        <!--<a href="http://civil808.com/sites/default/files/importviaftp/SeismoSoft-Civil808-Presentation-Feb%2C2018.pdf"> خلاصه ای از فایل سخنرانی
+                        </a>-->
+                    </div>
+                </a>
             </div>
         </div>
         <div class="timebox time2">
@@ -46,18 +48,20 @@
             <div class="circle"></div>
             <div class="line"></div>
             <div class="description">
-                <div class="des-top">
-                    <img src="/sites/default/files/styles/200x200/public/pictures/picture-1138-1446395095.jpg?itok=5NJ8JRPM" alt="" width="100px" height="100px">
-                    <div class="des-left">
-                        <b> مصطفی دوگوهرانی </b>
-                        <div> کارشناس ارشد سازه - مدرس دوره های ورود به حرفه </div>
+                <a href="/user/1138/mostafadogoharani" style="color: black" target="_blank">
+                    <div class="des-top">
+                        <img src="/sites/default/files/styles/200x200/public/pictures/picture-1138-1446395095.jpg?itok=5NJ8JRPM" alt="" width="100px" height="100px">
+                        <div class="des-left">
+                            <b> مصطفی دوگوهرانی </b>
+                            <div> کارشناس ارشد سازه - مدرس دوره های ورود به حرفه </div>
+                        </div>
                     </div>
-                </div>
                 <div class="des-down">
                     آزمون عمران (محاسبات-نظارت-اجرا) و آزمون معماری (نظارت-اجرا)، همراه با معرفی ابزارهای کمکی قبولی در آزمون
                     <!--<a href="http://civil808.com/sites/default/files/importviaftp/SeismoSoft-Civil808-Presentation-Feb%2C2018.pdf"> خلاصه ای از فایل سخنرانی
                     </a>-->
                 </div>
+                </a>
             </div>
         </div>
         <div class="timebox time3">
@@ -65,21 +69,47 @@
             <div class="circle"></div>
             <div class="line"></div>
             <div class="description">
-                <div class="des-top">
-                    <img src="/sites/default/files/styles/200x200/public/pictures/picture-12388-1511548828.jpg?itok=Cdkf-8MW" alt="میثم شعبانی" width="100px" height="100px">
-                    <div class="des-left">
-                        <b> میثم شعبانی </b>
-                        <div> کارشناس ارشد عمران خاک و پی - مشاوره جهت اخذ مدارک EIT و PE </div>
+                <a href="/user/12388/meysam-shabani" style="color: black" target="_blank">
+                    <div class="des-top">
+                        <img src="/sites/default/files/styles/200x200/public/pictures/picture-12388-1511548828.jpg?itok=Cdkf-8MW" alt="میثم شعبانی" width="100px" height="100px">
+                        <div class="des-left">
+                            <b> میثم شعبانی </b>
+                            <div> کارشناس ارشد عمران خاک و پی - مشاوره جهت اخذ مدارک EIT و PE </div>
+                        </div>
                     </div>
-                </div>
-                <div class="des-down">
-                    آزمون‌های بین‌المللی (FE، PE، ARE)، همراه با معرفی ابزارهای کمکی قبولی در آزمون
-                    <!--<a href="http://civil808.com/sites/default/files/importviaftp/SeismoSoft-Civil808-Presentation-Feb%2C2018.pdf"> خلاصه ای از فایل سخنرانی
-                    </a>-->
-                </div>
+                    <div class="des-down">
+                        آزمون‌های بین‌المللی (FE، PE، ARE)، همراه با معرفی ابزارهای کمکی قبولی در آزمون
+                        <!--<a href="http://civil808.com/sites/default/files/importviaftp/SeismoSoft-Civil808-Presentation-Feb%2C2018.pdf"> خلاصه ای از فایل سخنرانی
+                        </a>-->
+                    </div>
+                </a>
             </div>
         </div>
     </div>
+</section>
+
+<section style="margin: 50px 0 80px 0;">
+    <h2> مصاحبه با دکتر صدیق با موضوع ارتباط عمران و معماری </h2>
+    <p style="text-align: center;margin-bottom: 40px;margin-top: 30px;	font-size: 15px;color: #888;">برای مشاهده کامل مصاحبه
+        <a href="/node/10993" target="_blank">کلیک کنید.</a>
+    </p>
+    <?php
+    //sis3_VP8.webm,sis3_x264.mp4
+    $video_attrs = array(
+        'src' => '/sites/default/files/filed/files/node_10992-mosahebe_vp8.webm',
+        'width' => '840px',
+        'height' => '447px',
+        'videoWidth' => '840px',
+        'videoHeight' => '447px',
+        'controls' => true,
+    );
+    $video_sett =  array(
+        'download_link' => true,
+        'download_text' => 'download'
+    );
+    print theme('mediaelement_video', array('attributes' => $video_attrs, 'settings' => $video_sett));
+    //'poster ' => '/sites/default/files/conference-4-film' ,
+    ?>
 </section>
 
 <section class="second">
@@ -192,6 +222,30 @@
             </a>
             <a href="/node/3968" target="_blank" class="title">
                 معرفی پکیج استثنایی شابلن کوییک (مختص آزمون ورود به حرفه معماری)
+            </a>
+        </div>
+        <div class="row">
+            <a href="/node/17089" target="_blank">
+                <img src="/sites/default/files/styles/200x200/public/fe-exam.jpg?itok=4C4U40Ru" width="300" height="170" alt="آزمون FE یا Fundamentals of Engineering" title="آزمون FE یا Fundamentals of Engineering">
+            </a>
+            <a href="/node/17089" target="_blank" class="title">
+                آزمون FE یا Fundamentals of Engineering
+            </a>
+        </div>
+        <div class="row">
+            <a href="/node/17090" target="_blank">
+                <img src="/sites/default/files/styles/200x200/public/pe-exam.jpg?itok=rK3SwDau" width="300" height="170" alt="آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam" title="آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam">
+            </a>
+            <a href="/node/17090" target="_blank" class="title">
+                آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam
+            </a>
+        </div>
+        <div class="row">
+            <a href="/node/17077" target="_blank">
+                <img src="/sites/default/files/styles/200x200/public/engineering-system-test.jpg?itok=CNPf4UzR" width="300" height="170" alt="آزمون نظام مهندسی، Engineering system test" title="آزمون نظام مهندسی، Engineering system test">
+            </a>
+            <a href="/node/17077" target="_blank" class="title">
+                آزمون نظام مهندسی، Engineering system test
             </a>
         </div>
     </div>
@@ -355,7 +409,7 @@
         display: flex !important;
         align-items: start;
         justify-content: space-evenly;
-        padding: 30px 0 110px 0;
+        padding: 30px 0 70px 0;
         margin: 50px 0 0 0;
     }
     section.timing h2{
@@ -583,7 +637,7 @@
     }
     section.second h2 {
         text-align: center;
-        margin: 30px auto 50px;
+        margin: 30px auto 35px;
         background: #f9f9f9;
         width: 670px;
         max-width: 96%;

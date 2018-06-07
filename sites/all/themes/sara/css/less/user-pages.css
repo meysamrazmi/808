@@ -1,4 +1,4 @@
-/*
+/* 
  * imports section
  */
 /*medias*/
@@ -388,12 +388,12 @@
 }
 .pane-page-tabs {
   position: absolute;
-  right: calc(50% - 50vw - 0px);
+  right: calc(50% - 50vw);
   bottom: -42px;
   background: #eee;
   z-index: 0;
   width: 100vw;
-  padding: 0 calc(50vw - 50% + 180px) 0 calc(50vw - 50% - 0px);
+  padding: 0px calc(50vw - 50% - -180px) 0px calc(50vw - 50%);
 }
 .pane-page-tabs ul {
   margin: 0;
@@ -425,7 +425,7 @@
 }
 @media (max-width: 600px) {
   .pane-page-tabs {
-    padding: 0 calc(50vw - 50% + 110px) 0 calc(50vw - 50% - 5px);
+    padding: 0 calc(50vw - 50% - -110px) 0 calc(50vw - 50% - 5px);
   }
 }
 .profile {
