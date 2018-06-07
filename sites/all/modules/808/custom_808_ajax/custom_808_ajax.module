@@ -321,7 +321,6 @@ function exposed_filters(){
     drupal_json_output($taxonomies);
     drupal_exit();
     return $taxonomies;
-
 }
 
 function products(){
