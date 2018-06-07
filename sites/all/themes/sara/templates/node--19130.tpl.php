@@ -88,6 +88,30 @@
     </div>
 </section>
 
+<section style="margin: 50px 0 80px 0;">
+    <h2> مصاحبه با دکتر صدیق با موضوع ارتباط عمران و معماری </h2>
+    <p style="text-align: center;margin-bottom: 40px;margin-top: 30px;	font-size: 15px;color: #888;">برای مشاهده کامل مصاحبه
+        <a href="/node/10993" target="_blank">کلیک کنید.</a>
+    </p>
+    <?php
+    //sis3_VP8.webm,sis3_x264.mp4
+    $video_attrs = array(
+        'src' => '/sites/default/files/filed/files/node_10992-mosahebe_vp8.webm',
+        'width' => '840px',
+        'height' => '447px',
+        'videoWidth' => '840px',
+        'videoHeight' => '447px',
+        'controls' => true,
+    );
+    $video_sett =  array(
+        'download_link' => true,
+        'download_text' => 'download'
+    );
+    print theme('mediaelement_video', array('attributes' => $video_attrs, 'settings' => $video_sett));
+    //'poster ' => '/sites/default/files/conference-4-film' ,
+    ?>
+</section>
+
 <section class="second">
     <h2 class="text"> ثبت نام در همایش آشنایی با آزمون آمادگی ورود به حرفه داخلی و خارجی، رشته عمران و معماری </h2>
     <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;"> علاوه بر این دوره شما می توانید در
@@ -385,7 +409,7 @@
         display: flex !important;
         align-items: start;
         justify-content: space-evenly;
-        padding: 30px 0 110px 0;
+        padding: 30px 0 70px 0;
         margin: 50px 0 0 0;
     }
     section.timing h2{
@@ -613,7 +637,7 @@
     }
     section.second h2 {
         text-align: center;
-        margin: 30px auto 50px;
+        margin: 30px auto 35px;
         background: #f9f9f9;
         width: 670px;
         max-width: 96%;

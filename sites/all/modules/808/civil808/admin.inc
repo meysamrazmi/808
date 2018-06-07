@@ -495,22 +495,44 @@ function developer()
     }*/
 
 
-    $query = db_select('node' , 'node');
-    $query->fields('node' , array('nid' , 'type' , 'title' , 'uid' , 'changed'));
-    $query->condition('node.status' , 1);
-    $query->condition('node.language' , 'fa');
-    $query->condition('node.type' , 'podcast');
-    $query->leftJoin("field_data_field_episode_remote" , "episode_remote" , "node.nid = episode_remote.entity_id and episode_remote.bundle = 'podcast'");
-    $query->leftJoin("field_data_field_image" , "field_image" , "node.nid = field_image.entity_id and field_image.delta = 1 and field_image.bundle = 'podcast'");
-    $query->leftJoin("file_managed" , "file_image" , "field_image.field_image_fid = file_image.fid");
-    $query->leftJoin("field_data_field_episode" , "field_episode" , "node.nid = field_episode.entity_id and field_episode.bundle = 'podcast'");
-    $query->leftJoin("file_managed" , "file_episode" , "field_episode.field_episode_fid = file_episode.fid");
-    $query->addField('file_image' , 'uri' , 'picture');
-    $query->addField('file_episode' , 'uri' , 'audio');
-    $query->addField('episode_remote' , 'field_episode_remote_value' , 'audio_remote');
-    $query->orderBy("node.nid" , "DESC");
-    $contents = $query->execute()->fetchAll();
-    adump($contents);
+    $value = "دوره هفتم";
+
+
+    $nodes = array();
+
+    $query = db_select("node" , "node");
+    $query->fields("node" , array("nid"));
+    $query->condition("node.type" , array("product" , "product_kit") , "IN");
+    $query->condition('node.title', '%' . db_like($value) . '%' , 'LIKE');
+    $nid1 = $query->execute()->fetchAll();
+    foreach ($nid1 as $row) array_push($nodes , $row->nid);
+
+    $query = db_select("field_data_body" , "body");
+    $query->fields("body" , array("entity_id"));
+    $query->condition("body.bundle" , array("product" , "product_kit") , "IN");
+    $query->condition('body.body_value', '%' . db_like($value) . '%' , 'LIKE');
+    $nid2 = $query->execute()->fetchAll();
+    foreach ($nid2 as $row) array_push($nodes , $row->entity_id);
+
+    $query = db_select("field_data_field_costum_content" , "costum_content");
+    $query->fields("costum_content" , array("entity_id"));
+    $query->condition("costum_content.bundle" , array("product" , "product_kit") , "IN");
+    $query->condition('costum_content.field_costum_content_value', '%' . db_like($value) . '%' , 'LIKE');
+    $nid3 = $query->execute()->fetchAll();
+    foreach ($nid3 as $row) array_push($nodes , $row->entity_id);
+
+
+    $query = db_select("field_data_taxonomy_catalog" , "catalog");
+    $query->join("taxonomy_term_data" , "taxonomy_term" , "catalog.taxonomy_catalog_tid = taxonomy_term.tid");
+    $query->fields("catalog" , array("entity_id"));
+    $query->condition("catalog.bundle" , array("product" , "product_kit") , "IN");
+    $query->condition('taxonomy_term.name', '%' . db_like($value) . '%' , 'LIKE');
+    $nid4 = $query->execute()->fetchAll();
+    foreach ($nid4 as $row) array_push($nodes , $row->entity_id);
+
+    $nodes = array_unique($nodes);
+
+    adump(array_values($nodes));
     die();
 
 }

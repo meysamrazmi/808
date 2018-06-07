@@ -46,6 +46,9 @@ function list_of_contents_version_one($type , $language ,  $page , $custom_list 
 
     $query = db_select('node' , 'node');
     $query->fields('node' , array('nid' , 'type' , 'title' , 'uid' , 'changed'));
+    $query->leftJoin("profile" , "profile" , "profile.uid = node.uid and profile.type = 'main'");
+    $query->join("field_data_field_full_name" , "name" , "name.entity_id = profile.pid and name.entity_type = 'profile2' and name.bundle = 'main'");
+    $query->addField("name" , "field_full_name_value" , "author_name");
     $query->condition('node.status' , 1);
     $query->condition('node.language' , $language);
     $query->condition('node.type' , $type);
@@ -53,10 +56,7 @@ function list_of_contents_version_one($type , $language ,  $page , $custom_list 
     if($type == "publication"){
         /*add price, author name to e-book*/
         $query->join("field_data_field_point_needed" , "price" , "node.nid = price.entity_id  and price.bundle = 'publication'");
-        $query->leftJoin("profile" , "profile" , "profile.uid = node.uid and profile.type = 'main'");
-        $query->join("field_data_field_full_name" , "name" , "name.entity_id = profile.pid and name.entity_type = 'profile2' and name.bundle = 'main'");
         $query->addField("price" , "field_point_needed_value" , "price");
-        $query->addField("name" , "field_full_name_value" , "author_name");
         $query->orderBy("node.nid" , "DESC");
         if(!empty($custom_list)) $query->condition('node.nid' , $custom_list , 'IN');
         else $query->range($page*24 , 24);
@@ -104,6 +104,7 @@ function list_of_contents_version_one($type , $language ,  $page , $custom_list 
         $query->leftJoin("field_data_field_episode_remote" , "episode_remote" , "node.nid = episode_remote.entity_id and episode_remote.bundle = 'podcast'");
         $query->addField('file_image' , 'uri' , 'picture');
         $query->addField('file_episode' , 'uri' , 'audio');
+        $query->addField('file_episode' , 'filesize' , 'audio_size');
         $query->addField('episode_remote' , 'field_episode_remote_value' , 'audio_remote');
         $query->orderBy("node.nid" , "DESC");
         $query->range($page*24, 24);

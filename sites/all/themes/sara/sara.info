@@ -15,8 +15,8 @@ stylesheets[all][] = css/marjan3.min.css
 stylesheets[all][] = css/marjan4.min.css
 stylesheets[all][] = css/media.min.css
 
-stylesheets[all][] = css/less/razmi.css
-stylesheets[all][] = css/less/marjan.css
+stylesheets[all][] = css/less/razmi.min.css
+stylesheets[all][] = css/less/marjan.min.css
 scripts[] = js/jquery-1.11.3.min.js
 
 scripts[] = js/razmi.min.js

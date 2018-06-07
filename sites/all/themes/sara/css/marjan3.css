@@ -330,7 +330,7 @@
 }
 #quicktabs-sourses #quicktabs-container-sourses .quicktabs-tabpage .quicktabs_main .field-items p{
 	line-height: 29px!important;
-	font-weight: smallimportant;
+	font-weight: 100 !important;
 }
 #quicktabs-sourses #quicktabs-container-sourses .quicktabs-tabpage .quicktabs_main .field-items p span {
     font-size: 13px!important;
@@ -911,7 +911,7 @@ div#unavailable ,
 }
 @-moz-document url-prefix() {
     #block-panels-mini-user-panel > .content {
-        width: calc(100% + 18px);
+        width: calc(100% - -18px);
     }
 }
 #block-panels-mini-user-panel .panels-flexible-region-24-center {

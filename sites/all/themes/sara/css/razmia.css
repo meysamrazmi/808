@@ -222,7 +222,7 @@ ul.jcarousel-navigation {
 .jcarousel-next-horizontal {
   position: absolute;
   left: -5%;
-  height: calc(100% + 60px);
+  height: calc(100% - -60px);
   bottom: 0;
   text-align: center;
   width: 5%;
