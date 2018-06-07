@@ -298,7 +298,6 @@ function exposed_filters(){
         $parent[$row->tid]->children = array();
     }
 
-
     $query = db_select("taxonomy_term_data" , "taxonomy");
     $query->join("taxonomy_term_hierarchy" , "parent" , "taxonomy.tid = parent.tid");
     $query->fields("taxonomy" , array("tid" , "name"));
@@ -322,6 +321,7 @@ function exposed_filters(){
     drupal_json_output($taxonomies);
     drupal_exit();
     return $taxonomies;
+
 }
 
 function products(){
