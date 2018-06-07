@@ -49,6 +49,16 @@ function custom_808_ajax_menu() {
     'access arguments' => array('access content'),
 	// 'delivery callback' => 'custom_808_ajax_callback',
   );
+  $items['shop/product/json/filter'] = array(
+      'page callback' => 'exposed_filters',
+      'type' => MENU_CALLBACK,
+      'access arguments' => array('access content'),
+  );
+  $items['shop/product/json'] = array(
+      'page callback' => 'products',
+      'type' => MENU_CALLBACK,
+      'access arguments' => array('access content'),
+  );
   return $items;
 }
 
@@ -272,4 +282,96 @@ function expert_information(){
 	drupal_json_output($data);
 	drupal_exit();
 	return $data;
+}
+
+function exposed_filters(){
+    $query = db_select("taxonomy_term_data" , "taxonomy");
+    $query->join("taxonomy_term_hierarchy" , "parent" , "taxonomy.tid = parent.tid");
+    $query->fields("taxonomy" , array("tid" , "name"));
+    $query->condition("taxonomy.vid" , 22);
+    $query->condition("parent.parent" , 0);
+    $results = $query->execute()->fetchAll();
+
+    $parent = array();
+    foreach ($results as $row){
+        $parent[$row->tid] = $row;
+        $parent[$row->tid]->children = array();
+    }
+
+    $query = db_select("taxonomy_term_data" , "taxonomy");
+    $query->join("taxonomy_term_hierarchy" , "parent" , "taxonomy.tid = parent.tid");
+    $query->fields("taxonomy" , array("tid" , "name"));
+    $query->fields("parent" , array("parent"));
+    $query->condition("taxonomy.vid" , 22);
+    $query->condition("parent.parent" , 0 , "<>");
+    $results = $query->execute()->fetchAll();
+
+    foreach ($results as $row){
+        $tid = new stdClass();
+        $tid->tid = $row->tid;
+        $tid->name = $row->name;
+        array_push($parent[$row->parent]->children , $tid);
+    }
+
+    $taxonomies = array_values($parent);
+
+    drupal_json_output($taxonomies);
+    drupal_exit();
+    return $taxonomies;
+
+}
+
+function products(){
+    $query = db_select("node" , "node");
+    $query->leftJoin("field_data_uc_product_image" , "product_image" , "node.nid = product_image.entity_id and product_image.delta = '0' ");
+    $query->join("file_managed" , "image" , "image.fid = product_image.uc_product_image_fid");
+    $query->leftJoin("uc_products" , "product" , "product.nid = node.nid");
+    $query->fields("node" , array("nid" , "type" , "title" , "created" , "changed"));
+    $query->addField("image" , "uri" , "picture");
+    $query->addField("product" , "sell_price" , "price");
+    $query->condition("node.type" , array("product" , "product_kit") , "IN");
+    $query->condition("node.language" , "fa");
+    $query->condition("node.status" , 1);
+
+    $get_result = true;
+    if(isset($_GET['field']))               filter('field', $query , $get_result);
+    if(isset($_GET['product_kind']))        filter('product_kind', $query , $get_result);
+    if(isset($_GET['exam']))                filter('exam', $query , $get_result);
+    if(isset($_GET['education_kind']))      filter('education_kind', $query , $get_result);
+    if(isset($_GET['publication_name']))    filter('publication_name', $query , $get_result);
+    if(isset($_GET['academic_orientation']))filter('academic_orientation', $query , $get_result);
+    if(isset($_GET['producer']))            filter('producer', $query , $get_result);
+
+    if($get_result) {
+        $page = isset($_Get['page']) ? $_GET['page'] : 0;
+        $query->orderBy("node.nid" , "DESC");
+        $query->range(20 * $page, 20);
+        $products = $query->execute()->fetchAll();
+
+        foreach($products as $key => $value){
+        	$products[$key]->created = format_date($value->created);
+        	$products[$key]->changed = format_date($value->changed);
+        }
+    }
+    else
+        $products = array();
+
+    drupal_json_output($products);
+    drupal_exit();
+    return $products;
+}
+
+function filter($name, &$query, &$get_result){
+    $tids = explode("," , $_GET[$name]);
+    $filter = db_select("field_data_taxonomy_catalog" , "catalog");
+    $filter->fields("catalog" , array("entity_id"));
+    $filter->condition("catalog.taxonomy_catalog_tid" , $tids , "IN");
+    $filter = $filter->execute()->fetchAll();
+    $nids = array();
+    foreach($filter as $row) array_push($nids , $row->entity_id);
+
+    if(!empty($nids))
+        $query->condition("node.nid" , $nids , "IN");
+    else
+        $get_result = false;
 }

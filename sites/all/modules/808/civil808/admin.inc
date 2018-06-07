@@ -495,22 +495,36 @@ function developer()
     }*/
 
 
-    $query = db_select('node' , 'node');
-    $query->fields('node' , array('nid' , 'type' , 'title' , 'uid' , 'changed'));
-    $query->condition('node.status' , 1);
-    $query->condition('node.language' , 'fa');
-    $query->condition('node.type' , 'podcast');
-    $query->leftJoin("field_data_field_episode_remote" , "episode_remote" , "node.nid = episode_remote.entity_id and episode_remote.bundle = 'podcast'");
-    $query->leftJoin("field_data_field_image" , "field_image" , "node.nid = field_image.entity_id and field_image.delta = 1 and field_image.bundle = 'podcast'");
-    $query->leftJoin("file_managed" , "file_image" , "field_image.field_image_fid = file_image.fid");
-    $query->leftJoin("field_data_field_episode" , "field_episode" , "node.nid = field_episode.entity_id and field_episode.bundle = 'podcast'");
-    $query->leftJoin("file_managed" , "file_episode" , "field_episode.field_episode_fid = file_episode.fid");
-    $query->addField('file_image' , 'uri' , 'picture');
-    $query->addField('file_episode' , 'uri' , 'audio');
-    $query->addField('episode_remote' , 'field_episode_remote_value' , 'audio_remote');
-    $query->orderBy("node.nid" , "DESC");
-    $contents = $query->execute()->fetchAll();
-    adump($contents);
+
+    $query = db_select("taxonomy_term_data" , "taxonomy");
+    $query->join("taxonomy_term_hierarchy" , "parent" , "taxonomy.tid = parent.tid");
+    $query->fields("taxonomy" , array("tid" , "name"));
+    $query->condition("taxonomy.vid" , 22);
+    $query->condition("parent.parent" , 0);
+    $results = $query->execute()->fetchAll();
+
+    $parent = array();
+    foreach ($results as $row){
+        $parent[$row->tid] = $row;
+        $parent[$row->tid]->children = array();
+    }
+
+    $query = db_select("taxonomy_term_data" , "taxonomy");
+    $query->join("taxonomy_term_hierarchy" , "parent" , "taxonomy.tid = parent.tid");
+    $query->fields("taxonomy" , array("tid" , "name"));
+    $query->fields("parent" , array("parent"));
+    $query->condition("taxonomy.vid" , 22);
+    $query->condition("parent.parent" , 0 , "<>");
+    $results = $query->execute()->fetchAll();
+
+    foreach ($results as $row){
+        $tid = new stdClass();
+        $tid->tid = $row->tid;
+        $tid->name = $row->name;
+        array_push($parent[$row->parent]->children , $tid);
+    }
+
+    adump(array_values($parent));
     die();
 
 }
