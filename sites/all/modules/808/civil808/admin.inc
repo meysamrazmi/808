@@ -495,36 +495,44 @@ function developer()
     }*/
 
 
+    $value = "دوره هفتم";
 
-    $query = db_select("taxonomy_term_data" , "taxonomy");
-    $query->join("taxonomy_term_hierarchy" , "parent" , "taxonomy.tid = parent.tid");
-    $query->fields("taxonomy" , array("tid" , "name"));
-    $query->condition("taxonomy.vid" , 22);
-    $query->condition("parent.parent" , 0);
-    $results = $query->execute()->fetchAll();
 
-    $parent = array();
-    foreach ($results as $row){
-        $parent[$row->tid] = $row;
-        $parent[$row->tid]->children = array();
-    }
+    $nodes = array();
 
-    $query = db_select("taxonomy_term_data" , "taxonomy");
-    $query->join("taxonomy_term_hierarchy" , "parent" , "taxonomy.tid = parent.tid");
-    $query->fields("taxonomy" , array("tid" , "name"));
-    $query->fields("parent" , array("parent"));
-    $query->condition("taxonomy.vid" , 22);
-    $query->condition("parent.parent" , 0 , "<>");
-    $results = $query->execute()->fetchAll();
+    $query = db_select("node" , "node");
+    $query->fields("node" , array("nid"));
+    $query->condition("node.type" , array("product" , "product_kit") , "IN");
+    $query->condition('node.title', '%' . db_like($value) . '%' , 'LIKE');
+    $nid1 = $query->execute()->fetchAll();
+    foreach ($nid1 as $row) array_push($nodes , $row->nid);
 
-    foreach ($results as $row){
-        $tid = new stdClass();
-        $tid->tid = $row->tid;
-        $tid->name = $row->name;
-        array_push($parent[$row->parent]->children , $tid);
-    }
+    $query = db_select("field_data_body" , "body");
+    $query->fields("body" , array("entity_id"));
+    $query->condition("body.bundle" , array("product" , "product_kit") , "IN");
+    $query->condition('body.body_value', '%' . db_like($value) . '%' , 'LIKE');
+    $nid2 = $query->execute()->fetchAll();
+    foreach ($nid2 as $row) array_push($nodes , $row->entity_id);
 
-    adump(array_values($parent));
+    $query = db_select("field_data_field_costum_content" , "costum_content");
+    $query->fields("costum_content" , array("entity_id"));
+    $query->condition("costum_content.bundle" , array("product" , "product_kit") , "IN");
+    $query->condition('costum_content.field_costum_content_value', '%' . db_like($value) . '%' , 'LIKE');
+    $nid3 = $query->execute()->fetchAll();
+    foreach ($nid3 as $row) array_push($nodes , $row->entity_id);
+
+
+    $query = db_select("field_data_taxonomy_catalog" , "catalog");
+    $query->join("taxonomy_term_data" , "taxonomy_term" , "catalog.taxonomy_catalog_tid = taxonomy_term.tid");
+    $query->fields("catalog" , array("entity_id"));
+    $query->condition("catalog.bundle" , array("product" , "product_kit") , "IN");
+    $query->condition('taxonomy_term.name', '%' . db_like($value) . '%' , 'LIKE');
+    $nid4 = $query->execute()->fetchAll();
+    foreach ($nid4 as $row) array_push($nodes , $row->entity_id);
+
+    $nodes = array_unique($nodes);
+
+    adump(array_values($nodes));
     die();
 
 }
