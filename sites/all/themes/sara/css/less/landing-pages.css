@@ -1,0 +1,492 @@
+/*  
+ * imports section
+ */
+/*medias*/
+/*mixins*/
+.no-acrollbar::-webkit-scrollbar {
+  height: 0px;
+  width: 0px;
+}
+.no-paper {
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+}
+/*--------------------------------webkits-----------------------------*/
+/*=============================*/
+.page-moshaver-research .pane-moarrefi:before {
+  background: linear-gradient(135deg, #673AB7 0%, #a4a4e0 100%), url(/sites/all/themes/sara/images/bg-research.jpg?ver=1.0.3) !important;
+}
+.page-moshaver-research .pane-moarrefi .moshaver-title {
+  padding-top: 160px !important;
+}
+.page-moshaver-research .pane-moarrefi .moshaver-subtitle {
+  color: white;
+}
+.page-moshaver-research .pane-moarrefi .moshaver-alllinks {
+  margin: 80px 0px !important;
+}
+.page-moshaver-research .pane-moarrefi .moshaver-alllinks a {
+  margin: 5px 5px;
+}
+.page-moshaver-research .pane-moarrefi .moshaver-socials {
+  margin: 60px 0px !important;
+}
+@media all and (max-width: 400px) {
+  .page-moshaver-research .pane-moarrefi {
+    height: 550px !important;
+  }
+  .page-moshaver-research .pane-moarrefi .moshaver-title {
+    padding-top: 90px !important;
+  }
+  .page-moshaver-research .pane-moarrefi .moshaver-alllinks {
+    margin: 60px 0px !important;
+  }
+  .page-moshaver-research .pane-moarrefi .moshaver-socials {
+    margin: 40px 0px !important;
+  }
+}
+.page-moshaver-research .khadamat {
+  background-color: rgba(220, 220, 220, 0.21);
+}
+.page-moshaver-research .khadamat .pane-content {
+  padding: 80px 1% 8px 1%;
+  text-align: center;
+}
+.page-moshaver-research .khadamat .pane-content h2 {
+  position: relative;
+  padding: 20px 0px;
+  margin: 20px 0px 50px 0px;
+}
+.page-moshaver-research .khadamat .pane-content h2:before {
+  content: "";
+  width: 100px;
+  height: 3px;
+  display: block;
+  background: #999;
+  right: calc(50% - 50px);
+  bottom: 0;
+  position: absolute;
+}
+.page-moshaver-research .khadamat .pane-content ol,
+.page-moshaver-research .khadamat .pane-content ul {
+  text-align: center;
+  margin: 70px 0px 100px 0px;
+}
+@media (max-width: 840px) {
+  .page-moshaver-research .khadamat .pane-content ol,
+  .page-moshaver-research .khadamat .pane-content ul {
+    margin: 70px 0px 50px 0px;
+  }
+}
+.page-moshaver-research .khadamat .pane-content ol li,
+.page-moshaver-research .khadamat .pane-content ul li {
+  line-height: 2em;
+  background-color: #ffffff;
+  margin: 50px 10px;
+  padding: 100px 15px 15px 15px;
+  width: 250px;
+  border-radius: 5px;
+  display: inline-block;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  min-height: 250px;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+.page-moshaver-research .khadamat .pane-content ol li:before,
+.page-moshaver-research .khadamat .pane-content ul li:before {
+  content: "";
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: 20px 0px 30px 0px;
+  position: absolute;
+  top: -70px;
+  right: 80px;
+  box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+  border-radius: 50%;
+}
+.page-moshaver-research .khadamat .pane-content ol li:nth-child(1):before,
+.page-moshaver-research .khadamat .pane-content ul li:nth-child(1):before {
+  background: url("../images/moshaver-like.svg");
+}
+.page-moshaver-research .khadamat .pane-content ol li:nth-child(2):before,
+.page-moshaver-research .khadamat .pane-content ul li:nth-child(2):before {
+  background: url("../images/moshaver-analytics-1.svg");
+}
+.page-moshaver-research .khadamat .pane-content ol li:nth-child(3):before,
+.page-moshaver-research .khadamat .pane-content ul li:nth-child(3):before {
+  background: url("../images/moshaver-doc.svg");
+}
+.page-moshaver-research .khadamat .pane-content ol li:nth-child(4):before,
+.page-moshaver-research .khadamat .pane-content ul li:nth-child(4):before {
+  background: url("../images/moshaver-analytics.svg");
+}
+.page-moshaver-research .khadamat .pane-content ol li:nth-child(5):before,
+.page-moshaver-research .khadamat .pane-content ul li:nth-child(5):before {
+  background: url("../images/moshaver-check-mark.svg");
+  background-color: #54c0eb;
+  background-size: 65%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.page-moshaver-research .khadamat .pane-content p {
+  font-size: 14px;
+  color: #888;
+  margin: 60px;
+}
+.page-moshaver-research .research-moshaver {
+  background-color: white !important;
+  padding: 5% 0;
+}
+.page-moshaver-research .research-moshaver h1.pane-title {
+  position: relative;
+  padding: 0px 0px 20px 0px;
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 80px !important;
+}
+.page-moshaver-research .research-moshaver h1.pane-title:before {
+  content: "";
+  width: 100px;
+  height: 3px;
+  display: block;
+  background: #777;
+  right: calc(50% - 50px);
+  bottom: 0;
+  position: absolute;
+}
+.page-moshaver-research .research-moshaver .pane-content div {
+  text-align: center;
+}
+.page-moshaver-research .research-moshaver .pane-content div .services {
+  text-align: right;
+  min-height: 385px;
+  vertical-align: top;
+  display: inline-block;
+  width: 800px;
+  padding: 30px 50px;
+  margin: 30px 20px;
+  background-color: #fefefe;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+}
+.page-moshaver-research .research-moshaver .pane-content div .services h3 {
+  padding: 0px 25px;
+}
+.page-moshaver-research .research-moshaver .pane-content div .services ul {
+  padding: 0px 5%;
+}
+.page-moshaver-research .research-moshaver .pane-content div .services ul li {
+  line-height: 2.5em;
+}
+.page-moshaver-research .research-moshaver .pane-content div .moshaver-box {
+  width: 300px;
+  background: #f9f9f9;
+  box-shadow: 0 0.5px 4px rgba(0, 0, 0, 0.24);
+  padding: 20px;
+  margin: 30px 20px 100px 20px;
+  min-height: 350px;
+  display: inline-block;
+}
+.page-moshaver-research .research-moshaver .pane-content div .moshaver-box .pic {
+  width: 130px;
+  margin: auto;
+}
+.page-moshaver-research .research-moshaver .pane-content div .moshaver-box .pic img {
+  box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24);
+  margin: 0 auto;
+  border-radius: 50%;
+}
+.page-moshaver-research .research-moshaver .pane-content div .moshaver-box .information {
+  margin: 0px 0px 10px 0px;
+}
+.page-moshaver-research .research-moshaver .pane-content div .moshaver-box .information h1 {
+  font-size: 18px !important;
+  margin: 0px !important;
+}
+.page-moshaver-research .research-moshaver .pane-content div .moshaver-box .information span {
+  font-size: 11px;
+  color: #b1b1b1;
+}
+.page-moshaver-research .research-moshaver .pane-content div .moshaver-box .links a {
+  display: block;
+  width: 50%;
+  margin: 15px auto;
+}
+.page-moshaver-research .research-moshaver .pane-content div .moshaver-box .links .send-article {
+  height: 40px;
+  font-size: 18px;
+  line-height: 40px;
+}
+.page-moshaver-research .research-moshaver .pane-content div .moshaver-box .links .view-profile {
+  font-size: 10px;
+  width: 90px;
+  padding: 0px;
+}
+@media all and (max-width: 1200px) {
+  .page-moshaver-research .research-moshaver .pane-content div .services {
+    width: 600px !important;
+    padding: 30px 20px !important;
+    margin: 30px 0px !important;
+  }
+  .page-moshaver-research .research-moshaver .pane-content div .moshaver-box {
+    margin: 30px 20px !important;
+  }
+}
+@media (max-width: 600px) {
+  .page-moshaver-research .research-moshaver .pane-content div .services {
+    width: 370px !important;
+    padding: 10px 10px !important;
+    margin: 30px 0px !important;
+  }
+  .page-moshaver-research .research-moshaver .pane-content div .services li {
+    line-height: 1.7em;
+  }
+}
+@media all and (max-width: 400px) {
+  .page-moshaver-research .research-moshaver .pane-content div .services {
+    width: 320px !important;
+    padding: 20px 10px !important;
+  }
+  .page-moshaver-research .research-moshaver .pane-content div .services h3 {
+    padding: 0px 5px;
+  }
+  .page-moshaver-research .research-moshaver .pane-content div .services ul,
+  .page-moshaver-research .research-moshaver .pane-content div .services ol {
+    margin: 0 15px 10px 0;
+  }
+  .page-moshaver-research .research-moshaver .pane-content div .services ul li,
+  .page-moshaver-research .research-moshaver .pane-content div .services ol li {
+    line-height: 2em;
+  }
+}
+.page-moshaver-research .buy-article {
+  background: url(/sites/all/themes/sara/images/moshaver-article.jpg?ver=1.0.3);
+  padding: 60px 0px 100px 0px;
+  background-size: cover;
+  z-index: 0;
+  position: relative;
+}
+.page-moshaver-research .buy-article:before {
+  content: "";
+  background-color: rgba(109, 104, 104, 0.28);
+  width: 100%;
+  top: 0px;
+  right: 0px;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+}
+.page-moshaver-research .buy-article h2 {
+  position: relative;
+  padding: 0px 0px 20px 0px;
+  text-align: center;
+  font-size: 30px;
+  color: white;
+}
+.page-moshaver-research .buy-article h2:before {
+  content: "";
+  width: 100px;
+  height: 3px;
+  display: block;
+  background: #777;
+  right: calc(50% - 50px);
+  bottom: 0;
+  position: absolute;
+}
+.page-moshaver-research .buy-article .guide {
+  display: block;
+  width: 800px;
+  padding: 30px 30px 70px 20px;
+  margin: 70px auto;
+  background-color: rgba(0, 0, 0, 0.21);
+  color: white;
+  font-size: 15px;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.38);
+}
+.page-moshaver-research .buy-article .guide a {
+  margin: 15px;
+  display: block;
+  width: 110px;
+  float: left;
+}
+.page-moshaver-research .buy-article .guide li {
+  line-height: 2.3em;
+}
+.page-moshaver-research .buy-article .guide ul {
+  color: #ffe0b7;
+}
+@media (max-width: 840px) {
+  .page-moshaver-research .buy-article .guide {
+    width: 580px;
+    padding: 30px 20px 70px 10px;
+  }
+  .page-moshaver-research .buy-article .guide ul,
+  .page-moshaver-research .buy-article .guide ol {
+    margin: 0 25px 10px 30px !important;
+  }
+}
+@media (max-width: 600px) {
+  .page-moshaver-research .buy-article .guide {
+    width: 400px;
+    height: 380px;
+    padding: 30px 20px 30px 10px;
+  }
+  .page-moshaver-research .buy-article .guide li {
+    line-height: 1.7em !important;
+  }
+}
+@media all and (max-width: 400px) {
+  .page-moshaver-research .buy-article {
+    padding: 50px 0px 10px 0px !important;
+  }
+  .page-moshaver-research .buy-article .guide {
+    width: 325px;
+    height: 425px;
+    margin: 60px auto 100px auto;
+    padding: 30px 10px;
+  }
+  .page-moshaver-research .buy-article .guide ul,
+  .page-moshaver-research .buy-article .guide ol {
+    margin: 0 25px 10px 10px !important;
+  }
+}
+.page-moshaver-research .mortabet {
+  padding: 4.8% 7%;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+.page-moshaver-research .mortabet h2 {
+  position: relative;
+  padding: 0px 0px 20px 0px;
+  text-align: center;
+  font-size: 30px;
+  color: #000;
+  margin-bottom: 80px !important;
+}
+.page-moshaver-research .mortabet h2:before {
+  content: "";
+  width: 100px;
+  height: 3px;
+  display: block;
+  background: #777;
+  right: calc(50% - 50px);
+  bottom: 0;
+  position: absolute;
+}
+.page-moshaver-research .mortabet .views-row {
+  display: inline-block;
+  vertical-align: top;
+  width: 15.8%;
+  text-align: center;
+  min-width: 200px;
+  background-color: white;
+  margin: 10px 1.9%;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  border-radius: 2px;
+}
+.page-moshaver-research .mortabet .views-row .views-field-title a {
+  color: black;
+  margin: 11px auto 19px auto;
+  display: block;
+  width: 195px;
+  text-align: right;
+}
+.page-translator .field-name-body .field-item .lists {
+  display: inline-block;
+  text-align: right;
+  box-shadow: 0 2px 2px #edeef0;
+  width: 700px;
+  padding: 20px 50px;
+  margin: 50px 0px;
+  vertical-align: top;
+  background-color: #fbfbfb;
+}
+.page-translator .field-name-body .field-item .lists a {
+  color: #555 !important;
+}
+.page-translator .field-name-body .field-item .lists a:before {
+  content: "\f04f";
+  font-family: mat;
+  font-size: 13px;
+  color: #673AB7;
+}
+.page-translator .field-name-body .field-item .lists a:before {
+  padding: 0px 3px;
+}
+.page-translator .field-name-body .field-item .lists a:hover {
+  color: #999 !important;
+}
+.page-translator .field-name-body .field-item .lists a:hover:before {
+  padding: 0px 5px;
+}
+.page-translator .field-name-body .field-item .lists p {
+  font-size: 13px;
+  padding: 5px;
+  margin: 5px 0px;
+}
+.page-translator .field-name-body .field-item .lists .omran {
+  display: inline-block;
+  vertical-align: top;
+  width: 330px;
+}
+.page-translator .field-name-body .field-item .lists .memari {
+  display: inline-block;
+}
+@media all and (max-width: 1100px) {
+  .page-translator .field-name-body .field-item .lists {
+    margin: 30px 0px 0px 0px;
+  }
+}
+@media (max-width: 840px) {
+  .page-translator .field-name-body .field-item .lists {
+    width: 400px;
+  }
+}
+.page-translator .field-name-body .field-item .sarparast {
+  background-color: #f8f8f8;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  padding: 10px;
+  margin: 50px 0px;
+  width: 280px;
+  display: inline-block;
+  min-height: 370px;
+}
+.page-translator .field-name-body .field-item .sarparast .info span {
+  font-size: 10px;
+  color: #aaa;
+}
+.page-translator .field-name-body .field-item .sarparast .pic {
+  width: 140px;
+  display: block;
+  padding: 10px;
+  margin: auto;
+}
+.page-translator .field-name-body .field-item .sarparast .pic img {
+  box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24);
+  margin: 0 auto;
+  border-radius: 50%;
+}
+.page-translator .field-name-body .field-item .sarparast .links {
+  padding: 15px;
+  margin-bottom: 10px;
+}
+.page-translator #content .block-views,
+.page-affiliate #content .block-views {
+  margin-top: 35px;
+}
+.page-translator #content .block-views .block-title,
+.page-affiliate #content .block-views .block-title {
+  display: none;
+}
+.page-translator .field-name-field-image,
+.page-affiliate .field-name-field-image {
+  margin-bottom: 50px !important;
+}
+.page-translator .field-name-body h2.title,
+.page-affiliate .field-name-body h2.title {
+  margin-bottom: 35px;
+}

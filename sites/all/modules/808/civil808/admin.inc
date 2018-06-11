@@ -425,17 +425,114 @@ function developer()
 {
 //    $new_hash = hash_hmac("sha256" , "content" , "@Civil808Android@Saze808@" , false);
 //    adump($new_hash);
+/*
+    $node = node_load(887);
+    switch ($node->type){
+        case 'designteam' :
+            $query = db_select("field_data_field_maghalat" , "pedia");
+            $query->condition('pedia.field_maghalat_nid' , $node->nid);
+            break;
+        case 'article' :
+            $query = db_select("field_data_field_akhbar" , "pedia");
+            $query->condition('pedia.field_akhbar_nid' , $node->nid);
+            break;
+        case 'publication' :
+            $query = db_select("field_data_field_entesharat" , "pedia");
+            $query->condition('pedia.field_entesharat_nid' , $node->nid);
+            break;
+        case 'gallerynew' :
+            $query = db_select("field_data_field_porojhe" , "pedia");
+            $query->condition('pedia.field_porojhe_nid' , $node->nid);
+            break;
+        case 'product' :
+            $query = db_select("field_data_field_shopproduct" , "pedia");
+            $query->condition('pedia.field_shopproduct_nid' , $node->nid);
+            break;
+        case 'podcast' :
+            $query = db_select("field_data_field_podcast808" , "pedia");
+            $query->condition('pedia.field_podcast808_nid' , $node->nid);
+            break;
+        case 'education || college' :
+            $query = db_select("field_data_field_edu_college" , "pedia");
+            $query->condition('pedia.field_edu_college_nid' , $node->nid);
+            break;
+        case 'film' :
+            $query = db_select("field_data_field_filmmortabet" , "pedia");
+            $query->condition('pedia.field_filmmortabet_nid' , $node->nid);
+            break;
+        default:
+            return 0;
+    }
 
-    $query = db_select('field_data_field_files' , 'field_file');
-//    $query->join('file_managed' , 'file' , 'field_file.field_files_fid = file.fid');
-    $query->fields('field_file' , array('entity_id'));
-//    $query->fields('file', array('uri' , 'filesize'));
-    $query->condition('field_file.entity_id', 596);
-//            $query->condition('field_file.entity_type', 'node');
-//            $query->condition('field_file.bundle', 'publication');
-//            $query->condition('file.filemime', 'application/pdf');
-    $files = $query->execute()->fetchAll();
-    adump($files);
+    $query->fields('pedia' , array('entity_id'));
+    $result = $query->execute()->fetchAll();
+
+    $pedias = array();
+    foreach ($result as $row) array_push($pedias , $row->entity_id);
+
+    $query = db_select('field_data_field_experts' , 'pedia_expert');
+    $query->join('field_data_field_experts' , 'question_expert' , 'pedia_expert.field_experts_tid = question_expert.field_experts_tid');
+    $query->condition('pedia_expert.bundle' , 'architect');
+    $query->condition('pedia_expert.entity_id' , $pedias , 'IN');
+    $query->condition('question_expert.bundle' , 'questions');
+    $query->fields('question_expert' , array('entity_id'));
+    $result = $query->execute()->fetchAll();
+
+    $questions_nid= array();
+    foreach ($result as $row) array_push($questions_nid , $row->entity_id);
+
+    $query = db_select('node' , 'node');
+    $query->fields('node' , array('nid' ,'title'));
+    $query->condition('node.nid' , $questions_nid , 'IN');
+    $query->orderBy('node.nid' , 'DESC');
+    $query->range(0, 3);
+    $questions = $query->execute()->fetchAll();
+
+    /*
+    foreach($questions as $row) {
+        print $row->title;
+        print '<br/>';
+    }*/
+
+
+    $value = "دوره هفتم";
+
+
+    $nodes = array();
+
+    $query = db_select("node" , "node");
+    $query->fields("node" , array("nid"));
+    $query->condition("node.type" , array("product" , "product_kit") , "IN");
+    $query->condition('node.title', '%' . db_like($value) . '%' , 'LIKE');
+    $nid1 = $query->execute()->fetchAll();
+    foreach ($nid1 as $row) array_push($nodes , $row->nid);
+
+    $query = db_select("field_data_body" , "body");
+    $query->fields("body" , array("entity_id"));
+    $query->condition("body.bundle" , array("product" , "product_kit") , "IN");
+    $query->condition('body.body_value', '%' . db_like($value) . '%' , 'LIKE');
+    $nid2 = $query->execute()->fetchAll();
+    foreach ($nid2 as $row) array_push($nodes , $row->entity_id);
+
+    $query = db_select("field_data_field_costum_content" , "costum_content");
+    $query->fields("costum_content" , array("entity_id"));
+    $query->condition("costum_content.bundle" , array("product" , "product_kit") , "IN");
+    $query->condition('costum_content.field_costum_content_value', '%' . db_like($value) . '%' , 'LIKE');
+    $nid3 = $query->execute()->fetchAll();
+    foreach ($nid3 as $row) array_push($nodes , $row->entity_id);
+
+
+    $query = db_select("field_data_taxonomy_catalog" , "catalog");
+    $query->join("taxonomy_term_data" , "taxonomy_term" , "catalog.taxonomy_catalog_tid = taxonomy_term.tid");
+    $query->fields("catalog" , array("entity_id"));
+    $query->condition("catalog.bundle" , array("product" , "product_kit") , "IN");
+    $query->condition('taxonomy_term.name', '%' . db_like($value) . '%' , 'LIKE');
+    $nid4 = $query->execute()->fetchAll();
+    foreach ($nid4 as $row) array_push($nodes , $row->entity_id);
+
+    $nodes = array_unique($nodes);
+
+    adump(array_values($nodes));
     die();
 
 }

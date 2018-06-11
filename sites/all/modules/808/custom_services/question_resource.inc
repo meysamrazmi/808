@@ -28,6 +28,26 @@ function question_resource_edit($hash , $nid , $question , $version){
     }
     return services_error(t('This version is not supported'), 11);
 }
+function question_resource_delete($hash , $nid , $version){
+    if(!(hash_true($hash , "question"))) return services_error(t('Failed to access'), 10);
+    if($version == 0){
+        global $user;
+        $node = db_select("node")
+            ->fields("node" , array("nid" , "uid"))
+            ->condition("nid" , $nid)
+            ->condition("type" , "questions")
+            ->execute()->fetch();
+        if(!empty($node)){
+            if($user->uid == $node->uid || in_array('administrator' , $user->roles))
+                node_delete($nid);
+            else
+                return services_error(t('You have not permission to this action!'), 18);
+        }
+        else return services_error(t('Wrong Nid!'), 16);
+        return true;
+    }
+    return services_error(t('This version is not supported'), 11);
+}
 function question_resource_follow($hash , $nid , $data , $version){
     if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 10);
     if($version == 0){
@@ -42,12 +62,39 @@ function question_resource_vote($hash , $nid , $data , $version){
     }
     return services_error(t('This version is not supported'), 11);
 }
+function question_resource_search($hash , $value , $version){
+    if(!(hash_true($hash , "question"))) return services_error(t('Failed to access'), 10);
+
+    if($version == 0) {
+        $query = db_select("node", "node");
+        $query->fields('node', array('nid'));
+        $query->condition('node.title', '%' . $value . '%', 'LIKE');
+        $query->condition('node.type' , 'questions');
+        $nid1 = $query->execute()->fetchAll();
+
+        $query = db_select("field_data_body", "body");
+        $query->addField('body', 'entity_id', 'nid');
+        $query->condition('body.body_value', '%' . $value . '%', 'LIKE');
+        $query->condition('body.entity_type' , 'node');
+        $query->condition('body.bundle' , 'questions');
+        $nid2 = $query->execute()->fetchAll();
+
+        $nids = array_merge($nid1, $nid2);
+        $custom_list = array();
+        foreach ($nids as $row) array_push($custom_list, $row->nid);
+        if(!empty($custom_list))
+            return list_of_questions_version_one("all_questions" , 0 , $custom_list);
+        else
+            return ["questions" => array()];
+    }
+    return services_error(t('This version is not supported'), 11);
+}
 
 /*------------------------index-----------------------------------*/
-function list_of_questions_version_one($domain , $page){
+function list_of_questions_version_one($domain , $page , $custom_list = array()){
     switch ($domain){
         case "all_questions" :
-            $query = all_questions();
+            $query = all_questions($custom_list);
             break;
         case "my_questions" :
             $query = my_questions();
@@ -67,7 +114,7 @@ function list_of_questions_version_one($domain , $page){
     }
     if($query != null){
         $query->orderBy('changed', 'DESC');
-        $query->range($page*10, 10);
+        if(empty($custom_list))$query->range($page*10, 10);
         $results = $query->execute()->fetchAll();
     }
     else return ["questions" => array()];
@@ -131,34 +178,33 @@ function list_of_questions_version_one($domain , $page){
     }
     return ["questions" => $questions];
 }
-function all_questions(){
-    $query = db_select('node' , 'n');
-    $query->leftJoin('field_data_body' , 'b' , 'n.nid = b.entity_id');
-    $query->fields('n' , array('nid' , 'uid' , 'title' , 'created' , 'changed' , 'status'));
-    $query->addField('b' , 'body_value' , 'body');
-    $query->condition('n.type', 'questions');
-    $query->condition('n.status', 1);
+function all_questions($custom_list){
+    $query = db_select('node' , 'node');
+    $query->leftJoin('field_data_body' , 'body' , 'node.nid = body.entity_id');
+    $query->fields('node' , array('nid' , 'uid' , 'title' , 'created' , 'changed' , 'status'));
+    $query->addField('body' , 'body_value' , 'body');
+    $query->condition('node.type', 'questions');
+    $query->condition('node.status', 1);
+    if(!empty($custom_list))$query->condition('node.nid' , $custom_list, 'IN');
     return $query;
 }
 function my_questions(){
     global $user;
-    $query = db_select('node' , 'n');
-    $query->leftJoin('field_data_body' , 'b' , 'n.nid = b.entity_id');
-    $query->fields('n' , array('nid' , 'title' , 'created' , 'changed' , 'status'));
-    $query->addField('b' , 'body_value' , 'body');
-    $query->condition('n.type', 'questions');
-    $query->condition('n.uid', $user->uid);
+    $query = db_select('node' , 'node');
+    $query->leftJoin('field_data_body' , 'body' , 'node.nid = body.entity_id');
+    $query->fields('node' , array('nid' , 'title' , 'created' , 'changed' , 'status'));
+    $query->addField('body' , 'body_value' , 'body');
+    $query->condition('node.type', 'questions');
+    $query->condition('node.uid', $user->uid);
     return $query;
 }
 function following_questions(){
     global $user;
-    $query = db_select('node' , 'n');
-    $query->join('flagging' , 'f' , 'n.nid = f.entity_id');
-    $query->fields('n' , array('nid' , 'uid' , 'title' , 'created' , 'changed' , 'status'));
-    $query->condition('n.type', 'questions');
-    $query->condition('n.status', 1);
-    $query->condition("f.fid" , 3);
-    $query->condition("f.uid" , $user->uid);
+    $query = db_select("node" , "node");
+    $query->join("flagging" , "flag" , "node.nid = flag.entity_id and flag.fid = '3' and flag.uid = " . $user->uid);
+    $query->fields('node' , array('nid' , 'uid' , 'title' , 'created' , 'changed' , 'status'));
+    $query->condition('node.type', 'questions');
+    $query->condition('node.status', 1);
     return $query;
 }
 function my_experts_questions(){
@@ -170,31 +216,29 @@ function my_experts_questions(){
         array_push($experts, $e["tid"]);
     }
     if(!empty($experts)){
-        $query = db_select('node' , 'n');
-        $query->join('field_data_field_experts' , 'e' , 'n.nid = e.entity_id');
-        $query->fields('n' , array('nid' , 'uid' , 'title' , 'created' , 'changed' , 'status'));
-        $query->condition('n.type' , 'questions');
-        $query->condition('n.status' , 1);
-        $query->condition('e.field_experts_tid' , $experts, 'IN');
-        $query->condition('e.entity_type' , 'node');
+        $query = db_select('node' , 'node');
+        $query->join('field_data_field_experts' , 'expert' , 'node.nid = expert.entity_id');
+        $query->fields('node' , array('nid' , 'uid' , 'title' , 'created' , 'changed' , 'status'));
+        $query->condition('node.type' , 'questions');
+        $query->condition('node.status' , 1);
+        $query->condition('expert.field_experts_tid' , $experts, 'IN');
+        $query->condition('expert.entity_type' , 'node');
         return $query;
     }
     else return null;
 }
 function my_answered_questions($page){
     global $user;
-    $query = db_select('comment' , 'comment');
-    $query->join('node' , 'node', 'comment.nid = node.nid');
-    $query->join('field_data_comment_body' , 'body', 'comment.cid = body.entity_id');
-    $query->join('field_data_field_prove_advisor' , 'advisor', 'comment.cid = advisor.entity_id');
-    $query->join('field_data_field_prove_asker' , 'asker', 'comment.cid = asker.entity_id');
+    $query = db_select("comment" , "comment");
+    $query->join("node" , "node", "comment.nid = node.nid");
+    $query->join("field_data_comment_body" , "body", "comment.cid = body.entity_id and body.entity_type = 'comment' and body.bundle = 'comment_node_questions' ");
+    $query->join("field_data_field_prove_advisor" , "advisor", "comment.cid = advisor.entity_id");
+    $query->join("field_data_field_prove_asker" , "asker", "comment.cid = asker.entity_id");
     $query->fields('comment' , array('cid' , 'pid' , 'nid' , 'subject'));
     $query->addField('node' , 'title' , 'node_title');
     $query->addField('body' , 'comment_body_value' , 'body');
     $query->addField('advisor' , 'field_prove_advisor_value' , 'prove_by_advisor');
     $query->addField('asker' , 'field_prove_asker_value' , 'prove_by_asker');
-    $query->condition('body.entity_type' , 'comment');
-    $query->condition('body.bundle' , 'comment_node_questions');
     $query->condition('comment.uid' , $user->uid);
     $query->range($page*10 , 10);
     $comments = $query->execute()->fetchAll();
@@ -203,57 +247,54 @@ function my_answered_questions($page){
 
 /*Experts of questions*/
 function question_experts($nids){
-    $query = db_select('field_data_field_experts' , 'e');
-    $query->fields('e' , array('entity_id' , 'field_experts_tid'));
-    $query->condition('e.entity_id', $nids, "IN");
+    $query = db_select('field_data_field_experts' , 'expert');
+    $query->fields('expert' , array('entity_id' , 'field_experts_tid'));
+    $query->condition('expert.entity_id', $nids, "IN");
     $results = $query->execute()->fetchAll();
     return $results;
 }
 
 /*number of comments that an expert left for a question*/
 function number_of_experts_answered($nids){
-    $query = db_select('comment' , 'c');
-    $query->join('users_roles' , 'r' , 'c.uid = r.uid');
-    $query->fields('c' , array('nid'));
-    $query->condition('c.nid', $nids, 'IN');
-    $query->condition('r.rid', 10);
-    $query->groupBy('c.nid');
-    $query->addExpression('count(c.cid)', 'expert_answers');
+    $query = db_select("comment" , "comment");
+    $query->join("users_roles" , "role" , "comment.uid = role.uid and role.rid = '10' ");
+    $query->fields('comment' , array('nid'));
+    $query->condition('comment.nid', $nids, 'IN');
+    $query->groupBy('comment.nid');
+    $query->addExpression('count(comment.cid)', 'expert_answers');
     $results = $query->execute()->fetchAll();
     return $results;
 }
 
 /*return the comments that proved by advisor*/
 function answer_with_prove_by_advisor($nids){
-    $query = db_select('comment' , 'c');
-    $query->join('field_data_field_prove_advisor', 'f' , 'c.cid = f.entity_id');
-    $query->fields('c', array('nid'));
-    $query->condition('c.nid', $nids, "IN");
-    $query->condition('f.field_prove_advisor_value', 1);
-    $query->groupBy('c.nid');
+    $query = db_select("comment" , "comment");
+    $query->join("field_data_field_prove_advisor", "prove_advisor" , "comment.cid = prove_advisor.entity_id and prove_advisor.field_prove_advisor_value = '1' ");
+    $query->fields('comment', array('nid'));
+    $query->condition('comment.nid', $nids, "IN");
+    $query->groupBy('comment.nid');
     $results = $query->execute()->fetchAll();
     return $results;
 }
 
 /*return the comments that proved by asker*/
 function answer_with_prove_by_asker($nids){
-    $query = db_select('comment' , 'c');
-    $query->join('field_data_field_prove_asker', 'f' , 'c.cid = f.entity_id');
-    $query->fields('c', array('nid'));
-    $query->condition('c.nid', $nids, "IN");
-    $query->condition('f.field_prove_asker_value', 1);
-    $query->groupBy('c.nid');
+    $query = db_select("comment" , "comment");
+    $query->join("field_data_field_prove_asker", "prove_asker" , "comment.cid = prove_asker.entity_id and prove_asker.field_prove_asker_value = '1' ");
+    $query->fields('comment', array('nid'));
+    $query->condition('comment.nid', $nids, "IN");
+    $query->groupBy('comment.nid');
     $results = $query->execute()->fetchAll();
     return $results;
 }
 
 /*return the count of comments on each question*/
 function count_of_answers($nids){
-    $query = db_select('comment' , 'c');
-    $query->fields('c', array('nid'));
-    $query->condition('c.nid', $nids, 'IN');
-    $query->groupBy('c.nid');
-    $query->addExpression('count(c.cid)', 'comment_count');
+    $query = db_select('comment' , 'comment');
+    $query->fields('comment', array('nid'));
+    $query->condition('comment.nid', $nids, 'IN');
+    $query->groupBy('comment.nid');
+    $query->addExpression('count(comment.cid)', 'comment_count');
     $results = $query->execute()->fetchAll();
     return $results;
 }
@@ -273,11 +314,11 @@ function files_of_question($nids){
 
 /*---------------------------retrieve--------------------------------*/
 function retrieve_a_question_version_one($nid){
-    $query = db_select('node' , 'n');
-    $query->leftJoin('field_data_body' , 'b' , 'n.nid = b.entity_id');
-    $query->fields('n' , array('nid' , 'uid' , 'title' , 'type' , 'created' , 'changed' , 'status'));
-    $query->addField('b' , 'body_value' , 'body');
-    $query->condition('n.nid', $nid);
+    $query = db_select('node' , 'node');
+    $query->leftJoin('field_data_body' , 'body' , 'node.nid = body.entity_id');
+    $query->fields('node' , array('nid' , 'uid' , 'title' , 'type' , 'created' , 'changed' , 'status'));
+    $query->addField('body' , 'body_value' , 'body');
+    $query->condition('node.nid', $nid);
     $node = $query->execute()->fetch();
     if(strcmp($node->type , "questions") != 0 || empty($node))  return services_error(t('Wrong ID'), 16);
 
@@ -286,9 +327,9 @@ function retrieve_a_question_version_one($nid){
     global $user;
 
     /*add tids of a question*/
-    $query = db_select('field_data_field_experts' , 'e');
-    $query->addField('e' , 'field_experts_tid' , 'tid');
-    $query->condition('e.entity_id' , $nid);
+    $query = db_select('field_data_field_experts' , 'expert');
+    $query->addField('expert' , 'field_experts_tid' , 'tid');
+    $query->condition('expert.entity_id' , $nid);
     $tids = $query->execute()->fetchAll();
     $node->field_experts = $tids;
 
@@ -328,28 +369,26 @@ function retrieve_a_question_version_one($nid){
     $vote_points = $vote_points[0]['value'];
 
     /*check if user vote to the question and his/her point*/
-    $query = db_select('votingapi_vote', 'v');
-    $query->fields('v' , array('value'));
-    $query->condition('v.entity_type' , 'node');
-    $query->condition('v.entity_id' , $node->nid);
-    $query->condition('v.uid' , $user->uid);
+    $query = db_select('votingapi_vote', 'vote');
+    $query->fields('vote' , array('value'));
+    $query->condition('vote.entity_type' , 'node');
+    $query->condition('vote.entity_id' , $node->nid);
+    $query->condition('vote.uid' , $user->uid);
     $user_vote = $query->execute()->fetchObject();
 
     /*check if the question has comment that proved by advisor or not*/
-    $query = db_select('field_data_field_prove_advisor' , 'f');
-    $query->join('comment' , 'c' , 'f.entity_id = c.cid');
-    $query->fields('f' , array('entity_id'));
-    $query->condition('c.nid', $nid);
-    $query->condition('f.field_prove_advisor_value', 1);
+    $query = db_select("field_data_field_prove_advisor" , "prove_advisor");
+    $query->join("comment" , "comment" , "prove_advisor.entity_id = comment.cid and comment.nid = " . $nid);
+    $query->fields('prove_advisor' , array('entity_id'));
+    $query->condition('prove_advisor.field_prove_advisor_value', 1);
     $result = $query->execute()->fetchAll();
     if(!empty($result) && count($result)>0)  $node->prove_advisor = 1;
 
     /*check if the question has comment that proved by asker or not*/
-    $query = db_select('field_data_field_prove_asker' , 'f');
-    $query->join('comment' , 'c' , 'f.entity_id = c.cid');
-    $query->fields('f' , array('entity_id'));
-    $query->condition('c.nid', $nid);
-    $query->condition('f.field_prove_asker_value', 1);
+    $query = db_select("field_data_field_prove_asker" , "prove_asker");
+    $query->join("comment" , "comment" , "prove_asker.entity_id = comment.cid and comment.nid = " . $nid);
+    $query->fields('prove_asker' , array('entity_id'));
+    $query->condition('prove_asker.field_prove_asker_value', 1);
     $result = $query->execute()->fetchAll();
     if(!empty($result) && count($result)>0)  $node->prove_asker = 1;
 
@@ -391,7 +430,7 @@ function edit_a_questions_version_one($nid , $question){
 /*----------------------------follow-------------------------------*/
 function follow_a_question_version_one($nid , $data){
     global $user;
-    if(!isset($data['action']) && empty($data['action'])) return "error! action is empty";
+    if(!isset($data['action']) && empty($data['action'])) return services_error(t('Action is required!'), 15);
 
     if(($data['action'] == "follow" || $data['action'] == 1) && follow_status($nid , $user->uid) == 0){
         $fid = db_insert('flagging')

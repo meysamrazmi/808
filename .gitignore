@@ -28,6 +28,7 @@ sites/all/modules/README.txt
 sites/all/themes/README.txt
 lock/logs/att.txt
 lock/log.txt
+sites/all/modules/808/custom_services/pbd.json
 
 
 # Ignore everything but the "sites" folder ( for non core developer )

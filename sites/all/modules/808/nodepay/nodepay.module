@@ -75,7 +75,7 @@ function pay_for_node($nid , $ws_api = false) {
     $description =  ($flag)? ' با 25 درصد تخفیف ' . $festival :'';
     if(isset($user->roles[8])){ //for vip user only
         $description .= ', با 10 درصد تخفیف vip';
-//	        $points = round(intval($points * 0.9) , -1);
+        $points = round(intval($points * 0.9) , -1);
     }
     $num_pts = userpoints_get_current_points($user->uid, 'all');
     if ($num_pts < $points) {

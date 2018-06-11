@@ -3910,16 +3910,16 @@ div#block-views-playlist-block-1 {
   background: #1a1a1a;
   color: #fff;
   margin-top: 43px !important;
-  width: calc(100% + 35px);
+  width: calc(100% - -35px);
   margin-right: -35px;
   overflow: hidden;
   position: relative;
   height: 0;
-  padding-bottom: calc(165% + 1px);
+  padding-bottom: calc(165% - -1px);
 }
 .page-gallery.page-playlist #breadcrumb {
   margin: 0 15px;
-  width: calc(100% + 260px);
+  width: calc(100% - -260px);
 }
 div#block-views-playlist-block-1 .playlist {
   bottom: 0;
@@ -4230,7 +4230,7 @@ input[type="checkbox"]:checked:before {
 .page-shop .pane-views-exp-taxonomy-term-page-1 input#edit-submit-taxonomy-term {
   position: absolute;
   top: 32px;
-  left: calc(15% + 9px);
+  left: calc(15% - -9px);
   height: 36px !important;
   width: 60px !important;
   border-radius: 40px;
@@ -5308,7 +5308,7 @@ div#block-views-exp-glrnew-page-2 div#edit-populate-wrapper >div>div {
 #pbd-panel .views-slideshow-controls-top {
   position: absolute;
   /* z-index: 20; */
-  width: calc(100% + 100px);
+  width: calc(100% - -100px);
   right: -50px;
   height: 100%;
 }
@@ -5351,7 +5351,7 @@ div#block-views-exp-glrnew-page-2 div#edit-populate-wrapper >div>div {
   content: "\F142";
 }
 #pbd-panel .views-slideshow-controls-text {
-  height: calc(100% + 50px);
+  height: calc(100% - -50px);
   position: absolute;
   width: 100%;
   margin-top: -25px;
@@ -5528,7 +5528,7 @@ div#block-views-exp-glrnew-page-2 div#edit-populate-wrapper >div>div {
 .namayandegi .pane-content:before {
   content: "";
   width: 1px;
-  height: calc(100% + 30px);
+  height: calc(100% - -30px);
   position: absolute;
   background: #dad1e2;
   top: -30px;

@@ -1,0 +1,244 @@
+/*  
+ * variable section
+ */
+/*colors*/
+/*medias*/
+/*mixins*/
+.no-acrollbar::-webkit-scrollbar {
+  height: 0px;
+  width: 0px;
+}
+.no-paper {
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+}
+/*--------------------------------webkits-----------------------------*/
+.node-product .field-name-teacher-identity,
+.node-product-kit .field-name-teacher-identity,
+.node-product .field-name-company-page,
+.node-product-kit .field-name-company-page {
+  margin: 10px 0px 20px 20px;
+  position: relative;
+}
+.node-product .field-name-teacher-identity:hover .field-items .statement,
+.node-product-kit .field-name-teacher-identity:hover .field-items .statement,
+.node-product .field-name-company-page:hover .field-items .statement,
+.node-product-kit .field-name-company-page:hover .field-items .statement {
+  opacity: 1;
+}
+.node-product .field-name-teacher-identity:before,
+.node-product-kit .field-name-teacher-identity:before,
+.node-product .field-name-company-page:before,
+.node-product-kit .field-name-company-page:before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 3px;
+  right: calc(50% - 60px);
+  bottom: -16px;
+  background: #673AB7;
+  z-index: 1;
+  border: solid #fff;
+  border-width: 0 10px;
+}
+.node-product .field-name-teacher-identity .field-label,
+.node-product-kit .field-name-teacher-identity .field-label,
+.node-product .field-name-company-page .field-label,
+.node-product-kit .field-name-company-page .field-label {
+  font-weight: normal;
+  margin-bottom: 15px;
+}
+@media (max-width: 480px) {
+  .node-product .field-name-teacher-identity .field-label,
+  .node-product-kit .field-name-teacher-identity .field-label,
+  .node-product .field-name-company-page .field-label,
+  .node-product-kit .field-name-company-page .field-label {
+    margin-bottom: 40px;
+  }
+}
+.node-product .field-name-teacher-identity .field-items,
+.node-product-kit .field-name-teacher-identity .field-items,
+.node-product .field-name-company-page .field-items,
+.node-product-kit .field-name-company-page .field-items {
+  max-height: 140px;
+  overflow: hidden;
+}
+@media (max-width: 480px) {
+  .node-product .field-name-teacher-identity .field-items,
+  .node-product-kit .field-name-teacher-identity .field-items,
+  .node-product .field-name-company-page .field-items,
+  .node-product-kit .field-name-company-page .field-items {
+    max-height: 100%;
+  }
+}
+.node-product .field-name-teacher-identity .field-items .statement,
+.node-product-kit .field-name-teacher-identity .field-items .statement,
+.node-product .field-name-company-page .field-items .statement,
+.node-product-kit .field-name-company-page .field-items .statement {
+  position: absolute;
+  background-color: #fbfbfb;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 0px 0px, rgba(0, 0, 0, 0.117647) 0px 1px 3px;
+  padding: 4px 10px;
+  font-size: 12px;
+  top: 0px;
+  right: 160px;
+  border: solid #8BC34A;
+  border-width: 0px 3px;
+  opacity: 0;
+  transition: all ease 0.3s;
+}
+@media (max-width: 768px) {
+  .node-product .field-name-teacher-identity .field-items .statement,
+  .node-product-kit .field-name-teacher-identity .field-items .statement,
+  .node-product .field-name-company-page .field-items .statement,
+  .node-product-kit .field-name-company-page .field-items .statement {
+    opacity: 1;
+  }
+}
+@media (max-width: 480px) {
+  .node-product .field-name-teacher-identity .field-items .statement,
+  .node-product-kit .field-name-teacher-identity .field-items .statement,
+  .node-product .field-name-company-page .field-items .statement,
+  .node-product-kit .field-name-company-page .field-items .statement {
+    top: 27px;
+    right: 5px;
+  }
+}
+.node-product .field-name-teacher-identity .field-items .teacher-identity,
+.node-product-kit .field-name-teacher-identity .field-items .teacher-identity,
+.node-product .field-name-company-page .field-items .teacher-identity,
+.node-product-kit .field-name-company-page .field-items .teacher-identity,
+.node-product .field-name-teacher-identity .field-items .node-ref,
+.node-product-kit .field-name-teacher-identity .field-items .node-ref,
+.node-product .field-name-company-page .field-items .node-ref,
+.node-product-kit .field-name-company-page .field-items .node-ref {
+  margin: 0px 5px 10px 5px;
+  display: inline-flex;
+  align-items: center;
+  background: #fafafa;
+  border: none;
+  border-radius: 2px 40px 40px 40px;
+  padding: 0;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  transition: all 0.2s ease;
+}
+.node-product .field-name-teacher-identity .field-items .teacher-identity:hover,
+.node-product-kit .field-name-teacher-identity .field-items .teacher-identity:hover,
+.node-product .field-name-company-page .field-items .teacher-identity:hover,
+.node-product-kit .field-name-company-page .field-items .teacher-identity:hover,
+.node-product .field-name-teacher-identity .field-items .node-ref:hover,
+.node-product-kit .field-name-teacher-identity .field-items .node-ref:hover,
+.node-product .field-name-company-page .field-items .node-ref:hover,
+.node-product-kit .field-name-company-page .field-items .node-ref:hover {
+  box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+}
+@media (max-width: 480px) {
+  .node-product .field-name-teacher-identity .field-items .teacher-identity,
+  .node-product-kit .field-name-teacher-identity .field-items .teacher-identity,
+  .node-product .field-name-company-page .field-items .teacher-identity,
+  .node-product-kit .field-name-company-page .field-items .teacher-identity,
+  .node-product .field-name-teacher-identity .field-items .node-ref,
+  .node-product-kit .field-name-teacher-identity .field-items .node-ref,
+  .node-product .field-name-company-page .field-items .node-ref,
+  .node-product-kit .field-name-company-page .field-items .node-ref {
+    display: flex;
+  }
+}
+.node-product .field-name-teacher-identity .field-items .teacher-identity .user_pic img,
+.node-product-kit .field-name-teacher-identity .field-items .teacher-identity .user_pic img,
+.node-product .field-name-company-page .field-items .teacher-identity .user_pic img,
+.node-product-kit .field-name-company-page .field-items .teacher-identity .user_pic img,
+.node-product .field-name-teacher-identity .field-items .node-ref .user_pic img,
+.node-product-kit .field-name-teacher-identity .field-items .node-ref .user_pic img,
+.node-product .field-name-company-page .field-items .node-ref .user_pic img,
+.node-product-kit .field-name-company-page .field-items .node-ref .user_pic img,
+.node-product .field-name-teacher-identity .field-items .teacher-identity .node_pic img,
+.node-product-kit .field-name-teacher-identity .field-items .teacher-identity .node_pic img,
+.node-product .field-name-company-page .field-items .teacher-identity .node_pic img,
+.node-product-kit .field-name-company-page .field-items .teacher-identity .node_pic img,
+.node-product .field-name-teacher-identity .field-items .node-ref .node_pic img,
+.node-product-kit .field-name-teacher-identity .field-items .node-ref .node_pic img,
+.node-product .field-name-company-page .field-items .node-ref .node_pic img,
+.node-product-kit .field-name-company-page .field-items .node-ref .node_pic img {
+  width: 60px;
+  border: 2px solid #fff;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-bottom: -7px;
+}
+.node-product .field-name-teacher-identity .field-items .teacher-identity .teacher-name,
+.node-product-kit .field-name-teacher-identity .field-items .teacher-identity .teacher-name,
+.node-product .field-name-company-page .field-items .teacher-identity .teacher-name,
+.node-product-kit .field-name-company-page .field-items .teacher-identity .teacher-name,
+.node-product .field-name-teacher-identity .field-items .node-ref .teacher-name,
+.node-product-kit .field-name-teacher-identity .field-items .node-ref .teacher-name,
+.node-product .field-name-company-page .field-items .node-ref .teacher-name,
+.node-product-kit .field-name-company-page .field-items .node-ref .teacher-name,
+.node-product .field-name-teacher-identity .field-items .teacher-identity .company-page-name,
+.node-product-kit .field-name-teacher-identity .field-items .teacher-identity .company-page-name,
+.node-product .field-name-company-page .field-items .teacher-identity .company-page-name,
+.node-product-kit .field-name-company-page .field-items .teacher-identity .company-page-name,
+.node-product .field-name-teacher-identity .field-items .node-ref .company-page-name,
+.node-product-kit .field-name-teacher-identity .field-items .node-ref .company-page-name,
+.node-product .field-name-company-page .field-items .node-ref .company-page-name,
+.node-product-kit .field-name-company-page .field-items .node-ref .company-page-name {
+  padding: 10px;
+  color: black !important;
+  min-width: 100px;
+}
+.node-product .field-name-teacher-identity:after,
+.node-product-kit .field-name-teacher-identity:after,
+.node-product .field-name-company-page:after,
+.node-product-kit .field-name-company-page:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  right: 0;
+  bottom: -15px;
+  background: #eee;
+}
+.node-product .flag-outer-notify-product-existing-status {
+  display: none;
+}
+.node-product.node-unavailable .group-left {
+  position: relative;
+}
+.node-product.node-unavailable .group-left .field-name-unavailable,
+.node-product.node-unavailable .group-left .add-to-cart {
+  display: none;
+}
+.node-product.node-unavailable .group-left .flag-outer-notify-product-existing-status {
+  display: inline-flex !important;
+  clear: both;
+  float: none;
+  position: relative;
+}
+.node-product.node-unavailable .group-left .flag-outer-notify-product-existing-status .flag-wrapper {
+  position: initial;
+}
+.node-product.node-unavailable .group-left .flag-outer-notify-product-existing-status a {
+  font-size: 0px;
+}
+.node-product.node-unavailable .group-left .flag-outer-notify-product-existing-status a.flag-action:before {
+  content: '\f09b';
+  font-family: mat;
+  font-size: 27px;
+  color: #b9b7b7;
+}
+.node-product.node-unavailable .group-left .flag-outer-notify-product-existing-status a.unflag-action:before {
+  content: '\f09a';
+  font-family: mat;
+  font-size: 27px;
+  color: #f9a825;
+}
+.node-product.node-unavailable .group-left .flag-outer-notify-product-existing-status a:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+}
