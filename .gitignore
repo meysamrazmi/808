@@ -3,6 +3,8 @@ sites/*/*settings*.php
 lock/confing.php
 .idea/
 lock/log.txt
+app/src/808plus.apk
+lock/logs/att.txt
 
 # Ignore paths that contain generated content.
 files/
@@ -10,6 +12,7 @@ sites/*/files
 sites/*/private
 sites/default/
 en/
+en2
 
 # Ignore default text files
 robots.txt
