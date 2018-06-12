@@ -1,4 +1,4 @@
-/*  
+/* 
  * variable section
  */
 /*medias*/
@@ -81,7 +81,7 @@ body:not(.page-landing) #block-system-main > .content .field-type-text-with-summ
   background: #fff;
 }
 .page-shop .flag-outer-bookmarks {
-  top: -84px;
+  top: -81px;
   right: 0px;
 }
 .page-shop .flag-outer-bookmarks a.flag:before {

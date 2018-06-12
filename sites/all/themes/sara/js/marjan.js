@@ -5,10 +5,27 @@ $(document).ready(function () {
     if (!$('.page-user .pane-uc-orders-user .view-uc-orders-user div').length) {
         $('.pane-uc-orders-user').remove();
     }
+
+    console.log($('#page-title').height());
     
-    /*adjust position of bookmark icon and admin-tabs in node-page*/
-    $('.page-node:not(.page-gallery):not(.page-shop):not(.page-pedia) div.tabs').css({'top':$('#page-title').height()});
-    
+    /*adjust position of bookmark iconin node-page*/
+    $('.page-node:not(.page-gallery):not(.page-shop):not(.page-pedia) div.tabs')
+		.css({'top':$('#page-title').height()});
+
+    /*adjust position of admin-tabs in node-page*/
+    $('.page-node:not(.page-gallery):not(.page-shop):not(.page-pedia):not(.page-college) .flag-outer-bookmarks')
+		.css({'top':-$('#page-title').height()-2});
+
+    /*adjust position of admin-tabs in product-page*/
+    if($('.page-shop #page-title').height() >= 80){
+        $('.page-shop .flag-outer-bookmarks')
+            .css({'top':-$('#page-title').height()-40});
+	}
+
+	/*adjust position of bookmark icon and admin-tabs in product-page*/
+    $('.page-shop.page-products div.tabs')
+        .css({'top':$('#page-title').height()-13});
+
     /*shop*/
     $('.node.node-product.view-mode-full .group-left > .display-price,.node.node-product-kit.view-mode-full .group-left > .display-price').prepend('<span>قیمت نهایی:</span>');
     
@@ -39,7 +56,7 @@ $(document).ready(function () {
         });
     }
 
-	 if($('.page-node.page-pedia .field-name-user-with-expert').length){
+    if($('.page-node.page-pedia .field-name-user-with-expert').length){
 		$('.field-name-user-with-expert').attr('id', 'advisor_experts');
 		if($('.view-display-id-pedia_experts_advisors > .view-content').children().length < 4){
 				$('.view-display-id-pedia_experts_advisors > .view-content .views-row').css("float", "none");
@@ -68,8 +85,7 @@ $(document).ready(function () {
 		
 		$('.divanchors').append('<a class="users" href="#user_experts"><span>کاربران متخصص</span></a>');
 	}
-	
-	
+
 	/*using owl in user relation page*/
 	if($('.page-user-relationships #block-views-user-experts-suggestion-users').length){
 		$('.view-display-id-suggestion_users > .view-content').addClass('owl-carousel');
@@ -79,8 +95,7 @@ $(document).ready(function () {
     if($('.front .crousal-galley .view-content').length){
 		$('.front .crousal-galley .view-content').addClass('owl-carousel');
 	}
-    
-	
+
 	/*runing owl*/
 	if($('.owl-carousel').length){
 		$.getScript('/sites/all/themes/sara/js/lib/owl.carousel.min.js', function(){
@@ -102,16 +117,13 @@ $(document).ready(function () {
 		})
 	}
 
-		
 	/*using owl for online-users*/
 	/* $('.view-online-users > .view-content').addClass('owl-carousel'); */
-	
 	if((window.matchMedia('(max-width: 400px)').matches && $('.view-online-users > .view-content').children().length > 2) ||
 		(window.matchMedia('(max-width: 700px)').matches && $('.view-online-users > .view-content').children().length > 4) ||
 		($('.view-online-users > .view-content').children().length > 7) ){
 			$('.view-online-users > .view-content').addClass('owl-carousel');
 	}
-	
 	if($('.view-online-users .owl-carousel').length){
 		$.getScript('/sites/all/themes/sara/js/lib/owl.carousel.min.js', function(){
 			$('.view-online-users .owl-carousel').owlCarousel({
@@ -135,15 +147,13 @@ $(document).ready(function () {
 			$('.owl-next').text('')
 		})
 	}
-	
-	
+
     /*creating default image for pedia node refrenced node ---- with owl crousal*/
     $('.page-node.page-pedia .field-type-node-reference > div.field-items .owl-item').each(function(){
         if(!$(this).find('.field-type-image').length){
             $(this).find('.group-header').prepend('<img src="http://civil808.com/sites/all/themes/sara/images/nophoto.png" width="240" height="140" alt="no-picutre">');
         }
     });
-
 
 	if($('.page-node.page-pedia #comments').length){
 		$('.divanchors').append('<a class="commentanch" href="#comments"><span>نظرات</span></a>');
@@ -158,7 +168,6 @@ $(document).ready(function () {
     
     /*closing landing-job submittion*/
     /*$('.page-node-14314 #webform-client-form-14314 .form-actions,.page-node-14314 #webform-client-form-14314  .captcha').remove();*/
-    
     /*adjusting view-empty result for bookmarks*/
     if($('.page-user-bookmarks #block-system-main > div > div > div.view-empty').length){
         $('.page-user-bookmarks #block-system-main').css({
@@ -174,8 +183,6 @@ $(document).ready(function () {
         $('.flag-outer-notify-product-existing-status').append('<span class="flag-product-hint">زمانی که  این محصول موجود است به من اطلاع بده</span>');
 		$('.flag-outer-notify-product-existing-status').addClass('btn');
     }
-	
-	
     if($('#college-elmi-block > div > div > div > div.views-row').length){
         $('#college-elmi-block > div > div > div > div.views-row').each(function(){
             if(!$(this).find('.views-field-field-image').length){

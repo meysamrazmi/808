@@ -1941,8 +1941,7 @@ background: transparent;
   display: inline-block;
   z-index: 1;
 }
-.page-colleges div.tabs,
-.page-shop.page-products div.tabs {
+.page-colleges div.tabs {
   margin-top: 30px;	
 }
 .page-node div.tabs:hover,
@@ -2060,16 +2059,13 @@ body.uc-product-node ul.tabs.primary li:last-child {
   padding-right: 5px;
 }
 .page-shop.page-products .container #page-title {
-  background: transparent;
-  text-shadow: 0 0px 20px rgba(0, 0, 0, 1);
-  color: #fff !important;
-  font-size: 26px !important;
-  line-height: 80px;
-  margin-top: 30px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  padding-left: 120px;
+    background: transparent;
+    text-shadow: 0 0 20px rgba(0,0,0,1);
+    color: #fff !important;
+    font-size: 26px !important;
+    line-height: 40px;
+    margin: 15px 34px 15px 0 !important;
+    padding-left: 50px;
 }
 .page-shop.page-catalogs section#main:before {
   background-image: url(http://civil808.com/sites/all/themes/sara/images/title-bg2.jpg) !important;
