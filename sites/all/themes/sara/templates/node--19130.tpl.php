@@ -1,17 +1,30 @@
-<img src="/sites/default/files/attachfromftp/node-19130/eng97-poster.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
+<img src="/sites/default/files/field/image/node_19130.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
 
 <section class="kargah-sec">
-    <h2>همایش آشنایی با آزمون آمادگی ورود به حرفه داخلی و خارجی، رشته عمران و معماری</h2>
+    <h2>همایش آشنایی با آزمون آمادگی ورود به حرفه داخلی، رشته عمران و معماری</h2>
     <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره به صورت حضوری و آنلاین برگزار می شود.</p>
     <div class="first-row" style="margin-top: 40px;">
         <div>
-            <p>همایش آشنایی با آزمون ورود به حرفه داخلی و خارجی در رشته های عمران و معماری، صبح تا عصر سه شنبه ۲۹ خرداد ماه، به صورت آنلاین و حضوری، توسط موسسه آموزشی مهندسی ۸۰۸ در محل انجمن فارغ التحصیلان دانشگاه صنعتی شریف برگزار می شود.</p>
-            <p><strong> سرفصل های دوره:</strong></p>
+            <p>همایش آشنایی با آزمون ورود به حرفه داخلی در رشته های عمران و معماری، صبح تا عصر سه شنبه ۲۹ خرداد ماه، به صورت آنلاین و حضوری، در موسسه آموزشی مهندسی ۸۰۸ برگزار می شود.</p>
+            <p>
+                مباحث این همایش عبارتست از؛ معرفی آزمون‌های ورود به حرفه داخل کشور، نحوه ثبت نام در آزمون، آمادگی قبولی در آزمون، آشنایی با نحوه استفاده از ابزارهای کمکی قبولی در آزمون (ماشین حساب، شابلون، کلیدواژه)
+            </p>
+            <p><strong> سرفصل های سخنرانی دکتر مرتضی صدیق:</strong></p>
             <ul>
-                <li>معرفی آزمون‌های ورود به حرفه داخل و خارج از کشور</li>
-                <li>نحوه ثبت نام در آزمون</li>
-                <li>آمادگی قبولی در آزمون</li>
-                <li>آشنایی با نحوه استفاده از ابزارهای کمکی قبولی در آزمون (ماشین حساب، شابلون، کلیدواژه)</li>
+                <li>آموزش کامل انواع رمپ</li>
+                <li>آموزش کامل پله و آسانسور</li>
+                <li>آموزش جانمایی درست پارکینگ</li>
+                <li>آموزش جانمایی و سرعت طراحی</li>
+                <li>کلیت طراحی پلان طبقات و بام</li>
+            </ul>
+            <p><strong> سرفصل های سخنرانی مهندس مصطفی دوگوهرانی:</strong></p>
+            <ul>
+                <li>بايدها و نبايد ها در آزمون محاسبات و نظارت رشته های عمران و معماری</li>
+                <li>ارزيابی كلی از پايه درسی و شناخت منابع مناسب</li>
+                <li>تدوين یک برنامه ٣الی ۴ ماهه برای آزمون</li>
+                <li> بررسی نحوه مطالعه در طول برنامه، خلاصه نويسی و تست‌زنی مناسب</li>
+                <li>فراهم كردن شرايط آزمون</li>
+                <li>بحث راجع به سوالات ادوار گذشته آزمون محاسبات</li>
             </ul>
             <p class="important">
             </p>
@@ -23,7 +36,7 @@
     <h2 class="text"> برنامه زمان بندی </h2>
     <div class="timing-wh">
         <div class="timebox time1">
-            <div class="moddat"> 4 ساعت </div>
+            <div class="moddat"> 13 الی 17 </div>
             <div class="circle"></div>
             <div class="line"></div>
             <div class="description">
@@ -44,7 +57,7 @@
             </div>
         </div>
         <div class="timebox time2">
-            <div class="moddat"> 2 ساعت </div>
+            <div class="moddat"> 17 تا 20 </div>
             <div class="circle"></div>
             <div class="line"></div>
             <div class="description">
@@ -64,7 +77,7 @@
                 </a>
             </div>
         </div>
-        <div class="timebox time3">
+        <!--<div class="timebox time3">
             <div class="moddat"> 2 ساعت </div>
             <div class="circle"></div>
             <div class="line"></div>
@@ -79,12 +92,11 @@
                     </div>
                     <div class="des-down">
                         آزمون‌های بین‌المللی (FE، PE، ARE)، همراه با معرفی ابزارهای کمکی قبولی در آزمون
-                        <!--<a href="http://civil808.com/sites/default/files/importviaftp/SeismoSoft-Civil808-Presentation-Feb%2C2018.pdf"> خلاصه ای از فایل سخنرانی
-                        </a>-->
+
                     </div>
                 </a>
             </div>
-        </div>
+        </div>-->
     </div>
 </section>
 
@@ -113,7 +125,7 @@
 </section>
 
 <section class="second">
-    <h2 class="text"> ثبت نام در همایش آشنایی با آزمون آمادگی ورود به حرفه داخلی و خارجی، رشته عمران و معماری </h2>
+    <h2 class="text"> ثبت نام در همایش آشنایی با آزمون آمادگی ورود به حرفه داخلی، رشته عمران و معماری </h2>
     <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;"> علاوه بر این دوره شما می توانید در
         <a href="/college/herfe" target="_blank" class="title"> ترم جاری ورود به حرفه </a>
         ثبت نام کنید.
@@ -126,8 +138,8 @@
                     <!--<p class="text"> برنامه زمان بندی و نام اساتید را می توانید در بخش بالا مشاهده کنید </p>-->
                     <p style="padding: 9px 12px 0px 0px;">به همراه پذیرایی</p>
                     <div class="tarikh">سه شنبه 29 خرداد ماه 1397</div>
-                    <div class="makan"> دانشگاه صنعتی شریف، سالن انجمن فارغ التحصیلان </div>
-                    <div class="zaman"> صبح تا عصر </div>
+                    <div class="makan"> موسسه آموزشی 808 </div>
+                    <div class="zaman"> 13:00 تا 20:00 </div>
                     <div class="mablagh"> 10,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
@@ -139,7 +151,7 @@
                     <p style="padding: 9px 12px 0px 0px;">به همراه ارسال فیلم وبینار به ایمیل ثبت نام کنندگاه بعد از برگزاری همایش</p>
                     <div class="tarikh">سه شنبه 29 خرداد ماه 1397</div>
                     <div class="makan"> ارسال لینک ورود به وبینار زنده </div>
-                    <div class="zaman"> صبح تا عصر </div>
+                    <div class="zaman"> 13:00 تا 20:00 </div>
                     <div class="mablagh"> 10,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
@@ -496,7 +508,7 @@
         content: " ";
         position: absolute;
         top: 171px;
-        width: 62%;
+        width: 40%;
         height: 2px;
         background-color: #d1b5e2;
     }
@@ -544,6 +556,7 @@
         }
         .timebox.time2 .circle:after {
             height: 125px;
+            display: none;
         }
         .timebox.time4 .circle:after {
             display:none;

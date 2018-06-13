@@ -9,7 +9,6 @@ stylesheets[all][] = css/razmia.min.css
 stylesheets[all][] = css/razmia1.min.css
 stylesheets[all][] = css/razmia2.min.css
 stylesheets[all][] = css/razmia3.min.css
-stylesheets[all][] = css/marjan.min.css
 stylesheets[all][] = css/marjan2.min.css
 stylesheets[all][] = css/marjan3.min.css
 stylesheets[all][] = css/marjan4.min.css

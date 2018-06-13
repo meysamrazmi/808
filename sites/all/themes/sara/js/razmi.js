@@ -398,7 +398,7 @@ $('#mini-panel-shop_sidebar .click-to-open').click(function(){
 		shop_filter_open();
 	}
 });
-if(window.location.href.indexOf("mefibs-form-f-mefibs_block_id") > -1 || (window.location.href.indexOf("items_per_page") > -1 && window.location.href.indexOf("p") > -1)) {
+if($.urlParam("mefibs-form-f-mefibs_block_id") != null || ($.urlParam("items_per_page") != null && $.urlParam("p") != null)) {
 
 }else{
 	setTimeout(function(){
@@ -539,14 +539,11 @@ comments.on('focus', 'textarea', function () {
 });
 // Open Notifications
 CommentOpen = function(comment) {
-	comment.addClass('writing').find('.form-actions').slideDown();
-	
+	comment.parents('.comment-form').addClass('writing').find('.form-actions').slideDown();
 	$('html').unbind("click", CommentClose);
 };
 CommentClose = function() {
-	comments.removeClass('writing');
-	comments.find('.form-actions').slideUp();		
-	
+	comments.removeClass('writing').find('.form-actions').slideUp();
 //	$('html').unbind("click", CommentClose);
 };
 comments.click(function(event){

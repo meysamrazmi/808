@@ -611,10 +611,16 @@ div.content > div.cta > div.messages > h2 > a{
 	margin-bottom: 21px;
 	padding: 0px 0px 10px 0px;
 	box-shadow: 0 2px 2px #edeef0 !important;
-	overflow: hidden !important;
 	border-radius: 4px !important;
 	background-color: white;
 	margin-top: 13px;
+}
+.default-page .author-section,
+.default-page .relatives,
+.default-page #comments,
+.default-page .block-poll,
+.default-page .node-pay {
+	overflow: hidden !important;
 }
 .default-page:not(.page-landing) #block-system-main .content .content{
 	margin-top:0px;
@@ -2173,9 +2179,6 @@ div#gallery808 .related img {
 	background-color: white;
 	box-shadow: 0 2px 2px #edeef0 !important;
     padding: 26px 30px;
-}
-.page-gallery.page-videos .field-name-title{
-	margin-right: 24px;
 }
 .page-gallery .field-name-body{
 }
