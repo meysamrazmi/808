@@ -16,7 +16,20 @@ function user_resource_register($hash , $data, $version){
     return services_error(t('This version is not supported'), 11);
 }
 
-
+function user_resource_exist($hash  , $data , $version){
+    if(!(hash_true($hash , "user"))) services_error(t('Failed to access'), 10);
+    if($version == 0){
+        $query = db_select("users", "user");
+        $query->fields("user" , array("name" , "mail"));
+        if(isset($data["username"]) && strlen($data["username"]) > 0) $query->condition('user.name', $data['username'] , 'LIKE');
+        elseif(isset($data["email"]) && strlen($data["email"]) > 0) $query->condition('user.mail', $data['email'] , 'LIKE');
+        else return services_error(t('The username or email is required!'), 15);
+        $result = $query->execute()->fetchObject();
+        if(!empty($result)) return true;
+        else return false;
+    }
+    return services_error(t('This version is not supported'), 11);
+}
 /*---------------------relationships part------------------------------*/
 function user_resource_purchased_products_list($hash , $uid , $version){
     if(!(hash_true($hash , "user"))) services_error(t('Failed to access'), 10);
@@ -66,8 +79,6 @@ function login_version_one($username_email, $password){
         $user = user_data($uid);
 
         if ($user->uid) {
-            user_login_finalize();
-
             $result = new stdClass();
             $result->sessid = session_id();
             $result->session_name = session_name();
@@ -122,7 +133,7 @@ function register_version_one($data){
         'roles' => array(
             DRUPAL_AUTHENTICATED_RID => 'authenticated user',
         ),
-        'field_some_custom_field' => array('und' => array(0 => array('value' => 1))),
+        'field_laws' => array('und' => array(0 => array('value' => 1))),
     );
     $user = user_save('', $new_user);
 
@@ -134,7 +145,6 @@ function register_version_one($data){
     $profile = profile2_load_by_user($user);
 
     /*login user*/
-    user_login_finalize();
     $login = new stdClass();
     $login->sessid = session_id();
     $login->session_name = session_name();

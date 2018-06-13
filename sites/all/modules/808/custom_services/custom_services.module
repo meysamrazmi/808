@@ -712,6 +712,38 @@ function custom_services_services_resources(){
                         ),
                     ),
                 ),
+                'exist' => array(
+                    'help' => 'Check user is exist or not!',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'user_resource'),
+                    'callback' => 'user_resource_exist',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('data' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'data',
+                            'type' => 'array',
+                            'description' => 'User data',
+                            'source' => 'data',
+                            'optional' => FALSE,
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('data' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
             ),
             'relationships' => array(
                 'purchased_products' => array(

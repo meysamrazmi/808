@@ -62,6 +62,10 @@
 
 <section class="second">
     <h2 class="text"> ثبت نام در دوره جامع آموزش اصول محاسبات + حل مثال عملی با نرم افزارهای SeismoSoft و CSI </h2>
+    <p style="text-align: center;margin-top: -18px;font-size: 15px;color: #888;margin-bottom: 29px;">
+    برای اطلاع از زمانبندی و ظرفیت های جدید این دوره،
+    <a href="/node/19177" target="_blank"> کلیک کنید. </a>
+    </p>
 	<div class="takhfifat" style="margin-bottom: 15px;">
         <p>
             <span>10 %</span>تخفیف برای اعضای VIP، <a href="/landing/vip" target="_blank">عضو ویژه شوید</a>        </p>
@@ -92,7 +96,7 @@
                     <p class="important" style="margin: 2px 12px 5px 0;font-weight: bold;background-color: #f5f5f5;padding: 6px 14px;display: inline-block;">به همراه پکیج مخصوص
                         و پروژه پایان دوره
                     </p>
-                    <div class="tarikh"> 5 تا 8، 14 و 15 تیر ماه 1397 </div>
+                    <div class="tarikh"> گروه 1: 7 تا 10 تیر، گروه 2: 12 تا 15 تیر </div>
                     <div class="makan"> دانشگاه صنعتی شریف، سالن انجمن فارغ التحصیلان </div>
                     <div class="zaman"> 60 ساعت </div>
                     <div class="mablagh"> 1,200,000 تومان </div>

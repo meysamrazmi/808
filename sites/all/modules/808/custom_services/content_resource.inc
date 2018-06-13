@@ -50,7 +50,8 @@ function list_of_contents_version_one($type , $language ,  $page , $custom_list 
     $query->join("field_data_field_full_name" , "name" , "name.entity_id = profile.pid and name.entity_type = 'profile2' and name.bundle = 'main'");
     $query->addField("name" , "field_full_name_value" , "author_name");
     $query->condition('node.status' , 1);
-    $query->condition('node.language' , $language);
+    if($language == 'fa')$query->condition('node.language' , 'en' , '<>');
+    elseif($language = 'en') $query->condition('node.language' , 'en');
     $query->condition('node.type' , $type);
 
     if($type == "publication"){
