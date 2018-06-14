@@ -296,6 +296,7 @@ function exposed_filters(){
     $query->fields("taxonomy" , array("tid" , "name"));
     $query->condition("taxonomy.vid" , 22);
     $query->condition("parent.parent" , 0);
+    $query->condition("parent.tid" , 2265 , '<>');
     $results = $query->execute()->fetchAll();
 
     $parent = array();
@@ -311,6 +312,7 @@ function exposed_filters(){
     $query->fields("parent" , array("parent"));
     $query->condition("taxonomy.vid" , 22);
     $query->condition("parent.parent" , 0 , "<>");
+    $query->condition("parent.parent" , 2265 , "<>");
     $results = $query->execute()->fetchAll();
 
     /*add each child to its parent*/
@@ -400,11 +402,26 @@ function products(){
         $count_query = $count_query->countQuery()->execute()->fetchField();
         $response["count"] = (int)$count_query;
 
+        /*select the nids that has "test" taxonomy*/
+        $query = db_select("field_data_taxonomy_catalog" , "catalog");
+        $query->fields("catalog" , array("entity_id"));
+        $query->condition("catalog.taxonomy_catalog_tid" , 2308);
+        $forbiden_tids = $query->execute()->fetchAll();
+        $forbiden_nodes = array();
+        foreach($forbiden_tids as $row) array_push($forbiden_nodes , $row->entity_id);
+
         /*post-processing for prepare final result*/
         foreach($products as $key => $value){
+            /*remove "test" taxonomy*/
+            if(in_array($value->nid , $forbiden_nodes)){
+                unset($products[$key]);
+                continue;
+            }
+            /*change date format from time stamp*/
         	$products[$key]->created = format_date($value->created);
         	$products[$key]->changed = format_date($value->changed);
 
+        	/*convert picture to custom style*/
         	$products[$key]->picture = image_style_url("300x300", $products[$key]->picture);
 
         	/*check the each product is available or not and remove unnecessary fields*/

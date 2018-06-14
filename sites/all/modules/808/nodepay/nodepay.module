@@ -61,19 +61,40 @@ function pay_for_node($nid , $ws_api = false) {
     $flag = false; //default value for discount flag
     /*
     * برای تخفیفات ویژه نوروز که تمامی محتوا ها تخفیف داشتند
-    *
-    $flag = true;
-    $festival = 'جشنواره کتاب 97';
-    for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){
-        if( $node->field_isvip['und'][$i]['tid'] == 2217) // no discount will be applied
-            $flag=false;
-    }
-    if($flag)
-        $points = round(intval($points * 0.75) , -1);
     */
+    if(strcmp($node->type , "designteam") == 0)
+    {
+        $festival = 'جشنواره عید فطر';
 
-    $description =  ($flag)? ' با 25 درصد تخفیف ' . $festival :'';
-    if(isset($user->roles[8])){ //for vip user only
+        $field_publication = array();
+        if(!empty($node->field_publication808['und'])) {
+            foreach ($node->field_publication808['und'] as $row) {
+                array_push($field_publication, $row['tid']);
+            }
+        }
+
+        $field_discount = array();
+        if(!empty($node->field_isvip['und'])) {
+            foreach ($node->field_isvip['und'] as $row) {
+                array_push($field_discount, $row['tid']);
+            }
+        }
+        if(in_array(2174 , $field_publication) && !in_array_r(2217 , $field_discount)) $flag = true;
+        else $flag = false;
+        /*
+        for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){
+            if( $node->field_isvip['und'][$i]['tid'] == 2217) // no discount will be applied
+                $flag=false;
+        }*/
+    }
+
+    if($flag)
+        $points = round(intval($points * 0.8) , -1);
+
+
+    $description =  ($flag)? ' با 20 درصد تخفیف برای' . $festival :'';
+
+    if(isset($user->roles[8]) && !$flag){ //for vip user only
         $description .= ', با 10 درصد تخفیف vip';
         $points = round(intval($points * 0.9) , -1);
     }
@@ -84,7 +105,7 @@ function pay_for_node($nid , $ws_api = false) {
         drupal_goto("node/$nid");
     }
     if($flag)
-        drupal_set_message('25 درصد تخفیف به مناسبت '. $festival .' برای شما اعمال شد.');
+        drupal_set_message('20 درصد تخفیف به مناسبت '. $festival .' برای شما اعمال شد.');
 
     $_sql = "INSERT INTO {m_buyed_nodes} (uid, nid, date, price, description) VALUES (:uid, :nid, :date, :price, :description)";
     if($sht = db_query($_sql, array( ':uid' => $user->uid, ':nid' => $nid, ':date' => time(), ':price' => $points, ':description' => $description ))){

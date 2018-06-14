@@ -19,13 +19,34 @@
 	/*
 	* برای تخفیفات ویژه نوروزی و برای چاپ بنر بالاییش
 	*/
+	/*
   $festival = false;
 	if(isset($node->field_isvip['und'])){
 		for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){
 			if( $node->field_isvip['und'][$i]['tid'] == 2217) // no discount will be applied
                 $festival=false;
 		}
-	}
+	}*/
+
+      if(strcmp($node->type , "designteam") == 0)
+      {
+          $field_publication = array();
+          if(!empty($node->field_publication808['und'])) {
+              foreach ($node->field_publication808['und'] as $row) {
+                  array_push($field_publication, $row['tid']);
+              }
+          }
+
+          $field_discount = array();
+          if(!empty($node->field_isvip['und'])) {
+              foreach ($node->field_isvip['und'] as $row) {
+                  array_push($field_discount, $row['tid']);
+              }
+          }
+          if(in_array(2174 , $field_publication) && !in_array_r(2217 , $field_discount)) $festival = true;
+          else $festival = false;
+      }
+
 	if($festival){
 		print '<div id="takhfifdar"></div>';
 	}/**/
@@ -75,7 +96,7 @@
               <div class="cta-icon"></div>
               <?php
 				if($festival){ //festival time
-                    print '<span class="n-label" style="width: 80%;">با 25درصد تخفیف جشنواره کتاب :</span><span class="meghdar" style="color: #4CAF50;">' . formatMoney(round(($point_needed * 0.75), -1)) .' تومان </span>';
+                    print '<span class="n-label" style="width: 80%;">با 20% تخفیف برای جشنواره عید فطر :</span><span class="meghdar" style="color: #4CAF50;">' . formatMoney(round(($point_needed * 0.8), -1)) .' تومان </span>';
 				} else { //normal vip discount
                     print '<span class="n-label">برای کاربران vip :</span><span class="meghdar" style="color: #4CAF50;">' . formatMoney(round(($point_needed * 0.9), -1)) .' تومان </span>';
 				 }
