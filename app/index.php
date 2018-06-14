@@ -76,18 +76,19 @@
 				<div data-aos="zoom-out" data-aos-delay="900" class="aboutus">                 
 					<div class="sec-li li">
 						<span class="icon-laptop">
-							<img class="phone" src="./images/cellphone3.png" width="530" height="auto" alt="اپلیکیشن اندروید 808 پلاس" title="اپلیکیشن اندروید 808 پلاس">
+							<img class="phone" src="./images/cellphone4.png" width="530" height="auto" alt="اپلیکیشن اندروید 808 پلاس" title="اپلیکیشن اندروید 808 پلاس">
 						</span>
 						<div>
 							<p style="font-weight:bold;"> چرا اپلیکیشن 808 پلاس را نصب کنیم؟ </p>
 							<li> مشاهده آخرین اخبار، مقالات تحلیلی و تقویم آموزشی عمران و معماری کشور </li>
 							<li> مشاهده دانشنامه های تخصصی عمران و معماری </li>
 							<li> استفاده از سیستم پرسش و پاسخ 808 و ارتباط با مشاوران سایت </li>
-							
-							<p style="font-weight:bold;"> آپدیت اردیبهشت 97 </p>
                             <li> لیست ایبوک های سایت به همراه مشخصات و امکان جستجو</li>
-                            <li> مشاهده ایبوک های خریداری شده و مطالعه آن ها</li>
-                            <li> خرید ایبوک مورد نظر کاربر </li>
+                            <li>  خرید ایبوک ها و مشاهده ایبوک های خریداری شده</li>
+							
+							<p style="font-weight:bold;"> آپدیت خرداد 97 </p>
+                            <li> دریافت لیست مصاحبه های رادیو 808 </li>
+                            <li> دانلود و پخش رادیو 808 در پلیر اختصاصی</li>
 
 							<a href="http://civil808.com/node/18321" target="_blank">  بیشتر بخوانید ...</a>
 							<div style="max-width: 324px;text-align: center;margin-top: 11px;">
