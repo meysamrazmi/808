@@ -1,4 +1,4 @@
-/*  
+/* 
  * imports section
  */
 /*medias*/
@@ -111,19 +111,19 @@
 }
 .page-moshaver-research .khadamat .pane-content ol li:nth-child(1):before,
 .page-moshaver-research .khadamat .pane-content ul li:nth-child(1):before {
-  background: url("../images/moshaver-like.svg");
+  background: url("../../images/moshaver-like.svg");
 }
 .page-moshaver-research .khadamat .pane-content ol li:nth-child(2):before,
 .page-moshaver-research .khadamat .pane-content ul li:nth-child(2):before {
-  background: url("../images/moshaver-analytics-1.svg");
+  background: url("../../images/moshaver-analytics-1.svg");
 }
 .page-moshaver-research .khadamat .pane-content ol li:nth-child(3):before,
 .page-moshaver-research .khadamat .pane-content ul li:nth-child(3):before {
-  background: url("../images/moshaver-doc.svg");
+  background: url("../../images/moshaver-doc.svg");
 }
 .page-moshaver-research .khadamat .pane-content ol li:nth-child(4):before,
 .page-moshaver-research .khadamat .pane-content ul li:nth-child(4):before {
-  background: url("../images/moshaver-analytics.svg");
+  background: url("../../images/moshaver-analytics.svg");
 }
 .page-moshaver-research .khadamat .pane-content ol li:nth-child(5):before,
 .page-moshaver-research .khadamat .pane-content ul li:nth-child(5):before {
