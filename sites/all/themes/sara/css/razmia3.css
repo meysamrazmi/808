@@ -5801,7 +5801,7 @@ div#breadcrumbb:before {
 .page-landing .submitted {
   display: none;
 }
-.page-landing .node .content .field-type-image .field-item img {
+.page-landing .node .content > .field-type-image .field-item img {
   box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
   min-width: 800px;
 }
