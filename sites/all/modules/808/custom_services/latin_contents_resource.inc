@@ -3,7 +3,7 @@
 /*-------------------------------------index-----------------------------------*/
 function latin_contents_resource_index($hash , $type_tid , $categories, $page , $version){
     if(!(hash_true($hash , "latin_contents"))) return services_error(t('Failed to access'), 10);
-    if($version == "pbd_0"){
+    if(strcmp($version , "pbd_0") == 0){
         return list_of_latin_contents($type_tid, $categories, $page);
     }
     return services_error(t('This version is not supported'), 11);
