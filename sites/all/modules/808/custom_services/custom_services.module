@@ -1139,7 +1139,92 @@ function custom_services_services_resources(){
             'targeted_actions' => array(),
             'relationships' => array(),
         ),
-
+        'latin_contents' => array(
+            'operations' => array(
+                'index' => array(
+                    'help' => 'return all contents',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_contents_resource'),
+                    'callback' => 'latin_contents_resource_index',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('param' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'type_tid',
+                            'type' => 'int',
+                            'description' => 'The type of contents.',
+                            'source' => array('param' => 'type_tid'),
+                            'optional' => FALSE,
+                        ),
+                        array(
+                            'name' => 'categories',
+                            'type' => 'string',
+                            'description' => 'The category of a content.',
+                            'source' => array('param' => 'categories'),
+                            'optional' => TRUE,
+                            'default' => '',
+                        ),
+                        array(
+                            'name' => 'page',
+                            'type' => 'int',
+                            'description' => 'The page of list.',
+                            'source' => array('param' => 'page'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('param' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+            ),
+            'relationships' => array(
+                'filters' => array(
+                    'help' => 'return filters of a content type',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_contents_resource'),
+                    'callback' => 'latin_contents_resource_filters',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('param' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'type',
+                            'type' => 'string',
+                            'description' => 'The type of filters',
+                            'source' => array('path' => 0),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('param' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+            ),
+        ),
 
 		'advisorlist' => array(
 			'operations' => array(
