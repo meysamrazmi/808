@@ -2,13 +2,13 @@
 <div id="block-block-45" class="block block-block contextual-links-region first odd">
     <div class="content">
         <span class="close-banner">X</span>
-        <a href="/node/19072" target="_blank">
-            <img class="right" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">
+        <a href="http://land.civil808.com/97/fetr/" target="_blank">
+            <img class="right" src="/sites/all/themes/sara/images/ramadan-bg.jpg">
             <div class="new-title">
-                دوره جامع آموزش اصول محاسبات
-                <div>بهسازی لرزه ای و طراحی عملکردی سازه ها</div>
+                تا ۴۰ درصد تحفیف در
+                <div>جشنواره فروش ویژه نرم افزارهای عمران و معماری</div>
             </div>
-            <img class="left" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">
+            <img class="left" src="/sites/all/themes/sara/images/ramadan-bg.jpg">
         </a>
     </div>
 </div>
@@ -18,7 +18,7 @@
         position: fixed;
         bottom: 0;
         right: 0;
-        border-top: 3px solid #1a68a9;
+        /* border-top: 3px solid #564967; */
         height: 70px;
         z-index: 100;
         background-position-x: center;
@@ -40,38 +40,39 @@
         right: 0;
         top: 0;
         z-index: 1;
+        background-color: #584968;
     }
     .new-title{
         font-size: 12px;
         width: auto;
         background-position: center;
         background-repeat: no-repeat;
-        margin: 7px auto 0 auto;
-        color: black;
+        margin: 8px auto 0 auto;
+        color: #fec57e;
         text-align: center;
         font-weight: bold;
         z-index: 2;
         position: relative;
     }
     .new-title > div{
-        font-size: 20px;
-        color: #E65100;
+        font-size: 19px;
+        color: #ffffff;
         margin-top: 2px;
+        font-weight: normal;
     }
     img.right{
+        transform: rotateY(180deg);
         position: absolute;
         right: 0;
         top: 0;
     }
     img.left{
-        transform: rotateY(180deg);
         position: absolute;
         left: 0;
         top: 0;
     }
 
-@media (max-width: 1200px){}
-@media (max-width: 979px){
+@media (max-width: 1360px){
     .new-title{
         text-align: right;
         margin-right: 15px;
@@ -80,14 +81,15 @@
         display: none;
     }
 }
+@media (max-width: 979px){}
 @media (max-width: 979px) and (min-width: 769px) {}
 @media all and (max-width: 768px) {}
-@media all and (max-width: 600px) {
+@media all and (max-width: 896px) {
     .new-title > div{
         font-size: 18px;
     }
     img.left{
-        opacity: 0.3;
+        opacity: 0.2;
         height: 70px;
     }
 }
@@ -95,6 +97,10 @@
     .new-title{
         text-align: center;
         margin-right: auto;
+    }
+    .new-title > div{
+        font-size: 15px;
+        margin-top: 5px;
     }
 }
 @media all and (max-width: 400px) {}

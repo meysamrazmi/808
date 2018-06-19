@@ -1153,16 +1153,17 @@ body.page-publication.page-types,
 body.page-article.page-store {
   background: #f5f5f5;
 }
-.page-publication.page-types .container .region-content:before{
-    /*content: ""; برای تخفیف ویژه نوروزی*/
-  position: absolute;
-  background-image: url(../images/ebook-mini-banner.png);
-  width: 250px;
-  height: 90px;
-  left: -10px;
-  top: -100px;
-  background-size: 250px;
-  background-repeat: no-repeat;
+.page-article.page-software .container .region-content:before{
+    content: "";
+    /*ads for nodes discount*/
+    position: absolute;
+    background-image: url(../images/software-dis.png);
+    width: 250px;
+    height: 95px;
+    left: 1px;
+    top: -100px;
+    background-size: 250px;
+    background-repeat: no-repeat;
 }
 .page-article.page-software .messages,
 .page-publication.page-types .messages,
@@ -5800,7 +5801,7 @@ div#breadcrumbb:before {
 .page-landing .submitted {
   display: none;
 }
-.page-landing .node .content .field-type-image .field-item img {
+.page-landing .node .content > .field-type-image .field-item img {
   box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
   min-width: 800px;
 }
