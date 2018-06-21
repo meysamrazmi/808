@@ -391,7 +391,7 @@ function products(){
         $query->orderBy($sort , $order);
         /*------------------------------------------*/
 
-        $page = isset($_Get['page']) ? $_GET['page'] : 0; //use page for get part of result
+        $page = isset($_GET['page']) ? $_GET['page'] : 0; //use page for get part of result
         $response["page"] = $page; //return the number of page for front-end
         $count_query = clone($query); //copy the query before execute for getting the total number of products
         $query->range(30 * $page, 30);
