@@ -502,6 +502,17 @@ float: right;
   margin-right: 2px;
   margin-left: -2px;
 }
+.region-ads3 #block-tb-megamenu-main-menu li[data-id="25914"] .tb-megamenu-submenu .tb-megamenu-subnav li a{
+    font-size: 12px !important;
+    color: #333 !important;
+    line-height: 20px !important;
+    font-weight: normal !important;
+}
+.region-ads3 #block-tb-megamenu-main-menu li[data-id="25914"] .tb-megamenu-submenu .tb-megamenu-subnav li a:hover{
+    color: #46b8da !important;
+    margin-right: 2px ;
+    margin-left: -2px;
+}
 .node-podcast .content .field-type-image .field-item.odd{
   display: none;
 }

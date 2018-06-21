@@ -4331,7 +4331,7 @@ input#edit-populate::-webkit-input-placeholder {
   line-height: 2.5em;
 }
 .page-landing .field-name-body {
-  padding: 40px 80px;
+  padding: 40px 5%;
   font-size: 1.125em;
 }
 .page-summer95 .sections table {
