@@ -116,7 +116,7 @@
   ?>
 
     <?php if ($node->type == 'publication'): /*advertise for showing Ebooks in app*/?>
-        <div class="app-ebook">
+        <div class="app-ebook" style="text-align: center;">
             <a href="/app" target="_blank"><img src="/sites/all/themes/sara/images/app-wild-banner3.jpg"/>
         </div>
     <?php endif; ?>

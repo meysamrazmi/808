@@ -96,7 +96,7 @@
                     <p class="important" style="margin: 2px 12px 5px 0;font-weight: bold;background-color: #f5f5f5;padding: 6px 14px;display: inline-block;">به همراه پکیج مخصوص
                         و پروژه پایان دوره
                     </p>
-                    <div class="tarikh"> گروه 1: 7 تا 10 تیر، گروه 2: 12 تا 15 تیر </div>
+                    <div class="tarikh"> 5 و 6 تیرماه + یکی از گروه ها(گروه 1: 7 تا 10 تیر، گروه 2: 12 تا 15 تیر)</div>
                     <div class="makan"> دانشگاه صنعتی شریف، سالن انجمن فارغ التحصیلان </div>
                     <div class="zaman"> 60 ساعت </div>
                     <div class="mablagh"> 1,200,000 تومان </div>

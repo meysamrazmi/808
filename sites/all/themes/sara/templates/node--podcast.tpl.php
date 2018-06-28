@@ -41,6 +41,11 @@
 
   <?php print render($content['links']); ?>
 
+    <!-- advertise for showing poscasts in app* -->
+    <div class="app-ebook" style="text-align: center;">
+        <a href="/app" target="_blank"><img src="/sites/all/themes/sara/images/app-wild-banner-podcast2.jpg"/>
+    </div>
+
 <!--  این قسمت مربوط به همون نمایش نمیسنده تاریخ محتوایی است که لینک آن در تب های افقی تو ایجاد هر محتوا می باشد  --> 
     <?php if ($display_submitted): ?>
       <div class="author-section">
