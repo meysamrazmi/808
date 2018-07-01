@@ -2,11 +2,11 @@
 <div id="block-block-45" class="block block-block contextual-links-region first odd">
     <div class="content">
         <span class="close-banner">X</span>
-        <a href="http://land.civil808.com/97/fetr/" target="_blank">
+        <a href="http://civil808.com/node/19340" target="_blank">
             <img class="right" src="/sites/all/themes/sara/images/ramadan-bg.jpg">
             <div class="new-title">
-                تا ۴۰ درصد تحفیف در
-                <div>جشنواره فروش ویژه نرم افزارهای عمران و معماری</div>
+                20 درصد شارژ هدیه
+                <div>تخفیف شرایط بحرانی اقتصاد کشور</div>
             </div>
             <img class="left" src="/sites/all/themes/sara/images/ramadan-bg.jpg">
         </a>
@@ -48,7 +48,8 @@
         background-position: center;
         background-repeat: no-repeat;
         margin: 8px auto 0 auto;
-        color: #fec57e;
+        /*color: #fec57e;*/
+        color: #ff9800;
         text-align: center;
         font-weight: bold;
         z-index: 2;
