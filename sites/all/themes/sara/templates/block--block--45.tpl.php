@@ -2,11 +2,11 @@
 <div id="block-block-45" class="block block-block contextual-links-region first odd">
     <div class="content">
         <span class="close-banner">X</span>
-        <a href="http://civil808.com/landing/software" target="_blank">
+        <a href="http://civil808.com/node/19340" target="_blank">
             <img class="right" src="/sites/all/themes/sara/images/ramadan-bg.jpg">
             <div class="new-title">
-                تا 8 تیر ماه تمدید شد
-                <div>جشنواره فروش ویژه نرم افزارهای عمران و معماری</div>
+                20 درصد شارژ هدیه
+                <div>تخفیف شرایط بحرانی اقتصاد کشور</div>
             </div>
             <img class="left" src="/sites/all/themes/sara/images/ramadan-bg.jpg">
         </a>

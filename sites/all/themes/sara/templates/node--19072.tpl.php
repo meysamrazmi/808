@@ -1,5 +1,11 @@
 <img src="/sites/default/files/attachfromftp/node-19072/pbdcourse-poster.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
 
+<div style="width: 70%; background-color: #ffffff; padding: 10px; margin: 67px auto -17px auto; border: solid #b39dd9; border-width: 0px 3px; box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px; text-align: center;">
+<a href="/node/19335" target="_blank" style="color: #909090 !important; font-size: 16px; margin: 5px; display: block;">
+مجموعه تصاوير دوره اول آموزش اصول محاسبات لرزه‌ای و طراحی عملکردی سازه‌ها ٥ و ٦ تير ماه، دانشگاه صنعتی شريف
+</a>
+</div>
+
 <section class="kargah-sec">
     <h2>دوره جامع آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها</h2>
     <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره فقط حضوری و بدون ضبط فیلم است.</p>

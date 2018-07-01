@@ -28,7 +28,7 @@
 		}
 	}*/
 
-      if(strcmp($node->type , "designteam") == 0)
+      /*if(strcmp($node->type , "designteam") == 0)
       {
           $field_publication = array();
           if(!empty($node->field_publication808['und'])) {
@@ -45,7 +45,7 @@
           }
           if(in_array(2174 , $field_publication) && !in_array_r(2217 , $field_discount)) $festival = true;
           else $festival = false;
-      }
+      }*/
 
 	if($festival){
 		print '<div id="takhfifdar"></div>';
