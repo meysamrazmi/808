@@ -112,12 +112,16 @@ function user_profile_data($hash , $uid , $version){
     if($version == 0){
         return profile_data($uid);
     }
+    if($version == "pbd_0"){
+        return profile_data($uid, "en");
+    }
     return services_error(t('This version is not supported'), 11);
 }
 function user_nav_bar_info($hash , $login , $version){
     if(!(hash_true($hash , "user"))) return services_error(t('Failed to access'), 10);
     if($version == "pbd_0"){
         global $user;
+        if(!$user->uid > 0) return services_error("User is not logged in!" , 13);
         $query = db_select("file_managed" , "picture");
         $query->fields("picture" , array("uri"));
         $query->condition("picture.fid" , $user->picture);
@@ -126,7 +130,7 @@ function user_nav_bar_info($hash , $login , $version){
         $result = array();
         $result["uid"] = $user->uid;
         $result["username"] = $user->name;
-        $result["picture"] = (!empty($picture)) ? image_style_url("200x200", $picture->uri) : "";
+        if(!empty($picture)) $result["picture"] = image_style_url("200x200", $picture->uri);
         return $result;
     }
     return services_error(t('This version is not supported'), 11);
@@ -367,9 +371,9 @@ function update_user_data($uid , $data){
     return true;
 }
 
-function profile_data($user){
+function profile_data($user , $language = ""){
     if(!is_object($user))
-        $user = user_data($user);
+        $user = user_data($user , $language);
 
     $profile = $user;
 
@@ -407,6 +411,7 @@ function profile_data($user){
     $query->condition("file_managed.fid", $user->picture);
     $result = $query->execute()->fetch();
     if(!empty($result)) $profile->picture = image_style_url("200x200", $result->uri);
+    else unset($profile->picture);
 
     $query = db_select("field_data_field_image" , "image");
     $query->join("file_managed" , "file" , "file.fid = image.field_image_fid");
@@ -421,11 +426,14 @@ function profile_data($user){
     return $profile;
 }
 
-function user_data($uid){
+function user_data($uid , $language = ""){
     $query = db_select('users' , 'user');
     $query->fields('user' , array('uid' , 'name' , 'mail' , 'created' , 'login' , 'picture'));
     $query->condition('user.uid' , $uid);
+    if(!empty($language) && strlen($language) > 0) $query->condition('user.language' , $language);
     $user = $query->execute()->fetch();
+
+    if(empty($user)) return services_error("User is not exist!" , 16);
 
     $query = db_select('users_roles' , 'user_role');
     $query->join('role' , 'role' , 'user_role.rid = role.rid');
