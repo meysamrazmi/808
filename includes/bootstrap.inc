@@ -1105,7 +1105,7 @@ function _drupal_get_filename_fallback_trigger_error($type, $name, $error_type) 
 	    $e = new \Exception;
 	    echo "اگر این خطا اومد کل متن رو کپی کنید و بزارید توی تسکولو تا من درستش کنم<br>";
 	    var_dump($e->getTraceAsString());
-	    mdump($name);
+	    //mdump($name);
 	  }
       _drupal_trigger_error_with_delayed_logging(format_string('The following @type is missing from the file system: %name. For information about how to fix this, see <a href="@documentation">the documentation page</a>.', array('@type' => $type, '%name' => $name, '@documentation' => 'https://www.drupal.org/node/2487215')), E_USER_WARNING);
     }
