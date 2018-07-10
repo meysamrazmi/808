@@ -62,7 +62,7 @@ function pay_for_node($nid , $ws_api = false) {
     /*
     * برای تخفیفات ویژه نوروز که تمامی محتوا ها تخفیف داشتند
     */
-    if(strcmp($node->type , "designteam") == 0)
+    /*if(strcmp($node->type , "designteam") == 0)
     {
         $festival = 'جشنواره عید فطر';
 
@@ -85,8 +85,8 @@ function pay_for_node($nid , $ws_api = false) {
         for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){
             if( $node->field_isvip['und'][$i]['tid'] == 2217) // no discount will be applied
                 $flag=false;
-        }*/
-    }
+        }
+    }*/
 
     if($flag)
         $points = round(intval($points * 0.8) , -1);

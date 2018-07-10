@@ -6,6 +6,7 @@ function user_resource_login($hash , $username_email, $password , $version){
 
     $login_user = login($username_email, $password);
     if(strcmp($version , "pbd_0") == 0){
+        $login_user->uid = $login_user->user->uid;
         unset($login_user->user);
         return (array)$login_user;
     }
@@ -40,6 +41,7 @@ function user_resource_register($hash , $data, $version){
     if(strcmp($version , "pbd_0") == 0){
         $new_user["language"] = "en";
         $register = register($new_user , $data['full_name']);
+        $register->uid = $register->user->uid;
         unset($register->user);
         unset($register->profile);
         return (array) $register;
@@ -121,7 +123,7 @@ function user_nav_bar_info($hash , $login , $version){
     if(!(hash_true($hash , "user"))) return services_error(t('Failed to access'), 10);
     if($version == "pbd_0"){
         global $user;
-        if(!$user->uid > 0) return services_error("User is not logged in!" , 13);
+        if(!$user->uid > 0) return array("uid" => 0);
         $query = db_select("file_managed" , "picture");
         $query->fields("picture" , array("uri"));
         $query->condition("picture.fid" , $user->picture);
@@ -445,6 +447,9 @@ function user_data($uid , $language = ""){
         $roles[$result->rid] = $result->name;
     }
     $user->roles = $roles;
+
+    $user->created = date("m/d/Y h:m:s" , $user->created);
+    $user->login = date("m/d/Y h:m:s" , $user->login);
 
     return $user;
 }

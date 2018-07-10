@@ -1362,6 +1362,38 @@ function custom_services_services_resources(){
                         ),
                     ),
                 ),
+                'retrieve' => array(
+                    'help' => 'return a contents',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_contents_resource'),
+                    'callback' => 'latin_contents_resource_retrieve',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('param' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'nid',
+                            'type' => 'int',
+                            'description' => 'Nid of content',
+                            'source' => array('path' => 0),
+                            'optional' => FALSE,
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('param' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
             ),
             'relationships' => array(
                 'filters' => array(
