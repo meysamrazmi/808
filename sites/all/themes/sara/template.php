@@ -97,6 +97,10 @@ function sara_preprocess_html(&$variables) {
 	}
 	
  	if(arg(0) == 'node' && is_numeric(arg(1))){
+	    /*add css file to all nodes*/
+        drupal_add_css(drupal_get_path('theme', 'sara') . '/css/less/content-pages.min.css');
+	    /*-------------------------*/
+
 		$node = node_load(arg(1));
 		if(in_array($node->type, array('article', 'podcast', 'blog', 'page', 'publication', 'education', 'designteam'))){
 			$variables['classes_array'][] = 'default-page';

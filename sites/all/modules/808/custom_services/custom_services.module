@@ -1935,19 +1935,19 @@ function custom_services_services_resources(){
 
         'test' => array(
             'operations' => array(
-                'update' => array(
+                'retrieve' => array(
                     'help' => '',
-                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'user_resource'),
+                    //'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_contents_resource'),
                     'callback' => 'test',
                     'access callback' => 'user_access',
                     'access arguments' => array('access content'),
                     'access arguments append' => FALSE,
                     'args' => array(
                         array(
-                            'name' => 'id',
+                            'name' => 'nid',
                             'optional' => False,
-                            'type' => 'string',
-                            'description' => 'hash code',
+                            'type' => 'int',
+                            'description' => 'nid',
                             'source' => array('path' => 0),
                         ),
                     ),
@@ -2021,4 +2021,8 @@ function upload_file($hash) {
         }
     }
     return $files;
+}
+
+function test($nid){
+    return node_load($nid);
 }

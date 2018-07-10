@@ -160,6 +160,36 @@
   <?php endif; ?>
 
   <?php
+    if(
+        $node->type != 'architect' && $node->type != 'blog' &&
+        $node->type != 'multichoice' && $node->type != 'product' &&
+        $node->type != 'questions' && $node->type != 'quiz' &&
+        $node->type != 'slideshow' && $node->type != 'projectnew'
+    ) {
+        $questions = relative_qa($node->nid, $node->type);
+        if(!empty($questions)) {
+            print '<div class="relative-questions">';
+            print '<div class="q-title">سوالات مرتبط</div>';
+
+            foreach ($questions as $row) {
+                print '<div class="question">';
+                print '<div class="left">';
+                print '<a href="user/' . $row->uid . '" class="pic" title="' . $row->usename . '"><img src="' . $row->user_picture . '" alt="عکس کاربر"></a>';
+                print '<div class="comment-count">' . $row->comment_count . 'پاسخ</div> ';
+                print '</div>';
+                print '<div class="right">';
+                print '<a href="/node/' . $row->nid . '" target="_blank" class="title">' . $row->title . '</a>';
+                print '<p class="body">' . $row->body . '</p>';
+                print '</div>';
+                print '</div>';
+            }
+
+            print '</dev></div>';
+        }
+    }
+  ?>
+
+  <?php
 	if (!$user->uid) {
 		print '<li class="comment_forbidden first last"><span>';
 		print render($comment_forbidden['title']);
@@ -167,5 +197,4 @@
 	}
 	print render($content['comments']); 
   ?>
-
 </div>

@@ -220,3 +220,90 @@ function question_followers($node, $comment){
 	return $followers;
 }
 
+
+function relative_qa($nid , $type){
+    switch ($type){
+        case 'designteam' :
+            $query = db_select("field_data_field_maghalat" , "pedia");
+            $query->condition('pedia.field_maghalat_nid' , $nid);
+            break;
+        case 'article' :
+            $query = db_select("field_data_field_akhbar" , "pedia");
+            $query->condition('pedia.field_akhbar_nid' , $nid);
+            break;
+        case 'publication' :
+            $query = db_select("field_data_field_entesharat" , "pedia");
+            $query->condition('pedia.field_entesharat_nid' , $nid);
+            break;
+        case 'gallerynew' :
+            $query = db_select("field_data_field_porojhe" , "pedia");
+            $query->condition('pedia.field_porojhe_nid' , $nid);
+            break;
+        case 'product' :
+            $query = db_select("field_data_field_shopproduct" , "pedia");
+            $query->condition('pedia.field_shopproduct_nid' , $nid);
+            break;
+        case 'podcast' :
+            $query = db_select("field_data_field_podcast808" , "pedia");
+            $query->condition('pedia.field_podcast808_nid' , $nid);
+            break;
+        case 'education || college' :
+            $query = db_select("field_data_field_edu_college" , "pedia");
+            $query->condition('pedia.field_edu_college_nid' , $nid);
+            break;
+        case 'film' :
+            $query = db_select("field_data_field_filmmortabet" , "pedia");
+            $query->condition('pedia.field_filmmortabet_nid' , $nid);
+            break;
+        default:
+            return;
+    }
+
+    $query->fields('pedia' , array('entity_id'));
+    $result = $query->execute()->fetchAll();
+    if (empty($result)) return array();
+    $pedias = array();
+    foreach ($result as $row) array_push($pedias , $row->entity_id);
+
+    $query = db_select('field_data_field_experts' , 'pedia_expert');
+    $query->join('field_data_field_experts' , 'question_expert' , 'pedia_expert.field_experts_tid = question_expert.field_experts_tid');
+    $query->condition('pedia_expert.bundle' , 'architect');
+    $query->condition('pedia_expert.entity_id' , $pedias , 'IN');
+    $query->condition('question_expert.bundle' , 'questions');
+    $query->fields('question_expert' , array('entity_id'));
+    $result = $query->execute()->fetchAll();
+
+    $questions_nid= array();
+    foreach ($result as $row) array_push($questions_nid , $row->entity_id);
+
+    $query = db_select('node' , 'node');
+    $query->leftJoin("field_data_body" , "body"  , "body.entity_id = node.nid");
+    $query->fields('node' , array('nid' ,'title' , "uid"));
+    $query->addField("body" , "body_value" , "body");
+    $query->condition('node.nid' , $questions_nid , 'IN');
+    $query->orderBy('node.nid' , 'DESC');
+    $query->range(0, 3);
+    $questions = $query->execute()->fetchAll();
+
+    foreach($questions as $row) {
+        $query = db_select("comment", "comment");
+        $query->fields("comment", array("cid"));
+        $query->condition("comment.nid", $row->nid);
+        $comment_count = $query->countQuery()->execute()->fetchField();
+        $comment_count = (int)$comment_count;
+        $row->comment_count = $comment_count;
+
+        $query = db_select("users" , "user");
+        $query->join("file_managed" , "file" , "user.picture = file.fid");
+        $query->fields("user" , array("uid" , "name"));
+        $query->fields("file" , array("uri"));
+        $query->condition("user.uid" , $row->uid);
+        $user = $query->execute()->fetch();
+
+        $row->username = $user->name;
+        $row->user_picture = (!empty($row->uri))? image_style_url("200x200", $row->uri) : "/sites/all/themes/sara/images/profile2front.jpg";
+
+    }
+
+    return $questions;
+}
