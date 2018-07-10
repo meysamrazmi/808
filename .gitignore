@@ -13,6 +13,7 @@ sites/*/private
 sites/default/
 en/
 en2
+sites/all/themes/sara/templates/shop
 
 # Ignore default text files
 robots.txt

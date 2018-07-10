@@ -77,7 +77,6 @@ function sara_preprocess_html(&$variables) {
 		break;
 	case 'question':
 		drupal_add_css(drupal_get_path('theme', 'sara') . '/css/less/question-pages.min.css');
-		drupal_add_css(drupal_get_path('theme', 'sara') . '/ss/less/mh.min.css');
 		drupal_add_js(drupal_get_path('theme', 'sara') . '/js/question-pages.min.js');
 		break;
   }

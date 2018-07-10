@@ -19,16 +19,16 @@
 	/*
 	* برای تخفیفات ویژه نوروزی و برای چاپ بنر بالاییش
 	*/
-	/*
   $festival = false;
-	if(isset($node->field_isvip['und'])){
-		for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){
-			if( $node->field_isvip['und'][$i]['tid'] == 2217) // no discount will be applied
-                $festival=false;
-		}
-	}*/
+  /*
+  if(isset($node->field_isvip['und'])){
+	  for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){
+		  if( $node->field_isvip['und'][$i]['tid'] == 2217) // no discount will be applied
+			  $festival=false;
+	  }
+  }*/
 
-      if(strcmp($node->type , "designteam") == 0)
+      /*if(strcmp($node->type , "designteam") == 0)
       {
           $field_publication = array();
           if(!empty($node->field_publication808['und'])) {
@@ -45,7 +45,7 @@
           }
           if(in_array(2174 , $field_publication) && !in_array_r(2217 , $field_discount)) $festival = true;
           else $festival = false;
-      }
+      }*/
 
 	if($festival){
 		print '<div id="takhfifdar"></div>';
@@ -87,11 +87,26 @@
 				<span class="n-label">نوع فایل دریافتی :</span>
 				<span class="meghdar"><?php  print (isset($content['field_noefile']))? render($content['field_noefile']) : '';	?></span>
           </div>
-          <div class="cta-2-row cta-row">
-              <div class="cta-icon"></div>
-              <span class="n-label"> اعتبار مورد نیاز :</span>
-              <span class="meghdar" style="color: #F44336;"><?php print formatMoney($point_needed);?> تومان</span>
-          </div>
+          <?php if(isset($node->field_point_needed_list['und'])):
+		      $point_needed_list = $node->field_point_needed_list['und'][0]['value'];
+		      ?>
+              <div class="cta-2-row cta-row">
+                  <div class="cta-icon"></div>
+                  <span class="n-label"> اعتبار مورد نیاز :</span>
+                  <span class="meghdar" style="color: #F44336;"><?php print formatMoney($point_needed_list);?> تومان</span>
+              </div>
+              <div class="cta-2-row cta-row">
+                  <div class="cta-icon"></div>
+                  <span class="n-label"> با <?php print ($point_needed_list - $point_needed) / $point_needed_list * 100;?>% به مناسبت جشنواره :</span>
+                  <span class="meghdar" style="color: #F44336;"><?php print formatMoney($point_needed);?> تومان</span>
+              </div>
+          <?php else:?>
+              <div class="cta-2-row cta-row">
+                  <div class="cta-icon"></div>
+                  <span class="n-label"> اعتبار مورد نیاز :</span>
+                  <span class="meghdar" style="color: #F44336;"><?php print formatMoney($point_needed);?> تومان</span>
+              </div>
+          <?php endif;?>
           <div class="cta-2-row cta-row">
               <div class="cta-icon"></div>
               <?php
@@ -102,7 +117,7 @@
 				 }
               ?>
           </div>
-            <a href="/pay/node/<?php echo $node->nid; ?>" class="btn-green" style="margin-top: 15px;">پرداخت و مشاهده محتوا</a>
+            <a href="/pay/node/<?php echo $node->nid; ?>" class="btn-green" style="margin-top: 15px;">پرداخت <?php echo formatMoney(isset($user->roles[8])? round(($point_needed * 0.9), -1) : $point_needed);?> تومان و مشاهده محتوا</a>
       </div>
   </div>
 

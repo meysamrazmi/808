@@ -81,7 +81,7 @@ function pay_for_node($nid , $ws_api = false) {
         }
         if(in_array(2174 , $field_publication) && !in_array_r(2217 , $field_discount)) $flag = true;
         else $flag = false;
-        /*
+        
         for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){
             if( $node->field_isvip['und'][$i]['tid'] == 2217) // no discount will be applied
                 $flag=false;
