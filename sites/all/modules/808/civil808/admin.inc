@@ -541,15 +541,7 @@ function developer()
 //    $new_hash = hash_hmac("sha256" , "content" , "@Civil808Android@Saze808@" , false);
 //    adump($new_hash);
 
-
-//    $discount = variable_get("extra_charge_discount" , array());
-
-    $query = db_select("field_data_field_latin_content_references" , "r");
-    $query->fields("r" , array("field_latin_content_references_url"));
-//    $query->condition("references.entity_id" , 19411);
-//    $query->condition("references.bundle" , "latin_contents");
-    $references = $query->execute()->fetchAll();
-    adump($references);
+    adump(relative_qa(2501 , "college"));
     die();
 
 }

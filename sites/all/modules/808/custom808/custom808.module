@@ -221,61 +221,74 @@ function question_followers($node, $comment){
 }
 
 
-function relative_qa($nid , $type){
-    switch ($type){
-        case 'designteam' :
-            $query = db_select("field_data_field_maghalat" , "pedia");
-            $query->condition('pedia.field_maghalat_nid' , $nid);
-            break;
-        case 'article' :
-            $query = db_select("field_data_field_akhbar" , "pedia");
-            $query->condition('pedia.field_akhbar_nid' , $nid);
-            break;
-        case 'publication' :
-            $query = db_select("field_data_field_entesharat" , "pedia");
-            $query->condition('pedia.field_entesharat_nid' , $nid);
-            break;
-        case 'gallerynew' :
-            $query = db_select("field_data_field_porojhe" , "pedia");
-            $query->condition('pedia.field_porojhe_nid' , $nid);
-            break;
-        case 'product' :
-            $query = db_select("field_data_field_shopproduct" , "pedia");
-            $query->condition('pedia.field_shopproduct_nid' , $nid);
-            break;
-        case 'podcast' :
-            $query = db_select("field_data_field_podcast808" , "pedia");
-            $query->condition('pedia.field_podcast808_nid' , $nid);
-            break;
-        case 'education || college' :
-            $query = db_select("field_data_field_edu_college" , "pedia");
-            $query->condition('pedia.field_edu_college_nid' , $nid);
-            break;
-        case 'film' :
-            $query = db_select("field_data_field_filmmortabet" , "pedia");
-            $query->condition('pedia.field_filmmortabet_nid' , $nid);
-            break;
-        default:
-            return;
+function relative_qa($nid , $type)
+{
+    if (strcmp($type, "architect") == 0) {
+        $query = db_select("field_data_field_experts" , "architect");
+        $query->join("field_data_field_experts" , "question" , "architect.field_experts_tid = question.field_experts_tid and architect.bundle = 'architect' and question.bundle = 'questions' ");
+        $query->fields("question" , array("entity_id"));
+        $query->condition("architect.entity_id" , $nid);
+        $result = $query->execute()->fetchAll();
+        if (empty($result)) return array();
+    }
+    else{
+        switch ($type) {
+            case 'designteam' :
+                $query = db_select("field_data_field_maghalat", "pedia");
+                $query->condition('pedia.field_maghalat_nid', $nid);
+                break;
+            case 'article' :
+                $query = db_select("field_data_field_akhbar", "pedia");
+                $query->condition('pedia.field_akhbar_nid', $nid);
+                break;
+            case 'publication' :
+                $query = db_select("field_data_field_entesharat", "pedia");
+                $query->condition('pedia.field_entesharat_nid', $nid);
+                break;
+            case 'gallerynew' :
+                $query = db_select("field_data_field_porojhe", "pedia");
+                $query->condition('pedia.field_porojhe_nid', $nid);
+                break;
+            case 'product' :
+                $query = db_select("field_data_field_shopproduct", "pedia");
+                $query->condition('pedia.field_shopproduct_nid', $nid);
+                break;
+            case 'podcast' :
+                $query = db_select("field_data_field_podcast808", "pedia");
+                $query->condition('pedia.field_podcast808_nid', $nid);
+                break;
+            case 'education' || 'college' :
+                $query = db_select("field_data_field_edu_college", "pedia");
+                $query->condition('pedia.field_edu_college_nid', $nid);
+                break;
+            case 'film' :
+                $query = db_select("field_data_field_filmmortabet", "pedia");
+                $query->condition('pedia.field_filmmortabet_nid', $nid);
+                break;
+            default:
+                return array();
+        }
+
+        $query->fields('pedia', array('entity_id'));
+        $result = $query->execute()->fetchAll();
+        if (empty($result)) return array();
+
+        $pedias = array();
+        foreach ($result as $row) array_push($pedias , $row->entity_id);
+        $query = db_select('field_data_field_experts' , 'pedia_expert');
+        $query->join('field_data_field_experts' , 'question_expert' , 'pedia_expert.field_experts_tid = question_expert.field_experts_tid');
+        $query->condition('pedia_expert.bundle' , 'architect');
+        $query->condition('pedia_expert.entity_id' , $pedias , 'IN');
+        $query->condition('question_expert.bundle' , 'questions');
+        $query->fields('question_expert' , array('entity_id'));
+        $result = $query->execute()->fetchAll();
+        if (empty($result)) return array();
     }
 
-    $query->fields('pedia' , array('entity_id'));
-    $result = $query->execute()->fetchAll();
-    if (empty($result)) return array();
-    $pedias = array();
-    foreach ($result as $row) array_push($pedias , $row->entity_id);
 
-    $query = db_select('field_data_field_experts' , 'pedia_expert');
-    $query->join('field_data_field_experts' , 'question_expert' , 'pedia_expert.field_experts_tid = question_expert.field_experts_tid');
-    $query->condition('pedia_expert.bundle' , 'architect');
-    $query->condition('pedia_expert.entity_id' , $pedias , 'IN');
-    $query->condition('question_expert.bundle' , 'questions');
-    $query->fields('question_expert' , array('entity_id'));
-    $result = $query->execute()->fetchAll();
 
     $questions_nid= array();
     foreach ($result as $row) array_push($questions_nid , $row->entity_id);
-
     $query = db_select('node' , 'node');
     $query->leftJoin("field_data_body" , "body"  , "body.entity_id = node.nid");
     $query->fields('node' , array('nid' ,'title' , "uid"));
@@ -284,6 +297,7 @@ function relative_qa($nid , $type){
     $query->orderBy('node.nid' , 'DESC');
     $query->range(0, 3);
     $questions = $query->execute()->fetchAll();
+    if (empty($questions)) return array();
 
     foreach($questions as $row) {
         $query = db_select("comment", "comment");
@@ -294,16 +308,46 @@ function relative_qa($nid , $type){
         $row->comment_count = $comment_count;
 
         $query = db_select("users" , "user");
-        $query->join("file_managed" , "file" , "user.picture = file.fid");
+        $query->leftJoin("file_managed" , "file" , "user.picture = file.fid");
         $query->fields("user" , array("uid" , "name"));
         $query->fields("file" , array("uri"));
         $query->condition("user.uid" , $row->uid);
         $user = $query->execute()->fetch();
 
         $row->username = $user->name;
-        $row->user_picture = (!empty($row->uri))? image_style_url("200x200", $row->uri) : "/sites/all/themes/sara/images/profile2front.jpg";
+        $row->user_picture = (!empty($user->uri))? image_style_url("200x200", $user->uri) : "/sites/all/themes/sara/images/profile2front.jpg";
 
     }
 
     return $questions;
+}
+
+/*
+ * IMPORTANT
+ * It's call from display suit code filed
+ * and from tpl files
+ * */
+function relative_qa_render($nid , $type){
+    $questions = relative_qa($nid, $type);
+    if(!empty($questions)) {
+        $output = "";
+        $output .= '<div class="relative-questions">';
+        $output .= '<div class="q-title">سوالات مرتبط</div>';
+        foreach ($questions as $row) {
+            $output .= '<div class="question">';
+            $output .= '<div class="reply"><a href="/node/' . $row->nid . '#answer-question" target="_blank"><span>پاسخ به سوال</span></a></div>';
+            $output .= '<div class="right">';
+            $output .= '<a href="/user/' . $row->uid . '" target="_blank" class="pic" title="' . $row->username . '"><img src="' . $row->user_picture . '" alt="عکس کاربر"></a>';
+            $output .= '<div class="comment-count">' . $row->comment_count . 'پاسخ</div> ';
+            $output .= '</div>';
+            $output .= '<div class="left">';
+            $output .= '<a href="/node/' . $row->nid . '" target="_blank" class="title">' . $row->title . '</a>';
+            $output .= '<p class="body">' . $row->body . '</p>';
+            $output .= '</div>';
+            $output .= '</div>';
+        }
+        $output .= '</dev></div>';
+
+        return $output;
+    }
 }

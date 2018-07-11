@@ -73,6 +73,10 @@
       </div>
     <?php endif; ?>
 
+    <?php
+        print relative_qa_render($node->nid , $node->type);
+    ?>
+
   <?php
 	global $user;
 	if (!$user->uid) {
