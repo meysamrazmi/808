@@ -67,6 +67,63 @@ function custom_services_schema() {
     return $schema;
 }
 
+
+/**
+ * Create new database table {api_code_version}.
+ */
+function custom_services_update_7102() {
+    $schema['api_code_version'] = array(
+        'fields' => array(
+            'id' => array(
+                'type' => 'serial',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'description' => t('Primary Key : id'),
+            ),
+            'url' => array(
+                'type' => 'varchar',
+                'length' => 100,
+                'not null' => TRUE,
+                'default' => '',
+                'description' => t('url api'),
+            ),
+            'source_name' => array(
+                'type' => 'varchar',
+                'length' => 60,
+                'not null' => True,
+                'default' => '',
+                'description' => t('The name of the request sender'),
+            ),
+            'version' => array(
+                'type' => 'varchar',
+                'length' => 20,
+                'not null' => True,
+                'default' => '',
+                'description' => t('The version number'),
+            ),
+            'last_function' => array(
+                'type' => 'varchar',
+                'length' => 100,
+                'not null' => TRUE,
+                'default' => '',
+                'description' => t('The name of the last function that is compatible for this version'),
+            ),
+            'created' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+                'default' => 0,
+                'description' => 'Timestamp for when new version was created.',
+            ),
+        ),
+
+        'primary key' => array('id'),
+        'unique keys' => array(
+            'unique_fields' => array('url' , 'source_name' , 'version'),
+        ),
+    );
+    db_create_table('api_code_version', $schema['api_code_version']);
+}
+
 /*
  * Implementation of hook_install()
 */
