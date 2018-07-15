@@ -47,6 +47,12 @@ function add_api_version_form($from, &$form_state , $id = 0){
             '#description' => t('نام دقیق آخرین تابعی که در این ورژن استفاده می شود.'),
             '#default_value' => (!empty($data["last_function"]))? $data["last_function"] : '',
         );
+        $form['description'] = array(
+            '#type' => 'textarea',
+            '#title' => t('توضیحات'),
+            '#description' => t('توضیح برای داکیمومنت کردن'),
+            '#default_value' => (!empty($data["description"]))? $data["description"] : '',
+        );
 
         $form['submit'] = array(
             '#type' => 'submit',
@@ -79,6 +85,7 @@ function add_api_version_form_submit($from, &$form_state){
                 'source_name' => $form_state["values"]["source"] ,
                 'version' => $form_state["values"]["version"] ,
                 'last_function' => $form_state["values"]["last_function"] ,
+                'description' => $form_state["values"]["description"] ,
                 'created' => time()
             ))
             ->execute();

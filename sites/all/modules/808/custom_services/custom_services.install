@@ -124,6 +124,18 @@ function custom_services_update_7102() {
     db_create_table('api_code_version', $schema['api_code_version']);
 }
 
+/**
+ * Add description field to {api_code_version} table.
+ */
+function custom_services_update_7103() {
+    $newCol = array(
+        'type' => 'text',
+        'not null' => FALSE,
+        'description' => "description",
+    );
+    db_add_field('api_code_version', 'description', $newCol);
+}
+
 /*
  * Implementation of hook_install()
 */
