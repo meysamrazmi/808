@@ -22,14 +22,18 @@ function content_resource_index($hash , $type , $sort , $filter , $search_value 
 function list_of_contents_v_0($parameter){
     $type = $parameter["type"]; $page = $parameter["page"];
     $query = get_nodes_query($type);
-    $custom_list = (!empty($parameter["search_value"]) && strlen($parameter["search_value"] > 0)) ? search_content_by_value($parameter["search_value"] , $type) : array();
+
+    if(!empty($parameter["search_value"]) && strlen($parameter["search_value"]) > 0){
+        $custom_list = search_content_by_value($parameter["search_value"] , $type);
+        if(empty($custom_list)) return ["content" => array()];
+    }
 
     if(strcmp($type , "publication") == 0){
         /*add price, author name to e-book*/
         $query->join("field_data_field_point_needed" , "price" , "node.nid = price.entity_id  and price.bundle = 'publication'");
         $query->addField("price" , "field_point_needed_value" , "price");
         $query->orderBy("node.nid" , "DESC");
-        if(!empty($custom_list)) $query->condition('node.nid' , $custom_list , 'IN');
+        if(isset($custom_list)) $query->condition('node.nid' , $custom_list , 'IN');
         else $query->range($page*24 , 24);
         $db_contents = $query->execute()->fetchAll();
 
@@ -78,7 +82,8 @@ function list_of_contents_v_0($parameter){
         $query->addField('file_episode' , 'filesize' , 'audio_size');
         $query->addField('episode_remote' , 'field_episode_remote_value' , 'audio_remote');
         $query->orderBy("node.nid" , "DESC");
-        $query->range($page*24, 24);
+        if(isset($custom_list)) $query->condition('node.nid' , $custom_list , 'IN');
+        else $query->range($page*24 , 24);
         $contents = $query->execute()->fetchAll();
     }
     else {
@@ -89,15 +94,19 @@ function list_of_contents_v_0($parameter){
 function list_of_contents_v_1($parameter){
     $type = $parameter["type"]; $page = $parameter["page"]; $filter = $parameter["filter"]; $sort = $parameter["sort"];
     $query = get_nodes_query($type);
-    $custom_list = (!empty($parameter["search_value"]) && strlen($parameter["search_value"] > 0)) ? search_content_by_value($parameter["search_value"] , $type) : array();
+
+    if(!empty($parameter["search_value"]) && strlen($parameter["search_value"]) > 0){
+        $custom_list = search_content_by_value($parameter["search_value"] , $type);
+        if(empty($custom_list)) return ["content" => array()];
+    }
 
     if(strcmp($type , "publication") == 0){
         /*add price, author name to e-book*/
         $query->join("field_data_field_point_needed" , "point_needed" , "node.nid = point_needed.entity_id  and point_needed.bundle = 'publication'");
         $query->addField("point_needed" , "field_point_needed_value" , "price");
-        if(!empty($custom_list)) $query->condition('node.nid' , $custom_list , 'IN');
+        if(isset($custom_list)) $query->condition('node.nid' , $custom_list , 'IN');
 
-        if(isset($filter["free"]) && $filter["free"] == true) $query->condition("point_needed.field_point_needed_value" , 0);
+        if(isset($filter["free"]) && strcmp($filter["free"] , "1") == 0) $query->condition("point_needed.field_point_needed_value" , 0);
 
         switch($sort){
                 case "last" :
@@ -166,7 +175,7 @@ function list_of_contents_v_1($parameter){
 
         $query->range($page*24, 24);
 
-        if(!empty($custom_list)) $query->condition('node.nid' , $custom_list , 'IN');
+        if(isset($custom_list)) $query->condition('node.nid' , $custom_list , 'IN');
 
         switch($sort){
             case "last" :
