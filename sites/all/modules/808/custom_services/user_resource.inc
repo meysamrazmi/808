@@ -111,11 +111,29 @@ function user_resource_purchased_products_list($hash , $uid , $version){
 }
 function user_profile_data($hash , $uid , $version){
     if(!(hash_true($hash , "user"))) return services_error(t('Failed to access'), 10);
-    if($version == 0){
-        return profile_data($uid);
+    if(strcmp($version , 0) == 0){
+        $profile = profile_data($uid);
+        global $user;
+        if($uid != $user->uid && !user_has_role(3 , $user)){
+            unset($profile->mail);
+            unset($profile->mobile);
+            unset($profile->user_point);
+            unset($profile->login);
+        }
+        return $profile;
     }
-    if($version == "pbd_0"){
-        return profile_data($uid, "en");
+    if(strcmp($version , "pbd_0") == 0){
+//        $profile = profile_data($uid, "en");
+        $profile = profile_data($uid);
+        global $user;
+        if($uid != $user->uid && !user_has_role(3 , $user)){
+            unset($profile->mail);
+            unset($profile->mobile);
+            unset($profile->user_point);
+            unset($profile->login);
+        }
+
+        return $profile;
     }
     return services_error(t('This version is not supported'), 11);
 }
@@ -405,8 +423,9 @@ function profile_data($user , $language = ""){
     !empty($result->university)? $profile->university = $result->university : $profile->university = "";
     !empty($result->education_field)? $profile->education_field = $result->education_field : $profile->education_field = "";
     !empty($result->education_degree)? $profile->education_degree = $result->education_degree : $profile->education_degree = "";
-    !empty($result->mobile)? $profile->mobile = $result->mobile : $profile->mobile = "";
     !empty($result->job)? $profile->job = $result->job : $profile->job = "";
+    !empty($result->mobile)? $profile->mobile = $result->mobile : $profile->mobile = "";
+    $profile->user_point = userpoints_get_current_points($user->uid, 'all');
 
     $query = db_select("file_managed" , "file_managed");
     $query->fields("file_managed", array("uri"));
@@ -422,8 +441,6 @@ function profile_data($user , $language = ""){
     $query->condition("image.entity_type" , "user");
     $result = $query->execute()->fetch();
     if(!empty($result)) $profile->background_image = image_style_url("1360x500_blur", $result->uri);
-
-    $profile->user_point = userpoints_get_current_points($user->uid, 'all');
 
     return $profile;
 }

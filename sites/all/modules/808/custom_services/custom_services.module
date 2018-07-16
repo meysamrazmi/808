@@ -949,12 +949,28 @@ function custom_services_services_resources(){
                             'optional' => False,
                         ),
                         array(
-                            'name' => 'language',
+                            'name' => 'sort',
+                            'type' => 'string',
+                            'description' => 'Sort of the list.',
+                            'source' => array('param' => 'sort'),
+                            'optional' => True,
+                            'default value' => 'last'
+                        ),
+                        array(
+                            'name' => 'filter',
+                            'type' => 'array',
+                            'description' => 'The language of list.',
+                            'source' => array('param' => 'filter'),
+                            'optional' => True,
+                            'default value' => array()
+                        ),
+                        array(
+                            'name' => 'search_value',
                             'type' => 'string',
                             'description' => 'The language of list.',
-                            'source' => array('param' => 'language'),
+                            'source' => array('param' => 'search_value'),
                             'optional' => True,
-                            'default value' => 'fa'
+                            'default value' => 'last'
                         ),
                         array(
                             'name' => 'page',
@@ -971,6 +987,14 @@ function custom_services_services_resources(){
                             'source' => array('param' => 'version'),
                             'optional' => TRUE,
                             'default value' => 0,
+                        ),
+                        array(
+                            'name' => 'source_name',
+                            'type' => 'string',
+                            'description' => 'The name of sender source.',
+                            'source' => array('param' => 'source'),
+                            'optional' => TRUE,
+                            'default value' => "android",
                         ),
                     ),
                 ),
@@ -2021,6 +2045,20 @@ function upload_file($hash) {
         }
     }
     return $files;
+}
+
+function get_compatible_function_name($url, $method, $source_name , $version){
+    $query = db_select("api_code_version" , "acv")
+        ->fields("acv" , array("last_function"))
+        ->condition("url" , $url)
+        ->condition("method" , $method)
+        ->condition("source_name" , $source_name)
+        ->condition("version" , $version , "<=")
+        ->orderBy("version" , "DESC")
+        ->execute()->fetch();
+
+    if(!empty($query)) return $query->last_function;
+    else return "";
 }
 
 function test($nid){

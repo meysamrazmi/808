@@ -1,60 +1,30 @@
 <?php
 
-function content_resource_index($hash , $type , $language , $page , $version){
-    if(!(hash_true($hash , "content"))) return services_error(t('Failed to access'), 10);
-    if($version == 0){
-        return list_of_contents_version_one($type , $language , $page);
-    }
-    return services_error(t('This version is not supported'), 11);
-}
-function content_resource_retrieve($hash , $nid , $version){
-    if(!(hash_true($hash , "content"))) return services_error(t('Failed to access'), 10);
-    if($version == 0){
-        return retrieve_a_content_version_one($nid);
-    }
-    return services_error(t('This version is not supported'), 11);
-}
-function content_resource_search($hash , $type , $value , $version){
+/*---------------------------------index part----------------------------------*/
+function content_resource_index($hash , $type , $sort , $filter , $search_value , $page , $version , $source_name){
     if(!(hash_true($hash , "content"))) return services_error(t('Failed to access'), 10);
 
-    if($version == 0) {
-        $query = db_select("node", "node");
-        $query->fields('node', array('nid'));
-        $query->condition('node.title', '%' . $value . '%', 'LIKE');
-        $query->condition('node.type' , $type);
-        $nid1 = $query->execute()->fetchAll();
-
-        $query = db_select("field_data_body", "body");
-        $query->addField('body', 'entity_id', 'nid');
-        $query->condition('body.body_value', '%' . $value . '%', 'LIKE');
-        $query->condition('body.entity_type' , 'node');
-        $query->condition('body.bundle' , $type);
-        $nid2 = $query->execute()->fetchAll();
-
-        $nids = array_merge($nid1, $nid2);
-        $custom_list = array();
-        foreach ($nids as $row) array_push($custom_list, $row->nid);
-        if(!empty($custom_list))
-            return list_of_contents_version_one($type, 'fa', 0, $custom_list);
-        else
-            return ["content" => array()];
+    $function = get_compatible_function_name("/content" , "get" , $source_name , $version);
+    if(!empty($function) && strlen($function) > 0) {
+        $parameter = array(
+            "type" => $type,
+            "filter" => $filter,
+            "page" => $page,
+            "search_value" => $search_value,
+            "sort" => $sort
+        );
+        return call_user_func($function, $parameter);
     }
+
     return services_error(t('This version is not supported'), 11);
 }
 
-function list_of_contents_version_one($type , $language ,  $page , $custom_list = array()){
+function list_of_contents_v_0($parameter){
+    $type = $parameter["type"]; $page = $parameter["page"];
+    $query = get_nodes_query($type);
+    $custom_list = (!empty($parameter["search_value"]) && strlen($parameter["search_value"] > 0)) ? search_content_by_value($parameter["search_value"] , $type) : array();
 
-    $query = db_select('node' , 'node');
-    $query->fields('node' , array('nid' , 'type' , 'title' , 'uid' , 'changed'));
-    $query->leftJoin("profile" , "profile" , "profile.uid = node.uid and profile.type = 'main'");
-    $query->join("field_data_field_full_name" , "name" , "name.entity_id = profile.pid and name.entity_type = 'profile2' and name.bundle = 'main'");
-    $query->addField("name" , "field_full_name_value" , "author_name");
-    $query->condition('node.status' , 1);
-    if($language == 'fa')$query->condition('node.language' , 'en' , '<>');
-    elseif($language = 'en') $query->condition('node.language' , 'en');
-    $query->condition('node.type' , $type);
-
-    if($type == "publication"){
+    if(strcmp($type , "publication") == 0){
         /*add price, author name to e-book*/
         $query->join("field_data_field_point_needed" , "price" , "node.nid = price.entity_id  and price.bundle = 'publication'");
         $query->addField("price" , "field_point_needed_value" , "price");
@@ -97,7 +67,7 @@ function list_of_contents_version_one($type , $language ,  $page , $custom_list 
         }
         else $contents = array();
     }
-    elseif($type == "podcast"){
+    elseif(strcmp($type , "podcast") == 0){
         $query->leftJoin("field_data_field_image" , "field_image" , "node.nid = field_image.entity_id and field_image.delta = 1 and field_image.bundle = 'podcast'");
         $query->leftJoin("file_managed" , "file_image" , "field_image.field_image_fid = file_image.fid");
         $query->leftJoin("field_data_field_episode" , "field_episode" , "node.nid = field_episode.entity_id and field_episode.bundle = 'podcast'");
@@ -112,15 +82,159 @@ function list_of_contents_version_one($type , $language ,  $page , $custom_list 
         $contents = $query->execute()->fetchAll();
     }
     else {
-        /*
-     * @todo
-     * return other node type
-     * */
         $contents =  array();
     }
-
-
     return ["content" => $contents];
+}
+function list_of_contents_v_1($parameter){
+    $type = $parameter["type"]; $page = $parameter["page"]; $filter = $parameter["filter"]; $sort = $parameter["sort"];
+    $query = get_nodes_query($type);
+    $custom_list = (!empty($parameter["search_value"]) && strlen($parameter["search_value"] > 0)) ? search_content_by_value($parameter["search_value"] , $type) : array();
+
+    if(strcmp($type , "publication") == 0){
+        /*add price, author name to e-book*/
+        $query->join("field_data_field_point_needed" , "point_needed" , "node.nid = point_needed.entity_id  and point_needed.bundle = 'publication'");
+        $query->addField("point_needed" , "field_point_needed_value" , "price");
+        if(!empty($custom_list)) $query->condition('node.nid' , $custom_list , 'IN');
+
+        if(isset($filter["free"]) && $filter["free"] == true) $query->condition("point_needed.field_point_needed_value" , 0);
+
+        switch($sort){
+                case "last" :
+                    $query->orderBy("node.nid" , "DESC");
+                    break;
+                case "cheap":
+                    $query->orderBy("point_needed.field_point_needed_value" , "ASC");
+                    break;
+                case "expensive":
+                    $query->orderBy("point_needed.field_point_needed_value" , "DESC");
+                    break;
+                case "popular":
+                    break;
+                default:
+                    $query->orderBy("node.nid" , "ASC");
+                    break;
+            }
+
+        $query->range($page*24 , 24);
+        $db_contents = $query->execute()->fetchAll();
+
+        if(count($db_contents) > 0) {
+            $nids = array();
+            $temp_contents = array();
+            foreach ($db_contents as $row) {
+                array_push($nids, $row->nid);
+                $temp_contents[$row->nid] = $row;
+            }
+
+            /*add e-book image*/
+            $query = db_select("file_managed", "image");
+            $query->join("field_data_field_image", "field_image", "image.fid = field_image.field_image_fid and field_image.bundle = 'publication'");
+            $query->addField('image', 'uri', 'picture');
+            $query->addField('field_image', 'entity_id', 'nid');
+            $query->condition('field_image.entity_id', $nids, 'IN');
+            $results = $query->execute()->fetchAll();
+            foreach ($results as $row) {
+                $temp_contents[$row->nid]->picture = image_style_url("300x300", $row->picture) ;
+            }
+
+            /*add e-book page number*/
+            $query = db_select('field_data_field_pagenumber' , 'page_number');
+            $query->addField('page_number' , 'field_pagenumber_value' , 'page_number');
+            $query->addField('page_number' , 'entity_id' , 'nid');
+            $query->condition('page_number.entity_id' , $nids , 'IN');
+            $query->condition('page_number.bundle' , 'publication');
+            $results = $query->execute()->fetchAll();
+            foreach ($results as $row) {
+                $temp_contents[$row->nid]->page_number = $row->page_number;
+            }
+
+            $contents = array_values($temp_contents);
+        }
+        else $contents = array();
+    }
+    elseif(strcmp($type , "podcast") == 0){
+        $query->leftJoin("field_data_field_image" , "field_image" , "node.nid = field_image.entity_id and field_image.delta = 1 and field_image.bundle = 'podcast'");
+        $query->leftJoin("file_managed" , "file_image" , "field_image.field_image_fid = file_image.fid");
+        $query->leftJoin("field_data_field_episode" , "field_episode" , "node.nid = field_episode.entity_id and field_episode.bundle = 'podcast'");
+        $query->leftJoin("file_managed" , "file_episode" , "field_episode.field_episode_fid = file_episode.fid");
+        $query->leftJoin("field_data_field_episode_remote" , "episode_remote" , "node.nid = episode_remote.entity_id and episode_remote.bundle = 'podcast'");
+        $query->addField('file_image' , 'uri' , 'picture');
+        $query->addField('file_episode' , 'uri' , 'audio');
+        $query->addField('file_episode' , 'filesize' , 'audio_size');
+        $query->addField('episode_remote' , 'field_episode_remote_value' , 'audio_remote');
+
+        $query->range($page*24, 24);
+
+        if(!empty($custom_list)) $query->condition('node.nid' , $custom_list , 'IN');
+
+        switch($sort){
+            case "last" :
+                $query->orderBy("node.nid" , "DESC");
+                break;
+            case "popular":
+                break;
+            default:
+                $query->orderBy("node.nid" , "ASC");
+                break;
+        }
+
+        $query->range($page*24, 24);
+
+        $contents = $query->execute()->fetchAll();
+
+        foreach ($contents as $content) $content->picture = image_style_url("300x300", $content->picture) ;
+    }
+    else {
+        $contents =  array();
+    }
+    return ["content" => $contents];
+}
+function search_content_by_value($value , $type){
+    $query = db_select("node", "node");
+    $query->fields('node', array('nid'));
+    $query->condition('node.title', '%' . $value . '%', 'LIKE');
+    $query->condition('node.type' , $type);
+    $nid1 = $query->execute()->fetchAll();
+
+    $query = db_select("field_data_body", "body");
+    $query->addField('body', 'entity_id', 'nid');
+    $query->condition('body.body_value', '%' . $value . '%', 'LIKE');
+    $query->condition('body.entity_type' , 'node');
+    $query->condition('body.bundle' , $type);
+    $nid2 = $query->execute()->fetchAll();
+
+    $nids = array_merge($nid1, $nid2);
+    $custom_list = array();
+    foreach ($nids as $row) array_push($custom_list, $row->nid);
+
+    return $custom_list;
+}
+
+
+function content_resource_retrieve($hash , $nid , $version){
+    if(!(hash_true($hash , "content"))) return services_error(t('Failed to access'), 10);
+    if($version == 0){
+        return retrieve_a_content_version_one($nid);
+    }
+    return services_error(t('This version is not supported'), 11);
+}
+
+function content_resource_search($hash , $type , $value){
+    if(!(hash_true($hash , "content"))) return services_error(t('Failed to access'), 10);
+    return list_of_contents_v_0(array("type" => $type , "search_value" => $value));
+}
+
+function get_nodes_query($type){
+    $query = db_select('node' , 'node');
+    $query->fields('node' , array('nid' , 'type' , 'title' , 'uid' , 'changed'));
+    $query->leftJoin("profile" , "profile" , "profile.uid = node.uid and profile.type = 'main'");
+    $query->join("field_data_field_full_name" , "name" , "name.entity_id = profile.pid and name.entity_type = 'profile2' and name.bundle = 'main'");
+    $query->addField("name" , "field_full_name_value" , "author_name");
+    $query->condition('node.status' , 1);
+    $query->condition('node.language' , 'en' , '<>');
+    $query->condition('node.type' , $type);
+    return $query;
 }
 
 function retrieve_a_content_version_one($nid){

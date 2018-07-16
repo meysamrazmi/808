@@ -135,6 +135,16 @@ function custom_services_update_7103() {
     );
     db_add_field('api_code_version', 'description', $newCol);
 }
+function custom_services_update_7104() {
+    $newCol = array(
+        'type' => 'varchar',
+        'length' => 20,
+        'not null' => True,
+        'default' => '',
+        'description' => t('The method of the request'),
+    );
+    db_add_field('api_code_version', 'method', $newCol);
+}
 
 /*
  * Implementation of hook_install()
