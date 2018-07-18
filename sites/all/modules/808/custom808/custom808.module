@@ -1,5 +1,53 @@
 <?php
 
+/**
+ * Implements hook_menu().
+ */
+function custom808_menu(){
+    $items = array();
+
+    $items['admin/structure/services/apiversion'] = array(
+        'title' => t('api versions list'),
+        'description' => t('Get the list of api versions'),
+        'page callback' => 'api_version_lists',
+        'access arguments' => array('administer modules'),
+        'type' => MENU_LOCAL_TASK,
+        'file' => 'custom808.inc',
+    );
+
+    $items['admin/structure/services/apiversion/add'] = array(
+        'title' => t('add api versions'),
+        'description' => t('Add api versions'),
+        'page callback' => array('drupal_get_form'),
+        'page arguments' => array('add_api_version_form'),
+        'access arguments' => array('administer modules'),
+        'type' => MENU_LOCAL_TASK,
+        'file' => 'custom808.inc',
+    );
+
+    $items['admin/structure/services/apiversion/edit/%'] = array(
+        'title' => t('edit api versions'),
+        'description' => t('Update api versions'),
+        'page callback' => array('drupal_get_form'),
+        'page arguments' => array('add_api_version_form' , 5),
+        'access arguments' => array('administer modules'),
+        'type' => MENU_CALLBACK,
+        'file' => 'custom808.inc',
+    );
+
+    $items['admin/structure/services/apiversion/delete/%'] = array(
+        'title' => t('edit api versions'),
+        'description' => t('Update api versions'),
+        'page callback' => 'api_version_delete',
+        'page arguments' => array(5),
+        'access arguments' => array('administer modules'),
+        'type' => MENU_CALLBACK,
+        'file' => 'custom808.inc',
+    );
+
+    return $items;
+}
+
 function in_array_r($needle, $haystack, $strict = false) {
     foreach ($haystack as $item) {
         if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && in_array_r($needle, $item, $strict))) {
