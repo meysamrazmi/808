@@ -624,7 +624,7 @@ div.content > div.cta > div.messages > h2 > a{
 }
 .default-page:not(.page-landing) #block-system-main .content .content{
 	margin-top:0px;
-	padding: 15px;
+	padding: 15px 20px;
 	clear: both;
     display: inline-block;
     width: 100%;
