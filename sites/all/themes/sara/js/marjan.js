@@ -5,8 +5,6 @@ $(document).ready(function () {
     if (!$('.page-user .pane-uc-orders-user .view-uc-orders-user div').length) {
         $('.pane-uc-orders-user').remove();
     }
-
-    console.log($('#page-title').height());
     
     /*adjust position of bookmark iconin node-page*/
     $('.page-node:not(.page-gallery):not(.page-shop):not(.page-pedia) div.tabs')

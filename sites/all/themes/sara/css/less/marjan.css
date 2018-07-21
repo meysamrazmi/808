@@ -1128,3 +1128,65 @@ body:not(.uid-3989) #block-block-58 {
   /*display: none;*/
 }
 /*-----------------End of 808-new-main-menu-block---------------------*/
+.plus808 {
+  position: relative;
+  text-align: center;
+  min-height: 400px;
+  margin: 45px 0 20px 0;
+}
+.front .plus808 {
+  margin: 1px 0 0 0;
+}
+.plus808:before {
+  content: "";
+  background-image: url(/sites/all/themes/sara/images/home-question.jpg);
+  width: 100%;
+  min-height: 400px;
+  background-size: cover;
+  background-position: center center;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+.plus808:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  background-color: #000000ab;
+}
+.plus808 .inner {
+  z-index: 10;
+  position: relative;
+  padding: 100px 0 0 0;
+}
+.plus808 h2 {
+  color: white;
+  font-size: 33px;
+  text-shadow: 0 0 15px #333;
+}
+@media (max-width: 768px) {
+  .plus808 h2 {
+    font-size: 29px;
+  }
+}
+.plus808 h4 {
+  color: #FFEB3B;
+  font-size: 16px;
+  margin: 39px 0 41px 0;
+  text-shadow: 1px 1px 7px #000;
+  font-weight: normal;
+}
+@media (max-width: 768px) {
+  .plus808 h4 {
+    margin: 29px 0 29px 0;
+  }
+}
+.plus808 a {
+  margin: 0 10px;
+}
