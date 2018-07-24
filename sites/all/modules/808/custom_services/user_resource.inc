@@ -6,6 +6,7 @@ function user_resource_login($hash , $username_email, $password , $version){
 
     $login_user = login($username_email, $password);
     if(strcmp($version , "pbd_0") == 0){
+        $login_user->uid = $login_user->user->uid;
         unset($login_user->user);
         return (array)$login_user;
     }
@@ -40,6 +41,7 @@ function user_resource_register($hash , $data, $version){
     if(strcmp($version , "pbd_0") == 0){
         $new_user["language"] = "en";
         $register = register($new_user , $data['full_name']);
+        $register->uid = $register->user->uid;
         unset($register->user);
         unset($register->profile);
         return (array) $register;
@@ -109,8 +111,29 @@ function user_resource_purchased_products_list($hash , $uid , $version){
 }
 function user_profile_data($hash , $uid , $version){
     if(!(hash_true($hash , "user"))) return services_error(t('Failed to access'), 10);
-    if($version == 0){
-        return profile_data($uid);
+    if(strcmp($version , 0) == 0){
+        $profile = profile_data($uid);
+        global $user;
+        if($uid != $user->uid && !user_has_role(3 , $user)){
+            unset($profile->mail);
+            unset($profile->mobile);
+            unset($profile->user_point);
+            unset($profile->login);
+        }
+        return $profile;
+    }
+    if(strcmp($version , "pbd_0") == 0){
+//        $profile = profile_data($uid, "en");
+        $profile = profile_data($uid);
+        global $user;
+        if($uid != $user->uid && !user_has_role(3 , $user)){
+            unset($profile->mail);
+            unset($profile->mobile);
+            unset($profile->user_point);
+            unset($profile->login);
+        }
+
+        return $profile;
     }
     return services_error(t('This version is not supported'), 11);
 }
@@ -118,6 +141,7 @@ function user_nav_bar_info($hash , $login , $version){
     if(!(hash_true($hash , "user"))) return services_error(t('Failed to access'), 10);
     if($version == "pbd_0"){
         global $user;
+        if(!$user->uid > 0) return array("uid" => 0);
         $query = db_select("file_managed" , "picture");
         $query->fields("picture" , array("uri"));
         $query->condition("picture.fid" , $user->picture);
@@ -126,7 +150,7 @@ function user_nav_bar_info($hash , $login , $version){
         $result = array();
         $result["uid"] = $user->uid;
         $result["username"] = $user->name;
-        $result["picture"] = (!empty($picture)) ? image_style_url("200x200", $picture->uri) : "";
+        if(!empty($picture)) $result["picture"] = image_style_url("200x200", $picture->uri);
         return $result;
     }
     return services_error(t('This version is not supported'), 11);
@@ -367,9 +391,9 @@ function update_user_data($uid , $data){
     return true;
 }
 
-function profile_data($user){
+function profile_data($user , $language = ""){
     if(!is_object($user))
-        $user = user_data($user);
+        $user = user_data($user , $language);
 
     $profile = $user;
 
@@ -399,14 +423,16 @@ function profile_data($user){
     !empty($result->university)? $profile->university = $result->university : $profile->university = "";
     !empty($result->education_field)? $profile->education_field = $result->education_field : $profile->education_field = "";
     !empty($result->education_degree)? $profile->education_degree = $result->education_degree : $profile->education_degree = "";
-    !empty($result->mobile)? $profile->mobile = $result->mobile : $profile->mobile = "";
     !empty($result->job)? $profile->job = $result->job : $profile->job = "";
+    !empty($result->mobile)? $profile->mobile = $result->mobile : $profile->mobile = "";
+    $profile->user_point = userpoints_get_current_points($user->uid, 'all');
 
     $query = db_select("file_managed" , "file_managed");
     $query->fields("file_managed", array("uri"));
     $query->condition("file_managed.fid", $user->picture);
     $result = $query->execute()->fetch();
     if(!empty($result)) $profile->picture = image_style_url("200x200", $result->uri);
+    else unset($profile->picture);
 
     $query = db_select("field_data_field_image" , "image");
     $query->join("file_managed" , "file" , "file.fid = image.field_image_fid");
@@ -416,16 +442,17 @@ function profile_data($user){
     $result = $query->execute()->fetch();
     if(!empty($result)) $profile->background_image = image_style_url("1360x500_blur", $result->uri);
 
-    $profile->user_point = userpoints_get_current_points($user->uid, 'all');
-
     return $profile;
 }
 
-function user_data($uid){
+function user_data($uid , $language = ""){
     $query = db_select('users' , 'user');
     $query->fields('user' , array('uid' , 'name' , 'mail' , 'created' , 'login' , 'picture'));
     $query->condition('user.uid' , $uid);
+    if(!empty($language) && strlen($language) > 0) $query->condition('user.language' , $language);
     $user = $query->execute()->fetch();
+
+    if(empty($user)) return services_error("User is not exist!" , 16);
 
     $query = db_select('users_roles' , 'user_role');
     $query->join('role' , 'role' , 'user_role.rid = role.rid');
@@ -437,6 +464,9 @@ function user_data($uid){
         $roles[$result->rid] = $result->name;
     }
     $user->roles = $roles;
+
+    $user->created = date("m/d/Y h:m:s" , $user->created);
+    $user->login = date("m/d/Y h:m:s" , $user->login);
 
     return $user;
 }

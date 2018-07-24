@@ -246,7 +246,15 @@ function civil808_menu() {
 		'type' => MENU_LOCAL_TASK,
 		'file' => 'admin.inc',
 	);
-	
+	$items['admin/config/discount'] = array(
+        'title' => t('Discount Configuration'),
+        'description' => t('Discount Configuration'),
+        'page callback' => array('drupal_get_form'),
+        'page arguments' => array('discount_configuration_form'),
+        'access arguments' => array('administer modules'),
+        'type' => MENU_LOCAL_TASK,
+        'file' => 'admin.inc',
+    );
 	$items['admin/developer'] = array(
 		'title' => t('developer page'),
 		'description' => t('developer page'),
@@ -443,7 +451,7 @@ function civil808_page_accounting_charge($form, &$form_state, $uid) {
 			<div class="last-price">مبلغ نهایی شارژ: <span></span> تومان</div>
 			</div>',
 		);
-		
+
 	return $form;
 	// return array();
 }

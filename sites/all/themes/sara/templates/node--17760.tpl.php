@@ -376,7 +376,7 @@
     </div>
 </section>
 
-<section class="plus808">
+<section class="plus8082">
     <div class="inner">
         <h2> بخش پرسش و پاسخ 808 پلاس </h2>
 	    <h4> سوالات خود را از متخصصان سایت بپرسید </h4>
@@ -647,10 +647,10 @@
         display: inline-block;
         margin: 10px 17px;
     }
-    #block-system-main section:not(.plus808) h2{
+    #block-system-main section:not(.plus8082) h2{
         position: relative;
     }
-    #block-system-main section:not(.plus808) h2:before{
+    #block-system-main section:not(.plus8082) h2:before{
     	content: "";
         position: absolute;
         width: 130px;
@@ -1073,13 +1073,13 @@
         padding-bottom: 5px;
         display: inline-block;
     }
-    .plus808{
+    .plus8082{
     	position: relative;
         text-align: center;
         min-height: 400px;
         margin: 45px 0 20px 0;
     }
-    .plus808:before{
+    .plus8082:before{
     	content: "";
         background-image: url(/sites/all/themes/sara/images/home-question.jpg);
         width: 100%;
@@ -1093,17 +1093,17 @@
         right: 0;
         height: 100%;
     }
-    .plus808 .inner{
+    .plus8082 .inner{
     	z-index: 10;
         position: relative;
         padding: 100px 0 0 0;
     }
-    .plus808 h2{
+    .plus8082 h2{
         color: white;
         font-size: 44px;
         text-shadow: 0 0 15px #333;
     }
-    .plus808 h4{
+    .plus8082 h4{
         color: #FDD835;
         font-size: 16px;
         margin: 39px 0 29px 0;
@@ -1192,11 +1192,11 @@
     	opacity: 0.7;
     }
     @media (max-width: 768px) {
-        .plus808 h2 {
+        .plus8082 h2 {
             font-size: 29px;
         }
 
-        .plus808 h4 {
+        .plus8082 h4 {
             margin: 29px 0 29px 0;
         }
 

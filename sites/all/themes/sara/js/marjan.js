@@ -5,8 +5,6 @@ $(document).ready(function () {
     if (!$('.page-user .pane-uc-orders-user .view-uc-orders-user div').length) {
         $('.pane-uc-orders-user').remove();
     }
-
-    console.log($('#page-title').height());
     
     /*adjust position of bookmark iconin node-page*/
     $('.page-node:not(.page-gallery):not(.page-shop):not(.page-pedia) div.tabs')
@@ -232,6 +230,70 @@ $(document).ready(function () {
         }
     }
     */
+
+    /*-----------------------------------------*/
+    /*temporary code for put discount description in 4 courses*/
+    /*node 16827*/
+    if($('.page-16827').length){
+        var selector = '.page-16827 .form-item-attributes-37-118 ';
+        if ($(selector + 'label').html().substring(18).substring(0, 9) === "1,100,000")
+            $(selector)
+                .prepend('<div class="option-takhfif">با 350 هزار تومان تخفیف برای 5 نفر اول</div>');
+        else if ($(selector + 'label').html().substring(18).substring(0, 9) === "1,200,000")
+            $(selector)
+                .prepend('<div class="option-takhfif" >با 250 هزار تومان تخفیف برای 5 نفر دوم</div>');
+        else if ($(selector + 'label').html().substring(18).substring(0, 9) === "1,250,000")
+            $(selector)
+                .prepend('<div class="option-takhfif">با 200 هزار تومان تخفیف برای 5 نفر سوم</div>');
+        else if ($(selector + 'label').html().substring(18).substring(0, 9) === "1,300,000")
+            $(selector)
+                .prepend('<div class="option-takhfif">با 150 هزار تومان تخفیف برای 5 نفر چهارم</div>');
+    }
+	/*node 16828*/
+    if($('.page-16828').length){
+        var selector2 = '.page-16828 .form-item-attributes-36-117 ';
+        if ($(selector2 + 'label').html().substring(16).substring(0, 7) === "600,000")
+            $(selector2)
+                .prepend('<div class="option-takhfif">با 200 هزار تومان تخفیف برای 4 نفر اول</div>');
+        else if ($(selector2 + 'label').html().substring(16).substring(0, 7) === "650,000")
+            $(selector2)
+                .prepend('<div class="option-takhfif">با 150 هزار تومان تخفیف برای 4 نفر دوم</div>');
+        else if ($(selector2 + 'label').html().substring(16).substring(0, 7) === "700,000")
+            $(selector2)
+                .prepend('<div class="option-takhfif">با 100 هزار تومان تخفیف برای 4 نفر سوم</div>');
+        else if ($(selector2 + 'label').html().substring(16).substring(0, 7) === "725,000")
+            $(selector2)
+                .prepend('<div class="option-takhfif">با 75 هزار تومان تخفیف برای 4 نفر چهارم</div>');
+    }
+    /*node 18335*/
+    if($('.page-18335').length){
+        var selector3 =
+            '.page-18335 .form-item-attributes-58 #edit-attributes-58--3 .form-item-attributes-58:first-child ';
+        if ($(selector3 + ' label').html().substring(23).substring(0,7) === "300,000")
+            $(selector3)
+                .prepend('<div class="option-takhfif">با 150 هزار تومان تخفیف برای 15 نفر اول</div>');
+        else if ($(selector3 + ' label').html().substring(23).substring(0,7) === "375,000")
+            $(selector3)
+                .prepend('<div class="option-takhfif">با 75 هزار تومان تخفیف برای 5 نفر چهارم</div>');
+    }
+    /*node 18334    */
+    if($('.page-18334').length){
+        var selector4 =
+            '.page-18334 .form-item-attributes-57 #edit-attributes-57--3 .form-item-attributes-57:first-child ';
+        if ($(selector4 + 'label').html().substring(23).substring(0,7) === "300,000")
+            $(selector4)
+                .prepend('<div class="option-takhfif">با 150 هزار تومان تخفیف برای 5 نفر اول</div>');
+        else if ($(selector4 + 'label').html().substring(23).substring(0,7) === "330,000")
+            $(selector4)
+                .prepend('<div class="option-takhfif">با 120 هزار تومان تخفیف برای 5 نفر دوم</div>');
+        else if ($(selector4 + 'label').html().substring(23).substring(0,7) === "350,000")
+            $(selector4)
+                .prepend('<div class="option-takhfif">با 100 هزار تومان تخفیف برای 5 نفر سوم</div>');
+        else if ($(selector4 + 'label').html().substring(23).substring(0,7) === "375,000")
+            $(selector4)
+                .prepend('<div class="option-takhfif">با 75 هزار تومان تخفیف برای 5 نفر چهارم</div>');
+
+    }
 });
 
 /*

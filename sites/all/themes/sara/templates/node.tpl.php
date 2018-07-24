@@ -73,6 +73,10 @@
   <?php endif; ?>
 
   <?php
+    print relative_qa_render($node->nid , $node->type);
+  ?>
+
+  <?php
 	if (!$user->uid) {
 		if( isset($comment_forbidden) ){
 			print '<li class="comment_forbidden first last"><span>';
