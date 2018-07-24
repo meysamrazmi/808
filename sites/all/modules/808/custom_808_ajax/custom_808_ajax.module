@@ -269,7 +269,7 @@ function expert_information(){
 	
 	$node = node_load($query->entity_id);
 	/*
-	$body = $node->field_architecttext['und'][0]['value'];
+	$body = $node->field_body['und'][0]['value'];
 	$body = strip_tags($body);
 	$body = substr($body, 0, 90);
 	$body .= ' ... ';

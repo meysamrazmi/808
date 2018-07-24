@@ -960,26 +960,15 @@ span.file {
   font-weight: bold;
 }
 
-/*----------------------------------------------add latin content----------------------------------------------*/
-.page-node-add-latin-contents .field-type-taxonomy-term-reference #edit-field-latin-contents-types-und>ul,
-.page-node-add-latin-contents .field-type-taxonomy-term-reference #edit-field-latin-news-category-und>ul,
-.page-node-add-latin-contents .field-type-taxonomy-term-reference #edit-field-latin-resources-category-und>ul,
-.page-node-add-latin-contents .field-type-taxonomy-term-reference #edit-field-latin-casestudies-category-und>ul
-{
-  display: inline-block;
+
+.page-node-add-latin-contents.adminimal-theme .group-fields .fieldset-wrapper{
+  text-align: center;
 }
-.page-node-add-latin-contents .field-type-taxonomy-term-reference #edit-field-latin-contents-types-und>ul>li,
-.page-node-add-latin-contents .field-type-taxonomy-term-reference #edit-field-latin-news-category-und>ul>li,
-.page-node-add-latin-contents .field-type-taxonomy-term-reference #edit-field-latin-resources-category-und>ul>li,
-.page-node-add-latin-contents .field-type-taxonomy-term-reference #edit-field-latin-casestudies-category-und>ul>li
-{
+
+.page-node-add-latin-contents.adminimal-theme .group-fields .fieldset-wrapper  .field-type-taxonomy-term-reference{
   display: inline-block;
-  min-width: 200px;
   vertical-align: text-top;
-  padding: 10px;
-  margin: 10px 20px;
-  background-color: #eee;
-  border-radius: 2px;
-  border: 1px solid #c7c7c7;
+  min-width: 350px;
+  margin: 10px;
+  text-align: right;
 }
-/*-------------------------------------------------------------------------------------------------------------*/

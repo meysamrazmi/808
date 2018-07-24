@@ -325,7 +325,7 @@ klickmore($('.related.videos') , 500);
 /*-------------pedia--------------*/
 /*if( $( ".node-type-architect").length ){
 	if ( $(".field-type-node-reference").length ){
-		klickmore($('.page-pedia.page-node .field-name-field-architecttext') , 200);
+		klickmore($('.page-pedia.page-node .field-name-field-body') , 200);
 	}
 }*/
 klickmore($('#block-mefibs-mefibs-glrnew-page-2-f #edit-mefibs-form-f-dakheli-wrapper > .views-widget') , 250);
