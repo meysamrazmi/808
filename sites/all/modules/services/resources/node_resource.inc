@@ -341,8 +341,8 @@ function _node_resource_retrieve($nid) {
 		$query->condition('t.entity_id', $nid);
 		$node->body = $query->execute()->fetch()->body_value;
 
-        $query = db_select('field_data_field_arch_picture' , 'p');
-		$query->join('file_managed' , 'f' , 'p.field_arch_picture_fid = f.fid');
+        $query = db_select('field_data_field_image' , 'p');
+		$query->join('file_managed' , 'f' , 'p.field_image_fid = f.fid');
 		$query->fields('f' , array('uri'));
 		$query->condition('p.entity_id', $nid);
 		$results = $query->execute()->fetchAll();

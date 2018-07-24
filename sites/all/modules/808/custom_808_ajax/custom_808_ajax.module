@@ -274,7 +274,7 @@ function expert_information(){
 	$body = substr($body, 0, 90);
 	$body .= ' ... ';
 	*/
-	$pic = $node->field_arch_picture['und'][0]['uri'];
+	$pic = $node->field_image['und'][0]['uri'];
 	$pic = substr($pic, strpos($pic, "/") + 1);
 	$pic = "http://civil808.com/sites/default/files/styles/120_120/public" . $pic;
 	$data = array(['question_count' => $question_count, 'user_count' => $user_count, 'pic' => $pic , 'tid' => $tid, 'nid' => $node->nid]);
