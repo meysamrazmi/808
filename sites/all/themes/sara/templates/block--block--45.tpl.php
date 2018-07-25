@@ -5,8 +5,8 @@
         <a href="http://civil808.com/node/19340" target="_blank">
             <img class="right" src="/sites/all/themes/sara/images/ramadan-bg.jpg">
             <div class="new-title">
-                20 درصد شارژ هدیه
-                <div>تخفیف شرایط بحرانی اقتصاد کشور</div>
+                تا 10 مرداد تمدید شد
+                <div>20 درصد شارژ هدیه برای شرایط بحرانی اقتصاد کشور</div>
             </div>
             <img class="left" src="/sites/all/themes/sara/images/ramadan-bg.jpg">
         </a>
