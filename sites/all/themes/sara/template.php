@@ -102,7 +102,7 @@ function sara_preprocess_html(&$variables) {
 	    /*-------------------------*/
 
 		$node = node_load(arg(1));
-		if(in_array($node->type, array('article', 'podcast', 'blog', 'page', 'publication', 'education', 'designteam'))){
+		if(in_array($node->type, array('article', 'podcast', 'blog', 'page', 'publication', 'education', 'designteam','latin_contents'))){
 			$variables['classes_array'][] = 'default-page';
 			if(in_array($node->type, array('publication', 'education', 'designteam'))){
 				$variables['classes_array'][] = 'points-needed';

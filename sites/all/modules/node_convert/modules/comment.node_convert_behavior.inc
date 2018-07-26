@@ -15,8 +15,9 @@ function comment_node_convert_change($data, $op) {
     $node = $data['node'];
     
 	$prefix = $GLOBALS['databases']['default']['default']['prefix']; //TODO: Perhaphs make get current DB instead of default DB ?
+      $prefix = 'megapil_808_';
     $tables = array(
-        $prefix . 'field_data_comment_body', 
+        $prefix . 'field_data_comment_body',
         $prefix . 'field_revision_comment_body'
       );
 
