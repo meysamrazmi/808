@@ -1321,3 +1321,9 @@ body:not(.uid-3989) #block-block-58 {
   margin: 10px 0px 0px 0px;
   text-align: justify;
 }
+.page-node .qa-btn,
+.front .qa-btn {
+  display: block;
+  max-width: 280px;
+  margin: 0px auto 50px auto;
+}
