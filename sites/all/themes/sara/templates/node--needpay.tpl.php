@@ -160,6 +160,10 @@
   <?php endif; ?>
 
   <?php
+    print relative_qa_render($node->nid , $node->type);
+  ?>
+
+  <?php
 	if (!$user->uid) {
 		print '<li class="comment_forbidden first last"><span>';
 		print render($comment_forbidden['title']);
@@ -167,5 +171,4 @@
 	}
 	print render($content['comments']); 
   ?>
-
 </div>

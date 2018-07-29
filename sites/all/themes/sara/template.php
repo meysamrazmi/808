@@ -97,8 +97,12 @@ function sara_preprocess_html(&$variables) {
 	}
 	
  	if(arg(0) == 'node' && is_numeric(arg(1))){
+	    /*add css file to all nodes*/
+        drupal_add_css(drupal_get_path('theme', 'sara') . '/css/less/content-pages.min.css');
+	    /*-------------------------*/
+
 		$node = node_load(arg(1));
-		if(in_array($node->type, array('article', 'podcast', 'blog', 'page', 'publication', 'education', 'designteam'))){
+		if(in_array($node->type, array('article', 'podcast', 'blog', 'page', 'publication', 'education', 'designteam','latin_contents'))){
 			$variables['classes_array'][] = 'default-page';
 			if(in_array($node->type, array('publication', 'education', 'designteam'))){
 				$variables['classes_array'][] = 'points-needed';
@@ -189,7 +193,7 @@ function sara_preprocess_node(&$variables) {
 	if($node->type == 'college'){
 		$variables['classes_array'][] = 'apply-vip-discount';
 	}
-	else if(($node->type == 'product' || $node->type == 'product_kit') && in_array_r('2441', $node->field_backend)){ // 2441 is for "پکیج های s1 تا s30 "
+	else if(($node->type == 'product' || $node->type == 'product_kit') && in_array_r('3751', $node->taxonomy_catalog)){ // 3751 is for "پکیج های s1 تا s30 "
 		$variables['classes_array'][] = 'apply-vip-discount';
 	}
 

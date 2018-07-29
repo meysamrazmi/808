@@ -283,7 +283,7 @@ function nodepay_uc_order($op, $order, $arg) {
                         $subtotal += ($product->qty * $product->price);
                     }
                     //todo: make this section based on site setting
-                    else if(in_array_r('2441', $node->field_backend)){ // 2441 is for "پکیج های s1 تا s30 "
+                    else if(isset($node->field_backend['und']) && in_array_r('3751', $node->taxonomy_catalog)){ // 3751 is for "پکیج های s1 تا s30 "
                         $subtotal += ($product->qty * $product->price);
                     }
                     elseif($node->nid == 19074){
@@ -291,6 +291,12 @@ function nodepay_uc_order($op, $order, $arg) {
                     }
                 }
             }
+
+            //apply coupons subtotal price
+	        foreach ($order->line_items as $index => $line)
+	            if ($line['type'] == 'coupon')
+			        $subtotal += $line['amount']; //$line['amount'] is a negative number
+
             $vip_line_item = $not_vip_line_item = array();
             foreach ($order->line_items as $index => $line) {
                 if ($line['type'] == 'vip'){
@@ -317,6 +323,7 @@ function nodepay_uc_order($op, $order, $arg) {
                     }
                 }
             }
+
             // Handle line items.
             $user = user_load($order->uid);
             // there is already a line_item in order
@@ -394,7 +401,7 @@ function not_vip_line_item($op, $order) {
                         $subtotal += ($product->qty * $product->price);
                     }
                     //todo: make this section based on site setting
-                    elseif(in_array_r('2441', $node->field_backend)){ // 2441 is for "پکیج های s1 تا s30 "
+                    elseif(isset($node->field_backend['und']) && in_array_r('3751', $node->taxonomy_catalog)){ // 3751 is for "پکیج های s1 تا s30 "
                         $subtotal += ($product->qty * $product->price);
                     }
                     elseif($node->nid == 19074){

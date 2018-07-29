@@ -31,9 +31,9 @@ function pedia_resource_search($hash , $value , $version){
         $query->condition('node.type' , 'architect');
         $nid1 = $query->execute()->fetchAll();
 
-        $query = db_select("field_data_field_architecttext", "body");
+        $query = db_select("field_data_field_body", "body");
         $query->addField('body', 'entity_id', 'nid');
-        $query->condition('body.field_architecttext_value', '%' . $value . '%', 'LIKE');
+        $query->condition('body.field_body_value', '%' . $value . '%', 'LIKE');
         $query->condition('body.entity_type' , 'node');
         $query->condition('body.bundle' , 'architect');
         $nid2 = $query->execute()->fetchAll();
@@ -114,10 +114,10 @@ function retrieve_a_pedia_version_one($nid){
     $pedia->field_experts = $tids;
 
     /*add body*/
-    $query = $query = db_select('field_data_field_architecttext' , 'body');
-    $query->fields('body' , array('field_architecttext_value'));
+    $query = $query = db_select('field_data_field_body' , 'body');
+    $query->fields('body' , array('field_body_value'));
     $query->condition('body.entity_id', $nid);
-    $pedia->body = $query->execute()->fetch()->field_architecttext_value;
+    $pedia->body = $query->execute()->fetch()->field_body_value;
 
     /*add picture*/
     $query = db_select('field_data_field_arch_picture' , 'field_picture');

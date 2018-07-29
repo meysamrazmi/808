@@ -949,12 +949,28 @@ function custom_services_services_resources(){
                             'optional' => False,
                         ),
                         array(
-                            'name' => 'language',
+                            'name' => 'sort',
+                            'type' => 'string',
+                            'description' => 'Sort of the list.',
+                            'source' => array('param' => 'sort'),
+                            'optional' => True,
+                            'default value' => 'last'
+                        ),
+                        array(
+                            'name' => 'filter',
+                            'type' => 'array',
+                            'description' => 'The language of list.',
+                            'source' => array('param' => 'filter'),
+                            'optional' => True,
+                            'default value' => array()
+                        ),
+                        array(
+                            'name' => 'search_value',
                             'type' => 'string',
                             'description' => 'The language of list.',
-                            'source' => array('param' => 'language'),
+                            'source' => array('param' => 'search_value'),
                             'optional' => True,
-                            'default value' => 'fa'
+                            'default value' => 'last'
                         ),
                         array(
                             'name' => 'page',
@@ -971,6 +987,14 @@ function custom_services_services_resources(){
                             'source' => array('param' => 'version'),
                             'optional' => TRUE,
                             'default value' => 0,
+                        ),
+                        array(
+                            'name' => 'source_name',
+                            'type' => 'string',
+                            'description' => 'The name of sender source.',
+                            'source' => array('param' => 'source'),
+                            'optional' => TRUE,
+                            'default value' => "android",
                         ),
                     ),
                 ),
@@ -1351,6 +1375,38 @@ function custom_services_services_resources(){
                             'source' => array('param' => 'page'),
                             'optional' => TRUE,
                             'default value' => 0,
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('param' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+                'retrieve' => array(
+                    'help' => 'return a contents',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_contents_resource'),
+                    'callback' => 'latin_contents_resource_retrieve',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('param' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'nid',
+                            'type' => 'int',
+                            'description' => 'Nid of content',
+                            'source' => array('path' => 0),
+                            'optional' => FALSE,
                         ),
                         array(
                             'name' => 'version',
@@ -1903,19 +1959,19 @@ function custom_services_services_resources(){
 
         'test' => array(
             'operations' => array(
-                'update' => array(
+                'retrieve' => array(
                     'help' => '',
-                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'user_resource'),
+                    //'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_contents_resource'),
                     'callback' => 'test',
                     'access callback' => 'user_access',
                     'access arguments' => array('access content'),
                     'access arguments append' => FALSE,
                     'args' => array(
                         array(
-                            'name' => 'id',
+                            'name' => 'nid',
                             'optional' => False,
-                            'type' => 'string',
-                            'description' => 'hash code',
+                            'type' => 'int',
+                            'description' => 'nid',
                             'source' => array('path' => 0),
                         ),
                     ),
@@ -1989,4 +2045,22 @@ function upload_file($hash) {
         }
     }
     return $files;
+}
+
+function get_compatible_function_name($url, $method, $source_name , $version){
+    $query = db_select("api_code_version" , "acv")
+        ->fields("acv" , array("last_function"))
+        ->condition("url" , $url)
+        ->condition("method" , $method)
+        ->condition("source_name" , $source_name)
+        ->condition("version" , $version , "<=")
+        ->orderBy("version" , "DESC")
+        ->execute()->fetch();
+
+    if(!empty($query)) return $query->last_function;
+    else return "";
+}
+
+function test($nid){
+    return node_load($nid);
 }
