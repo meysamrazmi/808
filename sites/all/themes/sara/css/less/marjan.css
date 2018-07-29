@@ -1218,6 +1218,11 @@ body:not(.uid-3989) #block-block-58 {
 .front .qa-section .pane-content .q-title {
   display: none;
 }
+.page-node .field-name-relative-qa,
+.front .field-name-relative-qa {
+  background: transparent !important;
+  box-shadow: none !important;
+}
 .page-node .relative-questions,
 .front .relative-questions {
   margin-top: 10px;

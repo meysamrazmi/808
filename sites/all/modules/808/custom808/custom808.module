@@ -399,7 +399,7 @@ function relative_qa_render($nid , $type){
             $output .= '</div>';
             $output .= '</div>';
         }
-        $output .= '</dev></div>';
+        $output .= '</div></div>';
 
         $output .= '<a href="/question/list" class="btn blue-btn qa-btn" target="_blank">ورود به بخش پرسش و پاسخ</a>';
 
