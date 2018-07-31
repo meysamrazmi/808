@@ -263,12 +263,12 @@
     #relatives.film-relatives .field-name-title a {
         max-height: none;
     }
-    .owl-item .row .title ,
-    .owl-item .row .node:not(.node-product-kit):not(.node-product) .field-name-title a{
+    .owl-item .row .title,
+    #block-system-main > .content .field-name-body .owl-item .row .node:not(.node-product-kit):not(.node-product) .field-name-title a{
         padding: 10px 10px 2px 10px;
         color: #333 !important;
         line-height: 26px !important;
-        display: block;
+        display: block !important;
         border-top: 1px solid #eee;
         font-size: 13px;
         font-weight: normal;
