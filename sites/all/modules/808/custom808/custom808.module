@@ -383,23 +383,22 @@ function relative_qa($nid , $type)
 function relative_qa_render($nid , $type){
     $questions = relative_qa($nid, $type);
     if(!empty($questions)) {
-        $output = "";
-        $output .= '<div class="relative-questions">';
-        $output .= '<div class="q-title">سوالات مرتبط</div>';
+        $output  = '<div class="relative-questions">';
+        $output .= '	<div class="q-title">سوالات مرتبط</div>';
         foreach ($questions as $row) {
             $output .= '<div class="question">';
-            $output .= '<div class="reply"><a href="/node/' . $row->nid . '#answer-question" target="_blank"><span>پاسخ به سوال</span></a></div>';
-            $output .= '<div class="right">';
-            $output .= '<a href="/user/' . $row->uid . '" target="_blank" class="pic" title="' . $row->username . '"><img src="' . $row->user_picture . '" alt="عکس کاربر"></a>';
-            $output .= '<div class="comment-count">' . $row->comment_count . 'پاسخ</div> ';
-            $output .= '</div>';
-            $output .= '<div class="left">';
-            $output .= '<a href="/node/' . $row->nid . '" target="_blank" class="title">' . $row->title . '</a>';
-            $output .= '<p class="body">' . $row->body . '</p>';
-            $output .= '</div>';
+            $output .= '	<div class="reply"><a href="/node/' . $row->nid . '#answer-question" target="_blank"><span>پاسخ به سوال</span></a></div>';
+            $output .= '	<div class="right">';
+            $output .= '        <a href="/user/' . $row->uid . '" target="_blank" class="pic" title="' . $row->username . '"><img src="' . $row->user_picture . '" alt="عکس کاربر"></a>';
+            $output .= '		<div class="comment-count">' . $row->comment_count .'پاسخ'. '</div>';
+            $output .= '	</div>';
+            $output .= '	<div class="left">';
+            $output .= '        <a href="/node/' . $row->nid . '" target="_blank" class="title">' . $row->title . '</a>';
+            $output .= '		<p class="body">' . $row->body . '</p>';
+            $output .= '	</div>';
             $output .= '</div>';
         }
-        $output .= '</div></div>';
+        $output .= '</div>';
 
         $output .= '<a href="/question/list" class="btn blue-btn qa-btn" target="_blank">ورود به بخش پرسش و پاسخ</a>';
 
