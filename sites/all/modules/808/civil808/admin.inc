@@ -541,7 +541,6 @@ function developer()
 //    $new_hash = hash_hmac("sha256" , "content" , "@Civil808Android@Saze808@" , false);
 //    adump($new_hash);
 
-    adump(relative_qa(2501 , "college"));
     die();
 
 }

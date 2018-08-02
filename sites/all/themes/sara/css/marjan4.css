@@ -70,7 +70,7 @@
     display: none;
 }
 
-.node-architect.node-teaser .field-name-field-arch-picture img {
+.node-architect.node-teaser .field-name-field-image img {
 	overflow: hidden;
     box-shadow: 0px 0px 20px -2px #aaa;
     padding: 0px !important;
@@ -707,12 +707,12 @@
 	position:relative;
     margin-top: 21px;
 }
-.page-arch.page-civil .memaran-mashhoor .field-name-field-arch-picture{
+.page-arch.page-civil .memaran-mashhoor .field-name-field-image{
 	display: inline-block;
     vertical-align: top;
     width: 56%;
 }
-.page-arch.page-civil .memaran-mashhoor .field-name-field-arch-picture{
+.page-arch.page-civil .memaran-mashhoor .field-name-field-image{
 	display: inline-block;
     vertical-align: top;
     width: 56%;

@@ -503,8 +503,8 @@ function get_pedia($page){
 		}
 
 		/*add each pedia picture*/
-		$query = db_select('field_data_field_arch_picture' , 'p');
-		$query->join('file_managed' , 'f' , 'p.field_arch_picture_fid = f.fid');
+		$query = db_select('field_data_field_image' , 'p');
+		$query->join('file_managed' , 'f' , 'p.field_image_fid = f.fid');
 		$query->fields('p' , array('entity_id'));
 		$query->fields('f' , array('uri'));
 		$query->condition('p.entity_id', $nids, "IN");
@@ -658,8 +658,8 @@ function taxonomy_information($tid){
     $nid = $nid->entity_id;
 
     /*picture of pedia that related to this tid*/
-    $query = db_select('field_data_field_arch_picture' , 'p');
-    $query->join('file_managed' , 'f' , 'p.field_arch_picture_fid = f.fid');
+    $query = db_select('field_data_field_image' , 'p');
+    $query->join('file_managed' , 'f' , 'p.field_image_fid = f.fid');
     $query->fields('f' , array('uri'));
     $query->condition('p.entity_id', $nid);
     $picture = $query->execute()->fetch();

@@ -336,13 +336,13 @@ function _node_resource_retrieve($nid) {
 		return ["node" => $node, "author" => $author, "vote_points" => $vote_points , "user_vote" => $user_vote->value];
 	}
 	if($node->type == "architect"){
-		$query = $query = db_select('field_data_field_architecttext' , 't');
-		$query->fields('t' , array('field_architecttext_value'));
+		$query = $query = db_select('field_data_body' , 't');
+		$query->fields('t' , array('body_value'));
 		$query->condition('t.entity_id', $nid);
-		$node->body = $query->execute()->fetch()->field_architecttext_value;
+		$node->body = $query->execute()->fetch()->body_value;
 
-        $query = db_select('field_data_field_arch_picture' , 'p');
-		$query->join('file_managed' , 'f' , 'p.field_arch_picture_fid = f.fid');
+        $query = db_select('field_data_field_image' , 'p');
+		$query->join('file_managed' , 'f' , 'p.field_image_fid = f.fid');
 		$query->fields('f' , array('uri'));
 		$query->condition('p.entity_id', $nid);
 		$results = $query->execute()->fetchAll();

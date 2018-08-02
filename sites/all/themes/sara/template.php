@@ -193,7 +193,7 @@ function sara_preprocess_node(&$variables) {
 	if($node->type == 'college'){
 		$variables['classes_array'][] = 'apply-vip-discount';
 	}
-	else if(($node->type == 'product' || $node->type == 'product_kit') && in_array_r('2441', $node->field_backend)){ // 2441 is for "پکیج های s1 تا s30 "
+	else if(($node->type == 'product' || $node->type == 'product_kit') && in_array_r('3751', $node->taxonomy_catalog)){ // 3751 is for "پکیج های s1 تا s30 "
 		$variables['classes_array'][] = 'apply-vip-discount';
 	}
 

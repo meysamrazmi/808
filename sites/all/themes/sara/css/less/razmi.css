@@ -1532,22 +1532,22 @@ body:not(.uid-10628):not(.uid-3300):not(.uid-3989) .admin-error {
   box-shadow: rgba(0, 0, 0, 0.156863) 0px 0px 7px, rgba(0, 0, 0, 0.227451) 0px 0px 4px;
   background: #fff;
   border: none !important;
-  width: 20px;
-  height: 20px;
+  width: 20px !important;
+  height: 20px !important;
   transform: rotate(45deg);
   z-index: -2 !important;
 }
 .joyride-tip-guide span.joyride-nub.top {
-  top: -10px;
+  top: -10px !important;
 }
 .joyride-tip-guide span.joyride-nub.bottom {
-  bottom: -10px;
+  bottom: -10px !important;
 }
 .joyride-tip-guide span.joyride-nub.right {
-  right: -10px;
+  right: -10px !important;
 }
 .joyride-tip-guide span.joyride-nub.left {
-  left: -10px;
+  left: -10px !important;
 }
 .joyride-tip-guide .joyride-content-wrapper {
   z-index: 2;
