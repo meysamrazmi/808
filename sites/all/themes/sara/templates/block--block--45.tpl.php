@@ -2,14 +2,19 @@
 <div id="block-block-45" class="block block-block contextual-links-region first odd">
     <div class="content">
         <span class="close-banner">X</span>
-        <a href="http://civil808.com/node/19340" target="_blank">
-            <img class="right" src="/sites/all/themes/sara/images/ramadan-bg.jpg">
-            <div class="new-title">
-                تا 10 مرداد تمدید شد
-                <div>20 درصد شارژ هدیه برای شرایط بحرانی اقتصاد کشور</div>
-            </div>
-            <img class="left" src="/sites/all/themes/sara/images/ramadan-bg.jpg">
-        </a>
+        <div id="smile">
+            <canvas width="570" height="250" style="display: block;">
+            </canvas>
+            <a href="http://civil808.com/landing/fair97" target="_blank">
+                <img class="right" style="display: none;" src="/sites/all/themes/sara/images/ramadan-bg.jpg">
+                <div class="new-title">
+                    <!--                تا 10 مرداد تمدید شد-->
+                    <div>جشنواره فروش ویژه به مناسبت هجدهمین نمایشگاه بین المللی ساختمان</div>
+                </div>
+                <img class="left" style="display: none;"  src="/sites/all/themes/sara/images/ramadan-bg.jpg">
+            </a>
+        </div>
+        <span class="darsad"><span>%</span><span>20</span></span>
     </div>
 </div>
 <style>
@@ -26,6 +31,7 @@
         display: flex;
         align-items: center;
         background-color: white;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 4px;
     }
     div#block-block-45 .content {
         display: flex;
@@ -39,8 +45,69 @@
         height: 100%;
         right: 0;
         top: 0;
+        z-index: 5;
+        border-top: 1px solid #F44336;
+    }
+    div#smile {
+        position: absolute;
+        height: 100%;
+        border: none;
+        background: #fff;
+    }
+    div#smile + .darsad {
+        position: absolute;
         z-index: 1;
-        background-color: #584968;
+        right: 20px;
+        top: -3px;
+    }
+    span.darsad {
+        font-family: fanum;
+        background: #F44336;
+        color: #fff;
+        text-shadow: none;
+        margin: 0 10px 0 20px;
+        padding: 0 10px 0 0;
+        font-weight: bold;
+        font-size: 4rem;
+        display: inline-block;
+        letter-spacing: -10px;
+        width: 60px;
+        height: 60px;
+        position: relative;
+        text-align: center;
+        box-sizing: border-box;
+        line-height: 4.8rem;
+        font-size: 50px;
+    }
+    .darsad:before, .darsad:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 60px;
+        width: 60px;
+        background: #F44336;
+        z-index: 0;
+    }
+    .darsad:before {
+        -webkit-transform: rotate(30deg);
+        -moz-transform: rotate(30deg);
+        -ms-transform: rotate(30deg);
+        -o-transform: rotate(30deg);
+    }
+    .darsad:after {
+        -webkit-transform: rotate(60deg);
+        -moz-transform: rotate(60deg);
+        -ms-transform: rotate(60deg);
+        -o-transform: rotate(60deg);
+    }
+    .darsad span {
+        z-index: 1;
+        position: relative;
+    }
+    .darsad span:first-child {
+        font-size: 1.5rem;
+        letter-spacing: 0;
     }
     .new-title{
         font-size: 12px;
@@ -57,9 +124,10 @@
     }
     .new-title > div{
         font-size: 19px;
-        color: #ffffff;
+        color: #444;
         margin-top: 2px;
         font-weight: normal;
+        line-height: 50px;
     }
     img.right{
         transform: rotateY(180deg);
