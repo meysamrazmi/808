@@ -59,7 +59,13 @@ function custom_808_ajax_menu() {
       'type' => MENU_CALLBACK,
       'access arguments' => array('access content'),
   );
-  return $items;
+    $items['user/%user/moshavereh'] = array(
+		'page callback' => 'moshavereh',
+		'type' => MENU_CALLBACK,
+	    'page arguments' => array(1),
+		'access arguments' => array('access content'),
+	);
+	return $items;
 }
 
 /**
@@ -503,4 +509,70 @@ function filter($name, &$query, &$get_result){
         $query->condition("node.nid" , $nids , "IN");
     else
         $get_result = false;
+}
+
+function moshavereh($user){
+	if($_SERVER['REQUEST_METHOD'] === 'POST'){
+		$output = array();
+		$data = json_decode($_POST['data'],true);
+		if($data['type'] == 'edit'){
+			$select_query = "SELECT m.*
+				FROM {moshavereh} m
+				WHERE m.uid = :uid
+				AND m.week = :week";
+			$result = db_query($select_query, array(':uid' => $user->uid, ':week' => $data['week']))->fetchObject();
+
+			$day_name = day_translation($data['did']);
+			$day = $result->$day_name;
+			$courses = explode('@',$day);
+			$courses[$data['cid']] = $data['value'];
+			$day = implode('@',$courses);
+
+			$update_query = "UPDATE {moshavereh} SET $day_name = :value WHERE id = :id";
+			$updated = db_query($update_query, array(':value' => $day, ':id' => $result->id));
+
+			$output['status'] = 101;
+			$output['message'] = 'success';
+		}
+
+		drupal_json_output($output);
+		drupal_exit();
+	}
+
+	$data = json_decode($_GET['data'],true);
+
+	$query = "SELECT m.*
+			FROM {moshavereh} m
+			WHERE m.uid = :uid";
+	$result = db_query($query, array(':uid' => $user->uid))->fetchAll();
+
+	drupal_json_output($result);
+	drupal_exit();
+	return $result;
+}
+
+function day_translation($day){
+	switch ($day){
+		case 0:
+			return 'sat';
+			break;
+		case 1:
+			return 'sun';
+			break;
+		case 2:
+			return 'mon';
+			break;
+		case 3:
+			return 'tue';
+			break;
+		case 4:
+			return 'wed';
+			break;
+		case 5:
+			return 'thu';
+			break;
+		case 6:
+			return 'fri';
+			break;
+	}
 }
