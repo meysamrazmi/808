@@ -32,10 +32,10 @@
     </div>
 </section>
 
-<section class="timing">
+<section class="timing two-box">
     <h2 class="text"> برنامه زمان بندی </h2>
     <div class="timing-wh">
-        <div class="timebox time1">
+        <div class="timebox time1 little-one">
             <div class="moddat"> 13 الی 17 </div>
             <div class="circle"></div>
             <div class="line"></div>
@@ -316,44 +316,6 @@
     }
     .mediaelement-download-link a:after{
         font-size: 13px;
-    }
-    .seis-box{
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .seis-text > div > div {
-        font-size: 15px;
-        font-weight: bold;
-        color: #9C27B0;
-        float: right;
-        clear: right;
-        margin: 0 0 0 14px;
-    }
-    .seis-text > div > span {
-        font-weight: bold;
-        font-size: 17px;
-        font-family: Tahoma;
-        display: block;
-        padding: 1px 0;
-    }
-    .seis-text{
-        max-width: 615px;
-        padding: 2% 2%;
-        background: #fff;
-        border-radius: 5px;
-        box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
-        color: #555 !important;
-        min-height: 150px;
-        margin: 33px 10px;
-        position: relative;
-        text-align: justify;
-        z-index: 2;
-    }
-    .seis-text p{
-        font-size: 14px;
-        line-height: 32px;
     }
     section:not('.plus808') h2{
         position: relative;

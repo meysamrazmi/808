@@ -1,14 +1,15 @@
 <img src="/sites/default/files/importviaftp/423.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
+
 <section class="kargah-sec">
     <h2>همایش انقلاب در صنعت ساخت و ساز با BIM</h2>
-    <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره به صورت حضوری و آنلاین برگزار می شود.</p>
+    <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره فقط به صورت حضوری برگزار می شود.</p>
     <div class="first-row" style="margin-top: 40px;">
         <div>
-            <p>همایش انقلاب در صنعت ساخت و ساز با BIM ، چهارشنبه ۲۴ مرداد ماه،ساعت ۱۶ تا ۲۰ به صورت آنلاین و حضوری، در سالن انجمن فارغ التحصیلان دانشگاه صنعتی شریف، توسط موسسه ۸۰۸ برگزار می شود.</p>
+            <p>همایش انقلاب در صنعت ساخت و ساز با BIM ، چهارشنبه ۲۴ مرداد ماه،ساعت ۱۶ تا ۲۰ به صورت حضوری، در سالن انجمن فارغ التحصیلان دانشگاه صنعتی شریف، توسط موسسه آموزشی و مهندسی ۸۰۸ و شرکت IRAN-BIM برگزار می شود.</p>
             <p><strong> مباحث مطرح شده در این همایش عبارتند از:</strong></p>
             <ul>
                 <li>آشنایی با کاربرد انواع نرم افزارهای تخصصی در حوزه ی BIM</li>
-                <li>ررسی کاربرد BIM در زیرساخت های حمل و نقلی</li>
+                <li>بررسی کاربرد BIM در زیرساخت های حمل و نقلی</li>
                 <li>پروسه طراحی بر اساس BIM، دغدغه معماری امروز</li>
                 <li>نگاهی پسا معمارانه بر روش آموزش معماری در آتلیه های معماری (نقد به روایت تصویر)</li>
                 <li>بررسي عملكرد سازه اي بيم (مدل واقع گرايانه - مديريت پروژه - مديريت ريسك - مديريت حمل و نقل - توالي نصب و حمل قطعات - نمايش پيشرفت پروژه در بازه هاي زماني خاص - مديريت استراتژيك پروژه)</li>
@@ -21,20 +22,20 @@
     </div>
 </section>
 
-<section class="timing">
+<section class="timing six-box">
     <h2 class="text"> برنامه زمان بندی </h2>
     <div class="timing-wh">
-        <div class="timebox time1">
+        <div class="timebox time1 little-one">
             <div class="moddat"> 2 ساعت </div>
             <div class="circle"></div>
             <div class="line"></div>
             <div class="description">
-                <a href="/node/" style="color: black" target="_blank">
+                <a href="/user/4445/iran-bim" style="color: black" target="_blank">
                     <div class="des-top">
-                        <img src="http://civil808.com/sites/default/files/pictures/default.png" alt="قاسم آریانی" width="100px" height="100px">
+                        <img src="http://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-4445-1529945699.jpg?itok=WHa8HWzj" alt="قاسم آریانی" width="100px" height="100px">
                         <div class="des-left">
                             <b> قاسم آریانی </b>
-                            <div> </div>
+                            <div> متخصص BIM و نرم افزارهای مربوطه </div>
                         </div>
                     </div>
                     <div class="des-down">
@@ -45,12 +46,12 @@
                 </a>
             </div>
         </div>
-        <div class="timebox time2">
+        <div class="timebox time2 little-one">
             <div class="moddat"> 15 دقیقه </div>
             <div class="circle"></div>
             <div class="line"></div>
             <div class="description">
-                <a href="/user/" style="color: black" target="_blank">
+                <a href="#" style="color: black">
                     <div class="des-top">
                         <img src="http://civil808.com/sites/default/files/pictures/default.png" alt="علیرضا ادیب فر" width="100px" height="100px">
                         <div class="des-left">
@@ -64,17 +65,17 @@
                 </a>
             </div>
         </div>
-        <div class="timebox time3">
+        <div class="timebox time3 little-one">
             <div class="moddat"> 15 دقیقه </div>
             <div class="circle"></div>
             <div class="line"></div>
             <div class="description">
-                <a href="/user/" style="color: black" target="_blank">
+                <a href="/user/18104/mehdirasouli" style="color: black" target="_blank">
                     <div class="des-top">
-                        <img src="http://civil808.com/sites/default/files/pictures/default.png" alt="مهدی رسولی" width="100px" height="100px">
+                        <img src="http://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-18104-1533349689.jpg?itok=dOQvW5rF" alt="مهدی رسولی" width="100px" height="100px">
                         <div class="des-left">
                             <b> مهدی رسولی </b>
-                            <div>  </div>
+                            <div> کارشناس معماری و مشاور در زمینه BIM </div>
                         </div>
                     </div>
                     <div class="des-down">
@@ -88,12 +89,12 @@
             <div class="circle"></div>
             <div class="line"></div>
             <div class="description">
-                <a href="/user/" style="color: black" target="_blank">
+                <a href="/user/18106/saharzamansoltani" style="color: black" target="_blank">
                     <div class="des-top">
-                        <img src="http://civil808.com/sites/default/files/pictures/default.png" alt="سحر زمان سلطانی" width="100px" height="100px">
+                        <img src="http://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-18106-1533345874.jpg?itok=YsTatyCO" alt="سحر زمان سلطانی" width="100px" height="100px">
                         <div class="des-left">
                             <b> سحر زمان سلطانی </b>
-                            <div>  </div>
+                            <div> کارشناس ارشد ارشد معماری و مشاور در زمینه BIM </div>
                         </div>
                     </div>
                     <div class="des-down">
@@ -107,12 +108,12 @@
             <div class="circle"></div>
             <div class="line"></div>
             <div class="description">
-                <a href="/user/" style="color: black" target="_blank">
+                <a href="/user/10721/larijanimojtaba" style="color: black" target="_blank">
                     <div class="des-top">
-                        <img src="http://civil808.com/sites/default/files/pictures/default.png" alt="مجتبی اردشیر لاریجانی" width="100px" height="100px">
+                        <img src="http://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-10721-1502030043.jpg?itok=1hcyz0F9" alt="مجتبی اردشیر لاریجانی" width="100px" height="100px">
                         <div class="des-left">
                             <b> مجتبی اردشیر لاریجانی </b>
-                            <div>  </div>
+                            <div> متخصص BIM با نرم افزار Tekla Structures</div>
                         </div>
                     </div>
                     <div class="des-down">
@@ -126,12 +127,12 @@
             <div class="circle"></div>
             <div class="line"></div>
             <div class="description">
-                <a href="/user/" style="color: black" target="_blank">
+                <a href="/user/1546/khsaeid" style="color: black" target="_blank">
                     <div class="des-top">
-                        <img src="http://civil808.com/sites/default/files/pictures/default.png" alt="سعید خلیلی قمی" width="100px" height="100px">
+                        <img src="http://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-1546-1496071500.jpg?itok=1KRQ1LSz" alt="سعید خلیلی قمی" width="100px" height="100px">
                         <div class="des-left">
                             <b> سعید خلیلی قمی </b>
-                            <div>  </div>
+                            <div> متخصص BIM و مدیریت و کنترل پروژه</div>
                         </div>
                     </div>
                     <div class="des-down">
@@ -146,7 +147,7 @@
 <section class="second">
     <h2 class="text"> ثبت نام در همایش انقلاب در صنعت ساخت و ساز با BIM </h2>
     <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">علاوه بر این دوره شما می توانید در
-        <a href="#edu-form" target="_blank" class="title"> دوره های آنلاین BIM </a>
+        <a href="#edu-form" class="title"> دوره های آنلاین BIM </a>
         ثبت نام کنید.
     </p>
     <div class="tickets">
@@ -163,10 +164,9 @@
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
             </a>
-            <a href="/cart/add/p19686_a63o197?destination=cart" target="_blank">
+            <!--<a href="/cart/add/p19686_a63o197?destination=cart" target="_blank">
                 <div class="city-name"><span>ثبت نام در دوره به صورت آنلاین</span></div>
                 <div class="inner-text">
-                    <!--<p class="text"> برنامه زمان بندی و نام اساتید را می توانید در بخش بالا مشاهده کنید </p>-->
                     <p style="padding: 9px 12px 0px 0px;">به همراه ارسال فیلم وبینار به ایمیل ثبت نام کنندگاه بعد از برگزاری همایش</p>
                     <div class="tarikh">چهارشنبه ۲۴ مرداد ماه</div>
                     <div class="makan"> ارسال لینک ورود به وبینار زنده </div>
@@ -174,13 +174,12 @@
                     <div class="mablagh"> 10,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
-            </a>
+            </a>-->
         </div>
         <!--<div class="bought-tickets">سوال های خود را می توانید از طریق شماره تماس موسسه و سیستم پیغام خصوصی با ما در میان بگذارید.</div>
 	</div>-->
 
 </section>
-
 
 <div class="node">
     <div class="content">
@@ -203,7 +202,7 @@
                 </blockquote>
             </div>
 
-            <a href="/node/19162" target="_blank" style="display: none !important;margin: 31px auto 0;display: block;text-align: center;">
+            <a href="/node/19162" target="_blank" style="margin: 31px auto 0;display: block;text-align: center;">
                 <img src="http://civil808.com/sites/default/files/field/image/node_19162.jpg" width="700" height="auto" alt="یادداشت تحلیلی: چگونه BIM صنعت ساختمان و شهرسازی را متحول کرد؟" title="یادداشت تحلیلی: چگونه BIM صنعت ساختمان و شهرسازی را متحول کرد؟">
             </a>
 
@@ -374,6 +373,7 @@
         print render($content['comments']);
     ?>
 </div>
+
 <style>
     .node section > h2{
         font-size: 24px;
@@ -522,15 +522,16 @@
         max-width: 1240px;
         margin: auto;
     }
-    section.timing .timing-wh {
-        padding: 30px 25px 70px 25px !important;
-    }
-    .timing-wh:before {
-        width: 80%;
-    }
 </style>
+
 <style>
     <?php
         echo readfile("http://civil808.com/sites/all/themes/sara/css/less/landing.min.css");
     ?>
+</style>
+
+<style>
+    section.second {
+        margin: 50px auto 0 !important;
+    }
 </style>
