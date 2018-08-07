@@ -542,5 +542,4 @@ function developer()
 //    adump($new_hash);
 
     die();
-
 }

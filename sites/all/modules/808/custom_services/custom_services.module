@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Implements hook_services_resources().
  */
@@ -949,30 +950,6 @@ function custom_services_services_resources(){
                             'optional' => False,
                         ),
                         array(
-                            'name' => 'sort',
-                            'type' => 'string',
-                            'description' => 'Sort of the list.',
-                            'source' => array('param' => 'sort'),
-                            'optional' => True,
-                            'default value' => 'last'
-                        ),
-                        array(
-                            'name' => 'filter',
-                            'type' => 'array',
-                            'description' => 'The language of list.',
-                            'source' => array('param' => 'filter'),
-                            'optional' => True,
-                            'default value' => array()
-                        ),
-                        array(
-                            'name' => 'search_value',
-                            'type' => 'string',
-                            'description' => 'The language of list.',
-                            'source' => array('param' => 'search_value'),
-                            'optional' => True,
-                            'default value' => 'last'
-                        ),
-                        array(
                             'name' => 'page',
                             'type' => 'int',
                             'description' => 'The page of list.',
@@ -981,20 +958,12 @@ function custom_services_services_resources(){
                             'default value' => 0,
                         ),
                         array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('param' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
-                        ),
-                        array(
-                            'name' => 'source_name',
-                            'type' => 'string',
-                            'description' => 'The name of sender source.',
-                            'source' => array('param' => 'source'),
-                            'optional' => TRUE,
-                            'default value' => "android",
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
                         ),
                     ),
                 ),
@@ -1347,42 +1316,12 @@ function custom_services_services_resources(){
                     'access arguments append' => FALSE,
                     'args' => array(
                         array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('param' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'type_tid',
-                            'type' => 'int',
-                            'description' => 'The type of contents.',
-                            'source' => array('param' => 'type_tid'),
-                            'optional' => FALSE,
-                        ),
-                        array(
-                            'name' => 'categories',
-                            'type' => 'string',
-                            'description' => 'The category of a content.',
-                            'source' => array('param' => 'categories'),
+                            'name' => 'parameters',
+                            'type' => 'array',
+                            'description' => 'parameters of content',
+                            'source' => array('param' => 'parameters'),
                             'optional' => TRUE,
-                            'default' => '',
-                        ),
-                        array(
-                            'name' => 'page',
-                            'type' => 'int',
-                            'description' => 'The page of list.',
-                            'source' => array('param' => 'page'),
-                            'optional' => TRUE,
-                            'default value' => 0,
-                        ),
-                        array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('param' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
+                            'default value' => array(),
                         ),
                     ),
                 ),
@@ -1395,13 +1334,6 @@ function custom_services_services_resources(){
                     'access arguments append' => FALSE,
                     'args' => array(
                         array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('param' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
                             'name' => 'nid',
                             'type' => 'int',
                             'description' => 'Nid of content',
@@ -1409,46 +1341,12 @@ function custom_services_services_resources(){
                             'optional' => FALSE,
                         ),
                         array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('param' => 'version'),
+                            'name' => 'parameters',
+                            'type' => 'array',
+                            'description' => 'parameters of content',
+                            'source' => array('param' => 'parameters'),
                             'optional' => TRUE,
-                            'default value' => 0,
-                        ),
-                    ),
-                ),
-            ),
-            'relationships' => array(
-                'filters' => array(
-                    'help' => 'return filters of a content type',
-                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_contents_resource'),
-                    'callback' => 'latin_contents_resource_filters',
-                    'access callback' => 'user_access',
-                    'access arguments' => array('access content'),
-                    'access arguments append' => FALSE,
-                    'args' => array(
-                        array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('param' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'type',
-                            'type' => 'string',
-                            'description' => 'The type of filters',
-                            'source' => array('path' => 0),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('param' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
+                            'default value' => array(),
                         ),
                     ),
                 ),
@@ -1976,6 +1874,23 @@ function custom_services_services_resources(){
                         ),
                     ),
                 ),
+                'update' => array(
+                    'help' => '',
+                    //'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_contents_resource'),
+                    'callback' => 'test_2',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'nid',
+                            'optional' => False,
+                            'type' => 'int',
+                            'description' => 'nid',
+                            'source' => array('path' => 0),
+                        ),
+                    ),
+                ),
             ),
         ),
 	);
@@ -2064,3 +1979,5 @@ function get_compatible_function_name($url, $method, $source_name , $version){
 function test($nid){
     return node_load($nid);
 }
+
+function test_2($nid){return $nid;}
