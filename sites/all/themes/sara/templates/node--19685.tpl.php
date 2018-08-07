@@ -48,6 +48,8 @@
 
         <section class="node" style="padding: 50px 6% 80px; background: #fff;">
             <h2 style="font-size: 23px;font-weight: 500;">پکیج استثنائی 808</h2>
+            <a href="/sites/default/files/field/files/node_19685-civil808.com_special_package-_summer_1397.pdf" class="btn" style="margin: 30px auto 0;display: block;width: 240px;">دانلود pdf اطلاعات داخل پکیج
+            </a>
             <p style="text-align: left;margin-bottom: -230px;">
                 <img src="/sites/default/files/field/image/node_19685_0.jpg" alt="حضور 808 در 18امین نمایشگاه بین المللی صنعت و ساختمان" width="338" height="338">
             </p>
