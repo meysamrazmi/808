@@ -137,7 +137,6 @@ function list_of_contents_v_1($parameter){
         $query->orderBy("node.nid" , "DESC");
     }
     elseif(strcmp($type , "college") == 0){
-        if(isset($custom_list)) $query->condition('node.nid' , $custom_list , 'IN');
         if (isset($parameter["college_type"])  && strcmp($parameter["college_type"], "homepage") == 0) {
             $college_types = db_select("field_data_field_course_type" , "college_type")->distinct();
             $college_types->fields("college_type", array("field_course_type_value"));
@@ -146,7 +145,7 @@ function list_of_contents_v_1($parameter){
             $contents = array();
             foreach ($college_types as $college_type){
                 $newquery = clone($query);
-                $newquery->join("field_data_field_course_type" , "college_type" , "college_type.field_course_type_value = '" . $college_type . "'");
+                $newquery->join("field_data_field_course_type" , "college_type" , "node.nid = college_type.entity_id and college_type.field_course_type_value = '" . $college_type . "'");
                 $newquery->orderBy("node.nid", "DESC")->range(0, 10);
                 $newquery = $newquery->execute()->fetchAll();
 
