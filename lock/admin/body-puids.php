@@ -105,11 +105,11 @@
 		$alt_html = false;
 		$sql = "SELECT * FROM tblusers WHERE 1 = 1";
 		$sql .= !empty($_POST['puid'])? " AND trim(LOWER(puid)) LIKE '%". $puid ."%' " : "";
-		$sql .= !empty($_POST['serial'])? " AND trim(LOWER(puid)) LIKE '%". $serial ."%' " : "";
-		$sql .= !empty($_POST['name'])? " AND trim(LOWER(puid)) LIKE '%". $name ."%' " : "";
-		$sql .= !empty($_POST['phone'])? " AND trim(LOWER(puid)) LIKE '%". $phone ."%' " : "";
-		$sql .= !empty($_POST['email'])? " AND trim(LOWER(puid)) LIKE '%". $email ."%' " : "";
-		$sql .= !empty($_POST['package'])? " AND trim(LOWER(puid)) LIKE '%". $package ."%' " : "";
+		$sql .= !empty($_POST['serial'])? " AND trim(LOWER(serial)) LIKE '%". $serial ."%' " : "";
+		$sql .= !empty($_POST['name'])? " AND trim(LOWER(uname)) LIKE '%". $name ."%' " : "";
+		$sql .= !empty($_POST['phone'])? " AND trim(LOWER(uphone)) LIKE '%". $phone ."%' " : "";
+		$sql .= !empty($_POST['email'])? " AND trim(LOWER(uemail)) LIKE '%". $email ."%' " : "";
+		$sql .= !empty($_POST['package'])? " AND trim(LOWER(package)) LIKE '%". $package ."%' " : "";
 		$result = $conn->query($sql);
 		
 		if ($result->num_rows > 0) {
