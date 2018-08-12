@@ -92,11 +92,11 @@ function civil808_update_7100() {
 			),
 			'user_description' => array(
 				'type' => 'text',
-				'not null' => TRUE,
+				'not null' => FALSE,
 			),
 			'teacher_eval' => array(
 				'type' => 'text',
-				'not null' => TRUE,
+				'not null' => FALSE,
 			),
 		),
 		'primary key' => array('id'),
