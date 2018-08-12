@@ -432,7 +432,7 @@ function civil808_page_accounting_charge($form, &$form_state, $uid) {
 		);
 		/*
 		*	برای تخفیفات گروهی برای 20 درصد شارژ هدیه
-		*/
+		*
 	$form['festival'] = array(
 		'#markup' => '<div id="smile">
 			<canvas>
@@ -440,7 +440,7 @@ function civil808_page_accounting_charge($form, &$form_state, $uid) {
 			<div class="festival">20% تخفیف شرایط بحرانی اقتصاد کشور</div>
 			<div class="last-price">مبلغ نهایی شارژ: <span></span> تومان</div>
 			</div>',
-		);
+		);*/
 
 	return $form;
 	// return array();
