@@ -190,7 +190,11 @@ function list_of_contents_v_1($parameter){
 
     $query->range($page*24, 24);
     $contents = $query->execute()->fetchAll();
-    foreach ($contents as $content) $content->picture = image_style_url("300x300", $content->picture);
+    foreach ($contents as $content) {
+        $content->picture = image_style_url("300x300", $content->picture);
+        if(isset($content->list_price)) $content->list_price = round($content->list_price , 0);
+        if(isset($content->sell_price)) $content->sell_price = round($content->sell_price , 0);
+    }
     return ["content" => $contents];
 }
 function get_nodes_query($type){
@@ -360,8 +364,8 @@ function retrieve_a_content_v_1($parameter){
         $query->condition("uc_products.nid" , $nid);
         $product = $query->execute()->fetch();
         $node->model = !(empty($product->model)) ? $product->model : "";
-        $node->list_price = !(empty($product->list_price)) ? $product->list_price : "";
-        $node->sell_price = !(empty($product->sell_price)) ? $product->sell_price : "";
+        $node->list_price = !(empty($product->list_price)) ? round($product->list_price, 0) : "";
+        $node->sell_price = !(empty($product->sell_price)) ? round($product->sell_price, 0) : "";
 
         $query = db_select("field_data_field_film" , "field_film");
         $query->join("file_managed" , "film" , "film.fid = field_film.field_film_fid and field_film.bundle = 'college' ");
