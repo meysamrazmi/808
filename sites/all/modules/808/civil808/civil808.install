@@ -41,4 +41,66 @@ function civil808_schema() {
 	return $schema;
 }
 
-?>
+/**
+ * Create new database table {moshavereh}.
+ */
+function civil808_update_7100() {
+	$schema['moshavereh'] = array(
+		'fields' => array(
+			'id' => array(
+				'type' => 'serial',
+				'unsigned' => TRUE,
+				'not null' => TRUE,
+				'description' => t('Primary Key : id'),
+			),
+			'uid' => array(
+				'type' => 'int',
+				'unsigned' => TRUE,
+				'not null' => TRUE,
+			),
+			'week' => array(
+				'type' => 'int',
+				'not null' => true,
+				'description' => t('week number in a year'),
+			),
+			'sat' => array(
+				'type' => 'text',
+			),
+			'sun' => array(
+				'type' => 'text',
+			),
+			'mon' => array(
+				'type' => 'text',
+			),
+			'tue' => array(
+				'type' => 'text',
+			),
+			'wed' => array(
+				'type' => 'text',
+			),
+			'thu' => array(
+				'type' => 'text',
+			),
+			'fri' => array(
+				'type' => 'text',
+			),
+			'created' => array(
+				'type' => 'int',
+				'not null' => TRUE,
+				'default' => 0,
+				'description' => 'Timestamp for start of the week.',
+			),
+			'user_description' => array(
+				'type' => 'text',
+				'not null' => TRUE,
+			),
+			'teacher_eval' => array(
+				'type' => 'text',
+				'not null' => TRUE,
+			),
+		),
+		'primary key' => array('id'),
+	);
+	db_create_table('moshavereh', $schema['moshavereh']);
+}
+

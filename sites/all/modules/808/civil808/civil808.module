@@ -182,16 +182,7 @@ function civil808_menu() {
 		'page arguments' => array(1),
 		'file' => 'user_relationships_ui.forms.inc',
 		'file path' => drupal_get_path('module', 'user_relationships_ui'),
-	);	
-  // $items['messages/edit/%privatemsg_thread/%privatemsg_message'] = array(
-		// 'title'           			=> 'Edit message',
-		// 'page callback'   	=> 'drupal_get_form',
-		// 'page arguments'	=> array('privatemsg_edit', 2, 3),
-		// 'access arguments' => array('delete privatemsg'),
-		// 'file'             			=> 'admin.inc',
-		// 'type'             		=> MENU_CALLBACK,
-		// 'weight'           		=> -10,
-	// );
+	);
 	$items['education/%/register'] = array(
 		'title' => 'ثبت نام',
 		'page callback' => 'drupal_get_form',
@@ -263,7 +254,6 @@ function civil808_menu() {
 		'type' => MENU_CALLBACK,
 		'file' => 'admin.inc',
 	);
-
 	return $items;
 }
 
@@ -442,7 +432,7 @@ function civil808_page_accounting_charge($form, &$form_state, $uid) {
 		);
 		/*
 		*	برای تخفیفات گروهی برای 20 درصد شارژ هدیه
-		*/
+		*
 	$form['festival'] = array(
 		'#markup' => '<div id="smile">
 			<canvas>
@@ -450,7 +440,7 @@ function civil808_page_accounting_charge($form, &$form_state, $uid) {
 			<div class="festival">20% تخفیف شرایط بحرانی اقتصاد کشور</div>
 			<div class="last-price">مبلغ نهایی شارژ: <span></span> تومان</div>
 			</div>',
-		);
+		);*/
 
 	return $form;
 	// return array();
@@ -530,7 +520,7 @@ function civil808_page_accounting_bankcallback($type, $resnumber) {
 }
 
 function zarinpal_send($Amount , $uid , $Description , $resnumber  , $CallbackURL , $type , $type_description){
-	/* برای ماژول pay.ir
+	/* برای ماژول pay.ir*/
 	$api = variable_get('uc_pay_api', '');
 	if(variable_get('uc_pay_currency', 'toman') == 'toman'){
 		$amount = $Amount * 10;
@@ -549,45 +539,45 @@ function zarinpal_send($Amount , $uid , $Description , $resnumber  , $CallbackUR
 	} else {
 		drupal_set_message(t('خطا : @error', array('@error' => $result->errorMessage)), 'error');
 		drupal_goto($CallbackURL);
-	}*/
-
-	$user = user_load($uid);
-	$p = profile2_load_by_user($user);
-	$Email = $user->mail;
-	$Mobile = isset($p['main']->field_mobile['und'][0]['value'])? $p['main']->field_mobile['und'][0]['value'] : "";
-
-	$client = new SoapClient('https://ir.zarinpal.com/pg/services/WebGate/wsdl', array('encoding' => 'UTF-8')); 
-	$result = $client->PaymentRequest(
-		array(
-			'MerchantID' 	=> ZARINPAL_MERCHANT_ID,
-			'Amount' 	=> $Amount,
-			'Description' 	=> $Description,
-			'Email' 	=> $Email,
-			'Mobile' 	=> $Mobile,
-			'CallbackURL' 	=> $CallbackURL
-		)
-	);
-	
-	$Status = $result->Status;
-	if($Status == 100){
-		add_bank_event($Amount, $type , $type_description , $uid, array('id' => $resnumber) );
-		Header('Location: https://www.zarinpal.com/pg/StartPay/'.$result->Authority);
-		die();
-	} else {
-		drupal_set_message(t('call the support for this error. error code: %code' , array('%code' => $Status,)), 'error');
-		drupal_goto($CallbackURL);
 	}
+
+//	$user = user_load($uid);
+//	$p = profile2_load_by_user($user);
+//	$Email = $user->mail;
+//	$Mobile = isset($p['main']->field_mobile['und'][0]['value'])? $p['main']->field_mobile['und'][0]['value'] : "";
+//
+//	$client = new SoapClient('https://ir.zarinpal.com/pg/services/WebGate/wsdl', array('encoding' => 'UTF-8'));
+//	$result = $client->PaymentRequest(
+//		array(
+//			'MerchantID' 	=> ZARINPAL_MERCHANT_ID,
+//			'Amount' 	=> $Amount,
+//			'Description' 	=> $Description,
+//			'Email' 	=> $Email,
+//			'Mobile' 	=> $Mobile,
+//			'CallbackURL' 	=> $CallbackURL
+//		)
+//	);
+//
+//	$Status = $result->Status;
+//	if($Status == 100){
+//		add_bank_event($Amount, $type , $type_description , $uid, array('id' => $resnumber) );
+//		Header('Location: https://www.zarinpal.com/pg/StartPay/'.$result->Authority);
+//		die();
+//	} else {
+//		drupal_set_message(t('call the support for this error. error code: %code' , array('%code' => $Status,)), 'error');
+//		drupal_goto($CallbackURL);
+//	}
 }
 
 function zarinpal_receive($resnumber , $Amount){
-	/* برای ماژول pay.ir
+	/* برای ماژول pay.ir */
 	$transId = $_POST['transId'];
 	$api = variable_get('uc_pay_api', '');
 	if (empty($api)) {
 		$msg = t('pay.ir payment is not configured.');
 		drupal_set_message($msg, 'error');
 	}
-	
+
 	$result = verify($api,$transId);
 	$result = json_decode($result);
 	if ($result->status){
@@ -595,57 +585,57 @@ function zarinpal_receive($resnumber , $Amount){
 		drupal_set_message($message);
 		watchdog('pay.ir', 'pay.ir payment #%refid verification succeeded', array('%refid' => $transId), WATCHDOG_INFO);
 		return array(
-			'message'=>'success', 
-			'resnumber' => $resnumber, 
-			'refnumber' => $transId, 
+			'message'=>'success',
+			'resnumber' => $resnumber,
+			'refnumber' => $transId,
 			'price' => $Amount
 		);
 	} else {
 		drupal_set_message(t('پرداخت شما ناموفق بود. پیغام خطا : @error', array('@error' => $result->errorMessage)), 'error');
 		return array(
-			'message'=>'fail', 
-			'resnumber' => -1, 
-			'refnumber' => -1, 
+			'message'=>'fail',
+			'resnumber' => -1,
+			'refnumber' => -1,
 			'price' => -1
 		);
-	}	*/
-	if(isset($_GET['Status']) && $_GET['Status'] == 'OK'){
-		$Authority = $_GET['Authority'];
-		$Status = $_GET['status'];
-
-		$client = new SoapClient('https://ir.zarinpal.com/pg/services/WebGate/wsdl', array('encoding' => 'UTF-8')); 
-		$result = $client->PaymentVerification(
-			array(
-				'MerchantID'	 => ZARINPAL_MERCHANT_ID,
-				'Authority' 	 => $Authority,
-				'Amount'	 => $Amount
-			)
-		);
-
-		$Status = $result->Status ;
-		$Refnumber = $result->RefID;
-		
-		if($Status == 100)// Your Peyment Code Only This Event
-		{
-			return array(
-				'message'=>'success', 
-				'resnumber' => $resnumber,
-				'refnumber' => $Refnumber, 
-				'price' => $Amount);
-		}else{
-			return array(
-				'message'=> 'fail(' . $Status . ')', 
-				'resnumber' => -1, 
-				'refnumber' => -1, 
-				'price' => -1);
-		}
-	}else{
-		return array(
-				'message'=>'fail', 
-				'resnumber' => -1, 
-				'refnumber' => -1, 
-				'price' => -1);
 	}
+//	if(isset($_GET['Status']) && $_GET['Status'] == 'OK'){
+//		$Authority = $_GET['Authority'];
+//		$Status = $_GET['status'];
+//
+//		$client = new SoapClient('https://ir.zarinpal.com/pg/services/WebGate/wsdl', array('encoding' => 'UTF-8'));
+//		$result = $client->PaymentVerification(
+//			array(
+//				'MerchantID'	 => ZARINPAL_MERCHANT_ID,
+//				'Authority' 	 => $Authority,
+//				'Amount'	 => $Amount
+//			)
+//		);
+//
+//		$Status = $result->Status ;
+//		$Refnumber = $result->RefID;
+//
+//		if($Status == 100)// Your Peyment Code Only This Event
+//		{
+//			return array(
+//				'message'=>'success',
+//				'resnumber' => $resnumber,
+//				'refnumber' => $Refnumber,
+//				'price' => $Amount);
+//		}else{
+//			return array(
+//				'message'=> 'fail(' . $Status . ')',
+//				'resnumber' => -1,
+//				'refnumber' => -1,
+//				'price' => -1);
+//		}
+//	}else{
+//		return array(
+//				'message'=>'fail',
+//				'resnumber' => -1,
+//				'refnumber' => -1,
+//				'price' => -1);
+//	}
 }
 
 function civil808_page_accounting_reward($form, &$form_state, $uid) {
