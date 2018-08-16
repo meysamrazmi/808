@@ -152,7 +152,7 @@
     </p>
     <div class="tickets">
         <div>
-            <a href="/cart/add/p19686_a63o196?destination=cart" target="_blank">
+            <a target="_blank">
                 <div class="city-name"><span>ثبت نام در دوره به صورت حضوری</span></div>
                 <div class="inner-text">
                     <!--<p class="text"> برنامه زمان بندی و نام اساتید را می توانید در بخش بالا مشاهده کنید </p>-->
@@ -533,5 +533,20 @@
 <style>
     section.second {
         margin: 50px auto 0 !important;
+    }
+    .inner-text:before {
+        content: "ظرفیت تکمیل شد";
+        position: absolute;
+        width: 180px;
+        height: 35px;
+        top: 95px;
+        right: calc(50% - 120px);
+        color: #F44336;
+        font-size: 25px;
+        font-weight: bold;
+        border: 5px solid #F44336;
+        padding: 15px;
+        border-radius: 6px;
+        background: hsla(0, 0%, 100%, 0.9);
     }
 </style>
