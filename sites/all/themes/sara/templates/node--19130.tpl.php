@@ -130,12 +130,17 @@
         <a href="/college/herfe" target="_blank" class="title"> ترم جاری ورود به حرفه </a>
         ثبت نام کنید.
     </p>
+    <p style="text-align: center; margin-top: 30px; font-size: 16px;">
+        این همایش برگزار شده است با ثبت نام در این قسمت میتوانید فیلم این همایش را از طریق ایمیل دریافت کنید
+    </p>
+
     <div class="tickets">
         <div>
+            <!--
             <a href="/cart/add/p19131_a63o196?destination=cart" target="_blank">
                 <div class="city-name"><span>ثبت نام در دوره به صورت حضوری</span></div>
                 <div class="inner-text">
-                    <!--<p class="text"> برنامه زمان بندی و نام اساتید را می توانید در بخش بالا مشاهده کنید </p>-->
+                    <!--<p class="text"> برنامه زمان بندی و نام اساتید را می توانید در بخش بالا مشاهده کنید </p>--
                     <p style="padding: 9px 12px 0px 0px;">به همراه پذیرایی</p>
                     <div class="tarikh">سه شنبه 29 خرداد ماه 1397</div>
                     <div class="makan"> موسسه آموزشی 808 </div>
@@ -144,13 +149,16 @@
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
             </a>
+            -->
             <a href="/cart/add/p19131_a63o197?destination=cart" target="_blank">
-                <div class="city-name"><span>ثبت نام در دوره به صورت آنلاین</span></div>
+<!--                <div class="city-name"><span>ثبت نام در دوره به صورت آنلاین</span></div>-->
+                <div class="city-name"><span>ثبت نام در دوره برای دریافت فیلم همایش</span></div>
                 <div class="inner-text">
                     <!--<p class="text"> برنامه زمان بندی و نام اساتید را می توانید در بخش بالا مشاهده کنید </p>-->
-                    <p style="padding: 9px 12px 0px 0px;">به همراه ارسال فیلم وبینار به ایمیل ثبت نام کنندگاه بعد از برگزاری همایش</p>
+<!--                    <p style="padding: 9px 12px 0px 0px;">به همراه ارسال فیلم وبینار به ایمیل ثبت نام کنندگاه بعد از برگزاری همایش</p>-->
+                    <p style="padding: 9px 12px 0px 0px;">دریافت فیلم همایش از طریق ایمیل</p>
                     <div class="tarikh">سه شنبه 29 خرداد ماه 1397</div>
-                    <div class="makan"> ارسال لینک ورود به وبینار زنده </div>
+<!--                    <div class="makan"> ارسال لینک ورود به وبینار زنده </div>-->
                     <div class="zaman"> 13:00 تا 20:00 </div>
                     <div class="mablagh"> 10,000 تومان </div>
                 </div>
