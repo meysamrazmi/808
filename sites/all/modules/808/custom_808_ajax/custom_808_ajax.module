@@ -360,9 +360,9 @@ function products(){
     /*Select products form DB*/
     $query = db_select("node" , "node");
     $query->leftJoin("field_data_uc_product_image" , "product_image" , "node.nid = product_image.entity_id and product_image.delta = '0' ");
-    $query->join("file_managed" , "image" , "image.fid = product_image.uc_product_image_fid");
+    $query->leftJoin("file_managed" , "image" , "image.fid = product_image.uc_product_image_fid");
     $query->join("uc_products" , "product" , "product.nid = node.nid");
-    $query->join("uc_product_stock" , "stock" , "product.model = stock.sku");
+    $query->leftJoin("uc_product_stock" , "stock" , "product.model = stock.sku");
     $query->fields("node" , array("nid" , "type" , "title" , "created" , "changed"));
     $query->addField("image" , "uri" , "picture");
     $query->addField("product" , "sell_price" , "price");

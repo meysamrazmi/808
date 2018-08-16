@@ -1,8 +1,9 @@
-<img src="/sites/default/files/importviaftp/423.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
-
+<!--<img src="/sites/default/files/importviaftp/423.jpg" width="100%" height="auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">-->
+<img src="/sites/default/files/styles/808/public/field/image/node_19160.jpg?itok=0Gve-9ny" width="100%" height="auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;" alt="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)" title="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)">
 <section class="kargah-sec">
     <h2>همایش انقلاب در صنعت ساخت و ساز با BIM</h2>
-    <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره فقط به صورت حضوری برگزار می شود.</p>
+<!--    <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره فقط به صورت حضوری برگزار می شود.</p>-->
+    <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">برای مشاهده مجموعه تصاویر اولین همایش انقلاب بیم در صنعت ساخت و سازه به <a href="/node/19756" target="_blank">این</a> صفحه مراجعه کنید</p>
     <div class="first-row" style="margin-top: 40px;">
         <div>
             <p>همایش انقلاب در صنعت ساخت و ساز با BIM ، چهارشنبه ۲۴ مرداد ماه،ساعت ۱۶ تا ۲۰ به صورت حضوری، در سالن انجمن فارغ التحصیلان دانشگاه صنعتی شریف، توسط موسسه آموزشی و مهندسی ۸۰۸ و شرکت IRAN-BIM برگزار می شود.</p>
@@ -183,15 +184,18 @@
 
 <div class="node">
     <div class="content">
+        <!--
         <div class="field field-name-field-image field-type-image field-label-hidden">
             <div class="field-items">
                 <div class="field-item even">
-                    <img style="display: none;" src="http://civil808.com/sites/default/files/styles/808/public/field/image/node_19160.jpg?itok=0Gve-9ny" width="1280" height="497" alt="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)" title="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)">
+                    <img src="/sites/default/files/styles/808/public/field/image/node_19160.jpg?itok=0Gve-9ny" width="1280" height="497" alt="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)" title="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)">
                 </div>
             </div>
         </div>
+        -->
         <div class="field field-name-body field-type-text-with-summary field-label-hidden">
-            <div style="display: none;" class="main-text">
+            <!--
+            <div class="main-text">
                 <p>کلمه BIM که مخفف Building Information Modeling است، به مدل اطلاعاتی ساختمان می‌پردازد. همانطور که از کلمه Information پیداست، اطلاعات موجود در مدل اهمیت بسیاری دارند. نرم‌افزارهای BIM که تاکنون در عرصه جهانی معرفی شده‌اند به نام­‌های Revit ،Bently ،ArchiCAD ،MagiCAD ،DigitalProject ،Tekla Structure ،Navis work ،Vico و … است.</p>
                 <p>مهم‌ترین کاربردها و توانمندی‌­های ویژه مدل‌سازی اطلاعات ساختمان در چرخه حیات پروژه عبارت است از:</p>
                 <ul>
@@ -201,7 +205,7 @@
                     <p>این دوره ها مختص همه رشته های مرتبط با صنعت ساختمان یعنی عمران معماری برق و مکانیک برگزار میگردد.</p>
                 </blockquote>
             </div>
-
+            -->
             <a href="/node/19162" target="_blank" style="margin: 31px auto 0;display: block;text-align: center;">
                 <img src="http://civil808.com/sites/default/files/field/image/node_19162.jpg" width="700" height="auto" alt="یادداشت تحلیلی: چگونه BIM صنعت ساختمان و شهرسازی را متحول کرد؟" title="یادداشت تحلیلی: چگونه BIM صنعت ساختمان و شهرسازی را متحول کرد؟">
             </a>

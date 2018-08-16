@@ -154,6 +154,39 @@
             </tbody></table>
         </section>
 
+        <section class="third">
+                    <h2>حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان</h2>
+                    <div class="owl-carousel">
+                        <a href="/sites/default/files/field/image/node_19732.jpg" target="_blank" title="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان">
+                            <img src="/sites/default/files/styles/270x500_no-crop_/public/field/image/node_19732.jpg?itok=g9YMmXRu" alt="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان" title="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان">
+                        </a>
+                        <a href="/sites/default/files/field/image/node_19732_0.jpg" target="_blank" title="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان">
+                            <img src="/sites/default/files/styles/270x500_no-crop_/public/field/image/node_19732_0.jpg?itok=0Dg3CG2d" alt="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان" title="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان">
+                        </a>
+                        <a href="/sites/default/files/field/image/node_19732_1.jpg" target="_blank" title="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان">
+                            <img src="/sites/default/files/styles/270x500_no-crop_/public/field/image/node_19732_1.jpg?itok=zpTnQDTf" alt="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان" title="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان">
+                        </a>
+                        <a href="/sites/default/files/field/image/node_19732_2.jpg" target="_blank" title="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان">
+                            <img src="/sites/default/files/styles/270x500_no-crop_/public/field/image/node_19732_2.jpg?itok=2suWsCfk" alt="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان" title="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان">
+                        </a>
+                        <a href="/sites/default/files/field/image/node_19732_3.jpg" title="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان">
+                            <img src="/sites/default/files/styles/270x500_no-crop_/public/field/image/node_19732_3.jpg?itok=68qyilE-" alt="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان" title="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان">
+                        </a>
+                        <a href="/sites/default/files/field/image/node_19732_4.jpg" target="_blank" title="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان">
+                            <img src="/sites/default/files/styles/270x500_no-crop_/public/field/image/node_19732_4.jpg?itok=JX-pJWhJ" alt="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان" title="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان">
+                        </a>
+                        <a href="/sites/default/files/field/image/node_19732_5.jpg" target="_blank" title="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان">
+                            <img src="/sites/default/files/styles/270x500_no-crop_/public/field/image/node_19732_5.jpg?itok=FEMRom88" alt="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان" title="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان">
+                        </a>
+                        <a href="/sites/default/files/field/image/node_19732_6.jpg" target="_blank" title="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان">
+                            <img src="/sites/default/files/styles/270x500_no-crop_/public/field/image/node_19732_6.jpg?itok=rewk2BBe" alt="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان" title="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان">
+                        </a>
+                        <a href="/sites/default/files/field/image/node_19732_7.jpg" target="_blank" title="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان">
+                            <img src="/sites/default/files/styles/270x500_no-crop_/public/field/image/node_19732_7.jpg?itok=C5LFQ3QW" alt="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان" title="حضور موسسه 808 و شركت IRAN-BIM در هجدهمين نمايشگاه بين المللی صنعت ساختمان">
+                        </a>
+                    </div>
+                </section>
+
 
         <img src="/sites/default/files/field/image/node_19149.jpg" width="100%" height="auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;margin-bottom: -52px;">
 
@@ -169,14 +202,28 @@ $(document).ready(function () {
     $.getScript('/sites/all/themes/sara/js/lib/jquery.elevateZoom-3.0.8.min.js', function () {
 		$(".images-zoom img").elevateZoom({easing : true,scrollZoom : true});
     });
+
+    if($('.owl-carousel').length){
+        $.getScript('/sites/all/themes/sara/js/lib/owl.carousel.min.js', function(){
+            $('.owl-carousel').not('.view-online-users .owl-carousel').owlCarousel({
+                rtl:true,
+                loop:true,
+                margin:15,
+                responsiveClass:true,
+                nav:true,
+                responsive:{
+                    0:{items:1},
+                    400:{items:2, margin:5},
+                    700:{items:3},
+                    1000:{items:4}
+                }
+            });
+            $('.owl-prev').text('بعدی')
+            $('.owl-next').text('قبلی')
+        })
+    }
 })
 </script>
-
-
-
-
-
-
 
 
 <style>
@@ -1322,5 +1369,12 @@ $(document).ready(function () {
         right: 0;
         height: 1321px;
         transform: skew(-68deg);
+    }
+
+    section.third .owl-carousel .owl-stage-outer{
+        margin: 10px;
+    }
+    section.third .owl-carousel .owl-stage-outer img{
+        min-height: 200px;
     }
 </style>

@@ -137,19 +137,16 @@ function list_of_contents_v_1($parameter){
         $query->orderBy("node.nid" , "DESC");
     }
     elseif(strcmp($type , "college") == 0){
-        if(isset($custom_list)) $query->condition('node.nid' , $custom_list , 'IN');
         if (isset($parameter["college_type"])  && strcmp($parameter["college_type"], "homepage") == 0) {
             $college_types = db_select("field_data_field_course_type" , "college_type")->distinct();
             $college_types->fields("college_type", array("field_course_type_value"));
             $college_types = $college_types->execute()->fetchCol();
-
             $contents = array();
             foreach ($college_types as $college_type){
                 $newquery = clone($query);
-                $newquery->join("field_data_field_course_type" , "college_type" , "college_type.field_course_type_value = '" . $college_type . "'");
+                $newquery->join("field_data_field_course_type" , "college_type" , "node.nid = college_type.entity_id and college_type.field_course_type_value = '" . $college_type . "'");
                 $newquery->orderBy("node.nid", "DESC")->range(0, 10);
                 $newquery = $newquery->execute()->fetchAll();
-
                 foreach ($newquery as $row){
                     $row->picture = image_style_url("300x300" , $row->picture);
                     if (!isset($contents[$college_type])) $contents[$college_type] = array();
@@ -193,7 +190,11 @@ function list_of_contents_v_1($parameter){
 
     $query->range($page*24, 24);
     $contents = $query->execute()->fetchAll();
-    foreach ($contents as $content) $content->picture = image_style_url("300x300", $content->picture);
+    foreach ($contents as $content) {
+        $content->picture = image_style_url("300x300", $content->picture);
+        if(isset($content->list_price)) $content->list_price = round($content->list_price , 0);
+        if(isset($content->sell_price)) $content->sell_price = round($content->sell_price , 0);
+    }
     return ["content" => $contents];
 }
 function get_nodes_query($type){
@@ -235,14 +236,21 @@ function search_content_by_value($value , $type){
 }
 
 /*---------------------------------retrieve part----------------------------------*/
-function content_resource_retrieve($hash , $nid , $version){
+function content_resource_retrieve($hash , $nid , $parameter){
     if(!(hash_true($hash , "content"))) return services_error(t('Failed to access'), 10);
-    if($version == 0){
-        return retrieve_a_content_version_one($nid);
+    $source_name = (isset($parameter["source"]) && !empty($parameter["source"])) ? $parameter["source"] : "android";
+    $version = (isset($parameter["version"]) && !empty($parameter["version"])) ? (int)$parameter["version"] : 0;
+
+    $function = get_compatible_function_name("/content/nid" , "GET" , $source_name , $version);
+
+    if(!empty($function) && strlen($function) > 0) {
+        $parameter["nid"] = $nid;
+        return call_user_func($function, $parameter);
     }
     return services_error(t('This version is not supported'), 11);
 }
-function retrieve_a_content_version_one($nid){
+function retrieve_a_content_v_0($parameter){
+    $nid = $parameter["nid"];
     $query = db_select("node" , "node");
     $query->leftJoin("field_data_body" , "body" , "node.nid = body.entity_id and body.bundle = 'publication'");
     $query->fields('node' , array('nid' , 'type' , 'title' , 'uid' , 'changed'));
@@ -327,12 +335,59 @@ function retrieve_a_content_version_one($nid){
 
         return ["ebook" => $node];
     }
-
-    /*
-     * @todo
-     * return another type of contents
-     * */
     return ["node" => array()];
+}
+function retrieve_a_content_v_1($parameter){
+    $nid = $parameter["nid"];
+
+    $query = db_select("node" , "node");
+    $query->leftJoin("field_data_field_image" , "field_image" , "node.nid = field_image.entity_id and field_image.entity_type = 'node' ");
+    $query->leftJoin("file_managed" , "picture" , "picture.fid = field_image.field_image_fid");
+    $query->leftJoin("field_data_body" , "body" , "node.nid = body.entity_id");
+    $query->fields('node' , array('nid' , 'type' , 'title' , 'uid' , 'changed'));
+    $query->addField('picture' , 'uri' , 'picture');
+    $query->addField('body' , 'body_value' , 'body');
+    $query->condition('node.status' , 1);
+    $query->condition('node.nid' , $nid);
+    $node = $query->execute()->fetch();
+
+    if(empty($node)) return services_error();
+
+    $node->picture = image_style_url("300x300" , $node->picture);
+    $node->body = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $node->body);
+    if(strpos($node->body, "<!--break-->") != false) $node->body = substr($node->body, 0, strpos($node->body, "<!--break-->"));
+
+    if(strcmp($node->type , "college") == 0){
+
+        $query = db_select("uc_products" , "uc_products");
+        $query->fields("uc_products" , array("model" , "list_price" , "sell_price"));
+        $query->condition("uc_products.nid" , $nid);
+        $product = $query->execute()->fetch();
+        $node->model = !(empty($product->model)) ? $product->model : "";
+        $node->list_price = !(empty($product->list_price)) ? round($product->list_price, 0) : "";
+        $node->sell_price = !(empty($product->sell_price)) ? round($product->sell_price, 0) : "";
+
+        $query = db_select("field_data_field_film" , "field_film");
+        $query->join("file_managed" , "film" , "film.fid = field_film.field_film_fid and field_film.bundle = 'college' ");
+        $query->addField("film" , "uri" , "film");
+        $query->condition("field_film.entity_id" , $nid);
+        $film = $query->execute()->fetch();
+        $node->film_link = !(empty($film)) ? $film->film : "";
+
+        $query = db_select("users" , "user");
+        $query->join("profile" , "profile" , "user.uid = profile.uid and profile.type = 'main' ");
+        $query->leftJoin("field_data_field_full_name" , "full_name" , "full_name.entity_id = profile.pid");
+        $query->leftJoin("file_managed" , "file_managed" , "file_managed.fid = user.uid");
+        $query->addField("full_name" , "field_full_name_value" , "name");
+        $query->addField("file_managed" , "uri" , "picture");
+        $query->condition("user.uid" , $node->uid);
+        $author = $query->execute()->fetch();
+        if(!empty($author)) {
+            $author->picture = image_style_url("200x200" , $author->picture);
+            $node->author = $author;
+        }
+    }
+    return $node;
 }
 
 /*---------------------------------action part----------------------------------*/
