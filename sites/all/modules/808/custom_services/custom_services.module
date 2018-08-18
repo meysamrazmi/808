@@ -1020,78 +1020,33 @@ function custom_services_services_resources(){
                     ),
                 ),
             ),
-            'targeted_actions' => array(),
-            'relationships' => array(),
-        ),
-        'latin_news' => array(
-            'operations' => array(
-                'index' => array(
-                    'help' => 'return all latin news',
-                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_news_resource'),
-                    'callback' => 'latin_news_resource_index',
+            'targeted_actions' => array(
+                'bookmark' => array(
+                    'help' => 'bookmark a content',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'content_resource'),
+                    'callback' => 'bookmark_content',
                     'access callback' => 'user_access',
                     'access arguments' => array('access content'),
                     'access arguments append' => FALSE,
                     'args' => array(
-                        array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('param' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'page',
-                            'type' => 'int',
-                            'description' => 'The page of list.',
-                            'source' => array('param' => 'page'),
-                            'optional' => TRUE,
-                            'default value' => 0,
-                        ),
-
-                        array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('param' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
-                        ),
-                    ),
-                ),
-                'retrieve' => array(
-                    'help' => 'retrieve a latin news',
-                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_news_resource'),
-                    'callback' => 'latin_news_resource_retrieve',
-                    'access callback' => 'user_access',
-                    'access arguments' => array('access content'),
-                    'access arguments append' => FALSE,
-                    'args' => array(
-                        array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('param' => 'hash'),
-                            'optional' => False,
-                        ),
                         array(
                             'name' => 'nid',
                             'optional' => FALSE,
                             'source' => array('path' => 0),
                             'type' => 'int',
-                            'description' => 'The nid of the news to retrieve',
+                            'description' => 'The nid of the node to for bookmark',
                         ),
                         array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('param' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
-                        ),
+                            'name' => 'data',
+                            'type' => 'array',
+                            'description' => 'Bookmark or un-bookmark a content',
+                            'source' => 'data',
+                            'optional' => FALSE,
+                        )
                     ),
                 ),
             ),
+            'relationships' => array(),
         ),
         'payment' => array(
             'operations' => array(
@@ -1254,6 +1209,8 @@ function custom_services_services_resources(){
             'targeted_actions' => array(),
             'relationships' => array(),
         ),
+
+
         'latin_front_page' => array(
             'operations' => array(
                 'index' => array(
@@ -1325,6 +1282,76 @@ function custom_services_services_resources(){
                             'source' => array('param' => 'parameters'),
                             'optional' => TRUE,
                             'default value' => array(),
+                        ),
+                    ),
+                ),
+            ),
+        ),
+        'latin_news' => array(
+            'operations' => array(
+                'index' => array(
+                    'help' => 'return all latin news',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_news_resource'),
+                    'callback' => 'latin_news_resource_index',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('param' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'page',
+                            'type' => 'int',
+                            'description' => 'The page of list.',
+                            'source' => array('param' => 'page'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('param' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
+                        ),
+                    ),
+                ),
+                'retrieve' => array(
+                    'help' => 'retrieve a latin news',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_news_resource'),
+                    'callback' => 'latin_news_resource_retrieve',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'hash',
+                            'type' => 'string',
+                            'description' => 'The hash of url.',
+                            'source' => array('param' => 'hash'),
+                            'optional' => False,
+                        ),
+                        array(
+                            'name' => 'nid',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'The nid of the news to retrieve',
+                        ),
+                        array(
+                            'name' => 'version',
+                            'type' => 'int',
+                            'description' => 'The version of app.',
+                            'source' => array('param' => 'version'),
+                            'optional' => TRUE,
+                            'default value' => 0,
                         ),
                     ),
                 ),

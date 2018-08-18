@@ -459,3 +459,60 @@ function content_resource_search($hash , $type , $value){
     if(!(hash_true($hash , "content"))) return services_error(t('Failed to access'), 10);
     return list_of_contents_v_0(array("type" => $type , "search_value" => $value));
 }
+
+/*------------------------------target action part-------------------------------*/
+function bookmark_content($nid , $data){
+    if(!isset($data["hash"]) || !(hash_true($data["hash"] , "content"))) return services_error(t('Failed to access'), 10);
+
+    $source_name = isset($data["source"]) ? $data["source"] : "android";
+    $version = isset($data["version"]) ? $data["version"] : 1;
+
+    $function = get_compatible_function_name("/content/nid/bookmark" , "POST" , $source_name , $version);
+
+    if(!empty($function) && strlen($function) > 0) {
+        $data["nid"] = $nid;
+
+        return call_user_func($function, $data);
+    }
+
+    return services_error(t('This version is not supported'), 11);
+}
+function bookmark_a_content_v1($data){
+    global $user;
+    if(!$user->uid > 0) return services_error("User is not logged in!" , 18);
+
+    if((strcmp($data['action'], "bookmark") == 0 || $data['action'] == 1) && bookmark_status($data["nid"] , $user->uid) == false){
+        $fid = db_insert('flagging')
+            ->fields(array(
+                'fid' => 1,
+                'entity_type' => 'node',
+                'entity_id' => (int)$data["nid"],
+                'uid' => $user->uid,
+                'sid' => 0,
+                'timestamp' => REQUEST_TIME
+            ))
+            ->execute();
+
+        return $fid;
+    }
+    elseif((strcmp($data['action'], "unbookmark") == 0 || $data['action'] == 0) && bookmark_status($data["nid"] , $user->uid) == true){
+        $num_deleted = db_delete('flagging')
+            ->condition('uid', $user->uid)
+            ->condition('entity_id', $data["nid"])
+            ->condition('fid', 1)
+            ->execute();
+
+        return $num_deleted;
+    }
+    else return services_error("The action is not valid!", 18);
+}
+function bookmark_status($nid , $uid){
+    $query = db_select('flagging' , 'flagging')
+        ->condition('fid' , 1)
+        ->condition('entity_id' , $nid)
+        ->condition('uid' , $uid);
+    $count = $query->countQuery()->execute()->fetchField();
+
+    if($count > 0) return true;
+    else return false;
+}

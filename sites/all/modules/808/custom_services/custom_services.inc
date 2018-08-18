@@ -107,6 +107,7 @@ function follow_unfollow($nid, $data){
 		$num_deleted = db_delete('flagging')
 								->condition('uid', $user->uid)
 								->condition('entity_id', $nid)
+								->condition('fid', 3)
 								->execute();
 		
 		return $num_deleted;
