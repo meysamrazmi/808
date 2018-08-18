@@ -344,6 +344,6 @@ elseif(isset($_POST['doback'])) {
 			include_once("header.php");
 			include_once("body-puids.php");
 			include_once("footer.php");
-			break;
+			return ;
 }
 

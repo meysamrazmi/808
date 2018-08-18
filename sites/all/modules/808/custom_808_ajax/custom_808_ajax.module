@@ -59,10 +59,21 @@ function custom_808_ajax_menu() {
       'type' => MENU_CALLBACK,
       'access arguments' => array('access content'),
   );
-    $items['user/%user/moshavereh'] = array(
+	$items['user/%user/moshavereh'] = array(
 		'page callback' => 'moshavereh',
 		'type' => MENU_CALLBACK,
-	    'page arguments' => array(1),
+		'page arguments' => array(1),
+		'access arguments' => array('access content'),
+	);
+	$items['user/%user/moshavereh/weeks'] = array(
+		'page callback' => 'moshavereh_available_weeks',
+		'type' => MENU_CALLBACK,
+		'page arguments' => array(1),
+		'access arguments' => array('access content'),
+	);
+	$items['user/get_uid'] = array(
+		'page callback' => 'get_uid',
+		'type' => MENU_CALLBACK,
 		'access arguments' => array('access content'),
 	);
 	return $items;
@@ -512,39 +523,65 @@ function filter($name, &$query, &$get_result){
 }
 
 function moshavereh($user){
-	if($_SERVER['REQUEST_METHOD'] === 'POST'){
+	if($_SERVER['REQUEST_METHOD'] === 'POST'){  try {
 		$output = array();
-		$data = json_decode($_POST['data'],true);
-		if($data['type'] == 'edit'){
+		$post_data = json_decode($_POST['data'],true);
+		if($post_data['type'] == 'edit'){
+			//get specific item from db
 			$select_query = "SELECT m.*
 				FROM {moshavereh} m
 				WHERE m.uid = :uid
 				AND m.week = :week";
-			$result = db_query($select_query, array(':uid' => $user->uid, ':week' => $data['week']))->fetchObject();
+			$result = db_query($select_query, array(':uid' => $user->uid, ':week' => $post_data['week']))->fetchObject();
 
-			$day_name = day_translation($data['did']);
-			$day = $result->$day_name;
-			$courses = explode('@',$day);
-			$courses[$data['cid']] = $data['value'];
-			$day = implode('@',$courses);
+			//this is new week
+			if(empty($result)){
+				$default = '0@0@0@0@0';
+				$data = array('uid' => $user->uid, 'week' => $post_data['week'], 'sat' => $default, 'sun' => $default, 'mon' => $default, 'tue' => $default, 'wed' => $default, 'thu' => $default, 'fri' => $default, 'created' => strtotime("last Saturday"));
+				//change new data
+				$day_name = day_translation($post_data['did']);
+				$courses = explode('@',$data[$day_name]);
+				$courses[$post_data['cid']] = $post_data['value'];
+				$data[$day_name] = implode('@',$courses);
 
-			$update_query = "UPDATE {moshavereh} SET $day_name = :value WHERE id = :id";
-			$updated = db_query($update_query, array(':value' => $day, ':id' => $result->id));
+				db_insert('moshavereh')->fields($data)->execute();
+			}else{
+				//change new data
+				if($post_data['cid'] < 6) { //value is for days
+					$day_name = day_translation($post_data['did']);
+					$day = $result->$day_name;
+					$courses = explode('@', $day);
+					$courses[$post_data['cid']] = $post_data['value'];
+					$day = implode('@', $courses);
 
-			$output['status'] = 101;
-			$output['message'] = 'success';
+					//update row
+					$update_query = "UPDATE {moshavereh} SET $day_name = :value WHERE id = :id";
+					db_query($update_query, array(':value' => $day, ':id' => $result->id));
+				}else{ //value is for descriptions
+					if($post_data['cid'] == 6)      $field_name = "user_description";
+					else if($post_data['cid'] == 7)	$field_name = "teacher_eval";
+
+					//update row
+					$update_query = "UPDATE {moshavereh} SET $field_name = :value WHERE id = :id";
+					db_query($update_query, array(':value' => $post_data['value'], ':id' => $result->id));
+				}
+			}
 		}
-
+		$output['status'] = 101;
+		$output['message'] = 'موفق';
+	} catch (Exception $e) {
+		$output['status'] = 100;
+		$output['message'] = 'خطا' . $e;
+	}
 		drupal_json_output($output);
 		drupal_exit();
 	}
 
-	$data = json_decode($_GET['data'],true);
-
 	$query = "SELECT m.*
 			FROM {moshavereh} m
-			WHERE m.uid = :uid";
-	$result = db_query($query, array(':uid' => $user->uid))->fetchAll();
+			WHERE m.uid = :uid
+			AND m.week = :week";
+	$result = db_query($query, array(':uid' => $user->uid, ':week' => $_GET['week']))->fetchAll();
 
 	drupal_json_output($result);
 	drupal_exit();
@@ -575,4 +612,48 @@ function day_translation($day){
 			return 'fri';
 			break;
 	}
+}
+
+function get_uid(){
+	$path = drupal_get_path_alias();
+	$aliases = explode('/', $path);
+	if(isset($aliases[1]) && $aliases[0] == 'user' && is_numeric($aliases[1])){
+		$uid = $aliases[1];
+	}else{
+		$uid = $GLOBALS['user']->uid;
+	}
+	drupal_json_output($uid);
+	drupal_exit();
+	return $uid;
+}
+
+function moshavereh_available_weeks($user){
+	$query = "SELECT m.*
+			FROM {moshavereh} m
+			WHERE m.uid = :uid
+			ORDER  by m.week ASC";
+	$result = db_query($query, array(':uid' => $user->uid))->fetchAll();
+
+	$weeks_count = 1;
+	//new student
+	if(empty($result)){
+		$default = '0@0@0@0@0';
+		$data = array('uid' => $user->uid, 'week' => $weeks_count, 'sat' => $default, 'sun' => $default, 'mon' => $default, 'tue' => $default, 'wed' => $default, 'thu' => $default, 'fri' => $default, 'created' => strtotime("last Saturday"));
+		db_insert('moshavereh')->fields($data)->execute();
+	}
+	else{
+		$weeks_count = (strtotime("last Saturday") - $result[0]->created) / (60*60*24*7) + 1;
+		//add empty weeks from last item
+		if(count($result) < $weeks_count){
+			for ($week = count($result) + 1; $week <= $weeks_count; $week++){
+				$default = '0@0@0@0@0';
+				$data = array('uid' => $user->uid, 'week' => $week, 'sat' => $default, 'sun' => $default, 'mon' => $default, 'tue' => $default, 'wed' => $default, 'thu' => $default, 'fri' => $default,
+					'created' => strtotime("last Saturday") - (($weeks_count - $week) * 60*60*24*7));
+				db_insert('moshavereh')->fields($data)->execute();
+			}
+		}
+	}
+	drupal_json_output($weeks_count);
+	drupal_exit();
+	return $weeks_count;
 }

@@ -161,13 +161,19 @@ function userpoints_share_uc_order($op, $order, $status) {
       if ($order->order_status == 'completed' || $status == 'completed') {
         if (is_array($order->products) && count($order->products)) {
 			foreach ($order->products as $product) {
-				$field_percent = db_query(_queries('field'), array(':nid' => $product->nid));
+				$field_percent = db_query(_queries('field'), array(':nid' => $product->nid))->fetchAll();
+				//this node has no userpoint_share option
+				if(count($field_percent) == 0){
+					return;
+				}
 				$total = (intval($product->qty) * intval($product->price));
 				$total_cost = (intval($product->qty) * intval($product->cost));
 				$discount = 0;
-				foreach($order->data['coupons'] as $coupon => $coupon_nid){
-					if(array_key_exists($product->nid, $coupon_nid)){
-						$discount += $coupon_nid[$product->nid]->discount;
+				if(isset($order->data['coupons'])){
+					foreach($order->data['coupons'] as $coupon => $coupon_nid){
+						if(array_key_exists($product->nid, $coupon_nid)){
+							$discount += $coupon_nid[$product->nid]->discount;
+						}
 					}
 				}
 				$total -= $discount;
