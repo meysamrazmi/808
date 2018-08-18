@@ -362,14 +362,14 @@ function retrieve_a_content_v_1($parameter){
         $query->addField('field_file_published' , 'entity_id' , 'nid');
         $query->addField('file_published' , 'uri' , 'sample_file');
         $sample_file = $query->execute()->fetch();
-        $node->sample_file = $sample_file->sample_file;
+        if(!empty($sample_file)) $node->sample_file = $sample_file->sample_file;
 
         $query = db_select('field_data_field_pagenumber' , 'page_number');
         $query->addField('page_number' , 'field_pagenumber_value' , 'page_number');
         $query->condition('page_number.entity_id' , $node->nid);
         $query->condition('page_number.bundle' , 'publication');
         $page_number = $query->execute()->fetch();
-        $node->page_number = $page_number->page_number;
+        if(!empty($page_number)) $node->page_number = $page_number->page_number;
 
         $file_permission = false;
         $query = db_select('field_data_field_point_needed', 'price');
@@ -432,7 +432,7 @@ function retrieve_a_content_v_1($parameter){
         $query->addField("film" , "uri" , "film");
         $query->condition("field_film.entity_id" , $nid);
         $film = $query->execute()->fetch();
-        $node->film_link = !(empty($film)) ? $film->film : "";
+        if(!(empty($film)))$node->film_link = $film->film;
     }
     else return services_error("This content type is not supported!" , 17);
 
@@ -450,6 +450,10 @@ function retrieve_a_content_v_1($parameter){
         $author->picture = image_style_url("200x200" , $author->picture);
         $node->author = $author;
     }
+
+    global $user;
+    if(bookmark_status($nid , $user->uid) == true) $node->bookmark = 1;
+    else $node->bookmark = 0;
 
     return $node;
 }
@@ -493,7 +497,8 @@ function bookmark_a_content_v1($data){
             ))
             ->execute();
 
-        return $fid;
+        if($fid > 1) return true;
+        else return false;
     }
     elseif((strcmp($data['action'], "unbookmark") == 0 || $data['action'] == 0) && bookmark_status($data["nid"] , $user->uid) == true){
         $num_deleted = db_delete('flagging')
@@ -502,7 +507,8 @@ function bookmark_a_content_v1($data){
             ->condition('fid', 1)
             ->execute();
 
-        return $num_deleted;
+        if($num_deleted == 1) return true;
+        else return false;
     }
     else return services_error("The action is not valid!", 18);
 }
