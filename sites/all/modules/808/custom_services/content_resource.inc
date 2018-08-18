@@ -350,15 +350,75 @@ function retrieve_a_content_v_1($parameter){
     $query->condition('node.status' , 1);
     $query->condition('node.nid' , $nid);
     $node = $query->execute()->fetch();
-
-    if(empty($node)) return services_error();
+    if(empty($node)) return services_error("Content not found!" , 17);
 
     $node->picture = image_style_url("300x300" , $node->picture);
     $node->body = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $node->body);
     if(strpos($node->body, "<!--break-->") != false) $node->body = substr($node->body, 0, strpos($node->body, "<!--break-->"));
 
-    if(strcmp($node->type , "college") == 0){
+    if(strcmp($node->type , "publication") == 0){
+        $query = db_select("field_data_field_publish_file" , "field_file_published");
+        $query->join("file_managed" , "file_published" , "field_file_published.field_publish_file_fid = file_published.fid and field_file_published.bundle = 'publication' and field_file_published.entity_id = " . $nid);
+        $query->addField('field_file_published' , 'entity_id' , 'nid');
+        $query->addField('file_published' , 'uri' , 'sample_file');
+        $sample_file = $query->execute()->fetch();
+        $node->sample_file = $sample_file->sample_file;
 
+        $query = db_select('field_data_field_pagenumber' , 'page_number');
+        $query->addField('page_number' , 'field_pagenumber_value' , 'page_number');
+        $query->condition('page_number.entity_id' , $node->nid);
+        $query->condition('page_number.bundle' , 'publication');
+        $page_number = $query->execute()->fetch();
+        $node->page_number = $page_number->page_number;
+
+        $file_permission = false;
+        $query = db_select('field_data_field_point_needed', 'price');
+        $query->addField('price', 'field_point_needed_value', 'price');
+        $query->condition('price.entity_id', $nid);
+        $query->condition('price.entity_type', 'node');
+        $query->condition('price.bundle', 'publication');
+        $price = $query->execute()->fetch();
+        if(!empty($price) && $price->price == 0) $file_permission = true;
+
+        if (!$file_permission){
+            global $user;
+            if($user->uid > 0) {
+                $query = db_select('m_buyed_nodes', 'buyed');
+                $query->fields('buyed', array('id', 'uid', 'nid'));
+                $query->condition('buyed.uid', $user->uid);
+                $query->condition('buyed.nid', $nid);
+                $user_buyed = $query->execute()->fetch();
+                if(!empty($user_buyed)) $file_permission = true;
+
+                if(!$file_permission){
+                    $query = db_select('field_data_field_isvip', 'vip');
+                    $query->fields('vip', array('field_isvip_tid'));
+                    $query->condition('vip.entity_id', $nid);
+                    $query->condition('vip.bundle', 'publication');
+                    $query->condition('vip.field_isvip_tid', 1760);
+                    $vip = $query->execute()->fetch();
+                    if (!empty($vip) && in_array('Vip', $user->roles)) $file_permission = true;
+                }
+            }
+        }
+        if($file_permission){
+            $query = db_select("field_data_field_files" , "field_file");
+            $query->join("file_managed" , "file" , "field_file.field_files_fid = file.fid and file.filemime = 'application/pdf' ");
+            $query->fields('file', array('uri' , 'filesize'));
+            $query->condition('field_file.entity_id', $nid);
+            $query->condition('field_file.entity_type', 'node');
+            $query->condition('field_file.bundle', 'publication');
+            $files = $query->execute()->fetchAll();
+
+            if(!empty($files)){
+                $node->files = array();
+                foreach ($files as $file){
+                    array_push($node->files , $file);
+                }
+            }
+        }
+    }
+    elseif(strcmp($node->type , "college") == 0){
         $query = db_select("uc_products" , "uc_products");
         $query->fields("uc_products" , array("model" , "list_price" , "sell_price"));
         $query->condition("uc_products.nid" , $nid);
@@ -373,20 +433,24 @@ function retrieve_a_content_v_1($parameter){
         $query->condition("field_film.entity_id" , $nid);
         $film = $query->execute()->fetch();
         $node->film_link = !(empty($film)) ? $film->film : "";
-
-        $query = db_select("users" , "user");
-        $query->join("profile" , "profile" , "user.uid = profile.uid and profile.type = 'main' ");
-        $query->leftJoin("field_data_field_full_name" , "full_name" , "full_name.entity_id = profile.pid");
-        $query->leftJoin("file_managed" , "file_managed" , "file_managed.fid = user.uid");
-        $query->addField("full_name" , "field_full_name_value" , "name");
-        $query->addField("file_managed" , "uri" , "picture");
-        $query->condition("user.uid" , $node->uid);
-        $author = $query->execute()->fetch();
-        if(!empty($author)) {
-            $author->picture = image_style_url("200x200" , $author->picture);
-            $node->author = $author;
-        }
     }
+    else return services_error("This content type is not supported!" , 17);
+
+    $query = db_select("users" , "user");
+    $query->join("profile" , "profile" , "user.uid = profile.uid and profile.type = 'main' ");
+    $query->leftJoin("field_data_field_full_name" , "full_name" , "full_name.entity_id = profile.pid");
+    $query->leftJoin("field_data_field_about_me" , "about_me" , "about_me.entity_id = profile.pid");
+    $query->leftJoin("file_managed" , "file_managed" , "file_managed.fid = user.uid");
+    $query->addField("full_name" , "field_full_name_value" , "name");
+    $query->addField('about_me' , 'field_about_me_value' , 'about');
+    $query->addField("file_managed" , "uri" , "picture");
+    $query->condition("user.uid" , $node->uid);
+    $author = $query->execute()->fetch();
+    if(!empty($author)) {
+        $author->picture = image_style_url("200x200" , $author->picture);
+        $node->author = $author;
+    }
+
     return $node;
 }
 
