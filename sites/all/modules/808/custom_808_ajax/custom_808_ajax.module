@@ -369,7 +369,7 @@ function products(){
     $query->addField("product" , "list_price" , "list_price");
     $query->fields("stock" , array("active" , "stock"));
     $query->condition("node.type" , array("product" , "product_kit") , "IN");
-    $query->condition("node.language" , "fa");
+    $query->condition("node.language" , "en" , "<>");
     $query->condition("node.status" , 1);
 
     $get_result = true; //flag for check if there is result or not
