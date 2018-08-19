@@ -254,6 +254,30 @@ function civil808_menu() {
 		'type' => MENU_CALLBACK,
 		'file' => 'admin.inc',
 	);
+	$items['admin/store/orders/%uc_order/devel'] = array(
+		'title' => 'Devel',
+		'page callback' => 'devel_load_object',
+		'page arguments' => array('uc_order', 3, 'order'),
+		'access arguments' => array('access devel information'),
+		'type' => MENU_LOCAL_TASK,
+		'file' => 'devel.pages.inc',
+		'file path' => drupal_get_path('module', 'devel'),
+		'weight' => 100,
+	);
+	$items['admin/store/orders/%uc_order/devel/load'] = array(
+		'title' => 'Load',
+		'type' => MENU_DEFAULT_LOCAL_TASK,
+	);
+	$items['admin/store/orders/%uc_order/devel/render'] = array(
+		'title' => 'Render',
+		'page callback' => 'devel_render_object',
+		'page arguments' => array('uc_order', 3, 'order'),
+		'access arguments' => array('access devel information'),
+		'file' => 'devel.pages.inc',
+		'file path' => drupal_get_path('module', 'devel'),
+		'type' => MENU_LOCAL_TASK,
+		'weight' => 100,
+	);
 	return $items;
 }
 

@@ -2263,19 +2263,25 @@ div#gallery808 .related img {
   display: block;
 }
 .node-type-college .course-info .add-to-cart .form-actions::after{
-    content: "ثبت نام دوره";
-    position: absolute;
-    color: rgb(255, 255, 255);
-    font-family: yekan;
-    font-size: 18px;
-    width: 210px;
-    left: 0px;
-    text-align: center;
-    text-indent: 30px;
-    padding: 18px 0px;
+	content: "ثبت نام دوره";
+	position: absolute;
+	color: #fff;
+	font-size: 15px;
+	width: 80px;
+	left: 40px;
+	top: 18px;
+	height: 2px;
+	z-index: 1;
+}
+.node-type-college .views-field-addtocartlink.add-to-cart .form-actions {
+	background-color: #4caf50;
+	border-radius: 2px;
 }
 .node-type-college .views-field-addtocartlink.add-to-cart .form-actions input {
-	color:transparent !important;
+	color: transparent !important;
+	background: transparent;
+	position: relative;
+	z-index: 5;
 }
 .page-college .panel-pane .courses .views-field-addtocartlink.add-to-cart .form-actions input {
     display:none;
