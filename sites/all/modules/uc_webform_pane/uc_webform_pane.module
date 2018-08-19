@@ -263,12 +263,12 @@ function uc_webform_pane_uc_checkout_pane_callback($nid, $op, $order, $form = NU
   switch ($op) {
 	case 'view':
       foreach ($order->products as $key => $product) {
-		if(in_array_r('2309',$product ->taxonomy_catalog)){
-			$flag = true;
-		}
 		if($product->type == "college"){
 			$flag = true;
 		}
+        else if(isset($product->taxonomy_catalog['und']) && in_array_r('2309',$product->taxonomy_catalog)){
+	      $flag = true;
+        }
       }
 	  if($flag){
 	    $form = _uc_webform_pane_edit_form($nid, $order->order_id, 'checkout');
@@ -284,12 +284,12 @@ function uc_webform_pane_uc_checkout_pane_callback($nid, $op, $order, $form = NU
     break;
     case 'process':
       foreach ($order->products as $key => $product) {
-		if(in_array_r('2309',$product ->taxonomy_catalog)){
-			$flag = true;
-		}
-		if($product->type = "college"){
-			$flag = true;
-		}
+	      if($product->type == "college"){
+		      $flag = true;
+	      }
+	      else if(isset($product->taxonomy_catalog['und']) && in_array_r('2309',$product->taxonomy_catalog)){
+		      $flag = true;
+	      }
       }
 	  if($flag){
 		_uc_webform_pane_save($nid, $order->order_id, $form_state['values']['panes']['webform_nid' . $nid][0]); // save to database

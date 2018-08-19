@@ -2521,7 +2521,7 @@ function webform_client_form($form, &$form_state, $node, $submission = FALSE, $r
   // Bind arguments to $form to make them available in theming and form_alter.
   $form['#node'] = $node;
   $form['#submission'] = $submission;
-  $form['#is_draft'] = $submission && $submission->is_draft;
+  $form['#is_draft'] = $submission && isset($submission->is_draft) && $submission->is_draft;
   $form['#filter'] = $filter;
 
   // Add a theme function for this form.
@@ -2615,7 +2615,7 @@ function webform_client_form($form, &$form_state, $node, $submission = FALSE, $r
 
     // For resuming a previous draft, find the next page after the last
     // validated page.
-    if (!isset($form_state['storage']['page_num']) && $submission && $submission->is_draft && $submission->highest_valid_page) {
+    if (!isset($form_state['storage']['page_num']) && $submission && (isset($submission->is_draft) && $submission->is_draft) && $submission->highest_valid_page) {
       // Find the
       //    1) previous/next non-empty page, or
       //    2) the preview page, or
@@ -3364,8 +3364,10 @@ function webform_client_form_submit($form, &$form_state) {
     // this and previous pages. If components are hidden, they may be in the
     // $submission->data but absent entirely from $new_data.
     $page_map = webform_get_conditional_sorter($node)->getPageMap();
-    for ($page_nr = 1; $page_nr <= $form_state['webform']['page_num']; $page_nr++) {
-      $submission->data = array_diff_key($submission->data, $page_map[$page_nr]);
+    if(isset($form_state['webform'])){
+	    for ($page_nr = 1; $page_nr <= $form_state['webform']['page_num']; $page_nr++) {
+		    $submission->data = array_diff_key($submission->data, $page_map[$page_nr]);
+	    }
     }
     $submission->data = webform_submission_data($node, $form_state['values']['submitted']) + $submission->data;
   }
