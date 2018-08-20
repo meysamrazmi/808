@@ -39,7 +39,7 @@ function _user_resource_definition() {
             ),
           ),
         ),
-
+        /*
         'update' => array(
           'help' => 'Update a user',
           'callback' => '_user_resource_update',
@@ -64,7 +64,7 @@ function _user_resource_definition() {
             ),
           ),
         ),
-
+        */
         'delete' => array(
           'help' => 'Delete a user',
           'callback' => '_user_resource_delete',

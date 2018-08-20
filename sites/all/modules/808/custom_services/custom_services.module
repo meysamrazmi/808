@@ -619,6 +619,32 @@ function custom_services_services_resources(){
             ),
         ),
         'user' => array(
+            'operations' => array(
+                'update' => array(
+                    'help' => 'Update a user',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'user_resource'),
+                    'callback' => 'user_resource_update',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'uid',
+                            'type' => 'int',
+                            'description' => 'Unique identifier for this user',
+                            'source' => array('path' => 0),
+                            'optional' => FALSE,
+                        ),
+                        array(
+                            'name' => 'data',
+                            'type' => 'array',
+                            'description' => 'The user object with updated information',
+                            'source' => 'data',
+                            'optional' => FALSE,
+                        ),
+                    ),
+                ),
+            ),
             'actions' => array(
                 'login2' => array(
                     'help' => 'Login a user for a new session',
@@ -629,33 +655,11 @@ function custom_services_services_resources(){
                     'access arguments append' => FALSE,
                     'args' => array(
                         array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('data' => 'hash'),
+                            'name' => 'data',
+                            'type' => 'array',
+                            'description' => 'The data of request.',
+                            'source' => 'data',
                             'optional' => False,
-                        ),
-                        array(
-                            'name' => 'username_email',
-                            'type' => 'string',
-                            'description' => 'A valid username',
-                            'source' => array('data' => 'username_email'),
-                            'optional' => FALSE,
-                        ),
-                        array(
-                            'name' => 'password',
-                            'type' => 'string',
-                            'description' => 'A valid password',
-                            'source' => array('data' => 'password'),
-                            'optional' => FALSE,
-                        ),
-                        array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('data' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
                         ),
                     ),
                 ),
@@ -668,26 +672,11 @@ function custom_services_services_resources(){
                     'access arguments append' => FALSE,
                     'args' => array(
                         array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('data' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
                             'name' => 'data',
                             'type' => 'array',
                             'description' => 'New user data',
                             'source' => 'data',
                             'optional' => FALSE,
-                        ),
-                        array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('data' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
                         ),
                     ),
                 ),
@@ -724,86 +713,7 @@ function custom_services_services_resources(){
                     ),
                 ),
             ),
-            'targeted_actions' => array(
-                'edit_profile' => array(
-                    'help' => 'Edit profile',
-                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'user_resource'),
-                    'callback' => 'user_resource_edit_profile',
-                    'access callback' => 'user_access',
-                    'access arguments' => array('access content'),
-                    'access arguments append' => FALSE,
-                    'args' => array(
-                        array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('data' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'uid',
-                            'optional' => FALSE,
-                            'source' => array('path' => 0),
-                            'type' => 'int',
-                            'description' => 'The uid of the user',
-                        ),
-                        array(
-                            'name' => 'data',
-                            'optional' => FALSE,
-                            'source' => 'data',
-                            'description' => 'The profile data to update',
-                            'type' => 'array',
-                        ),
-                        array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('data' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
-                        ),
-                    ),
-                ),
-                'edit_user' => array(
-                    'help' => 'Edit user data',
-                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'user_resource'),
-                    'callback' => 'user_resource_edit_data',
-                    'access callback' => 'user_access',
-                    'access arguments' => array('access content'),
-                    'access arguments append' => FALSE,
-                    'args' => array(
-                        array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('data' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'uid',
-                            'optional' => FALSE,
-                            'source' => array('path' => 0),
-                            'type' => 'int',
-                            'description' => 'The uid of the user',
-                        ),
-                        array(
-                            'name' => 'data',
-                            'optional' => FALSE,
-                            'source' => 'data',
-                            'description' => 'The profile data to update',
-                            'type' => 'array',
-                        ),
-                        array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('data' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
-                        ),
-                    ),
-                ),
-            ),
+            'targeted_actions' => array(),
             'relationships' => array(
                 'purchased_products' => array(
                     'help' => 'list of product that the user bought',
@@ -826,70 +736,6 @@ function custom_services_services_resources(){
                             'source' => array('path' => 0),
                             'type' => 'int',
                             'description' => 'The uid of the user for getting list',
-                        ),
-                        array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('param' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
-                        ),
-                    ),
-                ),
-                'profile' => array(
-                    'help' => 'Return user`s profile data',
-                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'user_resource'),
-                    'callback' => 'user_profile_data',
-                    'access callback' => 'user_access',
-                    'access arguments' => array('access content'),
-                    'access arguments append' => FALSE,
-                    'args' => array(
-                        array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('param' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'uid',
-                            'optional' => FALSE,
-                            'source' => array('path' => 0),
-                            'type' => 'int',
-                            'description' => 'The uid of the user for getting profile data',
-                        ),
-                        array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('param' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
-                        ),
-                    ),
-                ),
-                'nav_bar_info' => array(
-                    'help' => 'Return user`s data for nav bar',
-                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'user_resource'),
-                    'callback' => 'user_nav_bar_info',
-                    'access callback' => 'user_access',
-                    'access arguments' => array('access content'),
-                    'access arguments append' => FALSE,
-                    'args' => array(
-                        array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('param' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'login',
-                            'optional' => FALSE,
-                            'source' => array('path' => 0),
-                            'type' => 'string',
-                            'description' => 'Just for create url',
                         ),
                         array(
                             'name' => 'version',
@@ -1809,10 +1655,10 @@ function custom_services_services_resources(){
                     'access arguments append' => FALSE,
                     'args' => array(
                         array(
-                            'name' => 'hash',
-                            'type' => 'string',
+                            'name' => 'parameter',
+                            'type' => 'array',
                             'description' => 'The hash of url.',
-                            'source' => array('param' => 'hash'),
+                            'source' => array('param' => 'parameter'),
                             'optional' => False,
                         ),
                     ),
@@ -1859,45 +1705,6 @@ function custom_services_services_resources(){
                 ),
             ),
         ),
-
-        'test' => array(
-            'operations' => array(
-                'retrieve' => array(
-                    'help' => '',
-                    //'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_contents_resource'),
-                    'callback' => 'test',
-                    'access callback' => 'user_access',
-                    'access arguments' => array('access content'),
-                    'access arguments append' => FALSE,
-                    'args' => array(
-                        array(
-                            'name' => 'nid',
-                            'optional' => False,
-                            'type' => 'int',
-                            'description' => 'nid',
-                            'source' => array('path' => 0),
-                        ),
-                    ),
-                ),
-                'update' => array(
-                    'help' => '',
-                    //'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_contents_resource'),
-                    'callback' => 'test_2',
-                    'access callback' => 'user_access',
-                    'access arguments' => array('access content'),
-                    'access arguments append' => FALSE,
-                    'args' => array(
-                        array(
-                            'name' => 'nid',
-                            'optional' => False,
-                            'type' => 'int',
-                            'description' => 'nid',
-                            'source' => array('path' => 0),
-                        ),
-                    ),
-                ),
-            ),
-        ),
 	);
 }
 
@@ -1926,8 +1733,8 @@ function user_information($uids = array()){
     return $result;
 }
 
-function upload_file($hash) {
-    if(!(hash_true($hash , "file"))) return services_error(t('Failed to access'), 10);
+function upload_file($parameter) {
+    if(!isset($parameter["hash"]) || !(hash_true($parameter["hash"] , "file"))) return services_error(t('Failed to access'), 10);
     global $user;
     if($user == 0) return services_error(t('You should login!'), 13);
     $files =  $_FILES;
@@ -1981,8 +1788,20 @@ function get_compatible_function_name($url, $method, $source_name , $version){
     else return "";
 }
 
-function test($nid){
-    return node_load($nid);
-}
+function add_log($uid , $url , $action , $entity_type = "" , $entity_id = 0 , $app_name , $app_version , $status , $description){
+    $log = db_insert("app_log")
+        ->fields(array(
+            "uid" => $uid,
+            "url" => $url,
+            "action" => $action,
+            "entity_type" => $entity_type,
+            "entity_id" => $entity_id,
+            "app_name" => $app_name,
+            "app_version" => $app_version,
+            "status" => $status,
+            "description" => $description,
+            "created" => REQUEST_TIME
+        ))->execute();
 
-function test_2($nid){return $nid;}
+    return $log;
+}
