@@ -237,14 +237,17 @@ function register_v_1($data){
     return $newUser;
 }
 /*---------------------relationships part------------------------------*/
-function user_resource_purchased_products_list($hash , $uid , $version){
+function user_resource_purchased_products_list($hash , $uid , $parameter){
     if(!(hash_true($hash , "user"))) return services_error(t('Failed to access'), 10);
-    if($version == 0){
-        return list_of__user_purchased_products_version_one($uid);
+    $function = get_compatible_function_name("/user/uid/purchased_products" , "GET" , (isset($parameter["source"])) ? $parameter["source"] : "android" , (isset($parameter["version"])) ? $parameter["version"] : 0);
+    if(!empty($function) && strlen($function) > 0){
+        $parameter["uid"] = $uid;
+        return call_user_func($function, $parameter);
     }
     return services_error(t('This version is not supported'), 11);
 }
-function list_of__user_purchased_products_version_one($uid){
+function user_purchased_products_list_v_0($parameter){
+    $uid = $parameter["uid"];
     global $user;
 
     if($user->uid != $uid && !in_array('administrator' , $user->roles)) return ["ebook" => array()];
@@ -317,6 +320,111 @@ function list_of__user_purchased_products_version_one($uid){
     else{
         return ["ebook" => array()];
     }
+}
+function user_purchased_products_list_v_1($parameter){
+    if(!isset($parameter["type"]) || empty($parameter["type"])) return services_error("Error in request!" , 15);
+    if(strcmp($parameter["type"] , "publication") == 0) {
+        module_load_include("inc" , "custom_services" , "content_resource");
+        $query = get_nodes_query($parameter["type"]);
+        $query->join("m_buyed_nodes" , "buyed" , "buyed.nid = node.nid");
+        $query->condition('buyed.uid', $parameter["uid"]);
+        $query->condition('buyed.type', 'article');
+        $bought = $query->execute()->fetchAll();
+        return $bought;
+    }
+    if(strcmp($parameter["type"] , "product") == 0) {
+        $query = db_select("uc_orders", "uc_orders");
+        $query->join("uc_order_products", "uc_products", "uc_orders.order_id = uc_products.order_id");
+        $query->join("node", "node", "uc_products.nid = node.nid and node.type = 'product' ");
+        $query->leftJoin("field_data_uc_product_image", "product_image", "product_image.entity_id = node.nid and product_image.delta = '0' and product_image.bundle = 'product' ");
+        $query->leftJoin("file_managed", "image", "image.fid = product_image.uc_product_image_fid");
+        $query->leftJoin("profile" , "profile" , "node.uid = profile.uid and profile.type = 'main' ");
+        $query->leftJoin("field_data_field_full_name" , "author" , "author.entity_id = profile.pid");
+        $query->fields('uc_orders', array('created'));
+        $query->fields("node", array("type"));
+        $query->addField("image", "uri", "picture");
+        $query->fields("uc_products", array("nid", "title"));
+        $query->addField("author" , "field_full_name_value" , "author");
+        $query->addExpression('SUM(uc_products.qty)', 'qty');
+        $query->addExpression('SUM(uc_products.price*uc_products.qty)', 'price');
+        $query->condition('uc_orders.uid', $parameter["uid"]);
+        $query->condition('uc_orders.order_status', array('payment_received', 'completed', 'sent'), 'IN');
+        $query->groupBy('uc_products.nid');
+        $query->orderBy('uc_orders.created', 'DESC');
+        $products = $query->execute()->fetchAll();
+        foreach ($products as $product){
+            $product->picture = (!empty($product->picture)) ? image_style_url("200x200" , $product->picture) : "";
+        }
+        return $products;
+    }
+    if(strcmp($parameter["type"] , "college") == 0) {
+        $query = db_select("uc_orders", "uc_orders");
+        $query->join("uc_order_products", "uc_products", "uc_orders.order_id = uc_products.order_id");
+        $query->join("node", "node", "uc_products.nid = node.nid and node.type = 'college' ");
+        $query->leftJoin("field_data_field_image", "field_image", "field_image.entity_id = node.nid and field_image.bundle = 'college' ");
+        $query->leftJoin("file_managed", "image", "image.fid = field_image.field_image_fid");
+        $query->leftJoin("profile" , "profile" , "node.uid = profile.uid and profile.type = 'main' ");
+        $query->leftJoin("field_data_field_full_name" , "author" , "author.entity_id = profile.pid");
+        $query->fields('uc_orders', array('created'));
+        $query->fields("node", array("type"));
+        $query->addField("image", "uri", "picture");
+        $query->fields("uc_products", array("nid", "title"));
+        $query->addField("author" , "field_full_name_value" , "author");
+        $query->addExpression('SUM(uc_products.qty)', 'qty');
+        $query->addExpression('SUM(uc_products.price*uc_products.qty)', 'price');
+        $query->condition('uc_orders.uid', $parameter["uid"]);
+        $query->condition('uc_orders.order_status', array('payment_received', 'completed', 'sent'), 'IN');
+        $query->groupBy('uc_products.nid');
+        $query->orderBy('uc_orders.created', 'DESC');
+        $colleges = $query->execute()->fetchAll();
+        foreach ($colleges as $college){
+            $college->picture = (!empty($college->picture)) ? image_style_url("200x200" , $college->picture) : "";
+        }
+    }
+    return array();
+}
+
+function user_resource_bookmark_contents_list($uid , $parameter){
+    if(!isset($parameter["hash"]) || !(hash_true($parameter["hash"] , "user"))) return services_error(t('Failed to access'), 10);
+    if(empty($parameter["source"]) || empty($parameter["version"])) return services_error("source or version is empty!" , 11);
+
+    $function = get_compatible_function_name("/user/uid/bookmarks" , "GET" , $parameter["source"] , $parameter["version"]);
+    if(!empty($function) && strlen($function) > 0) {
+        $parameter["uid"] = $uid;
+        return call_user_func($function, $parameter);
+    }
+    return services_error(t('This version is not supported'), 11);
+}
+function user_bookmark_contents_list_v_1($parameter){
+    if(!isset($parameter["type"]) || empty($parameter["type"])) return services_error("Error in request!" , 15);
+    module_load_include("inc" , "custom_services" , "content_resource");
+    $query = get_nodes_query($parameter["type"]);
+    $query->join("flagging" , "flagging" , "flagging.entity_id = node.nid and flagging.entity_type = 'node' and flagging.fid = '1' ");
+    $query->condition("flagging.uid" , $parameter["uid"]);
+    $query->orderBy("flagging.timestamp" , "DESC");
+
+    if(strcmp($parameter["type"] , "podcast") == 0){
+        $query->leftJoin("field_data_field_episode" , "field_episode" , "node.nid = field_episode.entity_id and field_episode.bundle = 'podcast'");
+        $query->leftJoin("file_managed" , "file_episode" , "field_episode.field_episode_fid = file_episode.fid");
+        $query->leftJoin("field_data_field_episode_remote" , "episode_remote" , "node.nid = episode_remote.entity_id and episode_remote.bundle = 'podcast'");
+        $query->addField('file_episode' , 'uri' , 'audio');
+        $query->addField('file_episode' , 'filesize' , 'audio_size');
+        $query->addField('episode_remote' , 'field_episode_remote_value' , 'audio_remote');
+    }
+
+    if(isset($parameter["bought"]) && $parameter["bought"] == 1){
+        if(strcmp($parameter["type"] , "publication") == 0){
+            $query->join("m_buyed_nodes" , "buyed" , "buyed.nid = node.nid");
+            $query->condition('buyed.uid', $parameter["uid"]);
+            $query->condition('buyed.type', 'article');
+        }
+    }
+
+    $bookmarks =  $query->execute()->fetchAll();
+
+    foreach ($bookmarks as $bookmark) $bookmark->picture = image_style_url("200x200" , $bookmark->picture);
+
+    return $bookmarks;
 }
 /*---------------------functions part----------------------------------*/
 function profile_data($uid){
