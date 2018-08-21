@@ -104,8 +104,6 @@ function list_of_contents_v_1($parameter){
     if(strcmp($type , "publication") == 0){
         $query->join("field_data_field_point_needed" , "point_needed" , "node.nid = point_needed.entity_id  and point_needed.bundle = 'publication'");
         $query->addField("point_needed" , "field_point_needed_value" , "price");
-        $query->leftJoin("field_data_field_pagenumber" , "page_number" , "node.nid = page_number.entity_id and page_number.bundle = 'publication' ");
-        $query->addField('page_number' , 'field_pagenumber_value' , 'page_number');
 
         if(isset($parameter["free"]) && strcmp($parameter["free"] , "1") == 0) $query->condition("point_needed.field_point_needed_value" , 0);
 
