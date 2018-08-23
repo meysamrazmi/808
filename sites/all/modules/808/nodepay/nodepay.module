@@ -3,268 +3,268 @@
  * implements hook_menu()
  */
 function nodepay_menu(){
-    $items['pay/node/%'] = array(
-        'title' => t('Pay for node'),
-        'page callback' => 'pay_for_node',
-        'description' => 'Pay to view a node',
-        'access arguments' => array('access pay'),
-        'page arguments' => array(2),
-        'type' => MENU_NORMAL_ITEM,
-    );
+	$items['pay/node/%'] = array(
+		'title' => t('Pay for node'),
+		'page callback' => 'pay_for_node',
+		'description' => 'Pay to view a node',
+		'access arguments' => array('access pay'),
+		'page arguments' => array(2),
+		'type' => MENU_NORMAL_ITEM,
+	);
 
-    $items['node/%/buyed_report'] = array(
-        'title' => t('Administrate nodebuyes'),
-        'page callback' => 'nodebuyes_report',
-        'page arguments' => array(1),
-        'access callback' => 'nodepay_report',
-        'access arguments' => array(1),
-        'description' => t('Administrate nodebuyes'),
-        'type' => MENU_LOCAL_TASK,
-        'weight' => 100,
-    );
+	$items['node/%/buyed_report'] = array(
+		'title' => t('Administrate nodebuyes'),
+		'page callback' => 'nodebuyes_report',
+		'page arguments' => array(1),
+		'access callback' => 'nodepay_report',
+		'access arguments' => array(1),
+		'description' => t('Administrate nodebuyes'),
+		'type' => MENU_LOCAL_TASK,
+		'weight' => 100,
+	);
 
-    return $items;
+	return $items;
 }
 
 function nodepay_report($nid) {
-    global $user;
-    if (user_has_role(9 , $user) || user_has_role(3 , $user) ) {
-        return TRUE;
-    }
-    return FALSE;
+	global $user;
+	if (user_has_role(9 , $user) || user_has_role(3 , $user) ) {
+		return TRUE;
+	}
+	return FALSE;
 }
 
 function pay_for_node($nid , $ws_api = false) {
-    global $user;
-    if($user->uid < 1){
-        if($ws_api) return "LoginError";
-        drupal_set_message(t('to complete this operation you must login first, !login - !register', array(
-            '!login' => l(t('User login'), 'user/login'),
-            '!register' => l(t('User register'), 'user/register'),
-        )), 'error');
-        drupal_goto("node/". $nid);
-    }
-    $node = node_load($nid);
-    if(empty($node)){
-        if($ws_api) return "NodeError";
-        drupal_set_message(t('این محتوا وجود ندارد'), 'error');
-        drupal_goto("/");
-    }
-    if (isset($node->field_point_needed['und'][0])) {
-        $points = $node->field_point_needed['und'][0]['value'];
-    }else{
-        if($ws_api) return "PriceError";
-        drupal_set_message(t('خطایی در فرم رخ داده است. لطفا با پشتیبانی تماس حاصل فرمایید. کد خطا: 15'), 'error');
-        drupal_goto("node/". $nid);
-    }
+	global $user;
+	if($user->uid < 1){
+		if($ws_api) return "LoginError";
+		drupal_set_message(t('to complete this operation you must login first, !login - !register', array(
+			'!login' => l(t('User login'), 'user/login'),
+			'!register' => l(t('User register'), 'user/register'),
+		)), 'error');
+		drupal_goto("node/". $nid);
+	}
+	$node = node_load($nid);
+	if(empty($node)){
+		if($ws_api) return "NodeError";
+		drupal_set_message(t('این محتوا وجود ندارد'), 'error');
+		drupal_goto("/");
+	}
+	if (isset($node->field_point_needed['und'][0])) {
+		$points = $node->field_point_needed['und'][0]['value'];
+	}else{
+		if($ws_api) return "PriceError";
+		drupal_set_message(t('خطایی در فرم رخ داده است. لطفا با پشتیبانی تماس حاصل فرمایید. کد خطا: 15'), 'error');
+		drupal_goto("node/". $nid);
+	}
 
-    $flag = false; //default value for discount flag
-    /*
-    * برای تخفیفات ویژه نوروز که تمامی محتوا ها تخفیف داشتند
-    */
-    /*if(strcmp($node->type , "designteam") == 0)
-    {
-        $festival = 'جشنواره عید فطر';
+	$flag = false; //default value for discount flag
+	/*
+	* برای تخفیفات ویژه نوروز که تمامی محتوا ها تخفیف داشتند
+	*/
+	/*if(strcmp($node->type , "designteam") == 0)
+	{
+		$festival = 'جشنواره عید فطر';
 
-        $field_publication = array();
-        if(!empty($node->field_publication808['und'])) {
-            foreach ($node->field_publication808['und'] as $row) {
-                array_push($field_publication, $row['tid']);
-            }
-        }
+		$field_publication = array();
+		if(!empty($node->field_publication808['und'])) {
+			foreach ($node->field_publication808['und'] as $row) {
+				array_push($field_publication, $row['tid']);
+			}
+		}
 
-        $field_discount = array();
-        if(!empty($node->field_isvip['und'])) {
-            foreach ($node->field_isvip['und'] as $row) {
-                array_push($field_discount, $row['tid']);
-            }
-        }
-        if(in_array(2174 , $field_publication) && !in_array_r(2217 , $field_discount)) $flag = true;
-        else $flag = false;
-        
-        for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){
-            if( $node->field_isvip['und'][$i]['tid'] == 2217) // no discount will be applied
-                $flag=false;
-        }
-    }*/
+		$field_discount = array();
+		if(!empty($node->field_isvip['und'])) {
+			foreach ($node->field_isvip['und'] as $row) {
+				array_push($field_discount, $row['tid']);
+			}
+		}
+		if(in_array(2174 , $field_publication) && !in_array_r(2217 , $field_discount)) $flag = true;
+		else $flag = false;
 
-    if($flag)
-        $points = round(intval($points * 0.8) , -1);
+		for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){
+			if( $node->field_isvip['und'][$i]['tid'] == 2217) // no discount will be applied
+				$flag=false;
+		}
+	}*/
+
+	if($flag)
+		$points = round(intval($points * 0.8) , -1);
 
 
-    $description =  ($flag)? ' با 20 درصد تخفیف برای' . $festival :'';
+	$description =  ($flag)? ' با 20 درصد تخفیف برای' . $festival :'';
 
-    if(isset($user->roles[8]) && !$flag){ //for vip user only
-        $description .= ', با 10 درصد تخفیف vip';
-        $points = round(intval($points * 0.9) , -1);
-    }
-    $num_pts = userpoints_get_current_points($user->uid, 'all');
-    if ($num_pts < $points) {
-        if($ws_api) return "UserPointError";
-        drupal_set_message(t("You haven't enough point in your account, please charge your account."), 'error');
-        drupal_goto("node/$nid");
-    }
-    if($flag)
-        drupal_set_message('20 درصد تخفیف به مناسبت '. $festival .' برای شما اعمال شد.');
+	if(isset($user->roles[8]) && !$flag){ //for vip user only
+		$description .= ', با 10 درصد تخفیف vip';
+		$points = round(intval($points * 0.9) , -1);
+	}
+	$num_pts = userpoints_get_current_points($user->uid, 'all');
+	if ($num_pts < $points) {
+		if($ws_api) return "UserPointError";
+		drupal_set_message(t("You haven't enough point in your account, please charge your account."), 'error');
+		drupal_goto("node/$nid");
+	}
+	if($flag)
+		drupal_set_message('20 درصد تخفیف به مناسبت '. $festival .' برای شما اعمال شد.');
 
-    $_sql = "INSERT INTO {m_buyed_nodes} (uid, nid, date, price, description) VALUES (:uid, :nid, :date, :price, :description)";
-    if($sht = db_query($_sql, array( ':uid' => $user->uid, ':nid' => $nid, ':date' => time(), ':price' => $points, ':description' => $description ))){
-        $desc = 'پرداخت برای محتوای #'. $nid ;
-        $desc .= $description;
-        $params = array(
-            'uid' => $user->uid,
-            'points' => -$points,
-            'operation' => 'pey for node',
-            'description' => $desc,
-            'entity_id' => $nid,
-            'entity_type' => 'node',
-        );
-        userpoints_userpointsapi($params);
-        drupal_set_message('خرید محتوا انجام شد و مبلغ '. $points .' از اعتبار شما کسر شد.');
-    }else{
-        if($ws_api) return "DatabaseError";
-        drupal_set_message(t('خطایی در فرم رخ داده است. لطفا با پشتیبانی تماس حاصل فرمایید. کد خطا: 16'), 'error');
-        drupal_goto("node/". $nid);
-    }
+	$_sql = "INSERT INTO {m_buyed_nodes} (uid, nid, date, price, description) VALUES (:uid, :nid, :date, :price, :description)";
+	if($sht = db_query($_sql, array( ':uid' => $user->uid, ':nid' => $nid, ':date' => time(), ':price' => $points, ':description' => $description ))){
+		$desc = 'پرداخت برای محتوای #'. $nid ;
+		$desc .= $description;
+		$params = array(
+			'uid' => $user->uid,
+			'points' => -$points,
+			'operation' => 'pey for node',
+			'description' => $desc,
+			'entity_id' => $nid,
+			'entity_type' => 'node',
+		);
+		userpoints_userpointsapi($params);
+		drupal_set_message('خرید محتوا انجام شد و مبلغ '. $points .' از اعتبار شما کسر شد.');
+	}else{
+		if($ws_api) return "DatabaseError";
+		drupal_set_message(t('خطایی در فرم رخ داده است. لطفا با پشتیبانی تماس حاصل فرمایید. کد خطا: 16'), 'error');
+		drupal_goto("node/". $nid);
+	}
 
-    $field_percent = db_query(_queries('field'), array(':nid' => $nid));
-    $total = $points;
-    $buy_id = db_select('m_buyed_nodes', 'n')->fields('n',array('id'))->condition('n.nid' , $nid)->condition('n.uid' , $user->uid)->execute()->fetchObject();
+	$field_percent = db_query(_queries('field'), array(':nid' => $nid));
+	$total = $points;
+	$buy_id = db_select('m_buyed_nodes', 'n')->fields('n',array('id'))->condition('n.nid' , $nid)->condition('n.uid' , $user->uid)->execute()->fetchObject();
 
-    foreach ($field_percent as $field_item){
-        $multiplier = $field_item->portion / 100;
-        $uid = $field_item->uid;
-        $is_cost = $field_item->cost;
+	foreach ($field_percent as $field_item){
+		$multiplier = $field_item->portion / 100;
+		$uid = $field_item->uid;
+		$is_cost = $field_item->cost;
 
-        $query = db_query("SELECT * FROM {up_share_log} WHERE uid = :uid AND buyer_uid = :buyer_uid AND entity_id = :entity_id AND entity_type = :entity_type AND field_id = :field_id", array(':uid' => $uid, ':buyer_uid' => $user->uid, ':entity_id' => $buy_id->id, ':entity_type' => $node->type, ':field_id' => $field_item->field_id))->fetchObject();
-        $allow_points = TRUE;
-        if (isset($query->uid) && $query->uid) {
-            $allow_points = FALSE;
-        }
+		$query = db_query("SELECT * FROM {up_share_log} WHERE uid = :uid AND buyer_uid = :buyer_uid AND entity_id = :entity_id AND entity_type = :entity_type AND field_id = :field_id", array(':uid' => $uid, ':buyer_uid' => $user->uid, ':entity_id' => $buy_id->id, ':entity_type' => $node->type, ':field_id' => $field_item->field_id))->fetchObject();
+		$allow_points = TRUE;
+		if (isset($query->uid) && $query->uid) {
+			$allow_points = FALSE;
+		}
 
-        $points = intval(($total * $multiplier));
-        if ($allow_points && $points > 0) {
-            $params = array(
-                'tid' => 0,
-                'uid' => $uid,
-                'points' => $points,
-                'operation' => 'content share',
-                'description' => t('user @uid has bought node @nid that you had a share of it.', array('@uid' => $user->uid , '@nid' => $nid)),
-                'entity_id' => $nid,
-                'entity_type' => 'node',
-            );
-            $st = userpoints_userpointsapi($params);
-            db_insert('up_share_log')
-                ->fields(array(
-                    'uid' => $uid,
-                    'buyer_uid' => $user->uid,
-                    'entity_id' => $buy_id->id,
-                    'entity_type' => $node->type,
-                    'field_id' => $field_item->field_id,
-                    'points' => $points,
-                    'portion' => $field_item->portion,
-                    'model' => $nid,
-                    'total' => $total,
-                    'updated' => time(),
-                ))->execute();
+		$points = intval(($total * $multiplier));
+		if ($allow_points && $points > 0) {
+			$params = array(
+				'tid' => 0,
+				'uid' => $uid,
+				'points' => $points,
+				'operation' => 'content share',
+				'description' => t('user @uid has bought node @nid that you had a share of it.', array('@uid' => $user->uid , '@nid' => $nid)),
+				'entity_id' => $nid,
+				'entity_type' => 'node',
+			);
+			$st = userpoints_userpointsapi($params);
+			db_insert('up_share_log')
+				->fields(array(
+					         'uid' => $uid,
+					         'buyer_uid' => $user->uid,
+					         'entity_id' => $buy_id->id,
+					         'entity_type' => $node->type,
+					         'field_id' => $field_item->field_id,
+					         'points' => $points,
+					         'portion' => $field_item->portion,
+					         'model' => $nid,
+					         'total' => $total,
+					         'updated' => time(),
+				         ))->execute();
 
-            $node = node_load($nid);
-            privatemsg_new_thread(
-                array(user_load($uid)),
-                'محتوایی از شما فروخته شد.',
-                'محتوای ' . l($node->title, '/node/' . $nid) . ' توسط ' . l($user->name, '/user/' . $user->uid) . ' خریداری شده است. ',
-                array('author' => user_load(2), 'format' => 'full_html')
-            );
-        }
-        if($is_cost) $total -= $points;
-    }
+			$node = node_load($nid);
+			privatemsg_new_thread(
+				array(user_load($uid)),
+				'محتوایی از شما فروخته شد.',
+				'محتوای ' . l($node->title, '/node/' . $nid) . ' توسط ' . l($user->name, '/user/' . $user->uid) . ' خریداری شده است. ',
+				array('author' => user_load(2), 'format' => 'full_html')
+			);
+		}
+		if($is_cost) $total -= $points;
+	}
 
-    if($ws_api) return $buy_id;
-    drupal_goto("node/$nid");
+	if($ws_api) return $buy_id;
+	drupal_goto("node/$nid");
 }
 
 function nodebuyes_report($id) {
-    // Setting the sort conditions
-    if(isset($_GET['sort']) && isset($_GET['order'])) {
-        // Sort it Ascending or Descending?
-        if($_GET['sort'] == 'asc') $sort = 'ASC';
-        else $sort = 'DESC';
-        // Which column will be sorted
-        switch($_GET['order']) {
-            case 'Date':
-                $order = 'date';
-                break;
-            default:
-                $order = 'date';
-        }
-    }
-    else {
-        $sort = 'DESC';
-        $order = 'date';
-    }
-    $q = db_select('m_buyed_nodes','n')->extend('PagerDefault')->extend('TableSort')->limit(50);
-    $q->join('node', 'node', 'n.nid = node.nid');
-    $q->orderBy($order, $sort);
-    $q->fields('n', array())->fields('node', array('nid', 'title'));
+	// Setting the sort conditions
+	if(isset($_GET['sort']) && isset($_GET['order'])) {
+		// Sort it Ascending or Descending?
+		if($_GET['sort'] == 'asc') $sort = 'ASC';
+		else $sort = 'DESC';
+		// Which column will be sorted
+		switch($_GET['order']) {
+			case 'Date':
+				$order = 'date';
+				break;
+			default:
+				$order = 'date';
+		}
+	}
+	else {
+		$sort = 'DESC';
+		$order = 'date';
+	}
+	$q = db_select('m_buyed_nodes','n')->extend('PagerDefault')->extend('TableSort')->limit(50);
+	$q->join('node', 'node', 'n.nid = node.nid');
+	$q->orderBy($order, $sort);
+	$q->fields('n', array())->fields('node', array('nid', 'title'));
 
-    if($id) $q->condition('n.nid' , intval($id));
+	if($id) $q->condition('n.nid' , intval($id));
 
-    $rows = $q->execute()->fetchAll();
-    $tabale_header = array(
-        t('index'),
-        t('User'),
-        t('Content'),
-        t('Price'),
-        array( 'data' => t('Date'), 'field' => 'date'),
-        t('Description')
-    );
-    $table_rows = array();
-    $index = 1;
-    $total_price = 0;
-    foreach ($rows as $r) {
-        $node = node_load($r->nid);
-        $title = l(mb_substr($r->title, 0, 50,'UTF-8') .'...', 'admin/money/nodebuyes/'.$r->nid);
-        $user = user_load($r->uid);
-        if($r->type =='education') {
-            $tic = unserialize($r->value);
-            $price =0;
-            foreach($tic as $t ) {
-                $price += intval($t['price']);
-                $title .="  |  " . $t['ticket'] . "";
-            }
-        }else{
-            if (isset($r->price)) {
-                $price = $r->price;
-            }else if(isset($node->field_point_needed['und'][0])){
-                $price = $node->field_point_needed['und'][0]['value'];
-            }else{
-                $price = 0;
-            }
-        }
-        $total_price += $price;
-        $table_rows[] = array(
-            $index ,
-            l($user->name, 'user/'.$r->uid),
-            $title,
-            formatMoney($price),
-            format_date($r->date, 'date_time'),
-            $r->description
-        );
-        $index ++ ;
-        $email_addresses[] = $user->mail;  //add to the list
-    }
-    array_unshift($table_rows ,
-        array(
-            '',
-            '' ,
-            '<p style="text-align:center;font-weight: bold;font-size: 15px;margin: 0;">مجموع کل این صفحه</p>' ,
-            '<p style="text-align:center;font-weight: bold;font-size: 15px;margin: 0;">' . formatMoney($total_price) .' تومان</p>',
-            '' ,
-            ''));
-    $output = theme('table', array('header' => $tabale_header, 'rows' => $table_rows)).theme('pager');
-    $output .= '<div class="email-addresses"><h4>Email Addresses</h4><label for="email-addresses-textarea" value="Email addresses:" /><textarea id="email-addresses-textarea" rows="5" cols="500">' . implode(', ', $email_addresses). '</textarea></div>';
+	$rows = $q->execute()->fetchAll();
+	$tabale_header = array(
+		t('index'),
+		t('User'),
+		t('Content'),
+		t('Price'),
+		array( 'data' => t('Date'), 'field' => 'date'),
+		t('Description')
+	);
+	$table_rows = array();
+	$index = 1;
+	$total_price = 0;
+	foreach ($rows as $r) {
+		$node = node_load($r->nid);
+		$title = l(mb_substr($r->title, 0, 50,'UTF-8') .'...', 'admin/money/nodebuyes/'.$r->nid);
+		$user = user_load($r->uid);
+		if($r->type =='education') {
+			$tic = unserialize($r->value);
+			$price =0;
+			foreach($tic as $t ) {
+				$price += intval($t['price']);
+				$title .="  |  " . $t['ticket'] . "";
+			}
+		}else{
+			if (isset($r->price)) {
+				$price = $r->price;
+			}else if(isset($node->field_point_needed['und'][0])){
+				$price = $node->field_point_needed['und'][0]['value'];
+			}else{
+				$price = 0;
+			}
+		}
+		$total_price += $price;
+		$table_rows[] = array(
+			$index ,
+			l($user->name, 'user/'.$r->uid),
+			$title,
+			formatMoney($price),
+			format_date($r->date, 'date_time'),
+			$r->description
+		);
+		$index ++ ;
+		$email_addresses[] = $user->mail;  //add to the list
+	}
+	array_unshift($table_rows ,
+	              array(
+		              '',
+		              '' ,
+		              '<p style="text-align:center;font-weight: bold;font-size: 15px;margin: 0;">مجموع کل این صفحه</p>' ,
+		              '<p style="text-align:center;font-weight: bold;font-size: 15px;margin: 0;">' . formatMoney($total_price) .' تومان</p>',
+		              '' ,
+		              ''));
+	$output = theme('table', array('header' => $tabale_header, 'rows' => $table_rows)).theme('pager');
+	$output .= '<div class="email-addresses"><h4>Email Addresses</h4><label for="email-addresses-textarea" value="Email addresses:" /><textarea id="email-addresses-textarea" rows="5" cols="500">' . implode(', ', $email_addresses). '</textarea></div>';
 
-    return $output;
+	return $output;
 }
 
 /**
@@ -272,150 +272,152 @@ function nodebuyes_report($id) {
  * todo: this function is for vip discount calculation. but this is dumbest code i've ever coded. so I should change the hole function
  */
 function nodepay_uc_order($op, $order, $arg) {
-    if ($op == 'presave') {
-        //check to see if order is in checkout or not
-        if (uc_order_status_data($order->order_status, 'state') == 'in_checkout') {
-	        $subtotal = $vip_items_count = $not_vip_items_count = 0;
-	        // searching matched products price for calculating discount
-	        if (is_array($order->products) && count($order->products)) {
-		        foreach ($order->products as $product) {
-			        $node = node_load($product->nid);
-			        if($node->type == 'college'){
-				        $subtotal += ($product->qty * $product->price);
-			        }
-			        //todo: make this section based on site setting
-			        else if (isset($node->field_backend['und']) && isset($node->taxonomy_catalog['und']) && in_array_r('3751', $node->taxonomy_catalog)) { // 3751 is for "پکیج های s1 تا s30 "
-				        $subtotal += ($product->qty * $product->price);
-			        } else if ($node->nid == 19074) {
-				        $subtotal += ($product->qty * $product->price);
-			        }
-		        }
-	        }
+	if ($op == 'presave') {
+		//check to see if order is in checkout or not
+		if (uc_order_status_data($order->order_status, 'state') == 'in_checkout') {
+			$subtotal = $vip_items_count = $not_vip_items_count = 0;
+			// searching matched products price for calculating discount
+			if (is_array($order->products) && count($order->products)) {
+				foreach ($order->products as $product) {
+					$node = node_load($product->nid);
+					if($node->type == 'college'){
+						$subtotal += ($product->qty * $product->price);
+					}
+					//todo: make this section based on site setting
+					else if (isset($node->field_backend['und']) && isset($node->taxonomy_catalog['und']) && in_array_r('3751', $node->taxonomy_catalog)) { // 3751 is for "پکیج های s1 تا s30 "
+						$subtotal += ($product->qty * $product->price);
+					} else if ($node->nid == 19074) {
+						$subtotal += ($product->qty * $product->price);
+					}
+				}
+			}
 
-	        //apply coupons to subtotal price
-	        foreach ($order->line_items as $index => $line)
-		        if ($line['type'] == 'coupon')
-			        $subtotal += $line['amount']; //$line['amount'] is a negative number
+			//apply coupons to subtotal price
+			foreach ($order->line_items as $index => $line) {
+				if ($line['type'] == 'coupon' && $subtotal > 0) {
+					$subtotal += $line['amount']; //$line['amount'] is a negative number
+				}
+			}
 
-	        //these variable are negative amount for vip discount
-	        // $vip_line_item is for vip users that will be calculated
-	        // $not_vip_line_item is just for displaying discount to encourage user to become vip
-	        $vip_line_item = $not_vip_line_item = array();
-	        if (isset($order->line_items) && is_array($order->line_items)) {
-		        foreach ($order->line_items as $index => $line) {
-			        if ($line['type'] == 'vip') {
-				        if ($vip_items_count > 0 || $subtotal == 0) {
-					        //there is no matched product for discount or
-					        //there is more than 1 line item by mistake, so delete it
-					        uc_order_delete_line_item($line['line_item_id']);
-					        drupal_set_message('آیتم ' . $line['title'] . 'از سفارش شما حذف شد');
-				        } else {
-					        $vip_line_item = $line;
-					        $vip_line_item['index'] = $index;
-					        $vip_items_count++;
-				        }
-			        } else if ($line['type'] == 'not_vip') {
-				        if ($not_vip_items_count > 0 || $subtotal == 0) {
-					        //there is no matched product for discount or
-					        //there is more than 1 line item by mistake, so delete it
-					        uc_order_delete_line_item($line['line_item_id']);
-				        } else {
-					        $not_vip_line_item = $line;
-					        $not_vip_line_item['index'] = $index;
-					        $not_vip_items_count++;
-				        }
-			        }
-		        }
-	        }
+			//these variable are negative amount for vip discount
+			// $vip_line_item is for vip users that will be calculated
+			// $not_vip_line_item is just for displaying discount to encourage user to become vip
+			$vip_line_item = $not_vip_line_item = array();
+			if (isset($order->line_items) && is_array($order->line_items)) {
+				foreach ($order->line_items as $index => $line) {
+					if ($line['type'] == 'vip') {
+						if ($vip_items_count > 0 || $subtotal <= 0) {
+							//there is no matched product for discount or
+							//there is more than 1 line item by mistake, so delete it
+							uc_order_delete_line_item($line['line_item_id']);
+							drupal_set_message('آیتم ' . $line['title'] . 'از سفارش شما حذف شد');
+						} else {
+							$vip_line_item = $line;
+							$vip_line_item['index'] = $index;
+							$vip_items_count++;
+						}
+					} else if ($line['type'] == 'not_vip') {
+						if ($not_vip_items_count > 0 || $subtotal <= 0) {
+							//there is no matched product for discount or
+							//there is more than 1 line item by mistake, so delete it
+							uc_order_delete_line_item($line['line_item_id']);
+						} else {
+							$not_vip_line_item = $line;
+							$not_vip_line_item['index'] = $index;
+							$not_vip_items_count++;
+						}
+					}
+				}
+			}
 
-	        // Handle line items.
-	        $user = user_load($order->uid);
-	        // there is already a line_item in order
-	        if (isset($vip_line_item['amount']) && $vip_line_item['amount'] != 0) {
-		        // still a vip user
-		        if (in_array('Vip', $user->roles)) {
-			        uc_order_update_line_item($vip_line_item['line_item_id'], '10% تخفیف کاربران VIP', -$subtotal / 10);
-			        if ((-$subtotal / 10) != $vip_line_item['amount']) {
-				        drupal_set_message('آیتم ' . $vip_line_item['title'] . 'با مبلغ ' . (-$subtotal / 10) . ' در سفارش شما به روز شد');
-			        }
-		        } //not a vip user anymore
-		        else {
-			        // notify user to become vip again
-			        $order->line_items[] = uc_order_line_item_add($order->order_id, 'not_vip', 'برای کاربران VIP', -$subtotal / 10, 4);
+			// Handle line items.
+			$user = user_load($order->uid);
+			// there is already a line_item in order
+			if (isset($vip_line_item['amount']) && $vip_line_item['amount'] < 0) {
+				// still a vip user
+				if (in_array('Vip', $user->roles)) {
+					uc_order_update_line_item($vip_line_item['line_item_id'], '10% تخفیف کاربران VIP', -$subtotal / 10);
+					if ((-$subtotal / 10) != $vip_line_item['amount']) {
+						drupal_set_message('آیتم ' . $vip_line_item['title'] . 'با مبلغ ' . (-$subtotal / 10) . ' در سفارش شما به روز شد');
+					}
+				} //not a vip user anymore
+				else {
+					// notify user to become vip again
+					$order->line_items[] = uc_order_line_item_add($order->order_id, 'not_vip', 'برای کاربران VIP', -$subtotal / 10, 4);
 
-			        uc_order_delete_line_item($vip_line_item['line_item_id']);
-			        drupal_set_message('آیتم ' . $vip_line_item['title'] . 'از سفارش شما حذف شد');
-		        }
-	        } else if ($subtotal != 0) {
-		        if (in_array('Vip', $user->roles)) {
-			        $order->line_items[] = uc_order_line_item_add($order->order_id, 'vip', '10% تخفیف کاربران VIP', -$subtotal / 10, 3);
-			        drupal_set_message('10% تخفیف کاربران VIP با مبلغ ' . (-$subtotal / 10) . ' به سفارش شما افزوده شد.');
+					uc_order_delete_line_item($vip_line_item['line_item_id']);
+					drupal_set_message('آیتم ' . $vip_line_item['title'] . 'از سفارش شما حذف شد');
+				}
+			} else if ($subtotal > 0) {
+				if (in_array('Vip', $user->roles)) {
+					$order->line_items[] = uc_order_line_item_add($order->order_id, 'vip', '10% تخفیف کاربران VIP', -$subtotal / 10, 3);
+					drupal_set_message('10% تخفیف کاربران VIP با مبلغ ' . (-$subtotal / 10) . ' به سفارش شما افزوده شد.');
 
-			        //if user become vip newly and there was a not_vip line_item in order
-			        if (isset($not_vip_line_item['amount']) && $not_vip_line_item['amount'] != 0)
-				        uc_order_delete_line_item($not_vip_line_item['line_item_id']);
-		        } else {
-			        if (isset($not_vip_line_item['amount']) && $not_vip_line_item['amount'] != 0)
-				        uc_order_update_line_item($not_vip_line_item['line_item_id'], 'برای کاربران VIP', -$subtotal / 10);
-			        else
-				        $order->line_items[] = uc_order_line_item_add($order->order_id, 'not_vip', 'برای کاربران VIP', -$subtotal / 10, 4);
-		        }
-	        }
-        }
-	    usort($order->line_items, 'uc_weight_sort');
-    }
+					//if user become vip newly and there was a not_vip line_item in order
+					if (isset($not_vip_line_item['amount']) && $not_vip_line_item['amount'] != 0)
+						uc_order_delete_line_item($not_vip_line_item['line_item_id']);
+				} else {
+					if (isset($not_vip_line_item['amount']) && $not_vip_line_item['amount'] != 0)
+						uc_order_update_line_item($not_vip_line_item['line_item_id'], 'برای کاربران VIP', -$subtotal / 10);
+					else
+						$order->line_items[] = uc_order_line_item_add($order->order_id, 'not_vip', 'برای کاربران VIP', -$subtotal / 10, 4);
+				}
+			}
+		}
+		usort($order->line_items, 'uc_weight_sort');
+	}
 }
 
 /**
  * Implements hook_uc_line_item().
  */
 function nodepay_uc_line_item() {
-    $items['vip'] = array(
-        'title' => '10% تخفیف کاربران VIP',
-        'weight' => 3,
-        'default' => FALSE,
-        'stored' => TRUE,
-        'add_list' => TRUE,
-        'calculated' => TRUE,
-        'display_only' => FALSE
-    );
-    $items['not_vip'] = array(
-        'title' => 'برای کاربران VIP',
-        'weight' => 4,
-        'default' => FALSE,
-        'stored' => FALSE,
-        'add_list' => FALSE,
-        'calculated' => FALSE,
-        'display_only' => false,
-        'callback' => 'not_vip_line_item'
-    );
-    return $items;
+	$items['vip'] = array(
+		'title' => '10% تخفیف کاربران VIP',
+		'weight' => 3,
+		'default' => FALSE,
+		'stored' => TRUE,
+		'add_list' => TRUE,
+		'calculated' => TRUE,
+		'display_only' => FALSE
+	);
+	$items['not_vip'] = array(
+		'title' => 'برای کاربران VIP',
+		'weight' => 4,
+		'default' => FALSE,
+		'stored' => FALSE,
+		'add_list' => FALSE,
+		'calculated' => FALSE,
+		'display_only' => false,
+		'callback' => 'not_vip_line_item'
+	);
+	return $items;
 }
 function not_vip_line_item($op, $order) {
-    switch ($op) {
-        case 'display':
-            $subtotal = 0;
-            if (is_array($order->products) && count($order->products)) {
-                foreach ($order->products as $product) {
-                    $node = node_load($product->nid);
-                    if($node->type == 'college'){
-                        $subtotal += ($product->qty * $product->price);
-                    }
-                    //todo: make this section based on site setting
-                    elseif(isset($node->field_backend['und']) && isset($node->taxonomy_catalog['und']) && in_array_r('3751', $node->taxonomy_catalog)){ // 3751 is for "پکیج های s1 تا s30 "
-                        $subtotal += ($product->qty * $product->price);
-                    }
-                    elseif($node->nid == 19074){
-                        $subtotal += ($product->qty * $product->price);
-                    }
-                }
-            }
-            $lines[] = array(
-                'id' => 'not_vip',
-                'title' => 'برای کاربران VIP',
-                'amount' => -$subtotal/10,
-            );
-            return $lines;
-    }
+	switch ($op) {
+		case 'display':
+			$subtotal = 0;
+			if (is_array($order->products) && count($order->products)) {
+				foreach ($order->products as $product) {
+					$node = node_load($product->nid);
+					if($node->type == 'college'){
+						$subtotal += ($product->qty * $product->price);
+					}
+					//todo: make this section based on site setting
+					elseif(isset($node->field_backend['und']) && isset($node->taxonomy_catalog['und']) && in_array_r('3751', $node->taxonomy_catalog)){ // 3751 is for "پکیج های s1 تا s30 "
+						$subtotal += ($product->qty * $product->price);
+					}
+					elseif($node->nid == 19074){
+						$subtotal += ($product->qty * $product->price);
+					}
+				}
+			}
+			$lines[] = array(
+				'id' => 'not_vip',
+				'title' => 'برای کاربران VIP',
+				'amount' => -$subtotal/10,
+			);
+			return $lines;
+	}
 }
 
