@@ -146,6 +146,101 @@ function custom_services_update_7104() {
     db_add_field('api_code_version', 'method', $newCol);
 }
 
+/**
+ * Create new database table {app_log}.
+ */
+function custom_services_update_7105() {
+    $schema['app_log'] = array(
+        'fields' => array(
+            'id' => array(
+                'type' => 'serial',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'description' => t('Primary Key : id'),
+            ),
+            'uid' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+                'unsigned' => TRUE,
+                'size' => 'small',
+                'default' => 0,
+                'description' => t('user id'),
+            ),
+            'url' => array(
+                'type' => 'varchar',
+                'length' => 100,
+                'not null' => TRUE,
+                'default' => '',
+                'description' => t('url api'),
+            ),
+            'action' => array(
+                'type' => 'text',
+                'size' => 'normal',
+                'not null' => TRUE,
+                'description' => t('The action that is happened'),
+            ),
+            'entity_type' => array(
+                'type' => 'varchar',
+                'length' => 60,
+                'not null' => False,
+                'default' => '',
+                'description' => t('The entity type'),
+            ),
+            'entity_id' => array(
+                'type' => 'int',
+                'not null' => False,
+                'unsigned' => TRUE,
+                'default' => 0,
+                'description' => t('The id of content that user has effected on it'),
+            ),
+            'app_name' => array(
+                'type' => 'varchar',
+                'length' => 60,
+                'not null' => TRUE,
+                'default' => '',
+                'description' => t('The name of the app'),
+            ),
+            'app_version' => array(
+                'type' => 'varchar',
+                'length' => 60,
+                'not null' => TRUE,
+                'default' => '',
+                'description' => t('The version of the app'),
+            ),
+            'created' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+                'default' => 0,
+                'description' => 'Timestamp for when an action has been happened.',
+            ),
+        ),
+
+        'primary key' => array('id'),
+    );
+    db_create_table('app_log', $schema['app_log']);
+}
+/**
+ * Add status and description field to {app_log} table.
+ */
+function custom_services_update_7106() {
+    $newCol = array(
+        'type' => 'varchar',
+        'length' => 60,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => t("status of action"),
+    );
+    db_add_field('app_log', 'status', $newCol);
+
+    $newCol = array(
+        'type' => 'text',
+        'size' => 'medium',
+        'not null' => TRUE,
+        'description' => t('description'),
+    );
+    db_add_field('app_log', 'description', $newCol);
+}
+
 /*
  * Implementation of hook_install()
 */

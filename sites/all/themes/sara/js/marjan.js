@@ -215,7 +215,7 @@ $(document).ready(function () {
     });
 	$('.page-pedia.page-tag h1#page-title').after('<a href="/pedia" class="mainpedia" target="_blank">صفحه اصلی دانشنامه</a>');
 	
-	$('.page-eng .pane-jquery-countdown-timer-jquery-countdown-timer').append('<a style="font-size:16px;color: #000000;margin: 15px auto;display: block;max-width: 373px;background-color: #90CAF6;padding: 20px 16px;border-radius: 11px;text-align: center;" href="/landing/eng97" target="_blank">ثبت نام در همایش آشنایی با آزمون آمادگی ورود به حرفه داخلی و خارجی، رشته عمران و معماری سال 97 </a>');
+	$('.page-eng .pane-jquery-countdown-timer-jquery-countdown-timer').append('<a style="font-size:16px;color: #000000;margin: 15px auto;display: block;max-width: 373px;background-color: #90CAF6;padding: 20px 16px;border-radius: 11px;text-align: center;" href="/node/19807" target="_blank"> مشاوره تخصصی آزمون ورود به حرفه عمران و معماری به همراه ورکشاپ رایگان آموزشی - 9 شهریور </a>');
 
     /*removing administration content from user-content block*/
     /*----------work fine but until removing it from main tab, i commenting it

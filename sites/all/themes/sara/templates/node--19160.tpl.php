@@ -144,7 +144,7 @@
         </div>
     </div>
 </section>
-
+<!---
 <section class="second">
     <h2 class="text"> ثبت نام در همایش انقلاب در صنعت ساخت و ساز با BIM </h2>
     <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">علاوه بر این دوره شما می توانید در
@@ -156,8 +156,8 @@
             <a target="_blank">
                 <div class="city-name"><span>ثبت نام در دوره به صورت حضوری</span></div>
                 <div class="inner-text">
-                    <!--<p class="text"> برنامه زمان بندی و نام اساتید را می توانید در بخش بالا مشاهده کنید </p>-->
-                    <!--<p style="padding: 9px 12px 0px 0px;">به همراه پذیرایی</p>-->
+                    <!--<p class="text"> برنامه زمان بندی و نام اساتید را می توانید در بخش بالا مشاهده کنید </p>--
+                    <!--<p style="padding: 9px 12px 0px 0px;">به همراه پذیرایی</p>--
                     <div class="tarikh">چهارشنبه ۲۴ مرداد ماه</div>
                     <div class="makan"> سالن انجمن فارغ التحصیلان دانشگاه صنعتی شریف </div>
                     <div class="zaman"> ساعت ۱۶ تا ۲۰ </div>
@@ -175,13 +175,13 @@
                     <div class="mablagh"> 10,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
-            </a>-->
+            </a>--
         </div>
         <!--<div class="bought-tickets">سوال های خود را می توانید از طریق شماره تماس موسسه و سیستم پیغام خصوصی با ما در میان بگذارید.</div>
-	</div>-->
+	</div>--
 
 </section>
-
+-->
 <div class="node">
     <div class="content">
         <!--

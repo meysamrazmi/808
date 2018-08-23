@@ -5,11 +5,11 @@
         <div id="smile">
             <canvas width="570" height="250" style="display: block;">
             </canvas>
-            <a href="http://civil808.com/landing/fair97" target="_blank">
+            <a href="http://land.civil808.com/97/eidtaeid/" target="_blank">
                 <img class="right" style="display: none;" src="/sites/all/themes/sara/images/ramadan-bg.jpg">
                 <div class="new-title">
                     <!--                تا 10 مرداد تمدید شد-->
-                    <div>جشنواره فروش ویژه به مناسبت هجدهمین نمایشگاه بین المللی ساختمان</div>
+                    <div>جشنواره فروش ویژه عید تا عید با سورپرایزهای جدید</div>
                 </div>
                 <img class="left" style="display: none;"  src="/sites/all/themes/sara/images/ramadan-bg.jpg">
             </a>
@@ -46,13 +46,13 @@
         right: 0;
         top: 0;
         z-index: 5;
-        border-top: 1px solid #F44336;
+        border-top: 2px solid #f44336;
     }
     div#smile {
         position: absolute;
         height: 100%;
         border: none;
-        background: #fff;
+        background: #81d4fa;
     }
     div#smile + .darsad {
         position: absolute;
@@ -124,7 +124,7 @@
     }
     .new-title > div{
         font-size: 19px;
-        color: #444;
+        color: #fff;
         margin-top: 2px;
         font-weight: normal;
         line-height: 50px;
