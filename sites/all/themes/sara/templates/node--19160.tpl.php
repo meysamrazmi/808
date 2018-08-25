@@ -3,10 +3,10 @@
 <section class="kargah-sec">
     <h2>همایش انقلاب در صنعت ساخت و ساز با BIM</h2>
 <!--    <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره فقط به صورت حضوری برگزار می شود.</p>-->
-    <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">برای مشاهده مجموعه تصاویر اولین همایش انقلاب بیم در صنعت ساخت و سازه به <a href="/node/19756" target="_blank">این</a> صفحه مراجعه کنید</p>
+    <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">برای مشاهده مجموعه تصاویر اولین همایش انقلاب بیم در صنعت ساخت و سازه به <a href="/node/19756" target="_blank"> این صفحه </a> مراجعه کنید</p>
     <div class="first-row" style="margin-top: 40px;">
         <div>
-            <p>همایش انقلاب در صنعت ساخت و ساز با BIM ، چهارشنبه ۲۴ مرداد ماه،ساعت ۱۶ تا ۲۰ به صورت حضوری، در سالن انجمن فارغ التحصیلان دانشگاه صنعتی شریف، توسط موسسه آموزشی و مهندسی ۸۰۸ و شرکت IRAN-BIM برگزار می شود.</p>
+            <p>همایش انقلاب در صنعت ساخت و ساز با BIM ، چهارشنبه ۲۴ مرداد ماه،ساعت ۱۶ تا ۲۰ به صورت حضوری، در سالن انجمن فارغ التحصیلان دانشگاه صنعتی شریف، توسط موسسه آموزشی و مهندسی ۸۰۸ و شرکت IRAN-BIM برگزار شد.</p>
             <p><strong> مباحث مطرح شده در این همایش عبارتند از:</strong></p>
             <ul>
                 <li>آشنایی با کاربرد انواع نرم افزارهای تخصصی در حوزه ی BIM</li>
@@ -16,14 +16,11 @@
                 <li>بررسي عملكرد سازه اي بيم (مدل واقع گرايانه - مديريت پروژه - مديريت ريسك - مديريت حمل و نقل - توالي نصب و حمل قطعات - نمايش پيشرفت پروژه در بازه هاي زماني خاص - مديريت استراتژيك پروژه)</li>
                 <li>لزوم تغییر رویکرد طراحی، ساخت و ... از روش های متداول به BIM مبنا و تفاوت های عمده بین آنها</li>
             </ul>
-            <p class="important">
-                در صورت مراجعه حضوری و ثبت نام درغرفه موسسه (سالن 10-11 غرفه 1026) واقع در نمایشگاه صنعت ساختمان از 50% تخفیف ثبت نام برخوردار شوید
-            </p>
         </div>
     </div>
 </section>
 
-<section class="timing six-box">
+<!--<section class="timing six-box">
     <h2 class="text"> برنامه زمان بندی </h2>
     <div class="timing-wh">
         <div class="timebox time1 little-one">
@@ -41,8 +38,6 @@
                     </div>
                     <div class="des-down">
                         بررسی، شناخت و کاربرد درست نرم افزارهای BIM
-                        <!--<a href="http://civil808.com/sites/default/files/importviaftp/SeismoSoft-Civil808-Presentation-Feb%2C2018.pdf"> خلاصه ای از فایل سخنرانی
-                        </a>-->
                     </div>
                 </a>
             </div>
@@ -144,7 +139,6 @@
         </div>
     </div>
 </section>
-<!---
 <section class="second">
     <h2 class="text"> ثبت نام در همایش انقلاب در صنعت ساخت و ساز با BIM </h2>
     <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">علاوه بر این دوره شما می توانید در
@@ -184,15 +178,14 @@
 -->
 <div class="node">
     <div class="content">
-        <!--
         <div class="field field-name-field-image field-type-image field-label-hidden">
             <div class="field-items">
                 <div class="field-item even">
-                    <img src="/sites/default/files/styles/808/public/field/image/node_19160.jpg?itok=0Gve-9ny" width="1280" height="497" alt="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)" title="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)">
+                    <img src="/sites/default/files/attachfromftp/bim-timing.jpg" width="500" alt=" برنامه زمانبندی همایش " title="برنامه زمانبندی همایش" style="width:500px !important;/*box-shadow: none!important;*/">
                 </div>
             </div>
         </div>
-        -->
+
         <div class="field field-name-body field-type-text-with-summary field-label-hidden">
             <!--
             <div class="main-text">
