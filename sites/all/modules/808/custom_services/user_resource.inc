@@ -208,13 +208,15 @@ function register_v_1($data){
 
     /*check if this username or email is duplicate*/
     $query = db_select("users", "user");
-    $query->fields("user" , array("name" , "mail"));
-    $db_or = db_or();
-    $db_or->condition('user.name', $new_user['name'] , 'LIKE');
-    $db_or->condition('user.mail', $new_user['mail'] , 'LIKE');
-    $query->condition($db_or);
+    $query->fields("user" , array("name"));
+    $query->condition('user.name', $new_user['name'] , 'LIKE');
     $result = $query->execute()->fetchObject();
-    if(!empty($result)) return services_error(t("A user with this username Email is already exist!") , 18);
+    if(!empty($result)) return services_error(t("A user with this username is already exist!") , 18);
+    $query = db_select("users", "user");
+    $query->fields("user" , array("mail"));
+    $query->condition('user.mail', $new_user['mail'] , 'LIKE');
+    $result = $query->execute()->fetchObject();
+    if(!empty($result)) return services_error(t("A user with this e-mail is already exist!") , 18);
 
     /*create new user*/
     $user = user_save('', $new_user);
@@ -324,13 +326,43 @@ function user_purchased_products_list_v_0($parameter){
 function user_purchased_products_list_v_1($parameter){
     if(!isset($parameter["type"]) || empty($parameter["type"])) return services_error("Error in request!" , 15);
     if(strcmp($parameter["type"] , "publication") == 0) {
-        module_load_include("inc" , "custom_services" , "content_resource");
-        $query = get_nodes_query($parameter["type"]);
-        $query->join("m_buyed_nodes" , "buyed" , "buyed.nid = node.nid");
+        $query = db_select("m_buyed_nodes" , "buyed");
+        $query->fields("buyed" , array("nid" , "date"));
         $query->condition('buyed.uid', $parameter["uid"]);
         $query->condition('buyed.type', 'article');
+        $custom_list = $query->execute()->fetchCol();
         $bought = $query->execute()->fetchAll();
-        return $bought;
+        if(empty($custom_list)) return array();
+
+        module_load_include("inc" , "custom_services" , "content_resource");
+        $param["type"] = $parameter["type"];
+        $param["custom_list"] = $custom_list;
+        $query = list_of_contents_v_1($param);
+        $list = $query->execute()->fetchAll();
+
+        $bought_list = array();
+        foreach($list as $row){
+            $row->picture = image_style_url("300x300", $row->picture);
+            $row->files = array();
+            $row->bought_date = "";
+            $bought_list[$row->nid] = $row;
+        }
+        foreach ($bought as $row) if(isset($bought_list[$row->nid])) $bought_list[$row->nid]->bought_date = $row->date;
+
+        $query = db_select("field_data_field_files" , "field_file");
+        $query->join("file_managed" , "file" , "field_file.field_files_fid = file.fid and file.filemime = 'application/pdf' ");
+        $query->fields('field_file', array('entity_id'));
+        $query->fields('file', array('uri' , 'filesize'));
+        $query->condition('field_file.entity_id', $custom_list , "IN");
+        $query->condition('field_file.entity_type', 'node');
+        $query->condition('field_file.bundle', 'publication');
+        $files = $query->execute()->fetchAll();
+        foreach($files as $file){
+            if(isset($bought_list[$file->entity_id]))
+                array_push($bought_list[$file->entity_id]->files , $file);
+        }
+        $bought_list = array_values($bought_list);
+        return $bought_list;
     }
     if(strcmp($parameter["type"] , "product") == 0) {
         $query = db_select("uc_orders", "uc_orders");
@@ -340,11 +372,10 @@ function user_purchased_products_list_v_1($parameter){
         $query->leftJoin("file_managed", "image", "image.fid = product_image.uc_product_image_fid");
         $query->leftJoin("profile" , "profile" , "node.uid = profile.uid and profile.type = 'main' ");
         $query->leftJoin("field_data_field_full_name" , "author" , "author.entity_id = profile.pid");
-        $query->fields('uc_orders', array('created'));
+        $query->addField('uc_orders', 'created', 'bought_date');
         $query->fields("node", array("type"));
         $query->addField("image", "uri", "picture");
         $query->fields("uc_products", array("nid", "title"));
-        $query->addField("author" , "field_full_name_value" , "author");
         $query->addExpression('SUM(uc_products.qty)', 'qty');
         $query->addExpression('SUM(uc_products.price*uc_products.qty)', 'price');
         $query->condition('uc_orders.uid', $parameter["uid"]);
@@ -365,7 +396,7 @@ function user_purchased_products_list_v_1($parameter){
         $query->leftJoin("file_managed", "image", "image.fid = field_image.field_image_fid");
         $query->leftJoin("profile" , "profile" , "node.uid = profile.uid and profile.type = 'main' ");
         $query->leftJoin("field_data_field_full_name" , "author" , "author.entity_id = profile.pid");
-        $query->fields('uc_orders', array('created'));
+        $query->addField('uc_orders', 'created', 'bought_date');
         $query->fields("node", array("type"));
         $query->addField("image", "uri", "picture");
         $query->fields("uc_products", array("nid", "title"));
@@ -397,34 +428,69 @@ function user_resource_bookmark_contents_list($uid , $parameter){
 }
 function user_bookmark_contents_list_v_1($parameter){
     if(!isset($parameter["type"]) || empty($parameter["type"])) return services_error("Error in request!" , 15);
-    module_load_include("inc" , "custom_services" , "content_resource");
-    $query = get_nodes_query($parameter["type"]);
-    $query->join("flagging" , "flagging" , "flagging.entity_id = node.nid and flagging.entity_type = 'node' and flagging.fid = '1' ");
-    $query->condition("flagging.uid" , $parameter["uid"]);
-    $query->orderBy("flagging.timestamp" , "DESC");
 
-    if(strcmp($parameter["type"] , "podcast") == 0){
-        $query->leftJoin("field_data_field_episode" , "field_episode" , "node.nid = field_episode.entity_id and field_episode.bundle = 'podcast'");
-        $query->leftJoin("file_managed" , "file_episode" , "field_episode.field_episode_fid = file_episode.fid");
-        $query->leftJoin("field_data_field_episode_remote" , "episode_remote" , "node.nid = episode_remote.entity_id and episode_remote.bundle = 'podcast'");
-        $query->addField('file_episode' , 'uri' , 'audio');
-        $query->addField('file_episode' , 'filesize' , 'audio_size');
-        $query->addField('episode_remote' , 'field_episode_remote_value' , 'audio_remote');
-    }
+    $query = db_select("flagging", "flagging");
+    $query->fields("flagging", array("entity_id"));
+    $query->condition('flagging.uid', $parameter["uid"]);
+    $query->condition('flagging.fid', 1);
+    $custom_list = $query->execute()->fetchCol();
+    if (empty($custom_list)) return array();
+    module_load_include("inc", "custom_services", "content_resource");
+    $param["type"] = $parameter["type"];
+    $param["custom_list"] = $custom_list;
+    $query = list_of_contents_v_1($param);
+    $list = $query->execute()->fetchAll();
+    if(strcmp($parameter["type"] , "publication") == 0) {
+        $permission = array();
+        $query = db_select('m_buyed_nodes', 'buyed');
+        $query->fields('buyed', array('nid'));
+        $query->condition('buyed.uid', $parameter["uid"]);
+        $query->condition('buyed.nid', $custom_list , "IN");
+        $bought = $query->execute()->fetchCol();
+        $permission = array_merge($permission , $bought);
 
-    if(isset($parameter["bought"]) && $parameter["bought"] == 1){
-        if(strcmp($parameter["type"] , "publication") == 0){
-            $query->join("m_buyed_nodes" , "buyed" , "buyed.nid = node.nid");
-            $query->condition('buyed.uid', $parameter["uid"]);
-            $query->condition('buyed.type', 'article');
+        $user_role = db_select("users_roles")->fields("users_roles" , array("rid"))
+            ->condition("uid" , $parameter["uid"])->condition("rid" , 8)->execute()->fetch();
+        if(!empty($user_role)) {
+            $query = db_select('field_data_field_isvip', 'vip');
+            $query->fields('vip', array('entity_id'));
+            $query->condition('vip.entity_id', $custom_list, "IN");
+            $query->condition('vip.bundle', 'publication');
+            $query->condition('vip.field_isvip_tid', 1760);
+            $permission = array_merge($permission , $query->execute()->fetchCol());
         }
+        $bookmark_list = array();
+        foreach ($list as $row){
+            $row->picture = image_style_url("300x300", $row->picture);
+            if($row->price == 0) array_push($permission, $row->nid);
+            if(in_array($row->nid , $bought)) $row->bought = true;
+            else $row->bought = false;
+            $bookmark_list[$row->nid] = $row;
+        }
+
+        $query = db_select("field_data_field_files" , "field_file");
+        $query->join("file_managed" , "file" , "field_file.field_files_fid = file.fid and file.filemime = 'application/pdf' ");
+        $query->fields('field_file', array('entity_id'));
+        $query->fields('file', array('uri' , 'filesize'));
+        $query->condition('field_file.entity_id', $permission , "IN");
+        $query->condition('field_file.entity_type', 'node');
+        $query->condition('field_file.bundle', 'publication');
+        $files = $query->execute()->fetchAll();
+
+        foreach($files as $file){
+            if(isset($bookmark_list[$file->entity_id]))
+                if(!isset($bookmark_list[$file->entity_id]->files)) $bookmark_list[$file->entity_id]->files = array();
+                array_push($bookmark_list[$file->entity_id]->files , $file);
+        }
+
+        $bookmark_list = array_values($bookmark_list);
+        return $bookmark_list;
     }
-
-    $bookmarks =  $query->execute()->fetchAll();
-
-    foreach ($bookmarks as $bookmark) $bookmark->picture = image_style_url("200x200" , $bookmark->picture);
-
-    return $bookmarks;
+    if(strcmp($parameter["type"] , "podcast") == 0){
+        foreach ($list as $row) $row->picture = image_style_url("200x200" , $row->picture);
+        return $list;
+    }
+    return array();
 }
 /*---------------------functions part----------------------------------*/
 function profile_data($uid){

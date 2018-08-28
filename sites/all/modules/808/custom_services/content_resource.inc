@@ -104,7 +104,10 @@ function list_of_contents_v_1($parameter){
     if(strcmp($type , "publication") == 0){
         $query->join("field_data_field_point_needed" , "point_needed" , "node.nid = point_needed.entity_id  and point_needed.bundle = 'publication'");
         $query->addField("point_needed" , "field_point_needed_value" , "price");
-
+        if(isset($parameter["custom_list"]) && !empty($parameter["custom_list"])){
+            $query->condition("node.nid" , $parameter["custom_list"] , "IN");
+            return $query;
+        }
         if(isset($parameter["free"]) && strcmp($parameter["free"] , "1") == 0) $query->condition("point_needed.field_point_needed_value" , 0);
 
         if(isset($parameter["sort"]))
@@ -133,6 +136,10 @@ function list_of_contents_v_1($parameter){
         $query->addField('file_episode' , 'filesize' , 'audio_size');
         $query->addField('episode_remote' , 'field_episode_remote_value' , 'audio_remote');
         $query->orderBy("node.nid" , "DESC");
+        if(isset($parameter["custom_list"]) && !empty($parameter["custom_list"])){
+            $query->condition("node.nid" , $parameter["custom_list"] , "IN");
+            return $query;
+        }
     }
     elseif(strcmp($type , "college") == 0){
         if (isset($parameter["college_type"])  && strcmp($parameter["college_type"], "homepage") == 0) {
