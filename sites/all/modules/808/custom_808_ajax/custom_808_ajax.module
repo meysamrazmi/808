@@ -537,7 +537,7 @@ function moshavereh($user){
 			//this is new week
 			if(empty($result)){
 				$default = '0@0@0@0@0';
-				$data = array('uid' => $user->uid, 'week' => $post_data['week'], 'sat' => $default, 'sun' => $default, 'mon' => $default, 'tue' => $default, 'wed' => $default, 'thu' => $default, 'fri' => $default, 'created' => strtotime("last Saturday"));
+				$data = array('uid' => $user->uid, 'week' => $post_data['week'], 'sat' => $default, 'sun' => $default, 'mon' => $default, 'tue' => $default, 'wed' => $default, 'thu' => $default, 'fri' => $default, 'examTrue' => $default, 'examFalse' => $default, 'created' => strtotime("last Saturday"));
 				//change new data
 				$day_name = day_translation($post_data['did']);
 				$courses = explode('@',$data[$day_name]);
@@ -549,6 +549,7 @@ function moshavereh($user){
 				//change new data
 				if($post_data['cid'] < 6) { //value is for days
 					$day_name = day_translation($post_data['did']);
+//					die($day_name);
 					$day = $result->$day_name;
 					$courses = explode('@', $day);
 					$courses[$post_data['cid']] = $post_data['value'];
@@ -611,6 +612,12 @@ function day_translation($day){
 		case 6:
 			return 'fri';
 			break;
+		case 8:
+			return 'examTrue';
+			break;
+		case 9:
+			return 'examFalse';
+			break;
 	}
 }
 
@@ -622,7 +629,10 @@ function get_uid(){
 	}else{
 		$uid = $GLOBALS['user']->uid;
 	}
-	drupal_json_output($uid);
+	if(isset($_GET['origin']) && $_GET['origin'] == 'localhost')
+		$uid = 3300;
+	$user = user_load($uid);
+	drupal_json_output(array('uid' => $uid, 'roles' => $user->roles));
 	drupal_exit();
 	return $uid;
 }
@@ -638,7 +648,7 @@ function moshavereh_available_weeks($user){
 	//new student
 	if(empty($result)){
 		$default = '0@0@0@0@0';
-		$data = array('uid' => $user->uid, 'week' => $weeks_count, 'sat' => $default, 'sun' => $default, 'mon' => $default, 'tue' => $default, 'wed' => $default, 'thu' => $default, 'fri' => $default, 'created' => strtotime("last Saturday"));
+		$data = array('uid' => $user->uid, 'week' => $weeks_count, 'sat' => $default, 'sun' => $default, 'mon' => $default, 'tue' => $default, 'wed' => $default, 'thu' => $default, 'fri' => $default, 'examTrue' => $default, 'examFalse' => $default, 'created' => strtotime("last Saturday"));
 		db_insert('moshavereh')->fields($data)->execute();
 	}
 	else{
@@ -647,7 +657,7 @@ function moshavereh_available_weeks($user){
 		if(count($result) < $weeks_count){
 			for ($week = count($result) + 1; $week <= $weeks_count; $week++){
 				$default = '0@0@0@0@0';
-				$data = array('uid' => $user->uid, 'week' => $week, 'sat' => $default, 'sun' => $default, 'mon' => $default, 'tue' => $default, 'wed' => $default, 'thu' => $default, 'fri' => $default,
+				$data = array('uid' => $user->uid, 'week' => $week, 'sat' => $default, 'sun' => $default, 'mon' => $default, 'tue' => $default, 'wed' => $default, 'thu' => $default, 'fri' => $default, 'examTrue' => $default, 'examFalse' => $default,
 					'created' => strtotime("last Saturday") - (($weeks_count - $week) * 60*60*24*7));
 				db_insert('moshavereh')->fields($data)->execute();
 			}
