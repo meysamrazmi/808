@@ -357,7 +357,7 @@ function retrieve_a_content_v_1($parameter){
     $node = $query->execute()->fetch();
     if(empty($node)) return services_error("Content not found!" , 17);
 
-    $node->picture = image_style_url("300x300" , $node->picture);
+    $node->picture = image_style_url("800x600" , $node->picture);
     $node->body = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $node->body);
     if(strpos($node->body, "<!--break-->") != false) $node->body = substr($node->body, 0, strpos($node->body, "<!--break-->"));
 
@@ -445,7 +445,7 @@ function retrieve_a_content_v_1($parameter){
     $query->join("profile" , "profile" , "user.uid = profile.uid and profile.type = 'main' ");
     $query->leftJoin("field_data_field_full_name" , "full_name" , "full_name.entity_id = profile.pid");
     $query->leftJoin("field_data_field_about_me" , "about_me" , "about_me.entity_id = profile.pid");
-    $query->leftJoin("file_managed" , "file_managed" , "file_managed.fid = user.uid");
+    $query->leftJoin("file_managed" , "file_managed" , "file_managed.fid = user.picture");
     $query->addField("full_name" , "field_full_name_value" , "name");
     $query->addField('about_me' , 'field_about_me_value' , 'about');
     $query->addField("file_managed" , "uri" , "picture");

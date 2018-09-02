@@ -48,6 +48,16 @@ function custom808_menu(){
     return $items;
 }
 
+function uc_product_node_validate($node, $form, &$form_state) {
+    $query = db_select("uc_products" , "products");
+    $query->fields("products" , array("model"));
+    $query->condition("products.model" , $node->model);
+    $result = $query->execute()->fetchAll();
+    if (!empty($result)) {
+        form_set_error('model', t('SKU-Model should be unique.'));
+    }
+}
+
 function in_array_r($needle, $haystack, $strict = false) {
 	if(!is_array($haystack)) return false;
     foreach ($haystack as $item) {
