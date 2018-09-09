@@ -48,13 +48,13 @@
         z-index: 5;
         border-top: 2px solid #f44336;
     }
-    div#smile {
+    #block-block-45 div#smile {
         position: absolute;
         height: 100%;
         border: none;
         background: #81d4fa;
     }
-    div#smile + .darsad {
+    #block-block-45 div#smile + .darsad {
         position: absolute;
         z-index: 1;
         right: 20px;

@@ -84,6 +84,12 @@ function civil808_update_7100() {
 			'fri' => array(
 				'type' => 'text',
 			),
+			'examTrue' => array(
+				'type' => 'text',
+			),
+			'examFalse' => array(
+				'type' => 'text',
+			),
 			'created' => array(
 				'type' => 'int',
 				'not null' => TRUE,
