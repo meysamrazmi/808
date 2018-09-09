@@ -1,12 +1,154 @@
 <?php
 
-function question_resource_index($hash , $domain , $page , $version){
-    if(!(hash_true($hash , "question"))) return services_error(t('Failed to access'), 10);
-    if($version == 0){
-        return list_of_questions_version_one($domain , $page);
+/*--------------------------------index part--------------------------------------------*/
+function question_resource_index($parameter){
+    if(!isset($parameter["hash"]) || !(hash_true($parameter["hash"] , "question"))) return services_error(t('Failed to access'), 10);
+    if(empty($parameter["source"]) || empty($parameter["version"])) return services_error("source or version is empty!" , 11);
+
+    $function = get_compatible_function_name("/question" , "GET" , $parameter["source"] , $parameter["version"]);
+    if(!empty($function) && strlen($function) > 0) {
+        return call_user_func($function, $parameter);
     }
     return services_error(t('This version is not supported'), 11);
 }
+function list_of_questions_v_1($parameter){
+    if(!isset($parameter["domain"]) || empty($parameter["domain"])) $parameter["domain"] = "all";
+    if(!in_array($parameter["domain"] , array("all" , "my_question" , "following" , "related"))) return services_error("Domain is not exist!" , 16);
+    global $user;
+    $parameter["user"] = $user;
+
+    if(strcmp($parameter["domain"] , "following") == 0){
+        $query = db_select("flagging" , "flag");
+        $query->fields("flag" , array("entity_id"));
+        $query->condition("flag.uid" , $user->uid);
+        $query->condition("flag.fid" , 3);
+        $query->condition("flag.entity_type" , "node");
+        $parameter["custom_question"] = $query->execute()->fetchCol();
+        return get_questions($parameter);
+    }
+    if(strcmp($parameter["domain"] , "related") == 0){
+        $pid = db_select("profile")->fields("profile" , array("pid"))->condition("uid" , $user->uid)->execute()->fetch()->pid;
+        $query = db_select("field_data_field_experts" , "user_expert");
+        $query->join("field_data_field_experts" , "qa_expert" , "user_expert.field_experts_tid = qa_expert.field_experts_tid and qa_expert.entity_type = 'node' and qa_expert.bundle = 'questions' ");
+        $query->condition("user_expert.entity_id" , $pid);
+        $query->condition("user_expert.entity_type" , "profile2");
+        $query->condition("user_expert.bundle" , "main");
+        $query->fields("qa_expert" , array("entity_id"));
+        $parameter["custom_question"] = $query->execute()->fetchCol();
+        return get_questions($parameter);
+    }
+
+    return get_questions($parameter);
+}
+function get_questions($parameter){
+    $query = db_select("node" , "node");
+    $query->leftJoin("users" , "user" , "node.uid = user.uid");
+    $query->leftJoin("file_managed" , "author_pic" , "author_pic.fid = user.picture");
+    $query->leftJoin("profile" , "profile" , "node.uid = profile.uid");
+    $query->leftJoin("field_data_field_full_name" , "author_name" , "author_name.entity_id = profile.pid and author_name.entity_type = 'profile2' and author_name.bundle = 'main' ");
+    $query->fields("node" , array("nid" , "uid" , "title" , "created" , "changed" , "status"));
+    $query->addField("author_pic" , "uri" , "author_pic");
+    $query->addField("author_name" , "field_full_name_value" , "author_name");
+    $query->condition("node.type" , "questions");
+    if(strcmp($parameter["domain"] , "my_question") == 0) $query->condition("node.uid" , $parameter["user"]->uid);
+    else $query->condition("node.status" , 1);
+    if(isset($parameter["custom_question"])){
+        if(!empty($parameter["custom_question"]))
+            $query->condition("node.nid" , $parameter["custom_question"] , "IN");
+        else
+            return array();
+    }
+    $query->orderBy("node.created" , "DESC");
+    $query->range(isset($parameter["page"])? $parameter["page"]*20 : 0 , 20);
+    $results = $query->execute()->fetchAll();
+
+    $nids = array();
+    $questions = array();
+    foreach ($results as $result) {
+        if(!empty($result->author_pic)) $result->author_pic = image_style_url("200x200" , $result->author_pic);
+        array_push($nids , $result->nid);
+        $result->experts = array();
+        $result->answers_count = 0;
+        $result->answer_by_expert_count = 0;
+        $result->prove_answer_by_asker_count = 0;
+        $result->prove_answer_by_advisor_count = 0;
+        $result->vote_points = 0;
+        $result->user_follow = false;
+        $questions[$result->nid] = $result;
+    }
+
+    $query = db_select("field_data_field_experts" , "experts_tid");
+    $query->join("taxonomy_term_data" , "expert_data" , "expert_data.tid = experts_tid.field_experts_tid");
+    $query->fields("experts_tid" , array("entity_id"));
+    $query->fields("expert_data" , array("tid" , "name"));
+    $query->condition("experts_tid.entity_id" , $nids , "IN");
+    $query->condition("experts_tid.entity_type" , "node");
+    $query->condition("experts_tid.bundle" , "questions");
+    $experts = $query->execute()->fetchAll();
+    foreach ($experts as $expert) array_push($questions[$expert->entity_id]->experts , array("tid" => $expert->tid , "name" => $expert->name));
+
+    $query = db_select('comment' , 'comment');
+    $query->fields('comment' , array('nid'));
+    $query->condition('comment.nid', $nids, 'IN');
+    $query->groupBy('comment.nid');
+    $query->addExpression('count(comment.cid)', 'count_of_answers');
+    $answers_count = $query->execute()->fetchAll();
+    foreach ($answers_count as $row) $questions[$row->nid]->answers_count = (int) $row->count_of_answers;
+
+    $query = db_select('comment' , 'comment');
+    $query->join('users_roles' , 'role' , 'comment.uid = role.uid');
+    $query->fields('comment' , array('nid'));
+    $query->condition('comment.nid', $nids, 'IN');
+    $query->condition('role.rid', 10);
+    $query->groupBy('comment.nid');
+    $query->addExpression('count(comment.cid)', 'expert_answers');
+    $expert_count = $query->execute()->fetchAll();
+    foreach ($expert_count as $row) $questions[$row->nid]->answer_by_expert_count = (int) $row->expert_answers;
+
+    $query = db_select('comment' , 'comment');
+    $query->join('field_data_field_prove_asker', 'prove_asker' , 'comment.cid = prove_asker.entity_id');
+    $query->fields('comment', array('nid'));
+    $query->condition('comment.nid', $nids, "IN");
+    $query->condition('prove_asker.field_prove_asker_value', 1);
+    $query->groupBy('comment.nid');
+    $query->addExpression('count(comment.cid)', 'count_of_prove_by_asker');
+    $prove_asker_count = $query->execute()->fetchAll();
+    foreach ($prove_asker_count as $row) $questions[$row->nid]->prove_answer_by_asker_count = (int) $row->count_of_prove_by_asker;
+
+    $query = db_select('comment' , 'comment');
+    $query->join('field_data_field_prove_advisor', 'prove_advisor' , 'comment.cid = prove_advisor.entity_id');
+    $query->fields('comment', array('nid'));
+    $query->condition('comment.nid', $nids, "IN");
+    $query->condition('prove_advisor.field_prove_advisor_value', 1);
+    $query->groupBy('comment.nid');
+    $query->addExpression('count(comment.cid)', 'count_of_prove_by_advisor');
+    $prove_advisor_count = $query->execute()->fetchAll();
+    foreach ($prove_advisor_count as $row) $questions[$row->nid]->prove_answer_by_advisor_count = (int) $row->count_of_prove_by_advisor;
+
+    $query = db_select("votingapi_vote" , "vote");
+    $query->fields("vote" , array("entity_id"));
+    $query->condition("vote.entity_id" , $nids , "IN");
+    $query->condition("vote.entity_type" , "node");
+    $query->groupBy('vote.entity_id');
+    $query->addExpression('sum(vote.value)', 'vote_point');
+    $votes = $query->execute()->fetchAll();
+    foreach ($votes as $vote) $questions[$vote->entity_id]->vote_points = (int) $vote->vote_point;
+
+    $query = db_select("flagging" , "flag");
+    $query->fields("flag" , array("entity_id"));
+    $query->condition("flag.uid" , $parameter["user"]->uid);
+    $query->condition("flag.entity_id" , $nids , "IN");
+    $query->condition("flag.entity_type" , "node");
+    $flags = $query->execute()->fetchAll();
+    foreach ($flags as $flag) $questions[$flag->entity_id]->user_follow = true;
+
+    $questions = array_values($questions);
+
+    return $questions;
+}
+/*--------------------------------------------------------------------------------------*/
+
+
 function question_resource_retrieve($hash , $nid , $version){
     if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 10);
     if($version == 0){
