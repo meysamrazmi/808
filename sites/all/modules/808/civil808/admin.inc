@@ -541,5 +541,33 @@ function developer()
 //    $new_hash = hash_hmac("sha256" , "content" , "@Civil808Android@Saze808@" , false);
 //    adump($new_hash);
 
+    $query = db_select("uc_product_stock" , "stock");
+    $query->join("node" , "node" , "node.nid = stock.nid and node.status = '1' ");
+    $query->fields("stock" , array("nid"));
+    $query->condition("node.type" , array("product" , "product_kit") , "IN");
+    $stocks = $query->execute()->fetchCol();
+    $stocks = array_unique($stocks);
+
+    $query = db_select("uc_products" , "product");
+    $query->join("node" , "node" , "node.nid = product.nid and node.status = '1' ");
+    $query->fields("product" , array("nid" , "model"));
+    $query->condition("node.type" , array("product" , "product_kit") , "IN");
+    $query->condition("product.nid" , $stocks , "NOT IN");
+    $witout_stocks = $query->execute()->fetchAll();
+    adump($witout_stocks);
+//    $witout_stocks = array($witout_stocks[0]);
+//    adump($witout_stocks);
+    foreach ($witout_stocks as $row){
+        $query = db_insert('uc_product_stock')->fields(
+            array(
+                "sku" => $row->model,
+                "nid" => $row->nid,
+                "active" => 0,
+                "stock" => 0,
+                "threshold" => 0
+            )
+        )->execute();
+    }
+    adump("ok");
     die();
 }

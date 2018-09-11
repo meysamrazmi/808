@@ -1,6 +1,11 @@
 <?php
 
-/*--------------------------------index part--------------------------------------------*/
+/*
+ * @todo
+ * log for vote and follow
+ * */
+
+/*--------------------------------operations part--------------------------------------------*/
 function question_resource_index($parameter){
     if(!isset($parameter["hash"]) || !(hash_true($parameter["hash"] , "question"))) return services_error(t('Failed to access'), 10);
     if(empty($parameter["source"]) || empty($parameter["version"])) return services_error("source or version is empty!" , 11);
@@ -17,6 +22,14 @@ function list_of_questions_v_1($parameter){
     global $user;
     $parameter["user"] = $user;
 
+    if(isset($parameter["experts_filter"]) && !empty($parameter["experts_filter"])){
+        $tids = explode( "," , $parameter["experts_filter"]);
+        $query = db_select("field_data_field_experts" , "experts");
+        $query->fields("experts" , array("entity_id"));
+        $query->condition("experts.field_experts_tid" , $tids , "IN");
+        $query->condition("experts.bundle" , "questions");
+        $parameter["custom_question"] = $query->execute()->fetchCol();
+    }
     if(strcmp($parameter["domain"] , "following") == 0){
         $query = db_select("flagging" , "flag");
         $query->fields("flag" , array("entity_id"));
@@ -61,7 +74,7 @@ function get_questions($parameter){
     $query->orderBy("node.created" , "DESC");
     $query->range(isset($parameter["page"])? $parameter["page"]*20 : 0 , 20);
     $results = $query->execute()->fetchAll();
-
+    if(empty($results)) return array();
     $nids = array();
     $questions = array();
     foreach ($results as $result) {
@@ -146,30 +159,272 @@ function get_questions($parameter){
 
     return $questions;
 }
+
+function question_resource_retrieve($nid , $parameter){
+    if(!isset($parameter["hash"]) || !(hash_true($parameter["hash"] , "question"))) return services_error(t('Failed to access'), 10);
+    if(empty($parameter["source"]) || empty($parameter["version"])) return services_error("source or version is empty!" , 11);
+
+    $function = get_compatible_function_name("/question/nid" , "GET" , $parameter["source"] , $parameter["version"]);
+    if(!empty($function) && strlen($function) > 0) {
+        $parameter["nid"] = $nid;
+        return call_user_func($function, $parameter);
+    }
+    return services_error(t('This version is not supported'), 11);
+}
+function retrieve_question_v_1($parameter){
+    global $user;
+    $body = db_select("field_data_body" , "body")
+            ->fields("body" , array("body_value"))
+            ->condition("entity_id" , $parameter["nid"])
+            ->condition("bundle" , "questions")
+            ->execute()->fetch();
+    if(!empty($body)) $body = $body->body_value;
+    else $body = null;
+
+    $query = db_select("field_data_field_files" , "field_files");
+    $query->join("file_managed" , "file" , "file.fid = field_files.field_files_fid");
+    $query->fields("file" , array("uri" , "filesize" , "filemime"));
+    $query->condition("field_files.entity_id" , $parameter["nid"]);
+    $query->condition("field_files.bundle" , "questions");
+    $files = $query->execute()->fetchAll();
+
+    $voting = db_select("votingapi_vote" , "vote")
+            ->fields("vote" , array("value"))
+            ->condition("entity_type" , "node")
+            ->condition("entity_id" , $parameter["nid"])
+            ->condition("uid" , $user->uid)
+            ->execute()->fetch();
+    $user_vote_value = (!empty($voting)) ? $voting->value : 0;
+
+    return array("nid" => $parameter["nid"] , "body" => $body , "files" => $files , "current_user_vote_value" => $user_vote_value);
+}
+
+function question_resource_create($data){
+    if(!isset($data["hash"]) || !(hash_true($data["hash"] , "question"))) return services_error(t('Failed to access'), 10);
+    if(empty($data["source"]) || empty($data["version"])) return services_error("source or version is empty!" , 11);
+
+    $function = get_compatible_function_name("/question" , "POST" , $data["source"] , $data["version"]);
+    if(!empty($function) && strlen($function) > 0) {
+        return call_user_func($function, $data);
+    }
+    return services_error(t('This version is not supported'), 11);
+}
+function create_question_v_1($data){
+    global $user;
+    if($user->uid == 0) return services_error("You should login first!" , 18);
+
+    $node= new stdClass();
+    $node->title  = $data['title'];
+    $node->type  = "questions";
+    node_object_prepare($node);
+    $node->language = 'fa';
+    $node->uid  = $user->uid;
+    $node->status = 0;
+    $node->comment = 2;
+    $node->created = REQUEST_TIME;
+
+    node_save($node);
+    return $node;
+
+    $node->body['und'][0]['value'] = $data['body'];
+    $node->body['und'][0]['summary'] = '';
+    $node->body['und'][0]['format'] = 'full_html';
+    $node->field_experts  = $data['field_experts'];
+    if(isset($data['field_files']) && !empty($data['field_files'])) $node->field_files  = $data['field_files'];
+    node_save($node);
+
+    add_log($user->uid, "/question" , "create" , "questions" , $node->nid , $data["source"] , $data["version"] , "successful" , "create a question.");
+    return $node;
+}
+
+function question_resource_update($nid, $data){
+    if(!isset($data["hash"]) || !(hash_true($data["hash"] , "question"))) return services_error(t('Failed to access'), 10);
+    if(empty($data["source"]) || empty($data["version"])) return services_error("source or version is empty!" , 11);
+
+    $function = get_compatible_function_name("/question/nid" , "PUT" , $data["source"] , $data["version"]);
+    if(!empty($function) && strlen($function) > 0) {
+        $data["nid"] = $nid;
+        return call_user_func($function, $data);
+    }
+    return services_error(t('This version is not supported'), 11);
+}
+function update_question_v_1($data){
+    $node = node_load($data["nid"]);
+    global $user;
+    if($user->uid != $node->uid && !in_array("administrator" , $user->roles)) return services_error("You do not have permission to this action!" , 18);
+
+    $update = false;
+    if(isset($data["title"]) && !empty($data["title"])){
+        $node->title = $data["title"];
+        $update = true;
+    }
+    if(isset($data["body"]) && !empty($data["body"])){
+        $node->body["und"][0]["value"] = $data["body"];
+        $update = true;
+    }
+    if(isset($data["field_experts"]) && !empty($data["field_experts"])){
+        $node->field_experts = $data["field_experts"];
+        $update = true;
+    }
+    if(isset($data["field_files"]) && !empty($data["field_files"])){
+        $node->field_files = $data["field_files"];
+        $update = true;
+    }
+    if($update){
+        node_save($node);
+        add_log($user->uid, "/question" , "update" , "questions" , $node->nid , $data["source"] , $data["version"] , "successful" , "update a question.");
+    }
+
+    return $node;
+}
+/*--------------------------------------------------------------------------------------*/
+
+/*-------------------------------------actions part-------------------------------------*/
+function question_resource_search($data){
+    if(!isset($data["hash"]) || !(hash_true($data["hash"] , "question"))) return services_error(t('Failed to access'), 10);
+    if(empty($data["source"]) || empty($data["version"])) return services_error("source or version is empty!" , 11);
+
+    $function = get_compatible_function_name("/question/search" , "POST" , $data["source"] , $data["version"]);
+    if(!empty($function) && strlen($function) > 0) {
+        return call_user_func($function, $data);
+    }
+    return services_error(t('This version is not supported'), 11);
+}
+function question_search_v_1($data){
+    $query = db_select("node", "node");
+    $query->fields('node', array('nid'));
+    $query->condition('node.title', '%' . $data["value"] . '%', 'LIKE');
+    $query->condition('node.type' , 'questions');
+    $nid1 = $query->execute()->fetchCol();
+
+    $query = db_select("field_data_body", "body");
+    $query->addField('body', 'entity_id', 'nid');
+    $query->condition('body.body_value', '%' . $data["value"] . '%', 'LIKE');
+    $query->condition('body.entity_type' , 'node');
+    $query->condition('body.bundle' , 'questions');
+    $nid2 = $query->execute()->fetchCol();
+
+    $parameter = array();
+    $parameter["custom_question"] = array_merge($nid1, $nid2);
+    $parameter["domain"] = isset($data["domain"]) ? $data["domain"] : "all";
+    $parameter["page"] = isset($data["page"]) ? $data["page"] : 0;
+
+    if(!empty($parameter["custom_question"]))
+        return get_questions($parameter);
+    else
+        return ["questions" => array()];
+}
+/*--------------------------------------------------------------------------------------*/
+/*-------------------------------target action part-------------------------------------*/
+function question_resource_follow($nid , $data){
+    if(!isset($data["hash"]) || !(hash_true($data["hash"] , "question"))) return services_error(t('Failed to access'), 10);
+    if(empty($data["source"]) || empty($data["version"])) return services_error("source or version is empty!" , 11);
+
+    $function = get_compatible_function_name("/question/nid/follow" , "POST" , $data["source"] , $data["version"]);
+    if(!empty($function) && strlen($function) > 0) {
+        $data["nid"] = $nid;
+        return call_user_func($function, $data);
+    }
+    return services_error(t('This version is not supported'), 11);
+}
+function follow_question_v_1($data){
+    global $user;
+    if(!isset($data['action']) && empty($data['action'])) return services_error(t('Action is required!'), 15);
+
+    if(($data['action'] == "follow" || $data['action'] == 1) && follow_status($data["nid"] , $user->uid) == 0){
+        $fid = db_insert('flagging')
+            ->fields(array(
+                'fid' => 3,
+                'entity_type' => 'node',
+                'entity_id' => $data["nid"],
+                'uid' => $user->uid,
+                'sid' => 0,
+                'timestamp' => strtotime(date("Y-m-d H:i:s", time()))
+            ))
+            ->execute();
+
+        return $fid;
+    }
+    elseif(($data['action'] == "unfollow" || $data['action'] == 0) && follow_status($data["nid"] , $user->uid) == 1){
+        $num_deleted = db_delete('flagging')
+            ->condition('uid', $user->uid)
+            ->condition('entity_id', $data["nid"])
+            ->execute();
+
+        return $num_deleted;
+    }
+    return services_error(t('Wrong data!'), 16);
+}
+function follow_status($nid , $uid){
+    $query = db_select('flagging' , 'f')
+        ->condition('fid' , 3)
+        ->condition('entity_id' , $nid)
+        ->condition('uid' , $uid);
+    $count = $query->countQuery()->execute()->fetchField();
+
+    if($count > 0) return 1;
+    else return 0;
+}
+
+function question_resource_vote($nid , $data){
+    if(!isset($data["hash"]) || !(hash_true($data["hash"] , "question"))) return services_error(t('Failed to access'), 10);
+    if(empty($data["source"]) || empty($data["version"])) return services_error("source or version is empty!" , 11);
+
+    $function = get_compatible_function_name("/question/nid/vote" , "POST" , $data["source"] , $data["version"]);
+    if(!empty($function) && strlen($function) > 0) {
+        $data["nid"] = $nid;
+        return call_user_func($function, $data);
+    }
+    return services_error(t('This version is not supported'), 11);
+}
+function vote_question_v_1($data){
+    global $user;
+    if(!isset($data['action']) && empty($data['action'])) return services_error(t('Action is required!'), 15);
+
+    if(strcmp($data['action'] , "up") == 0) $value = 1;
+    elseif(strcmp($data['action'] , "down") == 0) $value = -1;
+    else return services_error(t('Wrong action!'), 16);;
+
+    $votes = array();
+    $votes['entity_type'] = "node";
+    $votes['entity_id'] = $data["nid"];
+    $votes['value_type'] = "points";
+    $votes['value'] = $value;
+    $votes['tag'] = "vote";
+    $votes['uid'] = $user->uid;
+    votingapi_set_votes($votes);
+    return $votes;
+}
+/*--------------------------------------------------------------------------------------*/
+/*--------------------------------relationship part-------------------------------------*/
+function question_resource_experts_list($list , $parameter){
+    if(!isset($parameter["hash"]) || !(hash_true($parameter["hash"] , "question"))) return services_error(t('Failed to access'), 10);
+    if(empty($parameter["source"]) || empty($parameter["version"])) return services_error("source or version is empty!" , 11);
+
+    $function = get_compatible_function_name("/question/list/expert" , "GET" , $parameter["source"] , $parameter["version"]);
+    if(!empty($function) && strlen($function) > 0) {
+        return call_user_func($function, $parameter);
+    }
+    return services_error(t('This version is not supported'), 11);
+}
+function total_experts_of_questions_list_v_1($parameter){
+    $query = db_select("field_data_field_experts" , "experts_tid");
+    $query->join("taxonomy_term_data" , "expert_data" , "expert_data.tid = experts_tid.field_experts_tid");
+    $query->fields("expert_data" , array("tid" , "name"));
+    $query->condition("experts_tid.entity_type" , "node");
+    $query->condition("experts_tid.bundle" , "questions");
+    $query->groupBy("experts_tid.field_experts_tid");
+    $query->having('count(experts_tid.field_experts_tid) > :cnt', [':cnt' => 2]);
+    $experts = $query->execute()->fetchAll();
+    return $experts;
+}
 /*--------------------------------------------------------------------------------------*/
 
 
-function question_resource_retrieve($hash , $nid , $version){
-    if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 10);
-    if($version == 0){
-        return retrieve_a_question_version_one($nid);
-    }
-    return services_error(t('This version is not supported'), 11);
-}
-function question_resource_create($hash , $question , $version){
-    if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 10);
-    if($version == 0){
-        return create_a_question_version_one($question);
-    }
-    return services_error(t('This version is not supported'), 11);
-}
-function question_resource_edit($hash , $nid , $question , $version){
-    if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 10);
-    if($version == 0){
-        return edit_a_question_version_one($nid , $question);
-    }
-    return services_error(t('This version is not supported'), 11);
-}
+
+
+
+
 function question_resource_delete($hash , $nid , $version){
     if(!(hash_true($hash , "question"))) return services_error(t('Failed to access'), 10);
     if($version == 0){
@@ -190,48 +445,6 @@ function question_resource_delete($hash , $nid , $version){
     }
     return services_error(t('This version is not supported'), 11);
 }
-function question_resource_follow($hash , $nid , $data , $version){
-    if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 10);
-    if($version == 0){
-        return follow_a_question_version_one($nid , $data);
-    }
-    return services_error(t('This version is not supported'), 11);
-}
-function question_resource_vote($hash , $nid , $data , $version){
-    if(!(hash_true($hash , "question"))) services_error(t('Failed to access'), 10);
-    if($version == 0){
-        return vote_a_question_version_one($nid , $data);
-    }
-    return services_error(t('This version is not supported'), 11);
-}
-function question_resource_search($hash , $value , $version){
-    if(!(hash_true($hash , "question"))) return services_error(t('Failed to access'), 10);
-
-    if($version == 0) {
-        $query = db_select("node", "node");
-        $query->fields('node', array('nid'));
-        $query->condition('node.title', '%' . $value . '%', 'LIKE');
-        $query->condition('node.type' , 'questions');
-        $nid1 = $query->execute()->fetchAll();
-
-        $query = db_select("field_data_body", "body");
-        $query->addField('body', 'entity_id', 'nid');
-        $query->condition('body.body_value', '%' . $value . '%', 'LIKE');
-        $query->condition('body.entity_type' , 'node');
-        $query->condition('body.bundle' , 'questions');
-        $nid2 = $query->execute()->fetchAll();
-
-        $nids = array_merge($nid1, $nid2);
-        $custom_list = array();
-        foreach ($nids as $row) array_push($custom_list, $row->nid);
-        if(!empty($custom_list))
-            return list_of_questions_version_one("all_questions" , 0 , $custom_list);
-        else
-            return ["questions" => array()];
-    }
-    return services_error(t('This version is not supported'), 11);
-}
-
 /*------------------------index-----------------------------------*/
 function list_of_questions_version_one($domain , $page , $custom_list = array()){
     switch ($domain){
@@ -386,7 +599,6 @@ function my_answered_questions($page){
     $comments = $query->execute()->fetchAll();
     return ["questions" => $comments];
 }
-
 /*Experts of questions*/
 function question_experts($nids){
     $query = db_select('field_data_field_experts' , 'expert');
@@ -395,7 +607,6 @@ function question_experts($nids){
     $results = $query->execute()->fetchAll();
     return $results;
 }
-
 /*number of comments that an expert left for a question*/
 function number_of_experts_answered($nids){
     $query = db_select("comment" , "comment");
@@ -407,7 +618,6 @@ function number_of_experts_answered($nids){
     $results = $query->execute()->fetchAll();
     return $results;
 }
-
 /*return the comments that proved by advisor*/
 function answer_with_prove_by_advisor($nids){
     $query = db_select("comment" , "comment");
@@ -418,7 +628,6 @@ function answer_with_prove_by_advisor($nids){
     $results = $query->execute()->fetchAll();
     return $results;
 }
-
 /*return the comments that proved by asker*/
 function answer_with_prove_by_asker($nids){
     $query = db_select("comment" , "comment");
@@ -429,7 +638,6 @@ function answer_with_prove_by_asker($nids){
     $results = $query->execute()->fetchAll();
     return $results;
 }
-
 /*return the count of comments on each question*/
 function count_of_answers($nids){
     $query = db_select('comment' , 'comment');
@@ -440,7 +648,6 @@ function count_of_answers($nids){
     $results = $query->execute()->fetchAll();
     return $results;
 }
-
 /*return the files of each question*/
 function files_of_question($nids){
     $query = db_select('field_data_field_files' , 'feild_file');
@@ -453,181 +660,3 @@ function files_of_question($nids){
     $results = $query->execute()->fetchAll();
     return $results;
 }
-
-/*---------------------------retrieve--------------------------------*/
-function retrieve_a_question_version_one($nid){
-    $query = db_select('node' , 'node');
-    $query->leftJoin('field_data_body' , 'body' , 'node.nid = body.entity_id');
-    $query->fields('node' , array('nid' , 'uid' , 'title' , 'type' , 'created' , 'changed' , 'status'));
-    $query->addField('body' , 'body_value' , 'body');
-    $query->condition('node.nid', $nid);
-    $node = $query->execute()->fetch();
-    if(strcmp($node->type , "questions") != 0 || empty($node))  return services_error(t('Wrong ID'), 16);
-
-    $node->url = "http://civil808.com/node/".$nid;
-
-    global $user;
-
-    /*add tids of a question*/
-    $query = db_select('field_data_field_experts' , 'expert');
-    $query->addField('expert' , 'field_experts_tid' , 'tid');
-    $query->condition('expert.entity_id' , $nid);
-    $tids = $query->execute()->fetchAll();
-    $node->field_experts = $tids;
-
-    /*add files of a question*/
-    $query = db_select('field_data_field_files' , 'feild_file');
-    $query->join('file_managed' , 'file' , 'file.fid = feild_file.field_files_fid');
-    $query->fields('file', array('fid' , 'filename', 'uri' ,  'filemime' , 'filesize' , 'type' , 'timestamp'));
-    $query->condition('feild_file.entity_id' , $nid);
-    $query->condition('feild_file.entity_type' , 'node');
-    $query->condition('feild_file.bundle' , 'questions');
-    $results = $query->execute()->fetchAll();
-    if(!empty($results)) $node->field_files = $results;
-
-    /*check if user follow a question or not*/
-    $query = db_select('flagging' , 'f')
-        ->condition('fid' , 3)
-        ->condition('entity_id' , $nid)
-        ->condition('uid' , $user->uid);
-    $count = $query->countQuery()->execute()->fetchField();
-    if($count > 0) $node->follow_status = 1;
-    else $node->follow_status = 0;
-
-    /*return the picture of the author*/
-    $query = db_select('users' , 'u');
-    $query->leftJoin('file_managed' , 'f' , 'u.picture = f.fid');
-    $query->fields('u' , array('uid' , 'name' , 'mail' , 'created'));
-    $query->addField('f' , 'uri' , 'picture');
-    $query->condition('u.uid', $node->uid);
-    $author = $query->execute()->fetch();
-
-    /*get the question total vote points*/
-    $criteria = array();
-    $criteria['entity_id'] = $node->nid;
-    $criteria['entity_type'] = "node";
-    $criteria['function'] = "sum";
-    $vote_points = votingapi_select_results($criteria);
-    $vote_points = $vote_points[0]['value'];
-
-    /*check if user vote to the question and his/her point*/
-    $query = db_select('votingapi_vote', 'vote');
-    $query->fields('vote' , array('value'));
-    $query->condition('vote.entity_type' , 'node');
-    $query->condition('vote.entity_id' , $node->nid);
-    $query->condition('vote.uid' , $user->uid);
-    $user_vote = $query->execute()->fetchObject();
-
-    /*check if the question has comment that proved by advisor or not*/
-    $query = db_select("field_data_field_prove_advisor" , "prove_advisor");
-    $query->join("comment" , "comment" , "prove_advisor.entity_id = comment.cid and comment.nid = " . $nid);
-    $query->fields('prove_advisor' , array('entity_id'));
-    $query->condition('prove_advisor.field_prove_advisor_value', 1);
-    $result = $query->execute()->fetchAll();
-    if(!empty($result) && count($result)>0)  $node->prove_advisor = 1;
-
-    /*check if the question has comment that proved by asker or not*/
-    $query = db_select("field_data_field_prove_asker" , "prove_asker");
-    $query->join("comment" , "comment" , "prove_asker.entity_id = comment.cid and comment.nid = " . $nid);
-    $query->fields('prove_asker' , array('entity_id'));
-    $query->condition('prove_asker.field_prove_asker_value', 1);
-    $result = $query->execute()->fetchAll();
-    if(!empty($result) && count($result)>0)  $node->prove_asker = 1;
-
-    return ["question" => $node, "author" => $author, "vote_points" => $vote_points , "user_vote" => $user_vote->value];
-}
-
-/*----------------------------create-------------------------------*/
-function create_a_question_version_one($question){
-    global $user;
-    $newQuestion= new stdClass();
-    $newQuestion->type  = "questions";
-    $newQuestion->title  = $question['title'];
-    $newQuestion->body['und'][0]['value'] = $question['body'];
-    $newQuestion->body['und'][0]['summary'] = '';
-    $newQuestion->body['und'][0]['format'] = 'full_html';
-    $newQuestion->field_experts  = $question['field_experts'];
-    if(isset($question['field_files']) && !empty($question['field_files'])) $newQuestion->field_files  = $question['field_files'];
-    $newQuestion->uid  = $user->uid;
-    $newQuestion->language = 'fa';
-    $newQuestion->status = 0;
-    $newQuestion->comment = 2;
-    $newQuestion = node_submit($newQuestion);
-    node_save($newQuestion);
-    return $newQuestion;
-}
-
-/*----------------------------update-------------------------------*/
-function edit_a_questions_version_one($nid , $question){
-    $newQuestion = node_load($nid);
-    $newQuestion->title = $question['title'];
-    $newQuestion->body['und'][0]['value'] = $question['body'];
-    $newQuestion->field_experts = $question['field_experts'];
-    if(isset($question['field_files']) && !empty($question['field_files'])) $newQuestion->field_files = $question['field_files'];
-    else $newQuestion->field_files = [];
-    node_save($newQuestion);
-    return $newQuestion;
-}
-
-/*----------------------------follow-------------------------------*/
-function follow_a_question_version_one($nid , $data){
-    global $user;
-    if(!isset($data['action']) && empty($data['action'])) return services_error(t('Action is required!'), 15);
-
-    if(($data['action'] == "follow" || $data['action'] == 1) && follow_status($nid , $user->uid) == 0){
-        $fid = db_insert('flagging')
-            ->fields(array(
-                'fid' => 3,
-                'entity_type' => 'node',
-                'entity_id' => $nid,
-                'uid' => $user->uid,
-                'sid' => 0,
-                'timestamp' => strtotime(date("Y-m-d H:i:s", time()))
-            ))
-            ->execute();
-
-        return $fid;
-    }
-    elseif(($data['action'] == "unfollow" || $data['action'] == 0) && follow_status($nid , $user->uid) == 1){
-        $num_deleted = db_delete('flagging')
-            ->condition('uid', $user->uid)
-            ->condition('entity_id', $nid)
-            ->execute();
-
-        return $num_deleted;
-    }
-    return "error";
-}
-/*return if the user has followed a question or not*/
-function follow_status($nid , $uid){
-    $query = db_select('flagging' , 'f')
-        ->condition('fid' , 3)
-        ->condition('entity_id' , $nid)
-        ->condition('uid' , $uid);
-    $count = $query->countQuery()->execute()->fetchField();
-
-    if($count > 0) return 1;
-    else return 0;
-}
-
-/*-----------------------------vote------------------------------*/
-function vote_a_question_version_one($nid , $data){
-    global $user;
-    if(!isset($data['action']) && empty($data['action'])) return services_error(t('Action is required!'), 15);
-
-    if($data['action'] == "up") $value = 1;
-    elseif($data['action'] == "down") $value = -1;
-    else return services_error(t('Wrong action!'), 16);;
-
-    $votes = array();
-    $votes['entity_type'] = "node";
-    $votes['entity_id'] = $nid;
-    $votes['value_type'] = "points";
-    $votes['value'] = $value;
-    $votes['tag'] = "vote";
-    $votes['uid'] = $user->uid;
-    votingapi_set_votes($votes);
-    return $votes;
-}
-
-/*------------------------------End-----------------------------*/
