@@ -218,23 +218,7 @@ function custom_services_services_resources(){
                 ),
             ),
             'actions' => array(
-                'search' => array(
-                    'help' => 'Search in Questions',
-                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'question_resource'),
-                    'callback' => 'question_resource_search',
-                    'access callback' => 'user_access',
-                    'access arguments' => array('access content'),
-                    'access arguments append' => FALSE,
-                    'args' => array(
-                        array(
-                            'name' => 'data',
-                            'type' => 'array',
-                            'description' => 'Data of request',
-                            'source' => 'data',
-                            'optional' => FALSE,
-                        ),
-                    ),
-                ),
+
             ),
             'targeted_actions' => array(
                 'follow' => array(
@@ -270,13 +254,6 @@ function custom_services_services_resources(){
                     'access arguments append' => FALSE,
                     'args' => array(
                         array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('data' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
                             'name' => 'nid',
                             'optional' => FALSE,
                             'source' => array('path' => 0),
@@ -290,18 +267,60 @@ function custom_services_services_resources(){
                             'source' => 'data',
                             'optional' => FALSE,
                         ),
-                        array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('data' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
-                        ),
                     ),
                 ),
             ),
             'relationships' => array(
+                'comment' => array(
+                    'help' => 'comments of a question',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'question_resource'),
+                    'callback' => 'question_resource_question_comments',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'nid',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'nid of question for getting comments',
+                        ),
+                        array(
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameters of request',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => TRUE,
+                            'default value' => array(),
+                        ),
+                    ),
+                ),
+                'search' => array(
+                    'help' => 'Search in Questions',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'question_resource'),
+                    'callback' => 'question_resource_search',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'list',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'string',
+                            'description' => 'Used for url address',
+                        ),
+                        array(
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameters of request',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => TRUE,
+                            'default value' => array(),
+                        ),
+                    ),
+                ),
                 'expert' => array(
                     'help' => 'List of experts that are used in questions',
                     'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'question_resource'),

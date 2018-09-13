@@ -278,43 +278,6 @@ function update_question_v_1($data){
     return $node;
 }
 /*--------------------------------------------------------------------------------------*/
-
-/*-------------------------------------actions part-------------------------------------*/
-function question_resource_search($data){
-    if(!isset($data["hash"]) || !(hash_true($data["hash"] , "question"))) return services_error(t('Failed to access'), 10);
-    if(empty($data["source"]) || empty($data["version"])) return services_error("source or version is empty!" , 11);
-
-    $function = get_compatible_function_name("/question/search" , "POST" , $data["source"] , $data["version"]);
-    if(!empty($function) && strlen($function) > 0) {
-        return call_user_func($function, $data);
-    }
-    return services_error(t('This version is not supported'), 11);
-}
-function question_search_v_1($data){
-    $query = db_select("node", "node");
-    $query->fields('node', array('nid'));
-    $query->condition('node.title', '%' . $data["value"] . '%', 'LIKE');
-    $query->condition('node.type' , 'questions');
-    $nid1 = $query->execute()->fetchCol();
-
-    $query = db_select("field_data_body", "body");
-    $query->addField('body', 'entity_id', 'nid');
-    $query->condition('body.body_value', '%' . $data["value"] . '%', 'LIKE');
-    $query->condition('body.entity_type' , 'node');
-    $query->condition('body.bundle' , 'questions');
-    $nid2 = $query->execute()->fetchCol();
-
-    $parameter = array();
-    $parameter["custom_question"] = array_merge($nid1, $nid2);
-    $parameter["domain"] = isset($data["domain"]) ? $data["domain"] : "all";
-    $parameter["page"] = isset($data["page"]) ? $data["page"] : 0;
-
-    if(!empty($parameter["custom_question"]))
-        return get_questions($parameter);
-    else
-        return ["questions" => array()];
-}
-/*--------------------------------------------------------------------------------------*/
 /*-------------------------------target action part-------------------------------------*/
 function question_resource_follow($nid , $data){
     if(!isset($data["hash"]) || !(hash_true($data["hash"] , "question"))) return services_error(t('Failed to access'), 10);
@@ -331,7 +294,7 @@ function follow_question_v_1($data){
     global $user;
     if(!isset($data['action']) && empty($data['action'])) return services_error(t('Action is required!'), 15);
 
-    if(($data['action'] == "follow" || $data['action'] == 1) && follow_status($data["nid"] , $user->uid) == 0){
+    if(strcmp($data['action'], "follow") == 0 && follow_status($data["nid"] , $user->uid) == 0){
         $fid = db_insert('flagging')
             ->fields(array(
                 'fid' => 3,
@@ -345,7 +308,7 @@ function follow_question_v_1($data){
 
         return $fid;
     }
-    elseif(($data['action'] == "unfollow" || $data['action'] == 0) && follow_status($data["nid"] , $user->uid) == 1){
+    elseif(strcmp($data['action'], "unfollow") == 0 && follow_status($data["nid"] , $user->uid) == 1){
         $num_deleted = db_delete('flagging')
             ->condition('uid', $user->uid)
             ->condition('entity_id', $data["nid"])
@@ -397,6 +360,127 @@ function vote_question_v_1($data){
 }
 /*--------------------------------------------------------------------------------------*/
 /*--------------------------------relationship part-------------------------------------*/
+function question_resource_question_comments($nid , $parameter){
+    if(!isset($parameter["hash"]) || !(hash_true($parameter["hash"] , "question"))) return services_error(t('Failed to access'), 10);
+    if(empty($parameter["source"]) || empty($parameter["version"])) return services_error("source or version is empty!" , 11);
+
+    $function = get_compatible_function_name("/question/nid/comment" , "GET" , $parameter["source"] , $parameter["version"]);
+    if(!empty($function) && strlen($function) > 0) {
+        $parameter["nid"] = $nid;
+        return call_user_func($function, $parameter);
+    }
+    return services_error(t('This version is not supported'), 11);
+}
+function comments_of_question_v_1($parameter){
+    $query = db_select("comment" , "comment");
+    $query->join("field_data_comment_body" , "body" , "body.entity_id = comment.cid and body.bundle = 'comment_node_questions' ");
+    $query->join("users" , "user" , "comment.uid = user.uid");
+    $query->leftJoin("file_managed" , "author_pic" , "author_pic.fid = user.picture");
+    $query->join("profile" , "profile" , "profile.uid = comment.uid and profile.type = 'main' ");
+    $query->leftJoin("field_data_field_full_name" , "author_name" , "author_name.entity_id = profile.pid and author_name.entity_type = 'profile2' and author_name.bundle = 'main' ");
+    $query->leftJoin("field_data_field_prove_advisor" , "prove_advisor" , "prove_advisor.entity_id = comment.cid and prove_advisor.entity_type = 'comment' and prove_advisor.bundle = 'comment_node_questions' ");
+    $query->leftJoin("field_data_field_prove_asker" , "prove_asker" , "prove_asker.entity_id = comment.cid and prove_asker.entity_type = 'comment' and prove_asker.bundle = 'comment_node_questions' ");
+    $query->leftJoin("users_roles" , "roles" , "roles.uid = comment.uid and roles.rid = '10' ");
+    $query->fields("comment" , array("cid" , "uid" , "created" , "changed" , "name"));
+    $query->addField("body" , "comment_body_value" , "body");
+    $query->addField("author_pic" , "uri" , "author_pic");
+    $query->addField("author_name" , "field_full_name_value" , "author_name");
+    $query->addField("prove_advisor" , "field_prove_advisor_value" , "prove_by_advisor");
+    $query->addField("prove_asker" , "field_prove_asker_value" , "prove_by_asker");
+    $query->addField("roles" , "rid" , "role");
+    $query->condition("comment.nid" , $parameter["nid"]);
+    $query->condition("comment.status" , 1);
+    $query->condition("comment.pid" , 0);
+    $query->orderBy("prove_advisor.field_prove_advisor_value" , "DESC")
+            ->orderBy("prove_asker.field_prove_asker_value" , "DESC")->orderBy("comment.cid" , "DESC");
+    $query->range((isset($parameter["page"]))? $parameter["page"] : 0 * 20 , 20);
+    $comments = $query->execute()->fetchAll();
+    if(empty($comments)) return array();
+
+    $cids = array();
+    $comments_key = array();
+    foreach ($comments as $comment) {
+        array_push($cids , $comment->cid);
+        if(!empty($comment->author_pic))  $comment->author_pic = image_style_url("200x200" , $comment->author_pic);
+        if(!empty($comment->role)) $comment->role = "advisor"; else unset($comment->role);
+        $comment->children = array();
+        $comment->vote_points = 0;
+        $comment->user_vote = 0;
+        $comments_key[$comment->cid] = $comment;
+    }
+
+    $query = db_select("comment" , "comment");
+    $query->join("users" , "user" , "comment.uid = user.uid");
+    $query->leftJoin("file_managed" , "author_pic" , "author_pic.fid = user.picture");
+    $query->join("profile" , "profile" , "profile.uid = comment.uid and profile.type = 'main' ");
+    $query->leftJoin("field_data_field_full_name" , "author_name" , "author_name.entity_id = profile.pid and author_name.entity_type = 'profile2' and author_name.bundle = 'main' ");
+    $query->fields("comment" , array("cid" , "pid" , "uid" , "created" , "changed"));
+    $query->addField("author_pic" , "uri" , "author_pic");
+    $query->addField("author_name" , "field_full_name_value" , "author_name");
+    $query->condition("comment.status" , 1);
+    $query->condition("comment.pid" , $cids , "IN");
+    $query->orderBy("comment.cid" , "ASC");
+    $replies = $query->execute()->fetchAll();
+
+    foreach ($replies as $reply) if(isset($comments_key[$reply->pid])) array_push($comments_key[$reply->pid]->children , $reply);
+
+    $query = db_select("votingapi_vote" , "vote");
+    $query->fields("vote" , array("entity_id"));
+    $query->condition("vote.entity_id" , $cids , "IN");
+    $query->condition("vote.entity_type" , "comment");
+    $query->groupBy('vote.entity_id');
+    $query->addExpression('sum(vote.value)', 'vote_point');
+    $votes = $query->execute()->fetchAll();
+    foreach ($votes as $vote) $comments_key[$vote->entity_id]->vote_points = (int) $vote->vote_point;
+
+    global $user;
+    $query = db_select("votingapi_vote" , "vote");
+    $query->fields("vote" , array("entity_id" , "value"));
+    $query->condition("vote.entity_id" , $cids , "IN");
+    $query->condition("vote.entity_type" , "comment");
+    $query->condition("vote.uid" , $user->uid);
+    $user_votes = $query->execute()->fetchAll();
+    foreach ($user_votes as $user_vote) $comments_key[$user_vote->entity_id]->user_vote = (int) $user_vote->value;
+
+    $comments = array_values($comments_key);
+    return $comments;
+}
+
+function question_resource_search($list , $parameter){
+    if(!isset($parameter["hash"]) || !(hash_true($parameter["hash"] , "question"))) return services_error(t('Failed to access'), 10);
+    if(empty($parameter["source"]) || empty($parameter["version"])) return services_error("source or version is empty!" , 11);
+
+    $function = get_compatible_function_name("/question/list/search" , "GET" , $parameter["source"] , $parameter["version"]);
+    if(!empty($function) && strlen($function) > 0) {
+        return call_user_func($function, $parameter);
+    }
+    return services_error(t('This version is not supported'), 11);
+}
+function question_search_v_1($parameter){
+    $query = db_select("node", "node");
+    $query->fields('node', array('nid'));
+    $query->condition('node.title', '%' . $parameter["value"] . '%', 'LIKE');
+    $query->condition('node.type' , 'questions');
+    $nid1 = $query->execute()->fetchCol();
+
+    $query = db_select("field_data_body", "body");
+    $query->addField('body', 'entity_id', 'nid');
+    $query->condition('body.body_value', '%' . $parameter["value"] . '%', 'LIKE');
+    $query->condition('body.entity_type' , 'node');
+    $query->condition('body.bundle' , 'questions');
+    $nid2 = $query->execute()->fetchCol();
+
+    $parameter = array();
+    $parameter["custom_question"] = array_merge($nid1, $nid2);
+    $parameter["domain"] = isset($data["domain"]) ? $parameter["domain"] : "all";
+    $parameter["page"] = isset($data["page"]) ? $parameter["page"] : 0;
+
+    if(!empty($parameter["custom_question"]))
+        return get_questions($parameter);
+    else
+        return ["questions" => array()];
+}
+
 function question_resource_experts_list($list , $parameter){
     if(!isset($parameter["hash"]) || !(hash_true($parameter["hash"] , "question"))) return services_error(t('Failed to access'), 10);
     if(empty($parameter["source"]) || empty($parameter["version"])) return services_error("source or version is empty!" , 11);
