@@ -348,6 +348,101 @@ function custom_services_services_resources(){
                 )
             ),
         ),
+		'comments' => array(
+		    'operation' => array(
+		        'create' => array(
+                    'help' => 'create a comment',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'comment_resource'),
+                    'callback' => 'comment_resource_create',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'data',
+                            'type' => 'array',
+                            'description' => 'The data for create',
+                            'source' => 'data',
+                            'optional' => FALSE,
+                        )
+                    ),
+                ),
+                'update' => array(
+                    'help' => 'update a comment',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'comment_resource'),
+                    'callback' => 'comment_resource_update',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'cid',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'The cid of the comment to for edit',
+                        ),
+                        array(
+                            'name' => 'data',
+                            'type' => 'array',
+                            'description' => 'The data for update',
+                            'source' => 'data',
+                            'optional' => FALSE,
+                        )
+                    ),
+                ),
+            ),
+            'targeted_action' => array(
+                'vote' => array(
+                    'help' => 'Vote a comment',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'comment_resource'),
+                    'callback' => 'comment_resource_vote',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'cid',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'The nid of the question to vote',
+                        ),
+                        array(
+                            'name' => 'data',
+                            'type' => 'array',
+                            'description' => 'Vote up or down',
+                            'source' => 'data',
+                            'optional' => FALSE,
+                        ),
+                    ),
+                ),
+                'prove' => array(
+                    'help' => 'prove a comment by advisor or asker',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'comment_resource'),
+                    'callback' => 'comment_resource_prove',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'cid',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'The cid of the comment to for prove',
+                        ),
+                        array(
+                            'name' => 'data',
+                            'type' => 'array',
+                            'description' => 'The prove action',
+                            'source' => 'data',
+                            'optional' => True,
+                        )
+                    ),
+                ),
+            ),
+        ),
 		'pedia' => array(
 		    'operations' => array(
 		        'index' => array(
