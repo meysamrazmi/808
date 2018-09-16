@@ -251,12 +251,13 @@
                 print views_embed_view('tags_content', 'block_4', $args1 , $args2 ); ?>
             </section>
 
-            <section class="diff film-relatives" id="relatives">
+            <section style="text-align: center;" class="diff film-relatives" id="relatives">
                 <h2> فیلم های آموزشی رایگان در گالری 808 </h2>
                 <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">
                     برای مشاهده مطالب بیشتر
                     <a href="http://civil808.com/gallery/videos" target="_blank">کلیک کنید</a>
                 </p>
+                <a style="margin: 25px auto 15px auto;" class="btn btn-primary" href="http://civil808.com/gallery/videos/playlist/4089/19930" > مجموعه فیلم همایش انقلاب در صنعت ساخت و ساز با BIM </a>
                 <?php
                 $args1 = 3753;
                 $args2 = 'film';
@@ -299,7 +300,7 @@
                 print views_embed_view('tags_content', 'block_1', $args1 , $args2 ); ?>
             </section>
 
-            <section class="diff" id="relatives" style="font-size: 13px">
+            <section class="diff last-sec" id="relatives" style="font-size: 13px;">
                 <h2> برای انجام پروژه های BIM خود به مدرسین و مشاورین ما پیغام دهید </h2>
                 <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">
                     برای مشاهده لیست مشاوران سایت
@@ -390,7 +391,7 @@
         box-shadow: rgba(136,58,183,0.15) 0px 1px 6px, rgba(136,58,183,0.157) 0px 1px 4px;
     }
     .page-landing.page-bim .content .field-name-body * {
-        line-height: normal !important;
+        /*line-height: normal !important;*/
     }
 
     #relatives{
@@ -545,5 +546,11 @@
         padding: 15px;
         border-radius: 6px;
         background: hsla(0, 0%, 100%, 0.9);
+    }
+    .field-name-body .group-header .field-name-title h2{
+        margin-top: 0px!important;
+    }
+    .last-sec *:not([class*='btn']){
+        line-height: normal !important;
     }
 </style>
