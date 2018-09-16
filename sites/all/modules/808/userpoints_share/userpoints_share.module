@@ -154,10 +154,6 @@ function up_share_history_user($usr) {
 function userpoints_share_uc_order($op, $order, $status) {
   switch ($op) {
     case 'update':
-	  $order_status = true;
-	  $status_check = true;
-	  // if($order->order_status != 'peyment_recieved' && $order->order_status != 'completed' && $order->order_status != 'sent') $order_status = true;
-	  // if($status == 'peyment_recieved' || $status == 'completed' || $status == 'sent') $status_check = true;
       if ($order->order_status == 'completed' || $order->order_status == 'payment_received' || $order->order_status == 'sent' || $status == 'completed') {
         if (is_array($order->products) && count($order->products)) {
 			foreach ($order->products as $product) {
@@ -177,7 +173,18 @@ function userpoints_share_uc_order($op, $order, $status) {
 					}
 				}
 				$total -= $discount;
-//				$total -= $total_cost;
+				//$total -= $total_cost;
+
+				//handling vip line item in order to calculate 10% discount for both 808 and teacher and not just for 808
+				if (isset($order->line_items) && is_array($order->line_items)) {
+					foreach ($order->line_items as $index => $line) {
+						if ($line['type'] == 'vip' && $line['amount'] < 0) { // vip_line_item is negative
+							// we should calculate 'amount' again and not to use $line['amount']
+							// because $line['amount'] was calculated for all products in order
+							$total = $total * 0.9; //todo: make 10% based on site setting
+						}
+					}
+				}
 
 				foreach ($field_percent as $field_item){
 					$multiplier = $field_item->portion / 100;

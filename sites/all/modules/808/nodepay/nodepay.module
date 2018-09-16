@@ -330,6 +330,8 @@ function nodepay_uc_order($op, $order, $arg) {
 				}
 			}
 
+			//todo: make 10% based on site setting
+			//todo: in userpoints_share.module I hard coded this 10%
 			// Handle line items.
 			$user = user_load($order->uid);
 			// there is already a line_item in order
