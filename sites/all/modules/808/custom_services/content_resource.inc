@@ -349,7 +349,7 @@ function retrieve_a_content_v_1($parameter){
     $query->leftJoin("field_data_field_image" , "field_image" , "node.nid = field_image.entity_id and field_image.entity_type = 'node' ");
     $query->leftJoin("file_managed" , "picture" , "picture.fid = field_image.field_image_fid");
     $query->leftJoin("field_data_body" , "body" , "node.nid = body.entity_id");
-    $query->fields('node' , array('nid' , 'type' , 'title' , 'uid' , 'changed'));
+    $query->fields('node' , array('nid' , 'type' , 'title' , 'uid' , 'created' , 'changed'));
     $query->addField('picture' , 'uri' , 'picture');
     $query->addField('body' , 'body_value' , 'body');
     $query->condition('node.status' , 1);
@@ -383,6 +383,7 @@ function retrieve_a_content_v_1($parameter){
         $query->condition('price.entity_type', 'node');
         $query->condition('price.bundle', 'publication');
         $price = $query->execute()->fetch();
+        $node->price = (!empty($price)) ? (int) $price->price : 0;
         if(!empty($price) && $price->price == 0) $file_permission = true;
 
         if (!$file_permission){

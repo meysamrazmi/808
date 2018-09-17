@@ -1,10 +1,5 @@
 <?php
 
-/*
- * @todo
- * log for vote and follow
- * */
-
 /*--------------------------------operations part--------------------------------------------*/
 function question_resource_index($parameter){
     if(!isset($parameter["hash"]) || !(hash_true($parameter["hash"] , "question"))) return services_error(t('Failed to access'), 10);
@@ -272,7 +267,7 @@ function update_question_v_1($data){
     }
     if($update){
         node_save($node);
-        add_log($user->uid, "/question" , "update" , "questions" , $node->nid , $data["source"] , $data["version"] , "successful" , "update a question.");
+        add_log($user->uid, "/question/nid" , "update" , "questions" , $node->nid , $data["source"] , $data["version"] , "successful" , "update a question.");
     }
 
     return $node;
@@ -356,6 +351,7 @@ function vote_question_v_1($data){
     $votes['tag'] = "vote";
     $votes['uid'] = $user->uid;
     votingapi_set_votes($votes);
+    add_log($user->uid , "/question/nid/vote" , "vote " . $data["action"] ,"questions" , $data["nid"] , $data["source"] , $data["version"] , "successful" , "vote a question");
     return $votes;
 }
 /*--------------------------------------------------------------------------------------*/

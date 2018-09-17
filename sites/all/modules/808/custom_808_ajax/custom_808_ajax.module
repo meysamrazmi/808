@@ -583,7 +583,13 @@ function moshavereh($user){
 			WHERE m.uid = :uid
 			AND m.week = :week";
 	$result = db_query($query, array(':uid' => $user->uid, ':week' => $_GET['week']))->fetchAll();
-
+	foreach($result as $key => $value){
+		/*change date format from time stamp*/
+		$aa = $value->created;
+		$result[$key]->created = format_date($value->created, 'custom', 'm/d');
+		$week_end = ((int) preg_replace('/[^0-9]/', '', $aa)) + (60*60*24*7);
+		$result[$key]->week_end = format_date($week_end, 'custom', 'm/d');
+	}
 	drupal_json_output($result);
 	drupal_exit();
 	return $result;
