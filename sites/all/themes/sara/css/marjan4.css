@@ -1598,10 +1598,16 @@ div#webform-ajax-wrapper-14314 .form-actions .webform-previous {
     font-weight: bold;
     line-height: 34px;
 }
-#page-moshaver .pane-register #node-12585 form input{
+#page-moshaver .pane-register #node-12585 .webform-component--nm-mshwr > label,
+#page-moshaver .pane-register #node-12585 .webform-component--nm-mshwr #edit-submitted-nm-mshwr{
+    margin: 15px;
+}
+#page-moshaver .pane-register #node-12585 form input:not([type=radio]):not([type=submit]){
 	background: rgba(255, 255, 255, 0.57);
-    border: none;
     float: left;
+}
+#page-moshaver .pane-register #node-12585 form input{
+    border: none;
 }
 #page-moshaver .pane-register #node-12585 .form-actions input{
     text-align: center;
