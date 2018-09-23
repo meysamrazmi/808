@@ -1,13 +1,9 @@
-<img src="/sites/default/files/attachfromftp/node-19072/pbdcourse-poster.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
-
-<div style="width: 70%; background-color: #ffffff; padding: 10px; margin: 67px auto -17px auto; border: solid #b39dd9; border-width: 0px 3px; box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px; text-align: center;">
-<a href="/node/19335" target="_blank" style="color: #909090 !important; font-size: 16px; margin: 5px; display: block;">
-مجموعه تصاوير دوره اول آموزش اصول محاسبات لرزه‌ای و طراحی عملکردی سازه‌ها ٥ و ٦ تير ماه، دانشگاه صنعتی شريف
-</a>
-</div>
+<img src="/sites/default/files/field/image/node_19986.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
 
 <section class="kargah-sec">
-    <h2>دوره جامع آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها</h2>
+    <h2>
+        <b>دومین </b>
+        دوره جامع آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها</h2>
     <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره فقط حضوری و بدون ضبط فیلم است.</p>
     <div class="first-row" style="margin-top: 40px;">
         <div>
@@ -17,8 +13,7 @@
                 <li>مبانی طراحی عملکردی (اصول و کاربردها)</li>
                 <li>طراحی عملکردی در آیین نامه ها</li>
                 <li>آشنایی با سیستم های نوین کنترل ارتعاشات لرزه ای</li>
-                <li>حل مثال عملی با استفاده از نرم افزارهای SeismoSoft و CSI</li>
-                <a href="/sites/default/files/attachfromftp/node-19072/pbdcourse-topics.pdf" style="margin-top: 9px;" class="btn" target="_blank">سرفصل های دوره</a>
+                <!--<a href="/sites/default/files/attachfromftp/node-19072/pbdcourse-topics.pdf" style="margin-top: 9px;" class="btn" target="_blank">سرفصل های دوره</a>-->
             </ul>
             <p><strong>پکیج همراه با دوره:</strong></p>
             <ul>
@@ -26,8 +21,10 @@
                 <li>
                     اعطای گواهینامه از موسسه 808 به عنوان نماینده رسمی SeismoSoft در ایران
                 </li>
-                <li>معرفی دانش اموختگان برتر پایان دوره به صنعت برای پروژه های مقاوم سازی و بهسازی لرزه ای</li>
-                <a href="/sites/default/files/attachfromftp/node-19072/certificate-sample.jpg" style="margin-top: 9px;" class="btn" target="_blank">نمونه گواهینامه</a>
+                <li>
+                    به همراه اعطای فلش پکیج استثنائی 808 به شرکت کنندگان دوره
+                </li>
+                <a href="http://civil808.com/node/19704" style="margin-top: 9px;" class="btn" target="_blank">مشاهده محتوای فلش</a>
             </ul>
             <p class="important">
             </p>
@@ -67,50 +64,32 @@
 </section>
 
 <section class="second">
-    <h2 class="text"> ثبت نام در دوره جامع آموزش اصول محاسبات + حل مثال عملی با نرم افزارهای SeismoSoft و CSI </h2>
-    <p style="text-align: center;margin-top: -18px;font-size: 15px;color: #888;margin-bottom: 29px;">
-    برای اطلاع از زمانبندی و ظرفیت های جدید این دوره،
-    <a href="/node/19177" target="_blank"> کلیک کنید. </a>
-    </p>
-	<div class="takhfifat" style="margin-bottom: 15px;">
+    <h2 class="text"> ثبت نام در دوره جامع آموزش اصول محاسبات بهسازی لرزه ای و طراحی عملکردی سازه ها </h2>
+    <!--<p style="text-align: center;margin-top: -18px;font-size: 15px;color: #888;margin-bottom: 29px;">
+        برای اطلاع از زمانبندی و ظرفیت های جدید این دوره،
+        <a href="/node/19177" target="_blank"> کلیک کنید. </a>
+    </p>-->
+    <div class="takhfifat" style="margin-bottom: 15px;">
         <p>
             <span>10 %</span>تخفیف برای اعضای VIP، <a href="/landing/vip" target="_blank">عضو ویژه شوید</a>        </p>
-	</div>
+    </div>
     <div class="takhfifat">
         <p>و<span>5 %</span> تخفیف به ازای اضافه شدن هر نفر تا سقف 20 درصد</p>
     </div>
-	<div class="tickets">
-		<div>
-            <!--href="/cart/add/p19074_a62o194?destination=cart-->
-            <a href="#">
+    <div class="tickets">
+        <div>
+            <a href="/cart/add/p19074_a62o194?destination=cart" target="_blank">
                 <div class="city-name"><span>دوره جامع آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها</span></div>
                 <div class="inner-text">
                     <p class="text"> مدرس: پروفسور حسن مقدم </p>
-                    <p style="padding: 9px 12px 0px 0px;">شامل پذیرایی ناهار</p>
-                    <div class="tarikh">5 تا 7 تیر ماه 1397</div>
+                    <p style="padding: 9px 12px 0px 0px;">شامل پذیرایی ناهار و فلش ویژه محصولات 808</p>
+                    <div class="tarikh">25 و 26 مهر ماه 1397</div>
                     <div class="makan"> دانشگاه صنعتی شریف، سالن انجمن فارغ التحصیلان </div>
-                    <div class="zaman">5 و 6 تیر: ساعت 8 تا 17، 7 تیرماه: ساعت 8 تا 12:30(جمعا 20 ساعت) </div>
-                    <div class="mablagh"> 400,000 تومان </div>
+                    <div class="zaman">25 و 62 مهر: ساعت 8 تا 17(جمعا 16 ساعت) </div>
+                    <div class="mablagh"> 300,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
-		    </a>
-            <!--/cart/add/p19074_a62o195?destination=cart-->
-		    <a href="#">
-                <div class="city-name"><span>دوره جامع آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها
- + به همراه تدریس نرم افزار توسط تیم مدرسین موسسه 808</span></div>
-                <div class="inner-text">
-                    <p class="text"> مدرس: پروفسور حسن مقدم + تیم مدرسین موسسه 808 </p>
-                    <p style="padding: 9px 12px 0px 0px;"> شامل پذیرایی ناهار در 2 روز اول </p>
-                    <p class="important" style="margin: 2px 12px 5px 0;font-weight: bold;background-color: #f5f5f5;padding: 6px 14px;display: inline-block;">به همراه پکیج مخصوص
-                        و پروژه پایان دوره
-                    </p>
-                    <div class="tarikh"> 5 و 6 تیرماه + یکی از گروه ها(گروه 1: 7 تا 10 تیر، گروه 2: 12 تا 15 تیر)</div>
-                    <div class="makan"> دانشگاه صنعتی شریف، سالن انجمن فارغ التحصیلان </div>
-                    <div class="zaman"> 60 ساعت </div>
-                    <div class="mablagh"> 1,200,000 تومان </div>
-                </div>
-                <span class="sabtenam"> ثبت نام </span>
-		    </a>
+            </a>
         </div>
         <!--<div class="bought-tickets">سوال های خود را می توانید از طریق شماره تماس موسسه و سیستم پیغام خصوصی با ما در میان بگذارید.</div>
 	</div>-->
@@ -130,14 +109,24 @@
             <div style="text-align: center;">
                 <a href="/sites/default/files/attachfromftp/node-19072/pansions.jpg" style="margin:12px 0;" class="btn" target="_blank">لیست پانسیون ها</a>
             </div>
-            <li>پکیج صرفا به شرکت کنندگانی تعلق می گیرد که دوره را به صورت کامل (هر دو دوره ی تئوری و نرم افزاری) ثبت نام کنند.</li>
-            <li>در روزهای برگزاری دوره تئوری پذیرایی ناهار انجام خواهد شد.</li><li>دوره نرم افزاری همراه با ارائه پروژه پایان دوره به شرکت کنندگان تعریف شده است که پس از انجام پروژه و داوری آن توسط جناب پروفسور مقدم، افرادی که موفق به گذراندن کامل دوره می شوند ضمن معرفی در سایت جهت انجام پروژه های اجرایی واقعی به صنعت معرفی می گردند.</li>
             <li>این دوره با تدریس جناب پروفسور مقدم، یکی از افراد موثر و پیشرو جهانی در علم طراحی عملکردی سازه ها و <strong>برای اولین بار در کشور با سرفصل انحصاری موسسه 808 فقط به صورت حضوری (بدون ضبط فیلم) برگزار می شود</strong>. امکان استفاده از License قانونی نرم افزارهای مورد استفاده به همراه معرفی دانش آموختگان برتر به صنعت از جمله دیگر مزایای انحصاری این دوره در راستای هدف اتصال دانش به صنعت و حل مساله مقاوم سازی سازه ها می باشد که برای اولین بار و به جهت اهمیت موضوع طراحی عملکردی در کشور توسط تیم موسسه 808، برای شرکت کنندگان فراهم شده است. امید است این دوره مورد استفاده همه مهندسان عمران کشور در جهت ساخت سازه های ایمن در برابر زلزله قرار گیرد.</li>
             <li>
                 برای مشاهده قسمتی از جزوه دوره حضوری آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها
                 <a href="http://civil808.com/node/19300" target="_blank">کلیک کنید.</a>
             </li>
         </ol>
+    </div>
+</section>
+
+<section id="ebooks">
+    <h2> دوره های مرتبط </h2>
+    <div class="aks3">
+        <a href="/node/19701" target="_blank">
+            <img src="/sites/default/files/photo_2018-09-11_14-56-27.jpg" width="350" height="350" >
+        </a>
+        <a href="/node/19856" target="_blank">
+            <img src="/sites/default/files/photo_2018-09-11_14-47-26.jpg" width="350" height="350" >
+        </a>
     </div>
 </section>
 
@@ -175,7 +164,7 @@
     display: block;
     width: 220px;">اطلاعات بیشتر</a>
         </div>
-        <img src="/sites/all/themes/sara/images/seismosoft.png" alt="نرم افزار SeismoBuild منتشر شد (دانلود نسخه دمو  و مشاهده فیلم و کاتالوگ معرفی)" title="نرم افزار SeismoBuild منتشر شد (دانلود نسخه دمو  و مشاهده فیلم و کاتالوگ معرفی)" style="margin-right: 10px;" class="main-seismo">
+        <img src="http://civil808.com/sites/all/themes/sara/images/seismosoft.png" alt="نرم افزار SeismoBuild منتشر شد (دانلود نسخه دمو  و مشاهده فیلم و کاتالوگ معرفی)" title="نرم افزار SeismoBuild منتشر شد (دانلود نسخه دمو  و مشاهده فیلم و کاتالوگ معرفی)" style="margin-right: 10px;" class="main-seismo">
     </div>
 </section>
 
@@ -208,7 +197,7 @@
         <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;margin-bottom: 35px;">
             برای مشاهده "اطلاعیه دعوت به همکاری از کلیه شرکت های فعال در حوزه مقاوم سازی و بهسازی لرزه ای سازه ها"
             <a href="/node/19152" target="_blank">
-              کلیک کنید.
+                کلیک کنید.
             </a>
         </p>
         <div class="logos">
@@ -555,7 +544,7 @@
         position: relative;
     }
     #block-system-main section:not(.plus808) h2:before{
-    	content: "";
+        content: "";
         position: absolute;
         width: 130px;
         height: 3px;
@@ -565,17 +554,17 @@
         box-shadow: rgba(136,58,183,0.15) 0px 1px 6px, rgba(136,58,183,0.157) 0px 1px 4px;
     }
     .fifth h2 {
-    	margin: 10px auto 80px;
+        margin: 10px auto 80px;
         font-size: 25px;
         display: block;
     }
     section.second h2 {
-    	text-align: center;
-    	margin: 30px auto 50px;
-    	background: #f9f9f9;
-    	width: 670px;
-    	max-width: 96%;
-    	z-index: 2;
+        text-align: center;
+        margin: 30px auto 50px;
+        background: #f9f9f9;
+        width: 670px;
+        max-width: 96%;
+        z-index: 2;
     }
     .hamin h2 {
         margin-top: 95px;
@@ -586,9 +575,9 @@
         margin-bottom: 60px;
     }
     #ebooks h2 {
-    	text-align: center;
+        text-align: center;
     }
-    
+
     section.kargah-sec {
         padding: 80px 5% 30px 5%;
     }
@@ -596,39 +585,39 @@
         background-color: #f9f9f9;
     }
     section.first {
-    	box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
-    	position: relative;
-    	background: #fff;
-    	overflow: hidden;
+        box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
+        position: relative;
+        background: #fff;
+        overflow: hidden;
     }
     section.first div#seismosoft {
-    	max-width: 1200px;
-    	margin: 0 auto !important;
-    	padding: 50px 15px;
-    	box-shadow: none;
-    	position: initial;
+        max-width: 1200px;
+        margin: 0 auto !important;
+        padding: 50px 15px;
+        box-shadow: none;
+        position: initial;
     }
     .namayandegi img {
-    	width: 100%;
+        width: 100%;
     }
     .namayandegi .pane-content > p {
-    	float: left;
-    	text-align: center;
-    	width: calc(40% - 50px);
-    	min-width: 170px;
-    	margin-right: 30px;
+        float: left;
+        text-align: center;
+        width: calc(40% - 50px);
+        min-width: 170px;
+        margin-right: 30px;
     }
     .kargah-sec .first-row {
         display: flex;
         justify-content: space-around;
-    	align-items: flex-start;
+        align-items: flex-start;
     }
     .lecturer {
-    	text-align: center;
-    	background: #fff;
-    	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 4px;
-    	width: 300px;
-    	padding: 24px 15px 15px;
+        text-align: center;
+        background: #fff;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 4px;
+        width: 300px;
+        padding: 24px 15px 15px;
     }
     .lecturer > img{
         border-radius: 50%;
@@ -643,8 +632,8 @@
         line-height: 25px;
     }
     .kargah-sec .first-row > div:first-child {
-    	width: 640px;
-    	margin-left: 50px;
+        width: 640px;
+        margin-left: 50px;
     }
     .important{
         padding: 0px 13px;
@@ -657,22 +646,22 @@
         max-width: 700px;
     }
     .ghabl.mablagh {
-    	color: #F44336;
-    	font-size: 15px;
-    	margin: 15px 15px -10px;
-    	text-decoration: line-through;
-    	text-shadow: none;
+        color: #F44336;
+        font-size: 15px;
+        margin: 15px 15px -10px;
+        text-decoration: line-through;
+        text-shadow: none;
     }
     section.fifth {
-    	text-align: center;
+        text-align: center;
         padding: 55px 0;
-    
+
     }
     .mojri h3 {
         font-size: 21px;
     }
     .mojri img{
-    	display: block;
+        display: block;
         margin: auto;
     }
     .mojri a {
@@ -680,12 +669,12 @@
         font-size: 13px;
     }
     #node-17760 > .content {
-    	padding: 0 !important;
+        padding: 0 !important;
     }
     section.second {
-    	background: #f9f9f9;
-    	max-width: 1300px;
-    	margin: 50px auto;
+        background: #f9f9f9;
+        max-width: 1300px;
+        margin: 50px auto;
     }
     .tickets > div {
         display: flex;
@@ -693,7 +682,7 @@
     }
     .tickets a{
         display: inline-flex;
-        width: 500px;
+        width: 650px;
         padding: 15px;
         background: #fff;
         border-radius: 5px;
@@ -795,12 +784,12 @@
         position: absolute;
         bottom: 0;
         left: 51px;
-    	z-index: -1;
+        z-index: -1;
     }
     section.third {
         padding: 70px 50px 50px;
-    	z-index: 3;
-    	text-align: center;
+        z-index: 3;
+        text-align: center;
     }
     section.third .inside{
         max-width: 1200px;
@@ -861,84 +850,84 @@
         margin: 30px 3%;
     }
     @media (min-width:1100px){
-    	.logos > div {
-    		margin: 22px 7%;
-    	}
+        .logos > div {
+            margin: 22px 7%;
+        }
     }
-    
+
     .owl-theme .owl-dots,.owl-theme .owl-nav{text-align:center;-webkit-tap-highlight-color:transparent}.owl-theme .owl-nav{margin-top:10px}.owl-theme .owl-nav [class*=owl-]    {color:#FFF;font-size:14px;margin:5px;padding:4px 7px;background:#D6D6D6;display:inline-block;cursor:pointer;border-radius:3px}.owl-theme .owl-nav [class*=owl-]:hover  {background:#869791;color:#FFF;text-decoration:none}.owl-theme .owl-nav .disabled{opacity:.5;cursor:default}.owl-theme .owl-nav.disabled+.owl-dots{margin-top:10px}   .owl-theme .owl-dots .owl-dot{display:inline-block;zoom:1}.owl-theme .owl-dots .owl-dot span{width:10px;height:10px;margin:5px 7px;background:#D6D6D6;display:block;   -webkit-backface-visibility:visible;transition:opacity .2s ease;border-radius:30px}.owl-theme .owl-dots .owl-dot.active span,.owl-theme .owl-dots .owl-dot:hover span  {background:#869791}
-    
+
     .owl-item .item {
-    	background: #2196F3;
-    	padding: 15px;
+        background: #2196F3;
+        padding: 15px;
     }
     .owl-item .item {
-    	background: #abc;
-    	padding: 15px;
+        background: #abc;
+        padding: 15px;
     }
     .owl-item .row {
-    	margin: 15px;
-    	box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-    	background: #fff;
+        margin: 15px;
+        box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+        background: #fff;
     }
     .owl-item .row .title {
-    	font-size: 13px;
-    	padding: 10px;
-    	display: inline-block;
-    	color: #333 !important;
-    	font-weight: 500;
-    	line-height: 30px;
+        font-size: 13px;
+        padding: 10px;
+        display: inline-block;
+        color: #333 !important;
+        font-weight: 500;
+        line-height: 30px;
     }
     .owl-carousel {
-    	padding: 50px 5%;
+        padding: 50px 5%;
         width: 90% !important;
         margin: auto;
     }
     .owl-carousel .owl-item img {
-    	height: auto;
-    	margin: auto;
+        height: auto;
+        margin: auto;
     }
     .owl-dot span:before {
-    	content: "";
-    	background: #aaa;
-    	display: inline-block;
-    	width: 15px;
-    	height: 15px;
-    	border-radius: 50%;
+        content: "";
+        background: #aaa;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
     }
     .owl-dot.active span:before {
-    	background: #333;
+        background: #333;
     }
     .owl-dots {
-    	display: flex;
-    	justify-content: center;
+        display: flex;
+        justify-content: center;
     }
     .owl-dot {
-    	padding: 0 10px;
-    	margin: 0 5px;
+        padding: 0 10px;
+        margin: 0 5px;
     }
     .owl-nav {
-    	display: flex;
-    	justify-content: center;
-    	display: none !important;
+        display: flex;
+        justify-content: center;
+        display: none !important;
     }
     .owl-nav div {
-    	background: #eee;
-    	margin: 10px 20px 20px;
-    	padding: 5px 25px;
-    	box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-    	font-size: 15px;
-    	color: #555;
+        background: #eee;
+        margin: 10px 20px 20px;
+        padding: 5px 25px;
+        box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+        font-size: 15px;
+        color: #555;
     }
     #ebooks {
-    	border-top: none;
+        border-top: none;
         position: relative;
         padding: 80px 50px 70px;
         background: #fff;
         box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
     }
     .mediaelement-download-link{
-    	display: block !important;
+        display: block !important;
     }
     .mediaelement-download-link a:after {
         content: 'دانلود';
@@ -947,47 +936,47 @@
         display: inline-block;
     }
     .takhfifat {
-    	display: flex;
-    	flex-direction: column;
-    	text-align: center;
-    	align-items: center;
-    	justify-content: center;
-    	margin: -10px 0 30px 0;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        margin: -10px 0 30px 0;
     }
-    
+
     .takhfifat p {
-    	background: #fff;
-    	border-radius: 50px;
-    	margin: 5px 15px;
-    	padding: 15px;
-    	box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
-    	font-family: fanum;
+        background: #fff;
+        border-radius: 50px;
+        margin: 5px 15px;
+        padding: 15px;
+        box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
+        font-family: fanum;
     }
-    
+
     .takhfifat p:before {
-    	content: "\f415";
-    	font-family: mat;
-    	font-size: 30px;
-    	vertical-align: middle;
-    	margin: -10px -10px -10px 15px;
-    	border: 1px solid #aaa;
-    	border-radius: 50%;
-    	width: 40px;
-    	display: inline-flex;
-    	height: 40px;
-    	color: #F44336;
-    	align-items: center;
-    	justify-content: center;
+        content: "\f415";
+        font-family: mat;
+        font-size: 30px;
+        vertical-align: middle;
+        margin: -10px -10px -10px 15px;
+        border: 1px solid #aaa;
+        border-radius: 50%;
+        width: 40px;
+        display: inline-flex;
+        height: 40px;
+        color: #F44336;
+        align-items: center;
+        justify-content: center;
     }
-    
+
     .takhfifat p span {
-    	font-size: 15px;
-    	margin: 0 5px;
-    	color: #F44336;
-    	border: 1px solid;
-    	padding: 0 10px;
-    	border-radius: 30px;
-    	background: #ffffff;
+        font-size: 15px;
+        margin: 0 5px;
+        color: #F44336;
+        border: 1px solid;
+        padding: 0 10px;
+        border-radius: 30px;
+        background: #ffffff;
     }
     .bought-tickets {
         margin: 82px 20px 80px;
@@ -995,38 +984,38 @@
         font-size: 15px;
         color: #888;
     }
-    
+
     .bought-tickets a {
-    	padding: 20px 40px;
-    	border-radius: 30px;
-    	background: #fff;
-    	color: #555 !important;
-    	box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
-    	font-size: 15px;
+        padding: 20px 40px;
+        border-radius: 30px;
+        background: #fff;
+        color: #555 !important;
+        box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
+        font-size: 15px;
     }
-    
+
     .bought-tickets a:before {
-    	content: "\f518";
-    	font-family: mat;
-    	font-size: 30px;
-    	vertical-align: middle;
-    	margin: -10px -35px -10px 15px;
-    	border: 1px solid #aaa;
-    	border-radius: 50%;
-    	width: 56px;
-    	display: inline-flex;
-    	height: 56px;
-    	color: #F44336;
-    	align-items: center;
-    	justify-content: center;
+        content: "\f518";
+        font-family: mat;
+        font-size: 30px;
+        vertical-align: middle;
+        margin: -10px -35px -10px 15px;
+        border: 1px solid #aaa;
+        border-radius: 50%;
+        width: 56px;
+        display: inline-flex;
+        height: 56px;
+        color: #F44336;
+        align-items: center;
+        justify-content: center;
     }
     .bought-tickets div {
-    	margin: 0 0 40px 0;
-    	font-size: 15px;
-    	color: #888;
+        margin: 0 0 40px 0;
+        font-size: 15px;
+        color: #888;
     }
     .bought-tickets a.muted {
-    	opacity: 0.7;
+        opacity: 0.7;
     }
     @media (max-width: 768px) {
         .owl-carousel .owl-dots {
@@ -1034,35 +1023,35 @@
         }
     }
     @media (max-width: 850px){
-    	.tickets > div {
-    		flex-direction: column;
-    	}
-    	.tickets a {
-    		display: flex;
-    		width: auto !important;
-    	}
+        .tickets > div {
+            flex-direction: column;
+        }
+        .tickets a {
+            display: flex;
+            width: auto !important;
+        }
     }
     @media (max-width: 600px){
-    	.namayandegi .pane-content div {
-    		width: calc(100% - 40px);
-    	}
-    	.kargah-sec .first-row {
-    		flex-direction: column-reverse;
-    		align-items: center;
-    	}
-    	section.kargah-sec {
-    		padding: 50px 15px 30px;
-    	}
-    	.kargah-sec .first-row > div:first-child {
-    		width: 100%;
-    		margin: 30px 0 0;
-    	}
+        .namayandegi .pane-content div {
+            width: calc(100% - 40px);
+        }
+        .kargah-sec .first-row {
+            flex-direction: column-reverse;
+            align-items: center;
+        }
+        section.kargah-sec {
+            padding: 50px 15px 30px;
+        }
+        .kargah-sec .first-row > div:first-child {
+            width: 100%;
+            margin: 30px 0 0;
+        }
     }
     @media (max-width: 400px){
-    	.tickets a div.city-name {
+        .tickets a div.city-name {
             font-size: 17px;
             padding: 3px 8px;
-    	}
+        }
         .tickets a .inner-text {
             margin: 27px 0px 0 40px;
         }
@@ -1108,169 +1097,169 @@
     }
 
     /*--------------------aplication-section--------------------*/
-#pbd .wh{
-	width: calc(100% - 30px);
-	max-width: 1100px;
-	margin: auto;
-	text-align: center;
-	padding: 80px 15px;
-	z-index: 1;
-	position: relative;
-}
-#pbd h2{
-	font-size: 24px;
-	text-align: center;
-	position: relative;
-	font-weight:500px;
-	line-height: 40px;
-}
-#pbd h2:before {
-	content: "";
-	position: absolute;
-	width: 130px;
-	height: 3px;
-	background: #883ab7;
-	bottom: -10px;
-	right: calc(50% - 65px);
-	box-shadow: rgba(136,58,183,0.15) 0px 1px 6px, rgba(136,58,183,0.157) 0px 1px 4px;
-}
-#pbd{
-	background-color: #f5f5f5;
-}
-#pbd img{
-	position: absolute;
-	left: -60px;
-	bottom: 82px;
-	width: 446px;
-}
-#pbd .sec-li > div{
-	background-color: rgba(255, 255, 255, 0.85);
-	box-shadow: rgba(0, 0, 0, 0.156863) 0px 1px 6px, rgba(0, 0, 0, 0.227451) 0px 1px 6px;
-	max-width: 1067px;
-	width: 100%;
-	margin: auto;
-	box-sizing: border-box;
-	padding: 23px 3.5% 36px 37%;
-	text-align: right;
-}
-#pbd .sec-li > div li,
-#pbd .sec-li > div div{
-	text-align:justify;
-}
-#pbd .sec-li > div div{
-	margin-right: 16px;
-	margin-bottom: -9px;
-}
-#pbd .sec-li > div{
-	padding: 23px 0.5% 36px 37%;
-	font-family: fanum;
-    text-align: center;
-    font-size: 14.3px;
-    line-height: 30px;
-}
-#pbd .sec-li > div p,
-#pbd .sec-li > div li,
-#pbd .sec-li > div ol{
-    font-size: 14.3px;
-    line-height: 30px;
-}
-#pbd .sec-li > div ol{
-    -webkit-margin-after: 14.3px;
-    -webkit-margin-before: 14.3px;
-    -webkit-margin-end: 0px;
-    -webkit-margin-start: 0px;
-    -webkit-padding-start: 40px;
-    list-style-type: decimal;
-    text-align: center;
-}
-#pbd .sec-li > div > p{
-	text-align: justify;
-}
-#pbd .sec-li > div li{
-	text-align:right;
-}
-#pbd .aboutus {
-	text-align: right;
-	font-size: 1.1rem;
-	line-height: 30px;
-	display: inline-block;
-	width: 100%;
-	margin-top: 45px;
-    margin-bottom: 30px;
-    position:relative;
-}
-a.poster {
-	border-radius: 2px;
-	line-height: 36px;
-	text-align: center;
-	padding: 0 10px 0 16px;
-	display: inline-block;
-	font-size: 14px;
-	transition: all 0.2s;
-	box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
-	outline: none;
-	color: #2196f3 !important;
-	border: 1px solid #2196f3;
-	margin: 11px 8px -10px 8px;
-	box-sizing: border-box;
-	vertical-align: top;
-	width: auto;
-}
-a.poster:before {
-	content: '\f1da';
-	font-family: mat;
-	padding: 0 0 0 5px;
-	font-size: 18px;
-	display: inline-block;
-	vertical-align: bottom;
-}
-a.poster.view:before {
-	content: '\f349';
-}
+    #pbd .wh{
+        width: calc(100% - 30px);
+        max-width: 1100px;
+        margin: auto;
+        text-align: center;
+        padding: 80px 15px;
+        z-index: 1;
+        position: relative;
+    }
+    #pbd h2{
+        font-size: 24px;
+        text-align: center;
+        position: relative;
+        font-weight:500px;
+        line-height: 40px;
+    }
+    #pbd h2:before {
+        content: "";
+        position: absolute;
+        width: 130px;
+        height: 3px;
+        background: #883ab7;
+        bottom: -10px;
+        right: calc(50% - 65px);
+        box-shadow: rgba(136,58,183,0.15) 0px 1px 6px, rgba(136,58,183,0.157) 0px 1px 4px;
+    }
+    #pbd{
+        background-color: #f5f5f5;
+    }
+    #pbd img{
+        position: absolute;
+        left: -60px;
+        bottom: 82px;
+        width: 446px;
+    }
+    #pbd .sec-li > div{
+        background-color: rgba(255, 255, 255, 0.85);
+        box-shadow: rgba(0, 0, 0, 0.156863) 0px 1px 6px, rgba(0, 0, 0, 0.227451) 0px 1px 6px;
+        max-width: 1067px;
+        width: 100%;
+        margin: auto;
+        box-sizing: border-box;
+        padding: 23px 3.5% 36px 37%;
+        text-align: right;
+    }
+    #pbd .sec-li > div li,
+    #pbd .sec-li > div div{
+        text-align:justify;
+    }
+    #pbd .sec-li > div div{
+        margin-right: 16px;
+        margin-bottom: -9px;
+    }
+    #pbd .sec-li > div{
+        padding: 23px 0.5% 36px 37%;
+        font-family: fanum;
+        text-align: center;
+        font-size: 14.3px;
+        line-height: 30px;
+    }
+    #pbd .sec-li > div p,
+    #pbd .sec-li > div li,
+    #pbd .sec-li > div ol{
+        font-size: 14.3px;
+        line-height: 30px;
+    }
+    #pbd .sec-li > div ol{
+        -webkit-margin-after: 14.3px;
+        -webkit-margin-before: 14.3px;
+        -webkit-margin-end: 0px;
+        -webkit-margin-start: 0px;
+        -webkit-padding-start: 40px;
+        list-style-type: decimal;
+        text-align: center;
+    }
+    #pbd .sec-li > div > p{
+        text-align: justify;
+    }
+    #pbd .sec-li > div li{
+        text-align:right;
+    }
+    #pbd .aboutus {
+        text-align: right;
+        font-size: 1.1rem;
+        line-height: 30px;
+        display: inline-block;
+        width: 100%;
+        margin-top: 45px;
+        margin-bottom: 30px;
+        position:relative;
+    }
+    a.poster {
+        border-radius: 2px;
+        line-height: 36px;
+        text-align: center;
+        padding: 0 10px 0 16px;
+        display: inline-block;
+        font-size: 14px;
+        transition: all 0.2s;
+        box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
+        outline: none;
+        color: #2196f3 !important;
+        border: 1px solid #2196f3;
+        margin: 11px 8px -10px 8px;
+        box-sizing: border-box;
+        vertical-align: top;
+        width: auto;
+    }
+    a.poster:before {
+        content: '\f1da';
+        font-family: mat;
+        padding: 0 0 0 5px;
+        font-size: 18px;
+        display: inline-block;
+        vertical-align: bottom;
+    }
+    a.poster.view:before {
+        content: '\f349';
+    }
 
-@media (max-width: 1200px){
-	#pbd .sec-li > div{
-		padding: 24px 0.5% 36px 46%;
-	}
-	#pbd img{
-		position: absolute;
-        left: 3%;
-        width: 42%;
-        top: 2vw;
-	}
-}
+    @media (max-width: 1200px){
+        #pbd .sec-li > div{
+            padding: 24px 0.5% 36px 46%;
+        }
+        #pbd img{
+            position: absolute;
+            left: 3%;
+            width: 42%;
+            top: 2vw;
+        }
+    }
 
-@media (max-width: 992px){
-	#pbd img {
-		position: absolute;
-        width: 285px;
-        top: -13px;
-        right: calc(50% - 141px);
-	}
-	#pbd .sec-li > div {
-		padding: 37px 2% 37px 5%;
-        margin-top: 243px;
-	}
-}
-@media (max-width: 500px) {
-	
-	#pbd .sec-li > div {
-    margin-top: 230px;
-    padding: 50px 0% 37px 5%;
-	}
-	#pbd ol{
-		padding-right: 31px;
-	}
-	#pbd img{
-		width: 300px;
-		top: -23px;
-		right: calc(50% - 150px);
-	}
-	#pbd .wh {
-    padding: 8vh 0 10vh 0;
-	}
-	
-}
+    @media (max-width: 992px){
+        #pbd img {
+            position: absolute;
+            width: 285px;
+            top: -13px;
+            right: calc(50% - 141px);
+        }
+        #pbd .sec-li > div {
+            padding: 37px 2% 37px 5%;
+            margin-top: 243px;
+        }
+    }
+    @media (max-width: 500px) {
+
+        #pbd .sec-li > div {
+            margin-top: 230px;
+            padding: 50px 0% 37px 5%;
+        }
+        #pbd ol{
+            padding-right: 31px;
+        }
+        #pbd img{
+            width: 300px;
+            top: -23px;
+            right: calc(50% - 150px);
+        }
+        #pbd .wh {
+            padding: 8vh 0 10vh 0;
+        }
+
+    }
     #block-system-main > .content:before {
         /*content: "";*/
         position: absolute;

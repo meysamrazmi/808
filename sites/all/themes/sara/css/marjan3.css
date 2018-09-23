@@ -1541,7 +1541,8 @@ div#toboggan-login-link-container {
 .page-gallery.main-gallery .panels-flexible-region-26-center {
     width: 100% !important;
 }
-#gallery808 .pane-page-gallery .pane-title{
+#gallery808 .pane-page-gallery .pane-title,
+#gallery808 .pane-playlists .pane-title{
 	text-align: right;
     padding-right: 60px;
     margin-bottom: 5px;
@@ -1551,6 +1552,9 @@ div#toboggan-login-link-container {
     transition: all 0.4s ease;
     border-image: url(../images/border-h.png) 1;
     border-width: 0 0 1px 0;
+}
+#gallery808 .pane-playlists .pane-title{
+	margin: 38px 0 -14px 0;
 }
 #gallery808 .panels-flexible-row-26-1,
 #gallery808 .panels-flexible-row-26-12{
@@ -2114,23 +2118,85 @@ div#toboggan-login-link-container {
   font-size: 35px;
   text-align: center;
 }
-.playlists {
-  padding: 0 15px;
+.playlists.view-display-id-block {
+	padding: 0 4%;
+	display: block;
+	text-align: center;
 }
-.playlists .views-row {
-  border-bottom: 1px solid #eee;
-  padding-bottom: 20px;
+.playlists.view-display-id-block_1{
+	padding: 0 2%;
+	margin: 40px auto 40px auto;
+	display: block;
+	text-align: center;
 }
-div#gallery808 .playlists .views-row {
+.playlists.view-display-id-block_1 .views-field-name{
+	text-align: right;
+	padding-top: 4px;
+}
+.playlists.view-display-id-block_1 .views-field-name a{
+	color:black !important;
+}
+.playlists.view-display-id-page_1{
+	padding: 0;
+	margin: 20px auto 40px auto;
+	display: block;
+	text-align: center;
+}
+.playlists .views-row:not(.views-row-last) {
+  	border-bottom: 1px solid #eee;
+}
+.playlists.view-display-id-block .more-link{
+	text-align: center;
+}
+.playlists.view-display-id-block .more-link a{
+	border-color: #aaa;
+	border-radius: 4px;
+	margin: 0px auto 4px;
+	display: inline-block;
+	border: 1px solid #eee;
+	text-align: center;
+	padding: 5px 33px;
+}
+.playlists .views-row{
+	padding: 0px 0 21px 0;
+}
+.view-display-id-page_1.playlists .views-row,
+.view-display-id-block_1.playlists .views-row{
   display: inline-block;
   width: 17.5% !important;
   margin: 1%;
-  float: right;
   clear: inherit;
   border: none;
   vertical-align: top;
 }
-div#gallery808 .related img {
+.view-display-id-block_1.playlists .views-row {
+	margin: 0px 1% 10px 1%;
+}
+.view-display-id-block_1.playlists .view-footer{
+	margin-top: 20px;
+}
+.page-gallery-playlists h1#page-title {
+	margin: 20px 5% -10px 0;
+}
+.page-gallery-playlists .playlists .views-row{
+	width: 21.5% !important;
+	min-width: 218px !important;
+	background-color: white;
+	box-shadow: 0 1px 6px rgba(0,0,0,0.12),0 1px 4px rgba(0,0,0,0.12) !important;
+	padding-bottom: 0px;
+	margin: 12px 1%;
+}
+.page-gallery-playlists .playlists .views-row .views-field-name a{
+	padding: 5px 15px 13px 15px;
+	display: block;
+	color: black !important;
+	text-align: right;
+}
+.page-gallery-playlists #breadcrumb{
+	display: none !important;
+}
+div#gallery808 .related img ,
+.page-gallery-playlists .playlists img {
   max-width: 100% !important;
   max-height: inherit !important;
 }
