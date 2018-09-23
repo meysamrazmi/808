@@ -538,9 +538,8 @@ function discount_configuration_form_submit($from, &$form_state){
 
 function developer()
 {
-//    $new_hash = hash_hmac("sha256" , "content" , "@Civil808Android@Saze808@" , false);
-//    adump($new_hash);
 
+    /*
     $query = db_select("uc_product_stock" , "stock");
     $query->join("node" , "node" , "node.nid = stock.nid and node.status = '1' ");
     $query->fields("stock" , array("nid"));
@@ -569,5 +568,6 @@ function developer()
         )->execute();
     }
     adump("ok");
+    */
     die();
 }

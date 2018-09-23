@@ -18,17 +18,20 @@ function create_comment_v_1($data){
 
     $comment = new stdClass();
     $comment->nid = $data['nid'];
+    $comment->pid = (isset($data['pid']) && !empty($data['pid'])) ? $data['pid'] : 0;
     $comment->uid = $user->uid;
     $comment->name = $user->name;
     $comment->mail = $user->mail;
+    $comment->node_type = "comment_node_questions";
+    $comment->is_anonymous = 0;
+    $comment->status = COMMENT_PUBLISHED;
     $comment->language = 'und';
     if(isset($data['field_files']) && !empty($data['field_files'])) $comment->field_files = $data['field_files'];
     $comment->comment_body[$comment->language][0]['value'] = $data['body'];
-    if(isset($data['pid']) && !empty($data['pid'])) $comment->pid = $data['pid'];
-    else $comment->pid = 0;
     $comment->subject = "from android part";
+    comment_submit($comment);
     comment_save($comment);
-    add_log($user->uid , "/comment" , "create" , "comment" , $comment->cid , $data["source"] , $data["version"] , "successful" ,"create a comment");
+    add_log($user->uid , "/comment" , "create" , "comment" , $comment->cid , $data["source"] , $data["version"] , "successful" ,"create a comment for a questions");
     return $comment;
 }
 
@@ -64,8 +67,8 @@ function update_comment_v_1($data){
     }
     return $comment;
 }
-
 /*----------------------------------------------------------------------*/
+
 /*----------------------targeted action part----------------------------*/
 function comment_resource_vote($cid , $data){
     if(!isset($data["hash"]) || !(hash_true($data["hash"] , "comments"))) return services_error(t('Failed to access'), 10);
@@ -112,7 +115,7 @@ function comment_resource_prove($cid , $data){
 function prove_comment_v_1($data){
     global $user;
     $comment = comment_load($data["cid"]);
-    if(strcmp($data["prover"] , "advisor") == 0){
+    if(strcmp($data["prove"] , "advisor") == 0){
         if(!isset($user->roles['10']) || strcmp($user->roles['10'], 'مشاور') != 0) return services_error("You do not have permission for this action!" , 18);
 
         $query = db_select('comment' , 'comment');
@@ -131,9 +134,9 @@ function prove_comment_v_1($data){
         }
         else return false;
     }
-    elseif(strcmp($data["prover"] , "asker") == 0){
+    elseif(strcmp($data["prove"] , "asker") == 0){
         $query = db_select('comment' , 'comment');
-        $query->join('field_data_field_prove_asker' , 'asker' , 'c.cid = asker.entity_id');
+        $query->join('field_data_field_prove_asker' , 'asker' , 'comment.cid = asker.entity_id');
         $query->fields('comment' , array('cid'));
         $query->condition('comment.nid' , $comment->nid);
         $query->condition('asker.field_prove_asker_value' , 1);

@@ -195,18 +195,20 @@ function cm_advisor_prove($cid){
 	if($comment->field_prove_advisor['und']['0']['value'] == 0){
 		$comment->field_prove_advisor['und']['0']['value'] = 1;
 		comment_save($comment);
-		
-		$node = node_load($comment->nid);
+
+        $node = db_select("node")->fields("node", array("nid" , "title" , "uid"))->condition("nid" , $comment->nid)->execute()->fetch();
 		
 		/*send pm to comment author*/
-		$user = user_load($comment->uid);
-		if(!user_has_role(10, $user)){
+        $user = db_select("users")->fields("users", array("name"))->condition("uid" , $node->uid)->execute()->fetch();
+		$user_role = db_select("users_roles" , "role")->fields("role" , array("rid"))->condition("role.uid" , $comment->uid);
+		$user_role = $user_role->execute()->fetchCol();
+		if(in_array(10, $user_role)){
 			$message = $user->name . ' عزیز، پاسخ شما به سوال ' . l('"' . $node->title . '"، ', '/node/' . $node->nid) . ' در سیستم پرسش و پاسخ 808، توسط مشاور سایت تایید شد. ';
 			send_pm($comment->uid, $message);
 		}
 		
 		/*send pm to question author*/
-		$user = user_load($node->uid);
+        $user = db_select("users")->fields("users", array("name"))->condition("uid" , $node->uid)->execute()->fetch();
 		$message = $user->name . '  عزیز، یکی از پاسخ های سوال  ' . l('"' . $node->title . '"، ', '/node/' . $node->nid) . ' که شما در سیستم پرسش و پاسخ 808 مطرح کرده بودید، توسط مشاور سایت تایید شد. ';
 		send_pm($node->uid, $message);
 
@@ -233,10 +235,10 @@ function cm_asker_prove($cid){
 	if($comment->field_prove_asker['und']['0']['value'] == 0){
 		$comment->field_prove_asker['und']['0']['value'] = 1;
 		comment_save($comment);
-		$node = node_load($comment->nid);
+        $node = db_select("node")->fields("node", array("nid" , "title" , "uid"))->condition("nid" , $comment->nid)->execute()->fetch();
 
 		/*send pm to comment author*/
-		$user = user_load($comment->uid);
+        $user = db_select("users")->fields("users", array("name"))->condition("uid" , $comment->uid)->execute()->fetch();
 		$message = $user->name . ' عزیز، پاسخ شما به سوال ' . l('"' . $node->title . '"، ', '/node/' . $node->nid) . ' در سیستم پرسش و پاسخ 808، توسط نویسنده سوال تایید شد. ';
 		send_pm($comment->uid, $message);
 		

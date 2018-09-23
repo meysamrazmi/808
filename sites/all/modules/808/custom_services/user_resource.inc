@@ -440,6 +440,7 @@ function user_bookmark_contents_list_v_1($parameter){
     $param["custom_list"] = $custom_list;
     $query = list_of_contents_v_1($param);
     $list = $query->execute()->fetchAll();
+    if(empty($list)) return array();
     if(strcmp($parameter["type"] , "publication") == 0) {
         $permission = array();
         $query = db_select('m_buyed_nodes', 'buyed');
@@ -468,21 +469,22 @@ function user_bookmark_contents_list_v_1($parameter){
             $bookmark_list[$row->nid] = $row;
         }
 
-        $query = db_select("field_data_field_files" , "field_file");
-        $query->join("file_managed" , "file" , "field_file.field_files_fid = file.fid and file.filemime = 'application/pdf' ");
-        $query->fields('field_file', array('entity_id'));
-        $query->fields('file', array('uri' , 'filesize'));
-        $query->condition('field_file.entity_id', $permission , "IN");
-        $query->condition('field_file.entity_type', 'node');
-        $query->condition('field_file.bundle', 'publication');
-        $files = $query->execute()->fetchAll();
+        if(!empty($permission)) {
+            $query = db_select("field_data_field_files", "field_file");
+            $query->join("file_managed", "file", "field_file.field_files_fid = file.fid and file.filemime = 'application/pdf' ");
+            $query->fields('field_file', array('entity_id'));
+            $query->fields('file', array('uri', 'filesize'));
+            $query->condition('field_file.entity_id', $permission, "IN");
+            $query->condition('field_file.entity_type', 'node');
+            $query->condition('field_file.bundle', 'publication');
+            $files = $query->execute()->fetchAll();
 
-        foreach($files as $file){
-            if(isset($bookmark_list[$file->entity_id]))
-                if(!isset($bookmark_list[$file->entity_id]->files)) $bookmark_list[$file->entity_id]->files = array();
-                array_push($bookmark_list[$file->entity_id]->files , $file);
+            foreach ($files as $file) {
+                if (isset($bookmark_list[$file->entity_id]))
+                    if (!isset($bookmark_list[$file->entity_id]->files)) $bookmark_list[$file->entity_id]->files = array();
+                array_push($bookmark_list[$file->entity_id]->files, $file);
+            }
         }
-
         $bookmark_list = array_values($bookmark_list);
         return $bookmark_list;
     }

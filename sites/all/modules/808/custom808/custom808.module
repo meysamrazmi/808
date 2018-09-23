@@ -226,38 +226,24 @@ function send_pm($to, $message){
  * 	$message : message text
  */
 function question_advisors($nid, $message){
-	$n_expert = db_select("field_data_field_experts" , "experts")
-            ->fields("experts", array("field_experts_tid"))
-            ->condition("bundle" , "questions")
-            ->condition("entity_id", $nid )
-            ->execute()->fetchAll();
+	$query = db_select("field_data_field_experts" , "experts");
+    $query->fields("experts", array("field_experts_tid"));
+    $query->condition("bundle" , "questions")->condition("entity_id", $nid);
+    $question_experts = $query->execute()->fetchCol();
 	
 	//the question has at least one expert 
-	if(!empty($n_expert) && count($n_expert) > 0){
-	    $experts = array();
-	    foreach($n_expert as $e){
-	        array_push($experts, $e->field_experts_tid);
-	    }
-	    $e_users = db_select("field_data_field_experts" , "experts");
-	    $e_users->innerjoin('profile','p','p.pid = experts.entity_id');
-	    $e_users->innerjoin('users_roles','roles','roles.uid = p.uid');
-	    $result = $e_users->fields('p', array('uid'))
-					->condition("experts.entity_type", "profile2")
-					->condition("experts.field_experts_tid", $experts, "IN")
-					->condition("roles.rid", "10")
-					->execute()->fetchAll();
-
-	    $advisors = array();
-	    foreach($result as $e){    
-	        array_push($advisors, $e->uid); 
-	    }
-		
-		//prevent from sending a message to a user multiple times
-		$advisors = array_unique($advisors);
+	if(!empty($question_experts)){
+        $query = db_select("field_data_field_experts", "experts");
+        $query->join("profile", "profile", "profile.pid = experts.entity_id");
+        $query->join("users_roles", "roles", "roles.uid = profile.uid and roles.rid = '10' ");
+        $query->join("users", "user", "profile.pid = user.uid");
+        $query->fields('user', array('mail'));
+        $query->condition("experts.field_experts_tid", $question_experts, "IN")->condition("experts.entity_type" , "profile2")->condition("experts.bundle" , "main");
+        $advisors = $query->execute()->fetchCol();
 	}
 	if(isset($advisors) && !empty($advisors) && count($advisors) > 0){
-		foreach($advisors as $uid){
-			send_pm($uid, $message);
+		foreach($advisors as $mail){
+            simple_mail_send("info@civil808.com", $mail, "سوالی مرتبط با تخصص شما در سایت 808 پرسیده شده است.", $message);
 		}
 	}
 }
@@ -269,20 +255,19 @@ function question_advisors($nid, $message){
  * 	$comment : comment object that we'll send message to its followers
  */
 function question_followers($node, $comment){
-	$db_followers = db_select("flagging" , "f")
-                ->fields("f" , array("uid"))
-                ->condition("entity_id" , $node->nid)
+	$db_followers = db_select("flagging" , "f");
+    $db_followers->fields("f" , array("uid"));
+    $db_followers->condition("entity_id" , $node->nid)
                 ->condition("fid" , 3) //questions follow flag id
 				->condition("uid" , $comment->uid, "<>")
-                ->condition("uid" , $node->uid, "<>")
-                ->execute()->fetchAll();
+                ->condition("uid" , $node->uid, "<>");
+    $followers_uid = $db_followers->execute()->fetchCol();
+    if(empty($followers_uid)) return array();
 
-	$followers = array();
-	if(!empty($db_followers) && count($db_followers) > 0){
-	    foreach($db_followers as $f){
-	        array_push($followers , $f->uid);
-	    }
-	}
+    $query = db_select("users" , "user");
+    $query->fields("user" , array("mail"));
+    $query->condition("user.uid" , $followers_uid , "IN");
+    $followers = $query->execute()->fetchCol();
 	return $followers;
 }
 
@@ -412,7 +397,7 @@ function relative_qa_render($nid , $type){
             $output .= '	</div>';
             $output .= '	<div class="left">';
             $output .= '        <a href="/node/' . $row->nid . '" target="_blank" class="title">' . $row->title . '</a>';
-            $output .= '		<p class="body">' . $row->body . '</p>';
+            $output .= '		<div class="body">' . $row->body . '</div>';
             $output .= '	</div>';
             $output .= '</div>';
         }
