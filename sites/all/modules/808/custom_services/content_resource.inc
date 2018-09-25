@@ -1,6 +1,6 @@
 <?php
 
-/*---------------------------------index part----------------------------------*/
+/*---------------------------------index part-------------------------------------*/
 function content_resource_index($hash , $type , $page , $parameter){
     if(!(hash_true($hash , "content"))) return services_error(t('Failed to access'), 10);
     $source_name = (isset($parameter["source"]) && !empty($parameter["source"])) ? $parameter["source"] : "android";
@@ -17,7 +17,6 @@ function content_resource_index($hash , $type , $page , $parameter){
 
     return services_error(t('This version is not supported'), 11);
 }
-
 function list_of_contents_v_0($parameter){
     $type = $parameter["type"]; $page = $parameter["page"];
     $query = db_select('node' , 'node');
@@ -115,6 +114,9 @@ function list_of_contents_v_1($parameter){
                 case "last" :
                     $query->orderBy("node.nid" , "DESC");
                     break;
+                case "first" :
+                    $query->orderBy("node.nid" , "ASC");
+                    break;
                 case "cheap":
                     $query->orderBy("point_needed.field_point_needed_value" , "ASC");
                     break;
@@ -124,9 +126,10 @@ function list_of_contents_v_1($parameter){
                 case "popular":
                     break;
                 default:
-                    $query->orderBy("node.nid" , "ASC");
+                    $query->orderBy("node.nid" , "DESC");
                     break;
             }
+        else $query->orderBy("node.nid" , "DESC");
     }
     elseif(strcmp($type , "podcast") == 0){
         $query->leftJoin("field_data_field_episode" , "field_episode" , "node.nid = field_episode.entity_id and field_episode.bundle = 'podcast'");
@@ -154,6 +157,7 @@ function list_of_contents_v_1($parameter){
                 $newquery = $newquery->execute()->fetchAll();
                 foreach ($newquery as $row){
                     $row->picture = image_style_url("300x300" , $row->picture);
+                    if(isset($row->picture_s) && !empty($row->picture_s)) $row->picture_s = image_style_url("350x350" , $row->picture_s);
                     if (!isset($contents[$college_type])) $contents[$college_type] = array();
                     array_push($contents[$college_type] , $row);
                 }
@@ -179,6 +183,9 @@ function list_of_contents_v_1($parameter){
             case "last" :
                 $query->orderBy("node.nid" , "DESC");
                 break;
+            case "first" :
+                $query->orderBy("node.nid" , "ASC");
+                break;
             case "cheap" :
                 $query->orderBy("product.sell_price" , "ASC");
                 break;
@@ -188,15 +195,17 @@ function list_of_contents_v_1($parameter){
             case "popular" :
                 break;
             default :
-                $query->orderBy("node.nid" , "ASC");
+                $query->orderBy("node.nid" , "DESC");
                 break;
         }
+        else $query->orderBy("node.nid" , "DESC");
     }
 
     $query->range($page*24, 24);
     $contents = $query->execute()->fetchAll();
     foreach ($contents as $content) {
-        $content->picture = image_style_url("300x300", $content->picture);
+        if(isset($content->picture) && !empty($content->picture)) $content->picture = image_style_url("300x300", $content->picture);
+        if(isset($content->picture_s) && !empty($content->picture_s)) $content->picture_s = image_style_url("350x350", $content->picture_s);
         if(isset($content->list_price)) $content->list_price = round($content->list_price , 0);
         if(isset($content->sell_price)) $content->sell_price = round($content->sell_price , 0);
     }
@@ -207,11 +216,13 @@ function get_nodes_query($type){
     $query->fields('node' , array('nid' , 'type' , 'title' , 'uid' , 'changed'));
     $query->leftJoin("profile" , "profile" , "profile.uid = node.uid and profile.type = 'main'");
     $query->leftJoin("field_data_field_full_name" , "name" , "name.entity_id = profile.pid and name.entity_type = 'profile2' and name.bundle = 'main'");
-    if(strcmp($type , "podcast") == 0)
-        $query->leftJoin("field_data_field_image", "field_image", "node.nid = field_image.entity_id and field_image.delta = '1' and  field_image.bundle = '" . $type . "'");
-    else
-        $query->leftJoin("field_data_field_image", "field_image", "node.nid = field_image.entity_id and field_image.bundle = '" . $type . "'");
+    $query->leftJoin("field_data_field_image", "field_image", "node.nid = field_image.entity_id and field_image.delta = '0' and  field_image.bundle = '" . $type . "'");
     $query->leftJoin("file_managed", "file_image", "field_image.field_image_fid = file_image.fid");
+    if(strcmp($type , "college") == 0 || strcmp($type , "podcast") == 0){
+        $query->leftJoin("field_data_field_image", "image_s", "node.nid = image_s.entity_id and image_s.delta = '1' and  field_image.bundle = '" . $type . "'");
+        $query->leftJoin("file_managed", "file_image_s", "image_s.field_image_fid = file_image_s.fid");
+        $query->addField('file_image_s', 'uri', 'picture_s');
+    }
     $query->addField('file_image', 'uri', 'picture');
     $query->addField("name" , "field_full_name_value" , "author_name");
     $query->condition('node.status' , 1);
@@ -239,6 +250,7 @@ function search_content_by_value($value , $type){
 
     return $custom_list;
 }
+/*--------------------------------------------------------------------------------*/
 
 /*---------------------------------retrieve part----------------------------------*/
 function content_resource_retrieve($hash , $nid , $parameter){
@@ -346,7 +358,7 @@ function retrieve_a_content_v_1($parameter){
     $nid = $parameter["nid"];
 
     $query = db_select("node" , "node");
-    $query->leftJoin("field_data_field_image" , "field_image" , "node.nid = field_image.entity_id and field_image.entity_type = 'node' ");
+    $query->leftJoin("field_data_field_image" , "field_image" , "node.nid = field_image.entity_id and field_image.entity_type = 'node' and field_image.delta = '0' ");
     $query->leftJoin("file_managed" , "picture" , "picture.fid = field_image.field_image_fid");
     $query->leftJoin("field_data_body" , "body" , "node.nid = body.entity_id");
     $query->fields('node' , array('nid' , 'type' , 'title' , 'uid' , 'created' , 'changed'));
@@ -425,6 +437,15 @@ function retrieve_a_content_v_1($parameter){
         }
     }
     elseif(strcmp($node->type , "college") == 0){
+        $query = db_select("field_data_field_image" , "field_image");
+        $query->join("file_managed" , "picture_s" , "picture_s.fid = field_image.field_image_fid");
+        $query->addField('picture_s' , 'uri' , 'picture_s');
+        $query->condition("field_image.entity_id" , $node->nid);
+        $query->condition("field_image.entity_type" , "node");
+        $query->condition("field_image.delta" , "1");
+        $picture_s = $query->execute()->fetch();
+        if(!empty($picture_s)) $node->picture_s = image_style_url("350x350" , $picture_s->picture_s);
+
         $query = db_select("uc_products" , "uc_products");
         $query->fields("uc_products" , array("model" , "list_price" , "sell_price"));
         $query->condition("uc_products.nid" , $nid);
@@ -439,6 +460,11 @@ function retrieve_a_content_v_1($parameter){
         $query->condition("field_film.entity_id" , $nid);
         $film = $query->execute()->fetch();
         if(!(empty($film)))$node->film_link = $film->film;
+
+        $query = db_select("uc_attribute_options" , "options");
+        $query->join("uc_product_attributes" , "product_attributes" , "options.aid = product_attributes.aid and product_attributes.nid = '" . $node->nid . " ' ");
+        $query->fields("options" , array("name" , "price"));
+        $node->options = $query->execute()->fetchAll();
     }
     else return services_error("This content type is not supported!" , 17);
 
@@ -463,14 +489,16 @@ function retrieve_a_content_v_1($parameter){
 
     return $node;
 }
+/*--------------------------------------------------------------------------------*/
 
-/*---------------------------------action part----------------------------------*/
+/*---------------------------------action part------------------------------------*/
 function content_resource_search($hash , $type , $value){
     if(!(hash_true($hash , "content"))) return services_error(t('Failed to access'), 10);
     return list_of_contents_v_0(array("type" => $type , "search_value" => $value));
 }
+/*--------------------------------------------------------------------------------*/
 
-/*------------------------------target action part-------------------------------*/
+/*------------------------------target action part-------------------------------**/
 function bookmark_content($nid , $data){
     if(!isset($data["hash"]) || !(hash_true($data["hash"] , "content"))) return services_error(t('Failed to access'), 10);
 
@@ -528,3 +556,4 @@ function bookmark_status($nid , $uid){
     if($count > 0) return true;
     else return false;
 }
+/*--------------------------------------------------------------------------------*/
