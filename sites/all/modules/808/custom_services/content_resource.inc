@@ -145,6 +145,7 @@ function list_of_contents_v_1($parameter){
         }
     }
     elseif(strcmp($type , "college") == 0){
+        /*select 10th of each type of courses for showing in homepage*/
         if (isset($parameter["college_type"])  && strcmp($parameter["college_type"], "homepage") == 0) {
             $college_types = db_select("field_data_field_course_type" , "college_type")->distinct();
             $college_types->fields("college_type", array("field_course_type_value"));
@@ -166,18 +167,29 @@ function list_of_contents_v_1($parameter){
             return ["content" => $contents];
         }
 
+        /*select a specious type or all types of the courses*/
         if(isset($parameter["college_type"]) && !empty($parameter["college_type"]))
             $query->join("field_data_field_course_type", "college_type", "node.nid = college_type.entity_id and college_type.field_course_type_value = '" . $parameter["college_type"] . "'");
         else
             $query->leftJoin("field_data_field_course_type", "college_type", "node.nid = college_type.entity_id");
-
         $query->addField("college_type" , "field_course_type_value" , "college_type");
 
+        /*add prices of the courses*/
         $query->join("uc_products" , "product" , "node.nid = product.nid");
         $query->fields("product" , array("sell_price" , "list_price"));
 
-        if(isset($parameter["free"]) && strcmp($parameter["free"] , "1") == 0) $query->condition("product.sell_price" , 0);
 
+        /*add course step*/
+        $query->leftJoin("field_data_field_course_step" , "step" , "node.nid = step.entity_id and step.bundle = 'college' ");
+        /*filter courses on steps*/
+        if(strlen($parameter["college_step"]) > 0){
+            $steps = explode( "," , $parameter["college_step"]);
+            $query->condition("step.field_course_step_value" , $steps , "IN");
+        }
+        $query->addField("step" , "field_course_step_value" , "college_step");
+
+
+        /*sort the courses*/
         if(isset($parameter["sort"]))
             switch ($parameter["sort"]){
             case "last" :
@@ -208,6 +220,19 @@ function list_of_contents_v_1($parameter){
         if(isset($content->picture_s) && !empty($content->picture_s)) $content->picture_s = image_style_url("350x350", $content->picture_s);
         if(isset($content->list_price)) $content->list_price = round($content->list_price , 0);
         if(isset($content->sell_price)) $content->sell_price = round($content->sell_price , 0);
+        if(strcmp($content->type , "college") == 0){
+            switch ($content->college_step){
+                case "0" :
+                    $content->college_step = array("id" => 0 , "state" => "در حال ثبت نام");
+                    break;
+                case "1" :
+                    $content->college_step = array("id" => 1 , "state" => "در حال برگزاری");
+                    break;
+                case "2" :
+                    $content->college_step = array("id" => 2 , "state" => "برگزار شده");
+                    break;
+            }
+        }
     }
     return ["content" => $contents];
 }
@@ -465,6 +490,24 @@ function retrieve_a_content_v_1($parameter){
         $query->join("uc_product_attributes" , "product_attributes" , "options.aid = product_attributes.aid and product_attributes.nid = '" . $node->nid . " ' ");
         $query->fields("options" , array("name" , "price"));
         $node->options = $query->execute()->fetchAll();
+
+        $query = db_select("field_data_field_course_step" , "step");
+        $query->fields("step" , array("field_course_step_value"));
+        $query->condition("step.entity_id" , $node->nid)->condition("step.bundle" , "college");
+        $step = $query->execute()->fetch();
+        if(!empty($step)) {
+            switch ($step->field_course_step_value){
+                case "0" :
+                    $node->step = array("id" => 0 , "state" => "در حال ثبت نام");
+                    break;
+                case "1" :
+                    $node->step = array("id" => 1 , "state" => "در حال برگزاری");
+                    break;
+                case "2" :
+                    $node->step = array("id" => 2 , "state" => "برگزار شده");
+                    break;
+            }
+        }
     }
     else return services_error("This content type is not supported!" , 17);
 
