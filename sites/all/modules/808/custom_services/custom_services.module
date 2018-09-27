@@ -894,7 +894,7 @@ function custom_services_services_resources(){
                 'search' => array(
                     'help' => 'Search in E-Books',
                     'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'content_resource'),
-                    'callback' => 'content_resource_search',
+                    'callback' => 'content_resource_search_previous',
                     'access callback' => 'user_access',
                     'access arguments' => array('access content'),
                     'access arguments append' => FALSE,
@@ -957,7 +957,33 @@ function custom_services_services_resources(){
                     ),
                 ),
             ),
-            'relationships' => array(),
+            'relationships' => array(
+                'search' => array(
+                    'help' => 'Search in contents',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'content_resource'),
+                    'callback' => 'content_resource_search',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'list',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'string',
+                            'description' => 'Used for url address',
+                        ),
+                        array(
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
+                        ),
+                    ),
+                ),
+            ),
         ),
         'payment' => array(
             'operations' => array(

@@ -1,6 +1,6 @@
 <?php
 
-/*---------------------------------index part-------------------------------------*/
+/*---------------------------------operations part-------------------------------------*/
 function content_resource_index($hash , $type , $page , $parameter){
     if(!(hash_true($hash , "content"))) return services_error(t('Failed to access'), 10);
     $source_name = (isset($parameter["source"]) && !empty($parameter["source"])) ? $parameter["source"] : "android";
@@ -212,6 +212,17 @@ function list_of_contents_v_1($parameter){
         }
         else $query->orderBy("node.nid" , "DESC");
     }
+    elseif(strcmp($type , "designteam") == 0){
+        $query->orderBy("node.nid" , "DESC");
+        $query->range(0 , 20);
+    }
+    elseif(strcmp($type , "article") == 0){
+        $query->join("field_data_field_eventtime", "eventtime", "eventtime.entity_id = node.nid");
+        $query->addField("eventtime" , "field_eventtime_value" , "event_time");
+        $query->condition("eventtime.field_eventtime_value", date("Y-m-d", time()) , ">=");
+        $query->orderBy("eventtime.field_eventtime_value", "ASC");
+        $query->range(0 , 20);
+    }
 
     $query->range($page*24, 24);
     $contents = $query->execute()->fetchAll();
@@ -275,9 +286,7 @@ function search_content_by_value($value , $type){
 
     return $custom_list;
 }
-/*--------------------------------------------------------------------------------*/
 
-/*---------------------------------retrieve part----------------------------------*/
 function content_resource_retrieve($hash , $nid , $parameter){
     if(!(hash_true($hash , "content"))) return services_error(t('Failed to access'), 10);
     $source_name = (isset($parameter["source"]) && !empty($parameter["source"])) ? $parameter["source"] : "android";
@@ -535,7 +544,7 @@ function retrieve_a_content_v_1($parameter){
 /*--------------------------------------------------------------------------------*/
 
 /*---------------------------------action part------------------------------------*/
-function content_resource_search($hash , $type , $value){
+function content_resource_search_previous($hash , $type , $value){
     if(!(hash_true($hash , "content"))) return services_error(t('Failed to access'), 10);
     return list_of_contents_v_0(array("type" => $type , "search_value" => $value));
 }
@@ -598,5 +607,65 @@ function bookmark_status($nid , $uid){
 
     if($count > 0) return true;
     else return false;
+}
+/*--------------------------------------------------------------------------------*/
+
+/*--------------------------------relationships part------------------------------*/
+function content_resource_search($list , $parameter){
+    if(!(hash_true($parameter["hash"] , "content"))) return services_error(t('Failed to access'), 10);
+    $source_name = (isset($parameter["source"]) && !empty($parameter["source"])) ? $parameter["source"] : "android";
+    $version = (isset($parameter["version"]) && !empty($parameter["version"])) ? (int)$parameter["version"] : 0;
+
+    $function = get_compatible_function_name("/content/list/search" , "GET" , $source_name , $version);
+
+    if(!empty($function) && strlen($function) > 0) {
+        return call_user_func($function, $parameter);
+    }
+    return services_error(t('This version is not supported'), 11);
+}
+function content_search_list_v1($parameter){
+    if(isset($parameter["types"])) $types = explode("," , $parameter["types"]);
+    $all_types = array("publication" , "podcast" , "college" , "video" , "designteam" , "article" , "pedia");
+
+    $query = db_select("node" , "node");
+    $query->fields("node" , array("nid"));
+    $query->condition("node.title" , '%' . $parameter["value"] . '%', 'LIKE');
+    $first = $query->execute()->fetchCol();
+
+    $query = db_select("field_data_body" , "body");
+    $query->fields("body" , array("entity_id"));
+    $query->condition("body.body_value" , '%' . $parameter["value"] . '%', 'LIKE');
+    $second = $query->execute()->fetchCol();
+
+    $nids = array_merge($first , $second);
+    if(empty($nids)) return array();
+
+
+    $query = db_select("node" , "node");
+    $query->leftJoin("field_data_field_image", "field_image", "node.nid = field_image.entity_id and field_image.delta = '0' ");
+    $query->leftJoin("file_managed", "image", "field_image.field_image_fid = image.fid");
+    $query->condition("node.status" , 1);
+    $query->condition("node.nid" , $nids , "IN");
+    $query->orderBy("node.nid" , "DESC");
+    $query->addField("node" , "type" , "type");
+    $type_count_query = clone($query);
+    $query->condition("node.type" , (isset($types) && !empty($types)) ? $types : $all_types , "IN");
+    $query->fields("node" , array("nid" , "title"));
+    $query->addField("image" , "uri" , "image");
+    $query->range((isset($parameter["page"])) ? $parameter["page"]*50 : 0, 50);
+    $contents = $query->execute()->fetchAll();
+
+    $type_count_query->condition("node.type" , $all_types , "IN");
+    $type_count_query->groupBy("node.type")->addExpression("count(node.type)" , "count");
+    $type_count_query = $type_count_query->execute()->fetchAll();
+    $type_count = array();
+    foreach ($type_count_query as $value) $type_count[$value->type] = (int)$value->count;
+
+
+    foreach($contents as $content){
+        if(!empty($content->image)) $content->image = image_style_url("350x350" , $content->image);
+    }
+
+    return array("contents" => $contents , "count" => $type_count);
 }
 /*--------------------------------------------------------------------------------*/
