@@ -98,7 +98,15 @@ function vote_comment_v_1($data){
     $votes['uid'] = $user->uid;
     votingapi_set_votes($votes);
     add_log($user->uid , "/comment/cid/vote" , "vote " . $data["action"] ,"comment" , $data["cid"] , $data["source"] , $data["version"] , "successful" , "vote a comment");
-    return $votes;
+
+    $query = db_select("votingapi_vote" , "vote");
+    $query->fields("vote" , array("entity_id"));
+    $query->condition("vote.entity_id" , $data["cid"]);
+    $query->condition("vote.entity_type" , "comment");
+    $query->groupBy('vote.entity_id');
+    $query->addExpression('sum(vote.value)', 'vote_point');
+    $vote = $query->execute()->fetch();
+    return array("vote_point" => $vote->vote_point);
 }
 
 function comment_resource_prove($cid , $data){

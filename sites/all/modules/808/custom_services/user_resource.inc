@@ -462,7 +462,11 @@ function user_bookmark_contents_list_v_1($parameter){
         }
         $bookmark_list = array();
         foreach ($list as $row){
+            $row->nid = (int) $row->nid;
+            $row->uid = (int) $row->uid;
+            $row->price = (int) $row->price;
             $row->picture = image_style_url("300x300", $row->picture);
+            $row->files = array();
             if($row->price == 0) array_push($permission, $row->nid);
             if(in_array($row->nid , $bought)) $row->bought = true;
             else $row->bought = false;
@@ -480,8 +484,8 @@ function user_bookmark_contents_list_v_1($parameter){
             $files = $query->execute()->fetchAll();
 
             foreach ($files as $file) {
-                if (isset($bookmark_list[$file->entity_id]))
-                    if (!isset($bookmark_list[$file->entity_id]->files)) $bookmark_list[$file->entity_id]->files = array();
+                $file->uri = generate_file_address($file->uri);
+                $file->filesize = (int) $file->filesize;
                 array_push($bookmark_list[$file->entity_id]->files, $file);
             }
         }
@@ -489,7 +493,13 @@ function user_bookmark_contents_list_v_1($parameter){
         return $bookmark_list;
     }
     if(strcmp($parameter["type"] , "podcast") == 0){
-        foreach ($list as $row) $row->picture = image_style_url("200x200" , $row->picture);
+        foreach ($list as $row) {
+            $row->nid = (int) $row->nid;
+            $row->uid = (int) $row->uid;
+            $row->audio_size = (int) $row->audio_size;
+            $row->audio = generate_file_address($row->audio);
+            $row->picture = image_style_url("200x200" , $row->picture);
+        }
         return $list;
     }
     return array();

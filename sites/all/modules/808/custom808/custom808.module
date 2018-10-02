@@ -236,15 +236,14 @@ function question_advisors($nid, $message){
         $query = db_select("field_data_field_experts", "experts");
         $query->join("profile", "profile", "profile.pid = experts.entity_id");
         $query->join("users_roles", "roles", "roles.uid = profile.uid and roles.rid = '10' ");
-        $query->join("users", "user", "profile.pid = user.uid");
+        $query->join("users", "user", "profile.uid = user.uid");
         $query->fields('user', array('mail'));
         $query->condition("experts.field_experts_tid", $question_experts, "IN")->condition("experts.entity_type" , "profile2")->condition("experts.bundle" , "main");
         $advisors = $query->execute()->fetchCol();
-	}
-	if(isset($advisors) && !empty($advisors) && count($advisors) > 0){
-		foreach($advisors as $mail){
+        $advisors = array_unique($advisors);
+        foreach($advisors as $mail){
             simple_mail_send("info@civil808.com", $mail, "سوالی مرتبط با تخصص شما در سایت 808 پرسیده شده است.", $message);
-		}
+        }
 	}
 }
 
