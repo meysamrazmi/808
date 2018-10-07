@@ -1146,6 +1146,47 @@ function custom_services_services_resources(){
             'targeted_actions' => array(),
             'relationships' => array(),
         ),
+        'taxonomy' => array(
+            'operations' => array(
+                'index' => array(
+                    'help' => 'get list of taxonomies',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'taxonomy_resource'),
+                    'callback' => 'taxonomy_resource_index',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
+                        ),
+                    ),
+                ),
+                'retrieve' => array(
+                    'help' => 'return data of a  taxonomy',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'taxonomy_resource'),
+                    'callback' => 'taxonomy_resource_retrieve',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
+                        ),
+                    ),
+                ),
+            ),
+        ),
+
 
 
         'latin_front_page' => array(

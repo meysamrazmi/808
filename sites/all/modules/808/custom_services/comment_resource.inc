@@ -106,7 +106,7 @@ function vote_comment_v_1($data){
     $query->groupBy('vote.entity_id');
     $query->addExpression('sum(vote.value)', 'vote_point');
     $vote = $query->execute()->fetch();
-    return array("vote_point" => $vote->vote_point);
+    return array("vote_points" => (int) $vote->vote_point);
 }
 
 function comment_resource_prove($cid , $data){

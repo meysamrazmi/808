@@ -193,8 +193,10 @@ function question_resource_retrieve($nid , $parameter){
 }
 function retrieve_question_v_1($parameter){
     global $user;
+	$author = db_select("node")->fields("node" , array("uid"))->condition("node.nid" , $parameter["nid"])->execute()->fetch();
+	if(!empty($author) && $author->uid == $user->uid) $parameter["domain"] = "my_question";
+	else $parameter["domain"] = "all";
     $parameter["custom_question"] = array($parameter["nid"]);
-    $parameter["domain"] = "all";
     $parameter["user"] = $user;
     $get_question = get_questions($parameter);
     if(empty($get_question)) return $get_question;

@@ -52,7 +52,9 @@ function custom808_cron(){
     $query = db_select("node" , "node");
     $query->fields("node" , array("nid"));
     $query->condition("node.type" , "questions")->condition("node.status" , 1);
-    $query->condition("node.changed" , strtotime('+2 day', REQUEST_TIME) , "<");
+    $and_1 = db_and()->condition("node.changed" , strtotime('-3 day', REQUEST_TIME) , "<")->condition("node.changed" , strtotime('-3 day -5 hour', REQUEST_TIME) , ">");
+    $and_2 = db_and()->condition("node.changed" , strtotime('-6 day', REQUEST_TIME) , "<")->condition("node.changed" , strtotime('-6 day -5 hour', REQUEST_TIME) , ">");
+    $query->condition(db_or()->condition($and_1)->condition($and_2));
     $questions = $query->execute()->fetchCol();
     if(empty($questions)) return;
 
