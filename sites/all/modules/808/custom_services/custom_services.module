@@ -1770,6 +1770,24 @@ function custom_services_services_resources(){
 			)
 		),
         'file' => array(
+            'operations' => array(
+                'delete' => array(
+                    'help' => 'Delete a file',
+                    'callback' => 'file_delete',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'fid',
+                            'type' => 'int',
+                            'description' => 'The id of the file to delete',
+                            'source' => array('path' => '0'),
+                            'optional' => FALSE,
+                        ),
+                    ),
+                ),
+            ),
             'actions' => array(
                 'create_file' => array(
                     'help' => 'Create a file with raw data.',
@@ -1848,13 +1866,6 @@ function custom_services_form_alter(&$form, &$form_state, &$form_id){
         }
     }
 }
-
-function hash_true($hash , $resource){
-    $new_hash = hash_hmac("sha256" , $resource , "@Civil808Android@Saze808@" , false);
-    if(strcmp($hash, $new_hash) == 0) return true;
-    return false;
-}
-
 function user_information($uids = array()){
     $query = db_select('users' , 'u');
     $query->leftJoin('file_managed' , 'f' , 'u.picture = f.fid');
@@ -1865,6 +1876,7 @@ function user_information($uids = array()){
     return $result;
 }
 
+/*-------------------------------file part-------------------------------------------------*/
 function upload_file($parameter) {
     if(!isset($parameter["hash"]) || !(hash_true($parameter["hash"] , "file"))) return services_error(t('Failed to access'), 10);
     global $user;
@@ -1905,7 +1917,20 @@ function upload_file($parameter) {
     }
     return $files;
 }
-
+function file_delete_api($fid) {
+    if ($file = file_load($fid)) {
+        file_usage_delete($file, 'services');
+        return file_delete($file);
+    }
+    return FALSE;
+}
+/*-------------------------------------------------------------------------------------------------*/
+/*-------------------------------public functions-------------------------------------------------*/
+function hash_true($hash , $resource){
+    $new_hash = hash_hmac("sha256" , $resource , "@Civil808Android@Saze808@" , false);
+    if(strcmp($hash, $new_hash) == 0) return true;
+    return false;
+}
 function get_compatible_function_name($url, $method, $source_name , $version){
     $query = db_select("api_code_version" , "acv")
         ->fields("acv" , array("last_function"))
@@ -1919,7 +1944,6 @@ function get_compatible_function_name($url, $method, $source_name , $version){
     if(!empty($query)) return $query->last_function;
     else return "";
 }
-
 function add_log($uid , $url , $action , $entity_type = "" , $entity_id = 0 , $app_name , $app_version , $status , $description){
     $log = db_insert("app_log")
         ->fields(array(
@@ -1937,9 +1961,9 @@ function add_log($uid , $url , $action , $entity_type = "" , $entity_id = 0 , $a
 
     return $log;
 }
-
 function generate_file_address($url){
     $url = substr($url , 8);
     $url = "http://civil808.com/sites/default/files" . $url;
     return $url;
 }
+/*-------------------------------------------------------------------------------------------------*/

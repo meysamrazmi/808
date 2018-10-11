@@ -108,6 +108,8 @@ function get_questions($parameter){
         $result->nid = (int)$result->nid;
         $result->uid = (int)$result->uid;
         $result->status = (int)$result->status;
+        $result->created = (int)$result->created;
+        $result->changed = (int)$result->changed;
     }
 
     $query = db_select("field_data_field_experts" , "experts_tid");
@@ -257,16 +259,23 @@ function create_question_v_1($data){
     $node->status = 0;
     $node->comment = 2;
     $node->created = REQUEST_TIME;
-
-    node_save($node);
-    return $node;
-
     $node->body['und'][0]['value'] = $data['body'];
     $node->body['und'][0]['summary'] = '';
     $node->body['und'][0]['format'] = 'full_html';
     $node->field_experts  = $data['field_experts'];
     if(isset($data['field_files']) && !empty($data['field_files'])) $node->field_files  = $data['field_files'];
     node_save($node);
+
+    unset($node->menu);
+    unset($node->field_social_share);
+    unset($node->log);
+    unset($node->tnid);
+    unset($node->translate);
+    unset($node->vid);
+    unset($node->ds_switch);
+    unset($node->field_vote_ud);
+    $node->nid = (int) $node->nid;
+    $node->uid = (int) $node->uid;
 
     add_log($user->uid, "/question" , "create" , "questions" , $node->nid , $data["source"] , $data["version"] , "successful" , "create a question.");
     return $node;
@@ -425,8 +434,6 @@ function comments_of_question_v_1($parameter){
     $query->leftJoin("field_data_field_prove_advisor" , "prove_advisor" , "prove_advisor.entity_id = comment.cid and prove_advisor.entity_type = 'comment' and prove_advisor.bundle = 'comment_node_questions' ");
     $query->leftJoin("field_data_field_prove_asker" , "prove_asker" , "prove_asker.entity_id = comment.cid and prove_asker.entity_type = 'comment' and prove_asker.bundle = 'comment_node_questions' ");
     $query->leftJoin("users_roles" , "roles" , "roles.uid = comment.uid and roles.rid = '10' ");
-    $query->leftJoin("field_data_field_files" , "field_files" , "comment.cid = field_files.entity_id and field_files.entity_type = 'comment' and field_files.bundle = 'comment_node_questions' and field_files.delta = '0' ");
-    $query->leftJoin("file_managed" , "files" , "field_files.field_files_fid = files.fid");
     $query->fields("comment" , array("cid" , "uid" , "created" , "changed" , "name"));
     $query->addField("body" , "comment_body_value" , "body");
     $query->addField("author_pic" , "uri" , "author_pic");
@@ -434,8 +441,6 @@ function comments_of_question_v_1($parameter){
     $query->addField("prove_advisor" , "field_prove_advisor_value" , "prove_by_advisor");
     $query->addField("prove_asker" , "field_prove_asker_value" , "prove_by_asker");
     $query->addField("roles" , "rid" , "role");
-    $query->addField("files" , "uri" , "file");
-    $query->addField("files" , "filesize" , "filesize");
     $query->condition("comment.nid" , $parameter["nid"]);
     $query->condition("comment.status" , 1);
     $query->condition("comment.pid" , 0);
@@ -454,6 +459,7 @@ function comments_of_question_v_1($parameter){
         $comment->children = array();
         $comment->vote_points = 0;
         $comment->user_vote = 0;
+        $comment->files = array();
         $comments_key[$comment->cid] = $comment;
 
         /*post process*/
@@ -461,10 +467,9 @@ function comments_of_question_v_1($parameter){
         $comment->uid = (int) $comment->uid;
         $comment->prove_by_advisor = (int) $comment->prove_by_advisor;
         $comment->prove_by_asker = (int) $comment->prove_by_asker;
-        if(!empty($comment->file)) $comment->file = generate_file_address($comment->file);
-        $comment->filesize = (!empty($comment->filesize)) ? (int) $comment->filesize : 0;
+        $comment->created = (int) $comment->created;
+        $comment->changed = (int) $comment->changed;
     }
-
     $query = db_select("comment" , "comment");
     $query->join("field_data_comment_body" , "body" , "body.entity_id = comment.cid and body.bundle = 'comment_node_questions' ");
     $query->join("users" , "user" , "comment.uid = user.uid");
@@ -485,6 +490,20 @@ function comments_of_question_v_1($parameter){
         $reply->uid = (int) $reply->uid;
         if(!empty($reply->author_pic))  $reply->author_pic = image_style_url("200x200" , $reply->author_pic);
         array_push($comments_key[$reply->pid]->children , $reply);
+    }
+
+    $query = db_select("field_data_field_files" , "field_files");
+    $query->leftJoin("file_managed" , "files" , "field_files.field_files_fid = files.fid");
+    $query->fields("field_files" , array("entity_id"));
+    $query->fields("files" , array("uri" , "filesize"));
+    $query->condition("field_files.entity_id" , $cids , "IN");
+    $query->condition("field_files.entity_type" , "comment");
+    $query->condition("field_files.bundle" , "comment_node_questions");
+    $query->condition("field_files.delta" , 0);
+    $files = $query->execute()->fetchAll();
+    foreach ($files as $file) {
+        $file->uri = generate_file_address($file->uri);
+        array_push($comments_key[$file->entity_id]->files , array("uri" => $file->uri , "filesize" => (int) $file->filesize));
     }
 
     $query = db_select("votingapi_vote" , "vote");

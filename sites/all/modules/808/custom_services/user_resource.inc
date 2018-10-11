@@ -6,12 +6,11 @@ function user_resource_update($uid , $data){
     if(empty($data["source"]) || empty($data["version"])) return services_error("source or version is empty!" , 11);
 
     global $user;
-    if($user->uid != $uid && !in_array("administrator" , $user->roles)) return services_error("You do not have authorization for this action!" , 18);
+    if($user->uid != $uid) return services_error("You do not have authorization for this action!" , 18);
 
     $function = get_compatible_function_name("/user/uid" , "PUT" , $data["source"] , $data["version"]);
     if(!empty($function) && strlen($function) > 0) {
         $data["uid"] = $uid;
-        $data["updater_id"] = $user->uid;
         return call_user_func($function, $data);
     }
     return services_error(t('This version is not supported'), 11);
@@ -51,8 +50,13 @@ function user_update_v_1($data){
         $user_update = true;
     }
     if(isset($data["picture"]) && !empty($data["picture"]) && strcmp($data["picture"]["type"] , "image") == 0){
-        $user->picture = (object)$data["picture"];
-        $user_update = true;
+        $picture = (object)$data["picture"];
+        $file = db_select("file_managed")->fields("file_managed" , array("fid"))->condition("fid" , $picture->fid)->execute()->fetch();
+        if(!empty($file) && (empty($user->picture) || $user->picture->fid != $picture->fid)) {
+            $user->picture = $picture;
+            $user_update = true;
+            file_usage_add($picture, 'user', 'user', $user->uid);
+        }
     }
     if(isset($data["background_image"]) && !empty($data["background_image"]) && strcmp($data["background_image"]["type"] , "image") == 0){
         $user->field_image['und']['0'] = $data["background_image"];
@@ -60,15 +64,15 @@ function user_update_v_1($data){
     }
     if($user_update){
         user_save($user);
-        add_log($data["updater_id"], "/user/uid" , "update" , "user" , $user->uid , $data["source"] , $data["version"] , "successful" , "update user data");
+        add_log($data["uid"], "/user/uid" , "update" , "user" , $user->uid , $data["source"] , $data["version"] , "successful" , "update user data");
     }
 
     if(isset($data["full_name"]) && !empty($data["full_name"])){
         $profile->field_full_name['und'][0]['value'] = $data['full_name'];
         $profile_update = true;
     }
-    if(isset($data["about_me"]) && !empty($data["about_me"])){
-        $profile->field_about_me['und'][0]['value'] = $data['about_me'];
+    if(isset($data["about"]) && !empty($data["about"])){
+        $profile->field_about_me['und'][0]['value'] = $data['about'];
         $profile_update = true;
     }
     if(isset($data["skills"]) && !empty($data["skills"])){
@@ -110,7 +114,7 @@ function user_update_v_1($data){
 
     if($profile_update){
         profile2_save($profile);
-        add_log($data["updater_id"], "/user/uid" , "update" , "profile2" , $profile->pid , $data["source"] , $data["version"] , "successful" , "update profile data");
+        add_log($data["uid"], "/user/uid" , "update" , "profile2" , $profile->pid , $data["source"] , $data["version"] , "successful" , "update profile data");
     }
     return true;
 }
@@ -163,8 +167,9 @@ function login_v_1($data){
         $login_data->token = drupal_get_token('services');
         $login_data->user = $user;
         $login_data->profile = profile_data($user->uid);
-
-        $login_data->log = add_log($uid , "/user/login2" , "login" , "" , 0 , $data["source"] , $data["version"] , "successful" , "user logged in successfully");
+        add_log($uid , "/user/login2" , "login" , "" , 0 , $data["source"] , $data["version"] , "successful" , "user logged in successfully");
+        $login_data->user->uid = (int) $login_data->user->uid;
+        $login_data->user->created = (int) $login_data->user->created;
 
         return $login_data;
     }
@@ -234,7 +239,7 @@ function register_v_1($data){
     $newUser->token = drupal_get_token('services');
     $newUser->user = user_data($user->uid);
     $newUser->profile = profile_data($user->uid);
-    $newUser->log = add_log($user->uid , "/user/register2" , "register" , "profile2" , $profile->pid, $data["source"] ,$data["version"] , "successful" , "New user register successfully");
+    add_log($user->uid , "/user/register2" , "register" , "profile2" , $profile->pid, $data["source"] ,$data["version"] , "successful" , "New user register successfully");
 
     return $newUser;
 }
@@ -344,10 +349,14 @@ function user_purchased_products_list_v_1($parameter){
         foreach($list as $row){
             $row->picture = image_style_url("300x300", $row->picture);
             $row->files = array();
-            $row->bought_date = "";
+            $row->bought_date = 0;
+            $row->nid = (int) $row->nid;
+            $row->uid = (int) $row->uid;
+            $row->changed = (int) $row->changed;
+            $row->price = (int) $row->price;
             $bought_list[$row->nid] = $row;
         }
-        foreach ($bought as $row) if(isset($bought_list[$row->nid])) $bought_list[$row->nid]->bought_date = $row->date;
+        foreach ($bought as $row) if(isset($bought_list[$row->nid])) $bought_list[$row->nid]->bought_date = (int) $row->date;
 
         $query = db_select("field_data_field_files" , "field_file");
         $query->join("file_managed" , "file" , "field_file.field_files_fid = file.fid and file.filemime = 'application/pdf' ");
@@ -359,7 +368,7 @@ function user_purchased_products_list_v_1($parameter){
         $files = $query->execute()->fetchAll();
         foreach($files as $file){
             if(isset($bought_list[$file->entity_id]))
-                array_push($bought_list[$file->entity_id]->files , $file);
+                array_push($bought_list[$file->entity_id]->files , array("uri" => $file->uri , "filesize" => (int) $file->filesize));
         }
         $bought_list = array_values($bought_list);
         return $bought_list;
@@ -409,8 +418,13 @@ function user_purchased_products_list_v_1($parameter){
         $query->orderBy('uc_orders.created', 'DESC');
         $colleges = $query->execute()->fetchAll();
         foreach ($colleges as $college){
-            $college->picture = (!empty($college->picture)) ? image_style_url("200x200" , $college->picture) : "";
+            if(!empty($college->picture)) $college->picture = image_style_url("200x200" , $college->picture);
+            $college->nid = (int) $college->nid;
+            $college->bought_date = (int) $college->bought_date;
+            $college->qty = (int) $college->qty;
+            $college->price = (int) $college->price;
         }
+        return $colleges;
     }
     return array();
 }
@@ -465,6 +479,7 @@ function user_bookmark_contents_list_v_1($parameter){
             $row->nid = (int) $row->nid;
             $row->uid = (int) $row->uid;
             $row->price = (int) $row->price;
+            $row->changed = (int) $row->changed;
             $row->picture = image_style_url("300x300", $row->picture);
             $row->files = array();
             if($row->price == 0) array_push($permission, $row->nid);
@@ -486,7 +501,7 @@ function user_bookmark_contents_list_v_1($parameter){
             foreach ($files as $file) {
                 $file->uri = generate_file_address($file->uri);
                 $file->filesize = (int) $file->filesize;
-                array_push($bookmark_list[$file->entity_id]->files, $file);
+                array_push($bookmark_list[$file->entity_id]->files, array("uri" => $file->uri , "filesize" => $file->filesize));
             }
         }
         $bookmark_list = array_values($bookmark_list);
@@ -497,6 +512,7 @@ function user_bookmark_contents_list_v_1($parameter){
             $row->nid = (int) $row->nid;
             $row->uid = (int) $row->uid;
             $row->audio_size = (int) $row->audio_size;
+            $row->changed = (int) $row->changed;
             $row->audio = generate_file_address($row->audio);
             $row->picture = image_style_url("200x200" , $row->picture);
         }
@@ -536,6 +552,9 @@ function profile_data($uid){
     $query->condition("image.entity_type" , "profile2");
     $result = $query->execute()->fetch();
     if(!empty($result)) $profile->background_image = image_style_url("1360x500_blur", $result->uri);
+    else $profile->background_image = null;
+
+    $profile->pid = (int) $profile->pid;
 
     return $profile;
 }
@@ -551,6 +570,7 @@ function user_data($uid){
     $query->condition("file_managed.fid", $user->picture);
     $result = $query->execute()->fetch();
     if(!empty($result)) $user->picture = image_style_url("200x200", $result->uri);
+    else $user->picture = null;
 
     $query = db_select('users_roles' , 'user_role');
     $query->join('role' , 'role' , 'user_role.rid = role.rid');
@@ -562,6 +582,10 @@ function user_data($uid){
         $roles[$result->rid] = $result->name;
     }
     $user->roles = $roles;
+
+    $user->uid = (int) $user->uid;
+    $user->created = (int) $user->created;
+    $user->login = (int) $user->login;
 
     return $user;
 }
