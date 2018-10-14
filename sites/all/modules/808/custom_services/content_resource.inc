@@ -214,23 +214,26 @@ function list_of_contents_v_1($parameter){
     }
     elseif(strcmp($type , "designteam") == 0){
         $query->orderBy("node.nid" , "DESC");
-        $query->range(0 , 20);
     }
     elseif(strcmp($type , "article") == 0){
         $query->join("field_data_field_eventtime", "eventtime", "eventtime.entity_id = node.nid");
         $query->addField("eventtime" , "field_eventtime_value" , "event_time");
         $query->condition("eventtime.field_eventtime_value", date("Y-m-d", time()) , ">=");
         $query->orderBy("eventtime.field_eventtime_value", "ASC");
-        $query->range(0 , 20);
     }
 
-    $query->range($page*24, 24);
+    $query->range($page*20, 20);
     $contents = $query->execute()->fetchAll();
     foreach ($contents as $content) {
+        $content->nid = (int)$content->nid;
+        $content->uid = (int)$content->uid;
         if(isset($content->picture) && !empty($content->picture)) $content->picture = image_style_url("300x300", $content->picture);
         if(isset($content->picture_s) && !empty($content->picture_s)) $content->picture_s = image_style_url("350x350", $content->picture_s);
         if(isset($content->list_price)) $content->list_price = round($content->list_price , 0);
         if(isset($content->sell_price)) $content->sell_price = round($content->sell_price , 0);
+        if(isset($content->price)) $content->price = (int) $content->price;
+        if(isset($content->audio_size)) $content->audio_size = (int) $content->audio_size;
+        if(isset($content->audio) && !empty($content->audio)) $content->audio = generate_file_address($content->audio);
         if(strcmp($content->type , "college") == 0){
             switch ($content->college_step){
                 case "0" :
@@ -652,7 +655,7 @@ function content_search_list_v1($parameter){
     $query->condition("node.type" , (isset($types) && !empty($types)) ? $types : $all_types , "IN");
     $query->fields("node" , array("nid" , "title"));
     $query->addField("image" , "uri" , "image");
-    $query->range((isset($parameter["page"])) ? $parameter["page"]*50 : 0, 50);
+    $query->range((isset($parameter["page"])) ? $parameter["page"]*20 : 0, 20);
     $contents = $query->execute()->fetchAll();
 
     $type_count_query->condition("node.type" , $all_types , "IN");
@@ -663,6 +666,7 @@ function content_search_list_v1($parameter){
 
 
     foreach($contents as $content){
+        $content->nid = (int) $content->nid;
         if(!empty($content->image)) $content->image = image_style_url("350x350" , $content->image);
     }
 

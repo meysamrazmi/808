@@ -64,6 +64,7 @@ function _file_resource_definition() {
             ),
           ),
         ),
+        /*
         'delete' => array(
           'file' => array('type' => 'inc', 'module' => 'services', 'name' => 'resources/file_resource'),
           'help' => 'Delete a file',
@@ -81,6 +82,7 @@ function _file_resource_definition() {
             ),
           ),
         ),
+        */
         'index' => array(
           'file' => array('type' => 'inc', 'module' => 'services', 'name' => 'resources/file_resource'),
           'callback' => '_file_resource_index',
