@@ -425,6 +425,7 @@ function question_resource_question_comments($nid , $parameter){
     return services_error(t('This version is not supported'), 11);
 }
 function comments_of_question_v_1($parameter){
+    /*Get 20th of main comments*/
     $query = db_select("comment" , "comment");
     $query->join("field_data_comment_body" , "body" , "body.entity_id = comment.cid and body.bundle = 'comment_node_questions' ");
     $query->join("users" , "user" , "comment.uid = user.uid");
@@ -450,6 +451,9 @@ function comments_of_question_v_1($parameter){
     $comments = $query->execute()->fetchAll();
     if(empty($comments)) return array();
 
+    /* pre process on comments
+     * convert data type and initialize
+     */
     $cids = array();
     $comments_key = array();
     foreach ($comments as $comment) {
@@ -470,6 +474,28 @@ function comments_of_question_v_1($parameter){
         $comment->created = (int) $comment->created;
         $comment->changed = (int) $comment->changed;
     }
+
+    /*add votes of each comment*/
+    $query = db_select("votingapi_vote" , "vote");
+    $query->fields("vote" , array("entity_id"));
+    $query->condition("vote.entity_id" , $cids , "IN");
+    $query->condition("vote.entity_type" , "comment");
+    $query->groupBy('vote.entity_id');
+    $query->addExpression('sum(vote.value)', 'vote_point');
+    $votes = $query->execute()->fetchAll();
+    foreach ($votes as $vote) $comments_key[$vote->entity_id]->vote_points = (int) $vote->vote_point;
+
+    /*add the point that user has voted before*/
+    global $user;
+    $query = db_select("votingapi_vote" , "vote");
+    $query->fields("vote" , array("entity_id" , "value"));
+    $query->condition("vote.entity_id" , $cids , "IN");
+    $query->condition("vote.entity_type" , "comment");
+    $query->condition("vote.uid" , $user->uid);
+    $user_votes = $query->execute()->fetchAll();
+    foreach ($user_votes as $user_vote) $comments_key[$user_vote->entity_id]->user_vote = (int) $user_vote->value;
+
+    /*find replies of main comments*/
     $query = db_select("comment" , "comment");
     $query->join("field_data_comment_body" , "body" , "body.entity_id = comment.cid and body.bundle = 'comment_node_questions' ");
     $query->join("users" , "user" , "comment.uid = user.uid");
@@ -484,12 +510,15 @@ function comments_of_question_v_1($parameter){
     $query->condition("comment.pid" , $cids , "IN");
     $query->orderBy("comment.cid" , "ASC");
     $replies = $query->execute()->fetchAll();
-    foreach ($replies as $reply) if(isset($comments_key[$reply->pid])) {
+    $replies_key = array();
+    foreach ($replies as $reply) {
+        array_push($cids , $reply->cid);
+        $reply->files = array();
         $reply->cid = (int) $reply->cid;
         $reply->pid = (int) $reply->pid;
         $reply->uid = (int) $reply->uid;
-        if(!empty($reply->author_pic))  $reply->author_pic = image_style_url("200x200" , $reply->author_pic);
-        array_push($comments_key[$reply->pid]->children , $reply);
+        if(!empty($reply->author_pic)) $reply->author_pic = image_style_url("200x200" , $reply->author_pic);
+        $replies_key[$reply->cid] = $reply;
     }
 
     $query = db_select("field_data_field_files" , "field_files");
@@ -499,30 +528,18 @@ function comments_of_question_v_1($parameter){
     $query->condition("field_files.entity_id" , $cids , "IN");
     $query->condition("field_files.entity_type" , "comment");
     $query->condition("field_files.bundle" , "comment_node_questions");
-    $query->condition("field_files.delta" , 0);
     $files = $query->execute()->fetchAll();
     foreach ($files as $file) {
         $file->uri = generate_file_address($file->uri);
-        array_push($comments_key[$file->entity_id]->files , array("uri" => $file->uri , "filesize" => (int) $file->filesize));
+        if(isset($comments_key[$file->entity_id])) array_push($comments_key[$file->entity_id]->files , array("uri" => $file->uri , "filesize" => (int) $file->filesize));
+        if(isset($replies_key[$file->entity_id])) array_push($replies_key[$file->entity_id]->files , array("uri" => $file->uri , "filesize" => (int) $file->filesize));
     }
+    $replies = array_values($replies_key);
 
-    $query = db_select("votingapi_vote" , "vote");
-    $query->fields("vote" , array("entity_id"));
-    $query->condition("vote.entity_id" , $cids , "IN");
-    $query->condition("vote.entity_type" , "comment");
-    $query->groupBy('vote.entity_id');
-    $query->addExpression('sum(vote.value)', 'vote_point');
-    $votes = $query->execute()->fetchAll();
-    foreach ($votes as $vote) $comments_key[$vote->entity_id]->vote_points = (int) $vote->vote_point;
+    foreach ($replies as $reply)
+        if(isset($comments_key[$reply->pid]))
+            array_push($comments_key[$reply->pid]->children , $reply);
 
-    global $user;
-    $query = db_select("votingapi_vote" , "vote");
-    $query->fields("vote" , array("entity_id" , "value"));
-    $query->condition("vote.entity_id" , $cids , "IN");
-    $query->condition("vote.entity_type" , "comment");
-    $query->condition("vote.uid" , $user->uid);
-    $user_votes = $query->execute()->fetchAll();
-    foreach ($user_votes as $user_vote) $comments_key[$user_vote->entity_id]->user_vote = (int) $user_vote->value;
 
     $comments = array_values($comments_key);
     return $comments;
