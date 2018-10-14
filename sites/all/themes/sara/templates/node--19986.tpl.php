@@ -31,7 +31,7 @@
                 </li>
                 <a href="http://civil808.com/node/20027" style="margin-top: 9px;" class="btn" target="_blank"> مشاهده جزئیات پکیج همراه </a>
                 <li style="margin-top: 18px;">
-جزوه دوره نرم افزاری
+                    جزوه دوره نرم افزاری
                 </li>
                 <a href="http://civil808.com/node/20061" style="margin-top: 9px;" class="btn" target="_blank"> مشاهده جزئیات  </a>
             </ul>
@@ -61,9 +61,6 @@
             <li>بعد از اتمام موفقیت آمیز دوره، دانشجویان حاضر در این طرح می توانند در صورت تمایل، طی یک دوره ی کارآموزی به مدت معلوم با موسسه همکاری کرده و این همکاری بعد از اتمام دوره کارآموزی و در صورت تایید کارشناسان مجموعه، در قالب همکاری حرفه ای ادامه پیدا خواهد کرد.</li>
             <li> ظرفیت طرح بورسیه تحصیلی دوره ی طراحی عملکردی، 10 نفر می باشد و اولویت با دانشجویانی است که مرحله ی دوم ثبت نام را زودتر انجام دهند.</li>
             <li>ضمنا فلش ویژه ی رایگان، به دانشجویان طرح بورسیه تعلق نمی گیرد.</li>
-            <li>برای مشاهده فیلم معرفی طرح بورسیه رایگان تحصیلی در موسسه 808،
-                <a href="/node/20097" target="_blank">کلیک کنید.</a>
-            </li>
         </ol>
     </div>
 </section>
@@ -179,7 +176,7 @@
             <img src="/sites/default/files/photo_2018-09-11_14-56-27.jpg" width="350" height="350" >
         </a>
         <a href="/node/19856" target="_blank">
-            <img src="/sites/default/files/photo_2018-09-11_14-47-26.jpg" width="350" height="350" >
+            <img src="/sites/default/files/damper-4.jpg" width="350" height="350" >
         </a>
     </div>
 </section>
@@ -191,7 +188,7 @@
         <div class="seis-text">
             <p>
                 به اطلاع مهندسان گرامی میرسانیم موسسه 808 مفتخر است به عنوان
-                <a href="http://seismosoft.com/contacts" rel="nofollow" target="_blank">نماینده رسمی شرکت Seismosoft در ایران</a>
+                <a href="https://seismosoft.com/resellers" rel="nofollow" target="_blank">نماینده رسمی شرکت Seismosoft در ایران</a>
                 ،امکان تهیه نسخه کامل این نرم‌افزار تجاری را در ایران برای علاقه‌مندان (کلیه شرکت‌های مشاوره در زمینه طراحی و مقاوم‌سازی سازه‌ها) فراهم آورد.
                 برای خرید نرم افزار های SeismoBuild 2018 و SeismoStruct 2018 می توانید با این شماره  02188272694 تماس بگیرید.
                 <br>
