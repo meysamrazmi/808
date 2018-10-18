@@ -110,3 +110,129 @@ function civil808_update_7100() {
 	db_create_table('moshavereh', $schema['moshavereh']);
 }
 
+/**
+ * Create new database table {remote_login_subscription}.
+ */
+function civil808_update_7101() {
+    $schema['remote_login_subscription'] = array(
+        'fields' => array(
+            'id' => array(
+                'type' => 'serial',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'description' => t('Primary Key : id'),
+            ),
+            'domain' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'not null' => TRUE,
+            ),
+            'uid' => array(
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+            ),
+            'merchant' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'not null' => TRUE,
+            ),
+            'setting' => array(
+                'type' => 'text',
+                'not null' => TRUE,
+            ),
+            'created' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+                'default' => 0,
+                'description' => 'Timestamp for start of the week.',
+            ),
+        ),
+        'primary key' => array('id'),
+        'foreign keys' => array(
+            'uid' => array(
+                'table' => 'users',
+                'columns' => array(
+                    'uid' => 'uid',
+                ),
+            ),
+        ),
+        'unique keys' => array(
+            'unique_fields' => array('domain' , 'merchant'),
+        ),
+    );
+    db_create_table('remote_login_subscription', $schema['remote_login_subscription']);
+}
+
+/**
+ * Create new database table {remote_login_log}.
+ */
+function civil808_update_7102() {
+	$schema['remote_login_log'] = array(
+		'fields' => array(
+			'id' => array(
+				'type' => 'serial',
+				'unsigned' => TRUE,
+				'not null' => TRUE,
+				'description' => t('Primary Key : id'),
+			),
+            'token' => array(
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'size' => 'big',
+            ),
+            'merchant' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'not null' => TRUE,
+            ),
+            'callback' => array(
+                'type' => 'varchar',
+                'length' => 32,
+                'not null' => TRUE,
+            ),
+            'uid' => array(
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => FALSE,
+                'default' => 0,
+            ),
+			'created' => array(
+				'type' => 'int',
+				'not null' => TRUE,
+				'default' => 0,
+				'description' => 'Timestamp for start of the week.',
+			),
+		),
+		'primary key' => array('id'),
+        'unique keys' => array(
+            'unique_fields' => array('token'),
+        ),
+	);
+	db_create_table('remote_login_log', $schema['remote_login_log']);
+}
+
+/**
+ * Add new column to table {remote_login_subscription}.
+ */
+function civil808_update_7103() {
+    $newCol = array(
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => False,
+        'default' => '',
+        'description' => t('The company name'),
+    );
+    db_add_field('remote_login_subscription', 'name', $newCol);
+
+    $newCol = array(
+        'type' => 'int',
+        'not null' => False,
+        'default' => 0,
+        'description' => t('The logo of company fid'),
+    );
+    db_add_field('remote_login_subscription', 'logo_fid', $newCol);
+}
+
+

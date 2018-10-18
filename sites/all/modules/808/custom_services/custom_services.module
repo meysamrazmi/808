@@ -1187,7 +1187,76 @@ function custom_services_services_resources(){
             ),
         ),
 
-
+        /*------------------------------------------------------------------------------------------*/
+        /* pre-request is used for remote login
+         * agent should send pre request and received token for authorization
+         * agent should used his own merchant id for access
+         * we use get method because of different origins can access
+         */
+        'prerequest' => array(
+            'operations' => array(
+                'retrieve' => array(
+                    'help' => 'Return a token for authorization',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'remote_login_resource'),
+                    'callback' => 'remote_login_resource_pre_request',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'merchant',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'string',
+                            'description' => 'The merchant id of agent',
+                        ),
+                        array(
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
+                        ),
+                    ),
+                ),
+            ),
+        ),
+        /* post-request is used for remote login
+         * agent should send post request and received user's information
+         * agent should used user's token for access
+         * we use get method because of different origins can access
+         */
+        'postrequest' => array(
+            'operations' => array(
+                'retrieve' => array(
+                    'help' => 'Return user`s data',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'remote_login_resource'),
+                    'callback' => 'remote_login_resource_post_request',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'merchant',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'string',
+                            'description' => 'The merchant id of agent',
+                        ),
+                        array(
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
+                        ),
+                    ),
+                ),
+            ),
+        ),
+        /*------------------------------------------------------------------------------------------*/
 
         'latin_front_page' => array(
             'operations' => array(

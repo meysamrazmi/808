@@ -278,6 +278,27 @@ function civil808_menu() {
 		'type' => MENU_LOCAL_TASK,
 		'weight' => 100,
 	);
+
+
+    $items['user/%/edit/remote/subscription'] = array(
+        'title' => t('Remote Login'),
+        'description' => t('Login from other sites'),
+        'page callback' => array('drupal_get_form'),
+        'page arguments' => array('remote_subscription_form' , 1),
+        'access arguments' => array('administer modules'),
+        'type' => MENU_LOCAL_TASK,
+        'file' => 'remote.inc',
+    );
+	$items['remote/login/%'] = array(
+        'title' => t('Remote Login'),
+        'description' => t('Login from other sites'),
+        'page callback' => array('drupal_get_form'),
+        'page arguments' => array('remote_login_form' , 2),
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+        'file' => 'remote.inc',
+    );
+
 	return $items;
 }
 
