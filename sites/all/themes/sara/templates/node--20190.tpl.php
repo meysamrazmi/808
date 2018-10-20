@@ -29,7 +29,7 @@
                 <li><strong>مخاطبین: </strong>مهندسین عمران و معماری</li>
                 <li><strong>ویژگی ها: </strong>مرور کلیه نکات <a href="/node/17077" target="_blank" title="آزمون نظام مهندسی">آزمون نظام مهندسی</a> به همراه ۲ آزمون تالیف</li>
             </ul>
-            <p><img src="/sites/default/files/field/image/node_20190.png" alt="دوره حضوری ورود به حرفه؛ محاسبات و نظارت" title="دوره حضوری ورود به حرفه؛ محاسبات و نظارت" width="723" height="237"></p>
+            <p><img src="/sites/default/files/field/image/node_20190_1.png" alt="دوره حضوری ورود به حرفه؛ محاسبات و نظارت" title="دوره حضوری ورود به حرفه؛ محاسبات و نظارت" width="723" height="237"></p>
         </div>
 
     </div>
@@ -64,7 +64,7 @@
                     <p class="text"> مدرس: مصطفی دوگوهرانی </p>
                     <div class="tarikh"> شروع دوره 16 آذر </div>
                     <div class="makan"> موسسه آموزشی 808 </div>
-                    <div class="mablagh"> 90,000 تومان </div>
+                    <div class="mablagh"> 70,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
             </a>
