@@ -29,6 +29,7 @@ function remote_login_resource_pre_request($merchant , $parameter){
         "callback" => $parameter["callback"],
         "uid" => 0,
         "created" => REQUEST_TIME,
+        "status" => "pending"
     ))->execute();
     if(!$insert) return array("status" => 500 , "error" => "Undefined Error!");
 
@@ -38,7 +39,7 @@ function remote_login_resource_pre_request($merchant , $parameter){
 function remote_login_resource_post_request($merchant , $parameter){
     $query = db_select("remote_login_log" , "log");
     $query->fields("log" , array("uid"));
-    $query->condition("log.merchant" , $merchant)->condition("log.token" , $parameter["token"]);
+    $query->condition("log.merchant" , $merchant)->condition("log.token" , $parameter["token"])->condition("log.status" , "successful");
     $uid = $query->execute()->fetch();
     if(empty($uid)) return array("status" => 401 , "error" => "Authorization Failed!");
     $uid = $uid->uid;

@@ -104,10 +104,13 @@ function remote_login_form($from, &$form_state , $token){
         $query->fields("log" , array());
         $query->condition("log.token" , $token);
         $log = $query->execute()->fetch();
-        if(empty($log)) drupal_goto($_SERVER["HTTP_REFERER"] . "?status=401&error=Unauthorized");
+        if(empty($log)){
+            update_user($token , 0 , "error");
+            drupal_goto($_SERVER["HTTP_REFERER"] . "?status=401&error=Unauthorized");
+        }
         global $user;
         if($user->uid > 0) {
-            update_user($token , $user->uid);
+            update_user($token , $user->uid , "successful");
             drupal_goto($log->callback . "?status=200&token=" . $token);
         }
         $query = db_select("remote_login_subscription" , "subscription");
@@ -124,7 +127,7 @@ function remote_login_form($from, &$form_state , $token){
         $form['name'] = array(
             '#prefix' => '<div class="company-name"><label>نام شرکت : </label>',
             '#markup' => $company->name,
-            '#suffix' => '</div>',
+            '#suffix' => '</div><hr>',
         );
         $form['logo'] = array(
             '#prefix' => '<div class="company-logo"><img src=" ',
@@ -133,22 +136,20 @@ function remote_login_form($from, &$form_state , $token){
         );
         $form['username_email'] = array(
             '#type' => 'textfield',
-            '#title' => t('Username or Email'),
+            '#title' => t('نام کاربری یا نشانی پست الکترونیک'),
             '#size' => 60,
             '#maxlength' => USERNAME_MAX_LENGTH,
-            '#required' => FALSE,
-            '#description' => t('Enter your email or username.'),
+            '#required' => TRUE,
         );
         $form['password'] = array(
             '#type' => 'password',
             '#title' => t('Password'),
-            '#description' => t('Enter the password that accompanies your username.'),
-            '#required' => FALSE,
+            '#required' => TRUE,
         );
 
         $form['submit'] = array(
             '#type' => 'submit',
-            '#value' => t('Enter'),
+            '#value' => t('ورود'),
         );
         return $form;
     }catch (Exception $e){
@@ -185,6 +186,7 @@ function remote_login_form_submit($from, &$form_state){
         global $user;
         $user = user_load($uid);
         user_login_finalize();
+        update_user($form_state["values"]["token"] , $user->uid , "successful");
         $form_state["redirect"] = $form_state["values"]["callback"] . "?status=200&token=" . $form_state["values"]["token"];
 
     }catch (Exception $e){
@@ -193,10 +195,11 @@ function remote_login_form_submit($from, &$form_state){
 }
 
 
-function update_user($token , $uid){
+function update_user($token , $uid , $status){
     db_update("remote_login_log")
         ->fields(array(
             'uid' => $uid,
+            'status' => $status
         ))
         ->condition('token', $token)
         ->execute();

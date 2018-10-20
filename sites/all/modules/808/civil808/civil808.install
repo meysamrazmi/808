@@ -234,5 +234,18 @@ function civil808_update_7103() {
     );
     db_add_field('remote_login_subscription', 'logo_fid', $newCol);
 }
+/**
+ * Add new column to table {remote_login_log}.
+ */
+function civil808_update_7104(){
+    $newCol = array(
+        'type' => 'varchar',
+        'length' => 60,
+        'not null' => False,
+        'default' => '',
+        'description' => t('The status of user'),
+    );
+    db_add_field('remote_login_log', 'status', $newCol);
+}
 
 
