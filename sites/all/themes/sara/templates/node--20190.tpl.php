@@ -54,7 +54,7 @@
                     <p class="text"> مدرس: مصطفی دوگوهرانی </p>
                     <div class="tarikh">شروع دوره 8 آذر</div>
                     <div class="makan"> موسسه آموزشی 808 </div>
-                    <div class="mablagh"> 90,000 تومان </div>
+                    <div class="mablagh"> 900,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
             </a>
@@ -64,7 +64,7 @@
                     <p class="text"> مدرس: مصطفی دوگوهرانی </p>
                     <div class="tarikh"> شروع دوره 16 آذر </div>
                     <div class="makan"> موسسه آموزشی 808 </div>
-                    <div class="mablagh"> 70,000 تومان </div>
+                    <div class="mablagh"> 700,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
             </a>
