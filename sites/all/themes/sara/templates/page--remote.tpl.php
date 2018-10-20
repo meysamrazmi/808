@@ -8,6 +8,13 @@
  * @see andromeda_preprocess_page()
  */
 ?>
+<?php
+/*
+  * The data of this page comes from remote.inc in civil808.module
+  * also check civil808_menu
+  * */
+?>
+
 <script type="text/javascript" src="/sites/all/themes/sara/js/bootstrap.min.js"></script>
 
 

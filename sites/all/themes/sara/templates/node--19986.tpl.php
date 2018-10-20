@@ -1,6 +1,7 @@
 <img src="/sites/default/files/field/image/node_19986.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
 
 <section class="kargah-sec">
+    <div style="display: flex; justify-content: center; margin-bottom: 30px;"><a href="/node/20167" class="btn" target="_blank">تصاویری از دوره دوم طراحی عملکردی و بهسازی لرزه ای</a></div>
     <h2>
         <b>دومین </b>
         دوره جامع آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها</h2>
