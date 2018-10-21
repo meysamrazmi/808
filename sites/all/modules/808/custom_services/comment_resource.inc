@@ -32,6 +32,19 @@ function create_comment_v_1($data){
     comment_submit($comment);
     comment_save($comment);
     add_log($user->uid , "/comment" , "create" , "comment" , $comment->cid , $data["source"] , $data["version"] , "successful" ,"create a comment for a questions");
+
+    $comment->nid = (int) $comment->nid;
+    $comment->pid = (int) $comment->pid;
+    $comment->uid = (int) $comment->uid;
+    $comment->cid = (int) $comment->cid;
+    unset($comment->is_anonymous);
+    unset($comment->subject);
+    unset($comment->date);
+    unset($comment->homepage);
+    unset($comment->thread);
+    unset($comment->hostname);
+    unset($comment->field_vote_ud);
+
     return $comment;
 }
 
@@ -106,7 +119,7 @@ function vote_comment_v_1($data){
     $query->groupBy('vote.entity_id');
     $query->addExpression('sum(vote.value)', 'vote_point');
     $vote = $query->execute()->fetch();
-    return array("vote_point" => $vote->vote_point);
+    return array("vote_points" => (int) $vote->vote_point);
 }
 
 function comment_resource_prove($cid , $data){

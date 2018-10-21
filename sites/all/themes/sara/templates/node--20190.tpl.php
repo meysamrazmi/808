@@ -1,136 +1,70 @@
-<img src="/sites/default/files/field/image/node_19986.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
+<img src="/sites/default/files/field/image/node_20190_1.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
 
 <section class="kargah-sec">
-    <div style="display: flex; justify-content: center; margin-bottom: 30px;"><a href="/node/20167" class="btn" target="_blank">تصاویری از دوره دوم طراحی عملکردی و بهسازی لرزه ای</a></div>
-    <h2>
-        <b>دومین </b>
-        دوره جامع آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها</h2>
-    <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره فقط حضوری و بدون ضبط فیلم است.</p>
+
+    <h2>دوره حضوری ورود به حرفه؛ محاسبات و نظارت</h2>
     <div class="first-row" style="margin-top: 40px;">
         <div>
-            <p> ویژه مهندسین عمران شاغل در صنایع فعال در حوزه مقاوم سازی و سازمان های مرتبط و دانشجویان</p>
-            <p><strong> معرفی دوره:</strong></p>
+            <p><strong>دوره محاسبات:</strong></p>
             <ul>
-                <li>مبانی طراحی عملکردی (اصول و کاربردها)</li>
-                <li>طراحی عملکردی در آیین نامه ها</li>
-                <li>آشنایی با سیستم های نوین کنترل ارتعاشات لرزه ای</li>
-                <li>حل مثال عملی با استفاده از نرم افزار</li>
-                <a href="/sites/default/files/field/files/node_19986-civil808-pbd_course-2.pdf" style="margin-top: 9px;" class="btn" target="_blank">سرفصل های دوره</a>
+                <li><strong>مدرس: </strong>مصطفی دوگوهرانی</li>
+                <li><strong>شروع دوره: </strong>۸ آذر</li>
+                <li><strong>ظرفیت: </strong>۱۵ نفر</li>
+                <li><strong>مخاطبین: </strong>مهندسین عمران</li>
             </ul>
-            <p><strong>پکیج همراه با دوره:</strong></p>
-            <ul>
-                <li>ارائه License کوتاه مدت نرم افزارهای SeismoSoft با امکانات کامل به صورت رایگان به شرکت کنندگان</li>
-                <li>
-                    اعطای گواهینامه از موسسه 808 به عنوان نماینده رسمی SeismoSoft در ایران
-                </li>
-                <li>
-                    به همراه اعطای فلش پکیج استثنائی 808 به شرکت کنندگان دوره
-                </li>
-                <a href="http://civil808.com/node/19704" style="margin-top: 9px;" class="btn" target="_blank">مشاهده محتوای فلش</a>
-                <li style="margin-top: 18px;">
-                    و جزوه چاپ شده بخش تئوری با تالیف پروفسور مقدم
-                </li>
-                <a href="http://civil808.com/node/20027" style="margin-top: 9px;" class="btn" target="_blank"> مشاهده جزئیات پکیج همراه </a>
-                <li style="margin-top: 18px;">
-                    جزوه دوره نرم افزاری
-                </li>
-                <a href="http://civil808.com/node/20061" style="margin-top: 9px;" class="btn" target="_blank"> مشاهده جزئیات  </a>
-            </ul>
-        </div>
-        <div class="lecturer">
-            <img src="/sites/default/files/attachfromftp/hasan_moghaddam.jpg" width="150px" height="auto">
-            <p style="margin: 10px 0 0 0"><strong> مدرس </strong></p>
-            <h3 style="margin:5px"> پروفسور حسن مقدم </h3>
-            <p> استاد دانشگاه صنعتی شریف </p>
-            <a href="/node/18098" target="_blank" class="btn btn-primary">رزومه</a>
+            <p>
+                دوره ورود به حرفه محاسبات در روزهای آخر هفته از ۸ آذر ماه شروع خواهد شد. ایام تشکیل کلاس از ساعت ۹:۰۰ صبح تا ۱۸:۰۰ خواهد بود.در جلسات سعی خواهد شد سوالات هر درس بصورت فصل به فصل با ارائه سوالات نکته‌دار و تالیفی آزمون همراه خواهد بود.در ابتدای جلسات نکات بصورت کامل ارائه شده و بعد سراغ سوالات آزمون خواهیم رفت.
+                کل دوره ۱۰۰ ساعت خواهد بود. با توجه به جدول ارائه شده زمان هر دوره مشخص شده است. این دوره با توجه به نیاز داوطلبان آزمون برای حل سوالات متنوع تدارک دیده شده است.
+            </p>
+            <p><img src="/sites/default/files/field/image/node_20190.png" alt="دوره حضوری ورود به حرفه؛ محاسبات و نظارت" title="دوره حضوری ورود به حرفه؛ محاسبات و نظارت" width="724" height="238"></p>
         </div>
     </div>
-</section>
+    <div class="first-row" style="margin-top: 40px;">
+        <div>
+            <p><strong>دوره نظارت:</strong></p>
+            <ul>
+                <li><strong>مدرس: </strong>مصطفی دوگوهرانی</li>
+                <li><strong>شروع دوره: </strong>۲۶ آبان</li>
+                <li><strong>ظرفیت: </strong>۱۵ نفر</li>
+                <li><strong>مخاطبین: </strong>مهندسین عمران و معماری</li>
+                <li><strong>ویژگی ها: </strong>مرور کلیه نکات <a href="/node/17077" target="_blank" title="آزمون نظام مهندسی">آزمون نظام مهندسی</a> به همراه ۲ آزمون تالیف</li>
+            </ul>
+            <p><img src="/sites/default/files/field/image/node_20190_1.png" alt="دوره حضوری ورود به حرفه؛ محاسبات و نظارت" title="دوره حضوری ورود به حرفه؛ محاسبات و نظارت" width="723" height="237"></p>
+        </div>
 
-<section id="more-data">
-    <h2>طرح ویژه بورسیه رایگان تحصیلی مختص دانشجویان جدیدالورود مقطع کارشناسی ارشد مهندسی عمران</h2>
-    <p style="text-align: center;margin-bottom: 40px;margin-top: 30px;	font-size: 15px;color: #888;">
-        لطفا قبل از اقدام به ثبت نام شرایط تعلق بورسیه را مطالعه کنید.
-    </p>
-    <div style="max-width: 1100px;
-    margin: 46px auto;
-    text-align: justify;">
-        <ol style="margin: 0;">
-            <li>مطابق این طرح، دانشجو به صورت رایگان در دوره ی تئوری ثبت نام می شود. صرفا مبلغ 50000 تومان بابت پذیرایی (2 روز شامل ناهار و پذیرایی میان وعده) دریافت می‌گردد.</li>
-            <li>به منظور استفاده از این طرح، دانشجو می بایست تصویر کارت دانشجویی خود را از طریق ایمیل به آدرس edu@civil808.com و یا آیدی تلگرام Civil808_Support@ ارسال کند. پس از تایید مشخصات اولیه توسط موسسه، دستور العمل مرحله دوم و نهایی ثبت نام برای شما ارسال خواهد شد.</li>
-            <li>دانشجو میبایست اصل کارت دانشجویی خود را در روز نخست برگزاری دوره ارائه نماید.</li>
-            <li>بعد از اتمام موفقیت آمیز دوره، دانشجویان حاضر در این طرح می توانند در صورت تمایل، طی یک دوره ی کارآموزی به مدت معلوم با موسسه همکاری کرده و این همکاری بعد از اتمام دوره کارآموزی و در صورت تایید کارشناسان مجموعه، در قالب همکاری حرفه ای ادامه پیدا خواهد کرد.</li>
-            <li> ظرفیت طرح بورسیه تحصیلی دوره ی طراحی عملکردی، 10 نفر می باشد و اولویت با دانشجویانی است که مرحله ی دوم ثبت نام را زودتر انجام دهند.</li>
-            <li>ضمنا فلش ویژه ی رایگان، به دانشجویان طرح بورسیه تعلق نمی گیرد.</li>
-            <li>برای مشاهده فیلم معرفی طرح بورسیه رایگان تحصیلی در موسسه 808،
-                <a href="/node/20097" target="_blank">کلیک کنید.</a>
-            </li>
-        </ol>
     </div>
-</section>
-
-<section style="margin: 50px 0 80px 0;">
-    <h2> مصاحبه با پروفسور حسن مقدم با موضوع طراحی عملكردی سازه ها و بررسی گزارش ها زلزله كرمانشاه </h2>
-    <p style="text-align: center;margin-bottom: 40px;margin-top: 30px;	font-size: 15px;color: #888;">برای مشاهده کامل مصاحبه
-        <a href="/node/18099" target="_blank">کلیک کنید.</a>
-    </p>
-    <?php
-    //sis3_VP8.webm,sis3_x264.mp4
-    $video_attrs = array(
-        'src' => '/sites/default/files/filed/files/node_18110-amoozesh_vp8.webm',
-        'width' => '840px',
-        'height' => '447px',
-        'videoWidth' => '840px',
-        'videoHeight' => '447px',
-        'controls' => true,
-    );
-    $video_sett =  array(
-        'download_link' => true,
-        'download_text' => 'download'
-    );
-    print theme('mediaelement_video', array('attributes' => $video_attrs, 'settings' => $video_sett));
-    //'poster ' => '/sites/default/files/conference-4-film' ,
-    ?>
 </section>
 
 <section class="second">
-    <h2 class="text"> ثبت نام در دوره جامع آموزش اصول محاسبات بهسازی لرزه ای و طراحی عملکردی سازه ها + حل مثال عملی با نرم افزار</h2>
-    <p style="text-align: center;margin-top: -18px;font-size: 15px;color:red;margin-bottom: 29px;">
-        ظرفیت دوره رو به اتمام است.
-    </p>
-    <div class="takhfifat" style="margin-bottom: 15px;">
-        <p>
-            <span>10 %</span>تخفیف برای اعضای VIP، <a href="/landing/vip" target="_blank">عضو ویژه شوید</a>        </p>
-    </div>
-    <div class="takhfifat">
-        <p>و<span>5 %</span> تخفیف به ازای اضافه شدن هر نفر تا سقف 20 درصد</p>
-    </div>
+    <h2 class="text"> ثبت نام در دوره حضوری ورود به حرفه؛ محاسبات و نظارت</h2>
+
+<!--    <div class="takhfifat" style="margin-bottom: 15px;">-->
+<!--        <p>-->
+<!--            <span>10 %</span>تخفیف برای اعضای VIP، <a href="/landing/vip" target="_blank">عضو ویژه شوید</a>-->
+<!--        </p>-->
+<!--    </div>-->
+<!--    <div class="takhfifat">-->
+<!--        <p>و<span>5 %</span> تخفیف به ازای اضافه شدن هر نفر تا سقف 20 درصد</p>-->
+<!--    </div>-->
     <div class="tickets">
         <div>
-            <a href="/cart/add/p19074_a62o194?destination=cart" target="_blank">
-                <div class="city-name"><span>دوره جامع آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها</span></div>
+            <a href="/cart/add/p20193?destination=cart" target="_blank">
+                <div class="city-name"><span>دوره محاسبات:</span></div>
                 <div class="inner-text">
-                    <p class="text"> مدرس: پروفسور حسن مقدم </p>
-                    <p style="padding: 9px 12px 0px 0px;">شامل پذیرایی ناهار و پکیج همراه دوره</p>
-                    <div class="tarikh">25 و 26 مهر ماه 1397</div>
-                    <div class="makan"> دانشگاه صنعتی شریف، سالن انجمن فارغ التحصیلان </div>
-                    <div class="zaman">25 مهر ساعت 8 تا 17 و 26 مهر 8 تا 12 (جمعا 12 ساعت) </div>
-                    <div class="mablagh"> 300,000 تومان </div>
+                    <p class="text"> مدرس: مصطفی دوگوهرانی </p>
+                    <div class="tarikh">شروع دوره 8 آذر</div>
+                    <div class="makan"> موسسه آموزشی 808 </div>
+                    <div class="mablagh"> 900,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
             </a>
-            <a href="/cart/add/p19074_a62o195?destination=cart">
-                <div class="city-name"><span>دوره جامع آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها
- + به همراه تدریس نرم افزار توسط تیم مدرسین موسسه 808</span></div>
+            <a href="/cart/add/p20194?destination=cart">
+                <div class="city-name"><span>دوره نظارت:</span></div>
                 <div class="inner-text">
-                    <p class="text"> مدرس: پروفسور حسن مقدم + تیم مدرسین موسسه 808 </p>
-                    <p style="padding: 9px 12px 0px 0px;"> شامل پذیرایی ناهار در 2 روز اول و پکیج همراه دوره </p>
-                    <!--<p class="important" style="margin: 2px 12px 5px 0;font-weight: bold;background-color: #f5f5f5;padding: 6px 14px;display: inline-block;">به همراه پکیج مخصوص
-                    </p>-->
-                    <div class="tarikh"> 25 و 26 مهرماه + پنج شنبه ها و جمعه ها شروع از 27 مهرماه به مدت 3 هفته</div>
+                    <p class="text"> مدرس: مصطفی دوگوهرانی </p>
+                    <div class="tarikh"> شروع دوره 16 آذر </div>
                     <div class="makan"> موسسه آموزشی 808 </div>
-                    <div class="zaman"> دوره تئوری: 25 مهر ساعت 8 تا 17 و 26 مهر 8 تا 12، دوره نرم افزاری: 6 روز 9 تا 16 - جمعا 48 ساعت </div>
-                    <div class="mablagh"> 800,000 تومان </div>
+                    <div class="mablagh"> 700,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
             </a>
@@ -140,146 +74,8 @@
 
 </section>
 
-<section id="more-data">
-    <h2>توضیحات دوره</h2>
-    <p style="text-align: center;margin-bottom: 40px;margin-top: 30px;	font-size: 15px;color: #888;">
-        لطفا قبل از شرکت در دوره توضیحات زیر را مطالعه کنید.
-    </p>
-    <div style="max-width: 1100px;
-    margin: 46px auto;
-    text-align: justify;">
-        <ol style="margin: 0;">
-            <li>این دوره به صورت فشرده طراحی شده است تا متقاضیان بتوانند در مدت زمان کم از امکانات فراهم شده استفاده کنند. شرکت کنندگان محترمی که از شهرهای دیگر تشریف می آورند، می توانند از طریق تماس تلفنی با موسسه، شماره نزدیک ترین پانسیون ها (با قیمت مناسب) به محل برگزاری دوره (دانشگاه صنعتی شریف) را جهت رزرو محل اقامت خود دریافت کنند.
-            </li>
-            <div style="text-align: center;">
-                <a href="/sites/default/files/attachfromftp/node-19072/pansions.jpg" style="margin:12px 0;" class="btn" target="_blank">لیست پانسیون ها</a>
-            </div>
-            <li>
-                پکیج همراه در این دوره به شرکت کنندگان در هر یک از قسمتهای تئوری یا نرم افزاری ارائه می شود.
-            </li>
-            <li>
-                دوره تئوری(با تدریس جناب پروفسور مقدم) همراه با پذیرایی صرف ناهار است.
-            </li>
-            <li>این دوره با تدریس جناب پروفسور مقدم، یکی از افراد موثر و پیشرو جهانی در علم طراحی عملکردی سازه ها و <strong>برای اولین بار در کشور با سرفصل انحصاری موسسه 808 فقط به صورت حضوری (بدون ضبط فیلم) برگزار می شود</strong>. امکان استفاده از License قانونی نرم افزارهای مورد استفاده به همراه معرفی دانش آموختگان برتر به صنعت از جمله دیگر مزایای انحصاری این دوره در راستای هدف اتصال دانش به صنعت و حل مساله مقاوم سازی سازه ها می باشد که برای اولین بار و به جهت اهمیت موضوع طراحی عملکردی در کشور توسط تیم موسسه 808، برای شرکت کنندگان فراهم شده است. امید است این دوره مورد استفاده همه مهندسان عمران کشور در جهت ساخت سازه های ایمن در برابر زلزله قرار گیرد.</li>
-            <li>
-                برای مشاهده قسمتی از جزوه دوره حضوری آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها
-                <a href="http://civil808.com/node/20027" target="_blank">کلیک کنید.</a>
-            </li>
-            <li>
-                برای مشاهده مجموعه تصاوير دوره اول آموزش اصول محاسبات لرزه‌ای و طراحی عملکردی سازه‌ها، ٥ و ٦ تير ماه در دانشگاه صنعتی شريف،
-                <a href="http://civil808.com/node/19335" target="_blank">کلیک کنید.</a>
-            </li>
-        </ol>
-    </div>
-</section>
-
-<section id="ebooks">
-    <h2> دوره های مرتبط </h2>
-    <div class="aks3">
-        <a href="/node/19701" target="_blank">
-            <img src="/sites/default/files/photo_2018-09-11_14-56-27.jpg" width="350" height="350" >
-        </a>
-        <a href="/node/19856" target="_blank">
-            <img src="/sites/default/files/damper-4.jpg" width="350" height="350" >
-        </a>
-    </div>
-</section>
-
-<section style="margin: 110px 0 100px 0;">
-    <h2> نماینده رسمی seismosoft در ایران </h2>
-    <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">موسسه آموزشی مهندسی 808 نماینده رسمی شرکت seismosoft در ایران است</p>
-    <div class="seis-box">
-        <div class="seis-text">
-            <p>
-                به اطلاع مهندسان گرامی میرسانیم موسسه 808 مفتخر است به عنوان
-                <a href="https://seismosoft.com/resellers" rel="nofollow" target="_blank">نماینده رسمی شرکت Seismosoft در ایران</a>
-                ،امکان تهیه نسخه کامل این نرم‌افزار تجاری را در ایران برای علاقه‌مندان (کلیه شرکت‌های مشاوره در زمینه طراحی و مقاوم‌سازی سازه‌ها) فراهم آورد.
-                برای خرید نرم افزار های SeismoBuild 2018 و SeismoStruct 2018 می توانید با این شماره  02188272694 تماس بگیرید.
-                <br>
-                <a href="/node/19157" target="_blank">
-                    آخرین ورژن نرم افزار های Seismosoft منطبق با آیین نامه ASCE آمریکا منتشر شد (نسخه ۲۰۱۸)
-                </a>
-            </p>
-            <div>
-                <div> قیمت نرم افزار SeismoBuild 2018 به یورو : </div>
-                <span>€1000</span>
-                <br>
-                <div> قیمت نرم افزار SeismoStruct 2018 به یورو :</div>
-                <span>€1000</span>
-            </div>
-            <p style="    display: block;
-    clear: both;
-    border-right: 3px solid #F44336;
-    padding: 5px 10px 5px 0;
-    margin: 22px 0;
-    font-size: 14px;">خرید همزمان هر دو نرم افزار شامل 10 درصد تخفیف می شود :
-                <b style="font-family: Tahoma;">1800€</b>
-            </p>
-            <a href="/pbd/seismobuild" target="_blank" class="btn btn-primary" style="    margin: auto;
-    display: block;
-    width: 220px;">اطلاعات بیشتر</a>
-        </div>
-        <img src="http://civil808.com/sites/all/themes/sara/images/seismosoft.png" alt="نرم افزار SeismoBuild منتشر شد (دانلود نسخه دمو  و مشاهده فیلم و کاتالوگ معرفی)" title="نرم افزار SeismoBuild منتشر شد (دانلود نسخه دمو  و مشاهده فیلم و کاتالوگ معرفی)" style="margin-right: 10px;" class="main-seismo">
-    </div>
-</section>
-
-<section id="pbd-panel" class="pane-tags-content">
-    <h2> محصولات مرتبط </h2>
-    <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">برای مشاهده سایر محتواهای مرتبط به <a href="/pbd/fa" target="_blank">این صفحه</a> مراجعه کنید </p>
-    <?php
-    $args1 = 2455;
-    $args2 = 'product';
-    print views_embed_view('tags_content', 'block_3', $args1 , $args2 ); ?>
-</section>
-
-<section class="plus808">
-    <div class="inner">
-        <h2>  ثبت نام در کلاس ها و مشاوره های خصوصی </h2>
-        <h4> اگر دوره مورد نظر خود را پیدا نکردید، با مدرس دلخواه خود آموزش ببینید </h4>
-        <a class="ask-question btn btn-primary" href="/college/course-vip" target="_blank"> درخواست کلاس </a>
-        <a class="ask-question btn" href="/question/list" target="_blank">پرسش و پاسخ</a>
-    </div>
-</section>
-
-<section class="fifth">
-    <div class="mojri">
-        <h2> برگزارکننده </h2>
-        <img src="/sites/all/themes/sara/images/808-logo.png" width="200px" height="auto">
-        <h3> موسسه آموزشی مهندسی 808 </h3><a href="http://seismosoft.com/contacts" target="_blank"> نماینده رسمی شرکت SeismoSoft در ایران </a>
-    </div>
-    <div class="hamin">
-        <h2> حامیان </h2>
-        <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;margin-bottom: 35px;">
-            برای مشاهده "اطلاعیه دعوت به همکاری از کلیه شرکت های فعال در حوزه مقاوم سازی و بهسازی لرزه ای سازه ها"
-            <a href="/node/19152" target="_blank">
-                کلیک کنید.
-            </a>
-        </p>
-        <div class="logos">
-            <div>
-                <img src="/sites/all/themes/sara/images/logo-seismosoft.png" width="250px" height="auto" style="margin-bottom: 17px;">
-                <a style="color:black" href="http://www.seismosoft.com/" target="_blank">
-                    <h3>شرکت SeismoSoft</h3>
-                </a>
-            </div>
-            <div>
-                <img src="/sites/all/themes/sara/images/logo-behsaz.png" width="125px" height="auto">
-                <a style="color:black" href="http://www.behsazandishan.com/" target="_blank">
-                    <h3>شرکت مهندسی بهساز اندیشان تهران</h3>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
 
 <style>
-    #more-data{
-        margin: 86px 20px;
-    }
-    #more-data li{
-        line-height:29px;
-    }
     .tickets > div > a:nth-child(2){
         width: 700px;
     }

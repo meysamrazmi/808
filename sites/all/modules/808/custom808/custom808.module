@@ -48,6 +48,44 @@ function custom808_menu(){
     return $items;
 }
 
+function custom808_cron(){
+    $query = db_select("node" , "node");
+    $query->fields("node" , array("nid"));
+    $query->condition("node.type" , "questions")->condition("node.status" , 1);
+    $and_1 = db_and()->condition("node.changed" , strtotime('-3 day', REQUEST_TIME) , "<")->condition("node.changed" , strtotime('-3 day -5 hour', REQUEST_TIME) , ">");
+    $and_2 = db_and()->condition("node.changed" , strtotime('-6 day', REQUEST_TIME) , "<")->condition("node.changed" , strtotime('-6 day -5 hour', REQUEST_TIME) , ">");
+    $query->condition(db_or()->condition($and_1)->condition($and_2));
+    $questions = $query->execute()->fetchCol();
+    if(empty($questions)) return;
+
+    $query = db_select("comment" , "comment")->distinct();
+    $query->join("node" , "node" , "node.nid = comment.nid and node.type = 'questions' and node.status = '1' ");
+    $query->fields("comment" , array("nid"));
+    $query->condition("comment.status" , 1);
+    $comments = $query->execute()->fetchCol();
+    if(empty($comments)) return;
+
+    $nids = array_diff($questions , $comments);
+    foreach ($nids as $nid){
+        $query = db_select("field_data_field_experts" , "q_experts");
+        $query->join("field_data_field_experts" , "u_experts" , "q_experts.field_experts_tid = u_experts.field_experts_tid");
+        $query->join("profile" , "profile" , "u_experts.entity_id = profile.pid and profile.type = 'main' ");
+        $query->join("users" , "user" , "profile.uid = user.uid");
+        $query->join("users_roles" , "u_role" , "u_role.uid = user.uid and u_role.rid = '10' ");
+        $query->condition("q_experts.entity_id" , $nid)->condition("q_experts.entity_type" , "node")->condition("q_experts.bundle" , "questions");
+        $query->condition("u_experts.entity_type" , "profile2")->condition("u_experts.bundle" , "main");
+        $query->fields("user" , array("mail"));
+        $emails = $query->execute()->fetchCol();
+        $emails = array_unique($emails);
+
+        $node = db_select("node")->fields("node" , array("nid" , "title"))->condition("nid" , $nid)->execute()->fetch();
+        $message = '<p>مشاور محترم، سوال زیر که مرتبط با تخصص شما است، در سیستم پرسش و پاسخ سایت 808 توسط کاربران ثبت شده است.</p><p>" ' . $node->title .' "<br>برای مشاهده کامل سوال و پاسخ به آن از لینک زیر وارد شوید :<br><a href="/node/' . $node->nid . '" style="text-decoration: none;">پاسخ به سوال</a><br>با تشکر از همکاری شما</p>';
+        foreach($emails as $mail){
+            simple_mail_send("info@civil808.com", $mail, "سوالی مرتبط با تخصص شما در سایت 808 پرسیده شده است.", $message);
+        }
+    }
+}
+
 /*
  * check that a product has a unique sku-model
  * it is used for admin page for adding or editing a product
