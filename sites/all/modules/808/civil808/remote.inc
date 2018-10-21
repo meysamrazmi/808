@@ -133,7 +133,7 @@ function remote_login_form($from, &$form_state , $token){
         $query->fields("file" , array("uri"));
         $query->condition("subscription.merchant" , $log->merchant);
         $company = $query->execute()->fetch();
-        if(!empty($company->uri)) $company->uri = image_style_url("200x200" , $company->uri);
+        if(!empty($company->uri)) $company->uri = image_style_url("medium" , $company->uri);
 
         /*login form for user
          * It shows in page--remote.tpl.php
@@ -141,33 +141,39 @@ function remote_login_form($from, &$form_state , $token){
         $form['callback'] = array('#type' => 'hidden', '#value' => $log->callback);
         $form['token'] = array('#type' => 'hidden', '#value' => $token);
 
-        $form['name'] = array(
-            '#prefix' => '<div class="company-name"><label>نام شرکت : </label>',
-            '#markup' => $company->name,
-            '#suffix' => '</div><hr>',
-        );
-        $form['logo'] = array(
-            '#prefix' => '<div class="company-logo"><img src=" ',
-            '#markup' => $company->uri,
-            '#suffix' => '" /></div>',
-        );
-
-        $form['username_email'] = array(
+	    $form['description'] = array(
+		    '#prefix' => '<div class="description">
+							<div class="title">ورود به سایت از طریق 808</div>
+							<div class="company-logo">
+								<img src="' . $company->uri . '"/>
+								<i></i>
+								<img src="http://civil808.com/sites/all/themes/sara/logo.png" style="max-width: 95px;">
+							</div>
+							<div class="company-name"><label>نام شرکت : </label>' . $company->name . '</div>
+						  </div>',
+		    '#markup' => '',
+	    );
+	    $form['div'] = array(
+		    '#type' => 'fieldset',
+		    '#collapsible' => FALSE,
+	    );
+        $form['div']['username_email'] = array(
             '#type' => 'textfield',
             '#title' => t('نام کاربری یا نشانی پست الکترونیک'),
             '#size' => 60,
             '#maxlength' => USERNAME_MAX_LENGTH,
             '#required' => TRUE,
         );
-        $form['password'] = array(
+        $form['div']['password'] = array(
             '#type' => 'password',
             '#title' => t('Password'),
             '#required' => TRUE,
         );
 
-        $form['submit'] = array(
+        $form['div']['submit'] = array(
             '#type' => 'submit',
-            '#value' => t('ورود'),
+            '#value' => 'ورود',
+	        '#suffix' => '<a href="/user/register" target="_blank" class="join">عضویت در civil808</a>',
         );
         return $form;
     }catch (Exception $e){

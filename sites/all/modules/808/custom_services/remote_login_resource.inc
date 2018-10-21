@@ -56,9 +56,9 @@ function remote_login_resource_post_request($merchant , $parameter){
      * */
     $query = db_select("remote_login_log" , "log");
     $query->fields("log" , array("uid"));
-    $query->condition("log.merchant" , $merchant)->condition("log.token" , $parameter["token"])->condition("log.status" , "successful");
+    $query->condition("log.merchant" , $merchant)->condition("log.token" , $parameter["token"]);
     $uid = $query->execute()->fetch();
-    if(empty($uid)) return array("status" => 401 , "error" => "Authorization Failed!");
+    if(empty($uid) || $uid->uid == 0) return array("status" => 401 , "error" => "Authorization Failed!");
     $uid = $uid->uid;
 
     /*
