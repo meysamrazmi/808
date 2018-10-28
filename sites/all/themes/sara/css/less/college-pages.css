@@ -828,8 +828,8 @@
   border-left: 0px;
 }
 .region-highlight #block-menu-menu-courses-topics--2 li.leaf.last:before {
-  content: "\e003";
-  font-family: glyphi;
+  content: "\f349";
+  font-family: mat;
   font-size: 22px;
   color: #666;
   display: inline-block;

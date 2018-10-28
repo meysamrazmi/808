@@ -704,8 +704,8 @@ fieldset legend {
   border-right: 5px solid #6d0;
 }
 #money-request-form tr.disabled td:first-child:before {
-  content: "\e013";
-  font-family: glyphi;
+  content: "\f12c";
+  font-family: mat;
   color: #6d0;
   font-size: 25px;
   margin: -4px 10px 0 0;

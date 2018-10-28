@@ -223,8 +223,8 @@
 }
 .page-register h1#page-title:before,
 .page-login h1#page-title:before {
-  content: "\f234";
-  font-family: 'aw';
+  content: "\f014";
+  font-family: mat;
   font-size: 80px;
   color: #555;
 }
@@ -812,8 +812,8 @@
   white-space: nowrap;
 }
 .pane-uc-orders-user .pane-title:before {
-  content: "\f290";
-  font-family: aw;
+  content: "\f49a";
+  font-family: mat;
   font-size: 25px;
   color: #8BC34A;
 }
@@ -866,8 +866,8 @@
 }
 .view-uc-orders-user tbody tr.payed .views-field-order-status:before,
 .view-uc-orders-user tbody tr.sent .views-field-order-status:before {
-  content: "\f14a";
-  font-family: aw;
+  content: "\f132";
+  font-family: mat;
   font-size: 24px;
   color: #6d0;
 }

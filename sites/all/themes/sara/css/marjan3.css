@@ -920,20 +920,19 @@ div#unavailable ,
     width: 349px;
 }
 #block-panels-mini-user-panel h2.block-title:before {
-	content: "\e235";
-	font-family: glyphi;
+	content: "\f35c";
+	font-family: mat;
 	font-size: 24px;
 	text-align: center;
 	line-height: 50px;
 	display: block;
-	font-weight: 100;
 	color: #8E24AA;
 	position: absolute;
 	width: 30px;
 	left: 0;
 }
 #block-panels-mini-user-panel.opened h2.block-title:before {
-	content: "\e014";
+	content: "\f5ad";
 	opacity: 1;
 	color: #fff;
 	background: #420240;
@@ -1114,7 +1113,7 @@ ul.sidebar_menu_user a:hover:before {
 ul.sidebar_menu_user li a:before {
 	float: right;
 	font-size: 20px;
-	font-family: glyphi;
+	font-family: mat;
 	margin-left: 13px;
 	color: #444;
 }
@@ -1125,28 +1124,22 @@ ul.sidebar_menu_user li.menu-messages a:before {
   margin: 0 -2px 0 9px;
 }
 ul.sidebar_menu_user li.accountant a:before {
-    content: '\f09d';
-	font-family: aw;
+	content: '\f19b';
 }
 ul.sidebar_menu_user li.connections a:before {
     content: '\f00e';
-	font-family: mat;
 }
 ul.sidebar_menu_user li.orders a:before {
-    content: '\f290';
-    font-family: aw;
+	content: '\f49a';
 }
 ul.sidebar_menu_user li.my-courses a:before {
-    /* content: '\e233'; */
-	content: "\f007";
-    font-family: aw;
+	content: "\f004";
 }
 ul.sidebar_menu_user li.my-nodes a:before {
-    content: '\f02d';
-	font-family: aw;
+	content: '\f0bb';
 }
 ul.sidebar_menu_user li.logout a:before {
-	content: "\e017";
+	content: "\f425";
 }
 ul.sidebar_menu_user li.qyestions a:before {
     content: "?";
@@ -1163,12 +1156,11 @@ ul.sidebar_menu_user li.qyestions a:before {
 }
 ul.sidebar_menu_user li.profile-edit a:before {
   content: "\f3eb";
-  font-family: mat;
   font-size: 25px;
   margin: 0 -3px 0 9px;
 }
 ul.sidebar_menu_user li.edit a:before {
-	content: "\e019";
+	content: "\f493";
 }
 .pane-block-41 hr {
 	margin: 10px 0 5px;
@@ -1207,8 +1199,8 @@ ul.sidebar_menu_user li.edit a:before {
 }
 #block-panels-mini-user-panel h2.block-title .message-num:before,
 #block-panels-mini-user-panel h2.block-title .num-items:before {
-	content: "\e116";
-	font-family: glyphi;
+	content: "\f110";
+	font-family: mat;
 	padding: 0 7px;
 	left: 0;
 	position: absolute;

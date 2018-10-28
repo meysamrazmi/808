@@ -379,8 +379,8 @@ color:#fff;
   transition-duration: 300ms;
 }
 .panels-flexible-region-5-thirdlast-inside .panel-pane .pane-title:before {
-  content: "\f0c0";
-  font-family: aw;
+  content: "\f00e";
+  font-family: mat;
   vertical-align: top;
   padding: 10px;
   font-size: 25px;
@@ -393,8 +393,8 @@ color:#fff;
   background: #fc6e51 !important;
 }
 .pane-main .pane-title:before {
-  content: "\e035" !important;
-  font-family: glyphi !important;
+	content: "\f2cb" !important;
+	font-family: mat !important;
 }
 .pane-main .pane-title:after {
   background: #ffce54 !important;
@@ -426,54 +426,6 @@ color:#fff;
   box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
   margin-bottom: 15px !important;
   border: none !important;
-}
-.hamian img{
-    max-height: 105px;
-	width: auto;
-    position: relative;
-    filter: grayscale(100%);
-    -webkit-filter: grayscale(100%);  /* For Webkit browsers */
-    filter: gray;  /* For IE 6 - 9 */
-    -webkit-transition: all .3s ease;  /* Transition for Webkit browsers */
-}
-.view-hamian .attachment * {
- /*   position: relative;*/
-}
-.hamian img:hover {
-    filter: grayscale(0%);
-    -webkit-filter: grayscale(0%);
-    filter: none;
-}
-#block-views-hamian-block > div.content > div > div.view-content,
-.hamian .attachment ,
-.hamian .attachment > div{
-  display: inline-block;
-   overflow: hidden;
-}
-.view-display-id-block.hamian > .view-content{
-width: 33%;
-vertical-align: top;
-}
-.hamian .attachment{
-width: 66%;
-}
-.hamian .attachment > div{
-width: 50%;
-    vertical-align: top;
-}
-.hamian .views-slideshow-cycle-main-frame{
-margin: 0 auto;
-}
-.hamian .view-header{
-  margin-bottom: 30px;
-    font-size: 16px;
-}
-.hamian .view-header a{
-color:#00accc;
-}
-.hamian .view-header a:hover{
-color:#00accc;
-text-decoration: underline;
 }
 .bottom2{
 margin:0;
@@ -785,8 +737,8 @@ ul.quicktabs-tabs li {
   border-bottom: 3px solid #f80;
 }
 #quicktabs-frontpage .quicktabs-tabs li a:before {
-  content: "\f1ea";
-  font-family: aw;
+  content: "\f395";
+  font-family: mat;
   position: absolute;
   margin: 2px -40px 0 0;
   font-size: 25px;
@@ -834,14 +786,7 @@ ul.quicktabs-tabs {
   margin-right:auto;
   margin-left:auto;
 }
-.hamian .views_slideshow_main .views-slideshow-cycle-main-frame{
-    max-width: 100%;
-    height: 8vw !important;
-}
-.hamian .views_slideshow_main .views_slideshow_slide{
-    height: 8vw !important;
-    width: 100% !important;
-}
+
 .page-saze .three-publication td {
     vertical-align: top;
     width: 23.7%;
@@ -1026,8 +971,8 @@ transition: all 0.3s ease;
   color: white !important;
 }
 .civil-slide .third-slide p:before {
-  content: "\e013";
-  font-family: glyphi;
+  content: "\f12c";
+  font-family: mat;
   position: absolute;
   right: -35px;
   font-size: 27px;
@@ -1041,8 +986,8 @@ transition: all 0.3s ease;
   top:20px !important;
 }
 .page-civil .civil-slide .views-row-2 .views-row-1 .views-field-body p:before {
-  content: "\e013";
-  font-family: glyphi;
+  content: "\f12c";
+  font-family: mat;
   position: absolute;
   right: -35px;
   font-size: 27px;
@@ -1271,29 +1216,27 @@ width: 47% !important;
   margin: 22% 32%;
 }
 .page-civil .pane-video-gallery .views-field-field-posterfilm a:before{
-    content: "\f04b";
-    position: absolute;
+	content: "\f40a";
+	position: absolute;
 	left: 44%;
-    color: white;
-    font-size: 20px;
-    font-family: aw;
-    top: 38%;
-    background-color: rgba(0, 0, 0, 0.43);
-    padding-left: 2px;
-    border-radius: 50px;
-    width: 39px;
-    height: 39px;
-    text-align: center;
-    box-sizing: border-box;
-    line-height: 40px;
+	color: #fff;
+	background: rgba(0, 0, 0, 0.48);
+	font-size: 50px;
+	font-family: mat;
+	top: 38%;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: 1px solid;
+	line-height: 50px;
 }
 .page-civil .pane-video-gallery .views-field-field-pictures a:before{ 
-	content: "\f24d";
+	content: "\f18f";
     position: absolute;
     left: 0px;
     color: white;
     font-size: 15px;
-    font-family: aw;
+    font-family: mat;
     bottom:8px;
     background-color: rgba(0, 0, 0, 0.43);
     padding: 0px;
@@ -1437,8 +1380,8 @@ width: 100%;
 	margin-left: 0px;
 }
 .page-civil #content .row-2 .more-link a:after {
-	content: "\f060";
-    font-family: aw;
+	content: "\f04d";
+	font-family: mat;
     left: 0;
     margin: 0 15px 0 0;
     display: inline-block;
@@ -1606,9 +1549,7 @@ width: 100%;
 #footer > div > div > div:nth-child(3) {
   width: inherit;
 }
-.hamian .views_slideshow_main .views-slideshow-cycle-main-frame {
-  height: 20vw !important;
-}
+
 }
 @media all and (max-width: 650px){
 .page-civil #content .pane-menu-main-civil.topfix ul li.first.leaf {
@@ -1652,9 +1593,6 @@ div#block-panels-mini-conference-social-icon {
   margin-right: auto;
   margin-left: auto;
   display: block;
-}
-.hamian img {
-    max-height: 80px;
 }
 div#block-panels-mini-conference-social-icon {
   display: none;

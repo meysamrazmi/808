@@ -1720,10 +1720,10 @@ select#edit-field-course-undertype-tid {
     position: relative;
 }
 .courselinks .content li a:before {
-	content: "\e257";
+	content: "\f141";
 	font-size: 10px;
 	position: absolute;
-	font-family: glyphi;
+	font-family: mat;
 	color: #555;
 	right: 0px;
 }
