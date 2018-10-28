@@ -30,7 +30,7 @@
         <div>
             <?php
                 $body_value = node_load(20190);
-                print($body_value->body[und][0]['value']);
+                print($body_value->body['und'][0]['value']);
             ?>
         </div>
         <div class="lecturer">
