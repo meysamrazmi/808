@@ -2,13 +2,18 @@
     <div id="block-block-45" class="block block-block contextual-links-region first odd">
         <div class="content">
             <span class="close-banner">X</span>
-            <a href="/node/19986" target="_blank">
-                <img class="right" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">
+            <a href="/node/20190" target="_blank">
                 <div class="new-title">
-                    دومین دوره جامع آموزش اصول محاسبات
-                    <div>بهسازی لرزه ای و طراحی عملکردی سازه ها</div>
+                    <img class="right" src="/sites/all/themes/sara/images/banners/engineerGuy.png">
+                    <div style="margin-top: 5px;">
+                        <div>ثبت نام دوره حضوری آمادگی آزمون ورود به حرفه</div>
+                        محاسبات، نظارت و اجرا
+                    </div>
                 </div>
-                <img class="left" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">
+                <div class="left">کلیک کنید
+                    <span>></span>
+                </div>
+                <img style="display: none;" class="left" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">
             </a>
         </div>
     </div>
@@ -46,22 +51,21 @@
             width: auto;
             background-position: center;
             background-repeat: no-repeat;
-            margin: 7px auto 0 auto;
             color: black;
             text-align: center;
             font-weight: bold;
             z-index: 2;
             position: relative;
+            display: flex;
+            justify-content: center;
         }
-        .new-title > div{
+        .new-title > div > div{
             font-size: 20px;
             color: #E65100;
             margin-top: 2px;
         }
         img.right{
-            position: absolute;
-            right: 0;
-            top: 0;
+            margin: -20px 0px 0 18px;
         }
         img.left{
             transform: rotateY(180deg);
@@ -69,32 +73,34 @@
             left: 0;
             top: 0;
         }
+        div.left{
+            position: absolute;
+            left: 12px;
+            top: 22px;
+            color: #000;
+            font-size: 15px;
+        }
 
         @media (max-width: 1200px){}
         @media (max-width: 979px){
-            .new-title{
-                text-align: right;
-                margin-right: 15px;
-            }
-            img.right{
+            div.left{
                 display: none;
             }
         }
         @media (max-width: 979px) and (min-width: 769px) {}
         @media all and (max-width: 768px) {}
         @media all and (max-width: 600px) {
-            .new-title > div{
+            .new-title > div > div{
                 font-size: 18px;
-            }
-            img.left{
-                opacity: 0.3;
-                height: 70px;
             }
         }
         @media all and (max-width: 500px) {
             .new-title{
                 text-align: center;
                 margin-right: auto;
+            }
+            img.right{
+                display: none;
             }
         }
         @media all and (max-width: 400px) {}

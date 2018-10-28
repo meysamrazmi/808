@@ -1,10 +1,10 @@
-<img src="/sites/default/files/field/image/node_20190_1.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
+<img src="/sites/default/files/field/image/node_20190_0.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
 
 <section class="kargah-sec">
-
-    <h2>دوره حضوری ورود به حرفه؛ محاسبات و نظارت</h2>
+    <h2>دوره حضوری ورود به حرفه محاسبات، نظارت و اجرا</h2>
+    <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره فقط حضوری و بدون ضبط فیلم است.</p>
     <div class="first-row" style="margin-top: 40px;">
-        <div>
+        <!--<div>
             <p><strong>دوره محاسبات:</strong></p>
             <ul>
                 <li><strong>مدرس: </strong>مصطفی دوگوهرانی</li>
@@ -17,27 +17,61 @@
                 کل دوره ۱۰۰ ساعت خواهد بود. با توجه به جدول ارائه شده زمان هر دوره مشخص شده است. این دوره با توجه به نیاز داوطلبان آزمون برای حل سوالات متنوع تدارک دیده شده است.
             </p>
             <p><img src="/sites/default/files/field/image/node_20190.png" alt="دوره حضوری ورود به حرفه؛ محاسبات و نظارت" title="دوره حضوری ورود به حرفه؛ محاسبات و نظارت" width="724" height="238"></p>
-        </div>
-    </div>
-    <div class="first-row" style="margin-top: 40px;">
-        <div>
             <p><strong>دوره نظارت:</strong></p>
             <ul>
                 <li><strong>مدرس: </strong>مصطفی دوگوهرانی</li>
                 <li><strong>شروع دوره: </strong>۲۶ آبان</li>
                 <li><strong>ظرفیت: </strong>۱۵ نفر</li>
                 <li><strong>مخاطبین: </strong>مهندسین عمران و معماری</li>
-                <li><strong>ویژگی ها: </strong>مرور کلیه نکات <a href="/node/17077" target="_blank" title="آزمون نظام مهندسی">آزمون نظام مهندسی</a> به همراه ۲ آزمون تالیف</li>
+                <li><strong>ویژگی ها: </strong>مرور کلیه نکات <a href="/node/17077" target="_blank" title="آزمون نظام مهندسی">آزمون نظام مهندسی</a> به همراه ۲ آزمون تالیفی</li>
             </ul>
             <p><img src="/sites/default/files/field/image/node_20190_1.png" alt="دوره حضوری ورود به حرفه؛ محاسبات و نظارت" title="دوره حضوری ورود به حرفه؛ محاسبات و نظارت" width="723" height="237"></p>
+        </div>-->
+        <div>
+            <?php
+                $body_value = node_load(20190);
+                print($body_value->body['und'][0]['value']);
+            ?>
         </div>
-
+        <div class="lecturer">
+            <img src="/sites/default/files/styles/200x200/public/pictures/picture-1138-1446395095.jpg?itok=5NJ8JRPM" width="150px" height="auto">
+            <p style="margin: 10px 0 0 0"><strong> مدرس </strong></p>
+            <h3 style="margin:5px"> مهندس مصطفی دوگوهرانی </h3>
+            <p> کارشناس ارشد سازه </p>
+            <a href="/sites/default/files/field/file/cv/profile_1004.pdf" target="_blank" class="btn btn-primary" download="cv">رزومه</a>
+        </div>
     </div>
 </section>
 
-<section class="second">
-    <h2 class="text"> ثبت نام در دوره حضوری ورود به حرفه؛ محاسبات و نظارت</h2>
+<section style="margin: 50px 0 80px 0;">
+    <h2> قسمتی از فیلم ورکشاپ آشنایی با آزمون نظام مهندسی عمران </h2>
+    <p style="text-align: center;margin-bottom: 40px;margin-top: 30px;	font-size: 15px;color: #888;">برای مشاهده نمونه فیلم های بیشتر
+        <a href="/gallery/videos/playlist/2605/15748" target="_blank">کلیک کنید.</a>
+    </p>
+    <?php
+    //sis3_VP8.webm,sis3_x264.mp4
+    $video_attrs = array(
+        'src' => '/sites/default/files/filed/files/node_15748-herfe-workshop-omran_vp8.webm',
+        'width' => '840px',
+        'height' => '447px',
+        'videoWidth' => '840px',
+        'videoHeight' => '447px',
+        'controls' => true,
+    );
+    $video_sett =  array(
+        'download_link' => true,
+        'download_text' => 'download'
+    );
+    print theme('mediaelement_video', array('attributes' => $video_attrs, 'settings' => $video_sett));
+    //'poster ' => '/sites/default/files/conference-4-film' ,
+    ?>
+</section>
 
+<section class="second">
+    <h2 class="text"> ثبت نام در دوره حضوری ورود به حرفه محاسبات، نظارت و اجرا</h2>
+    <p style="text-align: center;margin-top: -18px;font-size: 15px;color: #888;margin-bottom: 29px;">
+        با تخفیفات ویژه برای شرکت کنندگان دوره
+    </p>
 <!--    <div class="takhfifat" style="margin-bottom: 15px;">-->
 <!--        <p>-->
 <!--            <span>10 %</span>تخفیف برای اعضای VIP، <a href="/landing/vip" target="_blank">عضو ویژه شوید</a>-->
@@ -49,35 +83,249 @@
     <div class="tickets">
         <div>
             <a href="/cart/add/p20193?destination=cart" target="_blank">
-                <div class="city-name"><span>دوره محاسبات:</span></div>
+                <div class="city-name"><span>دوره محاسبات</span></div>
                 <div class="inner-text">
                     <p class="text"> مدرس: مصطفی دوگوهرانی </p>
-                    <div class="tarikh">شروع دوره 8 آذر</div>
+                    <div class="tarikh">شروع دوره 8 آذرماه 1397</div>
                     <div class="makan"> موسسه آموزشی 808 </div>
+                    <div class="zaman"> پنج شنبه ها ساعت 14 تا 20، جمعه ها ساعت 8 تا 18 (جمعا 100 ساعت) </div>
                     <div class="mablagh"> 900,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
             </a>
             <a href="/cart/add/p20194?destination=cart">
-                <div class="city-name"><span>دوره نظارت:</span></div>
+                <div class="city-name"><span>دوره نظارت و اجرا</span></div>
                 <div class="inner-text">
                     <p class="text"> مدرس: مصطفی دوگوهرانی </p>
-                    <div class="tarikh"> شروع دوره 16 آذر </div>
+                    <div class="tarikh"> شروع دوره 26 آبان ماه 1397 </div>
                     <div class="makan"> موسسه آموزشی 808 </div>
+                    <div class="zaman"> شنبه ها، دوشنبه ها و چهارشنبه ها ساعت 16 تا 21 (جمعا 60 ساعت) </div>
                     <div class="mablagh"> 700,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
             </a>
         </div>
-        <!--<div class="bought-tickets">سوال های خود را می توانید از طریق شماره تماس موسسه و سیستم پیغام خصوصی با ما در میان بگذارید.</div>
-	</div>-->
+        <div class="bought-tickets">سوال های خود را می توانید از طریق شماره تماس موسسه و سیستم پیغام خصوصی با ما در میان بگذارید.</div>
+	</div>
 
 </section>
 
+<section id="ebooks" class="product-node">
+    <h2> فیلم های آموزشی مرتبط </h2>
+    <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">برای سفارش آنلاين پكيج فيلم هاي آموزشي آمادگي آزمون ورود به حرفه محاسبات، نظارت و اجرا
+        <a href="/store" target="_blank" class="title"> به این صفحه </a>
+        مراجعه کنید</p>
+    <div class="owl-carousel">
+        <?php
+        $nids = array( 5552 , 11160 , 5532 , 5533 , 13647, 8424);
+        $view_mode = 'teaser';
+        foreach ($nids as $nid){
+            $node = node_load($nid);
+            print '<div class="row">';
+            $myelement = node_view($node , $view_mode);
+            print render($myelement); /*this line is causing the problem*/
+            print '</div>';
+        }
+        ?>
+    </div>
+</section>
+
+<section id="ebooks">
+    <h2> در 808 بیشتر بخوانید </h2>
+    <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">لیستی از مطالب مرتبط، فیلم های آموزشی، محصولات فروشگاه و ...در رابطه  با این همایش را میتوانید
+        <a href="/eng" target="_blank" class="title"> در صفحه اختصاصی ورود به حرفه </a>
+        مشاهده کنید</p>
+    <div class="owl-carousel">
+        <div class="row">
+            <a href="/shop/main#/?search=%DA%A9%D8%AA%D8%A7%D8%A8%20%D8%B5%D9%88%D8%AA%DB%8C" target="_blank">
+                <img src="/sites/default/files/styles/uc_product_full/public/field/image/node_19236_0.jpg?itok=yVKMdJKz" width="300" height="170" alt="سفارش آنلاین مجموعه كتب صوتي مقررات ملي ساختمان" title=" سفارش آنلاین مجموعه كتب صوتي مقررات ملي ساختمان ">
+            </a>
+            <a href="/shop/main#/?search=%DA%A9%D8%AA%D8%A7%D8%A8%20%D8%B5%D9%88%D8%AA%DB%8C" target="_blank" class="title">
+                سفارش آنلاین مجموعه كتب صوتي مقررات ملي ساختمان
+            </a>
+        </div>
+        <div class="row">
+            <a href="/node/16827" target="_blank">
+                <img src="/sites/default/files/photo_2018-09-15_12-36-40.jpg" width="300" height="170" alt="دوره آنلاین ورود به حرفه محاسبات (ترم تابستان ۹۷)" title=" دوره آنلاین ورود به حرفه محاسبات (ترم تابستان ۹۷) ">
+            </a>
+            <a href="/node/16827" target="_blank" class="title">
+                دوره آنلاین ورود به حرفه محاسبات (ترم تابستان ۹۷)
+            </a>
+        </div>
+        <div class="row">
+            <a href="/node/16828" target="_blank">
+                <img src="/sites/default/files/photo_2018-09-15_12-46-05.jpg" width="300" height="170" alt="دوره آنلاین ورود به حرفه نظارت (ترم تابستان ۹۷)" title="دوره آنلاین ورود به حرفه نظارت (ترم تابستان ۹۷)">
+            </a>
+            <a href="/node/16828" target="_blank" class="title">
+                دوره آنلاین ورود به حرفه نظارت (ترم تابستان ۹۷)
+            </a>
+        </div>
+        <div class="row">
+            <a href="/node/1107" target="_blank">
+                <img src="/sites/default/files/styles/808/public/field/image/node_1107.jpg?itok=df31Wt33" width="300" height="170" alt="برنامه های عمرانی ماشین حساب ویژه آزمون ورود به حرفه محاسبات" title="برنامه های عمرانی ماشین حساب ویژه آزمون ورود به حرفه محاسبات">
+            </a>
+            <a href="/node/1107" target="_blank" class="title">
+                برنامه های عمرانی ماشین حساب ویژه آزمون ورود به حرفه محاسبات همراه با 2 ساعت فیلم آموزشی (به روز رسانی اسفند 96)
+            </a>
+        </div>
+        <div class="row">
+            <a href="/gallery/videos/playlist/2605/15748" target="_blank">
+                <img src="/sites/default/files/field/image/node_15748-photo5976604562305427827.jpg" width="300" height="170" alt="فیلم آشنایی با خدمات سازمان نظام مهندسی رشته عمران" title="فیلم آشنایی با خدمات سازمان نظام مهندسی رشته عمران">
+            </a>
+            <a href="/gallery/videos/playlist/2605/15748" target="_blank" class="title">
+                فیلم آشنایی با خدمات سازمان نظام مهندسی رشته عمران
+            </a>
+        </div>
+        <div class="row">
+            <a href="/gallery/videos/playlist/3685/19009" target="_blank">
+                <img src="/sites/default/files/field/image/node_19009-azmoon-nezam-mohandesi-97.jpg" width="300" height="170" alt="حل سوال 60 تحلیل سازه آزمون ورود به حرفه محاسبات ارديبهشت ٩٧ توسط ماشین حساب" title="حل سوال 60 تحلیل سازه آزمون ورود به حرفه محاسبات ارديبهشت ٩٧ توسط ماشین حساب">
+            </a>
+            <a href="/gallery/videos/playlist/3685/19009" target="_blank" class="title">
+                حل سوال 60 تحلیل سازه آزمون ورود به حرفه محاسبات ارديبهشت ٩٧ توسط ماشین حساب
+            </a>
+        </div>
+        <div class="row">
+            <a href="/node/9799" target="_blank">
+                <img src="/sites/default/files/field/image/node_2704-blog_71.jpg" width="300" height="170" alt="دوره های آنلاین آمادگی آزمون ورود به حرفه عمران و معماری" title="دوره های آنلاین آمادگی آزمون ورود به حرفه عمران و معماری">
+            </a>
+            <a href="/node/9799" target="_blank" class="title">
+                دوره های آنلاین آمادگی آزمون ورود به حرفه عمران و معماری
+            </a>
+        </div>
+        <div class="row">
+            <a href="/node/17146" target="_blank">
+                <img src="/sites/default/files/photo5877664063587199527_1.jpg" width="300" height="170" alt="فیلم وبينار مشاوره نحوه شركت در آزمون های بين المللی FE/PE" title="فیلم وبينار مشاوره نحوه شركت در آزمون های بين المللی FE/PE">
+            </a>
+            <a href="/node/17146" target="_blank" class="title">
+                فیلم وبينار مشاوره نحوه شركت در آزمون های بين المللی FE/PE
+            </a>
+        </div>
+        <div class="row">
+            <a href="/node/17075" target="_blank">
+                <img src="/sites/default/files/styles/808/public/field/image/node_17075.jpg?itok=q4SNihYD" width="300" height="170" alt="ایبوک ۱۷۵: جداول افزایش سرعت تست های آزمون محاسبات نظام مهندسی" title="ایبوک ۱۷۵: جداول افزایش سرعت تست های آزمون محاسبات نظام مهندسی">
+            </a>
+            <a href="/node/17075" target="_blank" class="title">
+                ایبوک ۱۷۵: جداول افزایش سرعت تست های آزمون محاسبات نظام مهندسی
+            </a>
+        </div>
+        <div class="row">
+            <a href="/node/3845" target="_blank">
+                <img src="/sites/default/files/styles/808/public/field/image/node_3845.jpg?itok=U-I2htwX" width="300" height="170" alt="کلید واژه های تخصصی آزمون ورود به حرفه اردیبهشت 97 منتشر شد (همه گرایش ها)" title="کلید واژه های تخصصی آزمون ورود به حرفه اردیبهشت 97 منتشر شد (همه گرایش ها)">
+            </a>
+            <a href="/node/3845" target="_blank" class="title">
+                کلید واژه های تخصصی آزمون ورود به حرفه اردیبهشت 97 منتشر شد (همه گرایش ها)
+            </a>
+        </div>
+        <div class="row">
+            <a href="/node/16090" target="_blank">
+                <img src="/sites/default/files/styles/808/public/field/image/node_16090.jpg?itok=5QCu3fcI" width="300" height="170" alt="نمونه سوالات مباحث ۲۲ گانه مقررات ملی ساختمان ویژه آزمون نظام مهندسی" title="نمونه سوالات مباحث ۲۲ گانه مقررات ملی ساختمان ویژه آزمون نظام مهندسی">
+            </a>
+            <a href="/node/16090" target="_blank" class="title">
+                نمونه سوالات مباحث ۲۲ گانه مقررات ملی ساختمان ویژه آزمون نظام مهندسی
+            </a>
+        </div>
+        <div class="row">
+            <a href="/node/3968" target="_blank">
+                <img src="/sites/default/files/styles/808/public/field/image/node_3979-photo375916600721781737.jpg?itok=QwsG8Heh" width="300" height="170" alt="معرفی پکیج استثنایی شابلن کوییک (مختص آزمون ورود به حرفه معماری)" title="معرفی پکیج استثنایی شابلن کوییک (مختص آزمون ورود به حرفه معماری)">
+            </a>
+            <a href="/node/3968" target="_blank" class="title">
+                معرفی پکیج استثنایی شابلن کوییک (مختص آزمون ورود به حرفه معماری)
+            </a>
+        </div>
+        <div class="row">
+            <a href="/node/17089" target="_blank">
+                <img src="/sites/default/files/styles/200x200/public/fe-exam.jpg?itok=4C4U40Ru" width="300" height="170" alt="آزمون FE یا Fundamentals of Engineering" title="آزمون FE یا Fundamentals of Engineering">
+            </a>
+            <a href="/node/17089" target="_blank" class="title">
+                آزمون FE یا Fundamentals of Engineering
+            </a>
+        </div>
+        <div class="row">
+            <a href="/node/17090" target="_blank">
+                <img src="/sites/default/files/styles/200x200/public/pe-exam.jpg?itok=rK3SwDau" width="300" height="170" alt="آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam" title="آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam">
+            </a>
+            <a href="/node/17090" target="_blank" class="title">
+                آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam
+            </a>
+        </div>
+        <div class="row">
+            <a href="/node/17077" target="_blank">
+                <img src="/sites/default/files/styles/200x200/public/engineering-system-test.jpg?itok=CNPf4UzR" width="300" height="170" alt="آزمون نظام مهندسی، Engineering system test" title="آزمون نظام مهندسی، Engineering system test">
+            </a>
+            <a href="/node/17077" target="_blank" class="title">
+                آزمون نظام مهندسی، Engineering system test
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="plus808">
+    <div class="inner">
+        <h2>  ثبت نام در کلاس ها و مشاوره های خصوصی </h2>
+        <h4> اگر دوره مورد نظر خود را پیدا نکردید، با مدرس دلخواه خود آموزش ببینید </h4>
+        <a class="ask-question btn btn-primary" href="/college/course-vip" target="_blank"> درخواست کلاس </a>
+        <a class="ask-question btn" href="/question/list" target="_blank">پرسش و پاسخ</a>
+    </div>
+</section>
+
+<section class="third">
+    <h2> آموزش های آمادگی ورود به حرفه </h2>
+    <div class="inside">
+        <a href="/eng" target="_blank">
+            <span class="icon"></span>
+            <div class="esm">صفحه اختصاصی ورود به حرفه</div>
+        </a>
+        <a href="/college/herfe" target="_blank">
+            <span class="icon"></span>
+            <div class="esm">دوره های آنلاین ورود به حرفه</div>
+        </a>
+        <a href="/landing/exam" target="_blank">
+            <span class="icon"></span>
+            <div class="esm">آزمون های آزمایشی</div>
+        </a>
+        <a href="/shop/main#/?exam=2250" target="_blank">
+            <span class="icon"></span>
+            <div class="esm">فروشگاه محصولات مرتبط</div>
+        </a>
+        <a target="_blank" href="/taxonomy/term/2212">
+            <span class="icon"></span>
+            <div class="esm">گالری فیلم های آموزشی</div>
+        </a>
+    </div>
+</section>
+
+<!--<section class="fifth">
+    <div class="mojri">
+        <h2> برگزارکننده </h2>
+        <img src="/sites/all/themes/sara/images/808-logo.png" width="200px" height="auto">
+        <h3> موسسه آموزشی مهندسی 808 </h3><a href="http://seismosoft.com/contacts" target="_blank"> نماینده رسمی شرکت SeismoSoft در ایران </a>
+    </div>
+</section>-->
+
 
 <style>
-    .tickets > div > a:nth-child(2){
-        width: 700px;
+    .product-node .owl-stage-outer {
+        margin-bottom: 45px;
+    }
+    .node-teaser .vip-price .title {
+        display: none !important;
+    }
+    .product-node .owl-item .row {
+        box-shadow: none;
+    }
+    .owl-item .row {
+        margin: 15px;
+        box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+        background: #fff;
+    }
+    .node-product.node-teaser, .node-product-kit.node-teaser {
+        width: 100%;
+    }
+    #more-data{
+        margin: 86px 20px;
+    }
+    #more-data li{
+        line-height:29px;
     }
     .mediaelement-download-link a{
         font-size:0px;
@@ -652,7 +900,7 @@
         background-color: #fff;
         border-radius: 50%;
         height: 200px;
-        margin: 20px 4%;
+        margin: 20px 1%;
         box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
         vertical-align: top;
     }
@@ -674,22 +922,24 @@
         margin-bottom: 12px;
     }
     section.third a .icon:before {
-        margin-top: 25px;
+        margin: 44px 0 20px 0;
         display: block;
         color: #9c27b0;
-        content: '\f517';
+        content: "\f428";
         font-family: mat;
-        font-size: 49px;
+        font-size: 62px;
     }
     section.third a:nth-child(2) .icon:before {
-        content: '\f428';
+        content: "\f517";
     }
     section.third a:nth-child(3) .icon:before {
-        content: "\f3e1";
+        content: "\f3ed";
     }
-    section.third a:first-child .icon:before {
-        content: "\f379";
-        font-size: 43px;
+    section.third a:nth-child(4) .icon:before {
+        content: "\f111";
+    }
+    section.third a:nth-child(5) .icon:before {
+        content: "\f22f";
     }
     .logos{
         text-align: center;
@@ -770,12 +1020,16 @@
         font-size: 15px;
         color: #555;
     }
-    #ebooks {
+    .product-node {
         border-top: none;
         position: relative;
         padding: 80px 50px 70px;
         background: #fff;
         box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
+    }
+    #ebooks:not(.product-node) {
+        position: relative;
+        padding: 80px 50px 70px;
     }
     .mediaelement-download-link{
         display: block !important;

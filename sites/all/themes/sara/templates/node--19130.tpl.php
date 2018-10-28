@@ -295,7 +295,7 @@
             <span class="icon"></span>
             <div class="esm">آزمون های آزمایشی</div>
         </a>
-        <a href="http://civil808.com/shop/product/p/mefibs-form-f-quiz/0__2250/mefibs-form-f-sort_by/sticky/mefibs-form-f-sort_order/DESC/mefibs-form-f-items_per_page/24/mefibs-form-f-mefibs_block_id/f" target="_blank">
+        <a href="/shop/main#/?exam=2250" target="_blank">
             <span class="icon"></span>
             <div class="esm">فروشگاه محصولات مرتبط</div>
         </a>
