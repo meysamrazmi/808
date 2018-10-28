@@ -95,13 +95,12 @@ table#footer1 {
 
 .te-rev-scont {
   text-align: right;
-    font-family: b yekan;
 }
 td.st-c {
   text-align: right !important;
   border-left: 6px solid transparent;
   font-size: 13px;
-  font-family: 'b yekan',tahoma;
+  font-family: irans,tahoma;
 }
 .date-top:hover {
   border-color: transparent !important;
@@ -138,7 +137,6 @@ th.mv-dayname {
 
 th.mv-dayname:before {
   color: #666;
-  font-family: b yekan;
   font-size: 18px;
 }
 

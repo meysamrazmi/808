@@ -1,23 +1,3 @@
-@font-face { 
-font-family: "yekan";
-src: 	url(/sites/all/themes/sara/fonts/yekan/bYekan.eot);
-src: 	url(/sites/all/themes/sara/fonts/yekan/bYekan.eot?#iefix) format("embedded-opentype"), 
-		url(/sites/all/themes/sara/fonts/yekan/bYekan.woff) format("woff"), 
-		url(/sites/all/themes/sara/fonts/yekan/bYekan.ttf) format("truetype"), 
-		url(/sites/all/themes/sara/fonts/yekan/bYekan.svg#BYekan) format("svg");
-font-weight: normal;
-font-style: normal
-}
-@font-face {  
-  font-family: 'glyphi';
-
-  src: url('/sites/all/themes/sara/fonts/glyphicons-halflings-regular.eot');
-  src: url('/sites/all/themes/sara/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
-		url('/sites/all/themes/sara/fonts/glyphicons-halflings-regular.woff2') format('woff2'), 
-		url('/sites/all/themes/sara/fonts/glyphicons-halflings-regular.woff') format('woff'), 
-		url('/sites/all/themes/sara/fonts/glyphicons-halflings-regular.ttf') format('truetype'), 
-		url('/sites/all/themes/sara/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-}
 @font-face {
 	font-family: irans;
 	font-style: normal;
@@ -54,14 +34,13 @@ font-style: normal
   padding: 0;
 }
 #branding h1.page-title {
-  font-family: yekan, "Segoe UI", "Helvetica", sans-serif !important;
   font-size: 28px !important;
 }  
 body {
   font: normal 12px/1.8em Open Sans, irans, "Segoe UI", "Helvetica", sans-serif !important;
 }  
 ul.action-links a {
-  font-family: yekan, "Helvetica", sans-serif !important;
+  font-family: "Helvetica", sans-serif !important;
   padding-bottom: 4px !important;
 }
 h1, h2, h3, h4, h5, h6 {
@@ -184,7 +163,6 @@ div#edit-field-filmtags-und .form-item {
 div#edit-field-enable {
   background-color: #f5f5f5;
   padding: 10px;
-  font: 18px b yekan;
 }
 div#edit-field-course-undertype, div#edit-field-course-field, div#edit-field-course-type {
 width: 30%;
@@ -247,14 +225,12 @@ div#block-webform-client-block-3403 .form-submit {
   border-radius: 3px;
   background: #07f;
   color: #fff;
-  font-family: b yekan;
   border: 0;
   margin: 5px 0 -2px 0;
 }
 div#block-webform-client-block-3403 a.fieldset-title {
   color: #666;
   text-decoration: none;
-  font-family: b yekan;
   font-size: 17px;
   font-weight: normal;
 }
@@ -394,7 +370,6 @@ div#edit-taxonomy-catalog-und > ul.term-reference-tree-level > li:nth-child(10){
   border-color: #00DCFF;
 }
 div#edit-taxonomy-catalog-und > ul.term-reference-tree-level > li > div.form-item label {
-  font-family: yekan !important;
   font-size: 19px !important;
   display: inline-block;
   padding: 2px 15px 9px;
@@ -696,7 +671,6 @@ fieldset legend {
     font-size: 16px !important;
     border-right: 5px solid rgb(204, 204, 204) !important;
     padding: 0.5em 12px 0.5em 10px !important;
-    font-family: yekan;
 	display: inline-block;
     width: 76%;
 }

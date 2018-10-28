@@ -352,7 +352,6 @@ div#block-views-glrnew-block-2 {
 }
 .page-videos .gallery.videos .views-row .views-field-created,
 .page-videos .gallery.videos .views-row .views-field-totalcount  {
-    font: 11px b yekan;
     color: #888;
     display: none;
 	padding: 5px;
@@ -950,7 +949,6 @@ input#edit-submitted-coursename {
   background-color: transparent;
   border: none;
   margin: 0 20px 0 0 !important;
-  font-family: b yekan;
   font-size: 16px;
   cursor: default;
   box-shadow: none;

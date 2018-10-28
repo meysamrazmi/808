@@ -107,7 +107,7 @@ background:#f9f9f9; /*url('../images/newyork.jpg') no-repeat center center fixed
 -o-background-size: cover;
 background-size: cover;
 font-size: 13px !important;
-font-family: irans, yekan, sans-serif;
+font-family: irans, sans-serif;
 overflow-x: hidden;
 direction: rtl !important;
 width:100% !important;
@@ -627,8 +627,6 @@ right: 15px;
   margin: 0 auto;
 }
 .podcast-audio li {
-font-family: 'B Yekan',Tahoma,"Helvetica Neue",Helvetica,Arial,sans-serif;
-font-size: 13px;
 font-weight: normal;
 line-height: 27px;
 display:block;
@@ -873,9 +871,6 @@ padding: 2px 0;
 .field-name-field-gallerynewimage .field-item {
 display: inline;
 padding: 10px;
-}
-#cboxTitle {
-  font: 13px b yekan;
 }
 #content .gallery.pics a {
     color: #444;

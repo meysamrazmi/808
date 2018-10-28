@@ -521,7 +521,6 @@
 #takhfif-page .section .section-body{
 	color: black;
     font-size: 15px !important;
-    font-family: yekan;
     margin-top: 19px !important;
 }
 #takhfif-page .section .section-image{
@@ -739,7 +738,6 @@ div#edit-mefibs-form-f-populate-wrapper {
 .page-architect .civil-slide .views_slideshow_slide .views-field-title {
     font-size: 40px;
     margin: 0;
-    font-family: yekan;
     color: black;
     transition: all 0.4s ease;
     z-index: 10;
@@ -776,7 +774,6 @@ div#edit-mefibs-form-f-populate-wrapper {
 .page-ejra .civil-slide .views_slideshow_slide .views-field-title  {
     font-size: 40px;
     margin: 0;
-    font-family: yekan;
     color: black;
     transition: all 0.4s ease;
     z-index: 10;
@@ -805,7 +802,6 @@ div#edit-mefibs-form-f-populate-wrapper {
 .page-herfe .civil-slide .views_slideshow_slide .views-field-title {
     font-size: 40px;
     margin: 0;
-    font-family: yekan;
     color: black;
     transition: all 0.4s ease;
     z-index: 10;
@@ -867,7 +863,6 @@ div#unavailable ,
     text-align: center;
     border-radius: 12%;
     padding: 1% 10% 5% 8%;
-    font-family: yekan;
     line-height: 15px;
     border: solid #f20;
     border-width: 0px 3px;
