@@ -137,8 +137,8 @@
     position: relative;
 }
 .page-arch .architects-homepage div#edit-title-wrapper:before {
-    content: "\e003";
-    font-family: glyphi;
+    content: "\f349";
+    font-family: mat;
     position: absolute;
     margin-top: 0;
     font-size: 15px;
@@ -156,8 +156,8 @@
 	width:430px;
 }
 .page-pedia div#edit-title-wrapper:before {
-    content: "\e003";
-    font-family: glyphi;
+    content: "\f349";
+    font-family: mat;
     font-size: 15px;
     width: 68px;
     text-align: center;
@@ -276,8 +276,8 @@
     text-align: right;
 }
 .page-pedia div#block-mefibs-8e49d13e1295a3847928ee45c286e415 div.scrollingdown:before{
-    content: "\f107";
-    font-family: aw;
+    content: "\f140";
+    font-family: mat;
     font-size: 85px;
     text-align: center;
     color: #20cecc;
@@ -302,36 +302,36 @@
 
 /*---------------contact-us-------------------*/
 #node-9969 table > tbody > tr > td:nth-child(1) > p:nth-child(1):before {
-    content: "\f041";
-    font-family: aw;
+    content: "\f34e";
+    font-family: mat;
     margin-left: 9px;
     font-size: 20px;
     color: #ac2aaa;
 }
 #node-9969  table > tbody > tr > td:nth-child(1) > p:nth-child(3):before {
-    content: "\f1ac";
-    font-family: aw;
+    content: "\f212";
+    font-family: mat;
     margin-left: 9px;
     font-size: 20px;
     color: #ac2aaa;
 }
 #node-9969 table > tbody > tr > td:nth-child(1) > p:nth-child(5):before {
-    content: "\f0e0";
-    font-family: aw;
+    content: "\f1f0";
+    font-family: mat;
     margin-left: 9px;
     font-size: 20px;
     color: #ac2aaa;
 }
 #node-9969 table > tbody > tr > td:nth-child(1) > p:nth-child(10):before {
-    content: "\f14b";
-    font-family: aw;
+    content: "\f3ed";
+    font-family: mat;
     margin-left: 9px;
     font-size: 20px;
     color: #ac2aaa;
 }
 #node-9969 table > tbody > tr > td:nth-child(1) > p:nth-child(12):before {
-    content: "\f283";
-    font-family: aw;
+    content: "\f19b";
+    font-family: mat;
     margin-left: 9px;
     font-size: 20px;
     color: #ac2aaa;
@@ -515,7 +515,6 @@
     padding-left: 6px;
 }
 .page-user .profile2-advisor  .field-label{
-    font-family: yekan;
     font-weight: normal !important;
     text-align: right;
     margin-left: 38px;
@@ -540,18 +539,18 @@
     box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
 }
 .profile2-advisor .field-name-field-sourse-sug a:before{
-	content:"\f02d";
+	content:"\f0bb";
 }
 .page-advisor .field-name-message-new a:before{
-	content: "\f044";
+	content: "\f3ed";
 }
 .profile2-advisor .field-name-field-publish2-file a:before{
-	content: "\f1c1";
+	content: "\f225";
 }
 .profile2-advisor .field-name-field-sourse-sug a:before,
 .page-advisor .field-name-message-new a:before, 
 .profile2-advisor .field-name-field-publish2-file a:before{
-	font-family: aw;
+	font-family: mat;
     font-size: 29px;
     padding-left: 18px;
     vertical-align: middle;
@@ -605,24 +604,24 @@
 /*-----------------architect-homepage--------------------*/
 
 .page-arch a.gallery-film:before {
-    content: "\f008";
-	font-family:aw;
+    content: "\f381";
+	font-family:mat;
 }
 .page-arch a.maghalat:before {
-    content: "\f02d";
-	font-family:aw;
+    content: "\f5da";
+	font-family:mat;
 }
 .page-arch a.gallery-aks:before {
-    content: "\f03e";
-	font-family:aw;
+    content: "\f21f";
+	font-family:mat;
 }
 .page-arch  a.doreha:before {
-    content: "\e233";
-	font-family:glyphi;
+    content: "\f474";
+	font-family:mat;
 }
 .page-arch  a.taghvim-arch:before {
-    content: "\e109";
-	font-family:glyphi;
+    content: "\f0ee";
+	font-family:mat;
 }
 #memari-links .pane-title{
 	display:none;
@@ -1687,7 +1686,6 @@ div#webform-ajax-wrapper-14314 .form-actions .webform-previous {
 }
 #page-moshaver .moshaver-social:before{
 	content: "";
-    font-family: glyphi;
     font-size: 27px;
     color: white;
     margin: 15px;

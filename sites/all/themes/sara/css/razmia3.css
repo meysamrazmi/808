@@ -375,8 +375,8 @@ div#cart-form-pane tbody tr {
   border: none;
 }
 div#cart-form-pane td.remove:before {
-  font-family: glyphi;
-  content: "\e014";
+  font-family: mat;
+  content: "\f156";
   color: rgba(255, 34, 0, 0.6);
   font-size: 30px;
   cursor: pointer;
@@ -523,8 +523,8 @@ form#uc-cart-checkout-review-form .btn:before,
 #uc-cart-view-form .form-actions button:last-child:before,
 .review-button-row #edit-submit:before,
 #edit-continue-shopping:before {
-  content: "\e095";
-  font-family: glyphi;
+  content: "\f496";
+  font-family: mat;
   vertical-align: middle;
   margin-left: 10px;
 }
@@ -883,8 +883,8 @@ div#review-instructions {
   margin-right: -10px;
 }
 .order-review-table .pane-title-row:before {
-  content: "\e013";
-  font-family: Glyphi;
+  content: "\f12c";
+  font-family: mat;
   margin-right: -40px;
   margin-top: 0;
   color: #6d0;
@@ -1703,8 +1703,8 @@ div#site-logo-and-name img {
   margin-bottom: 0;
 }
 #customer-pane .fieldset-description > a::after {
-    content: "\f060";
-    font-family: aw;
+    content: "\f04d";
+    font-family: mat;
     left: 0;
     margin: 0 8px 0 0;
     display: inline-block;
@@ -2192,8 +2192,8 @@ p.all-product a:hover {
   background: #fff;
 }
 p.all-product a:before {
-  content: "\e011";
-  font-family: glyphi;
+  content: "\f03b";
+  font-family: mat;
   margin: 0 0px 0 20px;
   vertical-align: middle;
   font-size: 17px;
@@ -2377,8 +2377,8 @@ div#latest_shop .pane-title:after {
   position: relative;
 }
 div#edit-populate-wrapper .views-widget:before {
-  content: "\e003";
-  font-family: glyphi;
+  content: "\f349";
+  font-family: mat;
   position: absolute;
   margin-top: 0;
   font-size: 15px;
@@ -2521,8 +2521,8 @@ div#edit-populate-wrapper input#edit-populate {
   color: #F44336;
 }
 .klick-for-more span:before {
-  content: "\f107";
-  font-family: aw;
+  content: "\f140";
+  font-family: mat;
   font-size: 25px;
   position: absolute;
   top: inherit;
@@ -2610,7 +2610,6 @@ div#node-51 > h2 {
   width: 210px;
 }
 .node-product.view-mode-question .attribute > .form-item > label {
-  font-family: yekan;
   font-size: 15px;
   padding: 2px 5px;
 }
@@ -2618,7 +2617,6 @@ div#node-51 > h2 {
   content: "ثبت نام دوره";
   position: absolute;
   color: #fff;
-  font-family: yekan;
   padding: 18px 0;
   font-size: 18px;
   width: 210px;
@@ -3091,8 +3089,8 @@ border-right: 4px solid #6d0;
   box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12);
 }
 .page-event .more-link a:after {
-  content: "\f060";
-  font-family: aw;
+  content: "\f04d";
+  font-family: mat;
   left: 0;
   margin: 0px 15px 0px 0;
   display: inline-block;
@@ -3283,8 +3281,8 @@ input.short_link {
     margin: 20px auto 20px 0;
 }
 .field-name-share-link:before {
-  content: "\e144";
-  font-family: glyphi !important;
+  content: "\f339";
+  font-family: mat !important;
   position: absolute;
   left: 0;
   background: #eee;
@@ -3338,7 +3336,6 @@ div#block-taxonomy-menu-block-1--2 .block-title {
 }
 .leftads .block-taxonomy-menu-block .content li a:before {
   content: "";
-  font-family: aw;
   font-size: 20px;
   position: absolute;
   right: 0;
@@ -3537,8 +3534,8 @@ div#block-taxonomy-menu-block-2--2 li:last-child, div#block-taxonomy-menu-block-
 .mejs-controls .mejs-play button:before,
 .mejs-controls .mejs-unmute button:before,
 .mejs-controls .mejs-mute button:before {
-  content: "\f028";
-  font-family: aw;
+  content: "\f57e";
+  font-family: mat;
   font-size: 18px;
   font-weight: normal;
   padding: 4px 0;
@@ -3556,8 +3553,8 @@ div#block-taxonomy-menu-block-2--2 li:last-child, div#block-taxonomy-menu-block-
   content: "\f065";
 }
 .mejs-controls .mejs-pause button:before {
-  content: "\e073";
-  font-family: glyphi;
+  content: "\f3e4";
+  font-family: mat;
   font-size: 25px;
   padding: 7px 0;
 }
@@ -3733,8 +3730,8 @@ div#block-taxonomy-menu-block-2--2 li:last-child, div#block-taxonomy-menu-block-
   background: none;
 }
 .mejs-overlay-button:before {
-  content: "\f144";
-  font-family: aw;
+  content: "\f40c";
+  font-family: mat;
   color: #bf28bf;
   font-size: 100px;
   position: absolute;
@@ -3753,8 +3750,8 @@ div#block-taxonomy-menu-block-2--2 li:last-child, div#block-taxonomy-menu-block-
   background: transparent;
 }
 .mejs-overlay-loading:before {
-  content: "\f110";
-  font-family: aw;
+  content: "\f450";
+  font-family: mat;
   font-size: 50px;
   position: absolute;
   right: 20%;
@@ -3803,8 +3800,8 @@ video {
   cursor: pointer;
 }
 .embed-section .title:before {
-  content: "\f121";
-  font-family: aw;
+  content: "\f174";
+  font-family: mat;
   padding: 0 6px;
   font-size: 17px;
   font-weight: normal;
@@ -3826,9 +3823,9 @@ div#videoIframe .iframe-close {
 }
 div#videoIframe .iframe-close:before {
   content: "X";
-  content: "\f00d";
+  content: "\f156";
   padding: 0 7px;
-  font-family: aw;
+  font-family: mat;
   font-size: 14px;
 }
 textarea#iframeCode {
@@ -3963,8 +3960,8 @@ div#block-views-playlist-block-1 .block-title {
   background: #525252;
 }
 .playlist .views-row.active .views-field-counter:before {
-  content: "\f04b";
-  font-family: aw;
+  content: "\f40a";
+  font-family: mat;
   font-size: 8px;
   border-radius: 50%;
   color: #cf00f3;
@@ -4119,8 +4116,8 @@ input[type="checkbox"]:checked {
   border-color: #BF55EC;
 }
 input[type="checkbox"]:before {
-  content: "\f14a";
-  font-family: aw;
+  content: "\f132";
+  font-family: mat;
   color: #9d65ff;
   color: #BF55EC;
   font-size: 0px;
@@ -4274,8 +4271,8 @@ input#edit-populate::-webkit-input-placeholder {
   font-weight: normal;
 }
 .click-to-open button:before {
-  content: "\002b";
-  font-family: glyphi;
+  content: "\f415";
+  font-family: mat;
   vertical-align: middle;
   padding: 0 0 0 10px;
 }
@@ -4293,8 +4290,8 @@ input#edit-populate::-webkit-input-placeholder {
   align-items: center;
 }
 .view-taxonomy-term .gd_infinite_scroll-ajax-loader:before {
-  content: "\e031";
-  font-family: glyphi;
+  content: "\f450";
+  font-family: mat;
   font-size: 30px;
   color: #666;
   margin-right: 10px;
@@ -5393,8 +5390,8 @@ div#block-views-exp-glrnew-page-2 div#edit-populate-wrapper >div>div {
   font-size: 35px;
 }
 .pane-tags-content.podcasts .pane-title:before {
-  content: "\e035" !important;
-  font-family: glyphi !important;
+  content: "\f2cb" !important;
+  font-family: mat !important;
   font-size: 35px;
 }
 .pane-tags-content.podcasts .pane-title:after {
@@ -5911,8 +5908,8 @@ div#smile {
   font-family: mat;
 }
 #uc-cart-view-form .form-actions #edit-update:before {
-  content: "\e031";
-  font-family: glyphi;
+  content: "\f450";
+  font-family: mat;
 }
 .cart-div_row {
   display: inline-flex;

@@ -38,17 +38,6 @@
 		 url('../fonts/sans/woff/IRANSansWeb_UltraLight.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
 		 url('../fonts/sans/ttf/IRANSansWeb_UltraLight.ttf') format('truetype');
 }
-@font-face {
-    font-family: "yekan";
-    src: 	url(../fonts/yekan/bYekan.eot);
-    src: 	url(../fonts/yekan/bYekan.eot?#iefix) format("embedded-opentype"), 
-            url(../fonts/yekan/bYekan.woff) format("woff"), 
-            url(../fonts/yekan/bYekan.ttf) format("truetype"), 
-            url(../fonts/yekan/bYekan.svg#BYekan) format("svg");
-    font-weight: normal;
-    font-style: normal;
-}
-
 *:not(img){
     font-family: iransans , Tahoma !important;
 }

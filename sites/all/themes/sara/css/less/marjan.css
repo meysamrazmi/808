@@ -442,8 +442,8 @@ body.page-node:not(.page-types):not(.role-anonymous-user) .container #page-title
 }
 .pane-gloevents .pane-content .view-gloevents .view-content .views-row .views-field-field-ifwebinar .event-808-suggestion:before,
 .pane-gloevents .pane-content .view-gloevents .view-content .views-row .views-field-field-event-808-suggestion .event-808-suggestion:before {
-  content: "\f005";
-  font-family: aw;
+  content: "\f4ce";
+  font-family: mat;
   padding: 0 6px;
   transition: all 0.3s;
   text-indent: 0;
@@ -481,7 +481,6 @@ body.page-node:not(.page-types):not(.role-anonymous-user) .container #page-title
   content: "برگزاری دوره به صورت وبینار";
   position: absolute;
   visibility: hidden;
-  font: 12px b yekan;
   margin: -42px -125px 0 0;
   background-color: #fff;
   padding: 5px 10px 7px;

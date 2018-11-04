@@ -185,7 +185,6 @@
 	height: 50px;
 }
 #block-views-stats-block-1 span {
-	font-family: BYekan, Arial, Helvetica, sans-serif;
 	color: #d2d2d1;
 	direction: rtl;
 	font-size: 18px;
@@ -846,7 +845,6 @@ body.page-conference{
 }
 .page-conference .conference-lecture .views-field-title a {
 	color: #555555!important;
-	font: 17px 'b yekan';
 	margin-bottom: 5px;
 	margin-top: 9px;
 	text-align: center;
@@ -1254,9 +1252,6 @@ body.page-conference{
 	color: white;
 	border: 0;
 	float: left;
-}
-#node-2205 .webform-component label {
-	font: 13px b yekan;
 }
 .page-conference .conference-region-submit .form-actions ,
 .page-conference .conference-regionthree-wcontent .form-actions {
@@ -1708,7 +1703,6 @@ div#edit-field-course-step-value-wrapper label {
 	color: #777;
 	font-size: 12px;
 	border-bottom: 1px solid;
-	font-family: b yekan;
 	border-radius: 0;
 }
 .page-college .views-exposed-form .views-exposed-widget {
@@ -1726,10 +1720,10 @@ select#edit-field-course-undertype-tid {
     position: relative;
 }
 .courselinks .content li a:before {
-	content: "\e257";
+	content: "\f141";
 	font-size: 10px;
 	position: absolute;
-	font-family: glyphi;
+	font-family: mat;
 	color: #555;
 	right: 0px;
 }
@@ -1743,7 +1737,6 @@ select#edit-field-course-undertype-tid {
 	display: block;
 	padding: 6px 15px 8px;
 	color: #777;
-	font-family: yekan;
 	font-size: 13px;
 }
 .courselinks .content li:before{
@@ -1937,7 +1930,6 @@ select#edit-field-course-undertype-tid {
 .page-college .view-display-id-block_6 a {
     color: black!important;
     line-height: 27px;
-    font-family: b yekan,sans-serif;
     font-size: 13px;
 }
 .page-college #views_slideshow_cycle_div_conference_news-block_6_0 {
@@ -2203,7 +2195,6 @@ th.ui-widget-header.fc-agenda-gutter {
 	background: #f5f5f5;
 	border-radius: 0;
 	font-size: 15px;
-	font-family: yekan;
 	margin-top: 20px;
 	transition: all 0.3s ease;
 }
@@ -2224,7 +2215,6 @@ div#block-views-clone-of-calendar-block-1 {
 .clndar span.fc-event-time{
 	display: block!important;
     color: white;
-    font-family: b yekan;
     width: 100%;
     font-size: 12px;
 	box-sizing: border-box;

@@ -521,7 +521,6 @@
 #takhfif-page .section .section-body{
 	color: black;
     font-size: 15px !important;
-    font-family: yekan;
     margin-top: 19px !important;
 }
 #takhfif-page .section .section-image{
@@ -739,7 +738,6 @@ div#edit-mefibs-form-f-populate-wrapper {
 .page-architect .civil-slide .views_slideshow_slide .views-field-title {
     font-size: 40px;
     margin: 0;
-    font-family: yekan;
     color: black;
     transition: all 0.4s ease;
     z-index: 10;
@@ -776,7 +774,6 @@ div#edit-mefibs-form-f-populate-wrapper {
 .page-ejra .civil-slide .views_slideshow_slide .views-field-title  {
     font-size: 40px;
     margin: 0;
-    font-family: yekan;
     color: black;
     transition: all 0.4s ease;
     z-index: 10;
@@ -805,7 +802,6 @@ div#edit-mefibs-form-f-populate-wrapper {
 .page-herfe .civil-slide .views_slideshow_slide .views-field-title {
     font-size: 40px;
     margin: 0;
-    font-family: yekan;
     color: black;
     transition: all 0.4s ease;
     z-index: 10;
@@ -867,7 +863,6 @@ div#unavailable ,
     text-align: center;
     border-radius: 12%;
     padding: 1% 10% 5% 8%;
-    font-family: yekan;
     line-height: 15px;
     border: solid #f20;
     border-width: 0px 3px;
@@ -925,20 +920,19 @@ div#unavailable ,
     width: 349px;
 }
 #block-panels-mini-user-panel h2.block-title:before {
-	content: "\e235";
-	font-family: glyphi;
+	content: "\f35c";
+	font-family: mat;
 	font-size: 24px;
 	text-align: center;
 	line-height: 50px;
 	display: block;
-	font-weight: 100;
 	color: #8E24AA;
 	position: absolute;
 	width: 30px;
 	left: 0;
 }
 #block-panels-mini-user-panel.opened h2.block-title:before {
-	content: "\e014";
+	content: "\f5ad";
 	opacity: 1;
 	color: #fff;
 	background: #420240;
@@ -1119,7 +1113,7 @@ ul.sidebar_menu_user a:hover:before {
 ul.sidebar_menu_user li a:before {
 	float: right;
 	font-size: 20px;
-	font-family: glyphi;
+	font-family: mat;
 	margin-left: 13px;
 	color: #444;
 }
@@ -1130,28 +1124,22 @@ ul.sidebar_menu_user li.menu-messages a:before {
   margin: 0 -2px 0 9px;
 }
 ul.sidebar_menu_user li.accountant a:before {
-    content: '\f09d';
-	font-family: aw;
+	content: '\f19b';
 }
 ul.sidebar_menu_user li.connections a:before {
     content: '\f00e';
-	font-family: mat;
 }
 ul.sidebar_menu_user li.orders a:before {
-    content: '\f290';
-    font-family: aw;
+	content: '\f49a';
 }
 ul.sidebar_menu_user li.my-courses a:before {
-    /* content: '\e233'; */
-	content: "\f007";
-    font-family: aw;
+	content: "\f004";
 }
 ul.sidebar_menu_user li.my-nodes a:before {
-    content: '\f02d';
-	font-family: aw;
+	content: '\f0bb';
 }
 ul.sidebar_menu_user li.logout a:before {
-	content: "\e017";
+	content: "\f425";
 }
 ul.sidebar_menu_user li.qyestions a:before {
     content: "?";
@@ -1168,12 +1156,11 @@ ul.sidebar_menu_user li.qyestions a:before {
 }
 ul.sidebar_menu_user li.profile-edit a:before {
   content: "\f3eb";
-  font-family: mat;
   font-size: 25px;
   margin: 0 -3px 0 9px;
 }
 ul.sidebar_menu_user li.edit a:before {
-	content: "\e019";
+	content: "\f493";
 }
 .pane-block-41 hr {
 	margin: 10px 0 5px;
@@ -1212,8 +1199,8 @@ ul.sidebar_menu_user li.edit a:before {
 }
 #block-panels-mini-user-panel h2.block-title .message-num:before,
 #block-panels-mini-user-panel h2.block-title .num-items:before {
-	content: "\e116";
-	font-family: glyphi;
+	content: "\f110";
+	font-family: mat;
 	padding: 0 7px;
 	left: 0;
 	position: absolute;

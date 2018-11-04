@@ -352,7 +352,6 @@ div#block-views-glrnew-block-2 {
 }
 .page-videos .gallery.videos .views-row .views-field-created,
 .page-videos .gallery.videos .views-row .views-field-totalcount  {
-    font: 11px b yekan;
     color: #888;
     display: none;
 	padding: 5px;
@@ -950,7 +949,6 @@ input#edit-submitted-coursename {
   background-color: transparent;
   border: none;
   margin: 0 20px 0 0 !important;
-  font-family: b yekan;
   font-size: 16px;
   cursor: default;
   box-shadow: none;
@@ -1405,11 +1403,11 @@ div#footer_contact {
   box-sizing: border-box;
 }
 span.telegram.channel:before {
-  content: "\e171";
-  font-family: glyphi !important;
-  margin-left: 4px;
-    color: #fff;
-  font-size: 15px;
+	content: "\f501";
+	font-family: mat !important;
+	margin-left: 4px;
+	color: #fff;
+	font-size: 15px;
 }
 div#footer_third p {
   font-size: 11px;
@@ -2113,8 +2111,8 @@ div#block-tb-megamenu-main-menu {
   margin-right: 0;
 }
 .tb-megamenu-button:before {
-  content: "\e014";
-  font-family: glyphi;
+  content: "\f156";
+  font-family: mat;
   font-size: 24px;
   text-align: center;
   line-height: 50px;
@@ -2172,9 +2170,9 @@ border-bottom: 1px solid #888 !important;
   background-color: rgba(0,0,0,0.9) !important;
 }
 .tb-megamenu-main-menu li.tb-megamenu-item.level-1 > a:before {
-content: "\e235";
+content: "\f1d9";
   position: absolute;
-  font-family: glyphi;
+  font-family: mat;
   right: 9px;
   top: 15px;
 }
@@ -2260,14 +2258,14 @@ li[data-id="8832"] a {
   position: relative !important;
 }
 li[data-id="8832"] a:before {
-  content: "\e003";
-  font-family: glyphi;
-  position: absolute;
-  margin-top: 18%;
-  font-size: 22px;
-  width: 100%;
-  text-align: center;
-  color: #666;
+	content: "\f349";
+	font-family: mat;
+	position: absolute;
+	margin-top: 18%;
+	font-size: 30px;
+	width: 100%;
+	text-align: center;
+	color: #666;
 }
 li[data-id="8832"] .caret {
   display: none !important;
