@@ -49,6 +49,7 @@ function autocomplete_deluxe_taxonomy_callback($field_name, $tags_typed = '', $l
   }
 
   $query = db_select('taxonomy_term_data', 't');
+  $query->join("field_data_field_bool" , "confirm" , "confirm.entity_id = t.tid and confirm.entity_type = 'taxonomy_term' and  confirm.bundle = 'expert' and confirm.field_bool_value = '1' ");
   $query->addTag('translatable');
   $query->addTag('term_access');
 
@@ -397,6 +398,7 @@ function autocomplete_deluxe_menu() {
     'type' => MENU_CALLBACK,
   );
 
+  /*add custom menu*/
   $items['autocomplete_deluxe/taxonomy/field_experts/user/%'] = array(
     'title' => 'Autocomplete deluxe taxonomy',
     'page callback' => 'autocomplete_deluxe_taxonomy_callback_user',
@@ -406,16 +408,24 @@ function autocomplete_deluxe_menu() {
   );
   return $items;
 }
+
+/*
+ * This function suggests 10 random experts to user
+ * This function is custom
+ * written by ali
+ */
 function autocomplete_deluxe_taxonomy_callback_user($uid , $tags_typed = ''){
     // The user enters a comma-separated list of tags. We only autocomplete the last tag.
     $tags_typed = drupal_explode_tags($tags_typed);
     $tag_last = drupal_strtolower(array_pop($tags_typed));
 
     $query = db_select("taxonomy_term_data" , "taxonomy");
+    $query->join("field_data_field_bool" , "confirm" , "confirm.entity_id = taxonomy.tid and confirm.entity_type = 'taxonomy_term' and  confirm.bundle = 'expert' and confirm.field_bool_value = '1' ");
     $query->join("field_data_field_tag_is_not_expert" , "is_expert" , "taxonomy.tid = is_expert.entity_id and is_expert.field_tag_is_not_expert_value = '0' ");
     $query->fields("taxonomy" , array("tid" , "name"));
     $query->condition("taxonomy.vid" , 28);
     if(!empty($tag_last)) $query->condition('taxonomy.name', '%' . db_like($tag_last) . '%', 'LIKE');
+    $query->orderRandom();
     $query->range(0 , 10);
     $terms = $query->execute()->fetchAllKeyed();
 
