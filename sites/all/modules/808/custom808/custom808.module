@@ -49,6 +49,15 @@ function custom808_menu(){
 }
 
 /**
+ * Implements hook_menu_alter().
+ */
+function custom808_menu_alter(&$items)
+{
+    $items['taxonomy/term/%taxonomy_term']['file path'] = drupal_get_path('module', 'custom808');
+    $items['taxonomy/term/%taxonomy_term']['file'] = 'custom808.inc';
+}
+
+/**
  * Implements hook_theme().
  */
 function custom808_theme() {
@@ -58,15 +67,6 @@ function custom808_theme() {
 			'file' => 'custom808.theme.inc',
 		),
 	);
-}
-
-/**
- * Implements hook_menu_alter().
- */
-function custom808_menu_alter(&$items)
-{
-	$items['taxonomy/term/%taxonomy_term']['file path'] = drupal_get_path('module', 'custom808');
-    $items['taxonomy/term/%taxonomy_term']['file'] = 'custom808.inc';
 }
 
 function custom808_cron(){
