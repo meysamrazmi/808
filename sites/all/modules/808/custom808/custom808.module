@@ -48,6 +48,18 @@ function custom808_menu(){
     return $items;
 }
 
+/**
+ * Implements hook_theme().
+ */
+function custom808_theme() {
+	return array(
+		'lazy_image_formatter' => array(
+			'variables' => array('item' => NULL, 'path' => NULL, 'image_style' => NULL),
+			'file' => 'custom808.theme.inc',
+		),
+	);
+}
+
 function custom808_cron(){
     $query = db_select("node" , "node");
     $query->fields("node" , array("nid"));
@@ -213,7 +225,29 @@ function formatMoney($number, $fractional=false) {
     } 
     return $number; 
 }
-
+/*
+ * helper function for printing arrays and objects with max level
+ *
+ * Usage:
+	$array = array_map(function ($v){
+	    return parse($v, "...", 2);
+	    }, $item);
+    mdump($array);
+ * */
+function parse($v, $r, $max_d = 1, $d = 0) {
+	if (is_array($v) || is_object($v)) {
+		if ($d >= $max_d) {
+			return $r;
+		} else {
+			$d++;
+			return array_map(function ($v) use ($max_d, $r,  $d) {
+				return parse($v, $r, $max_d, $d);
+			}, $v);
+		}
+	} else {
+		return $v;
+	}
+}
 function mdump($var){
 	global $user;
 	if($user->uid == 3300){
@@ -445,3 +479,4 @@ function relative_qa_render($nid , $type){
         return $output;
     }
 }
+
