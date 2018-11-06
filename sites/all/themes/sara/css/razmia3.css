@@ -3334,46 +3334,6 @@ div#block-taxonomy-menu-block-1--2 .block-title {
 .lastgallery .views-slideshow-controls-text-next a {
   background-position: 0;
 }
-.leftads .block-taxonomy-menu-block .content li a:before {
-  content: "";
-  font-size: 20px;
-  position: absolute;
-  right: 0;
-}
-.leftads #block-taxonomy-menu-block-2--2.block-taxonomy-menu-block .content li:nth-child(1) a:before {
-  content: "";
-}
-.leftads #block-taxonomy-menu-block-2--2.block-taxonomy-menu-block .content li:nth-child(2) a:before {
-  content: "";
-}
-.leftads #block-taxonomy-menu-block-2--2.block-taxonomy-menu-block .content li:nth-child(3) a:before {
-  content: "";
-}
-.leftads #block-taxonomy-menu-block-2--2.block-taxonomy-menu-block .content li:nth-child(4) a:before {
-  content: "";
-}
-.leftads #block-taxonomy-menu-block-2--2.block-taxonomy-menu-block .content li:nth-child(5) a:before {
-  content: "\f008";
-  font-size: 16px;
-}
-.leftads #block-taxonomy-menu-block-2--2.block-taxonomy-menu-block .content li:nth-child(6) a:before {
-  content: "\f002";
-  font-size: 17px;
-}
-.leftads #block-taxonomy-menu-block-2--2.block-taxonomy-menu-block .content li:nth-child(7) a:before {
-  content: "\f130";
-}
-.leftads #block-taxonomy-menu-block-2--2.block-taxonomy-menu-block .content li:nth-child(8) a:before {
-  content: "\f144";
-  font-size: 18px;
-}
-.leftads #block-taxonomy-menu-block-2--2.block-taxonomy-menu-block .content li:nth-child(9) a:before {
-  content: "\f006";
-  font-size: 17px;
-}
-.leftads #block-taxonomy-menu-block-2--2.block-taxonomy-menu-block .content li:nth-child(10) a:before {
-  content: "\f118";
-}
 div#block-taxonomy-menu-block-2--2 li:last-child, div#block-taxonomy-menu-block-2 li:last-child {
   display: none;
 }
@@ -3542,15 +3502,15 @@ div#block-taxonomy-menu-block-2--2 li:last-child, div#block-taxonomy-menu-block-
   display: inline-block;
 }
 .mejs-controls .mejs-play button:before {
-  content: "\f04b";
+  content: "\f40a";
   font-size: 25px;
   padding: 7px 0;
 }
 .mejs-controls .mejs-unmute button:before {
-  content: "\f026";
+  content: "\f57e";
 }
 .mejs-controls .mejs-fullscreen-button button:before {
-  content: "\f065";
+  content: "\f293";
 }
 .mejs-controls .mejs-pause button:before {
   content: "\f3e4";
@@ -3559,7 +3519,7 @@ div#block-taxonomy-menu-block-2--2 li:last-child, div#block-taxonomy-menu-block-
   padding: 7px 0;
 }
 .mejs-button.mejs-fullscreen-button.mejs-unfullscreen button:before {
-  content: "\f066";
+  content: "\f294";
 }
 .mejs-controls .mejs-button button:hover:before {
   color: #bf28bf;
@@ -3730,21 +3690,22 @@ div#block-taxonomy-menu-block-2--2 li:last-child, div#block-taxonomy-menu-block-
   background: none;
 }
 .mejs-overlay-button:before {
-  content: "\f40c";
-  font-family: mat;
-  color: #bf28bf;
-  font-size: 100px;
-  position: absolute;
-  top: 6px;
-  left: 8px;
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background: #fff;
-  line-height: 89px;
-  padding: 2px;
-  box-sizing: border-box;
-  transition: all 0.15s;
+	content: "\f40c";
+	font-family: mat;
+	color: #bf28bf;
+	font-size: 88px;
+	position: absolute;
+	top: 6px;
+	left: 8px;
+	width: 88px;
+	height: 86px;
+	border-radius: 50%;
+	background: #fff;
+	line-height: 76px;
+	padding: 5px 0px;
+	box-sizing: border-box;
+	text-indent: 0 !important;
+	transition: all .15s;
 }
 .mejs-overlay-loading {
   background: transparent;

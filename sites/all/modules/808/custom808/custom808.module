@@ -49,6 +49,18 @@ function custom808_menu(){
 }
 
 /**
+ * Implements hook_theme().
+ */
+function custom808_theme() {
+	return array(
+		'lazy_image_formatter' => array(
+			'variables' => array('item' => NULL, 'path' => NULL, 'image_style' => NULL),
+			'file' => 'custom808.theme.inc',
+		),
+	);
+}
+
+/**
  * Implements hook_menu_alter().
  */
 function custom808_menu_alter(&$items)

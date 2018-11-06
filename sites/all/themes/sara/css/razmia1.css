@@ -1929,8 +1929,8 @@ div#block-panels-mini-charge .pane-title:after {
 .page-education-register h1#page-title:before,
 .page-money.page-reward h1#page-title:before,
 .page-money.page-charge h1#page-title:before {
-  content: "\f09d";
-  font-family: aw;
+  content: "\f19b";
+  font-family: mat;
   font-weight: normal;
   display: block;
   font-size: 80px;
