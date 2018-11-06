@@ -48,6 +48,15 @@ function custom808_menu(){
     return $items;
 }
 
+/**
+ * Implements hook_menu_alter().
+ */
+function custom808_menu_alter(&$items)
+{
+	$items['taxonomy/term/%taxonomy_term']['file path'] = drupal_get_path('module', 'custom808');
+    $items['taxonomy/term/%taxonomy_term']['file'] = 'custom808.inc';
+}
+
 function custom808_cron(){
     $query = db_select("node" , "node");
     $query->fields("node" , array("nid"));

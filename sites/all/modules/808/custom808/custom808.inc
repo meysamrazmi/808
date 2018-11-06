@@ -115,3 +115,101 @@ function api_version_delete($id){
     drupal_goto('admin/structure/services/apiversion');
 }
 /************************/
+
+
+
+/*
+ * custom taxonomy term page
+ *
+ */
+function taxonomy_term_page($term){
+    // If there is a menu link to this term, the link becomes the last part of
+    // the active trail, and the link name becomes the page title. Thus, we must
+    // explicitly set the page title to be the term title.
+    drupal_set_title($term->name);
+    // Build breadcrumb based on the hierarchy of the term.
+    $current = (object) array(
+        'tid' => $term->tid,
+    );
+    // @todo This overrides any other possible breadcrumb and is a pure hard-coded
+    //   presumption. Make this behavior configurable per vocabulary or term.
+    $breadcrumb = array();
+    while ($parents = taxonomy_get_parents($current->tid)) {
+        $current = array_shift($parents);
+        $breadcrumb[] = l($current->name, 'taxonomy/term/' . $current->tid);
+    }
+    $breadcrumb[] = l(t('Home'), NULL);
+    $breadcrumb = array_reverse($breadcrumb);
+    drupal_set_breadcrumb($breadcrumb);
+    drupal_add_feed('taxonomy/term/' . $term->tid . '/feed', 'RSS - ' . $term->name);
+    // Set the term path as the canonical URL to prevent duplicate content.
+    $uri = entity_uri('taxonomy_term', $term);
+    drupal_add_html_head_link(array('rel' => 'canonical', 'href' => url($uri['path'], $uri['options'])), TRUE);
+    // Set the non-aliased path as a default shortlink.
+    drupal_add_html_head_link(array('rel' => 'shortlink', 'href' => url($uri['path'], array_merge($uri['options'], array('alias' => TRUE)))), TRUE);
+
+    // Normally we would call taxonomy_term_show() here, but for backwards
+    // compatibility in Drupal 7 we do not want to do that (it produces different
+    // data structures and HTML markup than what Drupal 7 released with). Calling
+    // taxonomy_term_view() directly provides essentially the same thing, but
+    // allows us to wrap the rendered term in our desired array structure.
+    $build['term_heading'] = array(
+        '#prefix' => '<div class="term-listing-heading">',
+        '#suffix' => '</div>',
+        'term' => taxonomy_term_view($term, 'full'),
+    );
+    if($term->vid == 28) {
+        $query = db_select("taxonomy_index", "t_index");
+        $query->join("node", "node", "node.nid = t_index.nid");
+        $query->fields("node", array("nid", "type"));
+        $query->condition("t_index.tid", $term->tid);
+        $contents = $query->execute()->fetchAll();
+        if (!empty($contents)) {
+            $nodes = array();
+            foreach ($contents as $content) {
+                if (!isset($nodes[$content->type])) $nodes[$content->type] = array();
+                array_push($nodes[$content->type], $content->nid);
+            }
+            foreach ($nodes as $type => $nids) {
+                $name = db_select("node_type")->fields("node_type", array("name"))->condition("type", $type)->execute()->fetch()->name;
+                $view_mode = "question";
+                if (
+                    strcmp($type, "gallerynew") == 0 ||
+                    strcmp($type, "film") == 0 ||
+                    strcmp($type, "product") == 0
+                ) {
+                    $view_mode = "teaser";
+                }
+                $nodes = node_load_multiple($nids);
+                if (!isset($build[$type])) $build[$type] = array();
+                $build[$type]["#prefix"] = '<div id="node_type_' . $type . '"><h2 class="title">' . $name . '</h2>';
+                $build[$type]["#suffix"] = '</div>';
+                $build[$type]["term"] = node_view_multiple($nodes, $view_mode);
+            }
+        }
+        else {
+            $build['no_content'] = array(
+                '#prefix' => '<p>',
+                '#markup' => t('There is currently no content classified with this term.'),
+                '#suffix' => '</p>',
+            );
+        }
+    }else{
+        if ($nids = taxonomy_select_nodes($term->tid, TRUE, variable_get('default_nodes_main', 10))) {
+            $nodes = node_load_multiple($nids);
+            $build += node_view_multiple($nodes);
+            $build['pager'] = array(
+                '#theme' => 'pager',
+                '#weight' => 5,
+            );
+        }
+        else {
+            $build['no_content'] = array(
+                '#prefix' => '<p>',
+                '#markup' => t('There is currently no content classified with this term.'),
+                '#suffix' => '</p>',
+            );
+        }
+    }
+    return $build;
+}
