@@ -1607,50 +1607,36 @@ function money_format(x){
 
 $(document).ready(function () {
 	var $q = function(q, res){
-			if (document.querySelectorAll) {
-				res = document.querySelectorAll(q);
-			} else {
-				var d=document
-					, a=d.styleSheets[0] || d.createStyleSheet();
-				a.addRule(q,'f:b');
-				for(var l=d.all,b=0,c=[],f=l.length;b<f;b++)
-					l[b].currentStyle.f && c.push(l[b]);
+		if (document.querySelectorAll) {
+			res = document.querySelectorAll(q);
+		} else {
+			var d=document
+				, a=d.styleSheets[0] || d.createStyleSheet();
+			a.addRule(q,'f:b');
+			for(var l=d.all,b=0,c=[],f=l.length;b<f;b++)
+				l[b].currentStyle.f && c.push(l[b]);
 
-				a.removeRule(0);
-				res = c;
-			}
-			return res;
+			a.removeRule(0);
+			res = c;
 		}
-		, addEventListener = function(evt, fn){
-			window.addEventListener
-				? this.addEventListener(evt, fn, false)
-				: (window.attachEvent)
-				? this.attachEvent('on' + evt, fn)
-				: this['on' + evt] = fn;
-		}
-		, _has = function(obj, key) {
-			return Object.prototype.hasOwnProperty.call(obj, key);
-		}
-	;
+		return res;
+	}
+	, addEventListener = function(evt, fn){
+		window.addEventListener
+			? this.addEventListener(evt, fn, false)
+			: (window.attachEvent)
+			? this.attachEvent('on' + evt, fn)
+			: this['on' + evt] = fn;
+	}
+	, _has = function(obj, key) {
+		return Object.prototype.hasOwnProperty.call(obj, key);
+	}
 
 	function loadImage (el, fn) {
 		var src = el.getAttribute('src'),
 			dataSrc = el.getAttribute('data-src');
 
 		if (src != dataSrc) {
-			// var img = new Image();
-			//
-			// img.onload = function () {
-			// 	if (!!el.parent)
-			// 		el.parent.replaceChild(img, el);
-			// 	else
-			// 		el.src = dataSrc;
-			//
-			// 	fn ? fn() : null;
-			// };
-			// img.src = dataSrc;
-
-			// alternative
 			el.src = el.getAttribute('data-src')
 			fn ? fn() : null;
 		}
@@ -1672,10 +1658,9 @@ $(document).ready(function () {
 			for (var i = 0; i < images.length; i++) {
 				if (elementInViewport(images[i])) {
 					loadImage(images[i], function () {
-						console.log(images[i])
+						images[i].removeAttribute('data-src')
 						images[i].classList.remove("lazy")
 						images.splice(i, 1)
-						console.log(images)
 					});
 				}
 			};
@@ -1683,7 +1668,9 @@ $(document).ready(function () {
 		, processScrollMobile = function(){
 			for(var i = 0; i < images.length; i++) {
 				loadImage(images[i], function() {
-					images.splice(i,i)
+					images[i].removeAttribute('data-src')
+					images[i].classList.remove("lazy")
+					images.splice(i,1)
 				});
 			};
 		}
@@ -1696,5 +1683,11 @@ $(document).ready(function () {
 	processScroll()
 	addEventListener('scroll',processScroll)
 	addEventListener('touchmove', processScrollMobile)
+	var lazyLoading = setInterval(function(){
+		if(images.length > 0)
+			processScroll()
+		else
+			clearInterval(lazyLoading);
+	}, 3000)
 });
 

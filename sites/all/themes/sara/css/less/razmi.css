@@ -2471,3 +2471,20 @@ form .field-type-file .form-submit {
   color: #FF5722 !important;
   cursor: pointer;
 }
+img.lazy {
+  background: #f5f5f5;
+  display: block;
+  margin: auto;
+  animation: image_loader  3s infinite linear;
+}
+@keyframes image_loader {
+  0% {
+    background: linear-gradient(90deg, #f5f5f5 0%, #e5e5e5 30%, #F5F5F4 60%) 0%;
+  }
+  50% {
+    background: linear-gradient(90deg, #f5f5f5 0%, #e5e5e5 30%, #F5F5F4 60%) -26%;
+  }
+  100% {
+    background: linear-gradient(90deg, #f5f5f5 0%, #e5e5e5 30%, #F5F5F4 60%) -52%;
+  }
+}
