@@ -920,7 +920,7 @@ div#unavailable ,
     width: 349px;
 }
 #block-panels-mini-user-panel h2.block-title:before {
-	content: "\f35c";
+	content: "\f1d9";
 	font-family: mat;
 	font-size: 24px;
 	text-align: center;
@@ -1611,12 +1611,12 @@ div#toboggan-login-link-container {
 	position:relative;
 }
 .pane-page-gallery .views-field-field-posterfilm a:before{
-	content: "\f04b";
+	content: "\f40a";
     position: absolute;
     left: 92px;
     color: white;
     font-size: 20px;
-    font-family: aw;
+    font-family: mat;
     top: 50px;
     background-color: rgba(0, 0, 0, 0.43);
     padding-left: 2px;
@@ -2253,8 +2253,8 @@ div#gallery808 .related img ,
 	margin-top: 5px;
 }
 .mediaelement-download-link a:before {
-	content: "\f0ed";
-	font-family: aw;
+	content: "\f162";
+	font-family: mat;
 	font-size: 18px;
 	padding: 7px;
 }
