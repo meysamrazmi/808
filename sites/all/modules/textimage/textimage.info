@@ -1,15 +1,25 @@
 name = Textimage
-description = Provides text to image manipulations.
+description = Provides Text-to-Image image effects, and field formatters for Text and Image fields.
 core = 7.x
-
-configure = admin/config/media/textimage
+package = Media
+dependencies[] = color
+dependencies[] = image
+dependencies[] = imagecache_actions
+dependencies[] = imagecache_canvasactions
+files[] = classes/Textimage.inc
+files[] = classes/TextimageFonts.inc
+files[] = classes/font_handlers/textimage.inc
+files[] = classes/font_handlers/fontyourface.inc
+files[] = classes/TextimageStyles.inc
+files[] = classes/TextimageImager.inc
+files[] = classes/TextimageTextbox.inc
 files[] = tests/textimage.test
-files[] = tests/textimage_url.test
 files[] = tests/textimage_preg_match.test
+configure = admin/config/media/textimage
 
-; Information added by drupal.org packaging script on 2013-02-04
-version = "7.x-2.0"
+; Information added by Drupal.org packaging script on 2014-07-08
+version = "7.x-3.0"
 core = "7.x"
 project = "textimage"
-datestamp = "1360008165"
+datestamp = "1404849228"
 
