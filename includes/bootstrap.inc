@@ -8,7 +8,7 @@
 /**
  * The current system version.
  */
-define('VERSION', '7.59');
+define('VERSION', '7.61');
 
 /**
  * Core API compatibility.
@@ -1100,13 +1100,13 @@ function _drupal_get_filename_fallback_trigger_error($type, $name, $error_type) 
     // triggered during low-level operations that cannot necessarily be
     // interrupted by a watchdog() call.
     if ($error_type == 'missing') {
-      global $user;
-      if($type == 'module' && isset($user->roles[3])){ //admin
-	    $e = new \Exception;
-	    echo "اگر این خطا اومد کل متن رو کپی کنید و بزارید توی تسکولو تا من درستش کنم<br>";
-	    var_dump($e->getTraceAsString());
-	    //mdump($name);
-	  }
+	    global $user;
+	    if($type == 'module' && isset($user->roles[3])){ //admin
+		    $e = new \Exception;
+		    echo "اگر این خطا اومد کل متن رو کپی کنید و بزارید توی تسکولو تا من درستش کنم<br>";
+		    var_dump($e->getTraceAsString());
+		    //mdump($name);
+	    }
       _drupal_trigger_error_with_delayed_logging(format_string('The following @type is missing from the file system: %name. For information about how to fix this, see <a href="@documentation">the documentation page</a>.', array('@type' => $type, '%name' => $name, '@documentation' => 'https://www.drupal.org/node/2487215')), E_USER_WARNING);
     }
     elseif ($error_type == 'moved') {
@@ -3792,8 +3792,12 @@ function _drupal_shutdown_function() {
   chdir(DRUPAL_ROOT);
 
   try {
-    while (list($key, $callback) = each($callbacks)) {
+    // Manually iterate over the array instead of using a foreach loop.
+    // A foreach operates on a copy of the array, so any shutdown functions that
+    // were added from other shutdown functions would never be called.
+    while ($callback = current($callbacks)) {
       call_user_func_array($callback['callback'], $callback['arguments']);
+      next($callbacks);
     }
   }
   catch (Exception $exception) {
