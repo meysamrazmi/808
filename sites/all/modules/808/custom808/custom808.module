@@ -235,6 +235,30 @@ function formatMoney($number, $fractional=false) {
     return $number; 
 }
 
+/*
+ * helper function for printing arrays and objects with max level
+ *
+ * Usage:
+	$array = array_map(function ($v){
+	    return parse($v, "...", 2);
+	    }, $item);
+    mdump($array);
+ * */
+function parse($v, $r, $max_d = 1, $d = 0) {
+	if (is_array($v) || is_object($v)) {
+		if ($d >= $max_d) {
+			return $r;
+		} else {
+			$d++;
+			return array_map(function ($v) use ($max_d, $r,  $d) {
+				return parse($v, $r, $max_d, $d);
+			}, $v);
+		}
+	} else {
+		return $v;
+	}
+}
+
 function mdump($var){
 	global $user;
 	if($user->uid == 3300){
