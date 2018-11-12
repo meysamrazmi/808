@@ -112,7 +112,7 @@ function theme_copy_lazy_image_formatter($variables) {
 		$image['height'] = $dimensions['height'];
 
 		// Determine the URL for the styled image.
-		$variables['path'] = image_style_url($image['style_name'], $image['path']);
+		$image['path'] = image_style_url($image['style_name'], $image['path']);
 
 		$attributes = isset($item['attributes'])? $image['attributes'] : [];
 		$attributes['data-src'] = file_create_url($image['path']);
