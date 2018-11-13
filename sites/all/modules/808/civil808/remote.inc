@@ -67,7 +67,6 @@ function remote_subscription_form_validate($from, &$form_state){
 }
 function remote_subscription_form_submit($from, &$form_state){
     try{
-        $file = $form_state['values']['file'];
         $validators = array();
         $file = file_save_upload('file', $validators, 'public://');
         if (!empty($file->fid)) {
@@ -75,11 +74,7 @@ function remote_subscription_form_submit($from, &$form_state){
             $file->status = FILE_STATUS_PERMANENT;
             file_save($file);
             // Required to be able to reference this file.
-            file_usage_add($file, 'services', 'files', $file->fid);
-        }
-        else{
-            form_set_error('password', t('رمز عبور اشتباه است.'));
-            return;
+            file_usage_add($file, 'civil808', 'files', $file->fid);
         }
 
         /*generate a merchant ID for customer*/
