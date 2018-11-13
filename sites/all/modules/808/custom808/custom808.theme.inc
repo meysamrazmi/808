@@ -45,7 +45,7 @@ function theme_lazy_image_formatter($variables) {
 		$image['height'] = $dimensions['height'];
 
 		// Determine the URL for the styled image.
-		$variables['path'] = image_style_url($image['style_name'], $image['path']);
+		$image['path'] = image_style_url($image['style_name'], $image['path']);
 
 		$attributes = isset($item['attributes'])? $image['attributes'] : [];
 		$attributes['data-src'] = file_create_url($image['path']);
@@ -59,7 +59,7 @@ function theme_lazy_image_formatter($variables) {
 				$attributes[$key] = $image[$key];
 			}
 		}
-		$output = '<img' . drupal_attributes($attributes) . ' class="lazy" />';
+		$output = '<img' . drupal_attributes($attributes) . ' class="lazy" hey="dd"/>';
 	}
 	else {
 		$attributes = isset($item['attributes'])? $image['attributes'] : [];
@@ -74,7 +74,7 @@ function theme_lazy_image_formatter($variables) {
 				$attributes[$key] = $image[$key];
 			}
 		}
-		$output = '<img' . drupal_attributes($attributes) . ' class="lazy" />';
+		$output = '<img' . drupal_attributes($attributes) . ' class="lazy" hey="dssd"/>';
 	}
 
 	// The link path and link options are both optional, but for the options to be

@@ -306,7 +306,7 @@ function file_field_update($entity_type, $entity, $field, $instance, $langcode, 
   }
 
   // Add new usage entries for newly added files.
-  foreach ($items as $delta => $item) { 
+  foreach ($items as $delta => $item) {
     if (empty($item['fid'])) {
       unset($items[$delta]);
       continue;
