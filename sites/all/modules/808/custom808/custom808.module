@@ -45,6 +45,16 @@ function custom808_menu(){
         'file' => 'custom808.inc',
     );
 
+    $items['admin/structure/services/notification/push'] = array(
+        'title' => t('push notification'),
+        'description' => t('Send notification to app'),
+        'page callback' => array('drupal_get_form'),
+        'page arguments' => array('push_notification_form'),
+        'access arguments' => array('administer modules'),
+        'type' => MENU_LOCAL_TASK,
+        'file' => 'custom808.inc',
+    );
+
     return $items;
 }
 
@@ -116,8 +126,8 @@ function custom808_node_validate($node, $form, &$form_state) {
         $query = db_select("uc_products", "products");
         $query->fields("products", array("model"));
         $query->condition("products.model", $node->model);
-        $query->condition("products.nid", $node->nid, '<>');
-        $result = $query->execute()->fetchAll();
+        if(!empty($node->nid)) $query->condition("products.nid", $node->nid, '<>');
+        $result = $query->execute()->fetchCol();
         if (!empty($result)) {
             form_set_error('model', t('SKU-Model should be unique.'));
         }
