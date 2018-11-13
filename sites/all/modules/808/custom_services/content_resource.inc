@@ -222,8 +222,12 @@ function list_of_contents_v_1($parameter){
         $query->orderBy("node.nid" , "DESC");
     }
     elseif(strcmp($type , "article") == 0){
-        $query->join("field_data_field_eventtime", "eventtime", "eventtime.entity_id = node.nid");
+        $query->join("field_data_field_eventtime", "eventtime", "eventtime.entity_id = node.nid and eventtime.bundle = 'article' ");
+        $query->leftJoin("field_data_field_company" , "company" , "company.entity_id = node.nid and company.bundle = 'article' ");
+        $query->leftJoin("field_data_field_ifwebinar" , "webinar" , "webinar.entity_id = node.nid and webinar.bundle = 'article' ");
         $query->addField("eventtime" , "field_eventtime_value" , "event_time");
+        $query->addField("company" , "field_company_value" , "company");
+        $query->addField("webinar" , "field_ifwebinar_value" , "webinar");
         $query->condition("eventtime.field_eventtime_value", date("Y-m-d", time()) , ">=");
         $query->orderBy("eventtime.field_eventtime_value", "ASC");
     }

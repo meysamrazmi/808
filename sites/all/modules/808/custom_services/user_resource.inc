@@ -260,8 +260,9 @@ function insert_user_phone_token_v_1($data){
 
     if(!empty($token) && strcmp($data["token"] , $token->token) == 0) return true;
     $insert = db_merge("app_notification_token")
-        ->key(array('uid' => $user->uid , 'serial' => $data["serial"]))
+        ->key(array('serial' => $data["serial"]))
         ->fields(array(
+            'uid' => $user->uid,
             "token" => $data["token"],
             "time" => REQUEST_TIME
         ))
@@ -603,10 +604,13 @@ function user_data($uid){
     $query->fields('role', array('rid' , 'name'));
     $query->condition('user_role.uid' , $uid);
     $results = $query->execute()->fetchAll();
-    $roles = array();
+
+    $roles = array("2" => "کاربر شناخته شده");
     foreach ($results as $result) {
         $roles[$result->rid] = $result->name;
     }
+
+
     $user->roles = $roles;
 
     $user->uid = (int) $user->uid;
