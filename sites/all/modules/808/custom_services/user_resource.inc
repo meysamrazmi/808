@@ -243,6 +243,32 @@ function register_v_1($data){
 
     return $newUser;
 }
+
+function user_resource_phone_token($data){
+    $function = get_compatible_function_name("/user/phoneToken" , "POST" , $data["source"] , $data["version"]);
+    if(!empty($function) && strlen($function) > 0) {
+        return call_user_func($function, $data);
+    }
+    return services_error(t('This version is not supported'), 11);
+}
+function insert_user_phone_token_v_1($data){
+    global $user;
+    if(empty($data["uid"]) || empty($data["token"]) || empty($data["serial"])) return services_error("Incomplete Data!" , 15);
+    if($user->uid != $data["uid"]) return services_error("Unauthorize Error!" , 18);
+
+    $token = db_select("app_notification_token" , "app_token")->fields("app_token" , array("token"))->condition("serial" , $data["serial"])->condition("uid" , $user->uid)->execute()->fetch();
+
+    if(!empty($token) && strcmp($data["token"] , $token->token) == 0) return true;
+    $insert = db_merge("app_notification_token")
+        ->key(array('uid' => $user->uid , 'serial' => $data["serial"]))
+        ->fields(array(
+            "token" => $data["token"],
+            "time" => REQUEST_TIME
+        ))
+        ->execute();
+    if($insert) return true;
+    else return services_error(t('Unknown Error!'), 20);
+}
 /*---------------------relationships part------------------------------*/
 function user_resource_purchased_products_list($hash , $uid , $parameter){
     if(!(hash_true($hash , "user"))) return services_error(t('Failed to access'), 10);
