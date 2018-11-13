@@ -306,8 +306,8 @@ function taxonomy_term_page($term){
                 }
                 $nodes = node_load_multiple($nids);
                 if (!isset($build[$type])) $build[$type] = array();
-                $build[$type]["#prefix"] = '<div id="node_type_' . $type . '"><h2 class="title">' . $name . '</h2>';
-                $build[$type]["#suffix"] = '</div>';
+                $build[$type]["#prefix"] = '<div id="node-type-' . $type . '" class="node-type-relative"><h2 class="field-label">' . $name . '</h2><div class="field-items">';
+                $build[$type]["#suffix"] = '</div></div>';
                 $build[$type]["term"] = node_view_multiple($nodes, $view_mode);
             }
         }
