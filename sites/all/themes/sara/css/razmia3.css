@@ -2069,7 +2069,7 @@ body.uc-product-node ul.tabs.primary li:last-child {
     padding-left: 50px;
 }
 .page-shop.page-catalogs section#main:before {
-  background-image: url(http://civil808.com/sites/all/themes/sara/images/title-bg2.jpg) !important;
+  background-image: url(https://civil808.com/sites/all/themes/sara/images/title-bg2.jpg) !important;
   width: 100%;
   background-repeat: no-repeat;
   height: 200px;
@@ -4885,7 +4885,7 @@ span.active-bar {
   font-size: 1.2em;
   letter-spacing: 0;
   background: transparent;
-  background-image: url(http://civil808.com/sites/all/themes/sara/images/sale.png);
+  background-image: url(https://civil808.com/sites/all/themes/sara/images/sale.png);
   background-size: contain;
   background-repeat: no-repeat;
   z-index: 2;
@@ -4965,7 +4965,7 @@ span.active-bar {
   left: 5%;
   color: #fff;
   font-family: fanum;
-  background-image: url(http://civil808.com/sites/all/themes/sara/images/sale.png);
+  background-image: url(https://civil808.com/sites/all/themes/sara/images/sale.png);
   background-size: contain;
   background-repeat: no-repeat;
   height: 170px;

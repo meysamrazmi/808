@@ -30,15 +30,15 @@
                 <li>
                     به همراه اعطای فلش پکیج استثنائی 808 به شرکت کنندگان دوره
                 </li>
-                <a href="http://civil808.com/node/19704" style="margin-top: 9px;" class="btn" target="_blank">مشاهده محتوای فلش</a>
+                <a href="https://civil808.com/node/19704" style="margin-top: 9px;" class="btn" target="_blank">مشاهده محتوای فلش</a>
                 <li style="margin-top: 18px;">
                     و جزوه چاپ شده بخش تئوری با تالیف پروفسور مقدم
                 </li>
-                <a href="http://civil808.com/node/20027" style="margin-top: 9px;" class="btn" target="_blank"> مشاهده جزئیات پکیج همراه </a>
+                <a href="https://civil808.com/node/20027" style="margin-top: 9px;" class="btn" target="_blank"> مشاهده جزئیات پکیج همراه </a>
                 <li style="margin-top: 18px;">
                     جزوه دوره نرم افزاری
                 </li>
-                <a href="http://civil808.com/node/20061" style="margin-top: 9px;" class="btn" target="_blank"> مشاهده جزئیات  </a>
+                <a href="https://civil808.com/node/20061" style="margin-top: 9px;" class="btn" target="_blank"> مشاهده جزئیات  </a>
             </ul>
         </div>
         <div class="lecturer">
@@ -167,11 +167,11 @@
             <li>این دوره با تدریس جناب پروفسور مقدم، یکی از افراد موثر و پیشرو جهانی در علم طراحی عملکردی سازه ها و <strong>برای اولین بار در کشور با سرفصل انحصاری موسسه 808 فقط به صورت حضوری (بدون ضبط فیلم) برگزار می شود</strong>. امکان استفاده از License قانونی نرم افزارهای مورد استفاده به همراه معرفی دانش آموختگان برتر به صنعت از جمله دیگر مزایای انحصاری این دوره در راستای هدف اتصال دانش به صنعت و حل مساله مقاوم سازی سازه ها می باشد که برای اولین بار و به جهت اهمیت موضوع طراحی عملکردی در کشور توسط تیم موسسه 808، برای شرکت کنندگان فراهم شده است. امید است این دوره مورد استفاده همه مهندسان عمران کشور در جهت ساخت سازه های ایمن در برابر زلزله قرار گیرد.</li>
             <li>
                 برای مشاهده قسمتی از جزوه دوره حضوری آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها
-                <a href="http://civil808.com/node/20027" target="_blank">کلیک کنید.</a>
+                <a href="https://civil808.com/node/20027" target="_blank">کلیک کنید.</a>
             </li>
             <li>
                 برای مشاهده مجموعه تصاوير دوره اول آموزش اصول محاسبات لرزه‌ای و طراحی عملکردی سازه‌ها، ٥ و ٦ تير ماه در دانشگاه صنعتی شريف،
-                <a href="http://civil808.com/node/19335" target="_blank">کلیک کنید.</a>
+                <a href="https://civil808.com/node/19335" target="_blank">کلیک کنید.</a>
             </li>
         </ol>
     </div>
@@ -223,7 +223,7 @@
     display: block;
     width: 220px;">اطلاعات بیشتر</a>
         </div>
-        <img src="http://civil808.com/sites/all/themes/sara/images/seismosoft.png" alt="نرم افزار SeismoBuild منتشر شد (دانلود نسخه دمو  و مشاهده فیلم و کاتالوگ معرفی)" title="نرم افزار SeismoBuild منتشر شد (دانلود نسخه دمو  و مشاهده فیلم و کاتالوگ معرفی)" style="margin-right: 10px;" class="main-seismo">
+        <img src="https://civil808.com/sites/all/themes/sara/images/seismosoft.png" alt="نرم افزار SeismoBuild منتشر شد (دانلود نسخه دمو  و مشاهده فیلم و کاتالوگ معرفی)" title="نرم افزار SeismoBuild منتشر شد (دانلود نسخه دمو  و مشاهده فیلم و کاتالوگ معرفی)" style="margin-right: 10px;" class="main-seismo">
     </div>
 </section>
 

@@ -261,7 +261,7 @@ function _node_resource_retrieve($nid) {
 	$query->fields('n' , array('nid' , 'uid' , 'title' , 'type' , 'created' , 'changed' , 'status'));
 	$query->condition('n.nid', $nid);
 	$node = $query->execute()->fetch();
-	$node->url = "http://civil808.com/node/".$nid;
+	$node->url = "https://civil808.com/node/".$nid;
 	
 	$query = db_select('field_data_field_experts' , 'e');
 	$query->addField('e' , 'field_experts_tid' , 'tid');

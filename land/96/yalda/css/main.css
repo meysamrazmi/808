@@ -165,14 +165,14 @@ li:before {
     right: 86px;
     box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
     border-radius: 50%;
-    background: url(http://civil808.com/sites/all/themes/sara/images/moshaver-like.svg);
+    background: url(https://civil808.com/sites/all/themes/sara/images/moshaver-like.svg);
 }
 li:nth-child(1):before{
     background: url(../img/question.svg);
     border-radius: 25px 50% 50%;
 }
 li:nth-child(2):before{
-    background: url(http://civil808.com/sites/all/themes/sara/images/moshaver-analytics-1.svg);
+    background: url(https://civil808.com/sites/all/themes/sara/images/moshaver-analytics-1.svg);
 }
 html {
     font-size: 13px;

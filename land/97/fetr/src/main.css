@@ -1150,7 +1150,7 @@ h2:before {
 }
 .with-seprater:after{
     content: '';
-    background-image: url(http://civil808.com/land/97/fetr/images/separator.png);
+    background-image: url(https://civil808.com/land/97/fetr/images/separator.png);
     width: 303px;
     height: 102px;
     /* background-size: contain; */
@@ -1253,7 +1253,7 @@ section {
     text-align:right;
 }
 a.poster {
-    background: url(http://civil808.com/app/images/mostaghim.png) no-repeat;
+    background: url(https://civil808.com/app/images/mostaghim.png) no-repeat;
     width: 150px;
     height: 48px;
     display: inline-block;
@@ -1264,13 +1264,13 @@ a.poster {
     margin: 12px 2px -17px 1px;
 }
 a.poster.cafebazaar {
-    background: url(http://civil808.com/app/images/cafebazaar.png) no-repeat;
+    background: url(https://civil808.com/app/images/cafebazaar.png) no-repeat;
 }
 a.poster.googleplay {
-    background: url(http://civil808.com/app/images/googleplay.png) no-repeat;
+    background: url(https://civil808.com/app/images/googleplay.png) no-repeat;
 }
 a.poster.ios {
-    background: url(http://civil808.com/app/images/ios.png) no-repeat;
+    background: url(https://civil808.com/app/images/ios.png) no-repeat;
 }
 a.poster.view:before {
     content: '\f349';

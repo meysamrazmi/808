@@ -50,7 +50,7 @@
                     </div>
                     <div class="des-down">
                         آزمون معماری طراحی، همراه با معرفی ابزارهای کمکی قبولی در آزمون
-                        <!--<a href="http://civil808.com/sites/default/files/importviaftp/SeismoSoft-Civil808-Presentation-Feb%2C2018.pdf"> خلاصه ای از فایل سخنرانی
+                        <!--<a href="https://civil808.com/sites/default/files/importviaftp/SeismoSoft-Civil808-Presentation-Feb%2C2018.pdf"> خلاصه ای از فایل سخنرانی
                         </a>-->
                     </div>
                 </a>
@@ -71,7 +71,7 @@
                     </div>
                 <div class="des-down">
                     آزمون عمران (محاسبات-نظارت-اجرا) و آزمون معماری (نظارت-اجرا)، همراه با معرفی ابزارهای کمکی قبولی در آزمون
-                    <!--<a href="http://civil808.com/sites/default/files/importviaftp/SeismoSoft-Civil808-Presentation-Feb%2C2018.pdf"> خلاصه ای از فایل سخنرانی
+                    <!--<a href="https://civil808.com/sites/default/files/importviaftp/SeismoSoft-Civil808-Presentation-Feb%2C2018.pdf"> خلاصه ای از فایل سخنرانی
                     </a>-->
                 </div>
                 </a>
@@ -910,7 +910,7 @@
 </style>
 <style>
     <?php
-        echo readfile("http://civil808.com/sites/all/themes/sara/css/less/landing.min.css");
+        echo readfile("https://civil808.com/sites/all/themes/sara/css/less/landing.min.css");
     ?>
 </style>
 

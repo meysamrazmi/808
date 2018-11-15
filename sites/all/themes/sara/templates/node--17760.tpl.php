@@ -22,8 +22,8 @@
                             بعد از تجربه سه دوره همايش طراحي عملكردی از سال ٩٢ از آنجا كه عزم ٨٠٨ حل مسأله مقاوم سازی و پرهيز از ارائه صرفا حرف هاي تكراری تئوری بوده است اينبار برأی اولين بار تجربه برگزاری برنامه ای كاملا كاربردی با تركيب همه سه عامل مورد نياز برأی حل مسأله طراحی عملكردی و مقاوم سازی ساختمان ها از قبيل تئوری دانش ، قابليت نرم افزار و روش های اجرا در كنار هم داشتيم در انتها از تمام همكارانی كه طی اين مدت در حمايت رسانه ای و معنوی اين برنامه به ما كمك كردند تشكر ميكنيم و اميد داريم با هم براي حل معضل ساخت سازه های أيمن برای هم ميهنانمان گام های مؤثر برداريم.<br> مجتبي اصغری ،مدير موسسه ٨٠٨، ٣٠ بهمن١٣٩٦
                         </li>
                     </ol>
-                    <a class="poster view" style="margin-bottom: 0px;" href="http://civil808.com/node/18244" target="_blank"> گالری تصاویر </a>
-                    <a class="poster view" href="http://civil808.com/gallery/videos/playlist/3573/18332" target="_blank"> فیلم کامل همایش </a>
+                    <a class="poster view" style="margin-bottom: 0px;" href="https://civil808.com/node/18244" target="_blank"> گالری تصاویر </a>
+                    <a class="poster view" href="https://civil808.com/gallery/videos/playlist/3573/18332" target="_blank"> فیلم کامل همایش </a>
                 </div>
             </div>
         </div>
@@ -179,7 +179,7 @@
                     </div>
                 </div>
                 <div class="des-down"> ارزیابی و مقاوم‌سازی ساختمان‌های بتنی موجود و حل مثال با کمک نرم‌افزار  SeismoBuild و SeismoStruct (ارائه سمینار به زبان انگلیسی) 
-                <a href="http://civil808.com/sites/default/files/importviaftp/SeismoSoft-Civil808-Presentation-Feb%2C2018.pdf"> خلاصه ای از فایل سخنرانی </a>
+                <a href="https://civil808.com/sites/default/files/importviaftp/SeismoSoft-Civil808-Presentation-Feb%2C2018.pdf"> خلاصه ای از فایل سخنرانی </a>
             </div>
             </div>
         </div>
@@ -409,7 +409,7 @@
     </div>
 </section>
 
-<a class="v-en" href="http://civil808.com/en" target="_blank" > ورود به نسخه <b> EN </b> </a>
+<a class="v-en" href="https://civil808.com/en" target="_blank" > ورود به نسخه <b> EN </b> </a>
 
 <style>
     a.v-en {

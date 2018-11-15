@@ -180,7 +180,7 @@ function user_ajax_fields($user , $field) {
 			if(isset($user->$field)){
 				$output = theme('image_style', array('style_name' => 'userprofilrfront', 'path' => $user->picture->uri , 'alt' => $p['main']->field_full_name['und'][0]['value'] , 'title' => $p['main']->field_full_name['und'][0]['value'])); 
 			}else{
-				$output = '<img src="http://civil808.com/sites/all/themes/sara/images/profile2front.jpg" alt="'. $p['main']->field_full_name['und'][0]['value'] .'" title="'. $p['main']->field_full_name['und'][0]['value'] .'"></div>';
+				$output = '<img src="https://civil808.com/sites/all/themes/sara/images/profile2front.jpg" alt="'. $p['main']->field_full_name['und'][0]['value'] .'" title="'. $p['main']->field_full_name['und'][0]['value'] .'"></div>';
 			}
 		}
 	}
@@ -295,7 +295,7 @@ function expert_information(){
 	*/
 	$pic = $node->field_image['und'][0]['uri'];
 	$pic = substr($pic, strpos($pic, "/") + 1);
-	$pic = "http://civil808.com/sites/default/files/styles/120_120/public" . $pic;
+	$pic = "https://civil808.com/sites/default/files/styles/120_120/public" . $pic;
 	$data = array(['question_count' => $question_count, 'user_count' => $user_count, 'pic' => $pic , 'tid' => $tid, 'nid' => $node->nid]);
 
 	drupal_json_output($data);

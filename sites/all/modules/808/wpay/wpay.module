@@ -56,7 +56,7 @@ function zpayment($nid,$sid){
 		}
 		$new_sid = webform_submission_update($node,$web_submission);
 
-		$result = zarinpal_send($total, $user->uid , $description , $resnumber, $ReturnPath ,'college', 'for vip course registration id: <a href="http://civil808.com/node/'. $nid .'/submission/'. $sid .'" target="_blank">'. $sid .'</a>' );
+		$result = zarinpal_send($total, $user->uid , $description , $resnumber, $ReturnPath ,'college', 'for vip course registration id: <a href="https://civil808.com/node/'. $nid .'/submission/'. $sid .'" target="_blank">'. $sid .'</a>' );
 	}
 }
 

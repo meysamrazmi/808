@@ -2,9 +2,9 @@
 <html lang="fa" dir="rtl">
 	<head>
 		<meta charset="UTF-8">
-		<link rel='shortcut icon' href='http://civil808.com/sites/default/files/favlogo.png' type='image/png'>
-		<link rel='icon' href='http://civil808.com/sites/default/files/favlogo.png' type='image/png'>
-		<link rel='apple-touch-icon' href='http://civil808.com/sites/default/files/favlogo.png' />
+		<link rel='shortcut icon' href='https://civil808.com/sites/default/files/favlogo.png' type='image/png'>
+		<link rel='icon' href='https://civil808.com/sites/default/files/favlogo.png' type='image/png'>
+		<link rel='apple-touch-icon' href='https://civil808.com/sites/default/files/favlogo.png' />
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<title>جشنواره کتاب 808</title>
@@ -49,7 +49,7 @@
                                 <li>نمایش کاربری شما در لیست کاربران ویژه سایت</li>
                                 <li>و ...</li>
                             </ul>
-                            <a href="http://civil808.com/landing/vip">عضو vip شوید</a>
+                            <a href="https://civil808.com/landing/vip">عضو vip شوید</a>
                         </div>
                         <div class="point"><span>به زودی </span>امتیاز جمع کنید، شارژ هدیه مستقیم دریافت کنید</div>
                         <div class="point-div">
@@ -91,7 +91,7 @@
 						</span>
                         <b>کتاب های ویژه </b> با امکان ارتباط و مشاوره مستقیم با مولف
 
-                        <a href="http://civil808.com/shop/catalogs/3663/%DA%A9%D8%AA%D8%A7%D8%A8-%D9%87%D8%A7%DB%8C-%D9%88%DB%8C%DA%98%D9%87" rel="nofollow">لیست کتاب ها</a>
+                        <a href="https://civil808.com/shop/catalogs/3663/%DA%A9%D8%AA%D8%A7%D8%A8-%D9%87%D8%A7%DB%8C-%D9%88%DB%8C%DA%98%D9%87" rel="nofollow">لیست کتاب ها</a>
                     </li>
                     <li>
                         <span class="hexa">
@@ -100,7 +100,7 @@
 						</span>
                         <b>ایبوک</b> می توانید کتاب های خود را در قالب نسخه الکترونیک، از طریق وبسایت 808 منتشر کنید.
 
-                        <a href="http://Civil808.com/publication"> ليست ايبوك ها  </a>
+                        <a href="https://civil808.com/publication"> ليست ايبوك ها  </a>
                     </li>
                     <li>
                         <span class="hexa">
@@ -109,7 +109,7 @@
 						</span>
                         <b>سایر کتاب ها</b>مشاهده و خرید جدیدترین کتاب های حوزه ی عمران و معماری کشور
 
-                        <a href="http://civil808.com/shop/product/p/mefibs-form-f-type/0__2221/mefibs-form-f-sort_by/sticky/mefibs-form-f-sort_order/DESC/mefibs-form-f-items_per_page/24/mefibs-form-f-mefibs_block_id/f" rel="nofollow"> لیست کتاب ها </a>
+                        <a href="https://civil808.com/shop/product/p/mefibs-form-f-type/0__2221/mefibs-form-f-sort_by/sticky/mefibs-form-f-sort_order/DESC/mefibs-form-f-items_per_page/24/mefibs-form-f-mefibs_block_id/f" rel="nofollow"> لیست کتاب ها </a>
                     </li>
                 </ol>
                 <p style="	text-align: center;	padding: 15px;	font-size: 15px;white-space: pre;	max-width: 480px;	margin: auto;	border: solid #9C27B0;	border-width: 0 3px;	background: rgba(255, 255, 255, 0.5);">
@@ -120,7 +120,7 @@
 
         <section id="aplication">
             <div class="wh">
-                <img data-aos="zoom-in-up" data-aos-delay="200" src="http://civil808.com/app/images/808plus-logo.png" alt="808 پلاس" width="200" height="auto" style="margin-bottom: 26px;" class="aos-init aos-animate">
+                <img data-aos="zoom-in-up" data-aos-delay="200" src="https://civil808.com/app/images/808plus-logo.png" alt="808 پلاس" width="200" height="auto" style="margin-bottom: 26px;" class="aos-init aos-animate">
                 <h2 data-aos="zoom-in-up" data-aos-delay="400" class="aos-init aos-animate"> ایبوک ها را در اپلیکیشن بخوانید </h2>
                 <div data-aos="zoom-out" data-aos-delay="900" class="aboutus aos-init aos-animate">
                     <div class="sec-li li">
@@ -134,11 +134,11 @@
                             <li> مشاهده ایبوک های خریداری شده </li>
                             <li> قابلیت باز کردن و مشاهده فایل ایبوک </li>
                             <li> خرید ایبوک مورد نظر کاربر </li>
-                            <a href="http://civil808.com/node/18321" target="_blank" style="border: 1px solid;color: #2196F3;padding: 2px 10px;margin: 5px 0;display: inline-block;border-radius: 2px;">  بیشتر بخوانید ...</a><br>
+                            <a href="https://civil808.com/node/18321" target="_blank" style="border: 1px solid;color: #2196F3;padding: 2px 10px;margin: 5px 0;display: inline-block;border-radius: 2px;">  بیشتر بخوانید ...</a><br>
                             در حال حاضر می توانید نسخه آزمایشی (بتا) این اپلیکیشن را دانلود کنید.
                             <br>
                             <div style="max-width: 324px;text-align: center;margin-top: 11px;">
-                                <a class="poster download mostaghim" href="http://civil808.com/app/src/808plus.apk" target="_self">  </a>
+                                <a class="poster download mostaghim" href="https://civil808.com/app/src/808plus.apk" target="_self">  </a>
                                 <a class="poster download cafebazaar" href="https://cafebazaar.ir/app/com.civil808/?l=fa" target="_blank"></a>
                                 <a class="poster download googleplay" href="https://play.google.com/store/apps/details?id=com.civil808" target="_target"></a>
                                 <a class="poster download ios" href="#" target="_self" title="به زودی"></a>

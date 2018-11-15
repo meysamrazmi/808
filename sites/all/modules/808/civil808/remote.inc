@@ -142,7 +142,7 @@ function remote_login_form($from, &$form_state , $token){
 							<div class="company-logo">
 								<img src="' . $company->uri . '"/>
 								<i></i>
-								<img src="http://civil808.com/sites/all/themes/sara/logo.png" style="max-width: 95px;">
+								<img src="https://civil808.com/sites/all/themes/sara/logo.png" style="max-width: 95px;">
 							</div>
 							<div class="company-name"><label>نام شرکت : </label>' . $company->name . '</div>
 						  </div>',
