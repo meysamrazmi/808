@@ -9,7 +9,7 @@
     </div>
 
     <div class="left">
-        <a href="/node/<?php print $node->nid; ?>" target="_blank" class="title"> <?php print $node->title; ?>  </a>
+        <a href="/node/<?php print $node->nid; ?>" target="_blank" class="q-title"> <?php print $node->title; ?>  </a>
         <? if(!empty($node->body)): ?> <div class="body"> <?php print $node->body["und"][0]["value"];?>  </div> <?php endif; ?>
     </div>
 </div>
