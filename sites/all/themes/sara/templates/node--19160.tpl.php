@@ -30,7 +30,7 @@
             <div class="description">
                 <a href="/user/4445/iran-bim" style="color: black" target="_blank">
                     <div class="des-top">
-                        <img src="http://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-4445-1529945699.jpg?itok=WHa8HWzj" alt="قاسم آریانی" width="100px" height="100px">
+                        <img src="https://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-4445-1529945699.jpg?itok=WHa8HWzj" alt="قاسم آریانی" width="100px" height="100px">
                         <div class="des-left">
                             <b> قاسم آریانی </b>
                             <div> متخصص BIM و نرم افزارهای مربوطه </div>
@@ -49,7 +49,7 @@
             <div class="description">
                 <a href="#" style="color: black">
                     <div class="des-top">
-                        <img src="http://civil808.com/sites/default/files/pictures/default.png" alt="علیرضا ادیب فر" width="100px" height="100px">
+                        <img src="https://civil808.com/sites/default/files/pictures/default.png" alt="علیرضا ادیب فر" width="100px" height="100px">
                         <div class="des-left">
                             <b> علیرضا ادیب فر </b>
                             <div>  </div>
@@ -68,7 +68,7 @@
             <div class="description">
                 <a href="/user/18104/mehdirasouli" style="color: black" target="_blank">
                     <div class="des-top">
-                        <img src="http://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-18104-1533349689.jpg?itok=dOQvW5rF" alt="مهدی رسولی" width="100px" height="100px">
+                        <img src="https://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-18104-1533349689.jpg?itok=dOQvW5rF" alt="مهدی رسولی" width="100px" height="100px">
                         <div class="des-left">
                             <b> مهدی رسولی </b>
                             <div> کارشناس معماری و مشاور در زمینه BIM </div>
@@ -87,7 +87,7 @@
             <div class="description">
                 <a href="/user/18106/saharzamansoltani" style="color: black" target="_blank">
                     <div class="des-top">
-                        <img src="http://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-18106-1533345874.jpg?itok=YsTatyCO" alt="سحر زمان سلطانی" width="100px" height="100px">
+                        <img src="https://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-18106-1533345874.jpg?itok=YsTatyCO" alt="سحر زمان سلطانی" width="100px" height="100px">
                         <div class="des-left">
                             <b> سحر زمان سلطانی </b>
                             <div> کارشناس ارشد ارشد معماری و مشاور در زمینه BIM </div>
@@ -106,7 +106,7 @@
             <div class="description">
                 <a href="/user/10721/larijanimojtaba" style="color: black" target="_blank">
                     <div class="des-top">
-                        <img src="http://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-10721-1502030043.jpg?itok=1hcyz0F9" alt="مجتبی اردشیر لاریجانی" width="100px" height="100px">
+                        <img src="https://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-10721-1502030043.jpg?itok=1hcyz0F9" alt="مجتبی اردشیر لاریجانی" width="100px" height="100px">
                         <div class="des-left">
                             <b> مجتبی اردشیر لاریجانی </b>
                             <div> متخصص BIM با نرم افزار Tekla Structures</div>
@@ -125,7 +125,7 @@
             <div class="description">
                 <a href="/user/1546/khsaeid" style="color: black" target="_blank">
                     <div class="des-top">
-                        <img src="http://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-1546-1496071500.jpg?itok=1KRQ1LSz" alt="سعید خلیلی قمی" width="100px" height="100px">
+                        <img src="https://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-1546-1496071500.jpg?itok=1KRQ1LSz" alt="سعید خلیلی قمی" width="100px" height="100px">
                         <div class="des-left">
                             <b> سعید خلیلی قمی </b>
                             <div> متخصص BIM و مدیریت و کنترل پروژه</div>
@@ -200,14 +200,14 @@
             </div>
             -->
             <a href="/node/19162" target="_blank" style="margin: 31px auto 0;display: block;text-align: center;">
-                <img src="http://civil808.com/sites/default/files/field/image/node_19162.jpg" width="700" height="auto" alt="یادداشت تحلیلی: چگونه BIM صنعت ساختمان و شهرسازی را متحول کرد؟" title="یادداشت تحلیلی: چگونه BIM صنعت ساختمان و شهرسازی را متحول کرد؟">
+                <img src="https://civil808.com/sites/default/files/field/image/node_19162.jpg" width="700" height="auto" alt="یادداشت تحلیلی: چگونه BIM صنعت ساختمان و شهرسازی را متحول کرد؟" title="یادداشت تحلیلی: چگونه BIM صنعت ساختمان و شهرسازی را متحول کرد؟">
             </a>
 
             <section id="relatives">
                 <h2> اخبار و رویدادهای مرتبط </h2>
                 <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">
                     برای مشاهده مطالب بیشتر
-                    <a href="http://civil808.com/news" target="_blank">کلیک کنید</a>
+                    <a href="https://civil808.com/news" target="_blank">کلیک کنید</a>
                 </p>
                 <?php
                 $args1 = 3753;
@@ -219,7 +219,7 @@
                 <h2> مقالات تحلیلی و ایبوک های مرتبط </h2>
                 <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">
                     برای مشاهده مطالب بیشتر
-                    <a href="http://civil808.com/publication" target="_blank">کلیک کنید</a>
+                    <a href="https://civil808.com/publication" target="_blank">کلیک کنید</a>
                 </p>
                 <?php
                 $args1 = 3753;
@@ -231,7 +231,7 @@
                 <h2> یادداشت ها و پادکست های مرتبط </h2>
                 <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">
                     برای مشاهده مطالب بیشتر
-                    <a href="http://civil808.com/podcast" target="_blank">کلیک کنید</a>
+                    <a href="https://civil808.com/podcast" target="_blank">کلیک کنید</a>
                 </p>
                 <?php
                 //$args1 = 3753;
@@ -243,7 +243,7 @@
                 <h2> مجموعه فیلم وبینار های برگزار شده </h2>
                 <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">
                     برای مشاهده مطالب بیشتر
-                    <a href="http://civil808.com/education" target="_blank">کلیک کنید</a>
+                    <a href="https://civil808.com/education" target="_blank">کلیک کنید</a>
                 </p>
                 <?php
                 $args1 = 3753;
@@ -255,9 +255,9 @@
                 <h2> فیلم های آموزشی رایگان در گالری 808 </h2>
                 <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">
                     برای مشاهده مطالب بیشتر
-                    <a href="http://civil808.com/gallery/videos" target="_blank">کلیک کنید</a>
+                    <a href="https://civil808.com/gallery/videos" target="_blank">کلیک کنید</a>
                 </p>
-                <a style="margin: 25px auto 15px auto;" class="btn btn-primary" href="http://civil808.com/gallery/videos/playlist/4089/19930" > مجموعه فیلم همایش انقلاب در صنعت ساخت و ساز با BIM </a>
+                <a style="margin: 25px auto 15px auto;" class="btn btn-primary" href="https://civil808.com/gallery/videos/playlist/4089/19930" > مجموعه فیلم همایش انقلاب در صنعت ساخت و ساز با BIM </a>
                 <?php
                 $args1 = 3753;
                 $args2 = 'film';
@@ -268,7 +268,7 @@
                 <h2> مطالب بخش های مختلف سایت در دانشنامه های موجود </h2>
                 <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">
                     برای مشاهده مطالب بیشتر
-                    <a href="http://civil808.com/pedia?title=bim" target="_blank">کلیک کنید</a>
+                    <a href="https://civil808.com/pedia?title=bim" target="_blank">کلیک کنید</a>
                 </p>
                 <?php
                 $args1 = 3753;
@@ -280,7 +280,7 @@
                 <h2> دوره های آموزشی مرتبط </h2>
                 <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">
                     برای مشاهده مطالب بیشتر
-                    <a href="http://civil808.com/college" target="_blank">کلیک کنید</a>
+                    <a href="https://civil808.com/college" target="_blank">کلیک کنید</a>
                 </p>
                 <?php
                 $args1 = 3753;
@@ -292,7 +292,7 @@
                 <h2> محصولات فروشگاه و پکیج های آموزشی 808 </h2>
                 <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">
                     برای مشاهده مطالب بیشتر
-                    <a href="http://civil808.com/shop/product" target="_blank">کلیک کنید</a>
+                    <a href="https://civil808.com/shop/product" target="_blank">کلیک کنید</a>
                 </p>
                 <?php
                 $args1 = 3753;
@@ -304,14 +304,14 @@
                 <h2> برای انجام پروژه های BIM خود به مدرسین و مشاورین ما پیغام دهید </h2>
                 <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">
                     برای مشاهده لیست مشاوران سایت
-                    <a href="http://civil808.com/landing/advisor" target="_blank">کلیک کنید</a>
+                    <a href="https://civil808.com/landing/advisor" target="_blank">کلیک کنید</a>
                 </p>
                 <div class="stickies all-members">
                     <div class="view-content" style="display: flex;justify-content: center;margin-top: 35px;">
                         <div class="views-row views-row-3 views-row-odd">
 
                             <div class="views-field views-field-counter">    <span class="views-label views-label-counter">#</span>    <span class="field-content">1</span>  </div>
-                            <div class="views-field views-field-picture">        <div class="field-content"><a href="/user/1546/khsaeid"><img src="http://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-1546-1496071500.jpg?itok=1KRQ1LSz" width="220" height="220" alt=""></a></div>  </div>
+                            <div class="views-field views-field-picture">        <div class="field-content"><a href="/user/1546/khsaeid"><img src="https://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-1546-1496071500.jpg?itok=1KRQ1LSz" width="220" height="220" alt=""></a></div>  </div>
                             <div class="views-field views-field-field-full-name">        <div class="field-content"><a href="/user/1546" target="_blank">سعید خلیلی قمی</a></div>  </div>
                             <span class="vip_icon" title="کاربر vip"></span>
                             <div class="views-field views-field-rid">    <span class="views-label views-label-rid">نقش‌ها: </span>    <span class="field-content">editor, Vip, مشاور, نمایندگی, همکاران</span>  </div>
@@ -323,7 +323,7 @@
                         <div class="views-row views-row-4 views-row-even">
 
                             <div class="views-field views-field-counter">    <span class="views-label views-label-counter">#</span>    <span class="field-content">2</span>  </div>
-                            <div class="views-field views-field-picture">        <div class="field-content"><a href="/user/4445/iran-bim"><img src="http://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-4445-1529945699.jpg?itok=WHa8HWzj" width="220" height="220" alt=""></a></div>  </div>
+                            <div class="views-field views-field-picture">        <div class="field-content"><a href="/user/4445/iran-bim"><img src="https://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-4445-1529945699.jpg?itok=WHa8HWzj" width="220" height="220" alt=""></a></div>  </div>
                             <div class="views-field views-field-field-full-name">        <div class="field-content"><a href="/user/4445" target="_blank">قاسم آریانی</a></div>  </div>
                             <span class="vip_icon" title="کاربر vip"></span>
                             <div class="views-field views-field-rid">    <span class="views-label views-label-rid">نقش‌ها: </span>    <span class="field-content">Vip, مشاور, همکاران</span>  </div>
@@ -524,7 +524,7 @@
 
 <style>
     <?php
-        echo readfile("http://civil808.com/sites/all/themes/sara/css/less/landing.min.css");
+        echo readfile("https://civil808.com/sites/all/themes/sara/css/less/landing.min.css");
     ?>
 </style>
 

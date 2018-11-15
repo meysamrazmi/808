@@ -104,7 +104,7 @@ function retrieve_a_pedia_version_one($nid){
     $query->condition('node.nid', $nid);
     $pedia = $query->execute()->fetch();
     if(empty($pedia) || count($pedia) == 0) return services_error(t('The pedia is not exist'), 17);;
-    $pedia->url = "http://civil808.com/node/".$nid;
+    $pedia->url = "https://civil808.com/node/".$nid;
 
     /*add experts*/
     $query = db_select('field_data_field_experts' , 'expert');

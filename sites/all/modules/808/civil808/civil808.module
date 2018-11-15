@@ -758,7 +758,7 @@ function civil808_page_accounting_reward_submit($form, &$form_state) {
 
 	$subject_admin = 'درخواست وجه از طرف '. $p['main']->field_full_name['und'][0]['value'];
 	$to_admin = 'saze808@gmail.com';
-	$body_admin = '<p>آقا/خانم ' . $p['main']->field_full_name['und'][0]['value'] . ' درخواست وجه داده اند. '. '<br>' . ' شماره حساب : ' . $p['bank']->field_bank_cart_num['und'][0]['value'] . '<br> <span style="font-family: Verdana, Arial, Helvetica, sans-serif;"> مبلغ درخواستی : </span><span style="font-weight: bold;">'. formatMoney($form_state['values']['price']) .'</span><br><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">نام کاربری : ' . '<a href="http://civil808.com/user/' . $user->uid . '" target="_blank">' . $user->name . '</a>' . '</span></p><a href="http://civil808.com/admin/money" target="_blank"> لینک صفحه ی پرداختی ها </a><br><p style="text-align: right;" dir="rtl">با تشکر</p>';
+	$body_admin = '<p>آقا/خانم ' . $p['main']->field_full_name['und'][0]['value'] . ' درخواست وجه داده اند. '. '<br>' . ' شماره حساب : ' . $p['bank']->field_bank_cart_num['und'][0]['value'] . '<br> <span style="font-family: Verdana, Arial, Helvetica, sans-serif;"> مبلغ درخواستی : </span><span style="font-weight: bold;">'. formatMoney($form_state['values']['price']) .'</span><br><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">نام کاربری : ' . '<a href="https://civil808.com/user/' . $user->uid . '" target="_blank">' . $user->name . '</a>' . '</span></p><a href="https://civil808.com/admin/money" target="_blank"> لینک صفحه ی پرداختی ها </a><br><p style="text-align: right;" dir="rtl">با تشکر</p>';
 
 
 	

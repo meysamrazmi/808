@@ -2049,7 +2049,7 @@ function add_log($uid , $url , $action , $entity_type = "" , $entity_id = 0 , $a
 }
 function generate_file_address($url){
     $url = substr($url , 8);
-    $url = "http://civil808.com/sites/default/files" . $url;
+    $url = "https://civil808.com/sites/default/files" . $url;
     return $url;
 }
 /*-------------------------------------------------------------------------------------------------*/

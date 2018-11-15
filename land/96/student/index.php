@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="shortcut icon" href="http://civil808.com/sites/default/files/favlogo.png" type="image/png">		
+		<link rel="shortcut icon" href="https://civil808.com/sites/default/files/favlogo.png" type="image/png">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>روز دانش آموز و تخفیف های 808 </title>
 		<meta name="description" content="بسته های پیشنهاد ویژه کتاب و فیلم های آموزشی با 20% تخفیف">
@@ -118,19 +118,19 @@
 			</div>
 			<!--<div data-aos="fade-up" class="aos-init aos-animate shop-links">
 				<div data-aos="fade-up" class="aos-init aos-animate">
-					<a href="http://civil808.com/publication" class="btn" target="_blank">کتاب های الکترونیکی</a>
+					<a href="https://civil808.com/publication" class="btn" target="_blank">کتاب های الکترونیکی</a>
 				</div>
 				<div data-aos="fade-up" class="aos-init aos-animate">
-					<a href="http://civil808.com/article/store" class="btn" target="_blank">مقالات تحلیلی</a>
+					<a href="https://civil808.com/article/store" class="btn" target="_blank">مقالات تحلیلی</a>
 				</div>
 				<div data-aos="fade-up" class="aos-init aos-animate">
-					<a href="http://civil808.com/article/software" class="btn" target="_blank">نرم افزارهای کاربردی</a>
+					<a href="https://civil808.com/article/software" class="btn" target="_blank">نرم افزارهای کاربردی</a>
 				</div>
 				<div data-aos="fade-up" class="aos-init">
-					<a href="http://civil808.com/college" class="btn" target="_blank">دوره های آموزشگاه</a>
+					<a href="https://civil808.com/college" class="btn" target="_blank">دوره های آموزشگاه</a>
 				</div>
 				<div class="bottom aos-init" data-aos="fade-up">
-					<a href="http://civil808.com/store" class="btn" target="_blank">پکیج های آموزشی 808</a>
+					<a href="https://civil808.com/store" class="btn" target="_blank">پکیج های آموزشی 808</a>
 				</div>
 			</div>-->
 			
@@ -143,13 +143,13 @@
 					<img src="/96/student/images/conversation.svg">
 					<h3>مشاوره رایگان با مشاوران اختصاصی</h3>
 					<p>دریافت مشاوره رایگان در زمینه های تخصصی خود با مشاوران سایت</p>
-					<a href="http://civil808.com/moshaver" target="_blank" class="btn">لیست تمام مشاوران</a>
+					<a href="https://civil808.com/moshaver" target="_blank" class="btn">لیست تمام مشاوران</a>
 				</div>
 				<div class="connection">
 					<img src="/96/student/images/net.svg">
 					<h3>ارتباط افراد متخصص سایت با یکدیگر</h3>
 					<p>قابلیت ایجاد ارتباط با کاربرانی که تخصص مورد نظر شما را دارند</p>
-					<a href="http://civil808.com/landing/members" target="_blank" class="btn">مشاهده تمام کاربران</a>
+					<a href="https://civil808.com/landing/members" target="_blank" class="btn">مشاهده تمام کاربران</a>
 				</div>
 				<div class="off">
 					<img src="/96/student/images/percentage.svg">
@@ -171,35 +171,35 @@
 			<div class="" data-aos="zoom-in-up"  data-aos-delay="400">
 				<div class="row" title="پکیج فیلم آموزش آمادگی آزمون دکتری عمران (سراسری و آزاد)">
 					<a href="//civil808.com/node/5539" target="_blank" class="">
-						<img src="http://civil808.com/sites/default/files/styles/uc_product/public/field/image/node_5539.jpg?itok=V_-PlrBf" width="220" height="220" alt="پکیج فیلم آموزش آمادگی آزمون دکتری عمران (سراسری و آزاد)">
+						<img src="https://civil808.com/sites/default/files/styles/uc_product/public/field/image/node_5539.jpg?itok=V_-PlrBf" width="220" height="220" alt="پکیج فیلم آموزش آمادگی آزمون دکتری عمران (سراسری و آزاد)">
 					</a>    
 					<a href="//civil808.com/node/5539" target="_blank" class="title">پکیج فیلم آموزش آمادگی آزمون دکتری عمران (سراسری و آزاد)</a>    
 				</div>
 			
 				<div class="row" title="پکیج فیلم آموزش نحوه مقاله نویسی ISI همراه با آخرین نسخه نرم افزار ENDNote">
 					<a href="//civil808.com/node/5549" target="_blank" class="">
-						<img src="http://civil808.com/sites/default/files/styles/uc_product/public/field/image/node_5549.jpg?itok=t6ncojMH" width="220" height="220" alt="پکیج فیلم آموزش نحوه مقاله نویسی ISI همراه با آخرین نسخه نرم افزار ENDNote">
+						<img src="https://civil808.com/sites/default/files/styles/uc_product/public/field/image/node_5549.jpg?itok=t6ncojMH" width="220" height="220" alt="پکیج فیلم آموزش نحوه مقاله نویسی ISI همراه با آخرین نسخه نرم افزار ENDNote">
 					</a>    
 					<a href="//civil808.com/node/5549" target="_blank" class="title">پکیج فیلم آموزش نحوه مقاله نویسی ISI همراه با آخرین نسخه نرم افزار ENDNote</a>    
 				</div>
 			
 				<div class="row" title="پکیج فیلم آمادگی آزمون ارشد عمران (کنکور سراسری و آزاد)">
 					<a href="//civil808.com/node/5553" target="_blank" class="">
-						<img src="http://civil808.com/sites/default/files/styles/uc_product/public/field/image/node_5553.jpg?itok=tIqDdwtf" width="220" height="220" alt="پکیج فیلم آمادگی آزمون ارشد عمران (کنکور سراسری و آزاد)">
+						<img src="https://civil808.com/sites/default/files/styles/uc_product/public/field/image/node_5553.jpg?itok=tIqDdwtf" width="220" height="220" alt="پکیج فیلم آمادگی آزمون ارشد عمران (کنکور سراسری و آزاد)">
 					</a>    
 					<a href="//civil808.com/node/5553" target="_blank" class="title">پکیج فیلم آمادگی آزمون ارشد عمران (کنکور سراسری و آزاد)</a>    
 				</div>
 
 				<div class="row" title="دوره های آنلاین آمادگی کنکور کارشناسی ارشد عمران 96">
 					<a href="//civil808.com/node/15375" target="_blank" class="">
-						<img src="http://civil808.com/sites/default/files/field/image/node_15375_0.jpg" width="220" height="220" alt="دوره های آنلاین آمادگی کنکور کارشناسی ارشد عمران 96">
+						<img src="https://civil808.com/sites/default/files/field/image/node_15375_0.jpg" width="220" height="220" alt="دوره های آنلاین آمادگی کنکور کارشناسی ارشد عمران 96">
 					</a>    
 					<a href="//civil808.com/node/15375" target="_blank" class="title"> دوره های آنلاین آمادگی کنکور کارشناسی ارشد عمران 96 </a>    
 				</div>
 
 				<div class="row" title="دوره های آنلاین آمادگی کنکور دکتری عمران (سازه- زلزله- ژئوتکنیک- مدیریت منابع آب- مهندسی آب و سازه های هیدرولیکی- محیط زیست) ترم پاییز ۹۶">
 					<a href="//civil808.com/node/11240" target="_blank" class="">
-						<img src="http://civil808.com/sites/default/files/field/image/node_11240_0.jpg" width="220" height="220" alt="دوره های آنلاین آمادگی کنکور دکتری عمران (سازه- زلزله- ژئوتکنیک- مدیریت منابع آب- مهندسی آب و سازه های هیدرولیکی- محیط زیست) ترم پاییز ۹۶">
+						<img src="https://civil808.com/sites/default/files/field/image/node_11240_0.jpg" width="220" height="220" alt="دوره های آنلاین آمادگی کنکور دکتری عمران (سازه- زلزله- ژئوتکنیک- مدیریت منابع آب- مهندسی آب و سازه های هیدرولیکی- محیط زیست) ترم پاییز ۹۶">
 					</a>    
 					<a href="//civil808.com/node/11240" target="_blank" class="title"> دوره های آنلاین آمادگی کنکور دکتری عمران (سازه- زلزله- ژئوتکنیک- مدیریت منابع آب- مهندسی آب و سازه های هیدرولیکی- محیط زیست) ترم پاییز ۹۶ </a>    
 				</div>
@@ -218,7 +218,7 @@
 			
 				<div class="row">
 					<a href="//civil808.com/research" target="_blank" class="">
-						<img src="http://civil808.com/sites/all/themes/sara/images/moshaver-article.jpg?ver=1.0.3" width="300" height="170" alt="صفحه مشاوره مرتبط با مقالات پژوهشی" title="مشاوره در زمینه مقالات پژوهشی">
+						<img src="https://civil808.com/sites/all/themes/sara/images/moshaver-article.jpg?ver=1.0.3" width="300" height="170" alt="صفحه مشاوره مرتبط با مقالات پژوهشی" title="مشاوره در زمینه مقالات پژوهشی">
 					</a>    
 					<a href="//civil808.com/research" target="_blank" class="title">صفحه مشاوره در زمینه مقالات پژوهشی</a>
 				</div>

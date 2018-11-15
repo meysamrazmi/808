@@ -47,8 +47,8 @@ function advisors_info($page){
         $info = array();
         $uids = array();
         foreach($results as $result){
-            $result->send_message = "http://civil808.com/messages/new/" . $result->uid;
-            $result->view_profile = "http://civil808.com/user/" . $result->uid . "/advisor";
+            $result->send_message = "https://civil808.com/messages/new/" . $result->uid;
+            $result->view_profile = "https://civil808.com/user/" . $result->uid . "/advisor";
             array_push($uids, $result->uid);
             $info[$result->uid] = $result;
         }

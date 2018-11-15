@@ -9,7 +9,7 @@ if(!isMobile()){
 <html lang="fa" dir="rtl">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="shortcut icon" href="http://civil808.com/sites/default/files/favlogo.png" type="image/png">		
+		<link rel="shortcut icon" href="https://civil808.com/sites/default/files/favlogo.png" type="image/png">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>جشنواره شب یلدا و رونمایی از بخش 808 پلاس</title>
 		<meta name="description" content="جشنواره شب یلدا">
@@ -34,7 +34,7 @@ if(!isMobile()){
 							<p class="tagline"><img src="./img/title.png"></p>
 							<h2>جشنواره فروش ویژه به مناسبت شب یلدا</h2>
 								<div>
-								<p>به علاوه رو نمایی از <a href="http://civil808.com/question/list" style="box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;background: #eee;padding: 5px 15px;color: #555;text-shadow: none;margin: 0 5px;font-size: 16px;">بخش پرسش و پاسخ</a> 808 پلاس</p>
+								<p>به علاوه رو نمایی از <a href="https://civil808.com/question/list" style="box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;background: #eee;padding: 5px 15px;color: #555;text-shadow: none;margin: 0 5px;font-size: 16px;">بخش پرسش و پاسخ</a> 808 پلاس</p>
 									<div class="tarikh">
 										<span>شب یلدا</span>
 										<span>- به مدت یک هفته</span>
@@ -90,13 +90,13 @@ if(!isMobile()){
 		data-top-bottom="background-position: 50% -50px;"				
 				>
 				<div class="view-header">
-					<h2><a href="http://civil808.com/question/list" style="    color: #fff;">بخش پرسش و پاسخ 808 پلاس</a></h2>
+					<h2><a href="https://civil808.com/question/list" style="    color: #fff;">بخش پرسش و پاسخ 808 پلاس</a></h2>
 				<h4>سوالات خود را از مشاوران سایت بپرسید</h4>
-				<a class="ask-question btn blue-btn has-wave" href="http://civil808.com/question/ask" target="_blank"><span class="click-wave"></span>افزودن سوال</a> </div>
+				<a class="ask-question btn blue-btn has-wave" href="https://civil808.com/question/ask" target="_blank"><span class="click-wave"></span>افزودن سوال</a> </div>
 				<ol class="mazaya">
-<li>در رابطه با هر موضوعی در رشته های عمران و معماری و یا هر مقاله و پروژه ای می توانید سوالات خود را مطرح کنید<a href="http://civil808.com/question/ask" rel="nofollow" style="width: 140px;">پرسیدن سوال جدید</a> 
+<li>در رابطه با هر موضوعی در رشته های عمران و معماری و یا هر مقاله و پروژه ای می توانید سوالات خود را مطرح کنید<a href="https://civil808.com/question/ask" rel="nofollow" style="width: 140px;">پرسیدن سوال جدید</a>
 					</li>				
-<li>سوال های تخصصی خود را بپرسید تا افراد متخصص و مشاوران ما به آنها پاسخ دهند<a href="http://civil808.com/question/list" rel="nofollow">لیست سوالات</a>
+<li>سوال های تخصصی خود را بپرسید تا افراد متخصص و مشاوران ما به آنها پاسخ دهند<a href="https://civil808.com/question/list" rel="nofollow">لیست سوالات</a>
 					</li>
 					<li>استفاده از این بخش رایگان است، تنها کافی است برای کامل تر و بهتر شدن بانک سوالات فعال باشید. 
 					</li>

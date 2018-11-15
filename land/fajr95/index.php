@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="shortcut icon" href="http://civil808.com/sites/default/files/favlogo.png" type="image/png">		
+		<link rel="shortcut icon" href="https://civil808.com/sites/default/files/favlogo.png" type="image/png">		
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>جشنواره فروش ویژه دهه فجر سیویل 808</title>
 		<meta name="description" content="بسته های پیشنهاد ویژه کتاب و فیلم های آموزشی با 20% تخفیف">
@@ -85,14 +85,14 @@
 				<h2>پیشنهاد ویژه کتاب و فیلم های آموزشی</h2> 
 				<div class="contain">
 					<div class="fajr-image" data-aos="fade-left" data-aos-anchor-placement="top-bottom">
-						<img typeof="foaf:Image" src="http://civil808.com/sites/default/files/online-shopping.jpg" width="700" height="500" alt="فروش ویژه محصولات تا 20درصد تخفیف" title="فروش ویژه محصولات تا 20درصد تخفیف">
+						<img typeof="foaf:Image" src="https://civil808.com/sites/default/files/online-shopping.jpg" width="700" height="500" alt="فروش ویژه محصولات تا 20درصد تخفیف" title="فروش ویژه محصولات تا 20درصد تخفیف">
 					</div>
 					<div>
 						<div class="fajr-title" data-aos="fade-right" data-aos-delay="500" data-aos-anchor-placement="top-bottom">
 						<h2>بسته های پیشنهاد ویژه کتاب و فیلم های آموزشی با 20% تخفیف</h2>
 						</div>
 						<div class="fajr-link more" data-aos="zoom-out" data-aos-delay="1500" data-aos-anchor-placement="top-bottom" data-aos-duration="1000">
-							<a href="http://civil808.com/shop/landing/featured" target="_blank" data-aos="zoom-out" data-aos-delay="1500" data-aos-anchor-placement="top-bottom">مشاهده آیتم ها</a>
+							<a href="https://civil808.com/shop/landing/featured" target="_blank" data-aos="zoom-out" data-aos-delay="1500" data-aos-anchor-placement="top-bottom">مشاهده آیتم ها</a>
 						</div>
 						<div class="fajr-description" data-aos="fade-right" data-aos-delay="1000" data-aos-anchor-placement="top-bottom">
 							<p>
@@ -107,27 +107,27 @@
 		<section class="panel fajr-section2" data-section-name="eng" style="height: 630px;">
 				<div id="fajr-section2" class="fajr-sections">
 					<div class="fajr-image" data-aos="fade-right" data-aos-anchor-placement="top-bottom">
-						<img typeof="foaf:Image" src="http://civil808.com/sites/default/files/exam2.jpg" width="590" height="350" alt="همه آنچه باید از آزمون نظام مهندسی بدانید" title="همه آنچه باید از آزمون نظام مهندسی بدانید">
+						<img typeof="foaf:Image" src="https://civil808.com/sites/default/files/exam2.jpg" width="590" height="350" alt="همه آنچه باید از آزمون نظام مهندسی بدانید" title="همه آنچه باید از آزمون نظام مهندسی بدانید">
 					</div>
 					<div class="contain">
 						<div class="fajr-title" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
 							<h2>محصولات ویژه آزمون ورود به حرفه نظام مهندسی</h2>
 						</div>
 						<div class="fajr-link more" data-aos="zoom-out" data-aos-delay="1800" data-aos-anchor-placement="top-bottom">
-							<a href="http://civil808.com/eng" target="_blank" >مشاهده صفحه</a>
+							<a href="https://civil808.com/eng" target="_blank" >مشاهده صفحه</a>
 						</div>
 						<div class="fajr-link allmany">
 							<div class="fajr-link ketab many" data-aos="fade-right" data-aos-delay="500" data-aos-anchor-placement="top-bottom">
-								<a href="http://civil808.com/shop/product/p/mefibs-form-f-type/0__2221/mefibs-form-f-quiz/0__2250/mefibs-form-f-items_per_page/24/mefibs-form-f-mefibs_block_id/f" target="_blank">کتاب</a>
+								<a href="https://civil808.com/shop/product/p/mefibs-form-f-type/0__2221/mefibs-form-f-quiz/0__2250/mefibs-form-f-items_per_page/24/mefibs-form-f-mefibs_block_id/f" target="_blank">کتاب</a>
 							</div>
 							<div class="fajr-link filmha many" data-aos="fade-right" data-aos-delay="700" data-aos-anchor-placement="top-bottom">
-								<a href="http://civil808.com/shop/product/p/mefibs-form-f-type/0__2215/mefibs-form-f-quiz/0__2250/mefibs-form-f-items_per_page/24/mefibs-form-f-mefibs_block_id/f" target="_blank">فیلم</a>
+								<a href="https://civil808.com/shop/product/p/mefibs-form-f-type/0__2215/mefibs-form-f-quiz/0__2250/mefibs-form-f-items_per_page/24/mefibs-form-f-mefibs_block_id/f" target="_blank">فیلم</a>
 							</div>
 							<div class="fajr-link abzar many" data-aos="fade-right" data-aos-delay="900" data-aos-anchor-placement="top-bottom">
-								<a href="http://civil808.com/shop/product/p/mefibs-form-f-type/0__2241/mefibs-form-f-quiz/0__2250/mefibs-form-f-items_per_page/24/mefibs-form-f-mefibs_block_id/f" target="_blank">ابزار مهندسی</a>
+								<a href="https://civil808.com/shop/product/p/mefibs-form-f-type/0__2241/mefibs-form-f-quiz/0__2250/mefibs-form-f-items_per_page/24/mefibs-form-f-mefibs_block_id/f" target="_blank">ابزار مهندسی</a>
 							</div>
 							<div class="fajr-link doreha many" data-aos="fade-right" data-aos-delay="1100" data-aos-anchor-placement="top-bottom">
-								<a href="http://civil808.com/college/herfe" target="_blank">دوره های آموزشی</a>
+								<a href="https://civil808.com/college/herfe" target="_blank">دوره های آموزشی</a>
 							</div>
 						</div>
 					</div>
@@ -138,17 +138,17 @@
 			<div class="pane-content">
 				<p></p><p data-aos="fade-up" data-aos-anchor-placement="top-bottom">عرضه جدید ترین محصولات آموزشی عمران و معماری</p>
 				<p class="main-shop">&nbsp;
-				<a href="http://civil808.com/shop/product/p/mefibs-form-f-type/0__2221/mefibs-form-f-sort_by/sticky/mefibs-form-f-sort_order/DESC/mefibs-form-f-items_per_page/48/mefibs-form-f-mefibs_block_id/f" target="_blank" data-aos="fade-right" data-aos-delay="500" >کتاب ،</a>&nbsp;
-				<a href="http://civil808.com/shop/product/p/mefibs-form-f-type/0__2215/mefibs-form-f-sort_by/sticky/mefibs-form-f-sort_order/DESC/mefibs-form-f-items_per_page/48/mefibs-form-f-mefibs_block_id/f" target="_blank"  data-aos="fade-right" data-aos-delay="900" >فیلم ،</a>
-				<a href="http://civil808.com/publication" data-aos="fade-right" data-aos-delay="1300" >ایبوک ،</a>
-				<a href="http://civil808.com/shop/product/p/mefibs-form-f-type/0__2231/mefibs-form-f-sort_by/sticky/mefibs-form-f-sort_order/DESC/mefibs-form-f-items_per_page/48/mefibs-form-f-mefibs_block_id/f" target="_blank" style="line-height: initial;" data-aos="fade-right" data-aos-delay="1700" >نرم افزار ،</a>
-				<a href="http://civil808.com/shop/product/p/mefibs-form-f-type/0__2241/mefibs-form-f-sort_by/sticky/mefibs-form-f-sort_order/DESC/mefibs-form-f-items_per_page/48/mefibs-form-f-mefibs_block_id/f" target="_blank" style="  width: 210px;" data-aos="fade-right" data-aos-delay="2000" >ابزار های مهندسی</a>
+				<a href="https://civil808.com/shop/product/p/mefibs-form-f-type/0__2221/mefibs-form-f-sort_by/sticky/mefibs-form-f-sort_order/DESC/mefibs-form-f-items_per_page/48/mefibs-form-f-mefibs_block_id/f" target="_blank" data-aos="fade-right" data-aos-delay="500" >کتاب ،</a>&nbsp;
+				<a href="https://civil808.com/shop/product/p/mefibs-form-f-type/0__2215/mefibs-form-f-sort_by/sticky/mefibs-form-f-sort_order/DESC/mefibs-form-f-items_per_page/48/mefibs-form-f-mefibs_block_id/f" target="_blank"  data-aos="fade-right" data-aos-delay="900" >فیلم ،</a>
+				<a href="https://civil808.com/publication" data-aos="fade-right" data-aos-delay="1300" >ایبوک ،</a>
+				<a href="https://civil808.com/shop/product/p/mefibs-form-f-type/0__2231/mefibs-form-f-sort_by/sticky/mefibs-form-f-sort_order/DESC/mefibs-form-f-items_per_page/48/mefibs-form-f-mefibs_block_id/f" target="_blank" style="line-height: initial;" data-aos="fade-right" data-aos-delay="1700" >نرم افزار ،</a>
+				<a href="https://civil808.com/shop/product/p/mefibs-form-f-type/0__2241/mefibs-form-f-sort_by/sticky/mefibs-form-f-sort_order/DESC/mefibs-form-f-items_per_page/48/mefibs-form-f-mefibs_block_id/f" target="_blank" style="  width: 210px;" data-aos="fade-right" data-aos-delay="2000" >ابزار های مهندسی</a>
 				</p>
 				<p style="text-align: center; border-top: 3px solid #fff; padding: 20px 0 0; margin: 0 auto; width: 60%;" data-aos="zoom-out" data-aos-delay="2400" data-aos-anchor-placement="top-bottom">&nbsp;</p>
 				<p class="all-product" style="text-align: center;">
-					<a href="http://civil808.com/shop/product" target="_blank" data-aos="zoom-in" data-aos-delay="3000" data-aos-anchor-placement="top-bottom">مشاهده تمامی محصولات</a>
-					<a href="http://civil808.com/shop/landing/featured" target="_blank" class="featured" data-aos="zoom-in" data-aos-delay="3000" data-aos-anchor-placement="top-bottom">فروش ویژه</a>
-					<a href="http://civil808.com/sites/default/files/field/files/node_12139-mhswlt_808-95-all_1.pdf" target="_blank" class="catalog" data-aos="zoom-in" data-aos-delay="3000" data-aos-anchor-placement="top-bottom">دریافت کاتالوگ</a>
+					<a href="https://civil808.com/shop/product" target="_blank" data-aos="zoom-in" data-aos-delay="3000" data-aos-anchor-placement="top-bottom">مشاهده تمامی محصولات</a>
+					<a href="https://civil808.com/shop/landing/featured" target="_blank" class="featured" data-aos="zoom-in" data-aos-delay="3000" data-aos-anchor-placement="top-bottom">فروش ویژه</a>
+					<a href="https://civil808.com/sites/default/files/field/files/node_12139-mhswlt_808-95-all_1.pdf" target="_blank" class="catalog" data-aos="zoom-in" data-aos-delay="3000" data-aos-anchor-placement="top-bottom">دریافت کاتالوگ</a>
 				</p>
 			</div>
 		</section>

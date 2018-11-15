@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="shortcut icon" href="http://civil808.com/sites/default/files/favlogo.png" type="image/png">		
+		<link rel="shortcut icon" href="https://civil808.com/sites/default/files/favlogo.png" type="image/png">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>رونمایی از اپلیکیشن اندروید 808 پلاس </title>
 		<meta name="description" content="رونمایی از اپلیکیشن اندروید 808 پلاس ">
@@ -11,7 +11,7 @@
 		<meta property="og:type" content="website">
 		<meta property="og:description" content="رونمایی از اپلیکیشن اندروید 808 پلاس ">
 		<meta property="og:image" content="">
-		<meta property="og:url" content="http://civil808.com/app"> 
+		<meta property="og:url" content="https://civil808.com/app">
 		
 		<link rel="stylesheet" href="./src/main.css">
 		<link rel="stylesheet" href="./src/owl.carousel.min.css">
@@ -52,19 +52,19 @@
 
 		<section id="latin">
 			<h2 data-aos="zoom-in-up" data-aos-delay="400" class="aos-init aos-animate"> رونمایی از سایت لاتین 808 </h2>
-			<p data-aos="zoom-in-up" data-aos-delay="400" class="aos-init aos-animate" style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;"> در این سایت اخبار و مقالات به روز دنیا را به زبان انگلیسی با ما مطالعه کنید. <a href="http://civil808.com/seismosoft" target="_blank"> ورود به سایت </a> <br>آخرین ویدئو های آموزشی زبان انگلیسی تهیه شده توسط موسسه 808 </p>
+			<p data-aos="zoom-in-up" data-aos-delay="400" class="aos-init aos-animate" style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;"> در این سایت اخبار و مقالات به روز دنیا را به زبان انگلیسی با ما مطالعه کنید. <a href="https://civil808.com/seismosoft" target="_blank"> ورود به سایت </a> <br>آخرین ویدئو های آموزشی زبان انگلیسی تهیه شده توسط موسسه 808 </p>
 			<div class="aks3" data-aos="zoom-out" data-aos-delay="900" class="aboutus aos-init aos-animate">
-				<a href="http://civil808.com/gallery/videos/playlist/3522/18122" target="_blank">
-					<img src="http://civil808.com/sites/default/files/1_2_0.jpg" width="250" height="250">
+				<a href="https://civil808.com/gallery/videos/playlist/3522/18122" target="_blank">
+					<img src="https://civil808.com/sites/default/files/1_2_0.jpg" width="250" height="250">
 				</a>
-				<a href="http://civil808.com/gallery/videos/playlist/3522/18122" target="_blank">
-					<img src="http://civil808.com/sites/default/files/3_16.jpg" width="250" height="250">
+				<a href="https://civil808.com/gallery/videos/playlist/3522/18122" target="_blank">
+					<img src="https://civil808.com/sites/default/files/3_16.jpg" width="250" height="250">
 				</a>
-				<a href="http://civil808.com/gallery/videos/playlist/3522/18122" target="_blank">
-					<img src="http://civil808.com/sites/default/files/2_19.jpg" width="250" height="250">
+				<a href="https://civil808.com/gallery/videos/playlist/3522/18122" target="_blank">
+					<img src="https://civil808.com/sites/default/files/2_19.jpg" width="250" height="250">
 				</a>
-				<a href="http://civil808.com/node/18212" target="_blank">
-					<img src="http://civil808.com/sites/default/files/styles/uc_product/public/field/image/node_18212.jpg?itok=gUrdM7Q8" width="250" height="250">
+				<a href="https://civil808.com/node/18212" target="_blank">
+					<img src="https://civil808.com/sites/default/files/styles/uc_product/public/field/image/node_18212.jpg?itok=gUrdM7Q8" width="250" height="250">
 				</a>
     		</div>
 		</section>
@@ -90,7 +90,7 @@
                             <li> دریافت لیست مصاحبه های رادیو 808 </li>
                             <li> دانلود و پخش رادیو 808 در پلیر اختصاصی</li>
 
-							<a href="http://civil808.com/node/18321" target="_blank">  بیشتر بخوانید ...</a>
+							<a href="https://civil808.com/node/18321" target="_blank">  بیشتر بخوانید ...</a>
 							<div style="max-width: 324px;text-align: center;margin-top: 11px;">
 								<a class="poster download mostaghim" href="./src/808plus.apk" target="_self" >  </a>
 								<a class="poster download cafebazaar" href="https://cafebazaar.ir/app/com.civil808/?l=fa" target="_blank"></a>
@@ -132,14 +132,14 @@
 									بعد از تجربه سه دوره همايش طراحي عملكردی از سال ٩٢ از آنجا كه عزم ٨٠٨ حل مسأله مقاوم سازی و پرهيز از ارائه صرفا حرف هاي تكراری تئوری بوده است اينبار برأی اولين بار تجربه برگزاری برنامه ای كاملا كاربردی با تركيب همه سه عامل مورد نياز برأی حل مسأله طراحی عملكردی و مقاوم سازی ساختمان ها از قبيل تئوری دانش ، قابليت نرم افزار و روش های اجرا در كنار هم داشتيم در انتها از تمام همكارانی كه طی اين مدت در حمايت رسانه ای و معنوی اين برنامه به ما كمك كردند تشكر ميكنيم و اميد داريم با هم براي حل معضل ساخت سازه های أيمن برای هم ميهنانمان گام های مؤثر برداريم.<br> مجتبي اصغری ،مدير موسسه ٨٠٨، ٣٠ بهمن١٣٩٦
 								</li>
 							</ol>
-							<a class="poster view" href="http://civil808.com/node/18244" target="_blank"> مشاهده گالری تصاویر </a>
+							<a class="poster view" href="https://civil808.com/node/18244" target="_blank"> مشاهده گالری تصاویر </a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
 		-->
-		<div class="footer non-full-height-section" id="footer"><a href="http://civil808.com" target="_blank" class="footer" data-aos-anchor-placement="top-bottom"> بازگشت به سایت</a></div>
+		<div class="footer non-full-height-section" id="footer"><a href="https://civil808.com" target="_blank" class="footer" data-aos-anchor-placement="top-bottom"> بازگشت به سایت</a></div>
 		
 
 		<script src="./src/jquery-2.2.1.min.js"></script>

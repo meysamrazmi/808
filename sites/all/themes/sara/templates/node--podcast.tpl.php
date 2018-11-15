@@ -21,7 +21,7 @@
   </div>
   <div class="content"<?php print $content_attributes; ?>>
     <figure class="podcast-audio">
-    <img src="http://civil808.com/sites/default/files/default_images/Radio-Titr-News-BackGround.png">
+    <img src="https://civil808.com/sites/default/files/default_images/Radio-Titr-News-BackGround.png">
       <?php if (isset($audio_player)) : ?>
         <div class="audio-feature">
           <?php print $audio_player; ?>
