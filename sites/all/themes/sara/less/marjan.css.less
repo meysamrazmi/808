@@ -1135,7 +1135,6 @@ body.page-node:not(.page-types):not(.role-anonymous-user) .container #page-title
 }
 
 /*-----------------End of 808-new-main-menu-block---------------------*/
-
     .plus808{
         position: relative;
         text-align: center;
@@ -1213,6 +1212,7 @@ body.page-node:not(.page-types):not(.role-anonymous-user) .container #page-title
         }
     }
 
+/*------------------This is for relative question-----------------------------------*/
     .question_box(){
         margin-top: 10px;
         background-color: #fff;
@@ -1220,7 +1220,7 @@ body.page-node:not(.page-types):not(.role-anonymous-user) .container #page-title
         box-shadow: 0 2px 2px #edeef0;
         border-radius: 3px;
         border: 1px solid #f0f1f2 !important;
-        .q-title , .title {
+        .title {
             font-size: 18px !important;
             text-indent: 10px;
             background: #f6f6f6;
@@ -1280,7 +1280,7 @@ body.page-node:not(.page-types):not(.role-anonymous-user) .container #page-title
             }
             .left {
                 padding: 15px 5px 15px 20px;
-                .title{
+                .q-title{
                     color: #222 !important;
                     font-size: 14px;
                     font-weight: 500;
@@ -1297,6 +1297,7 @@ body.page-node:not(.page-types):not(.role-anonymous-user) .container #page-title
         }
 
     }
+
     .front .qa-section{
         padding: 60px 0 82px 0;
         border-top: 2px solid rgba(146,146,146,0.2);
@@ -1310,6 +1311,7 @@ body.page-node:not(.page-types):not(.role-anonymous-user) .container #page-title
             }
         }
     }
+
     .page-node,.front{
         .field-name-relative-qa{
             background: transparent !important;
@@ -1324,7 +1326,8 @@ body.page-node:not(.page-types):not(.role-anonymous-user) .container #page-title
             margin: 0px auto 50px auto;
         }
     }
-    .page-taxonomy-term.page-pedia #node_type_questions{
+
+    .page-taxonomy-term.page-pedia #node-type-questions .field-items{
         .question_box();
     }
 
