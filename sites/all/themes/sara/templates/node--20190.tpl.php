@@ -1,4 +1,4 @@
-<img src="/sites/default/files/field/image/node_20190_0.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
+<img src="/sites/default/files/field/image/node_20190.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
 
 <section class="kargah-sec">
     <h2>دوره حضوری ورود به حرفه محاسبات، نظارت و اجرا</h2>
@@ -86,10 +86,10 @@
                 <div class="city-name"><span>دوره محاسبات</span></div>
                 <div class="inner-text">
                     <p class="text"> مدرس: مصطفی دوگوهرانی </p>
-                    <div class="tarikh">شروع دوره 8 آذرماه 1397</div>
+                    <div class="tarikh">شروع دوره 16 آذر 1397</div>
                     <div class="makan"> موسسه آموزشی 808 </div>
                     <div class="zaman"> پنج شنبه ها ساعت 14 تا 20، جمعه ها ساعت 8 تا 18 (جمعا 100 ساعت) </div>
-                    <div class="mablagh"> 900,000 تومان </div>
+                    <div class="mablagh"> 1,000,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
             </a>
@@ -97,10 +97,10 @@
                 <div class="city-name"><span>دوره نظارت و اجرا</span></div>
                 <div class="inner-text">
                     <p class="text"> مدرس: مصطفی دوگوهرانی </p>
-                    <div class="tarikh"> شروع دوره 26 آبان ماه 1397 </div>
+                    <div class="tarikh"> شروع دوره 10 آذر ماه 1397 </div>
                     <div class="makan"> موسسه آموزشی 808 </div>
                     <div class="zaman"> شنبه ها، دوشنبه ها و چهارشنبه ها ساعت 16 تا 21 (جمعا 60 ساعت) </div>
-                    <div class="mablagh"> 700,000 تومان </div>
+                    <div class="mablagh"> 800,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
             </a>

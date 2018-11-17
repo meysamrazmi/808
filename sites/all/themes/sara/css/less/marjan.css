@@ -31,31 +31,38 @@ body {
   font-size: 14px;
 }
 #block-system-main > .content .field-name-body *:not([class*='btn']),
-#block-system-main > .content .field-type-text-with-summary *:not([class*='btn']) {
+#block-system-main > .content .field-type-text-with-summary *:not([class*='btn']),
+#block-system-main > .content .taxonomy-term-description *:not([class*='btn']) {
   line-height: 30px;
 }
 .default-page:not(.page-landing) #block-system-main > .content .field-name-body *:not([class*='btn']),
 .default-page:not(.page-landing) #block-system-main > .content .field-type-text-with-summary *:not([class*='btn']),
+.default-page:not(.page-landing) #block-system-main > .content .taxonomy-term-description *:not([class*='btn']),
 body:not(.page-landing) #block-system-main > .content .field-name-body *:not([class*='btn']),
-body:not(.page-landing) #block-system-main > .content .field-type-text-with-summary *:not([class*='btn']) {
+body:not(.page-landing) #block-system-main > .content .field-type-text-with-summary *:not([class*='btn']),
+body:not(.page-landing) #block-system-main > .content .taxonomy-term-description *:not([class*='btn']) {
   text-align: justify;
 }
 .default-page:not(.page-landing) #block-system-main > .content .field-name-body *:not([class*='btn']) img,
 .default-page:not(.page-landing) #block-system-main > .content .field-type-text-with-summary *:not([class*='btn']) img,
+.default-page:not(.page-landing) #block-system-main > .content .taxonomy-term-description *:not([class*='btn']) img,
 body:not(.page-landing) #block-system-main > .content .field-name-body *:not([class*='btn']) img,
-body:not(.page-landing) #block-system-main > .content .field-type-text-with-summary *:not([class*='btn']) img {
+body:not(.page-landing) #block-system-main > .content .field-type-text-with-summary *:not([class*='btn']) img,
+body:not(.page-landing) #block-system-main > .content .taxonomy-term-description *:not([class*='btn']) img {
   display: block;
   margin: 5px auto;
 }
 #block-system-main > .content .field-name-body blockquote,
-#block-system-main > .content .field-type-text-with-summary blockquote {
+#block-system-main > .content .field-type-text-with-summary blockquote,
+#block-system-main > .content .taxonomy-term-description blockquote {
   padding: 12px 12px 10px 11px;
   margin: 12px 0px;
   border-right: 5px solid #4DD0E1;
   background-color: #f9f9f9;
 }
 #block-system-main > .content .field-name-body blockquote p,
-#block-system-main > .content .field-type-text-with-summary blockquote p {
+#block-system-main > .content .field-type-text-with-summary blockquote p,
+#block-system-main > .content .taxonomy-term-description blockquote p {
   margin-bottom: 0;
   font-size: 13px;
   line-height: 28px !important;
@@ -63,7 +70,8 @@ body:not(.page-landing) #block-system-main > .content .field-type-text-with-summ
   font-weight: normal;
 }
 #block-system-main > .content .field-name-body p.article-links,
-#block-system-main > .content .field-type-text-with-summary p.article-links {
+#block-system-main > .content .field-type-text-with-summary p.article-links,
+#block-system-main > .content .taxonomy-term-description p.article-links {
   display: inline-block;
   width: 100%;
   text-align: center !important;
@@ -73,63 +81,82 @@ body:not(.page-landing) #block-system-main > .content .field-type-text-with-summ
   margin: 15px 0;
 }
 #block-system-main > .content .field-name-body p.article-links a,
-#block-system-main > .content .field-type-text-with-summary p.article-links a {
+#block-system-main > .content .field-type-text-with-summary p.article-links a,
+#block-system-main > .content .taxonomy-term-description p.article-links a {
   display: inline-block;
   width: 100%;
   text-align: center !important;
 }
 #block-system-main > .content .field-name-body h1,
 #block-system-main > .content .field-type-text-with-summary h1,
+#block-system-main > .content .taxonomy-term-description h1,
 #block-system-main > .content .field-name-body h2,
 #block-system-main > .content .field-type-text-with-summary h2,
+#block-system-main > .content .taxonomy-term-description h2,
 #block-system-main > .content .field-name-body h3,
 #block-system-main > .content .field-type-text-with-summary h3,
+#block-system-main > .content .taxonomy-term-description h3,
 #block-system-main > .content .field-name-body h4,
 #block-system-main > .content .field-type-text-with-summary h4,
+#block-system-main > .content .taxonomy-term-description h4,
 #block-system-main > .content .field-name-body h5,
 #block-system-main > .content .field-type-text-with-summary h5,
+#block-system-main > .content .taxonomy-term-description h5,
 #block-system-main > .content .field-name-body h6,
-#block-system-main > .content .field-type-text-with-summary h6 {
+#block-system-main > .content .field-type-text-with-summary h6,
+#block-system-main > .content .taxonomy-term-description h6 {
   font-weight: 400;
 }
 #block-system-main > .content .field-name-body h1 a,
 #block-system-main > .content .field-type-text-with-summary h1 a,
+#block-system-main > .content .taxonomy-term-description h1 a,
 #block-system-main > .content .field-name-body h2 a,
 #block-system-main > .content .field-type-text-with-summary h2 a,
+#block-system-main > .content .taxonomy-term-description h2 a,
 #block-system-main > .content .field-name-body h3 a,
 #block-system-main > .content .field-type-text-with-summary h3 a,
+#block-system-main > .content .taxonomy-term-description h3 a,
 #block-system-main > .content .field-name-body h4 a,
 #block-system-main > .content .field-type-text-with-summary h4 a,
+#block-system-main > .content .taxonomy-term-description h4 a,
 #block-system-main > .content .field-name-body h5 a,
 #block-system-main > .content .field-type-text-with-summary h5 a,
+#block-system-main > .content .taxonomy-term-description h5 a,
 #block-system-main > .content .field-name-body h6 a,
-#block-system-main > .content .field-type-text-with-summary h6 a {
+#block-system-main > .content .field-type-text-with-summary h6 a,
+#block-system-main > .content .taxonomy-term-description h6 a {
   display: inline !important;
 }
 #block-system-main > .content .field-name-body h2,
-#block-system-main > .content .field-type-text-with-summary h2 {
+#block-system-main > .content .field-type-text-with-summary h2,
+#block-system-main > .content .taxonomy-term-description h2 {
   font-size: 20px;
   margin: 16px 0 8px;
   line-height: 36px !important;
 }
 #block-system-main > .content .field-name-body h3,
-#block-system-main > .content .field-type-text-with-summary h3 {
+#block-system-main > .content .field-type-text-with-summary h3,
+#block-system-main > .content .taxonomy-term-description h3 {
   font-size: 18px;
   margin: 15px 0 12px;
   line-height: 36px !important;
 }
 #block-system-main > .content .field-name-body h5,
 #block-system-main > .content .field-type-text-with-summary h5,
+#block-system-main > .content .taxonomy-term-description h5,
 #block-system-main > .content .field-name-body h4,
-#block-system-main > .content .field-type-text-with-summary h4 {
+#block-system-main > .content .field-type-text-with-summary h4,
+#block-system-main > .content .taxonomy-term-description h4 {
   font-size: 16px;
   margin: 14px 0 7px;
   line-height: 32px !important;
 }
 #block-system-main > .content .field-name-body h5.relative_nodes,
 #block-system-main > .content .field-type-text-with-summary h5.relative_nodes,
+#block-system-main > .content .taxonomy-term-description h5.relative_nodes,
 #block-system-main > .content .field-name-body h4.relative_nodes,
-#block-system-main > .content .field-type-text-with-summary h4.relative_nodes {
+#block-system-main > .content .field-type-text-with-summary h4.relative_nodes,
+#block-system-main > .content .taxonomy-term-description h4.relative_nodes {
   color: #333;
   font-size: 14px;
   line-height: 18px;
@@ -141,8 +168,10 @@ body:not(.page-landing) #block-system-main > .content .field-type-text-with-summ
 }
 #block-system-main > .content .field-name-body h5.relative_nodes:before,
 #block-system-main > .content .field-type-text-with-summary h5.relative_nodes:before,
+#block-system-main > .content .taxonomy-term-description h5.relative_nodes:before,
 #block-system-main > .content .field-name-body h4.relative_nodes:before,
-#block-system-main > .content .field-type-text-with-summary h4.relative_nodes:before {
+#block-system-main > .content .field-type-text-with-summary h4.relative_nodes:before,
+#block-system-main > .content .taxonomy-term-description h4.relative_nodes:before {
   content: "";
   position: absolute;
   bottom: -1px;
@@ -151,52 +180,63 @@ body:not(.page-landing) #block-system-main > .content .field-type-text-with-summ
   background-color: #92278f;
 }
 #block-system-main > .content .field-name-body h6,
-#block-system-main > .content .field-type-text-with-summary h6 {
+#block-system-main > .content .field-type-text-with-summary h6,
+#block-system-main > .content .taxonomy-term-description h6 {
   font-size: 15px;
   margin: 12px 0 12px;
   font-weight: bold;
 }
 /*-------bookmarks----------*/
-.flag-outer-bookmarks {
+.flag-outer-bookmarks,
+.flag-outer-bookmark-tag {
   position: absolute;
   top: 9px;
   right: 6px;
   opacity: 1 !important;
 }
-.page-gallery .flag-outer-bookmarks {
+.page-gallery .flag-outer-bookmarks,
+.page-gallery .flag-outer-bookmark-tag {
   top: 27px;
   right: 21px;
   background: #fff;
 }
-.page-shop .flag-outer-bookmarks {
+.page-shop .flag-outer-bookmarks,
+.page-shop .flag-outer-bookmark-tag {
   top: -81px;
   right: 0px;
 }
-.page-shop .flag-outer-bookmarks a.flag:before {
+.page-shop .flag-outer-bookmarks a.flag:before,
+.page-shop .flag-outer-bookmark-tag a.flag:before {
   color: white;
 }
-.page-pedia .flag-outer-bookmarks {
+.page-pedia .flag-outer-bookmarks,
+.page-pedia .flag-outer-bookmark-tag {
   top: 91px;
   right: 20px;
   background: #fff;
 }
-.page-landing .flag-outer-bookmarks {
+.page-landing .flag-outer-bookmarks,
+.page-landing .flag-outer-bookmark-tag {
   display: none;
 }
-.flag-outer-bookmarks a.flag {
+.flag-outer-bookmarks a.flag,
+.flag-outer-bookmark-tag a.flag {
   font-size: 0px;
 }
-.flag-outer-bookmarks a.flag:before {
+.flag-outer-bookmarks a.flag:before,
+.flag-outer-bookmark-tag a.flag:before {
   content: '\f0c3';
   font-family: mat;
   font-size: 27px;
   color: #b9b7b7;
 }
-.flag-outer-bookmarks a.unflag-action:before {
+.flag-outer-bookmarks a.unflag-action:before,
+.flag-outer-bookmark-tag a.unflag-action:before {
   content: '\f0c0';
   color: #FF5722;
 }
-.flag-outer-bookmarks .flag-message {
+.flag-outer-bookmarks .flag-message,
+.flag-outer-bookmark-tag .flag-message {
   top: -8px;
   background-color: #fff;
   width: 97px;
@@ -206,7 +246,8 @@ body:not(.page-landing) #block-system-main > .content .field-type-text-with-summ
   right: -102px;
   font-size: 10px;
 }
-.flag-outer-bookmarks .flag-message:after {
+.flag-outer-bookmarks .flag-message:after,
+.flag-outer-bookmark-tag .flag-message:after {
   width: 7px;
   height: 7px;
   border: 1px solid #eee;
@@ -222,12 +263,14 @@ body:not(.page-landing) #block-system-main > .content .field-type-text-with-summ
   transform: rotate(45deg);
   z-index: 0;
 }
-.flag-outer-bookmarks .flag-throbber {
+.flag-outer-bookmarks .flag-throbber,
+.flag-outer-bookmark-tag .flag-throbber {
   position: absolute;
   top: -8px;
   right: 7px;
 }
-.flag-outer-bookmarks .flag-hint {
+.flag-outer-bookmarks .flag-hint,
+.flag-outer-bookmark-tag .flag-hint {
   position: absolute;
   width: 202px;
   margin-top: 15px;
@@ -245,7 +288,8 @@ body:not(.page-landing) #block-system-main > .content .field-type-text-with-summ
   right: -25%;
   z-index: 999;
 }
-.flag-outer-bookmarks .flag-hint:after {
+.flag-outer-bookmarks .flag-hint:after,
+.flag-outer-bookmark-tag .flag-hint:after {
   position: absolute;
   content: '';
   top: -13%;
@@ -260,7 +304,8 @@ body:not(.page-landing) #block-system-main > .content .field-type-text-with-summ
   border: solid #eee;
   border-width: 1px 0px 0px 1px;
 }
-.flag-outer-bookmarks:hover .flag-hint {
+.flag-outer-bookmarks:hover .flag-hint,
+.flag-outer-bookmark-tag:hover .flag-hint {
   visibility: visible;
   display: block;
 }
@@ -385,7 +430,7 @@ body.page-node:not(.page-types):not(.role-anonymous-user) .container #page-title
   width: 100%;
 }
 .pane-gloevents .pane-content .view-gloevents .view-content .views-row .views-field-title span a {
-  color: #222!important;
+  color: #222 !important;
   text-align: center;
   width: 100%;
   display: block;
@@ -992,7 +1037,7 @@ div#block-block-45-temporarydown .content a .text-nim > p {
   /* sub display*/
   /* keeps the tab background white */
 }
-body:not(.uid-3989) #block-block-58 {
+body:not(.uid-3300) #block-block-58 {
   display: none;
 }
 #block-block-58 .wrap {
@@ -1189,6 +1234,7 @@ body:not(.uid-3989) #block-block-58 {
 .plus808 a {
   margin: 0 10px;
 }
+/*------------------This is for relative question-----------------------------------*/
 .front .qa-section {
   padding: 60px 0 82px 0;
   border-top: 2px solid rgba(146, 146, 146, 0.2);
@@ -1231,8 +1277,8 @@ body:not(.uid-3989) #block-block-58 {
   border-radius: 3px;
   border: 1px solid #f0f1f2 !important;
 }
-.page-node .relative-questions .q-title,
-.front .relative-questions .q-title {
+.page-node .relative-questions .title,
+.front .relative-questions .title {
   font-size: 18px !important;
   text-indent: 10px;
   background: #f6f6f6;
@@ -1310,13 +1356,14 @@ body:not(.uid-3989) #block-block-58 {
 .front .relative-questions .question .left {
   padding: 15px 5px 15px 20px;
 }
-.page-node .relative-questions .question .left .title,
-.front .relative-questions .question .left .title {
+.page-node .relative-questions .question .left .q-title,
+.front .relative-questions .question .left .q-title {
   color: #222 !important;
   font-size: 14px;
   font-weight: 500;
   padding-left: 15px;
   display: block;
+  text-align: right;
 }
 .page-node .relative-questions .question .left .body,
 .front .relative-questions .question .left .body {
@@ -1330,4 +1377,93 @@ body:not(.uid-3989) #block-block-58 {
   display: block;
   max-width: 280px;
   margin: 0px auto 50px auto;
+}
+.page-taxonomy-term.page-pedia #node-type-questions .field-items {
+  margin-top: 10px;
+  background-color: #fff;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 2px #edeef0;
+  border-radius: 3px;
+  border: 1px solid #f0f1f2 !important;
+}
+.page-taxonomy-term.page-pedia #node-type-questions .field-items .title {
+  font-size: 18px !important;
+  text-indent: 10px;
+  background: #f6f6f6;
+  padding: 7px 15px 5px;
+  border-bottom: 1px solid #eaeaea;
+}
+.page-taxonomy-term.page-pedia #node-type-questions .field-items .question {
+  border-bottom: 1px solid #f1f1f1;
+  position: relative;
+  display: flex;
+}
+.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .reply {
+  position: absolute;
+  left: 5px;
+  top: 10px;
+}
+.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .reply a {
+  padding: 3px;
+  border-radius: 50%;
+  display: block;
+}
+.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .reply a span {
+  position: absolute;
+  width: 100px;
+  background-color: #fefefe;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  color: #000;
+  line-height: 2;
+  text-align: center;
+  border-radius: 2px;
+  padding: 5px 5px;
+  font-size: 12px;
+  left: -20px;
+  top: 30px;
+  visibility: hidden;
+}
+.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .reply a:hover span {
+  visibility: visible;
+}
+.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .reply a:before {
+  content: "\f45a";
+  font-family: mat;
+  font-size: 15px;
+  color: #9c9a9a;
+}
+.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .reply a:before {
+  padding: 4px 5px 5px 5px;
+  display: block;
+}
+.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .right {
+  padding: 10px 20px;
+  min-width: 75px;
+}
+.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .right .pic img {
+  border-radius: 50%;
+  width: 40px;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+}
+.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .right .comment-count {
+  color: #828282;
+  font-size: 8px;
+  text-align: center;
+}
+.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .left {
+  padding: 15px 5px 15px 20px;
+}
+.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .left .q-title {
+  color: #222 !important;
+  font-size: 14px;
+  font-weight: 500;
+  padding-left: 15px;
+  display: block;
+  text-align: right;
+}
+.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .left .body {
+  color: #777;
+  font-size: 11px;
+  margin: 10px 0px 0px 0px;
+  text-align: justify;
 }

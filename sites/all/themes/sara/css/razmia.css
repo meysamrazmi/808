@@ -786,7 +786,9 @@ ul.quicktabs-tabs {
   margin-right:auto;
   margin-left:auto;
 }
-
+.front.page-civil .beside-workshop-civil .views_slideshow_main .views_slideshow_slide{
+    height: 300px !important;
+}
 .page-saze .three-publication td {
     vertical-align: top;
     width: 23.7%;
