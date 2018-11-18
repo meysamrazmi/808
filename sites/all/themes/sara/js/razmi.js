@@ -1500,7 +1500,9 @@ Drupal.behaviors.custom_808_ajax = {
  * the user as pnotify messages
  */
 var views_output = function(response) {
-    var result1 = $($.parseHTML(Drupal.parseJson(response).data)).find('ul');
+	if(!Drupal.parseJson(response).data.length)
+		return
+    var result1 = $($.parseHTML(Drupal.parseJson(response).data.replace('data-src', 'src'))).find('ul');
 	var news = [];
 	result1.children('li').each(function(){
 		news.push($(this));

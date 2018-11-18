@@ -3,7 +3,7 @@
     <nav>
         <ul class="primary">
             <li>
-                <a href="">Dog</a>
+                <a href="">808</a>
                 <ul class="sub">
                     <li><a href="">Bulldog</a></li>
                     <li><a href="">Mastiff</a></li>
@@ -12,23 +12,14 @@
                 </ul>
             </li>
             <li>
-                <a href="">Cat</a>
-                <ul class="sub">
-                    <li><a href="">Tabby</a></li>
-                    <li><a href="">Black Cat</a></li>
-                    <li><a href="">Wrinkly Cat</a></li>
+                <a href="">عمران</a>
+            </li>
+            <li>
+                <a href="">معماری</a>
                 </ul>
             </li>
             <li>
-                <a href="">Bird</a>
-                <ul class="sub">
-                    <li><a href="">Humming Bird</a></li>
-                    <li><a href="">Hawk</a></li>
-                    <li><a href="">Crow</a></li>
-                </ul>  
-            </li>
-            <li>
-                <a href="">Horse</a>
+                <a href="">لبه دانش</a>
                 <ul class="sub">
                     <li><a href="">Brown Horse</a></li>
                     <li><a href="">Race Horse</a></li>
@@ -36,12 +27,48 @@
                 </ul>
             </li>
             <li>
-                <a href="">Burger</a>
+                <a href="">محتوای تخصصی</a>
                 <ul class="sub">
                     <li><a href="">Cheesy</a></li>
                     <li><a href="">More Ketchup</a></li>
                     <li><a href="">Some Mustard</a></li>
                     <li><a href="">Extra Butter</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">آموزشگاه</a>
+                <ul class="sub">
+                    <li><a href="">Cheesy</a></li>
+                    <li><a href="">More Ketchup</a></li>
+                    <li><a href="">Some Mustard</a></li>
+                    <li><a href="">Extra Butter</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">فروشگاه</a>
+                <ul class="sub">
+                    <li><a href="">Cheesy</a></li>
+                    <li><a href="">More Ketchup</a></li>
+                    <li><a href="">Some Mustard</a></li>
+                    <li><a href="">Extra Butter</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">گالری</a>
+                <ul class="sub">
+                    <li><a href="">Cheesy</a></li>
+                    <li><a href="">More Ketchup</a></li>
+                    <li><a href="">Some Mustard</a></li>
+                    <li><a href="">Extra Butter</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">اپلیکیشن</a>
+            </li>
+            <li>
+                <a href="">جستجو</a>
+                <ul class="sub">
+                    <li><a href="">Cheesy</a></li>
                 </ul>
             </li>
         </ul>
