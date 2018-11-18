@@ -14,7 +14,7 @@ function question_resource_index($parameter){
 function list_of_questions_v_1($parameter){
     global $user;
     $parameter["user"] = $user;
-    if(!isset($parameter["domain"]) || empty($parameter["domain"]) || $user->uid == 0) $parameter["domain"] = "all";
+    if(!isset($parameter["domain"]) || empty($parameter["domain"])) $parameter["domain"] = "all";
     if(!in_array($parameter["domain"] , array("all" , "my_question" , "following" , "related" , "my_response"))) return services_error("Domain is not exist!" , 16);
 
     if(isset($parameter["experts_filter"]) && !empty($parameter["experts_filter"])){
@@ -568,16 +568,15 @@ function question_search_v_1($parameter){
     $query->condition('body.entity_type' , 'node');
     $query->condition('body.bundle' , 'questions');
     $nid2 = $query->execute()->fetchCol();
-
-    $parameter = array();
-    $parameter["custom_question"] = array_merge($nid1, $nid2);
-    $parameter["domain"] = isset($data["domain"]) ? $parameter["domain"] : "all";
-    $parameter["page"] = isset($data["page"]) ? $parameter["page"] : 0;
-
-    if(!empty($parameter["custom_question"]))
-        return get_questions($parameter);
+	
+    $data = array();
+    $data["custom_question"] = array_merge($nid1, $nid2);
+    $data["domain"] = isset($parameter["domain"]) ? $parameter["domain"] : "all";
+    $data["page"] = isset($parameter["page"]) ? $parameter["page"] : 0;
+    if(!empty($data["custom_question"]))
+        return list_of_questions_v_1($data);
     else
-        return ["questions" => array()];
+        return array();
 }
 
 function question_resource_experts_list($list , $parameter){

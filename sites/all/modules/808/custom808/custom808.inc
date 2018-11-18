@@ -300,6 +300,7 @@ function taxonomy_term_page($term){
                     strcmp($type, "gallerynew") == 0 ||
                     strcmp($type, "film") == 0 ||
                     strcmp($type, "questions") == 0 ||
+                    strcmp($type, "product_kit") == 0 ||
                     strcmp($type, "product") == 0
                 ) {
                     $view_mode = "teaser";

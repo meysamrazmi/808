@@ -42,10 +42,10 @@ function custom_808_ajax_menu() {
     'access arguments' => array('access content'),
 	// 'delivery callback' => 'custom_808_ajax_callback',
   );
-  $items['experts/information'] = array(
+  $items['experts/information/%'] = array(
     'page callback' => 'expert_information',
     'type' => MENU_CALLBACK,
-	// 'page arguments' => array(2),
+	 'page arguments' => array(2),
     'access arguments' => array('access content'),
 	// 'delivery callback' => 'custom_808_ajax_callback',
   );
@@ -180,7 +180,7 @@ function user_ajax_fields($user , $field) {
 			if(isset($user->$field)){
 				$output = theme('image_style', array('style_name' => 'userprofilrfront', 'path' => $user->picture->uri , 'alt' => $p['main']->field_full_name['und'][0]['value'] , 'title' => $p['main']->field_full_name['und'][0]['value'])); 
 			}else{
-				$output = '<img src="https://civil808.com/sites/all/themes/sara/images/profile2front.jpg" alt="'. $p['main']->field_full_name['und'][0]['value'] .'" title="'. $p['main']->field_full_name['und'][0]['value'] .'"></div>';
+				$output = '<img src="http://civil808.com/sites/all/themes/sara/images/profile2front.jpg" alt="'. $p['main']->field_full_name['und'][0]['value'] .'" title="'. $p['main']->field_full_name['und'][0]['value'] .'"></div>';
 			}
 		}
 	}
@@ -261,9 +261,7 @@ function cm_asker_prove($cid){
 	return $data;
 }
 
-function expert_information(){ 
-
-	$tid = $_POST['tid'];
+function expert_information($tid){
 	$query = db_select('field_data_field_experts', 'e')
 							->fields('e' , array('entity_id'))
 							->condition('field_experts_tid', $tid)
@@ -279,24 +277,16 @@ function expert_information(){
 							->execute();
 	$user_count = $query->rowCount();
 	
-	$query = db_select('field_data_field_experts', 'e')
-							->fields('e' , array('entity_id'))
-							->condition('field_experts_tid', $tid)
-							->condition('entity_type', 'node')
-							->condition('bundle', 'architect')
-							->execute()->fetch();
-	
-	$node = node_load($query->entity_id);
-	/*
-	$body = $node->field_body['und'][0]['value'];
-	$body = strip_tags($body);
-	$body = substr($body, 0, 90);
-	$body .= ' ... ';
-	*/
-	$pic = $node->field_image['und'][0]['uri'];
-	$pic = substr($pic, strpos($pic, "/") + 1);
-	$pic = "https://civil808.com/sites/default/files/styles/120_120/public" . $pic;
-	$data = array(['question_count' => $question_count, 'user_count' => $user_count, 'pic' => $pic , 'tid' => $tid, 'nid' => $node->nid]);
+	$query = db_select("field_data_field_image" , "field_image");
+	$query->join("file_managed" , "pic" , "field_image.field_image_fid = pic.fid");
+	$query->condition("field_image.entity_type" , "taxonomy_term");
+	$query->condition("field_image.bundle" , "expert");
+	$query->condition("field_image.entity_id" , $tid);
+	$query->addField("pic" , "uri" , "pic");
+	$pic = $query->execute()->fetch();
+
+	$pic = image_style_url("200x200" , $pic->pic);
+	$data = array('question_count' => $question_count, 'user_count' => $user_count, 'pic' => $pic , 'tid' => $tid);
 
 	drupal_json_output($data);
 	drupal_exit();

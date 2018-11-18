@@ -29,9 +29,10 @@ $(document).ready(function () {
     
     /*ancher of pedia node*/
 	$('.page-node.page-pedia .view-mode-full .group-anchor > div').prepend('<div class="divanchors"></div>');
-    
-    if($('.page-node.page-pedia .field-type-node-reference').length){
-        $('.page-node.page-pedia .field-type-node-reference').each(function(){
+	$('.page-taxonomy.page-pedia .view-mode-full .group-anchor > div').prepend('<div class="divanchors"></div>');
+
+    if($('.page-node.page-pedia .field-type-node-reference,.page-taxonomy.page-pedia .node-type-relative').length){
+        $('.page-node.page-pedia .field-type-node-reference,.page-taxonomy.page-pedia .node-type-relative').each(function(){
             var anchclass = $(this).attr('class').split(" ")[1].substr(17);
             var spananch = $(this).find('.field-label').text().slice(0,-2);
             $('.divanchors').append('<a class="'+ anchclass +'" href="#'+anchclass+'"><span>'+spananch+'</span></a>');
@@ -47,7 +48,7 @@ $(document).ready(function () {
         });
         
         /*creating default image for pedia node refrenced node*/
-        $('.page-node.page-pedia .field-type-node-reference > div.field-items > div').each(function(){
+        $('.page-node.page-pedia .field-type-node-reference > div.field-items > div,.page-taxonomy.page-pedia .node-type-relative > div.field-items > div').each(function(){
             if(!$(this).find('.field-type-image').length){
                 $(this).find('.group-header').prepend('<img src="https://civil808.com/sites/all/themes/sara/images/nophoto.png" width="240" height="140" alt="no-picutre">');
             }
@@ -178,8 +179,8 @@ $(document).ready(function () {
     }
     
     /*creating hint for bookmarks*/
-    if ($('.flag-outer-bookmarks').length){
-        $('.flag-outer-bookmarks').append('<div class="flag-hint"><span>این مطلب را به لیست نشان شده ها اضافه کنید</span></div>')
+    if ($('.flag-outer-bookmarks,.flag-outer-bookmark-tag').length){
+        $('.flag-outer-bookmarks,.flag-outer-bookmark-tag').append('<div class="flag-hint"><span>این مطلب را به لیست نشان شده ها اضافه کنید</span></div>')
     }
 	if ($('.flag-outer-notify-product-existing-status').length){
         $('.flag-outer-notify-product-existing-status').append('<span class="flag-product-hint">زمانی که  این محصول موجود است به من اطلاع بده</span>');
@@ -213,7 +214,7 @@ $(document).ready(function () {
 	   	$(this).remove();
 	   }
     });
-	$('.page-pedia.page-tag h1#page-title').after('<a href="/pedia" class="mainpedia" target="_blank">صفحه اصلی دانشنامه</a>');
+	$('.page-pedia.page-tags h1#page-title').after('<a href="/pedia" class="mainpedia" target="_blank">صفحه اصلی دانشنامه</a>');
 	
 	$('.page-eng .pane-jquery-countdown-timer-jquery-countdown-timer').append('<a style="font-size:16px;color: #000000;margin: 15px auto;display: block;max-width: 373px;background-color: #90CAF6;padding: 20px 16px;border-radius: 11px;text-align: center;" href="/node/19807" target="_blank"> مشاوره تخصصی آزمون ورود به حرفه عمران و معماری به همراه ورکشاپ رایگان آموزشی </a>');
     $('.page-eng .pane-jquery-countdown-timer-jquery-countdown-timer').append('<a style="font-size:16px;color: #000000;margin: 15px auto;display: block;max-width: 373px;background-color: #90CAF6;padding: 20px 16px;border-radius: 11px;text-align: center;" href="/node/20190" target="_blank"> دوره حضوری ورود به حرفه؛ محاسبات، نظارت و اجرا </a>');

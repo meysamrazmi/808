@@ -13,21 +13,20 @@ $(document).ready(function(){
     $('.page-question .field-name-field-experts a').each(function(){
         var href = $(this).attr('href');
         var arr = href.split("/");
-        $(this).attr('id' , arr[2]);
+        $(this).attr('tid' , arr[3]);
         $(this).after('<div class="information"><div class="pic"></div><div class="data"><div></div><div></div></div></div>');
     });
     var ajax;
     $('.page-question .field-name-field-experts .field-item > a').on('mouseenter' , function(){
         $(this).parent().addClass('open');
         if(!$(this).next(".information").hasClass("filled")){
-            var tid = $(this).attr('id');
+            var tid = $(this).attr('tid');
             var element = $(this);
             ajax = $.ajax({
-                type: 'POST',
-                url: '/experts/information',
-                data: {'tid': tid},
+                type: 'GET',
+                url: '/experts/information/' + tid,
                 success: function(result){
-                    element.next('.information').html('<div class="pic"><image src="'+ result[0]['pic'] +'"/></div><div class="data"><div class="q-count">  سوالات این تخصص : ' + result[0]['question_count'] + ' </div><div class="u-count"> کاربران این تخصص : ' + result[0]['user_count'] + '</div><a href="/node/'+ result[0]['nid'] +'" target="_blank">دانشنامه</a></div>');
+                    element.next('.information').html('<div class="pic"><image src="'+ result['pic'] +'"/></div><div class="data"><div class="q-count">  سوالات این تخصص : ' + result['question_count'] + ' </div><div class="u-count"> کاربران این تخصص : ' + result['user_count'] + '</div><a href="#" target="_blank">دانشنامه</a></div>');
                     element.next('.information').addClass("filled");
                     
                 },
