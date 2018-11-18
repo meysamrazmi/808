@@ -1,4 +1,4 @@
-/* 
+/*
  * variable section
  */
 /*medias*/
@@ -1248,7 +1248,7 @@ body:not(.uid-3300) #block-block-58 {
   position: relative;
   text-align: center;
   /*margin: 0 0 39px 0;
-            font-size: 22px;*/
+        font-size: 22px;*/
 }
 .front .qa-section .pane-content h2:before {
   content: "";
@@ -1260,7 +1260,7 @@ body:not(.uid-3300) #block-block-58 {
   right: calc(50% - 65px);
   box-shadow: rgba(136, 58, 183, 0.15) 0px 1px 6px, rgba(136, 58, 183, 0.157) 0px 1px 4px;
 }
-.front .qa-section .pane-content .q-title {
+.front .qa-section .pane-content .title {
   display: none;
 }
 .page-node .field-name-relative-qa,
@@ -1482,7 +1482,7 @@ body:not(.uid-3300) #block-block-58 {
   position: relative;
   text-align: center;
   /*margin: 0 0 39px 0;
-            font-size: 22px;*/
+        font-size: 22px;*/
 }
 .kargah-sec h2:before,
 .timing h2:before,
