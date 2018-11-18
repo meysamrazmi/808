@@ -285,6 +285,7 @@ function taxonomy_term_page($term){
         $query->join("node", "node", "node.nid = t_index.nid");
         $query->fields("node", array("nid", "type"));
         $query->condition("t_index.tid", $term->tid);
+        $query->condition("node.status" , 1);
         $contents = $query->execute()->fetchAll();
         if (!empty($contents)) {
             $nodes = array();
@@ -292,15 +293,19 @@ function taxonomy_term_page($term){
                 if (!isset($nodes[$content->type])) $nodes[$content->type] = array();
                 array_push($nodes[$content->type], $content->nid);
             }
-            ksort($nodes);
-            foreach ($nodes as $type => $nids) {
+            $sort = array("gallerynew" , "film" , "designteam" , "article" , "podcast" , "publication" , "blog" , "education" , "college" , "product" , "questions");
+            $sorted = array();
+            foreach ($sort as $type) {
+                if(!empty($nodes[$type]))
+                    $sorted[$type] = $nodes[$type];
+            }
+            foreach ($sorted as $type => $nids) {
                 $name = db_select("node_type")->fields("node_type", array("name"))->condition("type", $type)->execute()->fetch()->name;
                 $view_mode = "question";
                 if (
                     strcmp($type, "gallerynew") == 0 ||
                     strcmp($type, "film") == 0 ||
                     strcmp($type, "questions") == 0 ||
-                    strcmp($type, "product_kit") == 0 ||
                     strcmp($type, "product") == 0
                 ) {
                     $view_mode = "teaser";
