@@ -660,6 +660,31 @@ function custom_services_services_resources(){
         ),
         'user' => array(
             'operations' => array(
+                'retrieve' => array(
+                    'help' => 'Retrieve profile data',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'user_resource'),
+                    'callback' => 'user_resource_retrieve',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'uid',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'The uid of the user to retrieve',
+                        ),
+                        array(
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
+                        ),
+                    ),
+                ),
                 'update' => array(
                     'help' => 'Update a user',
                     'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'user_resource'),

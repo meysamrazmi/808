@@ -4,6 +4,7 @@ function _user_resource_definition() {
   $definition = array(
     'user' => array(
       'operations' => array(
+          /*
         'retrieve' => array(
           'help' => 'Retrieve a user',
           'callback' => '_user_resource_retrieve',
@@ -20,7 +21,7 @@ function _user_resource_definition() {
               'optional' => FALSE,
             ),
           ),
-        ),
+        ),*/
 
         'create' => array(
           'help' => 'Create a user',
