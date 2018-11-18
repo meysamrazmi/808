@@ -2,9 +2,9 @@
 <html lang="fa" dir="rtl">
 	<head>
 		<meta charset="UTF-8">
-		<link rel='shortcut icon' href='http://civil808.com/sites/default/files/favlogo.png' type='image/png'>
-		<link rel='icon' href='http://civil808.com/sites/default/files/favlogo.png' type='image/png'>
-		<link rel='apple-touch-icon' href='http://civil808.com/sites/default/files/favlogo.png' />
+		<link rel='shortcut icon' href='https://civil808.com/sites/default/files/favlogo.png' type='image/png'>
+		<link rel='icon' href='https://civil808.com/sites/default/files/favlogo.png' type='image/png'>
+		<link rel='apple-touch-icon' href='https://civil808.com/sites/default/files/favlogo.png' />
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<title>بزرگترین جشنواره فروش ویژه در سال</title>
@@ -51,37 +51,37 @@
 					<div data-aos="fade-up">
 						<p class="section-title">محصولات فروشگاه</p>
 						<p class="section-desc"></p>
-						<p class="section-link"><a href="http://civil808.com/shop" class="btn" target="_blank">مشاهده</a></p>
+						<p class="section-link"><a href="https://civil808.com/shop" class="btn" target="_blank">مشاهده</a></p>
 					</div>
 					<span class="seperator" data-aos="fade-up"></span>
 					<div data-aos="fade-up">
 						<p class="section-title">کتاب های الکترونیکی</p>
 						<p class="section-desc"></p>
-						<p class="section-link"><a href="http://civil808.com/publication" class="btn" target="_blank">مشاهده</a></p>
+						<p class="section-link"><a href="https://civil808.com/publication" class="btn" target="_blank">مشاهده</a></p>
 					</div>
 					<span class="seperator" data-aos="fade-up"></span>
 					<div data-aos="fade-up">
 						<p class="section-title">مقالات تحلیلی</p>
 						<p class="section-desc"></p>
-						<p class="section-link"><a href="http://civil808.com/article/store" class="btn" target="_blank">مشاهده</a></p>
+						<p class="section-link"><a href="https://civil808.com/article/store" class="btn" target="_blank">مشاهده</a></p>
 					</div>
 					<span class="seperator"  data-aos="fade-up"></span>
 					<div data-aos="fade-up">
 						<p class="section-title">نرم افزارهای کاربردی</p>
 						<p class="section-desc"></p>
-						<p class="section-link"><a href="http://civil808.com/article/software" class="btn" target="_blank">مشاهده</a></p>
+						<p class="section-link"><a href="https://civil808.com/article/software" class="btn" target="_blank">مشاهده</a></p>
 					</div>
 					<span class="seperator"  data-aos="fade-up"></span>
 					<div data-aos="fade-up">
 						<p class="section-title">دوره های آموزشگاه</p>
 						<p class="section-desc"></p>
-						<p class="section-link"><a href="http://civil808.com/college" class="btn" target="_blank">مشاهده</a></p>
+						<p class="section-link"><a href="https://civil808.com/college" class="btn" target="_blank">مشاهده</a></p>
 					</div>
 					<span class="seperator"  data-aos="fade-up"></span>
 					<div class="bottom" data-aos="fade-up">
 						<p class="section-title">پکیج های آموزشی 808</p>
 						<p class="section-desc"></p>
-						<p class="section-link"><a href="http://civil808.com/store" class="btn" target="_blank">مشاهده</a></p>
+						<p class="section-link"><a href="https://civil808.com/store" class="btn" target="_blank">مشاهده</a></p>
 					</div>
 					<span class="seperator"  data-aos="fade-up"></span>
 					<div class="bottom" data-aos="fade-up">
@@ -111,7 +111,7 @@
 					</div>
 					<span class="seperator" data-aos="fade-up"></span>
 					<div class="right vip" data-aos="fade-up">
-						<a href="http://civil808.com/landing/vip" target="_blank">
+						<a href="https://civil808.com/landing/vip" target="_blank">
 							<p class="section-title">یک ماه کاربری VIP</p>
 							<p class="section-desc">بهره مندی از مقالات رایگان برای اعضای vip</p>
 						</a>
@@ -138,20 +138,20 @@
 					<img src="/96/summer/images/conversation.svg">
 					<h3>مشاوره رایگان با مشاوران اختصاصی</h3>
 					<p>دریافت مشاوره رایگان در زمینه های تخصصی خود با مشاوران سایت</p>
-					<a href="http://civil808.com/moshaver" target="_blank" class="btn">لیست تمام مشاوران</a>
+					<a href="https://civil808.com/moshaver" target="_blank" class="btn">لیست تمام مشاوران</a>
 				</div>
 				<div class="connection">
 					<img src="/96/summer/images/net.svg">
 					<h3>ارتباط افراد متخصص سایت با یکدیگر</h3>
 					<p>قابلیت ایجاد ارتباط با کاربرانی که تخصص مورد نظر شما را دارند</p>
-					<a href="http://civil808.com/landing/members" target="_blank" class="btn">مشاهده تمام کاربران</a>
+					<a href="https://civil808.com/landing/members" target="_blank" class="btn">مشاهده تمام کاربران</a>
 				</div>
 				<div class="vip">
 					<img src="/96/summer/images/vip.svg">
 					<h3>ارتقا به عضویت vip</h3>
 					<p>مشاهده 100 محتوای تخصصی سایت به صورت رایگان</p>
 					<p>امکان پرسش از مشاوران سایت مخصوص اعضای vip</p>
-					<a href="http://civil808.com/landing/vip" target="_blank" class="btn">مشاهده تمام مزایا</a>
+					<a href="https://civil808.com/landing/vip" target="_blank" class="btn">مشاهده تمام مزایا</a>
 				</div>
 				<div class="linkedin">
 				<img src="/96/fetr/images/linkedin.svg">
@@ -183,13 +183,13 @@
 				
 				<ol class="mazaya">
 					<li>با ترجمه مقالات و فیلم های تخصصی رشته خود
-						<a href="http://civil808.com/landing/translator" rel="nofollow">مترجمین 808</a> 
+						<a href="https://civil808.com/landing/translator" rel="nofollow">مترجمین 808</a> 
 					</li>
 					<li>با انتشار فیلم، دوره های آموزشی، ایبوک و یا نرم افزارهای کاربردی تالیفی خود
-						<a href="http://civil808.com/cooperate" rel="nofollow"> همکاری با ما </a>
+						<a href="https://civil808.com/cooperate" rel="nofollow"> همکاری با ما </a>
 					</li>
 					<li>با انتشار لینک محصولات 808 در وبسایت، وبلاگ، یا در شبکه های اجتماعی خود 
-							<a href="http://civil808.com/landing/affiliate" rel="nofollow"> نمایندگی فروش </a>
+							<a href="https://civil808.com/landing/affiliate" rel="nofollow"> نمایندگی فروش </a>
 					</li>
 				</ol>
 			</div>
@@ -197,12 +197,12 @@
 
 		<section id="aplication">
 			<div class="wh">
-				<img data-aos="zoom-in-up" data-aos-delay="200" src="http://civil808.com/app/images/808plus-logo.png" alt="808 پلاس" width="200" height="auto" style="margin-bottom: 26px;" class="aos-init aos-animate">
+				<img data-aos="zoom-in-up" data-aos-delay="200" src="https://civil808.com/app/images/808plus-logo.png" alt="808 پلاس" width="200" height="auto" style="margin-bottom: 26px;" class="aos-init aos-animate">
 				<h2 data-aos="zoom-in-up" data-aos-delay="400" class="aos-init aos-animate"> رونمایی از اپلیکیشن اندروید 808 پلاس  </h2>
 				<div data-aos="zoom-out" data-aos-delay="900" class="aboutus aos-init aos-animate">                 
 					<div class="sec-li li">
 						<span class="icon-laptop">
-							<img class="phone" src="http://civil808.com/app/images/cellphone2.png" width="530" height="auto" alt="اپلیکیشن اندروید 808 پلاس" title="اپلیکیشن اندروید 808 پلاس">
+							<img class="phone" src="https://civil808.com/app/images/cellphone2.png" width="530" height="auto" alt="اپلیکیشن اندروید 808 پلاس" title="اپلیکیشن اندروید 808 پلاس">
 						</span>
 						<div>
 							<p style="font-weight:bold;"> چرا اپلیکیشن 808 پلاس را نصب کنیم؟ </p>
@@ -211,11 +211,11 @@
 							<li> مشاهده دانشنامه های تخصصی عمران و معماری </li>
 							<li> استفاده از سیستم پرسش و پاسخ 808 </li>
 							<li> امکان ارتباط با مشاوران سایت </li>
-							<a href="http://civil808.com/node/18321" target="_blank" style="border: 1px solid;color: #2196F3;padding: 2px 10px;margin: 5px 0;display: inline-block;border-radius: 2px;">  بیشتر بخوانید ...</a><br>
+							<a href="https://civil808.com/node/18321" target="_blank" style="border: 1px solid;color: #2196F3;padding: 2px 10px;margin: 5px 0;display: inline-block;border-radius: 2px;">  بیشتر بخوانید ...</a><br>
 							در حال حاضر می توانید نسخه آزمایشی (بتا) این اپلیکیشن را دانلود کنید.
 							<br>
 							<div style="max-width: 324px;text-align: center;margin-top: 11px;">
-								<a class="poster download mostaghim" href="http://civil808.com/app/src/808plus.apk" target="_self">  </a>
+								<a class="poster download mostaghim" href="https://civil808.com/app/src/808plus.apk" target="_self">  </a>
 								<a class="poster download cafebazaar" href="https://cafebazaar.ir/app/com.civil808/?l=fa" target="_blank"></a>
 								<a class="poster download googleplay" href="https://play.google.com/store/apps/details?id=com.civil808" target="_target"></a>
 								<a class="poster download ios" href="#" target="_self" title="به زودی"></a>
@@ -224,9 +224,9 @@
 					</div>
 				</div>
 			<div class="view-header aos-init aos-animate" data-aos-delay="500" data-aos="zoom-in-up">
-					<h2><a href="http://civil808.com/question/list" style="/* color: #fff; */font-size: 22px;color: #444;">و بخش پرسش و پاسخ 808 پلاس</a></h2>
+					<h2><a href="https://civil808.com/question/list" style="/* color: #fff; */font-size: 22px;color: #444;">و بخش پرسش و پاسخ 808 پلاس</a></h2>
 				<h4>سوالات خود را از مشاوران سایت بپرسید</h4>
-				<a href="http://civil808.com/question/ask" target="_blank" style="border: 1px solid;padding: 5px 30px;border-radius: 3px;color: #3F51B5;">افزودن سوال</a> 
+				<a href="https://civil808.com/question/ask" target="_blank" style="border: 1px solid;padding: 5px 30px;border-radius: 3px;color: #3F51B5;">افزودن سوال</a> 
 			</div>	
 			</div>
 		</section>		

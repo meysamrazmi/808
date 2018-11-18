@@ -45,6 +45,16 @@ function custom808_menu(){
         'file' => 'custom808.inc',
     );
 
+    $items['admin/structure/services/notification/push'] = array(
+        'title' => t('push notification'),
+        'description' => t('Send notification to app'),
+        'page callback' => array('drupal_get_form'),
+        'page arguments' => array('push_notification_form'),
+        'access arguments' => array('administer modules'),
+        'type' => MENU_LOCAL_TASK,
+        'file' => 'custom808.inc',
+    );
+
     return $items;
 }
 
@@ -62,10 +72,6 @@ function custom808_menu_alter(&$items)
  */
 function custom808_theme() {
 	return array(
-		'lazy_image_formatter' => array(
-			'variables' => array('item' => NULL, 'path' => NULL, 'image_style' => NULL),
-			'file' => 'custom808.theme.inc',
-		),
 	);
 }
 
@@ -200,13 +206,13 @@ function custom808_cron(){
  * it is used for admin page for adding or editing a product
 */
 function custom808_node_validate($node, $form, &$form_state) {
-    if(in_array_r($node->type , uc_product_types())) {
+    if(in_array_r($node->type , uc_product_types()) && isset($node->model)) {
         $query = db_select("uc_products", "products");
         $query->fields("products", array("model"));
         $query->condition("products.model", $node->model);
-        $query->condition("products.nid", $node->nid, '<>');
-        $result = $query->execute()->fetchAll();
-        if (!empty($result)) {
+        if(!empty($node->nid)) $query->condition("products.nid", $node->nid, '<>');
+        $result = $query->execute()->fetchCol();
+        if (!empty($result) && count($result) > 0) {
             form_set_error('model', t('SKU-Model should be unique.'));
         }
     }
@@ -441,9 +447,15 @@ function question_followers($node, $comment){
 	return $followers;
 }
 
-
+/*
+ * return relative questions information for a node and homepage
+ * */
 function relative_qa($nid , $type)
 {
+    /*
+     * It's called from homepage
+     * return the last five questions nid
+     */
     if($nid == 0){
         $query = db_select('node' , 'node');
         $query->fields("node" , array("nid"));
@@ -453,77 +465,40 @@ function relative_qa($nid , $type)
         $query->range(0,5);
         $questions_nid = $query->execute()->fetchCol();
     }
-    elseif (strcmp($type, "architect") == 0) {
-        $query = db_select("field_data_field_experts" , "architect");
-        $query->join("field_data_field_experts" , "question" , "architect.field_experts_tid = question.field_experts_tid and architect.bundle = 'architect' and question.bundle = 'questions' ");
-        $query->fields("question" , array("entity_id"));
-        $query->condition("architect.entity_id" , $nid);
-        $questions_nid = $query->execute()->fetchCol();
-        if (empty($questions_nid)) return array();
-    }
+    /*
+     * It's called form a node
+     * return the last three relative questions nid
+     * */
     else{
-        switch ($type) {
-            case 'designteam' :
-                $query = db_select("field_data_field_maghalat", "pedia");
-                $query->condition('pedia.field_maghalat_nid', $nid);
-                break;
-            case 'article' :
-                $query = db_select("field_data_field_akhbar", "pedia");
-                $query->condition('pedia.field_akhbar_nid', $nid);
-                break;
-            case 'publication' :
-                $query = db_select("field_data_field_entesharat", "pedia");
-                $query->condition('pedia.field_entesharat_nid', $nid);
-                break;
-            case 'gallerynew' :
-                $query = db_select("field_data_field_porojhe", "pedia");
-                $query->condition('pedia.field_porojhe_nid', $nid);
-                break;
-            case 'product' :
-                $query = db_select("field_data_field_shopproduct", "pedia");
-                $query->condition('pedia.field_shopproduct_nid', $nid);
-                break;
-            case 'podcast' :
-                $query = db_select("field_data_field_podcast808", "pedia");
-                $query->condition('pedia.field_podcast808_nid', $nid);
-                break;
-            case 'education' || 'college' :
-                $query = db_select("field_data_field_edu_college", "pedia");
-                $query->condition('pedia.field_edu_college_nid', $nid);
-                break;
-            case 'film' :
-                $query = db_select("field_data_field_filmmortabet", "pedia");
-                $query->condition('pedia.field_filmmortabet_nid', $nid);
-                break;
-            default:
-                return array();
-        }
-
-        $query->fields('pedia', array('entity_id'));
+        $query = db_select("field_data_field_experts" , "this_node");
+        $query->join("field_data_field_experts" , "question" , "question.field_experts_tid = this_node.field_experts_tid and question.bundle = 'questions' ");
+        $query->join("node" , "node" , "node.nid = question.entity_id and node.status = 1");
+        $query->condition("this_node.entity_id" , $nid);
+        $query->condition("this_node.bundle" , $type);
+        $query->condition("this_node.entity_type" , "node");
+        $query->addField("question" , "entity_id" , "nid");
+        $query->orderBy("question.entity_id" , "DESC");
+        $query->range(0 , 3);
         $questions_nid = $query->execute()->fetchCol();
-        if (empty($questions_nid)) return array();
-
-        $query = db_select('field_data_field_experts' , 'pedia_expert');
-        $query->join('field_data_field_experts' , 'question_expert' , 'pedia_expert.field_experts_tid = question_expert.field_experts_tid');
-        $query->condition('pedia_expert.bundle' , 'architect');
-        $query->condition('pedia_expert.entity_id' , $questions_nid , 'IN');
-        $query->condition('question_expert.bundle' , 'questions');
-        $query->fields('question_expert' , array('entity_id'));
-        $questions_nid = $query->execute()->fetchCol();
-        if (empty($questions_nid)) return array();
     }
 
+
+    if (empty($questions_nid)) return array();
+
+    /*
+     * fetch complete information of each question
+     * */
     $query = db_select('node' , 'node');
-    $query->leftJoin("field_data_body" , "body"  , "body.entity_id = node.nid");
+    $query->leftJoin("field_data_body" , "body"  , "body.entity_id = node.nid and body.bundle = 'questions' ");
     $query->fields('node' , array('nid' ,'title' , "uid"));
     $query->addField("body" , "body_value" , "body");
     $query->condition('node.nid' , $questions_nid , 'IN');
-    $query->condition("node.status" , 1);
     $query->orderBy('node.nid' , 'DESC');
-    if($nid != 0) $query->range(0, 3);
     $questions = $query->execute()->fetchAll();
-    if (empty($questions)) return array();
 
+    /*
+     * add count of comments and author information of each question
+     * */
     foreach($questions as $row) {
         $query = db_select("comment", "comment");
         $query->fields("comment", array("cid"));
@@ -541,7 +516,6 @@ function relative_qa($nid , $type)
 
         $row->username = $user->name;
         $row->user_picture = (!empty($user->uri))? image_style_url("200x200", $user->uri) : "/sites/all/themes/sara/images/profile2front.jpg";
-
     }
 
     return $questions;
@@ -557,7 +531,7 @@ function relative_qa_render($nid , $type){
     $questions = relative_qa($nid, $type);
     if(!empty($questions)) {
         $output  = '<div class="relative-questions">';
-        $output .= '	<div class="q-title">سوالات مرتبط</div>';
+        $output .= '	<div class="title">سوالات مرتبط</div>';
         foreach ($questions as $row) {
             $output .= '<div class="question">';
             $output .= '	<div class="reply"><a href="/node/' . $row->nid . '#answer-question" target="_blank"><span>پاسخ به سوال</span></a></div>';
@@ -566,7 +540,7 @@ function relative_qa_render($nid , $type){
             $output .= '		<div class="comment-count">' . $row->comment_count .'پاسخ'. '</div>';
             $output .= '	</div>';
             $output .= '	<div class="left">';
-            $output .= '        <a href="/node/' . $row->nid . '" target="_blank" class="title">' . $row->title . '</a>';
+            $output .= '        <a href="/node/' . $row->nid . '" target="_blank" class="q-title">' . $row->title . '</a>';
             $output .= '		<div class="body">' . $row->body . '</div>';
             $output .= '	</div>';
             $output .= '</div>';

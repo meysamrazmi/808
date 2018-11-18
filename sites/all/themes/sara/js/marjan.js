@@ -50,7 +50,7 @@ $(document).ready(function () {
         /*creating default image for pedia node refrenced node*/
         $('.page-node.page-pedia .field-type-node-reference > div.field-items > div,.page-taxonomy.page-pedia .node-type-relative > div.field-items > div').each(function(){
             if(!$(this).find('.field-type-image').length){
-                $(this).find('.group-header').prepend('<img src="http://civil808.com/sites/all/themes/sara/images/nophoto.png" width="240" height="140" alt="no-picutre">');
+                $(this).find('.group-header').prepend('<img src="https://civil808.com/sites/all/themes/sara/images/nophoto.png" width="240" height="140" alt="no-picutre">');
             }
         });
     }
@@ -154,7 +154,7 @@ $(document).ready(function () {
     /*creating default image for pedia node refrenced node ---- with owl crousal*/
     $('.page-node.page-pedia .field-type-node-reference > div.field-items .owl-item').each(function(){
         if(!$(this).find('.field-type-image').length){
-            $(this).find('.group-header').prepend('<img src="http://civil808.com/sites/all/themes/sara/images/nophoto.png" width="240" height="140" alt="no-picutre">');
+            $(this).find('.group-header').prepend('<img src="https://civil808.com/sites/all/themes/sara/images/nophoto.png" width="240" height="140" alt="no-picutre">');
         }
     });
 
@@ -189,7 +189,7 @@ $(document).ready(function () {
     if($('#college-elmi-block > div > div > div > div.views-row').length){
         $('#college-elmi-block > div > div > div > div.views-row').each(function(){
             if(!$(this).find('.views-field-field-image').length){
-               // $(this).prepend('<img src="http://civil808.com/sites/all/themes/sara/images/nophoto.png" width="117" height="98" alt="no-picutre">');
+               // $(this).prepend('<img src="https://civil808.com/sites/all/themes/sara/images/nophoto.png" width="117" height="98" alt="no-picutre">');
             }
         });
     }
@@ -198,10 +198,10 @@ $(document).ready(function () {
     $(".page-user .main-tab .tabs.primary .myresults a").text('نتایج آزمون');
     
 	$("#user-register-form .field-name-field-laws label").empty();
-	$("#user-register-form .field-name-field-laws label").append('<a href="http://civil808.com/node/865" target="_blank" title="قوانین سایت">شرایط و قوانین</a>&nbsp;سایت را می پذیرم.<span class="form-required" title="این فیلد اجباری است.">*</span>');
+	$("#user-register-form .field-name-field-laws label").append('<a href="https://civil808.com/node/865" target="_blank" title="قوانین سایت">شرایط و قوانین</a>&nbsp;سایت را می پذیرم.<span class="form-required" title="این فیلد اجباری است.">*</span>');
 	
 	$("#user-profile-form .field-name-field-laws label").empty();
-	$("#user-profile-form .field-name-field-laws label").append('<a href="http://civil808.com/node/865" target="_blank" title="قوانین سایت">شرایط و قوانین</a>&nbsp;سایت را می پذیرم.<span class="form-required" title="این فیلد اجباری است.">*</span>');
+	$("#user-profile-form .field-name-field-laws label").append('<a href="https://civil808.com/node/865" target="_blank" title="قوانین سایت">شرایط و قوانین</a>&nbsp;سایت را می پذیرم.<span class="form-required" title="این فیلد اجباری است.">*</span>');
     
 	$('.not-logged-in.not-same-user.profile .user-left-links .add a, .not-logged-in.not-same-user.profile .user-left-links .send-message a').click(function(e){
 		e.preventDefault();
@@ -304,7 +304,7 @@ function default_pic(x,w,h) {
     if(x.length){
         x.each(function(){
             if(!$(this).find('.views-field-field-image').length){
-                $(this).parent.prepend('<img src="http://civil808.com/sites/all/themes/sara/images/nophoto.png" width="'+w+'" height="'+h+'" alt="no-picutre">');
+                $(this).parent.prepend('<img src="https://civil808.com/sites/all/themes/sara/images/nophoto.png" width="'+w+'" height="'+h+'" alt="no-picutre">');
             }
         });
     }

@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="shortcut icon" href="http://civil808.com/sites/default/files/favlogo.png" type="image/png">		
+		<link rel="shortcut icon" href="https://civil808.com/sites/default/files/favlogo.png" type="image/png">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>جشنواره فروش ویژه دهه فجر سیویل 808</title>
 		<meta name="description" content="بسته های پیشنهاد ویژه کتاب و فیلم های آموزشی با 20% تخفیف">
@@ -106,19 +106,19 @@
 			</div>
 			<div data-aos="fade-up" class="aos-init aos-animate shop-links">
 				<div data-aos="fade-up" class="aos-init aos-animate">
-					<a href="http://civil808.com/publication" class="btn" target="_blank">کتاب های الکترونیکی</a>
+					<a href="https://civil808.com/publication" class="btn" target="_blank">کتاب های الکترونیکی</a>
 				</div>
 				<div data-aos="fade-up" class="aos-init aos-animate">
-					<a href="http://civil808.com/article/store" class="btn" target="_blank">مقالات تحلیلی</a>
+					<a href="https://civil808.com/article/store" class="btn" target="_blank">مقالات تحلیلی</a>
 				</div>
 				<div data-aos="fade-up" class="aos-init aos-animate">
-					<a href="http://civil808.com/article/software" class="btn" target="_blank">نرم افزارهای کاربردی</a>
+					<a href="https://civil808.com/article/software" class="btn" target="_blank">نرم افزارهای کاربردی</a>
 				</div>
 				<div data-aos="fade-up" class="aos-init">
-					<a href="http://civil808.com/college" class="btn" target="_blank">دوره های آموزشگاه</a>
+					<a href="https://civil808.com/college" class="btn" target="_blank">دوره های آموزشگاه</a>
 				</div>
 				<div class="bottom aos-init" data-aos="fade-up">
-					<a href="http://civil808.com/store" class="btn" target="_blank">پکیج های آموزشی 808</a>
+					<a href="https://civil808.com/store" class="btn" target="_blank">پکیج های آموزشی 808</a>
 				</div>
 			</div>
 			
@@ -150,7 +150,7 @@
 					<h3>ارتقا به عضویت vip</h3>
 					<p>مشاهده 100 محتوای تخصصی سایت به صورت رایگان</p>
 					<p>امکان پرسش از مشاوران سایت مخصوص اعضای vip</p>
-					<a href="http://civil808.com/landing/vip" target="_blank" class="btn">مشاهده تمام مزایا</a>
+					<a href="https://civil808.com/landing/vip" target="_blank" class="btn">مشاهده تمام مزایا</a>
 				</div>
 			</div>
 			<div class="profile-vip"><p>یک ماه عضویت vip به ازای تکمیل پروفایل تا پایان جشنواره</p><a href="//civil808.com/user/edit" class="btn">تکمیل پروفایل</a></div>			
@@ -160,49 +160,49 @@
 			<h2 data-aos="fade-right" class="">امکان پرسش سوالات مختلف کاربران vip از مشاوران 808</h2>
 			<div class="users" data-aos="zoom-in-up">
 				<div>
-					<a href="http://civil808.com/user/678/advisor">
-						<img src="http://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-678-1452269363.jpg?itok=r3owK_cP" width="220" height="220" alt="">
+					<a href="https://civil808.com/user/678/advisor">
+						<img src="https://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-678-1452269363.jpg?itok=r3owK_cP" width="220" height="220" alt="">
 						<h3>جواد قدرتی</h3>
 						<p>مدیر دپارتمان طراحی حرفه ای ساختمان</p>
 						<span class="btn">ارتباط با مشاور</span>
 					</a>
-					<a href="http://civil808.com/messages/new/678" class="btn" target="_blank">ارسال پیام</a>
+					<a href="https://civil808.com/messages/new/678" class="btn" target="_blank">ارسال پیام</a>
 				</div>
 				<div>
-					<a href="http://civil808.com/user/1138/advisor">
-						<img src="http://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-1138-1446395095.jpg?itok=5NJ8JRPM" width="220" height="220" alt="">
+					<a href="https://civil808.com/user/1138/advisor">
+						<img src="https://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-1138-1446395095.jpg?itok=5NJ8JRPM" width="220" height="220" alt="">
 						<h3>مصطفی دوگوهرانی</h3>
 						<p>مدیر دپارتمان آمادگی ورود به حرفه</p>
 						<span class="btn">ارتباط با مشاور</span>
 					</a>
-					<a href="http://civil808.com/messages/new/1138" class="btn" target="_blank">ارسال پیام</a>
+					<a href="https://civil808.com/messages/new/1138" class="btn" target="_blank">ارسال پیام</a>
 				</div>
 				<div>
-					<a href="http://civil808.com/user/9063/advisor">
-						<img src="http://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-9063-1491676626.jpg?itok=XJG62vND" width="220" height="220" alt="">
+					<a href="https://civil808.com/user/9063/advisor">
+						<img src="https://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-9063-1491676626.jpg?itok=XJG62vND" width="220" height="220" alt="">
 						<h3>علیرضا جلالی</h3>
 						<p>مدیر دپارتمان آموزش نرم افزارهای عمرانی</p>
 						<span class="btn">ارتباط با مشاور</span>
 					</a>
-					<a href="http://civil808.com/messages/new/9063" class="btn" target="_blank">ارسال پیام</a>
+					<a href="https://civil808.com/messages/new/9063" class="btn" target="_blank">ارسال پیام</a>
 				</div>
 				<div>
-					<a href="http://civil808.com/user/1862/advisor">
-						<img src="http://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-1862-1473592000.jpg?itok=eqAcHulA" width="220" height="220" alt="">
+					<a href="https://civil808.com/user/1862/advisor">
+						<img src="https://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-1862-1473592000.jpg?itok=eqAcHulA" width="220" height="220" alt="">
 						<h3>تیام شیرزادی</h3>
 						<p>مدیر دپارتمان آمادگی کنکور ارشد و دکتری عمران</p>
 						<span class="btn">ارتباط با مشاور</span>
 					</a>
-					<a href="http://civil808.com/messages/new/1862" class="btn" target="_blank">ارسال پیام</a>
+					<a href="https://civil808.com/messages/new/1862" class="btn" target="_blank">ارسال پیام</a>
 				</div>
 				<div>
-					<a href="http://civil808.com/user/6780/advisor">
-						<img src="http://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-6780-1473768491.jpg?itok=zJ9BiXiU" width="220" height="220" alt="">
+					<a href="https://civil808.com/user/6780/advisor">
+						<img src="https://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-6780-1473768491.jpg?itok=zJ9BiXiU" width="220" height="220" alt="">
 						<h3>فرزانه عروجی</h3>
 						<p>مدیر دپارتمان آمادگی کنکور ارشد و آموزش نرم افزار معماری</p>
 						<span class="btn">ارتباط با مشاور</span>
 					</a>
-					<a href="http://civil808.com/messages/new/6780" class="btn" target="_blank">ارسال پیام</a>
+					<a href="https://civil808.com/messages/new/6780" class="btn" target="_blank">ارسال پیام</a>
 				</div>
 				
 			</div>			
@@ -214,11 +214,11 @@
 				<div class="group-left">
 					<div class="field">
 						<p>این مجموعه شامل موارد زیر میباشد:</p>
-						<p>*&nbsp;<a href="http://civil808.com/node/12792">آموزش تحلیل و طراحی لرزه ای سازه های فولادی و بتنی به روش دستی</a></p>
-						<p>*&nbsp;<a href="http://civil808.com/node/10208">فیلم آموزش تحلیل و طراحی ساختمانها با استفاده از نرم افزارهای &nbsp;ETABS 2015 , SAFE 2014-مدرس: دکتر حسن باجی</a></p>
-						<p>*&nbsp;<a href="http://civil808.com/node/11209">فیلم&nbsp;تحلیل غیرخطی سازه ها در ETABS 2015 &nbsp;بر مبنای پیوست دوم استاندارد 2800</a>&nbsp;</p>
-						<p>*&nbsp;<a href="http://civil808.com/node/5536">پکیج فیلم آموزش نحوه مدلسازی و طراحی سازه با نرم افزار های SAP-ETABS&nbsp;(پکیج S19)</a></p>
-						<p>*&nbsp;<a href="http://civil808.com/node/5538">پکیج فیلم آموزش کنترل های آیین نامه ای سازه های بتنی و فولادی&nbsp;(پکیج S20)</a></p>
+						<p>*&nbsp;<a href="https://civil808.com/node/12792">آموزش تحلیل و طراحی لرزه ای سازه های فولادی و بتنی به روش دستی</a></p>
+						<p>*&nbsp;<a href="https://civil808.com/node/10208">فیلم آموزش تحلیل و طراحی ساختمانها با استفاده از نرم افزارهای &nbsp;ETABS 2015 , SAFE 2014-مدرس: دکتر حسن باجی</a></p>
+						<p>*&nbsp;<a href="https://civil808.com/node/11209">فیلم&nbsp;تحلیل غیرخطی سازه ها در ETABS 2015 &nbsp;بر مبنای پیوست دوم استاندارد 2800</a>&nbsp;</p>
+						<p>*&nbsp;<a href="https://civil808.com/node/5536">پکیج فیلم آموزش نحوه مدلسازی و طراحی سازه با نرم افزار های SAP-ETABS&nbsp;(پکیج S19)</a></p>
+						<p>*&nbsp;<a href="https://civil808.com/node/5538">پکیج فیلم آموزش کنترل های آیین نامه ای سازه های بتنی و فولادی&nbsp;(پکیج S20)</a></p>
 						<p>ارزش تومانی این مجموعه چنانچه هریک به طور مجزا سفارش داده شود رویهم 1.850.000 تومان میباشد اما شما میتوانید با این پیشنهاد استثنایی با تخفیف ویژه با قیمت 999.000 تومان این مجموعه را یکجا و بر روی فلش 64G سفارش دهید.(مشخصات فلش مموری را می توانید در این صفحه ببنید-<a href="https://www.digikala.com/Product/DKP-122021/SanDisk-Cruzer-CZ73-Ultra-Flair-USB3-0-Flash-Memory-64GB#!/tab-techspecs/" rel="nofollow">کلیک کنید</a>)</p>
 					</div>
 					<div class="product-info list-price">
@@ -230,13 +230,13 @@
 						</div>
 					</div>
 					<div class="add-to-cart">
-						<a href="http://civil808.com/cart/add/p13812-imohasebat?destination=cart" target="_blank" class="add-to-cart">خرید این محصول</a>
+						<a href="https://civil808.com/cart/add/p13812-imohasebat?destination=cart" target="_blank" class="add-to-cart">خرید این محصول</a>
 						<span class="">با قیمت نهایی</span><span class="uc-price">999,000 تومان</span>
 					</div>
 				</div>
 			
 				<div class="group-right">
-					<div class="image"><img src="http://civil808.com/sites/default/files/styles/uc_product/public/field/image/node_13812.jpg" alt="پکیج صفر تا صد محاسبات ساختمان " title=""></div>    
+					<div class="image"><img src="https://civil808.com/sites/default/files/styles/uc_product/public/field/image/node_13812.jpg" alt="پکیج صفر تا صد محاسبات ساختمان " title=""></div>
 				</div>
 			</div>
 		</section>

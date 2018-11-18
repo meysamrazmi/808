@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="shortcut icon" href="http://civil808.com/sites/default/files/favlogo.png" type="image/png">		
+		<link rel="shortcut icon" href="https://civil808.com/sites/default/files/favlogo.png" type="image/png">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>جشنواره فروش ویژه عید فطر سیویل 808</title>
 		<meta name="description" content="جشنواره فروش ویژه عید فطر سیویل 808">
@@ -46,20 +46,20 @@
                 </p>
                 <p class="desc"  style="font-size: 20px;">به همراه 10% تخفیف مخصوص کاربران VIP</p>
                 <p>
-                    <a class="btn" href="http://civil808.com/landing/vip" target="_blank">عضو Vip شوید</a>
+                    <a class="btn" href="https://civil808.com/landing/vip" target="_blank">عضو Vip شوید</a>
                 </p>
             </div>
 		</div>
 
         <section id="software" data-aos="fade-up">
-            <img src="http://civil808.com/land/97/fetr/images/engineer.png" alt="نرم افزارهای کاربردی">
+            <img src="https://civil808.com/land/97/fetr/images/engineer.png" alt="نرم افزارهای کاربردی">
             <div class="softwate-text">
                 <h2>
                     خرید نرم افزارهای کاربردی عمران و معماری
                 </h2>
                 <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">
                     اطلاعات بیشتر را در
-                    <a href="http://civil808.com/landing/software" target="_blank" class="title"> صفحه </a>
+                    <a href="https://civil808.com/landing/software" target="_blank" class="title"> صفحه </a>
                     مشاهده کنید</p>
                 <div class="softwate-text1 with-seprater">
                     <p>
@@ -67,8 +67,8 @@
                     </p>
                     <p>
                         تا 40% تخفیف
-                    </p><!--http://civil808.com/shop/product?mefibs-form-f-populate=&mefibs-form-f-type%5B%5D=2231&mefibs-form-f-stock=0&mefibs-form-f-items_per_page=24&mefibs-form-f-mefibs_block_id=f-->
-                    <a href="http://civil808.com/shop/product?mefibs-form-f-populate=&mefibs-form-f-type%5B%5D=2231&mefibs-form-f-stock=0&mefibs-form-f-items_per_page=24&mefibs-form-f-mefibs_block_id=f" target="_blank" class="btn btn-primary" > مشاهده محصولات </a>
+                    </p><!--https://civil808.com/shop/product?mefibs-form-f-populate=&mefibs-form-f-type%5B%5D=2231&mefibs-form-f-stock=0&mefibs-form-f-items_per_page=24&mefibs-form-f-mefibs_block_id=f-->
+                    <a href="https://civil808.com/shop/product?mefibs-form-f-populate=&mefibs-form-f-type%5B%5D=2231&mefibs-form-f-stock=0&mefibs-form-f-items_per_page=24&mefibs-form-f-mefibs_block_id=f" target="_blank" class="btn btn-primary" > مشاهده محصولات </a>
                 </div>
                 <div class="softwate-text1">
                     <p>
@@ -77,7 +77,7 @@
                     <p>
                         تا 20% تخفیف
                     </p>
-                    <a href="http://civil808.com/article/software" target="_blank" class="btn btn-primary" > مشاهده مطالب </a>
+                    <a href="https://civil808.com/article/software" target="_blank" class="btn btn-primary" > مشاهده مطالب </a>
                 </div>
             </div>
         </section>
@@ -87,19 +87,19 @@
                 <h2> دوره های ویژه ترم تابستان </h2>
                 <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">
                     شما می توانید دیگر دوره های آموزشی تابستان 97 را در
-                    <a href="http://civil808.com/college" target="_blank" class="title"> آموزشگاه </a>
+                    <a href="https://civil808.com/college" target="_blank" class="title"> آموزشگاه </a>
                     مشاهده کنید</p>
                 <div class="items">
-                    <a href="http://civil808.com/landing/pbdcourse" target="_blank" class="item">
-                        <img src="http://civil808.com/sites/default/files/attachfromftp/node-19072/pbdcourse-poster.jpg" width="300" height="170" alt="" title="">
+                    <a href="https://civil808.com/landing/pbdcourse" target="_blank" class="item">
+                        <img src="https://civil808.com/sites/default/files/attachfromftp/node-19072/pbdcourse-poster.jpg" width="300" height="170" alt="" title="">
                         <span>دوره جامع آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها</span>
                     </a>
-                    <a href="http://civil808.com/landing/eng97" target="_blank" class="item">
-                        <img src="http://civil808.com/sites/default/files/attachfromftp/node-19130/eng97-poster.jpg" width="300" height="170" alt="" title="" >
+                    <a href="https://civil808.com/landing/eng97" target="_blank" class="item">
+                        <img src="https://civil808.com/sites/default/files/attachfromftp/node-19130/eng97-poster.jpg" width="300" height="170" alt="" title="" >
                         <span>همایش آشنایی با آزمون آمادگی ورود به حرفه داخلی و خارجی، رشته عمران و معماری</span>
                     </a>
-                    <a href="http://civil808.com/landing/bim" target="_blank"  class="item">
-                        <img src="http://civil808.com/sites/default/files/styles/808/public/field/image/node_19160.jpg?itok=0Gve-9ny" width="300" height="170" alt="" title="">
+                    <a href="https://civil808.com/landing/bim" target="_blank"  class="item">
+                        <img src="https://civil808.com/sites/default/files/styles/808/public/field/image/node_19160.jpg?itok=0Gve-9ny" width="300" height="170" alt="" title="">
                         <span>دوره های آنلاین مدل سازی اطلاعات ساختمان(BIM)</span>
                     </a>
                 </div>
@@ -112,23 +112,23 @@
                 <div data-aos="zoom-out" data-aos-delay="900" class="aboutus aos-init">
                     <div class="sec-li li">
 						<span class="icon-laptop">
-							<img class="phone" src="http://civil808.com/app/images/cellphone4.png" width="530" height="auto" alt="اپلیکیشن اندروید 808 پلاس" title="اپلیکیشن اندروید 808 پلاس">
+							<img class="phone" src="https://civil808.com/app/images/cellphone4.png" width="530" height="auto" alt="اپلیکیشن اندروید 808 پلاس" title="اپلیکیشن اندروید 808 پلاس">
 						</span>
                         <div>
                             <p style="font-weight:bold;"> در آپدیت جدید اپلیکیشن می توانید رادیو 808 را در گوشی همراه خود بشنوید  </p>
                             <li> دریافت لیست مصاحبه های رادیو 808 </li>
                             <li> توضیحات تکمیلی در مورد هر پادکست </li>
                             <li> دانلود و پخش رادیو 808 در پلیر اختصاصی </li>
-                            <a href="http://civil808.com/node/18321" target="_blank" class="btn">
+                            <a href="https://civil808.com/node/18321" target="_blank" class="btn">
                                 بیشتر بخوانید ...
                             </a>
                             <br>
-                            <a href="http://civil808.com/podcast" target="_blank">لیست پادکست های سایت</a>
+                            <a href="https://civil808.com/podcast" target="_blank">لیست پادکست های سایت</a>
                             <br>
                             در حال حاضر می توانید این اپلیکیشن را دانلود کنید.
                             <br>
                             <div style="max-width: 324px;text-align: center;margin-top: 11px;">
-                                <a class="poster download mostaghim" href="http://civil808.com/app/src/808plus.apk" target="_self">  </a>
+                                <a class="poster download mostaghim" href="https://civil808.com/app/src/808plus.apk" target="_self">  </a>
                                 <a class="poster download cafebazaar" href="https://cafebazaar.ir/app/com.civil808/?l=fa" target="_blank"></a>
                                 <a class="poster download googleplay" href="https://play.google.com/store/apps/details?id=com.civil808" target="_target"></a>
                                 <a class="poster download ios" href="#" target="_self" title="به زودی"></a>

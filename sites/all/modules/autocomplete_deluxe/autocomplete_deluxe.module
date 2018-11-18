@@ -49,7 +49,7 @@ function autocomplete_deluxe_taxonomy_callback($field_name, $tags_typed = '', $l
   }
 
   $query = db_select('taxonomy_term_data', 't');
-  $query->join("field_data_field_bool" , "confirm" , "confirm.entity_id = t.tid and confirm.entity_type = 'taxonomy_term' and  confirm.bundle = 'expert' and confirm.field_bool_value = '1' ");
+  if(strcmp($field_name , "field_experts") == 0) $query->join("field_data_field_bool" , "confirm" , "confirm.entity_id = t.tid and confirm.entity_type = 'taxonomy_term' and  confirm.bundle = 'expert' and confirm.field_bool_value = '1' ");
   $query->addTag('translatable');
   $query->addTag('term_access');
 

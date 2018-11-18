@@ -241,6 +241,60 @@ function custom_services_update_7106() {
     db_add_field('app_log', 'description', $newCol);
 }
 
+/**
+ * Create new database table {app_notification_token}.
+ */
+function custom_services_update_7107() {
+    $schema['app_notification_token'] = array(
+        'fields' => array(
+            'id' => array(
+                'type' => 'serial',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'description' => t('Primary Key : id'),
+            ),
+            'uid' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+                'unsigned' => TRUE,
+                'size' => 'small',
+                'default' => 0,
+                'description' => t('user id'),
+            ),
+            'token' => array(
+                'type' => 'varchar',
+                'length' => 255,
+                'not null' => TRUE,
+                'default' => '',
+                'description' => t('Token'),
+            ),
+            'time' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+                'default' => 0,
+                'description' => 'Timestamp for when an action has been happened.',
+            ),
+        ),
+
+        'primary key' => array('id'),
+    );
+    db_create_table('app_notification_token', $schema['app_notification_token']);
+}
+/**
+ * Add serial field to {app_notification_token} table.
+ */
+function custom_services_update_7108() {
+    $newCol = array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => t("serial of phone device"),
+    );
+    db_add_field('app_notification_token', 'serial', $newCol);
+    db_add_unique_key('app_notification_token', 'unique_fields', array('serial'));
+}
+
 /*
  * Implementation of hook_install()
 */

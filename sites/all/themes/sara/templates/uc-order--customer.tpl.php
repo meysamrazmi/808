@@ -44,69 +44,69 @@
   	font-family: iransans;
   	font-style: normal;
   	font-weight: bold;
-  	src: url('http://civil808.com/sites/all/themes/sara/fonts/sans/eot/IRANSansWeb_Bold.eot');
-  	src: url('http://civil808.com/sites/all/themes/sara/fonts/sans/eot/IRANSansWeb_Bold.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
-  		 url('http://civil808.com/sites/all/themes/sara/fonts/sans/woff2/IRANSansWeb_Bold.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-  		 url('http://civil808.com/sites/all/themes/sara/fonts/sans/woff/IRANSansWeb_Bold.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-  		 url('http://civil808.com/sites/all/themes/sara/fonts/sans/ttf/IRANSansWeb_Bold.ttf') format('truetype');
+  	src: url('https://civil808.com/sites/all/themes/sara/fonts/sans/eot/IRANSansWeb_Bold.eot');
+  	src: url('https://civil808.com/sites/all/themes/sara/fonts/sans/eot/IRANSansWeb_Bold.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+  		 url('https://civil808.com/sites/all/themes/sara/fonts/sans/woff2/IRANSansWeb_Bold.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+  		 url('https://civil808.com/sites/all/themes/sara/fonts/sans/woff/IRANSansWeb_Bold.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  		 url('https://civil808.com/sites/all/themes/sara/fonts/sans/ttf/IRANSansWeb_Bold.ttf') format('truetype');
   }
   @font-face {
   	font-family: iransans;
   	font-style: normal;
   	font-weight: 500;
-  	src: url('http://civil808.com/sites/all/themes/sara/fonts/sans/eot/IRANSansWeb_Medium.eot');
-  	src: url('http://civil808.com/sites/all/themes/sara/fonts/sans/eot/IRANSansWeb_Medium.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
-  		 url('http://civil808.com/sites/all/themes/sara/fonts/sans/woff2/IRANSansWeb_Medium.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-  		 url('http://civil808.com/sites/all/themes/sara/fonts/sans/woff/IRANSansWeb_Medium.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-  		 url('http://civil808.com/sites/all/themes/sara/fonts/sans/ttf/IRANSansWeb_Medium.ttf') format('truetype');
+  	src: url('https://civil808.com/sites/all/themes/sara/fonts/sans/eot/IRANSansWeb_Medium.eot');
+  	src: url('https://civil808.com/sites/all/themes/sara/fonts/sans/eot/IRANSansWeb_Medium.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+  		 url('https://civil808.com/sites/all/themes/sara/fonts/sans/woff2/IRANSansWeb_Medium.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+  		 url('https://civil808.com/sites/all/themes/sara/fonts/sans/woff/IRANSansWeb_Medium.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  		 url('https://civil808.com/sites/all/themes/sara/fonts/sans/ttf/IRANSansWeb_Medium.ttf') format('truetype');
   }
   @font-face {
   	font-family: iransans;
   	font-style: normal;
   	font-weight: normal;
-  	src: url('http://civil808.com/sites/all/themes/sara/fonts/sans/eot/IRANSansWeb.eot');
-  	src: url('http://civil808.com/sites/all/themes/sara/fonts/sans/eot/IRANSansWeb.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
-  		 url('http://civil808.com/sites/all/themes/sara/fonts/sans/woff2/IRANSansWeb.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-  		 url('http://civil808.com/sites/all/themes/sara/fonts/sans/woff/IRANSansWeb.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-  		 url('http://civil808.com/sites/all/themes/sara/fonts/sans/ttf/IRANSansWeb.ttf') format('truetype');
+  	src: url('https://civil808.com/sites/all/themes/sara/fonts/sans/eot/IRANSansWeb.eot');
+  	src: url('https://civil808.com/sites/all/themes/sara/fonts/sans/eot/IRANSansWeb.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+  		 url('https://civil808.com/sites/all/themes/sara/fonts/sans/woff2/IRANSansWeb.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+  		 url('https://civil808.com/sites/all/themes/sara/fonts/sans/woff/IRANSansWeb.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  		 url('https://civil808.com/sites/all/themes/sara/fonts/sans/ttf/IRANSansWeb.ttf') format('truetype');
   }
   @font-face {
   	font-family: iransans;
   	font-style: normal;
   	font-weight: 200;
-  	src: url('http://civil808.com/sites/all/themes/sara/fonts/sans/eot/IRANSansWeb_Light.eot');
-  	src: url('http://civil808.com/sites/all/themes/sara/fonts/sans/eot/IRANSansWeb_Light.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
-  		 url('http://civil808.com/sites/all/themes/sara/fonts/sans/woff2/IRANSansWeb_Light.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-  		 url('http://civil808.com/sites/all/themes/sara/fonts/sans/woff/IRANSansWeb_Light.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-  		 url('http://civil808.com/sites/all/themes/sara/fonts/sans/ttf/IRANSansWeb_Light.ttf') format('truetype');
+  	src: url('https://civil808.com/sites/all/themes/sara/fonts/sans/eot/IRANSansWeb_Light.eot');
+  	src: url('https://civil808.com/sites/all/themes/sara/fonts/sans/eot/IRANSansWeb_Light.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+  		 url('https://civil808.com/sites/all/themes/sara/fonts/sans/woff2/IRANSansWeb_Light.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+  		 url('https://civil808.com/sites/all/themes/sara/fonts/sans/woff/IRANSansWeb_Light.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  		 url('https://civil808.com/sites/all/themes/sara/fonts/sans/ttf/IRANSansWeb_Light.ttf') format('truetype');
   }
   @font-face {
   	font-family: iransans;
   	font-style: normal;
   	font-weight: 100;
-  	src: url('http://civil808.com/sites/all/themes/sara/fonts/sans/eot/IRANSansWeb_UltraLight.eot');
-  	src: url('http://civil808.com/sites/all/themes/sara/fonts/sans/eot/IRANSansWeb_UltraLight.eot?#iefix') format('embedded-opentype'),  /* IE6-8*/
-  		 url('http://civil808.com/sites/all/themes/sara/fonts/sans/woff2/IRANSansWeb_UltraLight.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-  		 url('http://civil808.com/sites/all/themes/sara/fonts/sans/woff/IRANSansWeb_UltraLight.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-  		 url('http://civil808.com/sites/all/themes/sara/fonts/sans/ttf/IRANSansWeb_UltraLight.ttf') format('truetype');
+  	src: url('https://civil808.com/sites/all/themes/sara/fonts/sans/eot/IRANSansWeb_UltraLight.eot');
+  	src: url('https://civil808.com/sites/all/themes/sara/fonts/sans/eot/IRANSansWeb_UltraLight.eot?#iefix') format('embedded-opentype'),  /* IE6-8*/
+  		 url('https://civil808.com/sites/all/themes/sara/fonts/sans/woff2/IRANSansWeb_UltraLight.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+  		 url('https://civil808.com/sites/all/themes/sara/fonts/sans/woff/IRANSansWeb_UltraLight.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  		 url('https://civil808.com/sites/all/themes/sara/fonts/sans/ttf/IRANSansWeb_UltraLight.ttf') format('truetype');
   }
   @font-face {
   	font-family: fanum;
   	font-style: normal;
   	font-weight: 100;
-  	src: url('http://civil808.com/sites/all/themes/sara/fonts/sans/fanum/irsfanum.eot');
-  	src: url('http://civil808.com/sites/all/themes/sara/fonts/sans/fanum/irsfanum.eot?#iefix') format('embedded-opentype'),  /* IE6-8*/
-  		 url('http://civil808.com/sites/all/themes/sara/fonts/sans/fanum/irsfanum.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-  		 url('http://civil808.com/sites/all/themes/sara/fonts/sans/fanum/irsfanum.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-  		 url('http://civil808.com/sites/all/themes/sara/fonts/sans/fanum/irsfanum.ttf') format('truetype');
+  	src: url('https://civil808.com/sites/all/themes/sara/fonts/sans/fanum/irsfanum.eot');
+  	src: url('https://civil808.com/sites/all/themes/sara/fonts/sans/fanum/irsfanum.eot?#iefix') format('embedded-opentype'),  /* IE6-8*/
+  		 url('https://civil808.com/sites/all/themes/sara/fonts/sans/fanum/irsfanum.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+  		 url('https://civil808.com/sites/all/themes/sara/fonts/sans/fanum/irsfanum.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  		 url('https://civil808.com/sites/all/themes/sara/fonts/sans/fanum/irsfanum.ttf') format('truetype');
   }
   @font-face {
     font-family:'mat';
-    src:	url('http://civil808.com/sites/all/themes/sara/fonts/material/material.eot');
-    src:	url('http://civil808.com/sites/all/themes/sara/fonts/material/material.eot?#iefix') format('embedded-opentype'),
-      url('http://civil808.com/sites/all/themes/sara/fonts/material/material.woff') format('woff'),
-      url('http://civil808.com/sites/all/themes/sara/fonts/material/material.ttf') format('truetype'),
-      url('http://civil808.com/sites/all/themes/sara/fonts/material/material.svg#materialdesigniconsregular') format('svg');
+    src:	url('https://civil808.com/sites/all/themes/sara/fonts/material/material.eot');
+    src:	url('https://civil808.com/sites/all/themes/sara/fonts/material/material.eot?#iefix') format('embedded-opentype'),
+      url('https://civil808.com/sites/all/themes/sara/fonts/material/material.woff') format('woff'),
+      url('https://civil808.com/sites/all/themes/sara/fonts/material/material.ttf') format('truetype'),
+      url('https://civil808.com/sites/all/themes/sara/fonts/material/material.svg#materialdesigniconsregular') format('svg');
     font-weight:normal;
     font-style:normal;
   }
@@ -549,7 +549,7 @@
       array_push($cities , $city);
       }
       else{
-        print '<div class="get-ticket"><a href="http://civil808.com/form/complete-information" target="_blank">برای تکمیل اطلاعات و پرینت بلیط <span>همایش طراحی عملکردی</span> کلیک کنید </a></div>';
+        print '<div class="get-ticket"><a href="https://civil808.com/form/complete-information" target="_blank">برای تکمیل اطلاعات و پرینت بلیط <span>همایش طراحی عملکردی</span> کلیک کنید </a></div>';
         break;
       }
     }
@@ -586,8 +586,8 @@
 ?>
 <div class="center">
   <div id="header-mail">
-		<a href="http://civil808.com"  target="_blank">
-		  <img src="http://civil808.com/sites/all/themes/sara/logo.png" alt="">
+		<a href="https://civil808.com"  target="_blank">
+		  <img src="https://civil808.com/sites/all/themes/sara/logo.png" alt="">
 		</a>
 	</div>
 	<div id="main">

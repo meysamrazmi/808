@@ -1,6 +1,9 @@
 <?php
 
 /*---------------------------------operations part-------------------------------------*/
+/* check the hash and find the compatible function for response
+ * return list of a content type in order to parameters
+ */
 function content_resource_index($hash , $type , $page , $parameter){
     if(!(hash_true($hash , "content"))) return services_error(t('Failed to access'), 10);
     $source_name = (isset($parameter["source"]) && !empty($parameter["source"])) ? $parameter["source"] : "android";
@@ -19,6 +22,7 @@ function content_resource_index($hash , $type , $page , $parameter){
 }
 function list_of_contents_v_0($parameter){
     $type = $parameter["type"]; $page = $parameter["page"];
+    /*Make query to fetch the contents*/
     $query = db_select('node' , 'node');
     $query->fields('node' , array('nid' , 'type' , 'title' , 'uid' , 'changed'));
     $query->leftJoin("profile" , "profile" , "profile.uid = node.uid and profile.type = 'main'");
@@ -28,6 +32,7 @@ function list_of_contents_v_0($parameter){
     $query->condition('node.language' , 'en' , '<>');
     $query->condition('node.type' , $type);
 
+    /*If searching is happened, it gets the list of nodes are matched*/
     if(!empty($parameter["search_value"]) && strlen($parameter["search_value"]) > 0){
         $custom_list = search_content_by_value($parameter["search_value"] , $type);
         if(empty($custom_list)) return ["content" => array()];
@@ -98,8 +103,9 @@ function list_of_contents_v_0($parameter){
 }
 function list_of_contents_v_1($parameter){
     $type = $parameter["type"]; $page = (int)$parameter["page"];
+    /*Get query related to the @type*/
     $query = get_nodes_query($type);
-
+    /*add custom features of the content type*/
     if(strcmp($type , "publication") == 0){
         $query->join("field_data_field_point_needed" , "point_needed" , "node.nid = point_needed.entity_id  and point_needed.bundle = 'publication'");
         $query->addField("point_needed" , "field_point_needed_value" , "price");
@@ -216,14 +222,20 @@ function list_of_contents_v_1($parameter){
         $query->orderBy("node.nid" , "DESC");
     }
     elseif(strcmp($type , "article") == 0){
-        $query->join("field_data_field_eventtime", "eventtime", "eventtime.entity_id = node.nid");
+        $query->join("field_data_field_eventtime", "eventtime", "eventtime.entity_id = node.nid and eventtime.bundle = 'article' ");
+        $query->leftJoin("field_data_field_company" , "company" , "company.entity_id = node.nid and company.bundle = 'article' ");
+        $query->leftJoin("field_data_field_ifwebinar" , "webinar" , "webinar.entity_id = node.nid and webinar.bundle = 'article' ");
         $query->addField("eventtime" , "field_eventtime_value" , "event_time");
+        $query->addField("company" , "field_company_value" , "company");
+        $query->addField("webinar" , "field_ifwebinar_value" , "webinar");
         $query->condition("eventtime.field_eventtime_value", date("Y-m-d", time()) , ">=");
         $query->orderBy("eventtime.field_eventtime_value", "ASC");
     }
 
+    /*Fetch 20 record per each iteration*/
     $query->range($page*20, 20);
     $contents = $query->execute()->fetchAll();
+    /*Post process of data and make them similar*/
     foreach ($contents as $content) {
         $content->nid = (int)$content->nid;
         $content->uid = (int)$content->uid;
@@ -250,6 +262,10 @@ function list_of_contents_v_1($parameter){
     }
     return ["content" => $contents];
 }
+/*
+ * Make query for fetching the contents of a content type
+ * Return a query
+ */
 function get_nodes_query($type){
     $query = db_select('node' , 'node');
     $query->fields('node' , array('nid' , 'type' , 'title' , 'uid' , 'changed'));
@@ -269,23 +285,28 @@ function get_nodes_query($type){
 
     return $query;
 }
+/*
+ * Return list of nodes that contain the value
+ * It's used for searching in contents
+ */
 function search_content_by_value($value , $type){
+    /*search the value in titles*/
     $query = db_select("node", "node");
     $query->fields('node', array('nid'));
-    $query->condition('node.title', '%' . $value . '%', 'LIKE');
+    $query->condition('node.title', '%' . db_like($value) . '%', 'LIKE');
     $query->condition('node.type' , $type);
-    $nid1 = $query->execute()->fetchAll();
+    $nid1 = $query->execute()->fetchCol();
 
+    /*search the value in bodies*/
     $query = db_select("field_data_body", "body");
-    $query->addField('body', 'entity_id', 'nid');
-    $query->condition('body.body_value', '%' . $value . '%', 'LIKE');
+    $query->fields('body', array('entity_id'));
+    $query->condition('body.body_value', '%' . db_like($value) . '%', 'LIKE');
     $query->condition('body.entity_type' , 'node');
     $query->condition('body.bundle' , $type);
-    $nid2 = $query->execute()->fetchAll();
+    $nid2 = $query->execute()->fetchCol();
 
-    $nids = array_merge($nid1, $nid2);
-    $custom_list = array();
-    foreach ($nids as $row) array_push($custom_list, $row->nid);
+    $custom_list = array_merge($nid1, $nid2);
+    $custom_list = array_unique($custom_list);
 
     return $custom_list;
 }
@@ -481,27 +502,28 @@ function retrieve_a_content_v_1($parameter){
         $query->condition("field_image.entity_type" , "node");
         $query->condition("field_image.delta" , "1");
         $picture_s = $query->execute()->fetch();
-        if(!empty($picture_s)) $node->picture_s = image_style_url("350x350" , $picture_s->picture_s);
+        $node->picture_s = (!empty($picture_s)) ? image_style_url("350x350" , $picture_s->picture_s) : null;
 
         $query = db_select("uc_products" , "uc_products");
         $query->fields("uc_products" , array("model" , "list_price" , "sell_price"));
         $query->condition("uc_products.nid" , $nid);
         $product = $query->execute()->fetch();
-        $node->model = !(empty($product->model)) ? $product->model : "";
-        $node->list_price = !(empty($product->list_price)) ? round($product->list_price, 0) : "";
-        $node->sell_price = !(empty($product->sell_price)) ? round($product->sell_price, 0) : "";
+        $node->model = (!empty($product->model)) ? $product->model : "";
+        $node->list_price = (!empty($product->list_price)) ? round($product->list_price, 0) : null;
+        $node->sell_price = (!empty($product->sell_price)) ? round($product->sell_price, 0) : null;
 
         $query = db_select("field_data_field_film" , "field_film");
         $query->join("file_managed" , "film" , "film.fid = field_film.field_film_fid and field_film.bundle = 'college' ");
         $query->addField("film" , "uri" , "film");
         $query->condition("field_film.entity_id" , $nid);
         $film = $query->execute()->fetch();
-        if(!(empty($film)))$node->film_link = $film->film;
+        $node->film_link = (!empty($film)) ? $film->film : null;
 
         $query = db_select("uc_attribute_options" , "options");
         $query->join("uc_product_attributes" , "product_attributes" , "options.aid = product_attributes.aid and product_attributes.nid = '" . $node->nid . " ' ");
         $query->fields("options" , array("name" , "price"));
-        $node->options = $query->execute()->fetchAll();
+        $options = $query->execute()->fetchAll();
+        $node->options = (!empty($options)) ? $options : array();
 
         $query = db_select("field_data_field_course_step" , "step");
         $query->fields("step" , array("field_course_step_value"));
@@ -519,7 +541,54 @@ function retrieve_a_content_v_1($parameter){
                     $node->step = array("id" => 2 , "state" => "برگزار شده");
                     break;
             }
+        }else{
+            $node->step = array();
         }
+
+        $query = db_select("field_data_field_how_to_be_held" , "how_to_be_held");
+        $query->join("taxonomy_term_data" , "term" , "how_to_be_held.field_how_to_be_held_tid = term.tid");
+        $query->fields("term" , array("name"));
+        $query->condition("how_to_be_held.entity_id" , $node->nid);
+        $query->condition("how_to_be_held.bundle" , "college");
+        $how_to_be_held = $query->execute()->fetchCol();
+        $node->how_to_be_held = (!empty($how_to_be_held)) ? $how_to_be_held : array();
+
+        $query = db_select("field_data_field_academic" , "academic");
+        $query->join("taxonomy_term_data" , "term" , "academic.field_academic_tid = term.tid");
+        $query->fields("term" , array("name"));
+        $query->condition("academic.entity_id" , $node->nid);
+        $query->condition("academic.bundle" , "college");
+        $field_academic = $query->execute()->fetchCol();
+        $node->field_academic = (!empty($field_academic)) ? $field_academic : array();
+
+        $query = db_select("field_data_field_eventtime" , "eventtime");
+        $query->fields("eventtime" , array("field_eventtime_value"));
+        $query->condition("eventtime.entity_id" , $node->nid);
+        $query->condition("eventtime.bundle" , "college");
+        $start_time = $query->execute()->fetch();
+        $node->start_time = (!empty($start_time)) ? $start_time->field_eventtime_value : null;
+
+        $query = db_select("field_data_field_edu_time" , "edu_time");
+        $query->fields("edu_time" , array("field_edu_time_value"));
+        $query->condition("edu_time.entity_id" , $node->nid);
+        $query->condition("edu_time.bundle" , "college");
+        $event_time = $query->execute()->fetch();
+        $node->event_time = (!empty($event_time)) ? $event_time->field_edu_time_value : null;
+
+        $query = db_select("field_data_field_edu_duration" , "duration");
+        $query->fields("duration" , array("field_edu_duration_value"));
+        $query->condition("duration.entity_id" , $node->nid);
+        $query->condition("duration.bundle" , "college");
+        $duration = $query->execute()->fetch();
+        $node->duration = (!empty($duration)) ? $duration->field_edu_duration_value : null;
+
+        $query = db_select("field_data_field_company" , "company");
+        $query->fields("company" , array("field_company_value"));
+        $query->condition("company.entity_id" , $node->nid);
+        $query->condition("company.bundle" , "college");
+        $company = $query->execute()->fetch();
+        $node->company = (!empty($company)) ? $company->field_company_value : null;
+
     }
     else return services_error("This content type is not supported!" , 17);
 

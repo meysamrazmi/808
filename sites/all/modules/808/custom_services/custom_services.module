@@ -752,6 +752,23 @@ function custom_services_services_resources(){
                         ),
                     ),
                 ),
+                'phoneToken' => array(
+                    'help' => 'Get the token of user`s phone for sending notification',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'user_resource'),
+                    'callback' => 'user_resource_phone_token',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'data',
+                            'type' => 'array',
+                            'description' => 'The data of request.',
+                            'source' => 'data',
+                            'optional' => False,
+                        ),
+                    ),
+                )
             ),
             'targeted_actions' => array(),
             'relationships' => array(
@@ -2032,7 +2049,7 @@ function add_log($uid , $url , $action , $entity_type = "" , $entity_id = 0 , $a
 }
 function generate_file_address($url){
     $url = substr($url , 8);
-    $url = "http://civil808.com/sites/default/files" . $url;
+    $url = "https://civil808.com/sites/default/files" . $url;
     return $url;
 }
 /*-------------------------------------------------------------------------------------------------*/
