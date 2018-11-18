@@ -1,4 +1,4 @@
-/* 
+/*
  * variable section
  */
 /*medias*/
@@ -430,7 +430,7 @@ body.page-node:not(.page-types):not(.role-anonymous-user) .container #page-title
   width: 100%;
 }
 .pane-gloevents .pane-content .view-gloevents .view-content .views-row .views-field-title span a {
-  color: #222 !important;
+  color: #222!important;
   text-align: center;
   width: 100%;
   display: block;
@@ -1248,7 +1248,7 @@ body:not(.uid-3300) #block-block-58 {
   position: relative;
   text-align: center;
   /*margin: 0 0 39px 0;
-            font-size: 22px;*/
+        font-size: 22px;*/
 }
 .front .qa-section .pane-content h2:before {
   content: "";
