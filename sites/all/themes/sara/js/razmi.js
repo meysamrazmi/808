@@ -1179,13 +1179,21 @@ function initialise(){
 		$(":file").filestyle({buttonText: "انتخاب فایل", buttonName: "btn-primary",placeholder: "فایلی انتخاب نشده"});
 		});
 	}
-	
-	$('.ui-state-error .ui-pnotify-text').each(function(){
+
+	/*this is for pnotify messages*/
+	/*$('.ui-state-error .ui-pnotify-text').each(function(){
 		if($(this).text().indexOf("public_html") > 0 || $(this).text().indexOf("module") > 0 || $(this).text().indexOf("Undefined") > 0 ){
 			$(this).parents(".ui-widget").addClass("admin-error");
 			window.cleard_error_msg = true;
 		}
-	});
+	});*/
+
+    $('.messagwrapper .error, .messagwrapper .warning').each(function(){
+        if($(this).text().indexOf("public_html") > 0 || $(this).text().indexOf("module") > 0 || $(this).text().indexOf("Undefined") > 0 ){
+            $(this).parents(".messagwrapper").addClass("admin-error");
+            window.cleard_error_msg = true;
+        }
+    });
   
 }
 /*-------------------------------------------------------*/

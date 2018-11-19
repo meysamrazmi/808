@@ -1260,7 +1260,7 @@ body:not(.uid-3300) #block-block-58 {
   right: calc(50% - 65px);
   box-shadow: rgba(136, 58, 183, 0.15) 0px 1px 6px, rgba(136, 58, 183, 0.157) 0px 1px 4px;
 }
-.front .qa-section .pane-content .q-title {
+.front .qa-section .pane-content .title {
   display: none;
 }
 .page-node .field-name-relative-qa,

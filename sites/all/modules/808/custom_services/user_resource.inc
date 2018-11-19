@@ -1,6 +1,31 @@
 <?php
 
 /*---------------------operations part---------------------------------*/
+function user_resource_retrieve($uid , $parameter){
+    if(!isset($parameter["hash"]) || !(hash_true($parameter["hash"] , "user"))) return services_error(t('Failed to access'), 10);
+    if(empty($parameter["source"]) || empty($parameter["version"])) return services_error("source or version is empty!" , 11);
+
+    $function = get_compatible_function_name("/user/uid" , "GET" , $parameter["source"] , $parameter["version"]);
+    if(!empty($function) && strlen($function) > 0) {
+        $parameter["uid"] = $uid;
+        return call_user_func($function, $parameter);
+    }
+    return services_error(t('This version is not supported'), 11);
+}
+function retrieve_user_v_1($parameter){
+    $user_data = (array) user_data($parameter["uid"]);
+    $pofile_data = (array) profile_data($parameter["uid"]);
+    $result = array_merge($user_data , $pofile_data);
+    global $user;
+    if($user->uid != $parameter["uid"]){
+        unset($result["mail"]);
+        unset($result["pid"]);
+        unset($result["user_point"]);
+        unset($result["mobile"]);
+    }
+    return $result;
+}
+
 function user_resource_update($uid , $data){
     if(!isset($data["hash"]) || !(hash_true($data["hash"] , "user"))) return services_error(t('Failed to access'), 10);
     if(empty($data["source"]) || empty($data["version"])) return services_error("source or version is empty!" , 11);
@@ -582,6 +607,19 @@ function profile_data($uid){
     else $profile->background_image = null;
 
     $profile->pid = (int) $profile->pid;
+
+    $query = db_select("field_data_field_experts" , "expert");
+    $query->join("taxonomy_term_data" , "term" , "expert.field_experts_tid = term.tid");
+    $query->condition("expert.entity_id" , $profile->pid);
+    $query->condition("expert.entity_type" , "profile2");
+    $query->condition("expert.bundle" , "main");
+    $query->fields("term" , array("tid" , "name"));
+    $experts = $query->execute()->fetchAll();
+    $profile->experts = array();
+    foreach ($experts as $expert){
+        array_push($profile->experts, array($expert->tid => $expert->name));
+    }
+
 
     return $profile;
 }

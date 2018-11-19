@@ -683,6 +683,7 @@ function bookmark_status($nid , $uid){
 /*--------------------------------------------------------------------------------*/
 
 /*--------------------------------relationships part------------------------------*/
+/*search a value in all contents*/
 function content_resource_search($list , $parameter){
     if(!(hash_true($parameter["hash"] , "content"))) return services_error(t('Failed to access'), 10);
     $source_name = (isset($parameter["source"]) && !empty($parameter["source"])) ? $parameter["source"] : "android";
@@ -696,23 +697,27 @@ function content_resource_search($list , $parameter){
     return services_error(t('This version is not supported'), 11);
 }
 function content_search_list_v1($parameter){
+    /*$types shows that in which contents the value should be searched
+     *if it's empty search will be done in all types
+     */
     if(isset($parameter["types"])) $types = explode("," , $parameter["types"]);
     $all_types = array("publication" , "podcast" , "college" , "video" , "designteam" , "article" , "pedia");
 
+    /*search in titles*/
     $query = db_select("node" , "node");
     $query->fields("node" , array("nid"));
     $query->condition("node.title" , '%' . $parameter["value"] . '%', 'LIKE');
     $first = $query->execute()->fetchCol();
-
+    /*search in bodies*/
     $query = db_select("field_data_body" , "body");
     $query->fields("body" , array("entity_id"));
     $query->condition("body.body_value" , '%' . $parameter["value"] . '%', 'LIKE');
     $second = $query->execute()->fetchCol();
-
+    /*merge all nids that are found*/
     $nids = array_merge($first , $second);
-    if(empty($nids)) return array();
+    if(empty($nids)) return array("contents" => []);
 
-
+    /*get information of nids*/
     $query = db_select("node" , "node");
     $query->leftJoin("field_data_field_image", "field_image", "node.nid = field_image.entity_id and field_image.delta = '0' ");
     $query->leftJoin("file_managed", "image", "field_image.field_image_fid = image.fid");
@@ -721,12 +726,13 @@ function content_search_list_v1($parameter){
     $query->orderBy("node.nid" , "DESC");
     $query->addField("node" , "type" , "type");
     $type_count_query = clone($query);
-    $query->condition("node.type" , (isset($types) && !empty($types)) ? $types : $all_types , "IN");
+    $query->condition("node.type" , (isset($types) && !empty($types)) ? $types : $all_types , "IN"); //use filter or not
     $query->fields("node" , array("nid" , "title"));
     $query->addField("image" , "uri" , "image");
     $query->range((isset($parameter["page"])) ? $parameter["page"]*20 : 0, 20);
     $contents = $query->execute()->fetchAll();
 
+    /*shows the result's number of each types*/
     $type_count_query->condition("node.type" , $all_types , "IN");
     $type_count_query->groupBy("node.type")->addExpression("count(node.type)" , "count");
     $type_count_query = $type_count_query->execute()->fetchAll();
