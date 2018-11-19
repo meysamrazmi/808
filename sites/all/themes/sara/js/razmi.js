@@ -1520,16 +1520,16 @@ var views_output = function(response) {
 function pnotify_output(output){
 	var myStack = {"dir1":"up", "dir2":"left", "push":"bottom"};
 	// for the first row we send the message immediately whiteout any waiting
-	new PNotify({
-		text: output[0].html() ,
-		type: "info",
-		styling: "jqueryui",
-		delay: 15000,
-		icon: false,
-		insert_brs: false,
-		addclass: "stack-bottomright pnotify-news",
-		stack: myStack
-	});
+	// new PNotify({
+	// 	text: output[0].html() ,
+	// 	type: "info",
+	// 	styling: "jqueryui",
+	// 	delay: 15000,
+	// 	icon: false,
+	// 	insert_brs: false,
+	// 	addclass: "stack-bottomright pnotify-news",
+	// 	stack: myStack
+	// });
 	var i = 1;
 	// we set the row to be sent automatically after every 45 seconds
 	var interval = setInterval( function(){
@@ -1538,17 +1538,17 @@ function pnotify_output(output){
 			clearInterval(interval);
 		}
 		if (3 > $('.ui-pnotify').length) {
-			new PNotify({
-				text: output[i].html(),
-				type: "info",
-				styling: "jqueryui",
-				animate_speed: "fast",
-				delay: 15000,
-				icon: false,
-				insert_brs: false,
-				addclass: "stack-bottomright pnotify-news",
-				stack: myStack
-			});
+			// new PNotify({
+			// 	text: output[i].html(),
+			// 	type: "info",
+			// 	styling: "jqueryui",
+			// 	animate_speed: "fast",
+			// 	delay: 15000,
+			// 	icon: false,
+			// 	insert_brs: false,
+			// 	addclass: "stack-bottomright pnotify-news",
+			// 	stack: myStack
+			// });
 		} else {
 			// stop showing more than 3 messages
 			i--;
@@ -1638,8 +1638,8 @@ $(document).ready(function () {
 		var src = el.getAttribute('src'),
 			dataSrc = el.getAttribute('data-src');
 
-		if (src != dataSrc) {
-			el.src = el.getAttribute('data-src')
+		if (src != dataSrc && dataSrc != null) {
+			el.src = dataSrc
 			fn ? fn() : null;
 		}
 	}
@@ -1656,6 +1656,18 @@ $(document).ready(function () {
 
 	var images = []
 		, query = $q('img.lazy')
+		, processScroll2 = function(){
+			var aa = $('img.lazy')
+			for (var i = 0; i < aa.length; i++) {
+				if (elementInViewport(aa[i])) {
+					loadImage(aa[i], function () {
+						aa[i].removeAttribute('data-src')
+						aa[i].classList.remove("lazy")
+						aa.splice(i, 1)
+					});
+				}
+			};
+		}
 		, processScroll = function(){
 			for (var i = 0; i < images.length; i++) {
 				if (elementInViewport(images[i])) {
@@ -1666,6 +1678,7 @@ $(document).ready(function () {
 					});
 				}
 			};
+			processScroll2()
 		}
 		, processScrollMobile = function(){
 			for(var i = 0; i < images.length; i++) {
@@ -1675,6 +1688,7 @@ $(document).ready(function () {
 					images.splice(i,1)
 				});
 			};
+			processScroll2()
 		}
 	;
 	// Array.prototype.slice.call is not callable under our lovely IE8

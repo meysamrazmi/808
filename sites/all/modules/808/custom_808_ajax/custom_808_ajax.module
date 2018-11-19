@@ -180,7 +180,7 @@ function user_ajax_fields($user , $field) {
 			if(isset($user->$field)){
 				$output = theme('image_style', array('style_name' => 'userprofilrfront', 'path' => $user->picture->uri , 'alt' => $p['main']->field_full_name['und'][0]['value'] , 'title' => $p['main']->field_full_name['und'][0]['value'])); 
 			}else{
-				$output = '<img src="http://civil808.com/sites/all/themes/sara/images/profile2front.jpg" alt="'. $p['main']->field_full_name['und'][0]['value'] .'" title="'. $p['main']->field_full_name['und'][0]['value'] .'"></div>';
+				$output = '<img src="https://civil808.com/sites/all/themes/sara/images/profile2front.jpg" alt="'. $p['main']->field_full_name['und'][0]['value'] .'" title="'. $p['main']->field_full_name['und'][0]['value'] .'"></div>';
 			}
 		}
 	}
