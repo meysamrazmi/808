@@ -13,8 +13,6 @@ sites/*/private
 sites/default/
 en/
 en2
-sites/all/themes/sara/templates/shop
-sites/all/themes/sara/templates/moshavereh
 
 # Ignore default text files
 robots.txt
