@@ -1,4 +1,4 @@
-<div id="block-block-58" class="block block-block">
+<div id="block-block-58" class="block block-block" style="display: none;">
 <div class="wrap">
     <nav>
         <ul class="primary">

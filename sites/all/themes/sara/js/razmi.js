@@ -1564,8 +1564,6 @@ function pnotify_output(output){
 		i++;
 	},45000);
 }
-
-
 Drupal.parseJson = function (data) {
  // Use native JSON method when available.
  if ( typeof JSON === "object" && JSON.parse ) {
@@ -1588,7 +1586,22 @@ window.onload = function(){
 			setInterval(createDots, 1000/30);
 		});
 	}
-	
+	if($('.messagwrapper').length && false){
+		$('.messagwrapper .messages').each(function(){
+			$(this).children('*').remove()
+			var message = $(this).text().trim()
+			var classes = $(this).attr('class').replace("messages", "")
+			$.getScript('https://civil808.com/sites/all/themes/sara/js/lib/PNotify.js', function(){
+				$.getScript('https://civil808.com/sites/all/themes/sara/js/lib/PNotifyButtons.js', function(){
+					PNotify.success({
+						text: message,
+						textTrusted: true,
+						addClass: classes
+					})
+				});
+			});
+		})
+	}
 };
 //color functions
 function isdark(hexcolor){
