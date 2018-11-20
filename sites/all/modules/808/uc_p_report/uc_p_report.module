@@ -28,7 +28,6 @@ function uc_p_report_access($nid) {
 	if(user_access('view all who bought what') || (user_access('view own who bought what') && $node->uid==$user->uid || user_has_role(9 , $user) || user_has_role(3 , $user)) ){
 		return TRUE;
 	}
-	drupal_set_message(t('You are not authorized to view who bought that item.  Please contact your site or shop administrator'), 'warning');
 	return FALSE;
 }
 

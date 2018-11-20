@@ -20,55 +20,21 @@ scripts[] = js/jquery-1.11.3.min.js
 
 scripts[] = js/razmi.min.js
 scripts[] = js/marjan.min.js
-scripts[] = js/pnotify.buttons.min.js
 scripts[] = js/app.min.js
-scripts[] = slide/js/modernizr.custom.js
-scripts[] = slide/js/classie.js
-scripts[] = slide/js/tiltSlider.js
 scripts[] = js/jquery.once.min.js
 
-regions[logonew] = LoGo
-regions[header] = Header
-regions[socialnew] = Social New
 regions[ads3] = Ads 3
 regions[highlight] = Highlight
-
-regions[tab1] = Tab 1
-regions[tab2] = Tab 2
-regions[tab3] = Tab 3
-regions[slideshow] = Slideshow
-
-regions[front] = Front page
 regions[content] = Content
-
-regions[ads] = Left Ads Area
 regions[ads1] = Ads 1
 regions[ads2] = Ads 2
-
-regions[bottom2] = Bottom 2
 regions[bottom3] = Bottom 3
-
-regions[hor1] = Horizontal 1
-regions[hor2] = Horizontal 2
-regions[hor3] = Horizontal 3
-regions[hor4] = Horizontal 4
 regions[bottom1] = Bottom 1
-
 regions[footer_contact] = Footer Contact area
 regions[footer_about] = Footer About area
 regions[footer_third] = footer third column
-
-
 regions[footer] = Footer
-regions[content_bottom] = Content Bottom
-regions[sidebar] = Sidebar
-regions[ads808] = Left Ads Area for 808
-regions[headerleft] = Header Left
 
-
-settings[toggle_slogan] = 0
-settings[andromeda_show_title_front_page] = 0
-settings[andromeda_enable_logo] = 0
 ; Information added by drupal.org packaging script on 2011-11-03
 version = "7.x-2.x-dev"
 core = "7.x"
