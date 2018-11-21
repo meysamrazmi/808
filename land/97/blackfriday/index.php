@@ -19,27 +19,39 @@
 	</head>
 
 	<body data-gr-c-s-loaded="true">
-		<ul class="navigat">
-			<li to-id="intro"><span>بالای صفحه</span></li>
-			<li to-id="seismosoft"><span>نماینده رسمی seismosoft در ایران</span></li>
-			<li to-id="pbd"><span>محصولات مرتبط با seismonsoft</span></li>
-			<li to-id="kit"><span>پکیج های 808</span></li>
-			<li to-id="college"><span>دوره های 808</span></li>
-			<li to-id="footer"><span>پایین صفحه</span></li>
-		</ul>
-		<section id="intro" class="panel main" id="intro">
-			<div class="inner">
-				<!---
-                <header data-aos="fade-up" data-aos-delay="400">
-					<p class="tagline"><span>تابستان</span> و تخفیف های 808</p>
-					<h1>جشنواره فروش ویژه و نمایش محتواهای جدید 808</h1>
-					<p style="font-size: 19px;color: #E91E63;color: #f22;font-weight: 500;">به علاوه رونمایی از ویژگی جدید پروفایل کاربری</p>
-				</header>
-				<div class="tarikh" data-aos="fade-up" data-aos-delay="800">
-					<span>12 - 22</span>
-					<span>مرداد ماه</span>
-				</div>
-				--->
+    <div class="whole">
+        <header>
+            <p class="titles">
+                فروش ویژه محصولات 808 و نرم افزارهای سایزموسافت
+            </p>
+            <h1>جمعه سیاه سال میلادی</h1>
+            <p id="demo">
+                <span></span>
+            </p>
+        </header>
+    </div>
+    <!--<ul class="navigat">
+        <li to-id="intro"><span>بالای صفحه</span></li>
+        <li to-id="seismosoft"><span>نماینده رسمی seismosoft در ایران</span></li>
+        <li to-id="pbd"><span>محصولات مرتبط با seismonsoft</span></li>
+        <li to-id="kit"><span>پکیج های 808</span></li>
+        <li to-id="college"><span>دوره های 808</span></li>
+        <li to-id="footer"><span>پایین صفحه</span></li>
+    </ul>
+    <section id="intro" class="panel main" id="intro">
+        <div class="inner">
+            <!---
+            <header data-aos="fade-up" data-aos-delay="400">
+                <p class="tagline"><span>تابستان</span> و تخفیف های 808</p>
+                <h1>جشنواره فروش ویژه و نمایش محتواهای جدید 808</h1>
+                <p style="font-size: 19px;color: #E91E63;color: #f22;font-weight: 500;">به علاوه رونمایی از ویژگی جدید پروفایل کاربری</p>
+            </header>
+            <div class="tarikh" data-aos="fade-up" data-aos-delay="800">
+                <span>12 - 22</span>
+                <span>مرداد ماه</span>
+            </div>
+            --->
+    <!--
 				<a href="#seismosoft" class="scroll" data-aos="zoom-out" data-aos-delay="1500" data-aos-anchor-placement="top-bottom"></a>
 
 			</div>
@@ -1455,8 +1467,7 @@
 
 			
 		<div class="footer non-full-height-section" id="footer"><a href="https://civil808.com" target="_blank" class="footer" data-aos-anchor-placement="top-bottom"> بازگشت به سایت</a></div>
-
-
+		!-->
 		<script src="./src/jquery-2.2.1.min.js"></script>
 		<script src="./src/owl.carousel.js"></script>
 		<script src="./src/main.js"></script>
