@@ -1059,6 +1059,8 @@ body:not(.uid-10628):not(.uid-3300):not(.uid-3989) .admin-error {
 .all-members .view-content {
   margin: auto;
   max-width: 1200px;
+  display: flex;
+  flex-flow: wrap;
 }
 .all-members .views-row {
   background: #fff;
@@ -1070,12 +1072,8 @@ body:not(.uid-10628):not(.uid-3300):not(.uid-3989) .admin-error {
   margin: 15px 10px !important;
   text-align: center;
   width: calc(25% - 20px) !important;
-  max-width: 300px;
-  height: 300px;
-  display: inline-block;
-  vertical-align: top;
-  float: right;
   position: relative;
+  padding-bottom: 60px;
 }
 .all-members .views-row .views-field-counter {
   position: absolute;
