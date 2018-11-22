@@ -116,49 +116,99 @@
 .page-node.node-type-architect .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.podcast808:before,
 .page-tag.page-pedia .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.podcast808:before,
 .page-node.node-type-architect .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.podcast808:before,
-.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.podcast808:before {
+.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.podcast808:before,
+.page-node.node-type-architect .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.podcast:before,
+.page-tag.page-pedia .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.podcast:before,
+.page-node.node-type-architect .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.podcast:before,
+.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.podcast:before {
   content: "\f439";
+}
+.page-node.node-type-architect .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.education:before,
+.page-tag.page-pedia .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.education:before,
+.page-node.node-type-architect .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.education:before,
+.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.education:before {
+  content: "\f370";
+}
+.page-node.node-type-architect .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.questions:before,
+.page-tag.page-pedia .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.questions:before,
+.page-node.node-type-architect .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.questions:before,
+.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.questions:before {
+  content: "\f186";
+}
+.page-node.node-type-architect .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.blog:before,
+.page-tag.page-pedia .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.blog:before,
+.page-node.node-type-architect .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.blog:before,
+.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.blog:before {
+  content: '\f39e';
 }
 .page-node.node-type-architect .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.entesharat:before,
 .page-tag.page-pedia .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.entesharat:before,
 .page-node.node-type-architect .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.entesharat:before,
-.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.entesharat:before {
+.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.entesharat:before,
+.page-node.node-type-architect .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.publication:before,
+.page-tag.page-pedia .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.publication:before,
+.page-node.node-type-architect .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.publication:before,
+.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.publication:before {
   content: "\f226";
 }
 .page-node.node-type-architect .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.akhbar:before,
 .page-tag.page-pedia .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.akhbar:before,
 .page-node.node-type-architect .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.akhbar:before,
-.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.akhbar:before {
+.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.akhbar:before,
+.page-node.node-type-architect .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.article:before,
+.page-tag.page-pedia .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.article:before,
+.page-node.node-type-architect .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.article:before,
+.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.article:before {
   content: "\f395";
 }
 .page-node.node-type-architect .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.shopproduct:before,
 .page-tag.page-pedia .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.shopproduct:before,
 .page-node.node-type-architect .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.shopproduct:before,
-.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.shopproduct:before {
+.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.shopproduct:before,
+.page-node.node-type-architect .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.product:before,
+.page-tag.page-pedia .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.product:before,
+.page-node.node-type-architect .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.product:before,
+.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.product:before {
   content: "\f110";
 }
 .page-node.node-type-architect .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.edu-college:before,
 .page-tag.page-pedia .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.edu-college:before,
 .page-node.node-type-architect .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.edu-college:before,
-.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.edu-college:before {
+.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.edu-college:before,
+.page-node.node-type-architect .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.college:before,
+.page-tag.page-pedia .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.college:before,
+.page-node.node-type-architect .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.college:before,
+.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.college:before {
   content: "\f474";
 }
 .page-node.node-type-architect .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.filmmortabet:before,
 .page-tag.page-pedia .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.filmmortabet:before,
 .page-node.node-type-architect .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.filmmortabet:before,
-.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.filmmortabet:before {
+.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.filmmortabet:before,
+.page-node.node-type-architect .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.film:before,
+.page-tag.page-pedia .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.film:before,
+.page-node.node-type-architect .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.film:before,
+.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.film:before {
   content: "\f22f";
 }
 .page-node.node-type-architect .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.porojhe:before,
 .page-tag.page-pedia .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.porojhe:before,
 .page-node.node-type-architect .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.porojhe:before,
-.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.porojhe:before {
+.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.porojhe:before,
+.page-node.node-type-architect .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.gallerynew:before,
+.page-tag.page-pedia .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.gallerynew:before,
+.page-node.node-type-architect .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.gallerynew:before,
+.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.gallerynew:before {
   content: "\f21f";
 }
 .page-node.node-type-architect .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.maghalat:before,
 .page-tag.page-pedia .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.maghalat:before,
 .page-node.node-type-architect .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.maghalat:before,
-.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.maghalat:before {
+.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.maghalat:before,
+.page-node.node-type-architect .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.designteam:before,
+.page-tag.page-pedia .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.designteam:before,
+.page-node.node-type-architect .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.designteam:before,
+.page-tag.page-pedia .term-listing-heading .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.designteam:before {
   content: "\f192";
 }
 .page-node.node-type-architect .view-mode-full > .group-header > .group-anchor > .fieldset-wrapper .divanchors a.memaran:before,
@@ -308,14 +358,18 @@
 .page-node.node-type-architect .field-type-node-reference > .field-items .owl-item > .field-item,
 .page-tag.page-pedia .field-type-node-reference > .field-items .owl-item > .field-item,
 .page-node.node-type-architect .node-type-relative > .field-items .owl-item > .field-item,
-.page-tag.page-pedia .node-type-relative > .field-items .owl-item > .field-item {
+.page-tag.page-pedia .node-type-relative > .field-items .owl-item > .field-item,
+.page-node.node-type-architect .field-type-node-reference > .field-items .owl-item .node,
+.page-tag.page-pedia .field-type-node-reference > .field-items .owl-item .node,
+.page-node.node-type-architect .node-type-relative > .field-items .owl-item .node,
+.page-tag.page-pedia .node-type-relative > .field-items .owl-item .node {
   width: 200px;
   display: inline-block;
   vertical-align: top;
   background-color: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   padding: 0px;
-  margin: 14px 14px;
+  margin: 14px 14px !important;
   float: none;
 }
 .page-node.node-type-architect .field-type-node-reference > .field-items > .field-item:hover,
@@ -329,7 +383,11 @@
 .page-node.node-type-architect .field-type-node-reference > .field-items .owl-item > .field-item:hover,
 .page-tag.page-pedia .field-type-node-reference > .field-items .owl-item > .field-item:hover,
 .page-node.node-type-architect .node-type-relative > .field-items .owl-item > .field-item:hover,
-.page-tag.page-pedia .node-type-relative > .field-items .owl-item > .field-item:hover {
+.page-tag.page-pedia .node-type-relative > .field-items .owl-item > .field-item:hover,
+.page-node.node-type-architect .field-type-node-reference > .field-items .owl-item .node:hover,
+.page-tag.page-pedia .field-type-node-reference > .field-items .owl-item .node:hover,
+.page-node.node-type-architect .node-type-relative > .field-items .owl-item .node:hover,
+.page-tag.page-pedia .node-type-relative > .field-items .owl-item .node:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 .page-node.node-type-architect .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items > .field-item > div,
@@ -351,11 +409,13 @@
   min-height: 205px;
   max-height: 205px;
 }
-.page-node.node-type-architect .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items > .node:not(.node-product):not(.node-product-kit),
-.page-tag.page-pedia .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items > .node:not(.node-product):not(.node-product-kit),
-.page-node.node-type-architect .node-type-relative:not(.field-name-field-shopproduct) > .field-items > .node:not(.node-product):not(.node-product-kit),
-.page-tag.page-pedia .node-type-relative:not(.field-name-field-shopproduct) > .field-items > .node:not(.node-product):not(.node-product-kit) {
+.page-node.node-type-architect .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .node:not(.node-product):not(.node-product-kit),
+.page-tag.page-pedia .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .node:not(.node-product):not(.node-product-kit),
+.page-node.node-type-architect .node-type-relative:not(.field-name-field-shopproduct) > .field-items .node:not(.node-product):not(.node-product-kit),
+.page-tag.page-pedia .node-type-relative:not(.field-name-field-shopproduct) > .field-items .node:not(.node-product):not(.node-product-kit) {
   height: 205px;
+  min-height: 205px;
+  max-height: 205px;
 }
 .page-node.node-type-architect .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items > .field-item .group-header .field-name-field-pictures,
 .page-tag.page-pedia .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items > .field-item .group-header .field-name-field-pictures,
@@ -365,6 +425,10 @@
 .page-tag.page-pedia .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items > .node .group-header .field-name-field-pictures,
 .page-node.node-type-architect .node-type-relative:not(.field-name-field-shopproduct) > .field-items > .node .group-header .field-name-field-pictures,
 .page-tag.page-pedia .node-type-relative:not(.field-name-field-shopproduct) > .field-items > .node .group-header .field-name-field-pictures,
+.page-node.node-type-architect .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .owl-item > .node .group-header .field-name-field-pictures,
+.page-tag.page-pedia .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .owl-item > .node .group-header .field-name-field-pictures,
+.page-node.node-type-architect .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .node .group-header .field-name-field-pictures,
+.page-tag.page-pedia .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .node .group-header .field-name-field-pictures,
 .page-node.node-type-architect .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-field-pictures,
 .page-tag.page-pedia .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-field-pictures,
 .page-node.node-type-architect .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-field-pictures,
@@ -382,7 +446,11 @@
 .page-node.node-type-architect .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-title h2,
 .page-tag.page-pedia .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-title h2,
 .page-node.node-type-architect .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-title h2,
-.page-tag.page-pedia .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-title h2 {
+.page-tag.page-pedia .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-title h2,
+.page-node.node-type-architect .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .owl-item > .node .group-header .field-name-title h2,
+.page-tag.page-pedia .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .owl-item > .node .group-header .field-name-title h2,
+.page-node.node-type-architect .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .node .group-header .field-name-title h2,
+.page-tag.page-pedia .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .node .group-header .field-name-title h2 {
   margin: 0px;
 }
 .page-node.node-type-architect .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items > .field-item .group-header .field-name-title h2 a,
@@ -396,7 +464,11 @@
 .page-node.node-type-architect .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-title h2 a,
 .page-tag.page-pedia .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-title h2 a,
 .page-node.node-type-architect .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-title h2 a,
-.page-tag.page-pedia .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-title h2 a {
+.page-tag.page-pedia .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-title h2 a,
+.page-node.node-type-architect .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .owl-item > .node .group-header .field-name-title h2 a,
+.page-tag.page-pedia .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .owl-item > .node .group-header .field-name-title h2 a,
+.page-node.node-type-architect .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .node .group-header .field-name-title h2 a,
+.page-tag.page-pedia .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .node .group-header .field-name-title h2 a {
   padding: 0px 10px 0px 10px;
   text-align: right;
   font-size: 13px;
@@ -416,23 +488,55 @@
 .page-node.node-type-architect .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-title h2 a:hover,
 .page-tag.page-pedia .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-title h2 a:hover,
 .page-node.node-type-architect .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-title h2 a:hover,
-.page-tag.page-pedia .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-title h2 a:hover {
+.page-tag.page-pedia .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-title h2 a:hover,
+.page-node.node-type-architect .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .owl-item > .node .group-header .field-name-title h2 a:hover,
+.page-tag.page-pedia .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .owl-item > .node .group-header .field-name-title h2 a:hover,
+.page-node.node-type-architect .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .node .group-header .field-name-title h2 a:hover,
+.page-tag.page-pedia .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .node .group-header .field-name-title h2 a:hover {
   color: black !important;
 }
 .page-node.node-type-architect .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-title h2 a,
 .page-tag.page-pedia .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-title h2 a,
 .page-node.node-type-architect .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-title h2 a,
-.page-tag.page-pedia .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-title h2 a {
+.page-tag.page-pedia .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .field-item .group-header .field-name-title h2 a,
+.page-node.node-type-architect .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .owl-item > .node .group-header .field-name-title h2 a,
+.page-tag.page-pedia .field-type-node-reference:not(.field-name-field-shopproduct) > .field-items .owl-item > .node .group-header .field-name-title h2 a,
+.page-node.node-type-architect .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .node .group-header .field-name-title h2 a,
+.page-tag.page-pedia .node-type-relative:not(.field-name-field-shopproduct) > .field-items .owl-item > .node .group-header .field-name-title h2 a {
   margin-top: 10px;
 }
 .page-node.node-type-architect .field-type-node-reference.field-name-field-shopproduct > .field-items > .field-item,
 .page-tag.page-pedia .field-type-node-reference.field-name-field-shopproduct > .field-items > .field-item,
 .page-node.node-type-architect .node-type-relative.field-name-field-shopproduct > .field-items > .field-item,
 .page-tag.page-pedia .node-type-relative.field-name-field-shopproduct > .field-items > .field-item,
+.page-node.node-type-architect .field-type-node-reference#product > .field-items > .field-item,
+.page-tag.page-pedia .field-type-node-reference#product > .field-items > .field-item,
+.page-node.node-type-architect .node-type-relative#product > .field-items > .field-item,
+.page-tag.page-pedia .node-type-relative#product > .field-items > .field-item,
+.page-node.node-type-architect .field-type-node-reference.field-name-field-shopproduct > .field-items > .node,
+.page-tag.page-pedia .field-type-node-reference.field-name-field-shopproduct > .field-items > .node,
+.page-node.node-type-architect .node-type-relative.field-name-field-shopproduct > .field-items > .node,
+.page-tag.page-pedia .node-type-relative.field-name-field-shopproduct > .field-items > .node,
+.page-node.node-type-architect .field-type-node-reference#product > .field-items > .node,
+.page-tag.page-pedia .field-type-node-reference#product > .field-items > .node,
+.page-node.node-type-architect .node-type-relative#product > .field-items > .node,
+.page-tag.page-pedia .node-type-relative#product > .field-items > .node,
 .page-node.node-type-architect .field-type-node-reference.field-name-field-shopproduct > .field-items .owl-item > .field-item,
 .page-tag.page-pedia .field-type-node-reference.field-name-field-shopproduct > .field-items .owl-item > .field-item,
 .page-node.node-type-architect .node-type-relative.field-name-field-shopproduct > .field-items .owl-item > .field-item,
-.page-tag.page-pedia .node-type-relative.field-name-field-shopproduct > .field-items .owl-item > .field-item {
+.page-tag.page-pedia .node-type-relative.field-name-field-shopproduct > .field-items .owl-item > .field-item,
+.page-node.node-type-architect .field-type-node-reference#product > .field-items .owl-item > .field-item,
+.page-tag.page-pedia .field-type-node-reference#product > .field-items .owl-item > .field-item,
+.page-node.node-type-architect .node-type-relative#product > .field-items .owl-item > .field-item,
+.page-tag.page-pedia .node-type-relative#product > .field-items .owl-item > .field-item,
+.page-node.node-type-architect .field-type-node-reference.field-name-field-shopproduct > .field-items .owl-item > .node,
+.page-tag.page-pedia .field-type-node-reference.field-name-field-shopproduct > .field-items .owl-item > .node,
+.page-node.node-type-architect .node-type-relative.field-name-field-shopproduct > .field-items .owl-item > .node,
+.page-tag.page-pedia .node-type-relative.field-name-field-shopproduct > .field-items .owl-item > .node,
+.page-node.node-type-architect .field-type-node-reference#product > .field-items .owl-item > .node,
+.page-tag.page-pedia .field-type-node-reference#product > .field-items .owl-item > .node,
+.page-node.node-type-architect .node-type-relative#product > .field-items .owl-item > .node,
+.page-tag.page-pedia .node-type-relative#product > .field-items .owl-item > .node {
   background-color: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
@@ -440,12 +544,30 @@
 .page-tag.page-pedia .field-type-node-reference.field-name-field-shopproduct .node-product.node-teaser,
 .page-node.node-type-architect .node-type-relative.field-name-field-shopproduct .node-product.node-teaser,
 .page-tag.page-pedia .node-type-relative.field-name-field-shopproduct .node-product.node-teaser,
+.page-node.node-type-architect .field-type-node-reference#product .node-product.node-teaser,
+.page-tag.page-pedia .field-type-node-reference#product .node-product.node-teaser,
+.page-node.node-type-architect .node-type-relative#product .node-product.node-teaser,
+.page-tag.page-pedia .node-type-relative#product .node-product.node-teaser,
 .page-node.node-type-architect .field-type-node-reference.field-name-field-shopproduct .node-product-kit.node-teaser,
 .page-tag.page-pedia .field-type-node-reference.field-name-field-shopproduct .node-product-kit.node-teaser,
 .page-node.node-type-architect .node-type-relative.field-name-field-shopproduct .node-product-kit.node-teaser,
-.page-tag.page-pedia .node-type-relative.field-name-field-shopproduct .node-product-kit.node-teaser {
+.page-tag.page-pedia .node-type-relative.field-name-field-shopproduct .node-product-kit.node-teaser,
+.page-node.node-type-architect .field-type-node-reference#product .node-product-kit.node-teaser,
+.page-tag.page-pedia .field-type-node-reference#product .node-product-kit.node-teaser,
+.page-node.node-type-architect .node-type-relative#product .node-product-kit.node-teaser,
+.page-tag.page-pedia .node-type-relative#product .node-product-kit.node-teaser {
   width: 100%;
-  margin: 0px !important;
+  max-width: 200px;
+}
+.page-node.node-type-architect .field-type-node-reference.field-name-field-shopproduct img,
+.page-tag.page-pedia .field-type-node-reference.field-name-field-shopproduct img,
+.page-node.node-type-architect .node-type-relative.field-name-field-shopproduct img,
+.page-tag.page-pedia .node-type-relative.field-name-field-shopproduct img,
+.page-node.node-type-architect .field-type-node-reference#product img,
+.page-tag.page-pedia .field-type-node-reference#product img,
+.page-node.node-type-architect .node-type-relative#product img,
+.page-tag.page-pedia .node-type-relative#product img {
+  margin: auto;
 }
 .page-node.node-type-architect .field-type-node-reference.field-name-field-filmmortabet .node-film.node-teaser:hover,
 .page-tag.page-pedia .field-type-node-reference.field-name-field-filmmortabet .node-film.node-teaser:hover,

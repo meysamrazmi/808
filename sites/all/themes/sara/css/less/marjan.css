@@ -430,7 +430,7 @@ body.page-node:not(.page-types):not(.role-anonymous-user) .container #page-title
   width: 100%;
 }
 .pane-gloevents .pane-content .view-gloevents .view-content .views-row .views-field-title span a {
-  color: #222!important;
+  color: #222 !important;
   text-align: center;
   width: 100%;
   display: block;
@@ -1378,7 +1378,7 @@ body:not(.uid-3300) #block-block-58 {
   max-width: 280px;
   margin: 0px auto 50px auto;
 }
-.page-taxonomy-term.page-pedia #node-type-questions .field-items {
+.page-taxonomy-term.page-pedia #questions .field-items {
   margin-top: 10px;
   background-color: #fff;
   margin-bottom: 30px;
@@ -1386,29 +1386,29 @@ body:not(.uid-3300) #block-block-58 {
   border-radius: 3px;
   border: 1px solid #f0f1f2 !important;
 }
-.page-taxonomy-term.page-pedia #node-type-questions .field-items .title {
+.page-taxonomy-term.page-pedia #questions .field-items .title {
   font-size: 18px !important;
   text-indent: 10px;
   background: #f6f6f6;
   padding: 7px 15px 5px;
   border-bottom: 1px solid #eaeaea;
 }
-.page-taxonomy-term.page-pedia #node-type-questions .field-items .question {
+.page-taxonomy-term.page-pedia #questions .field-items .question {
   border-bottom: 1px solid #f1f1f1;
   position: relative;
   display: flex;
 }
-.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .reply {
+.page-taxonomy-term.page-pedia #questions .field-items .question .reply {
   position: absolute;
   left: 5px;
   top: 10px;
 }
-.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .reply a {
+.page-taxonomy-term.page-pedia #questions .field-items .question .reply a {
   padding: 3px;
   border-radius: 50%;
   display: block;
 }
-.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .reply a span {
+.page-taxonomy-term.page-pedia #questions .field-items .question .reply a span {
   position: absolute;
   width: 100px;
   background-color: #fefefe;
@@ -1423,37 +1423,37 @@ body:not(.uid-3300) #block-block-58 {
   top: 30px;
   visibility: hidden;
 }
-.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .reply a:hover span {
+.page-taxonomy-term.page-pedia #questions .field-items .question .reply a:hover span {
   visibility: visible;
 }
-.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .reply a:before {
+.page-taxonomy-term.page-pedia #questions .field-items .question .reply a:before {
   content: "\f45a";
   font-family: mat;
   font-size: 15px;
   color: #9c9a9a;
 }
-.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .reply a:before {
+.page-taxonomy-term.page-pedia #questions .field-items .question .reply a:before {
   padding: 4px 5px 5px 5px;
   display: block;
 }
-.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .right {
+.page-taxonomy-term.page-pedia #questions .field-items .question .right {
   padding: 10px 20px;
   min-width: 75px;
 }
-.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .right .pic img {
+.page-taxonomy-term.page-pedia #questions .field-items .question .right .pic img {
   border-radius: 50%;
   width: 40px;
   box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
 }
-.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .right .comment-count {
+.page-taxonomy-term.page-pedia #questions .field-items .question .right .comment-count {
   color: #828282;
   font-size: 8px;
   text-align: center;
 }
-.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .left {
+.page-taxonomy-term.page-pedia #questions .field-items .question .left {
   padding: 15px 5px 15px 20px;
 }
-.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .left .q-title {
+.page-taxonomy-term.page-pedia #questions .field-items .question .left .q-title {
   color: #222 !important;
   font-size: 14px;
   font-weight: 500;
@@ -1461,7 +1461,7 @@ body:not(.uid-3300) #block-block-58 {
   display: block;
   text-align: right;
 }
-.page-taxonomy-term.page-pedia #node-type-questions .field-items .question .left .body {
+.page-taxonomy-term.page-pedia #questions .field-items .question .left .body {
   color: #777;
   font-size: 11px;
   margin: 10px 0px 0px 0px;

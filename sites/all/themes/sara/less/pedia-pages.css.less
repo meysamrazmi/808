@@ -47,14 +47,15 @@
         text-align: center;
         > .field-items > .field-item,
         > .field-items > .node,
-        > .field-items .owl-item > .field-item{
+        > .field-items .owl-item > .field-item,
+        > .field-items .owl-item .node{
             width: 200px;
             display: inline-block;
             vertical-align: top;
             background-color: #fff;
             box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
             padding: 0px;
-            margin: 14px 14px;
+            margin: 14px 14px !important;
             float:none;
             &:hover{
                 box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -74,17 +75,21 @@
                 min-height: 205px;
                 max-height: 205px;
             }
-            > .node:not(.node-product):not(.node-product-kit){
+            .node:not(.node-product):not(.node-product-kit){
                 height: 205px;
+                min-height: 205px;
+                max-height: 205px;
             }
             > .field-item .group-header .field-name-field-pictures,
             > .node .group-header .field-name-field-pictures,
+            .owl-item > .node .group-header .field-name-field-pictures,
             .owl-item > .field-item .group-header .field-name-field-pictures{
                 display:block;
             }
             > .field-item .group-header .field-name-title h2,
             > .node .group-header .field-name-title h2,
-            .owl-item > .field-item .group-header .field-name-title h2{
+            .owl-item > .field-item .group-header .field-name-title h2,
+            .owl-item > .node .group-header .field-name-title h2{
                 margin:0px;
                 a{
                     padding: 0px 10px 0px 10px;
@@ -99,20 +104,28 @@
                     }
                 }
             }
-            .owl-item > .field-item .group-header .field-name-title h2 a{
+            .owl-item > .field-item .group-header .field-name-title h2 a,
+            .owl-item > .node .group-header .field-name-title h2 a{
                 margin-top: 10px;
             }
         }
-        &.field-name-field-shopproduct{
+        &.field-name-field-shopproduct,
+        &#product{
             > .field-items > .field-item ,
-            > .field-items .owl-item > .field-item{
+            > .field-items > .node ,
+            > .field-items .owl-item > .field-item,
+            > .field-items .owl-item > .node{
                 background-color: #fff;
                 box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
             }
             .node-product.node-teaser,
             .node-product-kit.node-teaser{
                 width:100%;
-                margin: 0px !important;
+                max-width: 200px;
+                //margin: 0px !important;
+            }
+            img{
+                margin: auto;
             }
         }
         &.field-name-field-filmmortabet .node-film.node-teaser{
@@ -180,28 +193,45 @@
                         display: block;
                         color: #02abaa;
                     }
-                    &.podcast808:before{
+                    &.podcast808:before,
+                    &.podcast:before{
                         content: "\f439";
                     }
-                    &.entesharat:before{
+                    &.education:before{
+                        content:"\f370";
+                    }
+                    &.questions:before{
+                        content:"\f186";
+                    }
+                    &.blog:before{
+                        content: '\f39e';
+                    }
+                    &.entesharat:before,
+                    &.publication:before{
                         content: "\f226";
                     }
-                    &.akhbar:before{
+                    &.akhbar:before,
+                    &.article:before{
                         content: "\f395";
                     }
-                    &.shopproduct:before{
+                    &.shopproduct:before,
+                    &.product:before{
                         content: "\f110";
                     }
-                    &.edu-college:before{
+                    &.edu-college:before,
+                    &.college:before{
                         content: "\f474";
                     }
-                    &.filmmortabet:before{
+                    &.filmmortabet:before,
+                    &.film:before{
                         content: "\f22f";
                     }
-                    &.porojhe:before{
+                    &.porojhe:before,
+                    &.gallerynew:before{
                         content: "\f21f";
                     }
-                    &.maghalat:before{
+                    &.maghalat:before,
+                    &.designteam:before{
                         content: "\f192";
                     }
                     &.memaran:before{

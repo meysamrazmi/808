@@ -524,7 +524,7 @@
 
 <style>
     <?php
-        echo readfile("https://civil808.com/sites/all/themes/sara/css/less/landing.min.css");
+        echo readfile("https://civil808.com/sites/all/themes/sara/css/less/kargah-land.min.css");
     ?>
 </style>
 
