@@ -4121,6 +4121,7 @@ input[type="checkbox"]:checked:before {
   position: absolute;
   z-index: 5;
   padding: 10px 5% 0;
+	display: none;
 }
 .page-shop-store form#views-exposed-form-taxonomy-term-page-1{
   border: none;
@@ -6129,4 +6130,8 @@ img.lazy:before {
 	to {
 		background-position-x: -580%;
 	}
+}
+@keyframes loaded {
+	from { width: 100%; }
+	to { width: 0; }
 }

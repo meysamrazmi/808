@@ -316,6 +316,17 @@ function taxonomy_term_page($term){
                 $build[$type]["#suffix"] = '</div></div>';
                 $build[$type]["term"] = node_view_multiple($nodes, $view_mode);
             }
+
+	        $build["experts"] = array(
+		        "#prefix" => '<div id="node-type-advisors" class="node-type-relative"><h2 class="field-label">مشاوران این تخصص</h2><div class="field-items">',
+		        "#suffix" => views_embed_view('user_experts', 'pedia_experts_advisors', $term->tid) .'</div></div>',
+		        "term" => ''
+	        );
+	        $build["users"] = array(
+		        "#prefix" => '<div id="node-type-users" class="node-type-relative"><h2 class="field-label">کاربران</h2><div class="field-items">',
+		        "#suffix" => views_embed_view('user_experts', 'pedia_experts_users', $term->tid) .'</div></div>',
+		        "term" => '',
+	        );
         }
         else {
             $build['no_content'] = array(

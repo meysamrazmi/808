@@ -553,18 +553,16 @@ body:not(.uid-10628):not(.uid-3300):not(.uid-3989) .admin-error {
 	.view-content {
 		margin: auto;
 		max-width: 1200px;
+		display: flex;
+		flex-flow: wrap;
 	}
 	.views-row {
 		.paper(z1);
 		margin: 15px 10px !important;
 		text-align: center;
 		width: calc(~"25% - 20px") !important;
-		max-width: 300px;
-		height: 300px;
-		display: inline-block;
-		vertical-align: top;
-		float: right;
 		position: relative;
+		padding-bottom: 60px;
 		.views-field-counter {
 			.absolute('');
 			color: #aaa;
@@ -1483,4 +1481,44 @@ form .field-type-file{
 .line-item-not_vip td {
 	color: #FF5722 !important;
 	cursor: pointer;
+}
+
+.ui-pnotify {
+	.ui-pnotify-shadow {
+		border: none;
+		color: #fff;
+		padding: 14px 24px 14px 14px;
+		box-shadow: 0px 6px 24px 0px rgba(0,0,0,0.2) !important;
+	}
+	.brighttheme-success {background-color: #66BB6A;}
+	.brighttheme-error {background-color: #EF5350;}
+	.brighttheme-notice {
+		background-color: #FFEE58;
+		color: #000;
+	}
+	.brighttheme-icon-closer, .brighttheme-icon-sticker {
+		height: 20px;
+		width: 20px;
+		font-size: 20px;
+		line-height: 20px;
+		position: relative;
+	}
+	.brighttheme-icon-closer{.before(f156);}
+	.brighttheme-icon-sticker{.before(f3e4);}
+	.brighttheme-icon-stuck{.before(f40a);}
+	.ui-pnotify-closer, .ui-pnotify-sticker {
+		float: right;
+		margin-left: .5em;
+		cursor: pointer;
+	}
+	.ui-pnotify-text {
+		margin-left: 14px !important;
+		margin-right: 0 !important;
+	}
+	&:after {
+		content: "";
+		.absolute(100%; 5px; ''; 0; 0; 0);
+		background: rgba(0, 0, 0, 0.25);
+		animation: loaded 16s linear;
+	}
 }

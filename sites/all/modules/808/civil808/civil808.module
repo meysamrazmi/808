@@ -807,7 +807,8 @@ function edu_form($form, &$form_state, $node) {
 					$ostad = $entity[$entity_id['value']]->field_full_name['und'][0]['value'];
 					if (strlen($ostad)<5){
 						$p = profile2_load_by_user(intval($ostad));
-						$userr = '<a href="/user/'. $ostad .'" target="_blank">'. $p['main']->field_full_name['und'][0]['value'] .'</a>';
+						if(isset($p['main']))
+							$userr = '<a href="/user/'. $ostad .'" target="_blank">'. $p['main']->field_full_name['und'][0]['value'] .'</a>';
 					}else{
 						$userr = $ostad;
 					}
