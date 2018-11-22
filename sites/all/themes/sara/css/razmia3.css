@@ -4121,6 +4121,7 @@ input[type="checkbox"]:checked:before {
   position: absolute;
   z-index: 5;
   padding: 10px 5% 0;
+	display: none;
 }
 .page-shop-store form#views-exposed-form-taxonomy-term-page-1{
   border: none;
@@ -6130,43 +6131,7 @@ img.lazy:before {
 		background-position-x: -580%;
 	}
 }
-.brighttheme-success {
-	background-color: #66BB6A;
-	border: none;
-	color: #fff;
-	padding: 14px 24px 14px 14px;
-	box-shadow: 0px 6px 24px 0px rgba(0,0,0,0.2);
-}
-
-.brighttheme-icon-closer, .brighttheme-icon-sticker {
-	height: 20px;
-	width: 20px;
-	font-size: 20px;
-	line-height: 20px;
-	position: relative;
-}
-
-.brighttheme-icon-closer:before {
-	content: "\f156";
-	font-family: mat;
-}
-
-.ui-pnotify-closer, .ui-pnotify-sticker {
-	float: right;
-	margin-left: .5em;
-	cursor: pointer;
-}
-
-.ui-pnotify.ui-pnotify-with-icon .ui-pnotify-text {
-	margin-left: 14px !important;
-	margin-right: 0 !important;
-}
-
-.brighttheme-icon-sticker:before {
-	content: "\f3e4";
-	font-family: mat;
-}
-
-.brighttheme-icon-stuck:before {
-	content: "\f40a";
+@keyframes loaded {
+	from { width: 100%; }
+	to { width: 0; }
 }
