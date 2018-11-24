@@ -641,7 +641,10 @@
   margin: 25px 10px 0 10px;
   border-radius: 50%;
 }
-.node-architect.node-teaser .field-name-field-image img {
+.architects-homepage .views-row .field-name-field-image img,
+.node-architect.node-teaser .field-name-field-image img,
+.architects-homepage .views-row .views-field-field-image img,
+.node-architect.node-teaser .views-field-field-image img {
   overflow: hidden;
   box-shadow: 0px 0px 20px -2px #aaa;
   padding: 0px !important;
@@ -651,18 +654,16 @@
   max-height: 150px;
   width: 100%;
 }
-.architects-homepage .view-content {
-  text-align: center;
-}
-.node-architect.node-teaser .field-name-title {
+.architects-homepage .views-row .field-name-title,
+.node-architect.node-teaser .field-name-title,
+.architects-homepage .views-row .views-field-name,
+.node-architect.node-teaser .views-field-name {
   width: 100%;
 }
-.node-architect.node-teaser {
-  border-bottom: 0px solid #eee !important;
-  padding-bottom: 0px !important;
-  margin-bottom: 0px !important;
-}
-.node-architect.node-teaser .field-name-title h2 {
+.architects-homepage .views-row .field-name-title h2,
+.node-architect.node-teaser .field-name-title h2,
+.architects-homepage .views-row .views-field-name h2,
+.node-architect.node-teaser .views-field-name h2 {
   width: 100%;
   border-bottom: 0px;
   /* height: 41px; */
@@ -672,9 +673,21 @@
   line-height: 29px;
   font-weight: 400;
 }
-.node-architect.node-teaser .field-name-title h2 a {
+.architects-homepage .views-row .field-name-title h2 a,
+.node-architect.node-teaser .field-name-title h2 a,
+.architects-homepage .views-row .views-field-name h2 a,
+.node-architect.node-teaser .views-field-name h2 a {
   padding: 10px 0px;
   font-size: 17px;
+  color: black !important;
+}
+.architects-homepage .view-content {
+  text-align: center;
+}
+.node-architect.node-teaser {
+  border-bottom: 0px solid #eee !important;
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
 }
 .architects-homepage #page-title {
   display: block !important;
@@ -684,7 +697,7 @@
 }
 .architects-homepage .view-header {
   text-align: right;
-  font-family: iransans !important;
+  font-family: irans !important;
   display: inline-block;
   color: #555;
   transition: all 0.4s ease;
@@ -723,18 +736,8 @@
   width: 430px;
 }
 /*-----------------pedia-------------------*/
-.page-pedia div#edit-title-wrapper input#edit-title {
-  width: 430px;
-}
-.page-pedia div#edit-title-wrapper:before {
-  content: "\f349";
-  font-family: mat;
-  font-size: 15px;
-  width: 68px;
-  text-align: center;
-  color: #c5c;
-}
-.page-pedia #block-views-exp-page-arch-page-3 .views-exposed-widgets #edit-title-wrapper {
+.page-pedia #block-views-exp-page-arch-page-3 .views-exposed-widgets #edit-title-wrapper,
+.page-pedia #block-views-exp-pedia-tag-page .views-exposed-widgets #edit-name-wrapper {
   width: 100vw;
   background: rgba(238, 238, 238, 0.5);
   margin-right: calc(50% - 50vw);
@@ -744,7 +747,35 @@
   align-items: baseline;
   justify-content: center;
 }
-.page-pedia #block-views-exp-page-arch-page-3 {
+.page-pedia #block-views-exp-page-arch-page-3 .views-exposed-widgets #edit-title-wrapper input,
+.page-pedia #block-views-exp-pedia-tag-page .views-exposed-widgets #edit-name-wrapper input {
+  width: 430px;
+}
+.page-pedia #block-views-exp-page-arch-page-3 .views-exposed-widgets #edit-title-wrapper label,
+.page-pedia #block-views-exp-pedia-tag-page .views-exposed-widgets #edit-name-wrapper label {
+  display: none;
+}
+.page-pedia #block-views-exp-page-arch-page-3 .views-exposed-widgets #edit-title-wrapper:before,
+.page-pedia #block-views-exp-pedia-tag-page .views-exposed-widgets #edit-name-wrapper:before {
+  content: "\f349";
+  font-family: mat;
+  font-size: 22px;
+  width: 68px;
+  text-align: center;
+  color: #c5c;
+}
+.page-pedia #block-views-exp-page-arch-page-3 .views-exposed-widgets #edit-title-wrapper #edit-field-dastebandimemar-tid-1-wrapper,
+.page-pedia #block-views-exp-pedia-tag-page .views-exposed-widgets #edit-name-wrapper #edit-field-dastebandimemar-tid-1-wrapper,
+.page-pedia #block-views-exp-page-arch-page-3 .views-exposed-widgets #edit-title-wrapper #edit-field-dastebandimemar-tid-wrapper,
+.page-pedia #block-views-exp-pedia-tag-page .views-exposed-widgets #edit-name-wrapper #edit-field-dastebandimemar-tid-wrapper {
+  display: none;
+}
+.page-pedia #block-views-exp-pedia-tag-page #edit-field-dastebandimemar-tid-1-wrapper,
+.page-pedia #block-views-exp-pedia-tag-page #edit-field-dastebandimemar-tid-wrapper {
+  display: none;
+}
+.page-pedia #block-views-exp-page-arch-page-3,
+.page-pedia #block-views-exp-pedia-tag-page {
   position: relative;
 }
 .architects-homepage .vefl-layout,
@@ -778,7 +809,33 @@
 .page-pedia.node-type-architect .container.main {
   margin-top: 15px !important;
 }
-.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-exposed-widget {
+.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter > div > div > div > div,
+.page-pedia #views-exposed-form-pedia-tag-page-mefibs-form-filter > div > div > div > div {
+  display: flex;
+  align-items: stretch;
+}
+.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-widget-edit-mefibs-form-filter-type,
+.page-pedia #views-exposed-form-pedia-tag-page-mefibs-form-filter .views-widget-edit-mefibs-form-filter-type,
+.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-widget-edit-mefibs-form-filter-field-dastebandimemar-tid-1,
+.page-pedia #views-exposed-form-pedia-tag-page-mefibs-form-filter .views-widget-edit-mefibs-form-filter-field-dastebandimemar-tid-1 {
+  max-width: 427px;
+  width: auto !important;
+}
+.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-widget-edit-mefibs-form-filter-type .bef-checkboxes,
+.page-pedia #views-exposed-form-pedia-tag-page-mefibs-form-filter .views-widget-edit-mefibs-form-filter-type .bef-checkboxes,
+.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-widget-edit-mefibs-form-filter-field-dastebandimemar-tid-1 .bef-checkboxes,
+.page-pedia #views-exposed-form-pedia-tag-page-mefibs-form-filter .views-widget-edit-mefibs-form-filter-field-dastebandimemar-tid-1 .bef-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+}
+.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-widget-edit-mefibs-form-filter-type .form-type-bef-checkbox,
+.page-pedia #views-exposed-form-pedia-tag-page-mefibs-form-filter .views-widget-edit-mefibs-form-filter-type .form-type-bef-checkbox,
+.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-widget-edit-mefibs-form-filter-field-dastebandimemar-tid-1 .form-type-bef-checkbox,
+.page-pedia #views-exposed-form-pedia-tag-page-mefibs-form-filter .views-widget-edit-mefibs-form-filter-field-dastebandimemar-tid-1 .form-type-bef-checkbox {
+  width: 49%;
+}
+.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-exposed-widget,
+.page-pedia #views-exposed-form-pedia-tag-page-mefibs-form-filter .views-exposed-widget {
   background-color: white;
   box-shadow: 0 2px 2px #edeef0;
   border: 1px solid #eee;
@@ -786,36 +843,30 @@
   margin: 0 20px;
   width: 215px;
 }
-.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-widget-edit-mefibs-form-filter-type {
-  max-width: 427px;
-  width: auto;
+.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-exposed-widget#edit-mefibs-form-filter-name-wrapper,
+.page-pedia #views-exposed-form-pedia-tag-page-mefibs-form-filter .views-exposed-widget#edit-mefibs-form-filter-name-wrapper {
+  display: none;
 }
-.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter > div > div > div > div {
-  display: flex;
-  align-items: stretch;
-}
-.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-widget-edit-mefibs-form-filter-type .bef-checkboxes {
-  display: flex;
-  flex-wrap: wrap;
-}
-.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-widget-edit-mefibs-form-filter-type .form-type-bef-checkbox {
-  width: 49%;
-}
-.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-exposed-widget > label {
+.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-exposed-widget > label,
+.page-pedia #views-exposed-form-pedia-tag-page-mefibs-form-filter .views-exposed-widget > label {
   text-align: center;
   padding: 10px 0;
   border-bottom: 1px solid #eee;
 }
-.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-exposed-widget .views-widget {
+.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-exposed-widget .views-widget,
+.page-pedia #views-exposed-form-pedia-tag-page-mefibs-form-filter .views-exposed-widget .views-widget {
   padding: 16px 25px 15px 25px;
 }
-#views-exposed-form-page-arch-page-3-mefibs-form-filter > div > div {
+.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter > div > div,
+.page-pedia #views-exposed-form-pedia-tag-page-mefibs-form-filter > div > div {
   text-align: center;
 }
-.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter > div > div > div {
+.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter > div > div > div,
+.page-pedia #views-exposed-form-pedia-tag-page-mefibs-form-filter > div > div > div {
   display: inline-block;
 }
-.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-exposed-form .form-item {
+.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-exposed-form .form-item,
+.page-pedia #views-exposed-form-pedia-tag-page-mefibs-form-filter .views-exposed-form .form-item {
   margin-top: 0;
   margin-bottom: 0;
   text-align: right;
