@@ -597,9 +597,6 @@
   text-align: center;
   margin-top: 30px;
 }
-.page-taxonomy.page-pedia #content > div.tabs {
-  display: none;
-}
 .node-type-architect h1#page-title,
 .page-taxonomy.page-tag h1#page-title {
   display: none;
