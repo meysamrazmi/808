@@ -1,4 +1,9 @@
 $(function() {
+    $(document).ready(function () {
+        $.getScript('https://civil808.com/sites/all/themes/sara/js/lib/jquery.elevateZoom-3.0.8.min.js', function () {
+            $(".images-zoom img").elevateZoom({easing: true, scrollZoom: true});
+        });
+    });
 
     // Set the date we're counting down to
     var countDownDate = new Date("Nov 23, 2018 00:00:00").getTime();
