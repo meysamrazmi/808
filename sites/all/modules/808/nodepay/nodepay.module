@@ -272,7 +272,7 @@ function nodebuyes_report($id) {
  * todo: this function is for vip discount calculation. but this is dumbest code i've ever coded. so I should change the hole function
  */
 function nodepay_uc_order($op, $order, $arg) {
-	if ($op == 'presave') {
+	if ($op == 'presave' && FALSE) { //i putted this " && FALSE" to disable vip discounts in festivals
 		//check to see if order is in checkout or not
 		if (uc_order_status_data($order->order_status, 'state') == 'in_checkout') {
 			$subtotal = $vip_items_count = $not_vip_items_count = 0;
