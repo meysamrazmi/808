@@ -1025,69 +1025,44 @@ function custom_services_services_resources(){
                         ),
                     ),
                 ),
+                'type' => array(
+                    'help' => 'Get the type of the content',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'content_resource'),
+                    'callback' => 'content_resource_content_type',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'nid',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'nid of content',
+                        ),
+                        array(
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
+                        ),
+                    ),
+                ),
             ),
         ),
         'payment' => array(
-            'operations' => array(
-                'index'  => array(),
-                'retrieve' => array(),
-                'create' => array(),
-            ),
             'actions' => array(
                 'pre_payment' => array(
                     'help' => 'request before payment in app',
                     'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'payment_resource'),
-                    'callback' => 'pre_payment',
+                    'callback' => 'payment_resource_pre_payment',
                     'access callback' => 'user_access',
                     'access arguments' => array('access content'),
                     'access arguments append' => FALSE,
                     'args' => array(
-                        array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('data' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'type',
-                            'type' => 'string',
-                            'description' => 'The type of payment',
-                            'source' => array('data' => 'type'),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'price',
-                            'type' => 'int',
-                            'description' => 'The price for charge.',
-                            'source' => array('data' => 'price'),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('data' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
-                        ),
-                    ),
-                ),
-                'final_payment' => array(
-                    'help' => 'request for verify payment in app',
-                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'payment_resource'),
-                    'callback' => 'final_payment',
-                    'access callback' => 'user_access',
-                    'access arguments' => array('access content'),
-                    'access arguments append' => FALSE,
-                    'args' => array(
-                        array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('data' => 'hash'),
-                            'optional' => False,
-                        ),
+
                         array(
                             'name' => 'data',
                             'type' => 'array',
@@ -1095,34 +1070,35 @@ function custom_services_services_resources(){
                             'source' => 'data',
                             'optional' => False,
                         ),
-                        array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('data' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
-                        ),
                     ),
                 ),
-            ),
-            'targeted_actions' => array(),
-            'relationships' => array(
-                'status' => array(
-                    'help' => 'request for status of the transaction',
+                'final_payment' => array(
+                    'help' => 'request for verify payment in app',
                     'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'payment_resource'),
-                    'callback' => 'get_status',
+                    'callback' => 'payment_resource_final_payment',
                     'access callback' => 'user_access',
                     'access arguments' => array('access content'),
                     'access arguments append' => FALSE,
                     'args' => array(
                         array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('param' => 'hash'),
+                            'name' => 'data',
+                            'type' => 'array',
+                            'description' => 'The data for transaction',
+                            'source' => 'data',
                             'optional' => False,
                         ),
+                    ),
+                ),
+            ),
+            'relationships' => array(
+                'status' => array(
+                    'help' => 'request for status of the transaction',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'payment_resource'),
+                    'callback' => 'payment_resource_get_status',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
                         array(
                             'name' => 'id',
                             'type' => 'int',
@@ -1131,12 +1107,12 @@ function custom_services_services_resources(){
                             'optional' => False,
                         ),
                         array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('data' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
                         ),
                     ),
                 ),

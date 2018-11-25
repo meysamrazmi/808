@@ -747,4 +747,24 @@ function content_search_list_v1($parameter){
 
     return array("contents" => $contents , "count" => $type_count);
 }
+
+
+function content_resource_content_type($nid , $parameter){
+    if(!(hash_true($parameter["hash"] , "content"))) return services_error(t('Failed to access'), 10);
+    if(empty($parameter["source"]) || empty($parameter["version"])) return services_error("source or version is empty!" , 11);
+
+    $function = get_compatible_function_name("/content/nid/type" , "GET" , $parameter["source"] , $parameter["version"]);
+
+    if(!empty($function) && strlen($function) > 0) {
+        $parameter["nid"] = $nid;
+        return call_user_func($function, $parameter);
+    }
+    return services_error(t('This version is not supported'), 11);
+}
+function content_type_v1($parameter){
+    $type = db_select("node")->fields("node" , array("type"))->condition("nid" , $parameter["nid"])->condition("status" , 1)->execute()->fetch();
+
+    if(empty($type)) return services_error("Invalid nid!" , 13);
+    return $type->type;
+}
 /*--------------------------------------------------------------------------------*/

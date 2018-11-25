@@ -214,11 +214,12 @@ function retrieve_question_v_1($parameter){
 
     $query = db_select("field_data_field_files" , "field_files");
     $query->join("file_managed" , "file" , "file.fid = field_files.field_files_fid");
-    $query->fields("file" , array("uri" , "filesize" , "filemime"));
+    $query->fields("file" , array("fid" , "uri" , "filesize" , "filemime"));
     $query->condition("field_files.entity_id" , $parameter["nid"]);
     $query->condition("field_files.bundle" , "questions");
     $files = $query->execute()->fetchAll();
     foreach ($files as $file) {
+        $file->fid = (int) $file->fid;
         $file->uri = generate_file_address($file->uri);
         $file->filesize = (int) $file->filesize;
     }
@@ -524,15 +525,15 @@ function comments_of_question_v_1($parameter){
     $query = db_select("field_data_field_files" , "field_files");
     $query->leftJoin("file_managed" , "files" , "field_files.field_files_fid = files.fid");
     $query->fields("field_files" , array("entity_id"));
-    $query->fields("files" , array("uri" , "filesize"));
+    $query->fields("files" , array("fid" , "uri" , "filesize" , "filemime"));
     $query->condition("field_files.entity_id" , $cids , "IN");
     $query->condition("field_files.entity_type" , "comment");
     $query->condition("field_files.bundle" , "comment_node_questions");
     $files = $query->execute()->fetchAll();
     foreach ($files as $file) {
         $file->uri = generate_file_address($file->uri);
-        if(isset($comments_key[$file->entity_id])) array_push($comments_key[$file->entity_id]->files , array("uri" => $file->uri , "filesize" => (int) $file->filesize));
-        if(isset($replies_key[$file->entity_id])) array_push($replies_key[$file->entity_id]->files , array("uri" => $file->uri , "filesize" => (int) $file->filesize));
+        if(isset($comments_key[$file->entity_id])) array_push($comments_key[$file->entity_id]->files , array("fid" => (int) $file->fid , "uri" => $file->uri , "filesize" => (int) $file->filesize , "filemime" => $file->filemime));
+        if(isset($replies_key[$file->entity_id])) array_push($replies_key[$file->entity_id]->files , array("fid" => (int) $file->fid , "uri" => $file->uri , "filesize" => (int) $file->filesize , "filemime" => $file->filemime));
     }
     $replies = array_values($replies_key);
 

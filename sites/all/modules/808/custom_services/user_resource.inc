@@ -593,6 +593,7 @@ function profile_data($uid){
     $query->addField("mobile" , "field_mobile_value" , "mobile");
     $query->addField("job" , "field_job_value" , "job");
     $query->condition("profile.uid" , $uid);
+    $query->condition("profile.type" , "main");
     $profile = $query->execute()->fetch();
 
     $profile->user_point = userpoints_get_current_points($uid, 'all');
