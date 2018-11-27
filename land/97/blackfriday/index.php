@@ -245,7 +245,7 @@
                     </div>
                     <div class="download">
                         <a href="SeismoStruct-Info.pdf" class="btn-default">دانلود فایل راهنما</a>
-                        <a href="https://civil808.com/node/11526" target="_blank" class="btn-default">مشاهده ایبوک</a>
+                        <a href="https://civil808.com/node/20426" target="_blank" class="btn-default">مشاهده ایبوک</a>
                     </div>
                 </div>
             </div>

@@ -73,13 +73,6 @@ function custom_services_services_resources(){
                     'access arguments append' => FALSE,
                     'args' => array(
                         array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('data' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
                             'name' => 'data',
                             'type' => 'array',
                             'description' => 'The hash of url.',
@@ -88,36 +81,20 @@ function custom_services_services_resources(){
                         ),
                     ),
                 ),
-            ),
-            'targeted_actions' => array(
-                'edit' => array(
-                    'help' => 'Return data of this version',
+                'update' => array(
+                    'help' => 'Update data of a version',
                     'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'version_data_resource'),
-                    'callback' => 'version_service_resource_edit',
+                    'callback' => 'version_service_resource_update',
                     'access callback' => 'user_access',
                     'access arguments' => array('access content'),
                     'access arguments append' => FALSE,
                     'args' => array(
                         array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('data' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
                             'name' => 'vid',
-                            'type' => 'int',
-                            'description' => 'The vid of versions',
-                            'source' => array('path' => 0),
                             'optional' => FALSE,
-                        ),
-                        array(
-                            'name' => 'type',
-                            'type' => 'string',
-                            'description' => 'The type of this version.',
-                            'source' => array('param' => 'type'),
-                            'optional' => False,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'The vid of the version to update',
                         ),
                         array(
                             'name' => 'data',

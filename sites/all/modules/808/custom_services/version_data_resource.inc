@@ -25,8 +25,9 @@ function version_service_resource_retrieve($hash , $vid , $type){
     else
         return services_error(t('This version and type is not found'), 17);
 }
-function version_service_resource_create($hash , $data){
-    if(!(hash_true($hash , "versions"))) return "failed to access";
+function version_service_resource_create($data){
+    global $user;
+    if(!in_array("administrator" , $user->roles)) return services_error("You are not admin" , 403);
 
     if(empty($data['version_id'] || $data['force_update'] || $data['type'])){
         return services_error(t('version_id, force_update and type field is required!'), 15);
@@ -44,23 +45,27 @@ function version_service_resource_create($hash , $data){
         ))
         ->execute();
 
-    if($version == 1) return true;
+    if($version > 0) return true;
     else return services_error(t('Insert version data was not successful!'), 14);
 }
-function version_service_resource_edit($hash , $vid , $type , $data){
-    if(!(hash_true($hash , "versions"))) return "failed to access";
+function version_service_resource_update($vid , $data){
+    global $user;
+    if(!in_array("administrator" , $user->roles)) return services_error("You are not admin" , 403);
+    if(empty($data['type'])){
+        return services_error(t('type field is required!'), 15);
+    }
 
     $query = db_select('api_app_version' , 'version');
     $query->fields('version' , array('id' , 'description' , 'update_link' , 'ebook_key'));
     $query->condition('version.vid' , $vid);
-    $query->condition('version.app_type' , $type);
+    $query->condition('version.app_type' , $data["type"]);
     $result = $query->execute()->fetch();
 
     if(empty($result)) return services_error(t('This version and type is not found'), 17);
 
     $id = $result->id;
     if(!isset($data['vid'])) $data['vid'] = $vid;
-    if(!isset($data['type'])) $data['type'] = $type;
+    if(!isset($data['new_type'])) $data['new_type'] = $data["type"];
     if(!isset($data['description'])) $data['description'] = $result->description;
     if(!isset($data['force_update'])) $data['force_update'] = $result->force_update;
     if(!isset($data['update_link'])) $data['update_link'] = $result->update_link;
@@ -69,7 +74,7 @@ function version_service_resource_edit($hash , $vid , $type , $data){
     $version_update = db_update('api_app_version')
         ->fields(array(
             'vid' => $data['vid'],
-            'app_type' => $data['type'],
+            'app_type' => $data['new_type'],
             'description' => $data['description'],
             'force_update' => $data['force_update'],
             'update_link' => $data['update_link'],
@@ -78,6 +83,6 @@ function version_service_resource_edit($hash , $vid , $type , $data){
         ->condition('id',$id)
         ->execute();
 
-    if($version_update == 1) return true;
+    if($version_update > 0) return true;
     else return services_error(t('Update version data was not successful!'), 14);
 }
