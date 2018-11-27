@@ -47,14 +47,15 @@
         text-align: center;
         > .field-items > .field-item,
         > .field-items > .node,
-        > .field-items .owl-item > .field-item{
+        > .field-items .owl-item > .field-item,
+        > .field-items .owl-item .node{
             width: 200px;
             display: inline-block;
             vertical-align: top;
             background-color: #fff;
             box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
             padding: 0px;
-            margin: 14px 14px;
+            margin: 14px 14px !important;
             float:none;
             &:hover{
                 box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -74,17 +75,21 @@
                 min-height: 205px;
                 max-height: 205px;
             }
-            > .node:not(.node-product):not(.node-product-kit){
+            .node:not(.node-product):not(.node-product-kit){
                 height: 205px;
+                min-height: 205px;
+                max-height: 205px;
             }
             > .field-item .group-header .field-name-field-pictures,
             > .node .group-header .field-name-field-pictures,
+            .owl-item > .node .group-header .field-name-field-pictures,
             .owl-item > .field-item .group-header .field-name-field-pictures{
                 display:block;
             }
             > .field-item .group-header .field-name-title h2,
             > .node .group-header .field-name-title h2,
-            .owl-item > .field-item .group-header .field-name-title h2{
+            .owl-item > .field-item .group-header .field-name-title h2,
+            .owl-item > .node .group-header .field-name-title h2{
                 margin:0px;
                 a{
                     padding: 0px 10px 0px 10px;
@@ -99,20 +104,28 @@
                     }
                 }
             }
-            .owl-item > .field-item .group-header .field-name-title h2 a{
+            .owl-item > .field-item .group-header .field-name-title h2 a,
+            .owl-item > .node .group-header .field-name-title h2 a{
                 margin-top: 10px;
             }
         }
-        &.field-name-field-shopproduct{
+        &.field-name-field-shopproduct,
+        &#product{
             > .field-items > .field-item ,
-            > .field-items .owl-item > .field-item{
+            > .field-items > .node ,
+            > .field-items .owl-item > .field-item,
+            > .field-items .owl-item > .node{
                 background-color: #fff;
                 box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
             }
             .node-product.node-teaser,
             .node-product-kit.node-teaser{
                 width:100%;
-                margin: 0px !important;
+                max-width: 200px;
+                //margin: 0px !important;
+            }
+            img{
+                margin: auto;
             }
         }
         &.field-name-field-filmmortabet .node-film.node-teaser{
@@ -180,28 +193,45 @@
                         display: block;
                         color: #02abaa;
                     }
-                    &.podcast808:before{
+                    &.podcast808:before,
+                    &.podcast:before{
                         content: "\f439";
                     }
-                    &.entesharat:before{
+                    &.education:before{
+                        content:"\f370";
+                    }
+                    &.questions:before{
+                        content:"\f186";
+                    }
+                    &.blog:before{
+                        content: '\f39e';
+                    }
+                    &.entesharat:before,
+                    &.publication:before{
                         content: "\f226";
                     }
-                    &.akhbar:before{
+                    &.akhbar:before,
+                    &.article:before{
                         content: "\f395";
                     }
-                    &.shopproduct:before{
+                    &.shopproduct:before,
+                    &.product:before{
                         content: "\f110";
                     }
-                    &.edu-college:before{
+                    &.edu-college:before,
+                    &.college:before{
                         content: "\f474";
                     }
-                    &.filmmortabet:before{
+                    &.filmmortabet:before,
+                    &.film:before{
                         content: "\f22f";
                     }
-                    &.porojhe:before{
+                    &.porojhe:before,
+                    &.gallerynew:before{
                         content: "\f21f";
                     }
-                    &.maghalat:before{
+                    &.maghalat:before,
+                    &.designteam:before{
                         content: "\f192";
                     }
                     &.memaran:before{
@@ -293,9 +323,6 @@
     text-align: center;
     margin-top: 30px;
 }
-.page-taxonomy.page-pedia #content > div.tabs {
-    display: none;
-}
 .node-type-architect h1#page-title,
 .page-taxonomy.page-tag h1#page-title{
     display:none;
@@ -307,7 +334,7 @@
     color: white;
     padding: 54px 24px;
     width: 100vw;
-    margin-right: calc(50% - 50vw);
+    margin-right: ~"calc(50% - 50vw)";
     box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
     text-shadow: 0px 2px 7px rgba(0, 0, 0, 0.75);
 }
@@ -336,42 +363,45 @@
     padding: 0px;
     margin: 25px 10px 0 10px;
     border-radius: 50%;
+    .field-name-field-image img,
+    .views-field-field-image img{
+        overflow: hidden;
+        box-shadow: 0px 0px 20px -2px #aaa;
+        padding: 0px !important;
+        float: none !important;
+        border-radius: 50%;
+        max-width: 150px;
+        max-height: 150px;
+        width: 100%;
+    }
+    .field-name-title,
+    .views-field-name{
+        width: 100%;
+        h2{
+            width: 100%;
+            border-bottom: 0px;
+            /* height: 41px; */
+            /* overflow: hidden; */
+            margin: 10px 0px 10px 4px;
+            padding: 0px;
+            line-height: 29px;
+            font-weight: 400;
+            a{
+                padding: 10px 0px;
+                font-size: 17px;
+                color: black !important;
+            }
+        }
+    }
 }
 
-.node-architect.node-teaser .field-name-field-image img {
-    overflow: hidden;
-    box-shadow: 0px 0px 20px -2px #aaa;
-    padding: 0px !important;
-    float: none !important;
-    border-radius: 50%;
-    max-width: 150px;
-    max-height: 150px;
-    width: 100%;
-}
 .architects-homepage .view-content{
     text-align:center;
-}
-.node-architect.node-teaser .field-name-title{
-    width: 100%;
 }
 .node-architect.node-teaser{
     border-bottom: 0px solid #eee !important;
     padding-bottom: 0px !important;
     margin-bottom: 0px !important;
-}
-.node-architect.node-teaser .field-name-title h2{
-    width: 100%;
-    border-bottom: 0px;
-    /* height: 41px; */
-    /* overflow: hidden; */
-    margin: 10px 0px 10px 4px;
-    padding: 0px;
-    line-height: 29px;
-    font-weight: 400;
-}
-.node-architect.node-teaser .field-name-title h2 a{
-    padding: 10px 0px;
-    font-size: 17px;
 }
 .architects-homepage #page-title{
     display: block !important;
@@ -381,7 +411,7 @@
 }
 .architects-homepage .view-header{
     text-align: right;
-    font-family: iransans !important;
+    font-family: irans !important;
     display: inline-block;
     color: #555;
     transition: all 0.4s ease;
@@ -420,18 +450,8 @@
     width:430px;
 }
 /*-----------------pedia-------------------*/
-.page-pedia div#edit-title-wrapper input#edit-title{
-    width:430px;
-}
-.page-pedia div#edit-title-wrapper:before {
-    content: "\f349";
-    font-family: mat;
-    font-size: 15px;
-    width: 68px;
-    text-align: center;
-    color: #c5c;
-}
-.page-pedia #block-views-exp-page-arch-page-3 .views-exposed-widgets #edit-title-wrapper{
+.page-pedia #block-views-exp-page-arch-page-3 .views-exposed-widgets #edit-title-wrapper,
+.page-pedia #block-views-exp-pedia-tag-page .views-exposed-widgets #edit-name-wrapper{
     width: 100vw;
     background: rgba(238, 238, 238, 0.5);
     margin-right: calc(50% - 50vw);
@@ -440,8 +460,33 @@
     flex-direction: row-reverse;
     align-items: baseline;
     justify-content: center;
+    input{
+        width:430px;
+    }
+    label{
+        display: none;
+    }
+    &:before {
+        content: "\f349";
+        font-family: mat;
+        font-size: 22px;
+        width: 68px;
+        text-align: center;
+        color: #c5c;
+    }
+    #edit-field-dastebandimemar-tid-1-wrapper,
+    #edit-field-dastebandimemar-tid-wrapper{
+        display: none;
+    }
 }
-.page-pedia #block-views-exp-page-arch-page-3{
+.page-pedia #block-views-exp-pedia-tag-page{
+    #edit-field-dastebandimemar-tid-1-wrapper,
+    #edit-field-dastebandimemar-tid-wrapper{
+        display: none;
+    }
+}
+.page-pedia #block-views-exp-page-arch-page-3,
+.page-pedia #block-views-exp-pedia-tag-page{
     position: relative;
 }
 .architects-homepage .vefl-layout ,
@@ -475,47 +520,55 @@
 .page-pedia.node-type-architect .container.main{
     margin-top: 15px !important;
 }
-.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-exposed-widget{
-    background-color: white;
-    box-shadow: 0 2px 2px #edeef0;
-    border: 1px solid #eee;
-    padding: 0px;
-    margin: 0 20px;
-    width: 215px;
-}
-.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-widget-edit-mefibs-form-filter-type{
-    max-width: 427px;
-    width: auto;
-}
-.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter > div > div > div > div{
-    display: flex;
-    align-items: stretch;
-}
-.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-widget-edit-mefibs-form-filter-type .bef-checkboxes{
-    display: flex;
-    flex-wrap: wrap;
-}
-.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-widget-edit-mefibs-form-filter-type .form-type-bef-checkbox {
-    width: 49%;
-}
-.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-exposed-widget > label {
-    text-align: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
-}
-.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-exposed-widget .views-widget{
-    padding: 16px 25px 15px 25px;
-}
-#views-exposed-form-page-arch-page-3-mefibs-form-filter > div > div{
-    text-align:center;
-}
-.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter > div > div > div{
-    display: inline-block;
-}
-.page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter .views-exposed-form .form-item{
-    margin-top: 0;
-    margin-bottom: 0;
-    text-align: right;
+.page-pedia{
+    #views-exposed-form-page-arch-page-3-mefibs-form-filter,#views-exposed-form-pedia-tag-page-mefibs-form-filter{
+        > div > div > div > div{
+            display: flex;
+            align-items: stretch;
+        }
+        .views-widget-edit-mefibs-form-filter-type,
+        .views-widget-edit-mefibs-form-filter-field-dastebandimemar-tid-1{
+            max-width: 427px;
+            width: auto !important;
+            .bef-checkboxes{
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .form-type-bef-checkbox {
+                width: 49%;
+            }
+        }
+        .views-exposed-widget{
+            background-color: white;
+            box-shadow: 0 2px 2px #edeef0;
+            border: 1px solid #eee;
+            padding: 0px;
+            margin: 0 20px;
+            width: 215px;
+            &#edit-mefibs-form-filter-name-wrapper{
+                display: none;
+            }
+        }
+        .views-exposed-widget > label {
+            text-align: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .views-exposed-widget .views-widget{
+            padding: 16px 25px 15px 25px;
+        }
+        > div > div{
+            text-align:center;
+        }
+        > div > div > div{
+            display: inline-block;
+        }
+        .views-exposed-form .form-item{
+            margin-top: 0;
+            margin-bottom: 0;
+            text-align: right;
+        }
+    }
 }
 .page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter #edit-mefibs-form-filter-title-wrapper{
     display:none;
