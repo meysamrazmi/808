@@ -430,7 +430,7 @@ body.page-node:not(.page-types):not(.role-anonymous-user) .container #page-title
   width: 100%;
 }
 .pane-gloevents .pane-content .view-gloevents .view-content .views-row .views-field-title span a {
-  color: #222 !important;
+  color: #222!important;
   text-align: center;
   width: 100%;
   display: block;

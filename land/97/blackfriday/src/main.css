@@ -336,7 +336,7 @@ section.panel.main {
 	font-size: 2.5rem;
 	position: relative;
 	border-bottom: 2px solid #2196F3;
-	min-height: 100vh;
+	min-height: 49vw;
 }
 section.panel.main:before {
 	/* content: ""; */
