@@ -1586,33 +1586,21 @@ window.onload = function(){
 			setInterval(createDots, 1000/30);
 		});
 	}
-	if($('.messagwrapper').length){
-		$.getScript('https://civil808.com/sites/all/themes/sara/js/lib/PNotify.js', function(){
-			$.getScript('https://civil808.com/sites/all/themes/sara/js/lib/PNotifyButtons.js', function(){
-				PNotify.defaults.delay = 15000
-				$('.messagwrapper .messages').each(function(){
-					$(this).children('.element-invisible').remove() //remove all icons and titles
-					var message = $(this).text().trim()
-					//admin error messages
-					if((message.indexOf('module') !== -1 || message.indexOf('public_html') !== -1) && !$('.role-administrator').length)
-						return true
-
-					$(this).remove()
-					var type = 'info'
-					if($(this).hasClass("status")){
-						type = 'success'
-					}else if($(this).hasClass("error")){
-						type = 'error'
-					}
-					PNotify.alert({
-						type: type,
+	if($('.messagwrapper').length && false){
+		$('.messagwrapper .messages').each(function(){
+			$(this).children('*').remove()
+			var message = $(this).text().trim()
+			var classes = $(this).attr('class').replace("messages", "")
+			$.getScript('https://civil808.com/sites/all/themes/sara/js/lib/PNotify.js', function(){
+				$.getScript('https://civil808.com/sites/all/themes/sara/js/lib/PNotifyButtons.js', function(){
+					PNotify.success({
 						text: message,
-						icon: false,
 						textTrusted: true,
+						addClass: classes
 					})
-				})
+				});
 			});
-		});
+		})
 	}
 };
 //color functions
