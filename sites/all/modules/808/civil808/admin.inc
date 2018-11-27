@@ -285,10 +285,10 @@ function merge_experts_form($from, &$form_state){
 				'#title' => t('source tids'),
 				'#description' => t('insert source tid')
 			);
-			$form['experts'. $i]['destionation_tid'. $i] = array(
+			$form['experts'. $i]['destination_tid'. $i] = array(
 				'#type' => 'textfield',
-				'#title' => t('destionation tid'),
-				'#description' => t('insert destionation tid. if tid is equal to 0 the taxonomy will be deleted.')
+				'#title' => t('destination tid'),
+				'#description' => t('insert destination tid. if tid is equal to 0 the taxonomy will be deleted.')
 			);
 			$form['experts'. $i]['message'. $i] = array(
 				'#type' => 'checkbox',
@@ -310,20 +310,31 @@ function merge_experts_form_validate($from, &$form_state){
 	try{
 		for($i = 0; $i < 5; $i++){
 			if (strlen($form_state['values']['source_tid'. $i]) > 0) {
-				if (strlen($form_state['values']['destionation_tid'. $i]) == 0) {
-					form_set_error('destionation_tid'. $i, t('fill the blank field'));
+				if (strlen($form_state['values']['destination_tid'. $i]) == 0) {
+					form_set_error('destination_tid'. $i, t('fill the blank field'));
 				}
-				else if($form_state['values']['source_tid'. $i] == $form_state['values']['destionation_tid'. $i]){
+				if($form_state['values']['source_tid'. $i] == $form_state['values']['destination_tid'. $i]){
 					form_set_error('source_tid'. $i, 'تخصص مبدا و مقصد با هم برابراند.');
 				}
-				else if(empty(taxonomy_term_load($form_state['values']['source_tid'. $i]))){
+                $taxonomy = db_select("taxonomy_term_data" , "term")
+                    ->fields("term" , array("tid"))
+                    ->condition("tid" , $form_state['values']['source_tid'. $i])
+                    ->condition("vid" , 28)
+                    ->execute()->fetch();
+				if(empty($taxonomy)){
 					form_set_error('source_tid'. $i, 'تخصص مبدا وجود ندارد');
 				}
-				else if(($form_state['values']['destionation_tid'. $i] != 0) && (empty(taxonomy_term_load($form_state['values']['destionation_tid'. $i])))){
-					form_set_error('destionation_tid'. $i, 'تخصص مقصد وجود ندارد');
+				if(($form_state['values']['destination_tid'. $i] != 0)){
+				    $taxonomy = db_select("taxonomy_term_data" , "term")
+                        ->fields("term" , array("tid"))
+                        ->condition("tid" , $form_state['values']['destination_tid'. $i])
+				        ->condition("vid" , 28)
+                        ->execute()->fetch();
+				    if(empty($taxonomy))
+					    form_set_error('destination_tid'. $i, 'تخصص مقصد وجود ندارد.');
 				}
 			}
-			else if(strlen($form_state['values']['destionation_tid'. $i]) > 0) {
+			else if(strlen($form_state['values']['destination_tid'. $i]) > 0) {
 				form_set_error('source_tid'. $i, t('fill the blank field'));
 			}
 		}
@@ -336,15 +347,15 @@ function merge_experts_form_validate($from, &$form_state){
 function merge_experts_form_submit($from, &$form_state){
 	try{
 		for($i = 0; $i < 5; $i++){
-			if(strlen($form_state['values']['source_tid'. $i]) == 0 && strlen($form_state['values']['destionation_tid'. $i]) == 0){
+			if(strlen($form_state['values']['source_tid'. $i]) == 0 && strlen($form_state['values']['destination_tid'. $i]) == 0){
 				continue; //skip when both are null
 			}			
 			$source_term = taxonomy_term_load($form_state['values']['source_tid'. $i]);
-			if($form_state['values']['destionation_tid'. $i] != 0){
-				$destionation_term = taxonomy_term_load($form_state['values']['destionation_tid'. $i]);
+			if($form_state['values']['destination_tid'. $i] != 0){
+				$destination_term = taxonomy_term_load($form_state['values']['destination_tid'. $i]);
 			}
 
-			/*check for duplicate source id for single to mltiple action*/
+			/*check for duplicate source id for single to multiple action*/
 			$j = $i+1;
 			if($i < 4 && ($form_state['values']['source_tid'. $i] == $form_state['values']['source_tid'. $j]) ){
 				$delete_expert = false; //prevent from deleting source term 
@@ -352,6 +363,15 @@ function merge_experts_form_submit($from, &$form_state){
 				$delete_expert = true; //delete after merging
 			}
 			/*get the profile ids that are related to the source term*/
+            $query = db_select("field_data_field_experts" , "experts");
+            $query->fields("experts" , array("entity_type" , "bundle" , "entity_id" , "field_data_field_experts"));
+			$and1 = db_and();
+			$and2 = db_and();
+			$and1->condition("experts.entity_type" , "profile2")->condition("experts.bundle" , "main");
+			$and2->condition("experts.entity_type" , "node")->condition("experts.bundle" , "questions");
+            $query->condition(db_or()->condition($and1)->condition($and2));
+            $use_term = $query->execute()->fetchAll();
+
 			$profile_ids = db_select('field_data_field_experts', 'e')
 				->fields('e', array('entity_id'))
 				->condition('entity_type', 'profile2')
@@ -360,7 +380,7 @@ function merge_experts_form_submit($from, &$form_state){
 				->execute()->fetchAll();
 			
 			if(empty($profile_ids)){
-				if($form_state['values']['destionation_tid'. $i] == 0){
+				if($form_state['values']['destination_tid'. $i] == 0){
 					taxonomy_term_delete($source_term->tid);
 					drupal_set_message('تخصص ' . $source_term->name . ' حذف شد. ');	
 				}
@@ -370,7 +390,7 @@ function merge_experts_form_submit($from, &$form_state){
 			foreach($profile_ids as $profile_id){
 				$profile = profile2_load($profile_id->entity_id);
 				
-				if($form_state['values']['destionation_tid'. $i] == 0){
+				if($form_state['values']['destination_tid'. $i] == 0){
 					foreach($profile->field_experts['und'] as $key=>$field_expert){
 						if($field_expert['tid'] == $source_term->tid)
 							unset($profile->field_experts['und'][$key]);
@@ -381,9 +401,11 @@ function merge_experts_form_submit($from, &$form_state){
 					$message_body = ' تخصص '. $source_term->name . ' شما حذف شد <br>'. 
 					'در صورت نادرست بودن آن ، تخصص خود را ویراش کنید و از همین طریق  به ما اطلاع دهید';
 				}
-				else{ /*merging taxonomy*/
-					if(!in_array_r($destionation_term->tid, $profile->field_experts['und'])){ /*check that the experts are unique*/
-						array_push($profile->field_experts['und'], ['tid' => $destionation_term->tid]);
+				else{
+				    /*merging taxonomy*/
+					if(!in_array_r($destination_term->tid, $profile->field_experts['und'])){
+					    /*check that the experts are unique*/
+						array_push($profile->field_experts['und'], ['tid' => $destination_term->tid]);
 					}
 					if($delete_expert){
 						foreach($profile->field_experts['und'] as $key=>$field_expert){
@@ -395,7 +417,7 @@ function merge_experts_form_submit($from, &$form_state){
 					}
 					
 					$message_title = 'تخصص شما تغییر کرد';
-					$message_body = ' تخصص '. $source_term->name .' شما به '. $destionation_term->name .' تغییر کرد <br>'. 
+					$message_body = ' تخصص '. $source_term->name .' شما به '. $destination_term->name .' تغییر کرد <br>'.
 					'در صورت نادرست بودن آن ، تخصص خود را ویراش کنید و از همین طریق  به ما اطلاع دهید';
 				}
 				profile2_save($profile);
@@ -539,155 +561,55 @@ function discount_configuration_form_submit($from, &$form_state){
 function developer()
 {
     /*
-    $query = db_select("field_data_field_tag_is_not_expert" , "not_expert");
-    $query->fields("not_expert" , array("entity_id"));
-    $not_expert = $query->execute()->fetchCol();
-
-    $query = db_select("taxonomy_term_data" , "term");
-    $query->fields("term" , array("tid"));
-    $query->condition("term.vid" , 28);
-    $query->condition("term.tid" , $not_expert , "NOT IN");
-    $terms = $query->execute()->fetchCol();
-    adump($terms);
-    foreach ($terms as $term){
-        $query = db_select("field_data_field_tag_is_not_expert" , "not_expert");
-        $query->fields("not_expert" , array("entity_id"));
-        $query->condition("not_expert.entity_id" , $term);
-        $result = $query->execute()->fetchCol();
-        if(empty($result)){
-            db_insert("field_data_field_tag_is_not_expert")->fields(
-                array(
+    $query = db_select("field_data_body" , "body");
+    $query->fields("body" , array("entity_id" , "body_summary"));
+    $query->condition("body.bundle" , "architect");
+    $results = $query->execute()->fetchAll();
+    $emp = array();
+    foreach ($results as $result){
+        $tid = db_select("field_data_field_experts" , "experts")
+            ->fields("experts" , array("field_experts_tid"))
+            ->condition("bundle" , "architect")
+            ->condition("entity_id" , $result->entity_id)
+            ->execute()->fetch();
+        if(!empty($tid)) {
+            $repeat = db_select("field_data_field_meta_description", "description")
+                ->fields("description", array())
+                ->condition("description.entity_type", "taxonomy_term")
+                ->condition("description.bundle", "expert")
+                ->condition("description.entity_id", $tid->field_experts_tid)
+                ->execute()->fetchAll();
+            if (empty($repeat)) {
+                db_insert("field_data_field_meta_description")->fields(array(
                     "entity_type" => "taxonomy_term",
                     "bundle" => "expert",
                     "deleted" => 0,
-                    "entity_id" => $term,
-                    "revision_id" => $term,
+                    "entity_id" => $tid->field_experts_tid,
+                    "revision_id" => $tid->field_experts_tid,
                     "language" => "und",
                     "delta" => 0,
-                    "field_tag_is_not_expert_value" => 0,
-                )
-            )->execute();
-
-            db_insert("field_revision_field_tag_is_not_expert")->fields(
-                array(
+                    "field_meta_description_value" => $result->body_summary,
+                    "field_meta_description_format" => NULL
+                ))->execute();
+                db_insert("field_revision_field_meta_description")->fields(array(
                     "entity_type" => "taxonomy_term",
                     "bundle" => "expert",
                     "deleted" => 0,
-                    "entity_id" => $term,
-                    "revision_id" => $term,
+                    "entity_id" => $tid->field_experts_tid,
+                    "revision_id" => $tid->field_experts_tid,
                     "language" => "und",
                     "delta" => 0,
-                    "field_tag_is_not_expert_value" => 0,
-                )
-            )->execute();
-        }
-    }
-    */
-    /*
-    $query = db_select("field_data_field_experts" , "field_experts")->distinct();
-    $query->fields("field_experts" , array("entity_id"))
-        ->condition("field_experts.entity_type" , "node")->condition("field_experts.bundle" , "architect");
-    $pedias = $query->execute()->fetchCol();
-    foreach ($pedias as $pedia){
-        $nids = array();
-        $query = db_select("field_data_field_maghalat", "pedia");
-        $query->fields("pedia" , array("field_maghalat_nid"));
-        $query->condition("pedia.entity_id" , $pedia);
-        $nids = array_merge($nids , $query->execute()->fetchCol());
-
-        $query = db_select("field_data_field_akhbar", "pedia");
-        $query->fields("pedia" , array("field_akhbar_nid"));
-        $query->condition("pedia.entity_id" , $pedia);
-        $nids = array_merge($nids , $query->execute()->fetchCol());
-
-        $query = db_select("field_data_field_entesharat", "pedia");
-        $query->fields("pedia" , array("field_entesharat_nid"));
-        $query->condition("pedia.entity_id" , $pedia);
-        $nids = array_merge($nids , $query->execute()->fetchCol());
-
-        $query = db_select("field_data_field_porojhe", "pedia");
-        $query->fields("pedia" , array("field_porojhe_nid"));
-        $query->condition("pedia.entity_id" , $pedia);
-        $nids = array_merge($nids , $query->execute()->fetchCol());
-
-        $query = db_select("field_data_field_shopproduct", "pedia");
-        $query->fields("pedia" , array("field_shopproduct_nid"));
-        $query->condition("pedia.entity_id" , $pedia);
-        $nids = array_merge($nids , $query->execute()->fetchCol());
-
-        $query = db_select("field_data_field_podcast808", "pedia");
-        $query->fields("pedia" , array("field_podcast808_nid"));
-        $query->condition("pedia.entity_id" , $pedia);
-        $nids = array_merge($nids , $query->execute()->fetchCol());
-
-        $query = db_select("field_data_field_edu_college", "pedia");
-        $query->fields("pedia" , array("field_edu_college_nid"));
-        $query->condition("pedia.entity_id" , $pedia);
-        $nids = array_merge($nids , $query->execute()->fetchCol());
-
-        $query = db_select("field_data_field_filmmortabet", "pedia");
-        $query->fields("pedia" , array("field_filmmortabet_nid"));
-        $query->condition("pedia.entity_id" , $pedia);
-        $nids = array_merge($nids , $query->execute()->fetchCol());
-
-        $nids = array_unique($nids);
-
-        $query = db_select("field_data_field_experts" , "field_experts");
-        $query->fields("field_experts" , array("field_experts_tid"))
-            ->condition("field_experts.entity_type" , "node")->condition("field_experts.bundle" , "architect")->condition("field_experts.entity_id" , $pedia);
-        $tids = $query->execute()->fetchCol();
-
-        foreach ($nids as $nid){
-            $node = node_load($nid);
-            if(!$node) continue;
-
-            foreach ($tids as $tid){
-                $query = db_select("field_data_field_experts" , "experts");
-                $query->fields("experts" , array("delta" , "field_experts_tid"));
-                $query->condition("experts.entity_type" , "node")
-                    ->condition("experts.bundle" , $node->type)
-                    ->condition("experts.entity_id" , $node->nid);
-                $query = $query->execute()->fetchAll();
-                $delta = 0;
-                $experts = array();
-                foreach ($query as $value){
-                    array_push($experts , $value->field_experts_tid);
-                    if($value->delta > $delta) $delta = $value->delta;
-                }
-                if(!empty($experts)) $delta = $delta + 1;
-
-                if(!in_array($tid , $experts)){
-                    db_insert("field_data_field_experts")
-                        ->fields(array(
-                            "entity_type" => "node",
-                            "bundle" => $node->type,
-                            "deleted" => 0,
-                            "entity_id" => $node->nid,
-                            "revision_id" => $node->nid,
-                            "language" => "und",
-                            "delta" => $delta,
-                            "field_experts_tid" => $tid
-                        ))
-                        ->execute();
-                    db_insert("field_revision_field_experts")
-                        ->fields(array(
-                            "entity_type" => "node",
-                            "bundle" => $node->type,
-                            "deleted" => 0,
-                            "entity_id" => $node->nid,
-                            "revision_id" => $node->nid,
-                            "language" => "und",
-                            "delta" => $delta,
-                            "field_experts_tid" => $tid
-                        ))
-                        ->execute();
-                }
+                    "field_meta_description_value" => $result->body_summary,
+                    "field_meta_description_format" => NULL
+                ))->execute();
             }
         }
-
+        else{
+            array_push($emp , $result->entity_id);
+        }
     }
-    adump($pedias);
     */
+
     /*
     $query = db_select("uc_product_stock" , "stock")->distinct();
     $query->join("node" , "node" , "node.nid = stock.nid and node.status = '1' ");

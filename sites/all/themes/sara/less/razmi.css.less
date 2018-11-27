@@ -1522,3 +1522,75 @@ form .field-type-file{
 		animation: loaded 16s linear;
 	}
 }
+
+.page-node, .page-gallery, .page-colleges, .page-shop, .page-pedia {
+	div.tabs{
+		.absolute(0; 45px; 0; ''; ''; 0);
+		overflow: hidden;
+		background: transparent !important;
+		padding-left: 47px;
+		transition: all 0.4s ease;
+		border: none !important;
+		border-radius: 25px;
+		margin-top: 10px;
+		display: none;
+		.role-editor& ,
+		.role-administrator& {
+			display: inline-block;
+			z-index: 1;
+		}
+		.before(' '; sans-serif; 25px; #fff);
+		&:before {
+			.absolute(40px; 40px;'';'';'';0);
+			content: '+';
+			text-align: center;
+			border-radius: 50%;
+			background: #ba68c8;
+			box-shadow: @z1;
+			margin: 2px 3px 0;
+			transition: all 0.3s ease;
+		}
+		&:hover {
+			background: #fff !important;
+			box-shadow: @z1;
+			width: 100%;
+			&:before {
+				transform: rotate(90deg);
+				background: #fff;
+				color: #ba68c8;
+			}
+		}
+		&.primary{
+			display: inline-block;
+			min-width: 400px;
+			border: none;
+			float: left;
+		}
+	}
+	ul.primary{
+		li {
+			float: left;
+			a {
+				background: #fff;
+				color: #444 !important;
+				border: 0;
+				margin: 6px 3px 0;
+				transition: all 0.3s ease;
+				border-radius: 0;
+				&:hover {box-shadow: @z1;}
+			}
+			&.active a {
+				border-bottom: 2px solid #a5a;
+				padding-bottom: 6px;
+			}
+		}
+	}
+	.action-links {
+		.absolute('';'';10px;'';'';50px);
+		background: transparent;
+		li a {color: #fff !important;}
+	}
+}
+.page-colleges div.tabs {
+	margin-top: 30px;
+}

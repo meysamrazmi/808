@@ -1593,6 +1593,10 @@ window.onload = function(){
 				$('.messagwrapper .messages').each(function(){
 					$(this).children('.element-invisible').remove() //remove all icons and titles
 					var message = $(this).text().trim()
+					//admin error messages
+					if((message.indexOf('module') !== -1 || message.indexOf('public_html') !== -1) && !$('.role-administrator').length)
+						return true
+
 					$(this).remove()
 					var type = 'info'
 					if($(this).hasClass("status")){

@@ -1852,7 +1852,7 @@ body:not(.uid-10628):not(.uid-3300):not(.uid-3989) .admin-error {
 }
 .owl-carousel .owl-item .owl-lazy {
   opacity: 0;
-  transition: opacity .4s ease;
+  transition: opacity 0.4s ease;
 }
 .owl-carousel .owl-item img {
   display: block;
@@ -1935,7 +1935,7 @@ body:not(.uid-10628):not(.uid-3300):not(.uid-3989) .admin-error {
   cursor: pointer;
   z-index: 1;
   -webkit-backface-visibility: hidden;
-  transition: transform .1s ease;
+  transition: transform 0.1s ease;
 }
 .owl-carousel .owl-video-play-icon:hover {
   -ms-transform: scale(1.3, 1.3);
@@ -1951,7 +1951,7 @@ body:not(.uid-10628):not(.uid-3300):not(.uid-3989) .admin-error {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
-  transition: opacity .4s ease;
+  transition: opacity 0.4s ease;
 }
 .owl-carousel .owl-video-frame {
   position: relative;
@@ -2508,7 +2508,7 @@ form .field-type-file .form-submit {
 .ui-pnotify .ui-pnotify-closer,
 .ui-pnotify .ui-pnotify-sticker {
   float: right;
-  margin-left: .5em;
+  margin-left: 0.5em;
   cursor: pointer;
 }
 .ui-pnotify .ui-pnotify-text {
@@ -2525,4 +2525,145 @@ form .field-type-file .form-submit {
   left: 0;
   background: rgba(0, 0, 0, 0.25);
   animation: loaded 16s linear;
+}
+.page-node div.tabs,
+.page-gallery div.tabs,
+.page-colleges div.tabs,
+.page-shop div.tabs,
+.page-pedia div.tabs {
+  position: absolute;
+  width: 0;
+  height: 45px;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background: transparent !important;
+  padding-left: 47px;
+  transition: all 0.4s ease;
+  border: none !important;
+  border-radius: 25px;
+  margin-top: 10px;
+  display: none;
+}
+.role-editor.page-node div.tabs,
+.role-editor.page-gallery div.tabs,
+.role-editor.page-colleges div.tabs,
+.role-editor.page-shop div.tabs,
+.role-editor.page-pedia div.tabs,
+.role-administrator.page-node div.tabs,
+.role-administrator.page-gallery div.tabs,
+.role-administrator.page-colleges div.tabs,
+.role-administrator.page-shop div.tabs,
+.role-administrator.page-pedia div.tabs {
+  display: inline-block;
+  z-index: 1;
+}
+.page-node div.tabs:before,
+.page-gallery div.tabs:before,
+.page-colleges div.tabs:before,
+.page-shop div.tabs:before,
+.page-pedia div.tabs:before {
+  content: "\ ";
+  font-family: sans-serif;
+  font-size: 25px;
+  color: #fff;
+}
+.page-node div.tabs:before,
+.page-gallery div.tabs:before,
+.page-colleges div.tabs:before,
+.page-shop div.tabs:before,
+.page-pedia div.tabs:before {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 0;
+  content: '+';
+  text-align: center;
+  border-radius: 50%;
+  background: #ba68c8;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  margin: 2px 3px 0;
+  transition: all 0.3s ease;
+}
+.page-node div.tabs:hover,
+.page-gallery div.tabs:hover,
+.page-colleges div.tabs:hover,
+.page-shop div.tabs:hover,
+.page-pedia div.tabs:hover {
+  background: #fff !important;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  width: 100%;
+}
+.page-node div.tabs:hover:before,
+.page-gallery div.tabs:hover:before,
+.page-colleges div.tabs:hover:before,
+.page-shop div.tabs:hover:before,
+.page-pedia div.tabs:hover:before {
+  transform: rotate(90deg);
+  background: #fff;
+  color: #ba68c8;
+}
+.page-node div.tabs.primary,
+.page-gallery div.tabs.primary,
+.page-colleges div.tabs.primary,
+.page-shop div.tabs.primary,
+.page-pedia div.tabs.primary {
+  display: inline-block;
+  min-width: 400px;
+  border: none;
+  float: left;
+}
+.page-node ul.primary li,
+.page-gallery ul.primary li,
+.page-colleges ul.primary li,
+.page-shop ul.primary li,
+.page-pedia ul.primary li {
+  float: left;
+}
+.page-node ul.primary li a,
+.page-gallery ul.primary li a,
+.page-colleges ul.primary li a,
+.page-shop ul.primary li a,
+.page-pedia ul.primary li a {
+  background: #fff;
+  color: #444 !important;
+  border: 0;
+  margin: 6px 3px 0;
+  transition: all 0.3s ease;
+  border-radius: 0;
+}
+.page-node ul.primary li a:hover,
+.page-gallery ul.primary li a:hover,
+.page-colleges ul.primary li a:hover,
+.page-shop ul.primary li a:hover,
+.page-pedia ul.primary li a:hover {
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+}
+.page-node ul.primary li.active a,
+.page-gallery ul.primary li.active a,
+.page-colleges ul.primary li.active a,
+.page-shop ul.primary li.active a,
+.page-pedia ul.primary li.active a {
+  border-bottom: 2px solid #a5a;
+  padding-bottom: 6px;
+}
+.page-node .action-links,
+.page-gallery .action-links,
+.page-colleges .action-links,
+.page-shop .action-links,
+.page-pedia .action-links {
+  position: absolute;
+  top: 10px;
+  left: 50px;
+  background: transparent;
+}
+.page-node .action-links li a,
+.page-gallery .action-links li a,
+.page-colleges .action-links li a,
+.page-shop .action-links li a,
+.page-pedia .action-links li a {
+  color: #fff !important;
+}
+.page-colleges div.tabs {
+  margin-top: 30px;
 }

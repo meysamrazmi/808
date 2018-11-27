@@ -551,6 +551,14 @@ section.report .links a:hover{
 	color: #a3c7fb  !important
 }
 
+section.college > p span{
+	background: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    padding: 7px 50px;
+    text-shadow: #7b0000 0.6px 0.3px;
+    border-radius: 3px;
+}
+
 
 .view-content{
 	max-width: 80%;
