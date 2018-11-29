@@ -28,83 +28,7 @@ $(document).ready(function () {
     $('.node.node-product.view-mode-full .group-left > .display-price,.node.node-product-kit.view-mode-full .group-left > .display-price').prepend('<span>قیمت نهایی:</span>');
 
 
-	/* --------------------------------------------start----------------------------------------------------------------
-    /*ancher of pedia node*/
-	$('.page-node.page-pedia .view-mode-full .group-anchor > div').prepend('<div class="divanchors"></div>');
 
-    if($('.page-node.page-pedia .field-type-node-reference').length){
-        $('.page-node.page-pedia .field-type-node-reference').each(function(){
-            var anchclass = $(this).attr('class').split(" ")[1].substr(17);
-            var spananch = $(this).find('.field-label').text().slice(0,-2);
-            $('.divanchors').append('<a class="'+ anchclass +'" href="#'+anchclass+'"><span>'+spananch+'</span></a>');
-            $(this).attr('id', anchclass);
-			
-			if( (window.matchMedia('(max-width: 600px)').matches && $(this).children('.field-items').children().length > 1) ||
-				(window.matchMedia('(max-width: 900px)').matches && $(this).children('.field-items').children().length > 2) ||
-				(window.matchMedia('(max-width: 1200px)').matches && $(this).children('.field-items').children().length > 3) ||
-				$(this).children('.field-items').children().length > 4
-			 ) {
-				$(this).children('.field-items').addClass('owl-carousel');
-			}			
-        });
-        
-        /*creating default image for pedia node refrenced node*/
-        $('.page-node.page-pedia .field-type-node-reference > div.field-items > div').each(function(){
-            if(!$(this).find('.field-type-image').length){
-                $(this).find('.group-header').prepend('<img src="https://civil808.com/sites/all/themes/sara/images/nophoto.png" width="240" height="140" alt="no-picutre">');
-            }
-        });
-    }
-
-    if($('.page-node.page-pedia .field-name-user-with-expert').length){
-		$('.field-name-user-with-expert').attr('id', 'advisor_experts');
-		if($('.view-display-id-pedia_experts_advisors > .view-content').children().length < 4){
-				$('.view-display-id-pedia_experts_advisors > .view-content .views-row').css("float", "none");
-		}
-		if( (window.matchMedia('(max-width: 600px)').matches && $('.view-display-id-pedia_experts_advisors > .view-content').children().length > 1) ||
-			(window.matchMedia('(max-width: 900px)').matches && $('.view-display-id-pedia_experts_advisors > .view-content').children().length > 2) ||
-			(window.matchMedia('(max-width: 1200px)').matches && $('.view-display-id-pedia_experts_advisors > .view-content').children().length > 3) ||
-			($('.view-display-id-pedia_experts_advisors > .view-content').children().length > 4) ){
-				$('.view-display-id-pedia_experts_advisors > .view-content').addClass('owl-carousel');
-		}
-		
-		$('.divanchors').append('<a class="advisors" href="#advisor_experts"><span>مشاوران متخصص</span></a>');
-	}
-	
-	if($('.page-node.page-pedia .field-name-all-pedia-experts-user').length){
-		$('.field-name-all-pedia-experts-user').attr('id', 'user_experts');
-		if($('.view-display-id-pedia_experts_users > .view-content').children().length < 4){
-				$('.view-display-id-pedia_experts_users > .view-content .views-row').css("float", "none");
-		}
-		if( (window.matchMedia('(max-width: 600px)').matches && $('.view-display-id-pedia_experts_users > .view-content').children().length > 1) ||
-			(window.matchMedia('(max-width: 900px)').matches && $('.view-display-id-pedia_experts_users > .view-content').children().length > 2) ||
-			(window.matchMedia('(max-width: 1200px)').matches && $('.view-display-id-pedia_experts_users > .view-content').children().length > 3) ||
-			($('.view-display-id-pedia_experts_users > .view-content').children().length > 4) ){
-				$('.view-display-id-pedia_experts_users > .view-content').addClass('owl-carousel');
-		}
-		
-		$('.divanchors').append('<a class="users" href="#user_experts"><span>کاربران متخصص</span></a>');
-	}
-
-    /*creating default image for pedia node refrenced node ---- with owl crousal*/
-    $('.page-node.page-pedia .field-type-node-reference > div.field-items .owl-item').each(function(){
-        if(!$(this).find('.field-type-image').length){
-            $(this).find('.group-header').prepend('<img src="https://civil808.com/sites/all/themes/sara/images/nophoto.png" width="240" height="140" alt="no-picutre">');
-        }
-    });
-
-    if($('.page-node.page-pedia #comments').length){
-        $('.divanchors').append('<a class="commentanch" href="#comments"><span>نظرات</span></a>');
-    }
-
-    $('.divanchors a , .page-moshaver a.moshaver-links:not(.b) , .page-moshaver .search-links').click(function(e) {
-        e.preventDefault();
-        $('html, body').animate({
-            scrollTop: $($(this).attr('href')).offset().top - 50
-        }, 700);
-    });
-
-	/*----------------------------------------------------End--------------------------------------------------------*/
 	/* tag pedias js*/
 	all_pedia_js();
 
@@ -322,10 +246,9 @@ function all_pedia_js() {
 
     if($('.page-taxonomy.page-pedia .node-type-relative').length){
         $('.page-taxonomy.page-pedia .node-type-relative').each(function(){
-            var anchclass = $(this).attr('id').substr(10);
+            var anchclass = $(this).attr('id');
             var spananch = $(this).find('.field-label').text();
             $('.divanchors').append('<a class="'+ anchclass +'" href="#'+anchclass+'"><span>'+spananch+'</span></a>');
-            $(this).attr('id', anchclass);
 
             if( (window.matchMedia('(max-width: 600px)').matches && $(this).children('.field-items').children().length > 1) ||
                 (window.matchMedia('(max-width: 900px)').matches && $(this).children('.field-items').children().length > 2) ||
@@ -336,53 +259,19 @@ function all_pedia_js() {
             }
         });
 
-        /*creating default image for pedia node refrenced node*/
-        $('.page-taxonomy.page-pedia .node-type-relative > div.field-items > div').each(function(){
+        /*creating default image for tags*/
+        $('.page-taxonomy.page-pedia .node-type-relative > div.field-items > div.node').each(function(){
             if(!$(this).find('.field-type-image').length){
                 $(this).find('.group-header').prepend('<img src="https://civil808.com/sites/all/themes/sara/images/nophoto.png" width="240" height="140" alt="no-picutre">');
             }
         });
-    }
 
-    if($('.page-node.page-pedia .field-name-user-with-expert').length){
-        $('.field-name-user-with-expert').attr('id', 'advisor_experts');
-        if($('.view-display-id-pedia_experts_advisors > .view-content').children().length < 4){
-            $('.view-display-id-pedia_experts_advisors > .view-content .views-row').css("float", "none");
-        }
-        if( (window.matchMedia('(max-width: 600px)').matches && $('.view-display-id-pedia_experts_advisors > .view-content').children().length > 1) ||
-            (window.matchMedia('(max-width: 900px)').matches && $('.view-display-id-pedia_experts_advisors > .view-content').children().length > 2) ||
-            (window.matchMedia('(max-width: 1200px)').matches && $('.view-display-id-pedia_experts_advisors > .view-content').children().length > 3) ||
-            ($('.view-display-id-pedia_experts_advisors > .view-content').children().length > 4) ){
-            $('.view-display-id-pedia_experts_advisors > .view-content').addClass('owl-carousel');
-        }
-
-        $('.divanchors').append('<a class="advisors" href="#advisor_experts"><span>مشاوران متخصص</span></a>');
-    }
-
-    if($('.page-node.page-pedia .field-name-all-pedia-experts-user').length){
-        $('.field-name-all-pedia-experts-user').attr('id', 'user_experts');
-        if($('.view-display-id-pedia_experts_users > .view-content').children().length < 4){
-            $('.view-display-id-pedia_experts_users > .view-content .views-row').css("float", "none");
-        }
-        if( (window.matchMedia('(max-width: 600px)').matches && $('.view-display-id-pedia_experts_users > .view-content').children().length > 1) ||
-            (window.matchMedia('(max-width: 900px)').matches && $('.view-display-id-pedia_experts_users > .view-content').children().length > 2) ||
-            (window.matchMedia('(max-width: 1200px)').matches && $('.view-display-id-pedia_experts_users > .view-content').children().length > 3) ||
-            ($('.view-display-id-pedia_experts_users > .view-content').children().length > 4) ){
-            $('.view-display-id-pedia_experts_users > .view-content').addClass('owl-carousel');
-        }
-
-        $('.divanchors').append('<a class="users" href="#user_experts"><span>کاربران متخصص</span></a>');
-    }
-
-    /*creating default image for pedia node refrenced node ---- with owl crousal*/
-    $('.page-node.page-pedia .field-type-node-reference > div.field-items .owl-item').each(function(){
-        if(!$(this).find('.field-type-image').length){
-            $(this).find('.group-header').prepend('<img src="https://civil808.com/sites/all/themes/sara/images/nophoto.png" width="240" height="140" alt="no-picutre">');
-        }
-    });
-
-    if($('.page-node.page-pedia #comments').length){
-        $('.divanchors').append('<a class="commentanch" href="#comments"><span>نظرات</span></a>');
+        /*creating default image for pedia node refrenced node ---- with owl crousal
+        $('.page-taxonomy.page-pedia .field-type-node-reference > div.field-items .owl-item').each(function(){
+            if(!$(this).find('.field-type-image').length){
+                $(this).find('.group-header').prepend('<img src="https://civil808.com/sites/all/themes/sara/images/nophoto.png" width="240" height="140" alt="no-picutre">');
+            }
+        });*/
     }
 
     $('.divanchors a , .page-moshaver a.moshaver-links:not(.b) , .page-moshaver .search-links').click(function(e) {
@@ -391,4 +280,24 @@ function all_pedia_js() {
             scrollTop: $($(this).attr('href')).offset().top - 50
         }, 700);
     });
+
+    if($('.page-taxonomy.page-pedia .node-type-relative .view-user-experts').length){
+        $('.page-taxonomy.page-pedia .node-type-relative .view-user-experts').each(function(){
+            if( (window.matchMedia('(max-width: 600px)').matches && $(this).find('.view-content').children().length > 1) ||
+                (window.matchMedia('(max-width: 900px)').matches && $(this).find('.view-content').children().length > 2) ||
+                (window.matchMedia('(max-width: 1200px)').matches && $(this).find('.view-content').children().length > 3) ||
+                ($(this).find('.view-content').children().length > 4) ){
+                $(this).find('.view-content').addClass('owl-carousel');
+            }
+        });
+    }
+
+    $('.node-type-relative .view-user-experts').each(function(){
+        if($(this).children().length == 0){
+            var anchorTitle = $(this).parents('.node-type-relative').attr('id');
+            $('.page-taxonomy.page-pedia .view-mode-full .group-anchor > div > .divanchors a.' + anchorTitle).remove();
+            $(this).parents('.node-type-relative').remove();
+        }
+    });
+
 }

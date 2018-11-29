@@ -460,6 +460,9 @@
     flex-direction: row-reverse;
     align-items: baseline;
     justify-content: center;
+    > .views-widget > div {
+      display:block !important;
+    }
     input{
         width:430px;
     }
@@ -602,4 +605,13 @@
     right: 44%;
     border-width: 1px 1px;
     transition:all ease 0.9s;
+}
+.all-members .view-content {
+    justify-content: center;
+}
+#advisors,
+#users{
+    .views-row{
+        height: 287px;
+    }
 }

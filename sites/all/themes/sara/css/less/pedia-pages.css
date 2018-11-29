@@ -744,6 +744,10 @@
   align-items: baseline;
   justify-content: center;
 }
+.page-pedia #block-views-exp-page-arch-page-3 .views-exposed-widgets #edit-title-wrapper > .views-widget > div,
+.page-pedia #block-views-exp-pedia-tag-page .views-exposed-widgets #edit-name-wrapper > .views-widget > div {
+  display: block !important;
+}
 .page-pedia #block-views-exp-page-arch-page-3 .views-exposed-widgets #edit-title-wrapper input,
 .page-pedia #block-views-exp-pedia-tag-page .views-exposed-widgets #edit-name-wrapper input {
   width: 430px;
@@ -900,4 +904,11 @@
   right: 44%;
   border-width: 1px 1px;
   transition: all ease 0.9s;
+}
+.all-members .view-content {
+  justify-content: center;
+}
+#advisors .views-row,
+#users .views-row {
+  height: 287px;
 }
