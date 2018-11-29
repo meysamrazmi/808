@@ -21,7 +21,7 @@ function list_of_pedias_v_1($parameter){
     $query->condition("pedia.vid" , 28);
     if(isset($parameter["custom_pedia"]) && !empty($parameter["custom_pedia"])) $query->condition("pedia.tid" , $parameter["custom_pedia"] , "IN");
     $query->orderBy("pedia.tid" , "DESC");
-    $query->range(isset($parameter["page"])? $parameter["page"]*20 : 0 , 20);
+    $query->range(isset($parameter["page"])? $parameter["page"]*24 : 0 , 24);
     $pedias = $query->execute()->fetchAll();
 
     foreach ($pedias as $pedia){
@@ -57,7 +57,7 @@ function retrieve_pedia_v_1($parameter){
     $pedia = $query->execute()->fetch();
 
     $pedia->tid = (int) $pedia->tid;
-    $pedia->image = empty($pedia->uri) ? null : image_style_url("800x600" , $pedia->uri);
+    $pedia->image = empty($pedia->uri) ? null : image_style_url("large" , $pedia->uri);
     unset($pedia->uri);
 
     $query = db_select("field_data_field_experts" , "advisors");
@@ -73,7 +73,7 @@ function retrieve_pedia_v_1($parameter){
     $advisors = $query->execute()->fetchAll();
     foreach ($advisors as $advisor){
         $advisor->uid = (int) $advisor->uid;
-        if(!empty($advisor->image)) $advisor->image = image_style_url("200x200" , $advisor->uri);
+        if(!empty($advisor->image)) $advisor->image = image_style_url("200x200" , $advisor->image);
     }
 
     return array("pedia" => $pedia , "advisors" => $advisors);

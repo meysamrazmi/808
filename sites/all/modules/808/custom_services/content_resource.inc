@@ -102,6 +102,7 @@ function list_of_contents_v_0($parameter){
     return ["content" => $contents];
 }
 function list_of_contents_v_1($parameter){
+    global $user;
     $type = $parameter["type"]; $page = (int)$parameter["page"];
     /*Get query related to the @type*/
     $query = get_nodes_query($type);
@@ -109,6 +110,10 @@ function list_of_contents_v_1($parameter){
     if(strcmp($type , "publication") == 0){
         $query->join("field_data_field_point_needed" , "point_needed" , "node.nid = point_needed.entity_id  and point_needed.bundle = 'publication'");
         $query->addField("point_needed" , "field_point_needed_value" , "price");
+
+        $query->leftJoin("field_data_field_isvip" , "vip" , "node.nid = vip.entity_id and vip.bundle = 'publication' and vip.field_isvip_tid = '1760' ");
+        $query->addField("vip" , "field_isvip_tid" , "free_for_vip");
+
         if(isset($parameter["custom_list"]) && !empty($parameter["custom_list"])){
             $query->condition("node.nid" , $parameter["custom_list"] , "IN");
             return $query;
@@ -180,15 +185,37 @@ function list_of_contents_v_1($parameter){
             $query->leftJoin("field_data_field_course_type", "college_type", "node.nid = college_type.entity_id");
         $query->addField("college_type" , "field_course_type_value" , "college_type");
 
+
+
+        $subquery = db_select("uc_product_options" , "product_options");
+        $subquery->join("node" , "node" , " node.nid = product_options.nid and node.type = 'college' ");
+        $subquery->fields("product_options" , array("nid" , "oid" , "cost" , "price"));
+        $options = $subquery->execute()->fetchAll();
+        $options_nid = array();
+        $option_sums = array();
+        foreach ($options as $option){
+            array_push($options_nid , $option->nid);
+            if(!isset($option_sums[$option->nid]->cost)) $option_sums[$option->nid]->cost = 0;
+            if(!isset($option_sums[$option->nid]->price)) $option_sums[$option->nid]->price = 0;
+            $option_sums[$option->nid]->cost += (int)$option->cost;
+            $option_sums[$option->nid]->price += (int)$option->price;
+        }
+        $option_off_nid = array();
+        foreach ($option_sums as $key=>$item) if($item->price < $item->cost) array_push($option_off_nid , $key);
+
         /*add prices of the courses*/
         $query->join("uc_products" , "product" , "node.nid = product.nid");
         $query->fields("product" , array("sell_price" , "list_price"));
+        if(!empty($parameter["off"]) && $parameter["off"] == "true"){
+            $query->where("sell_price < list_price");
+//            if(!empty($option_off_nid))$query->("node.nid" , $option_off_nid , "IN");
+        }
 
 
         /*add course step*/
         $query->leftJoin("field_data_field_course_step" , "step" , "node.nid = step.entity_id and step.bundle = 'college' ");
         /*filter courses on steps*/
-        if(strlen($parameter["college_step"]) > 0){
+        if(isset($parameter["college_step"]) && strlen($parameter["college_step"]) > 0){
             $steps = explode( "," , $parameter["college_step"]);
             $query->condition("step.field_course_step_value" , $steps , "IN");
         }
@@ -206,11 +233,15 @@ function list_of_contents_v_1($parameter){
                 break;
             case "cheap" :
                 $query->orderBy("product.sell_price" , "ASC");
+                if(!empty($options_nid)) $query->condition("node.nid" , $options_nid , "NOT IN");
                 break;
             case "expensive" :
                 $query->orderBy("product.sell_price" , "DESC");
+                if(!empty($options_nid)) $query->condition("node.nid" , $options_nid , "NOT IN");
                 break;
-            case "popular" :
+            case "options" :
+                $query->orderBy("node.nid" , "DESC");
+                if(!empty($options_nid)) $query->condition("node.nid" , $options_nid , "IN");
                 break;
             default :
                 $query->orderBy("node.nid" , "DESC");
@@ -241,12 +272,13 @@ function list_of_contents_v_1($parameter){
         $content->uid = (int)$content->uid;
         if(isset($content->picture) && !empty($content->picture)) $content->picture = image_style_url("300x300", $content->picture);
         if(isset($content->picture_s) && !empty($content->picture_s)) $content->picture_s = image_style_url("350x350", $content->picture_s);
-        if(isset($content->list_price)) $content->list_price = round($content->list_price , 0);
-        if(isset($content->sell_price)) $content->sell_price = round($content->sell_price , 0);
-        if(isset($content->price)) $content->price = (int) $content->price;
         if(isset($content->audio_size)) $content->audio_size = (int) $content->audio_size;
         if(isset($content->audio) && !empty($content->audio)) $content->audio = generate_file_address($content->audio);
         if(strcmp($content->type , "college") == 0){
+            $content->list_price = round($content->list_price , 0);
+            $content->sell_price = round($content->sell_price , 0);
+            $content->off = false;
+            if($content->sell_price < $content->list_price || in_array($content->nid , $option_off_nid)) $content->off = true;
             switch ($content->college_step){
                 case "0" :
                     $content->college_step = array("id" => 0 , "state" => "در حال ثبت نام");
@@ -259,8 +291,36 @@ function list_of_contents_v_1($parameter){
                     break;
             }
         }
+        if(strcmp($type , "publication") == 0){
+            if(empty($content->free_for_vip)) $content->free_for_vip = false;
+            else $content->free_for_vip = true;
+            $content->price = (int) $content->price;
+            $content->original_price = $content->price;
+            if(in_array("Vip" , $user->roles)){
+                if($content->free_for_vip){
+                    $content->price = 0;
+                }
+                else {
+                    $content->price = 0.9 * $content->price;
+                }
+            }
+            else unset($content->free_for_vip);
+        }
     }
-    return ["content" => $contents];
+    $response = array("content" => $contents);
+
+    /*off percentage*/
+    if(strcmp($type , "publication") == 0){
+        $discount = array("festival" => 0);
+        if(in_array("Vip" , $user->roles))
+            $discount["vip"] = 0.1;
+    }
+    if(strcmp($type , "college") == 0){
+        $discount = array("festival" => 0);
+    }
+    if(isset($discount)) $response["discount"] = $discount;
+
+    return $response;
 }
 /*
  * Make query for fetching the contents of a content type
@@ -444,7 +504,7 @@ function retrieve_a_content_v_1($parameter){
         $query->condition('page_number.entity_id' , $node->nid);
         $query->condition('page_number.bundle' , 'publication');
         $page_number = $query->execute()->fetch();
-        if(!empty($page_number)) $node->page_number = $page_number->page_number;
+        if(!empty($page_number)) $node->page_number = (int)$page_number->page_number;
 
         $file_permission = false;
         $query = db_select('field_data_field_point_needed', 'price');
@@ -454,28 +514,33 @@ function retrieve_a_content_v_1($parameter){
         $query->condition('price.bundle', 'publication');
         $price = $query->execute()->fetch();
         $node->price = (!empty($price)) ? (int) $price->price : 0;
+        $node->original_price = $node->price;
         if(!empty($price) && $price->price == 0) $file_permission = true;
-
-        if (!$file_permission){
-            global $user;
-            if($user->uid > 0) {
-                $query = db_select('m_buyed_nodes', 'buyed');
-                $query->fields('buyed', array('id', 'uid', 'nid'));
-                $query->condition('buyed.uid', $user->uid);
-                $query->condition('buyed.nid', $nid);
-                $user_buyed = $query->execute()->fetch();
-                if(!empty($user_buyed)) $file_permission = true;
-
-                if(!$file_permission){
-                    $query = db_select('field_data_field_isvip', 'vip');
-                    $query->fields('vip', array('field_isvip_tid'));
-                    $query->condition('vip.entity_id', $nid);
-                    $query->condition('vip.bundle', 'publication');
-                    $query->condition('vip.field_isvip_tid', 1760);
-                    $vip = $query->execute()->fetch();
-                    if (!empty($vip) && in_array('Vip', $user->roles)) $file_permission = true;
-                }
+        global $user;
+        if(in_array('Vip', $user->roles)){
+            $query = db_select('field_data_field_isvip', 'vip');
+            $query->fields('vip', array('field_isvip_tid'));
+            $query->condition('vip.entity_id', $nid);
+            $query->condition('vip.bundle', 'publication');
+            $query->condition('vip.field_isvip_tid', 1760);
+            $vip = $query->execute()->fetch();
+            if(!empty($vip)){
+                $node->price = 0;
+                $node->free_for_vip = true;
+                $file_permission = true;
             }
+            else{
+                $node->free_for_vip = false;
+                $node->price = 0.9 * $node->price;
+            }
+        }
+        if (!$file_permission && $user->uid > 0){
+            $query = db_select('m_buyed_nodes', 'buyed');
+            $query->fields('buyed', array('id', 'uid', 'nid'));
+            $query->condition('buyed.uid', $user->uid);
+            $query->condition('buyed.nid', $nid);
+            $user_buyed = $query->execute()->fetch();
+            if(!empty($user_buyed)) $file_permission = true;
         }
         if($file_permission){
             $query = db_select("field_data_field_files" , "field_file");
@@ -504,6 +569,15 @@ function retrieve_a_content_v_1($parameter){
         $picture_s = $query->execute()->fetch();
         $node->picture_s = (!empty($picture_s)) ? image_style_url("350x350" , $picture_s->picture_s) : null;
 
+        $query = db_select("field_data_field_course_type", "college_type");
+        $query->addField("college_type" , "field_course_type_value" , "college_type");
+        $query->condition( "college_type.entity_id" , $node->nid);
+        $query->condition( "college_type.bundle" , "college");
+        $college_types = $query->execute()->fetchAll();
+        $node->college_types = array();
+        foreach ($college_types as $college_type) array_push($node->college_types , $college_type->college_type);
+
+
         $query = db_select("uc_products" , "uc_products");
         $query->fields("uc_products" , array("model" , "list_price" , "sell_price"));
         $query->condition("uc_products.nid" , $nid);
@@ -519,11 +593,16 @@ function retrieve_a_content_v_1($parameter){
         $film = $query->execute()->fetch();
         $node->film_link = (!empty($film)) ? $film->film : null;
 
-        $query = db_select("uc_attribute_options" , "options");
-        $query->join("uc_product_attributes" , "product_attributes" , "options.aid = product_attributes.aid and product_attributes.nid = '" . $node->nid . " ' ");
-        $query->fields("options" , array("name" , "price"));
+        $query = db_select("uc_attribute_options" , "attribute_options");
+        $query->join("uc_product_options" , "product_options" , "product_options.oid = attribute_options.oid and product_options.nid = '" . $node->nid . " ' ");
+        $query->fields("attribute_options" , array("name"));
+        $query->fields("product_options" , array("cost" , "price"));
         $options = $query->execute()->fetchAll();
         $node->options = (!empty($options)) ? $options : array();
+        foreach ($node->options as $option){
+            $option->cost = round($option->cost);
+            $option->price = round($option->price);
+        }
 
         $query = db_select("field_data_field_course_step" , "step");
         $query->fields("step" , array("field_course_step_value"));
