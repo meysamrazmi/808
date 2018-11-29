@@ -696,7 +696,7 @@ function content_resource_search($list , $parameter){
     }
     return services_error(t('This version is not supported'), 11);
 }
-function content_search_list_v1($parameter){
+function content_search_list_v_1($parameter){
     /*$types shows that in which contents the value should be searched
      *if it's empty search will be done in all types
      */
@@ -706,12 +706,12 @@ function content_search_list_v1($parameter){
     /*search in titles*/
     $query = db_select("node" , "node");
     $query->fields("node" , array("nid"));
-    $query->condition("node.title" , '%' . $parameter["value"] . '%', 'LIKE');
+    $query->condition("node.title" , '%' . db_like($parameter["value"]) . '%', 'LIKE');
     $first = $query->execute()->fetchCol();
     /*search in bodies*/
     $query = db_select("field_data_body" , "body");
     $query->fields("body" , array("entity_id"));
-    $query->condition("body.body_value" , '%' . $parameter["value"] . '%', 'LIKE');
+    $query->condition("body.body_value" , '%' . db_like($parameter["value"]) . '%', 'LIKE');
     $second = $query->execute()->fetchCol();
     /*merge all nids that are found*/
     $nids = array_merge($first , $second);
@@ -761,7 +761,7 @@ function content_resource_content_type($nid , $parameter){
     }
     return services_error(t('This version is not supported'), 11);
 }
-function content_type_v1($parameter){
+function content_type_v_1($parameter){
     $type = db_select("node")->fields("node" , array("type"))->condition("nid" , $parameter["nid"])->condition("status" , 1)->execute()->fetch();
 
     if(empty($type)) return services_error("Invalid nid!" , 13);

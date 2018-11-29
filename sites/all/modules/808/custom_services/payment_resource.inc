@@ -11,7 +11,7 @@ function payment_resource_pre_payment($data){
     }
     return services_error(t('This version is not supported'), 11);
 }
-function pre_payment_v1($data){
+function pre_payment_v_1($data){
     if (strcmp($data["type"], 'charge') != 0) return services_error(t('This service is not supported'), 12);
     if(isset($data["price"])) $price = (int) $data["price"];
     else return services_error();
@@ -46,7 +46,7 @@ function payment_resource_final_payment($data){
     return services_error(t('This version is not supported'), 11);
 
 }
-function final_payment_v1($data){
+function final_payment_v_1($data){
     if(!isset($data['id']) || empty($data['id'])) return services_error(t('Transaction ID is required'), 15);
     if(!isset($data['status']) || empty($data['status'])) return services_error(t('Status is required'), 15);
     if($data['status'] != 'success' && $data['status'] != 'fail') return services_error(t('Status is not valid'), 15);
@@ -97,7 +97,7 @@ function payment_resource_get_status($id, $parameter){
     }
     return services_error(t('This version is not supported'), 11);
 }
-function get_status_v1($parameter){
+function get_status_v_1($parameter){
     $result = get_bank_event($parameter["id"]);
     if(empty($result)) return services_error(t('Id is incorrect'), 16);
     return ["status" => $result->status];
