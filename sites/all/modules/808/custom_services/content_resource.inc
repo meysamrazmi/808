@@ -266,6 +266,7 @@ function list_of_contents_v_1($parameter){
     /*Fetch 20 record per each iteration*/
     $query->range($page*20, 20);
     $contents = $query->execute()->fetchAll();
+
     /*Post process of data and make them similar*/
     foreach ($contents as $content) {
         $content->nid = (int)$content->nid;
@@ -292,35 +293,44 @@ function list_of_contents_v_1($parameter){
             }
         }
         if(strcmp($type , "publication") == 0){
-            if(empty($content->free_for_vip)) $content->free_for_vip = false;
-            else $content->free_for_vip = true;
             $content->price = (int) $content->price;
-            $content->original_price = $content->price;
-            if(in_array("Vip" , $user->roles)){
-                if($content->free_for_vip){
+
+            if (empty($content->free_for_vip)) $free_for_vip = false;
+            else $free_for_vip = true;
+            unset($content->free_for_vip);
+
+            $discount = new stdClass();
+            if($content->price != 0){
+                /*this is used for discount on festival*/
+                $festival = false;
+
+                $vip = false;
+                if (in_array("Vip", $user->roles)) $vip = true;
+
+                if ($vip && $free_for_vip) {
+                    $discount = array("enable" => true, "amount" => 1, "message" => "رایگان برای کاربران VIP");
                     $content->price = 0;
                 }
-                else {
+                elseif ($vip && !$free_for_vip && !$festival) {
+                    $discount = array("enable" => true, "amount" => 0.1, "message" => "10% تخفیف VIP");
                     $content->price = 0.9 * $content->price;
                 }
+                elseif (!$vip && !$festival && $free_for_vip) {
+                    $discount = array("name" => "vip", "enable" => false, "amount" => 1, "message" => "رایگان برای کاربران VIP");
+                }
+                elseif (!$vip && !$festival && !$free_for_vip) {
+                    $discount = array("enable" => false, "amount" => 0.1, "message" => "10% تخفیف VIP");
+                }
+                elseif ($festival) {
+                    $discount = array("enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
+                    $content->price = 0.8 * $content->price;
+                }
             }
-            else unset($content->free_for_vip);
+            $content->discount = $discount;
         }
     }
-    $response = array("content" => $contents);
 
-    /*off percentage*/
-    if(strcmp($type , "publication") == 0){
-        $discount = array("festival" => 0);
-        if(in_array("Vip" , $user->roles))
-            $discount["vip"] = 0.1;
-    }
-    if(strcmp($type , "college") == 0){
-        $discount = array("festival" => 0);
-    }
-    if(isset($discount)) $response["discount"] = $discount;
-
-    return $response;
+    return array("content" => $contents);
 }
 /*
  * Make query for fetching the contents of a content type
@@ -515,34 +525,58 @@ function retrieve_a_content_v_1($parameter){
         $price = $query->execute()->fetch();
         $node->price = (!empty($price)) ? (int) $price->price : 0;
         $node->original_price = $node->price;
-        if(!empty($price) && $price->price == 0) $file_permission = true;
-        global $user;
-        if(in_array('Vip', $user->roles)){
+
+        $discount = new stdClass();
+        if($price->price == 0) $file_permission = true;
+        else {
             $query = db_select('field_data_field_isvip', 'vip');
             $query->fields('vip', array('field_isvip_tid'));
             $query->condition('vip.entity_id', $nid);
             $query->condition('vip.bundle', 'publication');
             $query->condition('vip.field_isvip_tid', 1760);
-            $vip = $query->execute()->fetch();
-            if(!empty($vip)){
-                $node->price = 0;
-                $node->free_for_vip = true;
+            $free_for_vip = $query->execute()->fetch();
+            $free_for_vip = empty($free_for_vip) ? false : true;
+
+            global $user;
+            $vip = false;
+            if (in_array('Vip', $user->roles)) $vip = true;
+            $festival = false;
+
+            if ($vip && $free_for_vip) {
                 $file_permission = true;
+                $node->price = 0;
+                $discount = array("enable" => true, "amount" => 1, "message" => "رایگان برای کاربران VIP");
             }
-            else{
-                $node->free_for_vip = false;
+            elseif ($vip && !$free_for_vip && !$festival) {
+                $discount = array("enable" => true, "amount" => 0.1, "message" => "10% تخفیف VIP");
                 $node->price = 0.9 * $node->price;
             }
+            elseif(!$vip && !$festival && $free_for_vip){
+                $discount = array("enable" => false, "amount" => 1, "message" => "رایگان برای کاربران VIP");
+            }
+            elseif(!$vip && !$festival && !$free_for_vip){
+                $discount = array("enable" => false, "amount" => 0.1, "message" => "10% تخفیف VIP");
+            }
+            elseif($festival){
+                $discount = array("enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
+                $node->price = 0.8 * $node->price;
+            }
+
+            if (!$file_permission && $user->uid > 0){
+                $query = db_select('m_buyed_nodes', 'buyed');
+                $query->fields('buyed', array('id', 'uid', 'nid'));
+                $query->condition('buyed.uid', $user->uid);
+                $query->condition('buyed.nid', $nid);
+                $user_buyed = $query->execute()->fetch();
+                if(!empty($user_buyed)) {
+                    $file_permission = true;
+                }
+            }
         }
-        if (!$file_permission && $user->uid > 0){
-            $query = db_select('m_buyed_nodes', 'buyed');
-            $query->fields('buyed', array('id', 'uid', 'nid'));
-            $query->condition('buyed.uid', $user->uid);
-            $query->condition('buyed.nid', $nid);
-            $user_buyed = $query->execute()->fetch();
-            if(!empty($user_buyed)) $file_permission = true;
-        }
+        $node->discount = $discount;
+
         if($file_permission){
+            $node->bought = true;
             $query = db_select("field_data_field_files" , "field_file");
             $query->join("file_managed" , "file" , "field_file.field_files_fid = file.fid and file.filemime = 'application/pdf' ");
             $query->fields('file', array('uri' , 'filesize'));
@@ -554,10 +588,13 @@ function retrieve_a_content_v_1($parameter){
             if(!empty($files)){
                 $node->files = array();
                 foreach ($files as $file){
+                    $file->uri = generate_file_address($file->uri);
+                    $file->filesize = (int) $file->filesize;
                     array_push($node->files , $file);
                 }
             }
         }
+        else $node->bought = false;
     }
     elseif(strcmp($node->type , "college") == 0){
         $query = db_select("field_data_field_image" , "field_image");
