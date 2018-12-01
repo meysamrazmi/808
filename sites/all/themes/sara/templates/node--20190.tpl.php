@@ -4,29 +4,6 @@
     <h2>دوره حضوری ورود به حرفه محاسبات، نظارت و اجرا</h2>
     <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره فقط حضوری و بدون ضبط فیلم است.</p>
     <div class="first-row" style="margin-top: 40px;">
-        <!--<div>
-            <p><strong>دوره محاسبات:</strong></p>
-            <ul>
-                <li><strong>مدرس: </strong>مصطفی دوگوهرانی</li>
-                <li><strong>شروع دوره: </strong>۸ آذر</li>
-                <li><strong>ظرفیت: </strong>۱۵ نفر</li>
-                <li><strong>مخاطبین: </strong>مهندسین عمران</li>
-            </ul>
-            <p>
-                دوره ورود به حرفه محاسبات در روزهای آخر هفته از ۸ آذر ماه شروع خواهد شد. ایام تشکیل کلاس از ساعت ۹:۰۰ صبح تا ۱۸:۰۰ خواهد بود.در جلسات سعی خواهد شد سوالات هر درس بصورت فصل به فصل با ارائه سوالات نکته‌دار و تالیفی آزمون همراه خواهد بود.در ابتدای جلسات نکات بصورت کامل ارائه شده و بعد سراغ سوالات آزمون خواهیم رفت.
-                کل دوره ۱۰۰ ساعت خواهد بود. با توجه به جدول ارائه شده زمان هر دوره مشخص شده است. این دوره با توجه به نیاز داوطلبان آزمون برای حل سوالات متنوع تدارک دیده شده است.
-            </p>
-            <p><img src="/sites/default/files/field/image/node_20190.png" alt="دوره حضوری ورود به حرفه؛ محاسبات و نظارت" title="دوره حضوری ورود به حرفه؛ محاسبات و نظارت" width="724" height="238"></p>
-            <p><strong>دوره نظارت:</strong></p>
-            <ul>
-                <li><strong>مدرس: </strong>مصطفی دوگوهرانی</li>
-                <li><strong>شروع دوره: </strong>۲۶ آبان</li>
-                <li><strong>ظرفیت: </strong>۱۵ نفر</li>
-                <li><strong>مخاطبین: </strong>مهندسین عمران و معماری</li>
-                <li><strong>ویژگی ها: </strong>مرور کلیه نکات <a href="/node/17077" target="_blank" title="آزمون نظام مهندسی">آزمون نظام مهندسی</a> به همراه ۲ آزمون تالیفی</li>
-            </ul>
-            <p><img src="/sites/default/files/field/image/node_20190_1.png" alt="دوره حضوری ورود به حرفه؛ محاسبات و نظارت" title="دوره حضوری ورود به حرفه؛ محاسبات و نظارت" width="723" height="237"></p>
-        </div>-->
         <div>
             <?php
                 $body_value = node_load(20190);
@@ -89,7 +66,7 @@
                     <div class="tarikh">شروع دوره 16 آذر 1397</div>
                     <div class="makan"> موسسه آموزشی 808 </div>
                     <div class="zaman"> پنج شنبه ها ساعت 14 تا 20، جمعه ها ساعت 8 تا 18 (جمعا 100 ساعت) </div>
-                    <div class="mablagh"> 1,000,000 تومان </div>
+                    <div class="mablagh"> 1,200,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
             </a>
@@ -100,7 +77,7 @@
                     <div class="tarikh"> شروع دوره 10 آذر ماه 1397 </div>
                     <div class="makan"> موسسه آموزشی 808 </div>
                     <div class="zaman"> شنبه ها، دوشنبه ها و چهارشنبه ها ساعت 16 تا 21 (جمعا 60 ساعت) </div>
-                    <div class="mablagh"> 800,000 تومان </div>
+                    <div class="mablagh"> 850,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
             </a>

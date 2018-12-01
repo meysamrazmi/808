@@ -1,6 +1,11 @@
 <img src="/sites/default/files/field/image/node_19986.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
 
 <section class="kargah-sec">
+    <div style="width: 70%; background-color: #ffffff; padding: 10px; margin: -17px auto 25px auto; border: solid #b39dd9; border-width: 0px 3px; box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px; text-align: center;">
+        <a href="/node/20209" target="_blank" style="color: #909090 !important; font-size: 16px; margin: 5px; display: block;">
+            انتشار فایل ارائه پروفسور مقدم در دومین دوره آموزش جامع طراحی عملکردی سازه ها
+        </a>
+    </div>
     <div style="width: 70%; background-color: #ffffff; padding: 10px; margin: -4px auto 60px auto; border: solid #b39dd9; border-width: 0px 3px; box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px; text-align: center;">
         <a href="/node/20167" target="_blank" style="color: #909090 !important; font-size: 16px; margin: 5px; display: block;">
             مجموعه تصاوير دوره دوم آموزش اصول محاسبات لرزه‌ای و طراحی عملکردی سازه‌ها 25 و 26 مهرماه، دانشگاه صنعتی شريف

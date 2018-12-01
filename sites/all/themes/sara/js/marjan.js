@@ -42,6 +42,15 @@ $(document).ready(function () {
 		$('.front .crousal-galley .view-content').addClass('owl-carousel');
 	}
 
+    /*-----------------landing BIM --------------*/
+
+    if($('.page-landing.page-bim #relatives.films-section .view-tags-content .view-content').length){
+        $('.page-landing.page-bim #relatives.films-section .view-tags-content .view-content .views-row').each(function () {
+            if($(this).find('.field-name-title a').attr('href') == '/landing/bim'){
+                $(this).remove();
+            }
+        });
+    }
 	if($('.page-landing.page-bim .view-tags-content').length){
         $('.page-landing.page-bim .view-tags-content .view-content').addClass('owl-carousel');
 	}
@@ -146,7 +155,7 @@ $(document).ready(function () {
 	$('.page-pedia.page-tags h1#page-title').after('<a href="/pedia" class="mainpedia" target="_blank">صفحه اصلی دانشنامه</a>');
 	
 	$('.page-eng .pane-jquery-countdown-timer-jquery-countdown-timer').append('<a style="font-size:16px;color: #000000;margin: 15px auto;display: block;max-width: 373px;background-color: #90CAF6;padding: 20px 16px;border-radius: 11px;text-align: center;" href="/node/19807" target="_blank"> مشاوره تخصصی آزمون ورود به حرفه عمران و معماری به همراه ورکشاپ رایگان آموزشی </a>');
-    $('.page-eng .pane-jquery-countdown-timer-jquery-countdown-timer').append('<a style="font-size:16px;color: #000000;margin: 15px auto;display: block;max-width: 373px;background-color: #90CAF6;padding: 20px 16px;border-radius: 11px;text-align: center;" href="/node/20190" target="_blank"> دوره حضوری ورود به حرفه؛ محاسبات، نظارت و اجرا </a>');
+    $('.page-eng .pane-jquery-countdown-timer-jquery-countdown-timer').append('<a style="font-size:16px;color: #000000;margin: 15px auto;display: block;max-width: 373px;background-color: #90CAF6;padding: 20px 16px;border-radius: 11px;text-align: center;" href="/node/20190" target="_blank"> برای ثبت نام دوره حضوری ورود به حرفه کلیک کنید </a>');
 
     /*removing administration content from user-content block*/
     /*----------work fine but until removing it from main tab, i commenting it

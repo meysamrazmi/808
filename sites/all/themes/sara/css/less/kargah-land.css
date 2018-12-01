@@ -1,3 +1,7 @@
+/*added to this files:
+  node--19130.tpl.php --> landing/ENG97
+  node--19160.tpl.php --> landing/BIM
+*/
 /*medias*/
 /*mixins*/
 .no-acrollbar::-webkit-scrollbar {
@@ -81,6 +85,18 @@ section.kargah-sec .first-row .important {
   border-width: 0 2px 0 0px;
   font-size: 13px !important;
   max-width: 700px;
+}
+section.kargah-sec .first-row .lecturer {
+  text-align: center;
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 4px;
+  width: 300px;
+  padding: 24px 15px 15px;
+}
+section.kargah-sec .first-row .lecturer > img {
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
 }
 /*timing section*/
 section.timing {

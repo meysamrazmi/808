@@ -1,21 +1,22 @@
 <!--<img src="/sites/default/files/importviaftp/423.jpg" width="100%" height="auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">-->
-<img src="/sites/default/files/styles/808/public/field/image/node_19160.jpg?itok=0Gve-9ny" width="100%" height="auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;" alt="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)" title="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)">
+<img src="/sites/default/files/field/image/node_19160_1.jpg" width="100%" height="auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;" alt="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)" title="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)">
 <section class="kargah-sec">
-    <h2>همایش انقلاب در صنعت ساخت و ساز با BIM</h2>
+    <h2>ورکشاپ حضوری تخصصی معرفی (BIM (Revit, Dynamo, Naviswork</h2>
 <!--    <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره فقط به صورت حضوری برگزار می شود.</p>-->
-    <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">برای مشاهده مجموعه تصاویر اولین همایش انقلاب بیم در صنعت ساخت و سازه به <a href="/node/19756" target="_blank"> این صفحه </a> مراجعه کنید</p>
+    <!--<p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">برای مشاهده مجموعه تصاویر اولین همایش انقلاب بیم در صنعت ساخت و سازه به <a href="/node/19756" target="_blank"> این صفحه </a> مراجعه کنید</p>-->
     <div class="first-row" style="margin-top: 40px;">
         <div>
-            <p>همایش انقلاب در صنعت ساخت و ساز با BIM ، چهارشنبه ۲۴ مرداد ماه،ساعت ۱۶ تا ۲۰ به صورت حضوری، در سالن انجمن فارغ التحصیلان دانشگاه صنعتی شریف، توسط موسسه آموزشی و مهندسی ۸۰۸ و شرکت IRAN-BIM برگزار شد.</p>
-            <p><strong> مباحث مطرح شده در این همایش عبارتند از:</strong></p>
-            <ul>
-                <li>آشنایی با کاربرد انواع نرم افزارهای تخصصی در حوزه ی BIM</li>
-                <li>بررسی کاربرد BIM در زیرساخت های حمل و نقلی</li>
-                <li>پروسه طراحی بر اساس BIM، دغدغه معماری امروز</li>
-                <li>نگاهی پسا معمارانه بر روش آموزش معماری در آتلیه های معماری (نقد به روایت تصویر)</li>
-                <li>بررسي عملكرد سازه اي بيم (مدل واقع گرايانه - مديريت پروژه - مديريت ريسك - مديريت حمل و نقل - توالي نصب و حمل قطعات - نمايش پيشرفت پروژه در بازه هاي زماني خاص - مديريت استراتژيك پروژه)</li>
-                <li>لزوم تغییر رویکرد طراحی، ساخت و ... از روش های متداول به BIM مبنا و تفاوت های عمده بین آنها</li>
-            </ul>
+            <?php
+            $body_value = node_load(19160);
+            print($body_value->body['und'][0]['value']);
+            ?>
+        </div>
+        <div class="lecturer">
+            <img src="https://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-4445-1529945699.jpg?itok=WHa8HWzj" width="150px" height="auto">
+            <p style="margin: 10px 0 0 0"><strong> مدرس </strong></p>
+            <h3 style="margin:5px"> قاسم آریانی </h3>
+            <p> مدرس تخصصی نرم افزارهای BIM </p>
+            <a href="/user/4445/iran-bim" target="_blank" class="btn btn-primary">رزومه</a>
         </div>
     </div>
 </section>
@@ -138,53 +139,53 @@
             </div>
         </div>
     </div>
-</section>
+</section>-->
 <section class="second">
-    <h2 class="text"> ثبت نام در همایش انقلاب در صنعت ساخت و ساز با BIM </h2>
+    <h2 class="text"> ثبت نام در ورکشاپ حضوری تخصصی معرفی (BIM (Revit, Dynamo, Naviswork </h2>
     <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">علاوه بر این دوره شما می توانید در
         <a href="#edu-form" class="title"> دوره های آنلاین BIM </a>
         ثبت نام کنید.
     </p>
     <div class="tickets">
         <div>
-            <a target="_blank">
+            <!--<a target="_blank">
                 <div class="city-name"><span>ثبت نام در دوره به صورت حضوری</span></div>
                 <div class="inner-text">
-                    <!--<p class="text"> برنامه زمان بندی و نام اساتید را می توانید در بخش بالا مشاهده کنید </p>--
-                    <!--<p style="padding: 9px 12px 0px 0px;">به همراه پذیرایی</p>--
+                    <p class="text"> برنامه زمان بندی و نام اساتید را می توانید در بخش بالا مشاهده کنید </p>
+                    <p style="padding: 9px 12px 0px 0px;">به همراه پذیرایی</p>
                     <div class="tarikh">چهارشنبه ۲۴ مرداد ماه</div>
                     <div class="makan"> سالن انجمن فارغ التحصیلان دانشگاه صنعتی شریف </div>
                     <div class="zaman"> ساعت ۱۶ تا ۲۰ </div>
                     <div class="mablagh"> 20,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
-            </a>
-            <!--<a href="/cart/add/p19686_a63o197?destination=cart" target="_blank">
-                <div class="city-name"><span>ثبت نام در دوره به صورت آنلاین</span></div>
+            </a>-->
+            <a href="/cart/add/p20476?destination=cart" target="_blank">
+                <div class="city-name"><span>ثبت نام در دوره صورت حضوری</span></div>
                 <div class="inner-text">
                     <p style="padding: 9px 12px 0px 0px;">به همراه ارسال فیلم وبینار به ایمیل ثبت نام کنندگاه بعد از برگزاری همایش</p>
-                    <div class="tarikh">چهارشنبه ۲۴ مرداد ماه</div>
-                    <div class="makan"> ارسال لینک ورود به وبینار زنده </div>
-                    <div class="zaman"> ساعت ۱۶ تا ۲۰ </div>
-                    <div class="mablagh"> 10,000 تومان </div>
+                    <div class="tarikh">چهارشنبه 21 آذر ماه 1397</div>
+                    <div class="makan">گیشا، فروزانفر، جنب بانک صادرات، پلاک ۱، واحد ۷، موسسه 808 </div>
+                    <div class="zaman"> ساعت ۱۷ تا ۲۰ </div>
+                    <div class="mablagh"> 25,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
-            </a>--
+            </a>
         </div>
-        <!--<div class="bought-tickets">سوال های خود را می توانید از طریق شماره تماس موسسه و سیستم پیغام خصوصی با ما در میان بگذارید.</div>
-	</div>--
+        <div class="bought-tickets">سوال های خود را می توانید از طریق شماره تماس موسسه و سیستم پیغام خصوصی با ما در میان بگذارید.</div>
+	</div>
 
 </section>
--->
+
 <div class="node">
     <div class="content">
-        <div class="field field-name-field-image field-type-image field-label-hidden">
+        <!--<div class="field field-name-field-image field-type-image field-label-hidden">
             <div class="field-items">
                 <div class="field-item even">
                     <img src="/sites/default/files/attachfromftp/bim-timing.jpg" width="500" alt=" برنامه زمانبندی همایش " title="برنامه زمانبندی همایش" style="width:500px !important;/*box-shadow: none!important;*/">
                 </div>
             </div>
-        </div>
+        </div>-->
 
         <div class="field field-name-body field-type-text-with-summary field-label-hidden">
             <!--
@@ -239,7 +240,7 @@
                 //print views_embed_view('tags_content', 'block_4', $args1 , $args2 ); ?>
             </section>-->
 
-            <section id="relatives">
+            <section id="relatives" class="films-section">
                 <h2> مجموعه فیلم وبینار های برگزار شده </h2>
                 <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">
                     برای مشاهده مطالب بیشتر
@@ -533,7 +534,7 @@
         margin: 50px auto 0 !important;
     }
     .inner-text:before {
-        content: "ظرفیت تکمیل شد";
+        /*content: "ظرفیت تکمیل شد";
         position: absolute;
         width: 180px;
         height: 35px;
@@ -545,7 +546,7 @@
         border: 5px solid #F44336;
         padding: 15px;
         border-radius: 6px;
-        background: hsla(0, 0%, 100%, 0.9);
+        background: hsla(0, 0%, 100%, 0.9);*/
     }
     .field-name-body .group-header .field-name-title h2{
         margin-top: 0px!important;

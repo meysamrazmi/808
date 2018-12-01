@@ -1467,3 +1467,7 @@ body:not(.uid-3300) #block-block-58 {
   margin: 10px 0px 0px 0px;
   text-align: justify;
 }
+.page-landing .relative-questions,
+.page-landing .qa-btn {
+  display: none;
+}

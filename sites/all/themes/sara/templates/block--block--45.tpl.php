@@ -2,7 +2,7 @@
     <div id="block-block-45" class="block block-block contextual-links-region first odd">
         <div class="content">
             <span class="close-banner">X</span>
-            <a href="https://eng808.com" target="_blank">
+            <a href="https://civil808.com/eng" target="_blank">
                 <div class="new-title">
                     <img class="right" src="/sites/all/themes/sara/images/banners/engineerGuy.png">
                     <div style="margin-top: 5px;">
