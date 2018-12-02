@@ -1032,7 +1032,6 @@ function custom_services_services_resources(){
             ),
         ),
 		'order' => array(
-		    'operations' => array(),
             'actions' => array(
                 'by_user_point' => array(
                     'help' => 'make order by user point',
@@ -1074,8 +1073,6 @@ function custom_services_services_resources(){
                     ),
                 ),
             ),
-            'targeted_actions' => array(),
-            'relationships' => array(),
         ),
         'taxonomy' => array(
             'operations' => array(
@@ -1188,153 +1185,6 @@ function custom_services_services_resources(){
             ),
         ),
         /*------------------------------------------------------------------------------------------*/
-
-        'latin_front_page' => array(
-            'operations' => array(
-                'index' => array(
-                    'help' => 'return all requirements',
-                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_front_page_resource'),
-                    'callback' => 'latin_front_page_resource_index',
-                    'access callback' => 'user_access',
-                    'access arguments' => array('access content'),
-                    'access arguments append' => FALSE,
-                    'args' => array(
-                        array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('param' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('param' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
-                        ),
-                    ),
-                ),
-            ),
-        ),
-        'latin_contents' => array(
-            'operations' => array(
-                'index' => array(
-                    'help' => 'return all contents',
-                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_contents_resource'),
-                    'callback' => 'latin_contents_resource_index',
-                    'access callback' => 'user_access',
-                    'access arguments' => array('access content'),
-                    'access arguments append' => FALSE,
-                    'args' => array(
-                        array(
-                            'name' => 'parameters',
-                            'type' => 'array',
-                            'description' => 'parameters of content',
-                            'source' => array('param' => 'parameters'),
-                            'optional' => TRUE,
-                            'default value' => array(),
-                        ),
-                    ),
-                ),
-                'retrieve' => array(
-                    'help' => 'return a contents',
-                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_contents_resource'),
-                    'callback' => 'latin_contents_resource_retrieve',
-                    'access callback' => 'user_access',
-                    'access arguments' => array('access content'),
-                    'access arguments append' => FALSE,
-                    'args' => array(
-                        array(
-                            'name' => 'nid',
-                            'type' => 'int',
-                            'description' => 'Nid of content',
-                            'source' => array('path' => 0),
-                            'optional' => FALSE,
-                        ),
-                        array(
-                            'name' => 'parameters',
-                            'type' => 'array',
-                            'description' => 'parameters of content',
-                            'source' => array('param' => 'parameters'),
-                            'optional' => TRUE,
-                            'default value' => array(),
-                        ),
-                    ),
-                ),
-            ),
-        ),
-        'latin_news' => array(
-            'operations' => array(
-                'index' => array(
-                    'help' => 'return all latin news',
-                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_news_resource'),
-                    'callback' => 'latin_news_resource_index',
-                    'access callback' => 'user_access',
-                    'access arguments' => array('access content'),
-                    'access arguments append' => FALSE,
-                    'args' => array(
-                        array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('param' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'page',
-                            'type' => 'int',
-                            'description' => 'The page of list.',
-                            'source' => array('param' => 'page'),
-                            'optional' => TRUE,
-                            'default value' => 0,
-                        ),
-
-                        array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('param' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
-                        ),
-                    ),
-                ),
-                'retrieve' => array(
-                    'help' => 'retrieve a latin news',
-                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'latin_news_resource'),
-                    'callback' => 'latin_news_resource_retrieve',
-                    'access callback' => 'user_access',
-                    'access arguments' => array('access content'),
-                    'access arguments append' => FALSE,
-                    'args' => array(
-                        array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('param' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'nid',
-                            'optional' => FALSE,
-                            'source' => array('path' => 0),
-                            'type' => 'int',
-                            'description' => 'The nid of the news to retrieve',
-                        ),
-                        array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('param' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
-                        ),
-                    ),
-                ),
-            ),
-        ),
 
 		'advisorlist' => array(
 			'operations' => array(
