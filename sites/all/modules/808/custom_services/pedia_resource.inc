@@ -1,182 +1,106 @@
 <?php
 
-function pedia_resource_index($hash , $page , $version){
-    if(!(hash_true($hash , "pedia"))) return services_error(t('Failed to access'), 10);
-    if($version == 0){
-        return list_of_pedia_version_one($page);
+/*---------------------------operation part------------------------------*/
+function pedia_resource_index($parameter){
+    if(!isset($parameter["hash"]) || !(hash_true($parameter["hash"] , "pedia"))) return services_error(t('Failed to access'), 10);
+    if(empty($parameter["source"]) || empty($parameter["version"])) return services_error("source or version is empty!" , 11);
+
+    $function = get_compatible_function_name("/pedia" , "GET" , $parameter["source"] , $parameter["version"]);
+    if(!empty($function) && strlen($function) > 0) {
+        return call_user_func($function, $parameter);
     }
     return services_error(t('This version is not supported'), 11);
 }
-function pedia_resource_retrieve($hash , $nid , $version){
-    if(!(hash_true($hash , "pedia"))) return services_error(t('Failed to access'), 10);
-    if($version == 0){
-        return retrieve_a_pedia_version_one($nid);
+function list_of_pedias_v_1($parameter){
+    $query = db_select("taxonomy_term_data" , "pedia");
+    $query->join("field_data_field_bool" , "field_bool" , "pedia.tid = field_bool.entity_id and field_bool.entity_type = 'taxonomy_term' and field_bool.bundle = 'expert' and field_bool.field_bool_value = '1' ");
+    $query->leftJoin("field_data_field_image" , "field_image" , "pedia.tid = field_image.entity_id and field_image.entity_type = 'taxonomy_term' and field_image.bundle = 'expert'");
+    $query->leftJoin("file_managed" , "image" , "image.fid = field_image.field_image_fid");
+    $query->fields("pedia" , array("tid" , "name"));
+    $query->fields("image" , array("uri" , "filesize"));
+    $query->condition("pedia.vid" , 28);
+    if(isset($parameter["custom_pedia"]) && !empty($parameter["custom_pedia"])) $query->condition("pedia.tid" , $parameter["custom_pedia"] , "IN");
+    $query->orderBy("pedia.tid" , "DESC");
+    $query->range(isset($parameter["page"])? $parameter["page"]*24 : 0 , 24);
+    $pedias = $query->execute()->fetchAll();
+
+    foreach ($pedias as $pedia){
+        $pedia->tid = (int) $pedia->tid;
+        $pedia->image = empty($pedia->uri) ? null : image_style_url("800x600" , $pedia->uri);
+        unset($pedia->uri);
+        $pedia->filesize = (int) $pedia->filesize;
+    }
+
+    return $pedias;
+}
+
+function pedia_resource_retrieve($tid , $parameter){
+    if(!isset($parameter["hash"]) || !(hash_true($parameter["hash"] , "pedia"))) return services_error(t('Failed to access'), 10);
+    if(empty($parameter["source"]) || empty($parameter["version"])) return services_error("source or version is empty!" , 11);
+
+    $function = get_compatible_function_name("/pedia/tid" , "GET" , $parameter["source"] , $parameter["version"]);
+    if(!empty($function) && strlen($function) > 0) {
+        $parameter["tid"] = $tid;
+        return call_user_func($function, $parameter);
     }
     return services_error(t('This version is not supported'), 11);
 }
-function pedia_resource_advisors_list($hash , $nid , $version){
-    if(!(hash_true($hash , "pedia"))) return services_error(t('Failed to access'), 10);
-    if($version == 0){
-        return list_of_advisors_of_a_pedia_version_one($nid);
-    }
-    return services_error(t('This version is not supported'), 11);
-}
-function pedia_resource_search($hash , $value , $version){
-    if(!(hash_true($hash , "pedia"))) return services_error(t('Failed to access'), 10);
-
-    if($version == 0) {
-        $query = db_select("node", "node");
-        $query->fields('node', array('nid'));
-        $query->condition('node.title', '%' . $value . '%', 'LIKE');
-        $query->condition('node.type' , 'architect');
-        $nid1 = $query->execute()->fetchAll();
-
-        $query = db_select("field_data_field_body", "body");
-        $query->addField('body', 'entity_id', 'nid');
-        $query->condition('body.field_body_value', '%' . $value . '%', 'LIKE');
-        $query->condition('body.entity_type' , 'node');
-        $query->condition('body.bundle' , 'architect');
-        $nid2 = $query->execute()->fetchAll();
-
-        $nids = array_merge($nid1, $nid2);
-        $custom_list = array();
-        foreach ($nids as $row) array_push($custom_list, $row->nid);
-        if(!empty($custom_list))
-            return list_of_pedia_version_one( 0, $custom_list);
-        else
-            return ["pedia" => array()];
-    }
-    return services_error(t('This version is not supported'), 11);
-}
-
-function list_of_pedia_version_one($page , $custom_list = array()){
-    $query = db_select('node' , 'node');
-    $query->fields('node' , array('nid' , 'uid' , 'title' , 'created' , 'changed' , 'status'));
-    $query->condition('node.type', 'architect');
-    $query->condition('node.status', 1);
-    $query->orderBy('node.changed', 'DESC');
-    if(!empty($custom_list)) $query->condition('node.nid' , $custom_list , 'IN');
-    else $query->range($page*24, 24);
-    $nodes = $query->execute()->fetchAll();
-
-    if(!empty($nodes)){
-        $nids = array();
-        $pedias = array();
-        foreach($nodes as $row){
-            array_push($nids, $row->nid);
-            $row->kind = array();
-            $pedias[$row->nid] = $row;
-        }
-
-        /*add each pedia picture*/
-        $query = db_select('field_data_field_arch_picture' , 'field_picture');
-        $query->join('file_managed' , 'file_picture' , 'field_picture.field_arch_picture_fid = file_picture.fid');
-        $query->fields('field_picture' , array('entity_id'));
-        $query->fields('file_picture' , array('uri'));
-        $query->condition('field_picture.entity_id', $nids, "IN");
-        $results = $query->execute()->fetchAll();
-        foreach($results as $result){
-            $pedias[$result->entity_id]->picture = $result->uri;
-        }
-
-        /*add each pedia's taxonomy*/
-        $query = db_select('field_data_field_dastebandimemar' , 'node_kind');
-        $query->join('taxonomy_term_data' , 'taxonomy' , 'node_kind.field_dastebandimemar_tid = taxonomy.tid');
-        $query->fields('node_kind' , array('entity_id'));
-        $query->fields('taxonomy' , array('name'));
-        $query->condition('node_kind.entity_id', $nids, "IN");
-        $query->condition('node_kind.field_dastebandimemar_tid', array(2519, 2522), "NOT IN");
-        $results = $query->execute()->fetchAll();
-        foreach($results as $result){
-            array_push($pedias[$result->entity_id]->kind, $result->name);
-        }
-
-        $pedias = array_values($pedias);
-
-        return ["pedia" => $pedias];
-    }
-    return ["pedia" => array()];
-}
-
-function retrieve_a_pedia_version_one($nid){
-    $query = db_select('node' , 'node');
-    $query->fields('node' , array('nid' , 'uid' , 'title' , 'type' , 'created' , 'changed' , 'status'));
-    $query->condition('node.nid', $nid);
+function retrieve_pedia_v_1($parameter){
+    $query = db_select("taxonomy_term_data" , "pedia");
+    $query->join("field_data_field_bool" , "field_bool" , "pedia.tid = field_bool.entity_id and field_bool.entity_type = 'taxonomy_term' and field_bool.bundle = 'expert' and field_bool.field_bool_value = '1' ");
+    $query->leftJoin("field_data_field_image" , "field_image" , "pedia.tid = field_image.entity_id and field_image.entity_type = 'taxonomy_term' and field_image.bundle = 'expert'");
+    $query->leftJoin("file_managed" , "image" , "image.fid = field_image.field_image_fid");
+    $query->fields("pedia" , array("tid" , "name" , "description"));
+    $query->fields("image" , array("uri" , "filesize"));
+    $query->condition("pedia.tid" , $parameter["tid"]);
+    $query->condition("pedia.vid" , 28);
     $pedia = $query->execute()->fetch();
-    if(empty($pedia) || count($pedia) == 0) return services_error(t('The pedia is not exist'), 17);;
-    $pedia->url = "https://civil808.com/node/".$nid;
 
-    /*add experts*/
-    $query = db_select('field_data_field_experts' , 'expert');
-    $query->addField('expert' , 'field_experts_tid' , 'tid');
-    $query->condition('expert.entity_id' , $nid);
-    $tids = $query->execute()->fetchAll();
-    $pedia->field_experts = $tids;
+    $pedia->tid = (int) $pedia->tid;
+    $pedia->image = empty($pedia->uri) ? null : image_style_url("large" , $pedia->uri);
+    unset($pedia->uri);
 
-    /*add body*/
-    $query = $query = db_select('field_data_field_body' , 'body');
-    $query->fields('body' , array('field_body_value'));
-    $query->condition('body.entity_id', $nid);
-    $pedia->body = $query->execute()->fetch()->field_body_value;
-
-    /*add picture*/
-    $query = db_select('field_data_field_arch_picture' , 'field_picture');
-    $query->join('file_managed' , 'file_picture' , 'field_picture.field_arch_picture_fid = file_picture.fid');
-    $query->fields('file_picture' , array('uri'));
-    $query->condition('field_picture.entity_id', $nid);
-    $results = $query->execute()->fetchAll();
-    $pedia->picture = $results;
-
-    /*add taxonomy*/
-    $query = db_select('field_data_field_dastebandimemar' , 'node_kind');
-    $query->join('taxonomy_term_data' , 'taxonomy' , 'node_kind.field_dastebandimemar_tid = taxonomy.tid');
-    $query->fields('taxonomy' , array('name'));
-    $query->condition('node_kind.entity_id', $nid);
-    $results = $query->execute()->fetchAll();
-    $pedia->kind = $results;
-
-    return ["pedia" => $pedia];
-}
-
-function list_of_advisors_of_a_pedia_version_one($nid){
-    $query = db_select("field_data_field_experts", "node_expert");
-    $query->join("field_data_field_experts", "profile_expert", "profile_expert.field_experts_tid = node_expert.field_experts_tid and profile_expert.entity_type = 'profile2' ");
-    $query->join("profile", "profile", "profile_expert.entity_id = profile.pid and profile.type = main");
-    $query->leftJoin("field_data_field_full_name", "name", "name.entity_id = profile.pid and name.entity_type = 'profile2' and name.bundle = 'main' ");
-    $query->join("users", "user", "profile.uid = user.uid");
-    $query->leftJoin("file_managed", "file", "user.picture = file.fid");
-    $query->join("users_roles", "roles", "profile.uid = roles.uid and roles.rid = " . 10);
-    $query->fields('profile', array('pid'));
-    $query->fields('user', array('uid', 'name', 'mail', 'created'));
-    $query->addField('file', 'uri', 'picture');
-    $query->addField('name', 'field_full_name_value', 'complete_name');
-    $query->condition('node_expert.entity_id', $nid);
-    $query->condition('node_expert.entity_type', 'node');
-    $results = $query->execute()->fetchAll();
-
-    $advisors = array();
-    if (!empty($results)) {
-        $uids = array();
-        foreach ($results as $result) {
-            array_push($uids, $result->uid);
-            $result->roles = array();
-            $advisors[$result->uid] = $result;
-        }
-        $query = db_select('users_roles', 'users_roles');
-        $query->join('role', 'role', 'users_roles.rid = role.rid');
-        $query->fields('role', array('name'));
-        $query->fields('users_roles', array('uid'));
-        $query->condition('users_roles.uid', $uids, 'IN');
-        $results = $query->execute()->fetchAll();
-        foreach ($results as $row) {
-            array_push($advisors[$row->uid]->roles, $row->name);
-        }
-    }
-    else{
-        return ["advisors" => array()];
+    $query = db_select("field_data_field_experts" , "advisors");
+    $query->join("profile" , "profile" , "advisors.entity_id = profile.pid and advisors.entity_type = 'profile2' and advisors.bundle = 'main' ");
+    $query->join("users" , "user" , "user.uid = profile.uid");
+    $query->join("users_roles" , "roles" , "user.uid = roles.uid and roles.rid = '10' ");
+    $query->leftJoin("file_managed" , "image" , "image.fid = user.picture");
+    $query->leftJoin("field_data_field_full_name" , "full_name" , "profile.pid = full_name.entity_id and full_name.entity_type='profile2' and full_name.bundle='main' ");
+    $query->condition("advisors.field_experts_tid" , $parameter["tid"]);
+    $query->fields("user" , array("uid" , "name"));
+    $query->addField("full_name" , "field_full_name_value" , "full_name");
+    $query->addField("image" , "uri" , "image");
+    $advisors = $query->execute()->fetchAll();
+    foreach ($advisors as $advisor){
+        $advisor->uid = (int) $advisor->uid;
+        if(!empty($advisor->image)) $advisor->image = image_style_url("200x200" , $advisor->image);
     }
 
-    $advisors = array_values($advisors);
-
-    return ["advisors" => $advisors];
+    return array("pedia" => $pedia , "advisors" => $advisors);
 }
+/*---------------------------------------------------------------------- */
+/*------------------------relationships part-----------------------------*/
+function pedia_resource_search($list , $parameter){
+    if(!isset($parameter["hash"]) || !(hash_true($parameter["hash"] , "pedia"))) return services_error(t('Failed to access'), 10);
+    if(empty($parameter["source"]) || empty($parameter["version"])) return services_error("source or version is empty!" , 11);
+
+    $function = get_compatible_function_name("/pedia/list/search" , "GET" , $parameter["source"] , $parameter["version"]);
+
+    if(!empty($function) && strlen($function) > 0) {
+        return call_user_func($function, $parameter);
+    }
+    return services_error(t('This version is not supported'), 11);
+}
+function pedia_search_list_v_1($parameter){
+    $query = db_select("taxonomy_term_data" , "pedia");
+    $query->fields("pedia" , array("tid"));
+    $or = db_or();
+    $or->condition("pedia.name" , '%' . db_like($parameter["value"]) . '%', 'LIKE');
+    $or->condition("pedia.description" , '%' . db_like($parameter["value"]) . '%', 'LIKE');
+    $query->condition($or);
+    $tids = $query->execute()->fetchCol();
+    if(empty($tids)) return array();
+    $parameter["custom_pedia"] = $tids;
+    return list_of_pedias_v_1($parameter);
+}
+/*---------------------------------------------------------------------- */

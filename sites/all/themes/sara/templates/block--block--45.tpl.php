@@ -2,11 +2,12 @@
     <div id="block-block-45" class="block block-block contextual-links-region first odd">
         <div class="content">
             <span class="close-banner">X</span>
-            <a href="http://land.civil808.com/97/blackfriday/" target="_blank">
+            <a href="https://civil808.com/eng" target="_blank">
                 <div class="new-title">
+                    <img class="right" src="/sites/all/themes/sara/images/banners/engineerGuy.png">
                     <div style="margin-top: 5px;">
-                        <div>جشنواره تخفیف به مناسبت جمعه سیاه سال میلادی</div>
-                        30 درصد تخفیف محصولات
+                        <div>ثبت نام دوره حضوری آمادگی آزمون ورود به حرفه</div>
+                        محاسبات، نظارت و اجرا
                     </div>
                 </div>
                 <div class="left">کلیک کنید
@@ -22,14 +23,14 @@
             position: fixed;
             bottom: 0;
             right: 0;
-            border-top: 1px solid #b5ff01d9;
+            border-top: 3px solid #1a68a9;
             height: 70px;
             z-index: 100;
             background-position-x: center;
             background-size: cover;
             display: flex;
             align-items: center;
-            background-color: black;
+            background-color: white;
         }
         div#block-block-45 .content {
             display: flex;
@@ -57,13 +58,11 @@
             position: relative;
             display: flex;
             justify-content: center;
-            color: white;
         }
         div#block-block-45 .new-title > div > div{
             font-size: 20px;
             color: #E65100;
             margin-top: 2px;
-            color: #E91E63;
         }
         div#block-block-45 img.right{
             margin: -20px 0px 0 18px;
@@ -78,10 +77,9 @@
             position: absolute;
             left: 12px;
             top: 22px;
-            color: #fff;
+            color: #000;
             font-size: 15px;
         }
-
         @media (max-width: 1200px){}
         @media (max-width: 979px){
             div#block-block-45 div.left{
@@ -105,7 +103,6 @@
             }
         }
         @media all and (max-width: 400px) {}
-
         /*----------------------------------------------------*/
         .close-banner {
             position: absolute;
@@ -135,7 +132,6 @@
             white-space: nowrap;
             opacity: 0;
         }
-
     </style>
 
 <?php endif;?>

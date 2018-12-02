@@ -73,13 +73,6 @@ function custom_services_services_resources(){
                     'access arguments append' => FALSE,
                     'args' => array(
                         array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('data' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
                             'name' => 'data',
                             'type' => 'array',
                             'description' => 'The hash of url.',
@@ -88,36 +81,20 @@ function custom_services_services_resources(){
                         ),
                     ),
                 ),
-            ),
-            'targeted_actions' => array(
-                'edit' => array(
-                    'help' => 'Return data of this version',
+                'update' => array(
+                    'help' => 'Update data of a version',
                     'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'version_data_resource'),
-                    'callback' => 'version_service_resource_edit',
+                    'callback' => 'version_service_resource_update',
                     'access callback' => 'user_access',
                     'access arguments' => array('access content'),
                     'access arguments append' => FALSE,
                     'args' => array(
                         array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('data' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
                             'name' => 'vid',
-                            'type' => 'int',
-                            'description' => 'The vid of versions',
-                            'source' => array('path' => 0),
                             'optional' => FALSE,
-                        ),
-                        array(
-                            'name' => 'type',
-                            'type' => 'string',
-                            'description' => 'The type of this version.',
-                            'source' => array('param' => 'type'),
-                            'optional' => False,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'The vid of the version to update',
                         ),
                         array(
                             'name' => 'data',
@@ -454,27 +431,12 @@ function custom_services_services_resources(){
                     'access arguments append' => FALSE,
                     'args' => array(
                         array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('param' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'page',
-                            'type' => 'int',
-                            'description' => 'The page of list.',
-                            'source' => array('param' => 'page'),
-                            'optional' => TRUE,
-                            'default value' => 0,
-                        ),
-                        array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('param' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
                         ),
                     ),
                 ),
@@ -487,33 +449,26 @@ function custom_services_services_resources(){
                     'access arguments append' => FALSE,
                     'args' => array(
                         array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('param' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'nid',
+                            'name' => 'tid',
                             'optional' => FALSE,
                             'source' => array('path' => 0),
                             'type' => 'int',
-                            'description' => 'The nid of the pedia to retrieve',
+                            'description' => 'The tid of the pedia to retrieve',
                         ),
                         array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('param' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
                         ),
                     ),
                 ),
             ),
-		    'actions' => array(
-                'search' => array(
-                    'help' => 'Search in Pedia',
+		    'relationships' => array(
+		        'search' => array(
+                    'help' => 'Search in pedias',
                     'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'pedia_resource'),
                     'callback' => 'pedia_resource_search',
                     'access callback' => 'user_access',
@@ -521,61 +476,19 @@ function custom_services_services_resources(){
                     'access arguments append' => FALSE,
                     'args' => array(
                         array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('data' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'value',
-                            'type' => 'string',
-                            'description' => 'a value that used for search',
-                            'source' => array('data' => 'value'),
-                            'optional' => FALSE,
-                        ),
-                        array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('data' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
-                        ),
-                    ),
-                ),
-            ),
-		    'targeted_actions' => array(),
-		    'relationships' => array(
-		        'advisors' => array(
-                    'help' => 'List of advisors of the pedia',
-                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'pedia_resource'),
-                    'callback' => 'pedia_resource_advisors_list',
-                    'access callback' => 'user_access',
-                    'access arguments' => array('access content'),
-                    'access arguments append' => FALSE,
-                    'args' => array(
-                        array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('param' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'nid',
+                            'name' => 'list',
                             'optional' => FALSE,
                             'source' => array('path' => 0),
-                            'type' => 'int',
-                            'description' => 'The nid of the pedia for getting its advisors',
+                            'type' => 'string',
+                            'description' => 'Used for url address',
                         ),
                         array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('param' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
                         ),
                     ),
                 ),
@@ -1025,69 +938,44 @@ function custom_services_services_resources(){
                         ),
                     ),
                 ),
+                'type' => array(
+                    'help' => 'Get the type of the content',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'content_resource'),
+                    'callback' => 'content_resource_content_type',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'nid',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'nid of content',
+                        ),
+                        array(
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
+                        ),
+                    ),
+                ),
             ),
         ),
         'payment' => array(
-            'operations' => array(
-                'index'  => array(),
-                'retrieve' => array(),
-                'create' => array(),
-            ),
             'actions' => array(
                 'pre_payment' => array(
                     'help' => 'request before payment in app',
                     'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'payment_resource'),
-                    'callback' => 'pre_payment',
+                    'callback' => 'payment_resource_pre_payment',
                     'access callback' => 'user_access',
                     'access arguments' => array('access content'),
                     'access arguments append' => FALSE,
                     'args' => array(
-                        array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('data' => 'hash'),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'type',
-                            'type' => 'string',
-                            'description' => 'The type of payment',
-                            'source' => array('data' => 'type'),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'price',
-                            'type' => 'int',
-                            'description' => 'The price for charge.',
-                            'source' => array('data' => 'price'),
-                            'optional' => False,
-                        ),
-                        array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('data' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
-                        ),
-                    ),
-                ),
-                'final_payment' => array(
-                    'help' => 'request for verify payment in app',
-                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'payment_resource'),
-                    'callback' => 'final_payment',
-                    'access callback' => 'user_access',
-                    'access arguments' => array('access content'),
-                    'access arguments append' => FALSE,
-                    'args' => array(
-                        array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('data' => 'hash'),
-                            'optional' => False,
-                        ),
+
                         array(
                             'name' => 'data',
                             'type' => 'array',
@@ -1095,34 +983,35 @@ function custom_services_services_resources(){
                             'source' => 'data',
                             'optional' => False,
                         ),
-                        array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('data' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
-                        ),
                     ),
                 ),
-            ),
-            'targeted_actions' => array(),
-            'relationships' => array(
-                'status' => array(
-                    'help' => 'request for status of the transaction',
+                'final_payment' => array(
+                    'help' => 'request for verify payment in app',
                     'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'payment_resource'),
-                    'callback' => 'get_status',
+                    'callback' => 'payment_resource_final_payment',
                     'access callback' => 'user_access',
                     'access arguments' => array('access content'),
                     'access arguments append' => FALSE,
                     'args' => array(
                         array(
-                            'name' => 'hash',
-                            'type' => 'string',
-                            'description' => 'The hash of url.',
-                            'source' => array('param' => 'hash'),
+                            'name' => 'data',
+                            'type' => 'array',
+                            'description' => 'The data for transaction',
+                            'source' => 'data',
                             'optional' => False,
                         ),
+                    ),
+                ),
+            ),
+            'relationships' => array(
+                'status' => array(
+                    'help' => 'request for status of the transaction',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'payment_resource'),
+                    'callback' => 'payment_resource_get_status',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
                         array(
                             'name' => 'id',
                             'type' => 'int',
@@ -1131,12 +1020,12 @@ function custom_services_services_resources(){
                             'optional' => False,
                         ),
                         array(
-                            'name' => 'version',
-                            'type' => 'int',
-                            'description' => 'The version of app.',
-                            'source' => array('data' => 'version'),
-                            'optional' => TRUE,
-                            'default value' => 0,
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
                         ),
                     ),
                 ),

@@ -1325,3 +1325,7 @@ div#block-block-45-temporarydown .content a .text-nim > p {
   margin: 10px 0px 0px 0px;
   text-align: justify;
 }
+.page-landing .relative-questions,
+.page-landing .qa-btn {
+  display: none;
+}

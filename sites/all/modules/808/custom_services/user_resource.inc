@@ -494,6 +494,7 @@ function user_resource_bookmark_contents_list($uid , $parameter){
 }
 function user_bookmark_contents_list_v_1($parameter){
     if(!isset($parameter["type"]) || empty($parameter["type"])) return services_error("Error in request!" , 15);
+    global $user;
 
     $query = db_select("flagging", "flagging");
     $query->fields("flagging", array("entity_id"));
@@ -516,9 +517,10 @@ function user_bookmark_contents_list_v_1($parameter){
         $bought = $query->execute()->fetchCol();
         $permission = array_merge($permission , $bought);
 
-        $user_role = db_select("users_roles")->fields("users_roles" , array("rid"))
-            ->condition("uid" , $parameter["uid"])->condition("rid" , 8)->execute()->fetch();
-        if(!empty($user_role)) {
+        $vip = false;
+        if (in_array('Vip', $user->roles)) $vip = true;
+
+        if($vip) {
             $query = db_select('field_data_field_isvip', 'vip');
             $query->fields('vip', array('entity_id'));
             $query->condition('vip.entity_id', $custom_list, "IN");
@@ -530,13 +532,46 @@ function user_bookmark_contents_list_v_1($parameter){
         foreach ($list as $row){
             $row->nid = (int) $row->nid;
             $row->uid = (int) $row->uid;
-            $row->price = (int) $row->price;
             $row->changed = (int) $row->changed;
             $row->picture = image_style_url("300x300", $row->picture);
             $row->files = array();
             if($row->price == 0) array_push($permission, $row->nid);
-            if(in_array($row->nid , $bought)) $row->bought = true;
+            if(in_array($row->nid , $permission)) $row->bought = true;
             else $row->bought = false;
+
+            $row->price = (int) $row->price;
+            $row->original_price = $row->price;
+
+            if (empty($row->free_for_vip)) $free_for_vip = false;
+            else $free_for_vip = true;
+            unset($row->free_for_vip);
+
+            $discount = new stdClass();
+            if($row->price != 0){
+                /*this is used for discount on festival*/
+                $festival = false;
+
+                if ($vip && $free_for_vip) {
+                    $discount = array("enable" => true, "amount" => 1, "message" => "رایگان برای کاربران VIP");
+                    $row->price = 0;
+                }
+                elseif ($vip && !$free_for_vip && !$festival) {
+                    $discount = array("enable" => true, "amount" => 0.1, "message" => "10% تخفیف VIP");
+                    $row->price = 0.9 * $row->price;
+                }
+                elseif (!$vip && !$festival && $free_for_vip) {
+                    $discount = array("name" => "vip", "enable" => false, "amount" => 1, "message" => "رایگان برای کاربران VIP");
+                }
+                elseif (!$vip && !$festival && !$free_for_vip) {
+                    $discount = array("enable" => false, "amount" => 0.1, "message" => "10% تخفیف VIP");
+                }
+                elseif ($festival) {
+                    $discount = array("enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
+                    $row->price = 0.8 * $row->price;
+                }
+            }
+            $row->discount = $discount;
+
             $bookmark_list[$row->nid] = $row;
         }
 
@@ -593,6 +628,7 @@ function profile_data($uid){
     $query->addField("mobile" , "field_mobile_value" , "mobile");
     $query->addField("job" , "field_job_value" , "job");
     $query->condition("profile.uid" , $uid);
+    $query->condition("profile.type" , "main");
     $profile = $query->execute()->fetch();
 
     $profile->user_point = userpoints_get_current_points($uid, 'all');

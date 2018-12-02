@@ -1,81 +1,29 @@
+<?php
+function check_808_options($mlid){
+
+}
+function render_menu_items($menu){
+	$output = '';
+	foreach($menu as $link){
+	    if($link['link']['hidden'] || $link['link']['mlid'] == 8832)
+	        continue;
+		$sub_menu = '';
+		if ($link['below']) {
+			$sub_menu = '<div class="sub"><ul class="sub">'. render_menu_items($link['below']) . '</ul></div>';
+		}
+		$a = l($link['link']['link_title'], '/'. $link['link']['link_path'], $link['link']['localized_options']);
+		$output .= '<li>' . $a . $sub_menu . "</li>\n";
+	}
+	return $output;
+}
+$menu = menu_build_tree('main-menu');
+?>
 <div id="main-nav">
     <ul class="main">
         <span class="active-item"></span>
-        <li>
-            <a href="">808</a>
-            <div class="sub">
-                <ul class="sub">
-                <li><a href="">Bulldog</a></li>
-                <li><a href="">Mastiff</a></li>
-                <li><a href="">Labrador</a></li>
-                <li><a href="">Mutt</a></li>
-            </ul>
-            </div>
-        </li>
-        <li>
-            <a href="">عمران</a>
-        </li>
-        <li>
-            <a href="">معماری</a>
-
-        </li>
-        <li>
-            <a href="">لبه دانش</a>
-            <div class="sub">
-                <ul class="sub">
-                <li><a href="">Brown Horse</a></li>
-                <li><a href="">Race Horse</a></li>
-                <li><a href="">Tall Horse</a></li>
-            </ul>
-            </div>
-        </li>
-        <li>
-            <a href="">محتوای تخصصی</a>
-            <div class="sub">
-                <ul class="sub">
-                <li><a href="">Cheesy</a></li>
-                <li><a href="">More Ketchup</a></li>
-                <li><a href="">Some Mustard</a></li>
-                <li><a href="">Extra Butter</a></li>
-            </ul>
-            </div>
-        </li>
-        <li>
-            <a href="">آموزشگاه</a>
-            <div class="sub">
-                <ul class="sub">
-                <li><a href="">Cheesy</a></li>
-                <li><a href="">More Ketchup</a></li>
-                <li><a href="">Some Mustard</a></li>
-                <li><a href="">Extra Butter</a></li>
-            </ul>
-            </div>
-        </li>
-        <li>
-            <a href="">فروشگاه</a>
-            <div class="sub">
-                <ul class="sub">
-                <li><a href="">Cheesy</a></li>
-                <li><a href="">More Ketchup</a></li>
-                <li><a href="">Some Mustard</a></li>
-                <li><a href="">Extra Butter</a></li>
-            </ul>
-            </div>
-        </li>
-        <li>
-            <a href="">گالری</a>
-            <div class="sub">
-                <ul class="sub">
-                <li><a href="">Cheesy</a></li>
-                <li><a href="">More Ketchup</a></li>
-                <li><a href="">Some Mustard</a></li>
-                <li><a href="">Extra Butter</a></li>
-            </ul>
-            </div>
-        </li>
-        <li>
-            <a href="">اپلیکیشن</a>
-        </li>
+        <?php
+            print render_menu_items($menu);
+        ?>
         <li>
             <a href="">جستجو</a>
             <div class="sub">
@@ -156,13 +104,19 @@ span.active-item {
 <script>
 $(document).ready(function () {
 	$('#main-nav ul.main > li').mouseenter(function(){
-		$('.active-item').css({'width': $(this).width(), 'left': $(this).position().left})
+		var el = $(this)
+		$('.active-item').css({'width': el.width(), 'left': el.position().left})
 		setTimeout(function(){
-			$(this).addClass('active')
-        }, 500)
+			el.parent().find('.active').removeClass('active')
+			el.addClass('active')
+		}, 500)
 	}).mouseleave(function(){
-		$('.active-item').css({'width': 0, 'left': ($(this).position().left + $(this).width()/2)})
-		$(this).removeClass('active')
+		var el = $(this)
+		$('.active-item').css({'width': 0, 'left': (el.position().left + el.width()/2)})
+		el.removeClass('active')
+		setTimeout(function(){
+			el.removeClass('active')
+		}, 505)
 	})
 })
 </script>
