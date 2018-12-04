@@ -61,6 +61,7 @@ function comment_resource_update($cid , $data){
 }
 function update_comment_v_1($data){
     $comment = comment_load($data["cid"]);
+    if(!$comment) return services_error("Undefined cid!" , 17);
     global $user;
     if($user->uid != $comment->uid && !in_array("administrator" , $user->roles)) return services_error("You do not have permission to this action!" , 18);
 

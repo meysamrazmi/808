@@ -295,6 +295,7 @@ function question_resource_update($nid, $data){
 }
 function update_question_v_1($data){
     $node = node_load($data["nid"]);
+    if(!$node) return services_error("Undefined nid!" , 17);
     global $user;
     if($user->uid != $node->uid && !in_array("administrator" , $user->roles)) return services_error("You do not have permission to this action!" , 18);
 

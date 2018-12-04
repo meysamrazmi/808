@@ -1,17 +1,15 @@
 <?php
 
 /*--------------------actions part---------------------*/
-function make_order_by_user_point($hash , $type , $data , $version){
+function make_order_by_user_point($hash , $type , $data){
     if(!(hash_true($hash , "order"))) return services_error(t('Failed to access'), 10);
 
-    if($version == 0){
-        if($type == "order_content"){
-            if(isset($data["nid"]) && !empty($data["nid"]) && gettype($data["nid"]) == "integer") return order_content($data["nid"]);
-            else return services_error(t('Nid is required!'), 15);
-        }
-        return services_error(t('Order type is not exist'), 12);
+    if($type == "order_content"){
+        if(isset($data["nid"]) && !empty($data["nid"]) && gettype($data["nid"]) == "integer") return order_content($data["nid"]);
+        else return services_error(t('Nid is required!'), 15);
     }
-    return services_error(t('The Service is not supported'), 11);
+    return services_error(t('Order type is not exist'), 12);
+
 }
 
 function order_content($nid){
