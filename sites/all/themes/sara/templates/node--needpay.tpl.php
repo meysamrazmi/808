@@ -112,7 +112,7 @@
               <?php
 				if($festival){ //festival time
                     print '<span class="n-label" style="width: 80%;">با 20% تخفیف برای جشنواره عید فطر :</span><span class="meghdar" style="color: #4CAF50;">' . formatMoney(round(($point_needed * 0.8), -1)) .' تومان </span>';
-				} else { //normal vip discount
+				} else if(!$for_vip){ //normal vip discount
                     print '<span class="n-label">برای کاربران vip :</span><span class="meghdar" style="color: #4CAF50;">' . formatMoney(round(($point_needed * 0.9), -1)) .' تومان </span>';
 				 }
               ?>
