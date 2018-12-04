@@ -232,7 +232,10 @@ function list_of_contents_v_1($parameter){
         }
         $query->addField("step" , "field_course_step_value" , "college_step");
 
-
+        if(isset($parameter["custom_list"]) && !empty($parameter["custom_list"])){
+            $query->condition("node.nid" , $parameter["custom_list"] , "IN");
+            return $query;
+        }
         /*sort the courses*/
         if(isset($parameter["sort"]))
             switch ($parameter["sort"]){
@@ -289,7 +292,6 @@ function list_of_contents_v_1($parameter){
         if(strcmp($content->type , "college") == 0){
             $content->list_price = round($content->list_price , 0);
             $content->sell_price = round($content->sell_price , 0);
-            $content->off = false;
 
             $off = false;
             $festival = false;

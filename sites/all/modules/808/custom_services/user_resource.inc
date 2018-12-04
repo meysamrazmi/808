@@ -605,6 +605,55 @@ function user_bookmark_contents_list_v_1($parameter){
         }
         return $list;
     }
+    if(strcmp($parameter["type"] , "college") == 0){
+        $subquery = db_select("uc_product_options" , "product_options");
+        $subquery->join("node" , "node" , " node.nid = product_options.nid and node.type = 'college' ");
+        $subquery->fields("product_options" , array("nid" , "oid" , "cost" , "price"));
+        $subquery->condition("product_options.nid" , $custom_list , "IN");
+        $options = $subquery->execute()->fetchAll();
+        $opt_cost = array();
+        $opt_price = array();
+        foreach ($options as $option){
+            if(!empty($price[$option->nid])) $opt_price[$option->nid] += $option->price; else $opt_price[$option->nid] = $option->price;
+            if(!empty($cost[$option->nid])) $opt_cost[$option->nid] += $option->cost; else $opt_cost[$option->nid] = $option->cost;
+        }
+
+        foreach ($list as $node){
+            $node->nid = (int) $node->nid;
+            $node->uid = (int) $node->uid;
+            $node->changed = (int) $node->changed;
+            $node->list_price = (int) $node->list_price;
+            $node->sell_price = (int) $node->sell_price;
+
+            $node->picture = generate_file_address($node->picture);
+            $node->picture_s = generate_file_address($node->picture_s);
+
+            $off = false;
+            $festival = false;
+            if($opt_price[$node->nid] < $opt_cost[$node->nid] || $node->sell_price < $node->list_price) $off = true;
+            $discount = new stdClass();
+            if($festival && $off){
+                $discount = array("name" => "festival" , "color" => 1, "enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
+            }
+            elseif($off){
+                $discount = array("name" => "off" , "color" => 2, "enable" => true, "amount" => 0.2, "message" => "فروش ویژه");
+            }
+            $node->discount = $discount;
+
+            switch ($node->college_step){
+                case "0" :
+                    $node->college_step = array("id" => 0 , "state" => "در حال ثبت نام");
+                    break;
+                case "1" :
+                    $node->college_step = array("id" => 1 , "state" => "در حال برگزاری");
+                    break;
+                case "2" :
+                    $node->college_step = array("id" => 2 , "state" => "برگزار شده");
+                    break;
+            }
+        }
+        return $list;
+    }
     return array();
 }
 /*---------------------functions part----------------------------------*/
