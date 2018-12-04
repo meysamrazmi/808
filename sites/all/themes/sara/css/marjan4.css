@@ -1864,60 +1864,10 @@ $('.dd + .dd').remove();
 body:not(.page-gallery) #main > div.container.main .region-ads1{
 	padding-top: 46px;
 }
-/*----------------pedi-blocks---------------*/
-
-[id*=block-views-pediareverse-block]{
-	/* border: 3px solid rgb(32,206,204); */
-    background: white;
-    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-}
-[id*=block-views-pediareverse-block] h2.block-title{
-	border-bottom: 1px solid #20cecc;
-    background-color: rgba(32, 206, 204, 0.03);
-    margin: 0px;
-    background-color: #20cecc;
-    color: white;
-    text-align: center;
-    font-size: 15px;
-}
-.view-pediareverse .views-row{
-	padding: 4% 4% 2px 4%;
-    display: inline-flex;
-    align-items: center;
-}
-.view-pediareverse .views-row .views-field-title{
-	margin: 0px 15px 8px 0;
-    font-size: 13px;
-    font-weight: 200;
-}
-.view-pediareverse .views-row .views-field-title a:hover{
-	color:black !important;
-}
 .page-messages [id*=edit-field-files-und] [id*= edit-field-files-und] thead,
 .page-messages [id*=edit-field-files-und] [id*= edit-field-files-und] tbody tr .checkbox{
-	display:none;
+    display:none;
 }
-
-.view-pediareverse .view-empty a{
-text-align: center;
-display: block;
-padding: 3% 0%;
-border: 1px solid #20cecc;
-font-size: 12px;
-transition: all ease 0.4s;
-margin: 14px 13% 0 13%;
-}
-.view-pediareverse .view-empty{
-	padding: 6% 8%;
-}
-.view-pediareverse .view-empty p{
-	font-weight: 100;
-}
-.view-pediareverse .view-empty a:hover{
-	background-color:#20cecc;
-	color:white !important;
-}
-
 .page-node-11694 .comment_forbidden,
 .page-node-14314 .comment_forbidden{
 	display: none !important;
