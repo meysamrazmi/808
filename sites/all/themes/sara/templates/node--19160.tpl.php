@@ -1,5 +1,5 @@
 <!--<img src="/sites/default/files/importviaftp/423.jpg" width="100%" height="auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">-->
-<img src="/sites/default/files/field/image/node_19160_1.jpg" width="100%" height="auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;" alt="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)" title="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)">
+<img src="/sites/default/files/field/image/node_19160_0.jpg" width="100%" height="auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;" alt="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)" title="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)">
 <section class="kargah-sec">
     <h2>ورکشاپ حضوری تخصصی معرفی (BIM (Revit, Dynamo, Naviswork</h2>
 <!--    <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره فقط به صورت حضوری برگزار می شود.</p>-->
@@ -143,7 +143,7 @@
 <section class="second">
     <h2 class="text"> ثبت نام در ورکشاپ حضوری تخصصی معرفی (BIM (Revit, Dynamo, Naviswork </h2>
     <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">علاوه بر این دوره شما می توانید در
-        <a href="#edu-form" class="title"> دوره های آنلاین BIM </a>
+        <a href="#edu-form" class="title"> دوره های حضوری و آنلاین BIM </a>
         ثبت نام کنید.
     </p>
     <div class="tickets">
@@ -161,7 +161,7 @@
                 <span class="sabtenam"> ثبت نام </span>
             </a>-->
             <a href="/cart/add/p20476?destination=cart" target="_blank">
-                <div class="city-name"><span>ثبت نام در دوره صورت حضوری</span></div>
+                <div class="city-name"><span>ثبت نام در دوره به صورت حضوری</span></div>
                 <div class="inner-text">
                     <p style="padding: 9px 12px 0px 0px;">به همراه ارسال فیلم وبینار به ایمیل ثبت نام کنندگاه بعد از برگزاری همایش</p>
                     <div class="tarikh">چهارشنبه 21 آذر ماه 1397</div>
@@ -176,6 +176,12 @@
 	</div>
 
 </section>
+
+<div style="width: 70%; background-color: #ffffff; padding: 10px; margin: -17px auto 25px auto; border: solid #b39dd9; border-width: 0px 3px; box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px; text-align: center;">
+    <a href="/node/20487" target="_blank" style="color: #909090 !important; font-size: 16px; margin: 5px; display: block;">
+        مجموعه تصاویر و فیلم از اولین همایش انقلاب در صنعت ساخت و ساز با BIM برگزار شده در مرداد 97
+    </a>
+</div>
 
 <div class="node">
     <div class="content">
