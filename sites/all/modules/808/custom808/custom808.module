@@ -552,3 +552,49 @@ function relative_qa_render($nid , $type){
         return $output;
     }
 }
+
+
+/*------------------Code-BLOCK-functions-----------------------*/
+/*
+ * It's call from 61 custom block
+ * for printing one tag block in left side of all contents
+ * */
+function block_61_theme($nid){
+    $query = db_select("taxonomy_term_data", "term_data");
+    $query->join("field_data_field_experts", "field_experts", "field_experts.field_experts_tid = term_data.tid and field_experts.entity_type = 'node' and field_experts.entity_id = '" . $nid . "'");
+    $query->join("field_data_field_bool", "field_bool", "field_bool.entity_id = term_data.tid and field_bool.bundle = 'expert' and field_bool.entity_type = 'taxonomy_term' and field_bool.field_bool_value = '1'");
+    $query->join("field_data_field_image", "image", "image.entity_id = term_data.tid and image.bundle = 'expert' and image.entity_type = 'taxonomy_term'");
+    $query->join("file_managed", "file", "image.field_image_fid = file.fid");
+    $query->condition("term_data.description" , '','!=');
+    $query->isNotNull('term_data.description');
+    $query->fields("term_data", array("name","tid"));
+    $query->fields("file", array("uri"));
+    $query->fields("image", array("field_image_alt","field_image_title"));
+    $query->orderRandom()->range(0,1);
+    $contents = $query->execute()->fetch();
+
+    if(!empty($contents)) {
+        $contents->uri = image_style_url("thumbnail", $contents->uri);
+        echo '<div class="views-row">
+          <div class="views-field views-field-field-image">        
+            <div class="field-content">
+              <a href="/taxonomy/term/' . $contents->tid . '" target="_blank" title="' . $contents->name . '">
+                <img width="100" height="93" alt="' . $contents->field_image_alt . '" title="' . $contents->field_image_title . '" src="' . $contents->uri . '">
+              </a>
+            </div>
+          </div>  
+          <div class="views-field views-field-title">        
+            <span class="field-content">
+              <a href="/taxonomy/term/' . $contents->tid . '" target="_blank" title="' . $contents->name . '"> ' . $contents->name . ' </a>
+            </span>
+          </div>
+        </div>';
+    }
+    else{
+        echo '<div class="view-empty">
+                <p>هر آنچه در رابطه با یک موضوع تخصصی می خواهید ( فیلم، عکس، مقاله، اخبار و ... )، فقط در یک صفحه</p>
+                <a href="/pedia" rel="nofollow">صفحه اصلی دانشنامه</a>
+            </div>';
+    }
+}
+/*------------------end-Code-Block-functions-----------------------*/
