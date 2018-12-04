@@ -1114,6 +1114,50 @@ function custom_services_services_resources(){
                 ),
             ),
         ),
+        'festival' => array(
+            'operations' => array(
+                'index' => array(
+                    'help' => 'send festival data to app',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'festival_resource'),
+                    'callback' => 'festival_resource_index',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
+                        ),
+                    ),
+                ),
+            ),
+        ),
+        'contactus' => array(
+            'operations' => array(
+                'index' => array(
+                    'help' => 'send about us information',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'contact_us_resource'),
+                    'callback' => 'contact_us_resource_index',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
+                        ),
+                    ),
+                ),
+            ),
+        ),
 
         /*------------------------------------------------------------------------------------------*/
         /* pre-request is used for remote login
