@@ -864,19 +864,17 @@ function content_search_list_v_1($parameter){
      */
     if(isset($parameter["types"])) $types = explode("," , $parameter["types"]);
     $all_types = array("publication" , "podcast" , "college" , "video" , "designteam" , "article" , "pedia");
+//    $persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+//    $num = range(0, 9);
+//    $parameter["value"] = str_replace($persian, $num, $parameter["value"]);
+//
 
     /*search in titles*/
     $query = db_select("node" , "node");
     $query->fields("node" , array("nid"));
     $query->condition("node.title" , '%' . db_like($parameter["value"]) . '%', 'LIKE');
-    $first = $query->execute()->fetchCol();
-    /*search in bodies*/
-    $query = db_select("field_data_body" , "body");
-    $query->fields("body" , array("entity_id"));
-    $query->condition("body.body_value" , '%' . db_like($parameter["value"]) . '%', 'LIKE');
-    $second = $query->execute()->fetchCol();
-    /*merge all nids that are found*/
-    $nids = array_merge($first , $second);
+    $nids = $query->execute()->fetchCol();
+
     if(empty($nids)) return array("contents" => []);
 
     /*get information of nids*/

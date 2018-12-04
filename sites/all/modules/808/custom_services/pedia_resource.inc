@@ -92,12 +92,13 @@ function pedia_resource_search($list , $parameter){
     return services_error(t('This version is not supported'), 11);
 }
 function pedia_search_list_v_1($parameter){
+//    $persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+//    $num = range(0, 9);
+//    $parameter["value"] = str_replace($persian, $num, $parameter["value"]);
+
     $query = db_select("taxonomy_term_data" , "pedia");
     $query->fields("pedia" , array("tid"));
-    $or = db_or();
-    $or->condition("pedia.name" , '%' . db_like($parameter["value"]) . '%', 'LIKE');
-    $or->condition("pedia.description" , '%' . db_like($parameter["value"]) . '%', 'LIKE');
-    $query->condition($or);
+    $query->condition("pedia.name" , '%' . db_like($parameter["value"]) . '%', 'LIKE');
     $tids = $query->execute()->fetchCol();
     if(empty($tids)) return array();
     $parameter["custom_pedia"] = $tids;

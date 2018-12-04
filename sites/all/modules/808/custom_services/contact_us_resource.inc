@@ -13,7 +13,7 @@ function contact_us_resource_index($parameter){
 function contact_us_information_v_1($parameter){
     $info = array();
     $info["address"] = "تهران، ابتدای گیشا، ابتدای فروزانفر، جنب بانک صادرات، پلاک 7، واحد 1";
-    $info["map"] = "";
+    $info["map"] = array("latitude" => "35.726257" , "longtitude" => "51.378813");
     $info["phone"] = array("02188272694");
     $info["fax"] = array("02188275253");
     $info["email"] = array("saze808@gmail.com" , "info@civil808.com" , "edu@civil808.com");
