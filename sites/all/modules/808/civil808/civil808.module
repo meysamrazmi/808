@@ -1230,3 +1230,23 @@ function civil808_cron (){
 		}
 	}
 }
+
+function civil808_form_taxonomy_form_term_alter(&$form, &$form_state, $form_id){
+	$terms = db_select('field_data_field_relations', 'f')
+		->fields('f')
+		->condition('field_relations_tid', $form['#term']['tid'])
+		->execute()->fetchAll();
+
+	$ttt = array();
+	foreach ($terms as $term){
+		array_push($ttt, $term->entity_id);
+	}
+	$full_terms = taxonomy_term_load_multiple($ttt);
+	$output = '';
+	foreach ($full_terms as $t){
+		$output .= '<a class="button" href="/taxonomy/term/'. $t->tid .'" >'. $t->name .'</a>';
+	}
+	$form['field_relations']['#prefix'] = '<div class="field-type-taxonomy-term-reference field-name-field-relations field-widget-autocomplete-deluxe-taxonomy form-wrapper"><p>تگ هایی که به این تگ متصل شده اند</p><p>'. $output .'</p>';
+	$form['field_relations']['#suffix'] = '</div>';
+	return $form;
+}

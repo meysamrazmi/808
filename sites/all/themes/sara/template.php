@@ -19,8 +19,6 @@ function sara_user($op, &$edit, &$account, $category = NULL) {
  * Implements template_preprocess_html().
  */
 function sara_preprocess_html(&$variables) {
-  $settings = variable_get('theme_andromeda_settings', '') ? variable_get('theme_andromeda_settings', '') : array();
-    
   if ($variables['is_front']) {
     $variables['classes_array'][] = 'front';
   } else {
@@ -32,16 +30,7 @@ function sara_preprocess_html(&$variables) {
   if (!empty($variables['page']['sidebar'])) {
     $variables['classes_array'][] = 'with-sidebar';
   }
-  if (!empty($settings['toggle_slogan'])) {
-    $variables['classes_array'][] = 'with-slogan';
-  }
-  if (theme_get_setting('andromeda_show_front_page_title') && $variables['is_front']) {
-    $variables['classes_array'][] = 'with-front-page-title';
-  }
-  if(theme_get_setting('andromeda_logo_position') == 'right') {
-    $variables['classes_array'][] = 'logo-on-right';
-  }
-  
+
   //by meysam razmi to adding classes based on url alias
   $path = drupal_get_path_alias();
   $aliases = explode('/', $path);
