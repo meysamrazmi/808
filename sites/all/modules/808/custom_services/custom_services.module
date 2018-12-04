@@ -1103,6 +1103,13 @@ function custom_services_services_resources(){
                     'access arguments append' => FALSE,
                     'args' => array(
                         array(
+                            'name' => 'tid',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'The tid of the taxonomy to retrieve',
+                        ),
+                        array(
                             'name' => 'parameter',
                             'type' => 'array',
                             'description' => 'The parameter of api.',

@@ -14,5 +14,6 @@ function festival_information_v_1($parameter){
     $info["enable"] = true;
     $info["text"] = '<div> 5% شارژ رایگان برای 808+ <br> جشنواره روز دانشجو </div>';
     $info["image"] = "https://civil808.com/sites/default/files/appfestival.jpg";
+    $info["color"] = array("r" => 0, "g" => 0, "b" => 0, "alpha" => 1);
     return $info;
 }

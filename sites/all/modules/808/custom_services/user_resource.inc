@@ -695,6 +695,7 @@ function profile_data($uid){
 
     $query = db_select("field_data_field_experts" , "expert");
     $query->join("taxonomy_term_data" , "term" , "expert.field_experts_tid = term.tid");
+    $query->join("field_data_field_bool" , "bool" , "bool.entity_id = term.tid and bool.bundle = 'expert' and bool.entity_type = 'taxonomy_term' and bool.field_bool_value = '1' ");
     $query->condition("expert.entity_id" , $profile->pid);
     $query->condition("expert.entity_type" , "profile2");
     $query->condition("expert.bundle" , "main");
