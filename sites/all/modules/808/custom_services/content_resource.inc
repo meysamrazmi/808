@@ -103,6 +103,7 @@ function list_of_contents_v_0($parameter){
 }
 function list_of_contents_v_1($parameter){
     global $user;
+
     $type = $parameter["type"]; $page = (int)$parameter["page"];
     /*Get query related to the @type*/
     $query = get_nodes_query($type);
@@ -186,22 +187,32 @@ function list_of_contents_v_1($parameter){
         $query->addField("college_type" , "field_course_type_value" , "college_type");
 
 
-
         $subquery = db_select("uc_product_options" , "product_options");
         $subquery->join("node" , "node" , " node.nid = product_options.nid and node.type = 'college' ");
         $subquery->fields("product_options" , array("nid" , "oid" , "cost" , "price"));
-        $options = $subquery->execute()->fetchAll();
+        $options_db = $subquery->execute()->fetchAll();
+        $options = array();
         $options_nid = array();
-        $option_sums = array();
-        foreach ($options as $option){
+        $options_off = array();
+        foreach ($options_db as $option){
             array_push($options_nid , $option->nid);
-            if(!isset($option_sums[$option->nid]->cost)) $option_sums[$option->nid]->cost = 0;
-            if(!isset($option_sums[$option->nid]->price)) $option_sums[$option->nid]->price = 0;
-            $option_sums[$option->nid]->cost += (int)$option->cost;
-            $option_sums[$option->nid]->price += (int)$option->price;
+            if(!isset($options[$option->nid])) $options[$option->nid] = array();
+            array_push($options[$option->nid] , $option);
         }
-        $option_off_nid = array();
-        foreach ($option_sums as $key=>$item) if($item->price < $item->cost) array_push($option_off_nid , $key);
+        foreach ($options as $key => $option){
+            $cost = 0;
+            $price = 0;
+            foreach ($option as $value){
+                $cost += (int)$value->cost;
+                $price += (int)$value->price;
+            }
+            array_push($option , array("sum_cost" => $cost));
+            array_push($option , array("sum_price" => $price));
+            $options[$key] = $option;
+            if($price < $cost){
+                array_push($options_off , $key);
+            }
+        }
 
         /*add prices of the courses*/
         $query->join("uc_products" , "product" , "node.nid = product.nid");
@@ -279,7 +290,19 @@ function list_of_contents_v_1($parameter){
             $content->list_price = round($content->list_price , 0);
             $content->sell_price = round($content->sell_price , 0);
             $content->off = false;
-            if($content->sell_price < $content->list_price || in_array($content->nid , $option_off_nid)) $content->off = true;
+
+            $off = false;
+            $festival = false;
+            if(in_array($content->nid , $options_off) || $content->sell_price < $content->list_price) $off = true;
+            $discount = new stdClass();
+            if($festival && $off){
+                $discount = array("name" => "festival" , "color" => 1, "enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
+            }
+            elseif($off){
+                $discount = array("name" => "off" , "color" => 2, "enable" => true, "amount" => 0.2, "message" => "فروش ویژه");
+            }
+            $content->discount = $discount;
+
             switch ($content->college_step){
                 case "0" :
                     $content->college_step = array("id" => 0 , "state" => "در حال ثبت نام");
@@ -308,21 +331,21 @@ function list_of_contents_v_1($parameter){
                 if (in_array("Vip", $user->roles)) $vip = true;
 
                 if ($vip && $free_for_vip) {
-                    $discount = array("enable" => true, "amount" => 1, "message" => "رایگان برای کاربران VIP");
+                    $discount = array("name" => "free", "color" => 2, "enable" => true, "amount" => 1, "message" => "رایگان برای کاربران VIP");
                     $content->price = 0;
                 }
                 elseif ($vip && !$free_for_vip && !$festival) {
-                    $discount = array("enable" => true, "amount" => 0.1, "message" => "10% تخفیف VIP");
+                    $discount = array("name" => "vip", "color" => 3, "enable" => true, "amount" => 0.1, "message" => "10% تخفیف VIP");
                     $content->price = 0.9 * $content->price;
                 }
                 elseif (!$vip && !$festival && $free_for_vip) {
-                    $discount = array("name" => "vip", "enable" => false, "amount" => 1, "message" => "رایگان برای کاربران VIP");
+                    $discount = array("name" => "free", "color" => 2, "enable" => false, "amount" => 1, "message" => "رایگان برای کاربران VIP");
                 }
                 elseif (!$vip && !$festival && !$free_for_vip) {
-                    $discount = array("enable" => false, "amount" => 0.1, "message" => "10% تخفیف VIP");
+                    $discount = array("name" => "vip", "color" => 3, "enable" => false, "amount" => 0.1, "message" => "10% تخفیف VIP");
                 }
                 elseif ($festival) {
-                    $discount = array("enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
+                    $discount = array("name" => "festival", "color" => 1, "enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
                     $content->price = 0.8 * $content->price;
                 }
             }
@@ -484,6 +507,7 @@ function retrieve_a_content_v_0($parameter){
 }
 function retrieve_a_content_v_1($parameter){
     $nid = $parameter["nid"];
+    global $user;
 
     $query = db_select("node" , "node");
     $query->leftJoin("field_data_field_image" , "field_image" , "node.nid = field_image.entity_id and field_image.entity_type = 'node' and field_image.delta = '0' ");
@@ -507,7 +531,7 @@ function retrieve_a_content_v_1($parameter){
         $query->addField('field_file_published' , 'entity_id' , 'nid');
         $query->addField('file_published' , 'uri' , 'sample_file');
         $sample_file = $query->execute()->fetch();
-        if(!empty($sample_file)) $node->sample_file = $sample_file->sample_file;
+        $node->sample_file = generate_file_address($sample_file->sample_file);
 
         $query = db_select('field_data_field_pagenumber' , 'page_number');
         $query->addField('page_number' , 'field_pagenumber_value' , 'page_number');
@@ -537,7 +561,6 @@ function retrieve_a_content_v_1($parameter){
             $free_for_vip = $query->execute()->fetch();
             $free_for_vip = empty($free_for_vip) ? false : true;
 
-            global $user;
             $vip = false;
             if (in_array('Vip', $user->roles)) $vip = true;
             $festival = false;
@@ -545,20 +568,20 @@ function retrieve_a_content_v_1($parameter){
             if ($vip && $free_for_vip) {
                 $file_permission = true;
                 $node->price = 0;
-                $discount = array("enable" => true, "amount" => 1, "message" => "رایگان برای کاربران VIP");
+                $discount = array("name" => "free" , "color" => 2, "enable" => true, "amount" => 1, "message" => "رایگان برای کاربران VIP");
             }
             elseif ($vip && !$free_for_vip && !$festival) {
-                $discount = array("enable" => true, "amount" => 0.1, "message" => "10% تخفیف VIP");
+                $discount = array("name" => "vip" , "color" => 3, "enable" => true, "amount" => 0.1, "message" => "10% تخفیف VIP");
                 $node->price = 0.9 * $node->price;
             }
             elseif(!$vip && !$festival && $free_for_vip){
-                $discount = array("enable" => false, "amount" => 1, "message" => "رایگان برای کاربران VIP");
+                $discount = array("name" => "free" , "color" => 2, "enable" => false, "amount" => 1, "message" => "رایگان برای کاربران VIP");
             }
             elseif(!$vip && !$festival && !$free_for_vip){
-                $discount = array("enable" => false, "amount" => 0.1, "message" => "10% تخفیف VIP");
+                $discount = array("name" => "vip" , "color" => 3, "enable" => false, "amount" => 0.1, "message" => "10% تخفیف VIP");
             }
             elseif($festival){
-                $discount = array("enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
+                $discount = array("name" => "festival" , "color" => 1, "enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
                 $node->price = 0.8 * $node->price;
             }
 
@@ -622,24 +645,40 @@ function retrieve_a_content_v_1($parameter){
         $node->model = (!empty($product->model)) ? $product->model : "";
         $node->list_price = (!empty($product->list_price)) ? round($product->list_price, 0) : null;
         $node->sell_price = (!empty($product->sell_price)) ? round($product->sell_price, 0) : null;
+        $query = db_select("uc_product_options" , "product_options");
+        $query->join("node" , "node" , "node.nid = product_options.nid and node.nid = '" . $node->nid . "'");
+        $query->join("uc_attribute_options" , "options" , "product_options.oid = options.oid");
+        $query->fields("product_options" , array("cost" , "price"));
+        $query->fields("options" , array("name"));
+        $options = $query->execute()->fetchAll();
+        $price = 0; $cost = 0;
+        foreach ($options as $option){
+            $option->cost = (int) $option->cost;
+            $option->price = (int) $option->price;
+            $price += $option->price;
+            $cost += $option->cost;
+        }
+        $node->options = $options;
+        $discount = new stdClass();
+        $off = false;
+        $festival = false;
+        if($node->sell_price < $node->list_price || $price < $cost) $off = true;
+        if($festival && $off){
+            $discount = array("name" => "festival" , "color" => 1, "enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
+        }
+        elseif($off){
+            $discount = array("name" => "off" , "color" => 2, "enable" => true, "amount" => 0.2, "message" => "فروش ویژه");
+        }
+        $node->discount = $discount;
+
 
         $query = db_select("field_data_field_film" , "field_film");
         $query->join("file_managed" , "film" , "film.fid = field_film.field_film_fid and field_film.bundle = 'college' ");
         $query->addField("film" , "uri" , "film");
         $query->condition("field_film.entity_id" , $nid);
         $film = $query->execute()->fetch();
-        $node->film_link = (!empty($film)) ? $film->film : null;
+        $node->film_link = (!empty($film)) ? generate_file_address($film->film) : null;
 
-        $query = db_select("uc_attribute_options" , "attribute_options");
-        $query->join("uc_product_options" , "product_options" , "product_options.oid = attribute_options.oid and product_options.nid = '" . $node->nid . " ' ");
-        $query->fields("attribute_options" , array("name"));
-        $query->fields("product_options" , array("cost" , "price"));
-        $options = $query->execute()->fetchAll();
-        $node->options = (!empty($options)) ? $options : array();
-        foreach ($node->options as $option){
-            $option->cost = round($option->cost);
-            $option->price = round($option->price);
-        }
 
         $query = db_select("field_data_field_course_step" , "step");
         $query->fields("step" , array("field_course_step_value"));
@@ -723,9 +762,14 @@ function retrieve_a_content_v_1($parameter){
         $node->author = $author;
     }
 
-    global $user;
     if(bookmark_status($nid , $user->uid) == true) $node->bookmark = 1;
     else $node->bookmark = 0;
+
+
+    $node->nid = (int) $node->nid;
+    $node->uid = (int) $node->uid;
+    $node->created = (int) $node->created;
+    $node->changed = (int) $node->changed;
 
     return $node;
 }

@@ -552,21 +552,21 @@ function user_bookmark_contents_list_v_1($parameter){
                 $festival = false;
 
                 if ($vip && $free_for_vip) {
-                    $discount = array("enable" => true, "amount" => 1, "message" => "رایگان برای کاربران VIP");
+                    $discount = array("name" => "free", "color" => 2, "enable" => true, "amount" => 1, "message" => "رایگان برای کاربران VIP");
                     $row->price = 0;
                 }
                 elseif ($vip && !$free_for_vip && !$festival) {
-                    $discount = array("enable" => true, "amount" => 0.1, "message" => "10% تخفیف VIP");
+                    $discount = array("name" => "vip", "color" => 3, "enable" => true, "amount" => 0.1, "message" => "10% تخفیف VIP");
                     $row->price = 0.9 * $row->price;
                 }
                 elseif (!$vip && !$festival && $free_for_vip) {
-                    $discount = array("name" => "vip", "enable" => false, "amount" => 1, "message" => "رایگان برای کاربران VIP");
+                    $discount = array("name" => "free", "color" => 2, "name" => "vip", "enable" => false, "amount" => 1, "message" => "رایگان برای کاربران VIP");
                 }
                 elseif (!$vip && !$festival && !$free_for_vip) {
-                    $discount = array("enable" => false, "amount" => 0.1, "message" => "10% تخفیف VIP");
+                    $discount = array("name" => "vip", "color" => 3, "enable" => false, "amount" => 0.1, "message" => "10% تخفیف VIP");
                 }
                 elseif ($festival) {
-                    $discount = array("enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
+                    $discount = array("name" => "festival", "color" => 1, "enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
                     $row->price = 0.8 * $row->price;
                 }
             }
