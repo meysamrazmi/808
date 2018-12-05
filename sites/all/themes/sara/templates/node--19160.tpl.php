@@ -141,7 +141,7 @@
     </div>
 </section>-->
 <section class="second">
-    <h2 class="text"> ثبت نام در ورکشاپ حضوری تخصصی معرفی (BIM (Revit, Dynamo, Naviswork </h2>
+    <h2 class="text" style="width:820px;"> ثبت نام در ورکشاپ حضوری تخصصی معرفی (BIM (Revit, Dynamo, Naviswork </h2>
     <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">علاوه بر این دوره شما می توانید در
         <a href="#edu-form" class="title"> دوره های حضوری و آنلاین BIM </a>
         ثبت نام کنید.

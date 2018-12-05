@@ -165,6 +165,7 @@ body:not(.page-landing) #block-system-main > .content .taxonomy-term-description
   position: relative;
   border-bottom: 1px solid #eee;
   font-weight: bold;
+  clear: both;
 }
 #block-system-main > .content .field-name-body h5.relative_nodes:before,
 #block-system-main > .content .field-type-text-with-summary h5.relative_nodes:before,
@@ -1516,4 +1517,126 @@ body:not(.uid-3300) #block-block-58 {
 }
 #block-block-61 .view-empty p {
   font-weight: 100;
+}
+/*------------for every tags in site----------------*/
+.field-name-field-experts {
+  margin: 13px 0;
+}
+.default-page .field-name-field-experts {
+  margin: 40px -21px -16px -21px;
+  border: 1px solid #eaeaea;
+  padding: 15px 15px 13px 15px;
+  background-color: #f6f6f6;
+  clear: both;
+}
+.node-type-college .field-name-field-experts {
+  margin: 0;
+  border-top: 1px solid #eaeaea;
+  padding: 15px 15px 13px 15px;
+  background-color: #f6f6f6;
+  clear: both;
+}
+.field-name-field-experts.view-question {
+  margin-right: 105px !important;
+}
+.field-name-field-experts .field-item {
+  margin: 0 0 5px 5px;
+  display: inline-block;
+  position: relative;
+}
+.field-name-field-experts .field-item a {
+  background: #fbfbfb;
+  border: none;
+  height: 36px;
+  border-radius: 2px;
+  line-height: 36px;
+  text-align: center;
+  color: #444 !important;
+  padding: 0 16px;
+  text-shadow: none;
+  display: inline-block;
+  font-size: 14px;
+  min-width: 88px;
+  transition: all 0.2s;
+  text-decoration: none;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  outline: none;
+  line-height: 30px;
+  height: 30px;
+  min-width: 75px;
+  font-size: 13px;
+  padding: 0 13px;
+}
+.field-name-field-experts .field-item a:hover {
+  background-color: #eee;
+}
+.field-name-field-experts .field-item a:focus {
+  background: #f5f5f5;
+  box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+}
+.field-name-field-experts .field-item .information {
+  background: #fff;
+  border: none;
+  border-radius: 0;
+  padding: 15px;
+  box-shadow: 0 2px 2px #edeef0;
+  box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+  position: absolute;
+  top: 30px;
+  right: 0;
+  display: flex;
+  opacity: 0;
+  max-width: 415px;
+  min-width: 150px;
+  z-index: -1;
+}
+.field-name-field-experts .field-item .information .pic {
+  width: 100px;
+  margin-left: 15px;
+  background: #eee;
+  height: 100px;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+}
+.field-name-field-experts .field-item .information .data {
+  white-space: nowrap;
+  width: calc(100% - 115px);
+}
+.field-name-field-experts .field-item .information .data > div:before {
+  content: "\f186";
+  font-family: mat;
+  font-size: 25px;
+  color: #666;
+}
+.field-name-field-experts .field-item .information .data > div:before {
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.field-name-field-experts .field-item .information .data .u-count:before {
+  content: "\f00e";
+}
+.field-name-field-experts .field-item .information .data a {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  border-radius: 0;
+  color: #2196F3 !important;
+  border: 1px solid currentColor;
+  line-height: 30px;
+  height: 30px;
+  min-width: 75px;
+  font-size: 13px;
+  padding: 0 13px;
+}
+.field-name-field-experts .field-item .information:not(.filled) .data > div {
+  width: 170px;
+  height: 28px;
+  background: #eee;
+  margin-bottom: 5px;
+}
+.field-name-field-experts .field-item .information:not(.filled) .data > div:before {
+  display: none;
+}
+.field-name-field-experts .field-item.open .information {
+  opacity: 1;
+  z-index: 10;
 }

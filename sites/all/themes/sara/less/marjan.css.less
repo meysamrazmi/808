@@ -97,6 +97,7 @@ body{
         position: relative;
         border-bottom: 1px solid #eee;
         font-weight: bold;
+        clear: both;
         &:before {
           content: "";
           position: absolute;
@@ -1364,3 +1365,79 @@ div#block-block-45-temporarydown{/*temporary down*/
         }
     }
 }
+/*------------for every tags in site----------------*/
+    .field-name-field-experts{
+        margin: 13px 0;
+        .default-page &{
+            margin: 40px -21px -16px -21px;
+            border: 1px solid #eaeaea;
+            padding: 15px 15px 13px 15px;
+            background-color: #f6f6f6;
+            clear: both;
+        }
+        .node-type-college &{
+            margin: 0;
+            border-top: 1px solid #eaeaea;
+            padding: 15px 15px 13px 15px;
+            background-color: #f6f6f6;
+            clear: both;
+        }
+        &.view-question{
+            margin-right: 105px !important;
+        }
+        .field-item{
+            margin: 0 0 5px 5px;
+            display: inline-block;
+            position: relative;
+            a{
+                .btn;
+                .small-btn;
+            }
+            .information {
+                .paper(z2);
+                .absolute('';'';30px;0);
+                display: flex;
+                opacity: 0;
+                max-width: 415px;
+                min-width: 150px;
+                z-index: -1;
+                .pic{
+                    width: 100px;
+                    margin-left: 15px;
+                    background: #eee;
+                    height: 100px;
+                    box-shadow: @z1;
+                }
+                .data{
+                    white-space: nowrap;
+                    width: calc(~"100% - 115px");
+                    > div{
+                        .before(f186;'';25px;#666);
+                        &:before{
+                            margin-left: 6px;
+                            vertical-align: middle;
+                        }
+                    }
+                    .u-count:before{content : "\f00e";}
+                    a {
+                        .absolute('';'';'';'';15px;15px);
+                        .line-btn(@mat-blue);
+                        .small-btn;
+                    }
+                }
+                &:not(.filled){
+                    .data > div {
+                        width: 170px;
+                        height: 28px;
+                        background: #eee;
+                        margin-bottom: 5px;
+                        &:before{display:none;}
+                    }
+                }
+            }
+            &.open .information{
+                opacity: 1;
+                z-index: 10;
+            }
+        }
+    }
