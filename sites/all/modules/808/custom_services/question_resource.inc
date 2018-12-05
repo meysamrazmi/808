@@ -558,15 +558,19 @@ function question_resource_search($list , $parameter){
     return services_error(t('This version is not supported'), 11);
 }
 function question_search_v_1($parameter){
+//    $persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+//    $num = range(0, 9);
+//    $parameter["value"] = str_replace($persian, $num, $parameter["value"]);
+
     $query = db_select("node", "node");
     $query->fields('node', array('nid'));
-    $query->condition('node.title', '%' . $parameter["value"] . '%', 'LIKE');
+    $query->condition('node.title', '%' . db_like($parameter["value"]) . '%', 'LIKE');
     $query->condition('node.type' , 'questions');
     $nid1 = $query->execute()->fetchCol();
 
     $query = db_select("field_data_body", "body");
     $query->addField('body', 'entity_id', 'nid');
-    $query->condition('body.body_value', '%' . $parameter["value"] . '%', 'LIKE');
+    $query->condition('body.body_value', '%' . db_like($parameter["value"]) . '%', 'LIKE');
     $query->condition('body.entity_type' , 'node');
     $query->condition('body.bundle' , 'questions');
     $nid2 = $query->execute()->fetchCol();

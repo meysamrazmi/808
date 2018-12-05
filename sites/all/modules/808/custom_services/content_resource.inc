@@ -232,7 +232,10 @@ function list_of_contents_v_1($parameter){
         }
         $query->addField("step" , "field_course_step_value" , "college_step");
 
-
+        if(isset($parameter["custom_list"]) && !empty($parameter["custom_list"])){
+            $query->condition("node.nid" , $parameter["custom_list"] , "IN");
+            return $query;
+        }
         /*sort the courses*/
         if(isset($parameter["sort"]))
             switch ($parameter["sort"]){
@@ -289,7 +292,6 @@ function list_of_contents_v_1($parameter){
         if(strcmp($content->type , "college") == 0){
             $content->list_price = round($content->list_price , 0);
             $content->sell_price = round($content->sell_price , 0);
-            $content->off = false;
 
             $off = false;
             $festival = false;
@@ -862,19 +864,17 @@ function content_search_list_v_1($parameter){
      */
     if(isset($parameter["types"])) $types = explode("," , $parameter["types"]);
     $all_types = array("publication" , "podcast" , "college" , "video" , "designteam" , "article" , "pedia");
+//    $persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+//    $num = range(0, 9);
+//    $parameter["value"] = str_replace($persian, $num, $parameter["value"]);
+//
 
     /*search in titles*/
     $query = db_select("node" , "node");
     $query->fields("node" , array("nid"));
     $query->condition("node.title" , '%' . db_like($parameter["value"]) . '%', 'LIKE');
-    $first = $query->execute()->fetchCol();
-    /*search in bodies*/
-    $query = db_select("field_data_body" , "body");
-    $query->fields("body" , array("entity_id"));
-    $query->condition("body.body_value" , '%' . db_like($parameter["value"]) . '%', 'LIKE');
-    $second = $query->execute()->fetchCol();
-    /*merge all nids that are found*/
-    $nids = array_merge($first , $second);
+    $nids = $query->execute()->fetchCol();
+
     if(empty($nids)) return array("contents" => []);
 
     /*get information of nids*/
