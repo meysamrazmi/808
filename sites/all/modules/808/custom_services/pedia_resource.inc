@@ -56,6 +56,12 @@ function retrieve_pedia_v_1($parameter){
     $query->condition("pedia.vid" , 28);
     $pedia = $query->execute()->fetch();
 
+    $parts = explode('="/sites/default', $pedia->description);
+    $pedia->description = implode('="https://civil808.com/sites/default', $parts);
+    $parts = explode('href="/', $pedia->description);
+    $pedia->description = implode('href="https://civil808.com/', $parts);
+
+
     $pedia->tid = (int) $pedia->tid;
     $pedia->image = empty($pedia->uri) ? null : image_style_url("large" , $pedia->uri);
     unset($pedia->uri);

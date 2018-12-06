@@ -454,8 +454,13 @@ function civil808_page_accounting_charge($form, &$form_state, $uid) {
 		$form = array();
 	}
 	$form['text'] = array(
-		'#markup' => t('charge_your_account_hint'),
-		);
+		'#markup' => t('charge_your_account_hint') .
+            '<p>
+                ۵ درصد شارژ هدیه برای کسانی که از طریق 
+                <a class="btn-primary small-btn" href="/app" target="_blank" style="margin: 0 5px 0 10px;background: linear-gradient(to bottom left, #6c2eda, #9c27b0b8);">اپلیکیشن ۸۰۸+ </a>
+                پرداخت کنند
+            </p>',
+  		);
 	$form['your_charge'] = array(
 		'#prefix' => '<div>',
 		'#suffix' => '</div>',
@@ -476,16 +481,16 @@ function civil808_page_accounting_charge($form, &$form_state, $uid) {
 		'#value' => t('Charge account'),
 		);
 		/*
-		*	برای تخفیفات گروهی برای 20 درصد شارژ هدیه
-
+			برای تخفیفات گروهی برای 20 درصد شارژ هدیه
+        */
 	$form['festival'] = array(
 		'#markup' => '<div id="smile">
 			<canvas>
 			</canvas>
-			<div class="festival">تخفیف 20 درصد به مناسبت جشنواره عید تا عید</div>
+			<div class="festival">۲۰ شارژ هدیه به مناسبت جشنواره روز دانشجو</div>
 			<div class="last-price">مبلغ نهایی شارژ: <span></span> تومان</div>
 			</div>',
-		);*/
+		);
 
 	return $form;
 }
@@ -547,7 +552,7 @@ function civil808_page_accounting_bankcallback($type, $resnumber) {
 				drupal_set_message(t('charge transaction success'), 'status');
 				$params = array(
 			      'uid' => $event->user,
-			      'points' => ($price), /* ($price * 1.2) شارژ اضافه برای جشنواره*/
+			      'points' => ($price * 1.2), /* ($price * 1.2) شارژ اضافه برای جشنواره*/
 			      'operation' => t('Charge from bank'),
 			    );
 			    userpoints_userpointsapi($params);

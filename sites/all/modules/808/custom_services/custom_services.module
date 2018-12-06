@@ -1869,8 +1869,10 @@ function generate_file_address($url){
 }
 function push_notification($data , $uid){
     if(empty($uid)) return false;
-    $data["type"] = "";
-    $data["nid"] = "";
+    if((!isset($data["type"]) && empty($data["type"])) || (!isset($data["nid"]) && empty($data["nid"]))){
+        $data["type"] = "";
+        $data["nid"] = "";
+    }
     $data["playsound"] = true;
     $data["timestamp"] = REQUEST_TIME;
 

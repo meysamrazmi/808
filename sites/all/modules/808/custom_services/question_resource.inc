@@ -79,7 +79,7 @@ function get_questions($parameter){
     $query->addField("author_name" , "field_full_name_value" , "author_name");
     $query->condition("node.type" , "questions");
     if(strcmp($parameter["domain"] , "my_question") == 0) $query->condition("node.uid" , $parameter["user"]->uid);
-    elseif(!in_array("administrator" , $parameter["user"]->roles)) $query->condition("node.status" , 1);
+    elseif($parameter["user"]->uid != 10628) $query->condition("node.status" , 1);
     if(isset($parameter["custom_question"])){
         if(!empty($parameter["custom_question"]))
             $query->condition("node.nid" , $parameter["custom_question"] , "IN");

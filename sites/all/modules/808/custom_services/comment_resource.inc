@@ -48,9 +48,12 @@ function create_comment_v_1($data){
     $notification_data["title"] = "پرسش و پاسخ";
     $notification_data["message"] = "پاسخ جدیدی برای سوال شما ثبت گردید.";
     $notification_data["image"] = "https://civil808.com/sites/default/files/qanotif.jpg";
+    $notification_data["type"] = "questions";
+    $notification_data["nid"] = $comment->nid;
     $uid = db_select("node")->fields("node" , array("uid"))->condition("nid" , $comment->nid)->execute()->fetch()->uid;
     $notification_uids = array($uid);
-    $notification = push_notification($notification_data , $notification_uids);
+    if($user->uid != $uid)
+        $notification = push_notification($notification_data , $notification_uids);
     return $comment;
 }
 
