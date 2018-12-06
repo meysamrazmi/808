@@ -60,6 +60,21 @@
 		}		
 		$content['body'][0]['#markup'] = $a->getFixedHtml(explode("<!--break-->", render($content['body'][0]['#markup']))[0]);
 	}
+
+    if($node->type == 'designteam' && isset($node->field_podcast_sample['und'][0])){
+      $video_attrs = array(
+          'src' => $node->field_podcast_sample['und'][0]['value'],
+      );
+      $video_sett =  array(
+          'download_link' => TRUE,
+          'download_text' => 'دانلود',
+      );
+      print '<div class="inine-audio" style="display: inline-block;background: #000;padding-top: 0;border-radius: 5px;margin: 15px 0 25px;">'.
+          theme('mediaelement_audio', array('attributes' => $video_attrs, 'settings' => $video_sett))
+            . '</div>';
+      print '<style>.inine-audio .mejs-container {border: none !important;}</style>';
+    }
+
 	print render($content);
   ?>
   </div>

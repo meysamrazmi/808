@@ -62,10 +62,13 @@ function ds_format_php_eval($code, $entity, $build = array()) {
     $theme_path = dirname($theme_info->filename);
   }
 
-  ob_start();
-  print eval('?>' . $code);
-  $output = ob_get_contents();
-  ob_end_clean();
+	ob_start();
+	print eval('?>' . $code);
+//	if ('' !== $error = ob_get_clean()) {
+//		mdump($code);
+//	}
+	$output = ob_get_contents();
+	ob_end_clean();
 
   // Recover original theme path.
   $theme_path = $old_theme_path;
