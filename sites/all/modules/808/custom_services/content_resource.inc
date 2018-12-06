@@ -622,6 +622,9 @@ function retrieve_a_content_v_1($parameter){
         else $node->bought = false;
     }
     elseif(strcmp($node->type , "college") == 0){
+        $parts = explode('="/sites/default', $node->body);
+        $node->body = implode('="https://civil808.com/sites/default', $parts);
+
         $query = db_select("field_data_field_image" , "field_image");
         $query->join("file_managed" , "picture_s" , "picture_s.fid = field_image.field_image_fid");
         $query->addField('picture_s' , 'uri' , 'picture_s');
