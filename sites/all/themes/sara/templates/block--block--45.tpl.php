@@ -2,17 +2,17 @@
     <div id="block-block-45" class="block block-block contextual-links-region first odd">
         <div class="content">
             <span class="close-banner">X</span>
-            <a href="https://civil808.com/eng" target="_blank">
+            <a href="http://land.civil808.com/97/daneshjoo" target="_blank">
                 <div class="new-title">
-                    <img class="right" src="/sites/all/themes/sara/images/banners/engineerGuy.png">
+                    <img style="display: none;" class="right" src="/sites/all/themes/sara/images/banners/engineerGuy.png">
                     <div style="margin-top: 5px;">
-                        <div>ثبت نام دوره حضوری آمادگی آزمون ورود به حرفه</div>
-                        محاسبات، نظارت و اجرا
+                        <div>تا ۳۵٪ تخفیف در سایت و اپلیکیشن ۸۰۸ پلاس، به مناسبت روز دانشجو</div>
+                        فقط ۱۶ و ۱۷ آذرماه
                     </div>
                 </div>
-                <div class="left">کلیک کنید
-                    <span>></span>
-                </div>
+                <!--<div class="left">تخفیف های این جشنواره رو از دست ندید!!
+                    <span></span>
+                </div>-->
                 <img style="display: none;" class="left" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">
             </a>
         </div>
@@ -23,14 +23,16 @@
             position: fixed;
             bottom: 0;
             right: 0;
-            border-top: 3px solid #1a68a9;
+            border-top: 3px solid #821639;
             height: 70px;
             z-index: 100;
-            background-position-x: center;
-            background-size: cover;
+            background-position-y: center;
+            /* background-size: cover; */
             display: flex;
-            align-items: center;
-            background-color: white;
+            align-items: self-start;
+            /*background-image: url(/sites/all/themes/sara/images/banners/pattern.svg);*/
+            background-image: url(/sites/all/themes/sara/images/banners/pattern.svg);
+            background-size: 34%;
         }
         div#block-block-45 .content {
             display: flex;
@@ -61,7 +63,7 @@
         }
         div#block-block-45 .new-title > div > div{
             font-size: 20px;
-            color: #E65100;
+            color: #000f5f;
             margin-top: 2px;
         }
         div#block-block-45 img.right{
