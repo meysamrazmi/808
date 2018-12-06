@@ -120,7 +120,7 @@ function uc_zarinpal_complete_page($order_id) {
   $message = t('Payment successful. Refernce: %refid', array('%refid' => $refid));
 
     /*مربوط به شارژ اضافه برای جشنواره*/
-    /*-------------------------------------------------------*
+    /*-------------------------------------------------------*/
     $flag = false;
     foreach($order->line_items as $row){
         if(strcmp($row["type"] , "coupon") == 0){

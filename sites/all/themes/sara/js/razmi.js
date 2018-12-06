@@ -1091,11 +1091,41 @@ var interval = setInterval( function(){
 
 
 
+/*------------------------------tag part on nodes------------------------------*/
+/*experts functionality*/
+$('.page-node .field-name-field-experts a').each(function(){
+	var href = $(this).attr('href');
+	var arr = href.split("/");
+	$(this).attr('tid' , arr[3]);
+	$(this).attr('target' , "_blank");
+	$(this).after('<div class="information"><div class="pic"></div><div class="data"><div></div><div></div></div></div>');
+});
+var ajax;
+$('.page-node .field-name-field-experts .field-item > a').on('mouseenter' , function(){
+	$(this).parent().addClass('open');
+	if(!$(this).next(".information").hasClass("filled")){
+		var tid = $(this).attr('tid');
+		var element = $(this);
+		ajax = $.ajax({
+			type: 'GET',
+			url: '/experts/information/' + tid,
+			success: function(result){
+				element.next('.information').html('<div class="pic"><image src="'+ result['pic'] +'"/></div><div class="data"><div class="q-count">  سوالات این تخصص : ' + result['question_count'] + ' </div><div class="u-count"> کاربران این تخصص : ' + result['user_count'] + '</div><a href="/taxonomy/term/' + result['tid'] +' " target="_blank">بیشتر...</a></div>');
+				element.next('.information').addClass("filled");
 
-
-
-
-
+			},
+			error: function (xhr) {
+			}
+		});
+	}
+});
+$('.page-node .field-name-field-experts .field-item').on('mouseleave' , function(){
+        $(this).removeClass('open');
+        if(ajax){
+            ajax.abort();
+        }
+    });
+/*-----------------------------------------------------------------------------*/
 
 
 

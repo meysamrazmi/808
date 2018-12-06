@@ -26,7 +26,7 @@ $(document).ready(function(){
                 type: 'GET',
                 url: '/experts/information/' + tid,
                 success: function(result){
-                    element.next('.information').html('<div class="pic"><image src="'+ result['pic'] +'"/></div><div class="data"><div class="q-count">  سوالات این تخصص : ' + result['question_count'] + ' </div><div class="u-count"> کاربران این تخصص : ' + result['user_count'] + '</div><a href="#" target="_blank">دانشنامه</a></div>');
+                    element.next('.information').html('<div class="pic"><image src="'+ result['pic'] +'"/></div><div class="data"><div class="q-count">  سوالات این تخصص : ' + result['question_count'] + ' </div><div class="u-count"> کاربران این تخصص : ' + result['user_count'] + '</div><a href="/taxonomy/term/' + result['tid'] + ' " target="_blank">دانشنامه</a></div>');
                     element.next('.information').addClass("filled");
                     
                 },

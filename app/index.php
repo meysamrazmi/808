@@ -73,32 +73,42 @@
 			<div class="wh">
 				<img data-aos="zoom-in-up" data-aos-delay="200" src="./images/808plus-logo.png" alt="808 پلاس" width="200" height="auto" style="margin-bottom: 26px;">
 				<h2 data-aos="zoom-in-up" data-aos-delay="400" > رونمایی از اپلیکیشن اندروید 808 پلاس  </h2>
-				<div data-aos="zoom-out" data-aos-delay="900" class="aboutus">                 
-					<div class="sec-li li">
+				<div data-aos="zoom-out" data-aos-delay="900" class="aboutus">
+                    <div class="sec-li li">
 						<span class="icon-laptop">
-							<img class="phone" src="./images/cellphone4.png" width="530" height="auto" alt="اپلیکیشن اندروید 808 پلاس" title="اپلیکیشن اندروید 808 پلاس">
+							<img class="phone" src="./images/10.png" width="530" height="auto" alt="اپلیکیشن اندروید 808 پلاس" title="اپلیکیشن اندروید 808 پلاس">
 						</span>
-						<div>
-							<p style="font-weight:bold;"> چرا اپلیکیشن 808 پلاس را نصب کنیم؟ </p>
-							<li> مشاهده آخرین اخبار، مقالات تحلیلی و تقویم آموزشی عمران و معماری کشور </li>
-							<li> مشاهده دانشنامه های تخصصی عمران و معماری </li>
-							<li> استفاده از سیستم پرسش و پاسخ 808 و ارتباط با مشاوران سایت </li>
-                            <li> لیست ایبوک های سایت به همراه مشخصات و امکان جستجو</li>
-                            <li>  خرید ایبوک ها و مشاهده ایبوک های خریداری شده</li>
-							
-							<p style="font-weight:bold;"> آپدیت خرداد 97 </p>
-                            <li> دریافت لیست مصاحبه های رادیو 808 </li>
-                            <li> دانلود و پخش رادیو 808 در پلیر اختصاصی</li>
-
-							<a href="https://civil808.com/node/18321" target="_blank">  بیشتر بخوانید ...</a>
-							<div style="max-width: 324px;text-align: center;margin-top: 11px;">
-								<a class="poster download mostaghim" href="./src/808plus.apk" target="_self" >  </a>
-								<a class="poster download cafebazaar" href="https://cafebazaar.ir/app/com.civil808/?l=fa" target="_blank"></a>
-								<a class="poster download googleplay" href="https://play.google.com/store/apps/details?id=com.civil808" target="_blank"></a>
-								<a class="poster download ios" href="#" target="_self" title="به زودی"></a>
-							</div>
-						</div>
-					</div>
+                        <div>
+                            <p style="font-weight:bold;">
+                                در تاریخ خرداد ماه 1397 نسخه آزمایشی اپلیکیشن اندرویدی 808 پلاس منتشر شد. بعد از 6 ماه تلاش تیم 808، نسخه اصلی افزار، با هدف دسترسی آسانتر و سریعتر کاربران به بخش های مختلف سایت طراحی و تکمیل شد.
+                            </p>
+                            <li>ظاهر و رابط کاربری جدید</li>
+                            <li>بهبود سرعت کار با اپلیکیشن و طراحی متفاوت</li>
+                            <li>امکان خرید و مطالعه ایبوک های منتشر شده در وبسایت 808</li>
+                            <li>امکان پخش و دانلود پادکست های وبسایت 808</li>
+                            <li>امکان مشاهده پروفایل مشاوران و کاربران</li>
+                            <li>مکان ایحاد سوال جدید و پاسخ به سوالات موجود در بخش پرسش و پاسخ سایت</li>
+                            <li>امکان مشاهده دوره های آموزشی موسسه و اطلاع از محتویات ارائه شده در آن ها</li>
+                            <li>امکان مشاهده لیست دانشنامه با قابلیت جستجو</li>
+                            <li>امکان دسترسی به لیست رویدادها و مقالات تحلیلی سایت</li>
+                            <li style="color: red;">همچنین با خرید از اپلیکیشن شما می توانید به صورت دائمی از
+                                ۵٪ شارژ هدیه استفاده کنید.
+                            </li>
+                            <a href="https://civil808.com/node/18321" target="_blank" class="btn">
+                                بیشتر بخوانید ...
+                            </a>
+                            <br>
+                            در حال حاضر می توانید این اپلیکیشن را دانلود کنید.
+                            <br>
+                            <div style="max-width: 324px;text-align: center;margin-top: 11px;display: flex;
+margin-bottom: 30px;">
+                                <!--<a class="poster download mostaghim" href="https://civil808.com/app/src/808plus.apk" target="_self">  </a>-->
+                                <!--<a class="poster download cafebazaar" href="https://cafebazaar.ir/app/com.civil808/?l=fa" target="_blank"></a>-->
+                                <a class="poster download googleplay" href="https://play.google.com/store/apps/details?id=com.civil808" target="_target"></a>
+                                <!--<a class="poster download ios" href="#" target="_self" title="به زودی"></a>-->
+                            </div>
+                        </div>
+                    </div>
 				</div>
 			</div>
 		</section>
@@ -106,7 +116,7 @@
 		<section id="film" style="text-align:center;margin-bottom: 60px;">
 			<h2 data-aos="zoom-in-up" data-aos-delay="400"  style=" margin-bottom: 51px;"> فیلم معرفی  </h2>
 			<div data-aos="zoom-out" data-aos-delay="900" class="aboutus" style="margin: 10px auto 20px; position: relative; width: 840px; height: 500px;">
-				<iframe  allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src="http://www.civil808.com/file/iframe/18331" style="position: absolute; top: 0px; left: 0px; width: 840px; height: 447px;"></iframe>
+				<iframe  allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src="https://www.civil808.com/file/iframe/20533" style="position: absolute; top: 0px; left: 0px; width: 840px; height: 447px;"></iframe>
 			</div>
 		</section>
 		
