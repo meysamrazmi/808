@@ -34,7 +34,6 @@
 	  if ($node->type == 'education') 
 		  print(drupal_render($edu_form));
     ?>
-      <p>sddd</p>
   </div>
 
   <?php

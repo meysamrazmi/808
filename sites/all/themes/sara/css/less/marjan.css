@@ -1394,8 +1394,17 @@ div#block-block-45-temporarydown .content a .text-nim > p {
   background-color: #f6f6f6;
   clear: both;
 }
+.node-type-product .field-name-field-experts,
+.node-type-product-kit .field-name-field-experts {
+  margin-top: 0px !important;
+  padding: 25px 15px;
+  background-color: #eeeeee54 !important;
+}
 .field-name-field-experts.view-question {
   margin-right: 105px !important;
+}
+.field-name-field-experts .field-label {
+  padding: 5px;
 }
 .field-name-field-experts .field-item {
   margin: 0 0 5px 5px;
@@ -1497,4 +1506,7 @@ div#block-block-45-temporarydown .content a .text-nim > p {
 .field-name-field-experts .field-item.open .information {
   opacity: 1;
   z-index: 10;
+}
+#header #block-tb-megamenu-main-menu #tb-megamenu-column-9 {
+  width: 100%;
 }

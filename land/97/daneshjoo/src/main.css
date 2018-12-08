@@ -1375,6 +1375,9 @@ section#aplication {
     padding: 4px 15px;
     border-radius: 5px;
 }
+#aplication .sec-li {
+    position: relative;
+}
 
 @media (max-width:1200px) {
     #aplication img.phone {
