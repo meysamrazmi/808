@@ -285,10 +285,10 @@ function merge_experts_form($from, &$form_state){
 				'#title' => t('source tids'),
 				'#description' => t('insert source tid')
 			);
-			$form['experts'. $i]['destionation_tid'. $i] = array(
+			$form['experts'. $i]['destination_tid'. $i] = array(
 				'#type' => 'textfield',
-				'#title' => t('destionation tid'),
-				'#description' => t('insert destionation tid. if tid is equal to 0 the taxonomy will be deleted.')
+				'#title' => t('destination tid'),
+				'#description' => t('insert destination tid. if tid is equal to 0 the taxonomy will be deleted.')
 			);
 			$form['experts'. $i]['message'. $i] = array(
 				'#type' => 'checkbox',
@@ -310,20 +310,20 @@ function merge_experts_form_validate($from, &$form_state){
 	try{
 		for($i = 0; $i < 5; $i++){
 			if (strlen($form_state['values']['source_tid'. $i]) > 0) {
-				if (strlen($form_state['values']['destionation_tid'. $i]) == 0) {
-					form_set_error('destionation_tid'. $i, t('fill the blank field'));
+				if (strlen($form_state['values']['destination_tid'. $i]) == 0) {
+					form_set_error('destination_tid'. $i, t('fill the blank field'));
 				}
-				else if($form_state['values']['source_tid'. $i] == $form_state['values']['destionation_tid'. $i]){
+				else if($form_state['values']['source_tid'. $i] == $form_state['values']['destination_tid'. $i]){
 					form_set_error('source_tid'. $i, 'تخصص مبدا و مقصد با هم برابراند.');
 				}
 				else if(empty(taxonomy_term_load($form_state['values']['source_tid'. $i]))){
 					form_set_error('source_tid'. $i, 'تخصص مبدا وجود ندارد');
 				}
-				else if(($form_state['values']['destionation_tid'. $i] != 0) && (empty(taxonomy_term_load($form_state['values']['destionation_tid'. $i])))){
-					form_set_error('destionation_tid'. $i, 'تخصص مقصد وجود ندارد');
+				else if(($form_state['values']['destination_tid'. $i] != 0) && (empty(taxonomy_term_load($form_state['values']['destination_tid'. $i])))){
+					form_set_error('destination_tid'. $i, 'تخصص مقصد وجود ندارد');
 				}
 			}
-			else if(strlen($form_state['values']['destionation_tid'. $i]) > 0) {
+			else if(strlen($form_state['values']['destination_tid'. $i]) > 0) {
 				form_set_error('source_tid'. $i, t('fill the blank field'));
 			}
 		}
@@ -336,83 +336,97 @@ function merge_experts_form_validate($from, &$form_state){
 function merge_experts_form_submit($from, &$form_state){
 	try{
 		for($i = 0; $i < 5; $i++){
-			if(strlen($form_state['values']['source_tid'. $i]) == 0 && strlen($form_state['values']['destionation_tid'. $i]) == 0){
+			/*skip if source and destination are null*/
+		    if(strlen($form_state['values']['source_tid'. $i]) == 0 && strlen($form_state['values']['destination_tid'. $i]) == 0){
 				continue; //skip when both are null
 			}			
 			$source_term = taxonomy_term_load($form_state['values']['source_tid'. $i]);
-			if($form_state['values']['destionation_tid'. $i] != 0){
-				$destionation_term = taxonomy_term_load($form_state['values']['destionation_tid'. $i]);
+			if($form_state['values']['destination_tid'. $i] != 0){
+				$destination_term = taxonomy_term_load($form_state['values']['destination_tid'. $i]);
 			}
 
-			/*check for duplicate source id for single to mltiple action*/
+			/*check for duplicate source id for single to multiple action*/
 			$j = $i+1;
 			if($i < 4 && ($form_state['values']['source_tid'. $i] == $form_state['values']['source_tid'. $j]) ){
 				$delete_expert = false; //prevent from deleting source term 
 			}else{
 				$delete_expert = true; //delete after merging
 			}
-			/*get the profile ids that are related to the source term*/
-			$profile_ids = db_select('field_data_field_experts', 'e')
-				->fields('e', array('entity_id'))
-				->condition('entity_type', 'profile2')
-				->condition('bundle', 'main')
-				->condition('field_experts_tid', $source_term->tid)
-				->execute()->fetchAll();
-			
-			if(empty($profile_ids)){
-				if($form_state['values']['destionation_tid'. $i] == 0){
-					taxonomy_term_delete($source_term->tid);
-					drupal_set_message('تخصص ' . $source_term->name . ' حذف شد. ');	
-				}
-				continue; //there is no user related to source term so there is nothing to do
-			}
 
-			foreach($profile_ids as $profile_id){
-				$profile = profile2_load($profile_id->entity_id);
-				
-				if($form_state['values']['destionation_tid'. $i] == 0){
-					foreach($profile->field_experts['und'] as $key=>$field_expert){
-						if($field_expert['tid'] == $source_term->tid)
-							unset($profile->field_experts['und'][$key]);
-					}
-					taxonomy_term_delete($source_term->tid);
-					drupal_set_message('تخصص ' . $source_term->name . ' حذف شد. ');	
-					$message_title = 'تخصص شما حذف شد';
-					$message_body = ' تخصص '. $source_term->name . ' شما حذف شد <br>'. 
-					'در صورت نادرست بودن آن ، تخصص خود را ویراش کنید و از همین طریق  به ما اطلاع دهید';
-				}
-				else{ /*merging taxonomy*/
-					if(!in_array_r($destionation_term->tid, $profile->field_experts['und'])){ /*check that the experts are unique*/
-						array_push($profile->field_experts['und'], ['tid' => $destionation_term->tid]);
-					}
-					if($delete_expert){
-						foreach($profile->field_experts['und'] as $key=>$field_expert){
-							if($field_expert['tid'] == $source_term->tid)
-								unset($profile->field_experts['und'][$key]);
-						}
-						taxonomy_term_delete($source_term->tid);
-						drupal_set_message('تخصص ' . $source_term->name . ' حذف شد. ');	
-					}
-					
-					$message_title = 'تخصص شما تغییر کرد';
-					$message_body = ' تخصص '. $source_term->name .' شما به '. $destionation_term->name .' تغییر کرد <br>'. 
-					'در صورت نادرست بودن آن ، تخصص خود را ویراش کنید و از همین طریق  به ما اطلاع دهید';
-				}
-				profile2_save($profile);
+			/*get the uids that are related to the source term*/
+			$query = db_select('field_data_field_experts', 'experts');
+			$query->fields('experts', array('entity_id'));
+            $query->condition('experts.entity_type', 'profile2');
+            $query->condition('experts.bundle', 'main');
+            $query->condition('experts.field_experts_tid', $source_term->tid);
+            $pids = $query->execute()->fetchCol();
 
-				/*send message to user*/
-				if($form_state['values']['message'. $i] == 1){
-					$user=user_load($profile->uid);
-					
-					privatemsg_new_thread(
-						array($user),
-						$message_title,
-						$message_body,
-						array('author' => user_load(2), 'format' => 'full_html')
-					);
-					drupal_set_message('پیام خصوصی برای کاربران ارسال شد.');		
-				}
-			}
+			if($form_state['values']['destination_tid'. $i] == 0){
+                $message_title = 'تخصص شما حذف شد';
+                $message_body = ' تخصص ' . $source_term->name . ' شما حذف شد <br>' . 'در صورت نادرست بودن آن ، تخصص خود را ویراش کنید و از همین طریق  به ما اطلاع دهید';
+                taxonomy_term_delete($source_term->tid);
+                drupal_set_message('تخصص ' . $source_term->name . ' حذف شد. ');
+                foreach ($pids as $pid){
+                    $profile = profile2_load($pid);
+                    foreach($profile->field_experts['und'] as $key=>$field_expert){
+                        if($field_expert['tid'] == $source_term->tid)
+                            unset($profile->field_experts['und'][$key]);
+                    }
+                    profile2_save($profile);
+                    if($form_state['values']['message'. $i] == 1) {
+                        privatemsg_new_thread(
+                            array(user_load($profile->uid)),
+                            $message_title,
+                            $message_body,
+                            array('author' => user_load(2), 'format' => 'full_html')
+                        );
+                        drupal_set_message('پیام خصوصی برای کاربران ارسال شد.');
+                    }
+                }
+            }
+			else{
+                $message_title = 'تخصص شما تغییر کرد';
+                $message_body = ' تخصص '. $source_term->name .' شما به '. $destination_term->name .' تغییر کرد <br>'.
+                    'در صورت نادرست بودن آن ، تخصص خود را ویراش کنید و از همین طریق  به ما اطلاع دهید';
+			    foreach ($pids as $pid){
+                    $profile = profile2_load($pid);
+                    foreach($profile->field_experts['und'] as $key=>$field_expert){
+                        if($field_expert['tid'] == $source_term->tid)
+                            unset($profile->field_experts['und'][$key]);
+                    }
+                    if(!in_array_r($destination_term->tid, $profile->field_experts['und'])){
+                        array_push($profile->field_experts['und'], ['tid' => $destination_term->tid]);
+                    }
+                    profile2_save($profile);
+                    if($form_state['values']['message'. $i] == 1) {
+                        privatemsg_new_thread(
+                            array(user_load($profile->uid)),
+                            $message_title,
+                            $message_body,
+                            array('author' => user_load(2), 'format' => 'full_html')
+                        );
+                        drupal_set_message('پیام خصوصی برای کاربران ارسال شد.');
+                    }
+                }
+
+			    $query = db_select("field_data_field_experts" , "node");
+			    $query->fields("node" , array("entity_id"));
+                $query->condition('node.entity_type', 'node');
+                $query->condition('node.field_experts_tid', $source_term->tid);
+                $nids = $query->execute()->fetchCol();
+                foreach ($nids as $nid){
+                    $node = node_load($nid);
+                    if(!in_array_r($destination_term->tid, $node->field_experts['und'])){
+                        array_push($node->field_experts['und'], ['tid' => $destination_term->tid]);
+                        node_save($node);
+                    }
+                }
+
+                if($delete_expert){
+                    taxonomy_term_delete($source_term->tid);
+                    drupal_set_message('تخصص ' . $source_term->name . ' حذف شد. ');
+                }
+            }
 		}
 		field_cache_clear();
 	} catch (Exception $e) {
