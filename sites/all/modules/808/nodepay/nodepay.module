@@ -336,8 +336,8 @@ function nodepay_uc_order($op, $order, $arg) {
 			$user = user_load($order->uid);
 			// there is already a line_item in order
 			if (isset($vip_line_item['amount']) && $vip_line_item['amount'] < 0) {
-				// still a vip user
-				if (in_array('Vip', $user->roles)) {
+				// still a vip user and not a reseller
+				if (in_array('Vip', $user->roles) && !isset($user->roles[7])) {
 					uc_order_update_line_item($vip_line_item['line_item_id'], '10% تخفیف کاربران VIP', -$subtotal / 10);
 					if ((-$subtotal / 10) != $vip_line_item['amount']) {
 						drupal_set_message('آیتم ' . $vip_line_item['title'] . 'با مبلغ ' . (-$subtotal / 10) . ' در سفارش شما به روز شد');
@@ -351,7 +351,7 @@ function nodepay_uc_order($op, $order, $arg) {
 					drupal_set_message('آیتم ' . $vip_line_item['title'] . 'از سفارش شما حذف شد');
 				}
 			} else if ($subtotal > 0) {
-				if (in_array('Vip', $user->roles)) {
+				if (in_array('Vip', $user->roles) && !isset($user->roles[7])) {
 					$order->line_items[] = uc_order_line_item_add($order->order_id, 'vip', '10% تخفیف کاربران VIP', -$subtotal / 10, 3);
 					drupal_set_message('10% تخفیف کاربران VIP با مبلغ ' . (-$subtotal / 10) . ' به سفارش شما افزوده شد.');
 
