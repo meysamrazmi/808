@@ -309,4 +309,10 @@ function all_pedia_js() {
         }
     });
 
+    if($('.page-taxonomy.page-pedia').length){
+        if(!$('.term-listing-heading > .vocabulary-expert > .group-header > .group-anchor .taxonomy-term-description').length){
+            $('.flag-outer-bookmark-tag').remove()
+        }
+    }
+
 }

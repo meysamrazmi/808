@@ -1,5 +1,5 @@
 <!--<img src="/sites/default/files/importviaftp/423.jpg" width="100%" height="auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">-->
-<img src="/sites/default/files/field/image/node_19160_0.jpg" width="100%" height="auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;" alt="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)" title="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)">
+<img src="/sites/default/files/field/image/node_19160.jpg" width="100%" height="auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;" alt="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)" title="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)">
 <section class="kargah-sec">
     <h2>ورکشاپ حضوری تخصصی معرفی (BIM (Revit, Dynamo, Naviswork</h2>
 <!--    <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره فقط به صورت حضوری برگزار می شود.</p>-->
@@ -164,10 +164,10 @@
                 <div class="city-name"><span>ثبت نام در دوره به صورت حضوری</span></div>
                 <div class="inner-text">
                     <p style="padding: 9px 12px 0px 0px;">به همراه ارسال فیلم وبینار به ایمیل ثبت نام کنندگاه بعد از برگزاری همایش</p>
-                    <div class="tarikh">چهارشنبه 21 آذر ماه 1397</div>
-                    <div class="makan">گیشا، فروزانفر، جنب بانک صادرات، پلاک ۱، واحد ۷، موسسه 808 </div>
+                    <div class="tarikh">جمعه ۲۳ آذر ماه ۱۳۹۷</div>
+                    <div class="makan">گیشا، فروزانفر، جنب بانک صادرات، پلاک ۱، واحد ۷، موسسه ۸۰۸ </div>
                     <div class="zaman"> ساعت ۱۷ تا ۲۰ </div>
-                    <div class="mablagh"> 25,000 تومان </div>
+                    <div class="mablagh"> ۲۵,۰۰۰ تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
             </a>
