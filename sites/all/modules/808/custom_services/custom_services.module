@@ -963,6 +963,31 @@ function custom_services_services_resources(){
                         ),
                     ),
                 ),
+                'homepage' => array(
+                    'help' => 'Get the content for homepage',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'content_resource'),
+                    'callback' => 'content_resource_homepage_data',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'list',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'string',
+                            'description' => 'use for url',
+                        ),
+                        array(
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
+                        ),
+                    ),
+                ),
             ),
         ),
         'payment' => array(

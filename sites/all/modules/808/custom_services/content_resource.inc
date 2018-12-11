@@ -357,6 +357,315 @@ function list_of_contents_v_1($parameter){
 
     return array("content" => $contents);
 }
+function list_of_contents_v_2($parameter){
+    global $user;
+    $type = $parameter["type"]; $page = (int)$parameter["page"];
+
+    $response = array();
+    /*Get query related to the @type*/
+    $query = get_nodes_query($type);
+
+    /*add custom features of the content type*/
+    if(strcmp($type , "publication") == 0){
+        $query->join("field_data_field_point_needed" , "point_needed" , "node.nid = point_needed.entity_id  and point_needed.bundle = 'publication'");
+        $query->addField("point_needed" , "field_point_needed_value" , "price");
+
+        $query->leftJoin("field_data_field_isvip" , "vip" , "node.nid = vip.entity_id and vip.bundle = 'publication' and vip.field_isvip_tid = '1760' ");
+        $query->addField("vip" , "field_isvip_tid" , "free_for_vip");
+
+        if(isset($parameter["custom_list"]) && !empty($parameter["custom_list"])){
+            $query->condition("node.nid" , $parameter["custom_list"] , "IN");
+            return $query;
+        }
+        if(isset($parameter["free"]) && strcmp($parameter["free"] , "1") == 0) $query->condition("point_needed.field_point_needed_value" , 0);
+
+        if(isset($parameter["sort"]))
+            switch($parameter["sort"]){
+                case "last" :
+                    $query->orderBy("node.nid" , "DESC");
+                    break;
+                case "first" :
+                    $query->orderBy("node.nid" , "ASC");
+                    break;
+                case "cheap":
+                    $query->orderBy("point_needed.field_point_needed_value" , "ASC");
+                    break;
+                case "expensive":
+                    $query->orderBy("point_needed.field_point_needed_value" , "DESC");
+                    break;
+                case "popular":
+                    break;
+                default:
+                    $query->orderBy("node.nid" , "DESC");
+                    break;
+            }
+        else $query->orderBy("node.nid" , "DESC");
+    }
+    elseif(strcmp($type , "podcast") == 0){
+        $query->leftJoin("field_data_field_episode" , "field_episode" , "node.nid = field_episode.entity_id and field_episode.bundle = 'podcast'");
+        $query->leftJoin("file_managed" , "file_episode" , "field_episode.field_episode_fid = file_episode.fid");
+        $query->leftJoin("field_data_field_episode_remote" , "episode_remote" , "node.nid = episode_remote.entity_id and episode_remote.bundle = 'podcast'");
+        $query->addField('file_episode' , 'uri' , 'audio');
+        $query->addField('file_episode' , 'filesize' , 'audio_size');
+        $query->addField('episode_remote' , 'field_episode_remote_value' , 'audio_remote');
+        $query->orderBy("node.nid" , "DESC");
+        if(isset($parameter["custom_list"]) && !empty($parameter["custom_list"])){
+            $query->condition("node.nid" , $parameter["custom_list"] , "IN");
+            return $query;
+        }
+    }
+    elseif(strcmp($type , "college") == 0){
+        $course_type = db_select("field_data_field_course_type" , "course_type")->distinct();
+        $course_type->fields("course_type" , array("field_course_type_value"));
+        $response["college_type"] = $course_type->execute()->fetchCol();
+
+        /*select a specious type or all types of the courses*/
+        if(isset($parameter["college_type"]) && !empty($parameter["college_type"])) {
+            $college_type = explode("," , $parameter["college_type"]);
+
+            $query->join("field_data_field_course_type", "college_type", "node.nid = college_type.entity_id");
+            $query->condition("college_type.field_course_type_value" , $college_type , "IN");
+        }
+        else
+            $query->leftJoin("field_data_field_course_type", "college_type", "node.nid = college_type.entity_id");
+        $query->addField("college_type" , "field_course_type_value" , "college_type");
+
+
+        $subquery = db_select("uc_product_options" , "product_options");
+        $subquery->join("node" , "node" , " node.nid = product_options.nid and node.type = 'college' ");
+        $subquery->fields("product_options" , array("nid" , "oid" , "cost" , "price"));
+        $options_db = $subquery->execute()->fetchAll();
+        $options = array();
+        $options_nid = array();
+        $options_off = array();
+        foreach ($options_db as $option){
+            array_push($options_nid , $option->nid);
+            if(!isset($options[$option->nid])) $options[$option->nid] = array();
+            array_push($options[$option->nid] , $option);
+        }
+        foreach ($options as $key => $option){
+            $cost = 0;
+            $price = 0;
+            foreach ($option as $value){
+                $cost += (int)$value->cost;
+                $price += (int)$value->price;
+            }
+            array_push($option , array("sum_cost" => $cost));
+            array_push($option , array("sum_price" => $price));
+            $options[$key] = $option;
+            if($price < $cost){
+                array_push($options_off , $key);
+            }
+        }
+
+        /*add prices of the courses*/
+        $query->join("uc_products" , "product" , "node.nid = product.nid");
+        $query->fields("product" , array("sell_price" , "list_price"));
+        if(!empty($parameter["off"]) && $parameter["off"] == "true"){
+            $query->where("sell_price < list_price");
+//            if(!empty($option_off_nid))$query->("node.nid" , $option_off_nid , "IN");
+        }
+
+
+        /*add course step*/
+        $query->leftJoin("field_data_field_course_step" , "step" , "node.nid = step.entity_id and step.bundle = 'college' ");
+        /*filter courses on steps*/
+        if(isset($parameter["college_step"]) && strlen($parameter["college_step"]) > 0){
+            $steps = explode( "," , $parameter["college_step"]);
+            $query->condition("step.field_course_step_value" , $steps , "IN");
+        }
+        $query->addField("step" , "field_course_step_value" , "college_step");
+
+        if(isset($parameter["custom_list"]) && !empty($parameter["custom_list"])){
+            $query->condition("node.nid" , $parameter["custom_list"] , "IN");
+            return $query;
+        }
+        /*sort the courses*/
+        if(isset($parameter["sort"]))
+            switch ($parameter["sort"]){
+                case "last" :
+                    $query->orderBy("node.nid" , "DESC");
+                    break;
+                case "first" :
+                    $query->orderBy("node.nid" , "ASC");
+                    break;
+                case "cheap" :
+                    $query->orderBy("product.sell_price" , "ASC");
+                    if(!empty($options_nid)) $query->condition("node.nid" , $options_nid , "NOT IN");
+                    break;
+                case "expensive" :
+                    $query->orderBy("product.sell_price" , "DESC");
+                    if(!empty($options_nid)) $query->condition("node.nid" , $options_nid , "NOT IN");
+                    break;
+                case "options" :
+                    $query->orderBy("node.nid" , "DESC");
+                    if(!empty($options_nid)) $query->condition("node.nid" , $options_nid , "IN");
+                    break;
+                default :
+                    $query->orderBy("node.nid" , "DESC");
+                    break;
+            }
+        else $query->orderBy("node.nid" , "DESC");
+    }
+    elseif(strcmp($type , "education") == 0){
+        $query->leftJoin("field_data_field_point_needed" , "point_needed" , "node.nid = point_needed.entity_id  and point_needed.bundle = 'education' ");
+        $query->addField("point_needed" , "field_point_needed_value" , "price");
+
+        $query->leftJoin("field_data_field_isvip" , "vip" , "node.nid = vip.entity_id and vip.bundle = 'education' and vip.field_isvip_tid = '1760' ");
+        $query->addField("vip" , "field_isvip_tid" , "free_for_vip");
+
+        $query->orderBy("node.nid" , "DESC");
+        if(isset($parameter["custom_list"]) && !empty($parameter["custom_list"])){
+            $query->condition("node.nid" , $parameter["custom_list"] , "IN");
+            return $query;
+        }
+    }
+    elseif(strcmp($type , "product_kit") == 0){
+        $query->join("field_data_field_text" , "field_text" , "node.nid = field_text.entity_id and field_text.bundle = 'product_kit' and field_text.entity_type = 'node' ");
+        $query->addField("field_text" , "field_text_value" , "model");
+
+        $products = db_select("uc_product_kits");
+        $products->join("uc_products" , "uc_products" , "uc_products.nid = uc_product_kits.product_id");
+        $products->fields("uc_product_kits" , array("nid"));
+        $products->fields("uc_products" , array("list_price" , "sell_price"));
+        $products->groupBy("uc_product_kits.nid");
+        $products->addExpression("sum(list_price)" , "list_price");
+        $products->addExpression("sum(sell_price)" , "sell_price");
+        $products->orderBy("sell_price", "DESC");
+        $products = $products->execute()->fetchAll();
+
+        $query->orderBy("node.nid" , "DESC");
+    }
+    elseif(strcmp($type , "designteam") == 0){
+        $query->orderBy("node.nid" , "DESC");
+    }
+    elseif(strcmp($type , "article") == 0){
+        $query->join("field_data_field_eventtime", "eventtime", "eventtime.entity_id = node.nid and eventtime.bundle = 'article' ");
+        $query->leftJoin("field_data_field_company" , "company" , "company.entity_id = node.nid and company.bundle = 'article' ");
+        $query->leftJoin("field_data_field_ifwebinar" , "webinar" , "webinar.entity_id = node.nid and webinar.bundle = 'article' ");
+        $query->addField("eventtime" , "field_eventtime_value" , "event_time");
+        $query->addField("company" , "field_company_value" , "company");
+        $query->addField("webinar" , "field_ifwebinar_value" , "webinar");
+        $query->condition("eventtime.field_eventtime_value", date("Y-m-d", time()) , ">=");
+        $query->orderBy("eventtime.field_eventtime_value", "ASC");
+    }
+
+    /*Fetch 20 record per each iteration*/
+    $query->range($page*20, 20);
+    $contents = $query->execute()->fetchAll();
+
+    /*Post process of data and make them similar*/
+    foreach ($contents as $content) {
+        $content->nid = (int)$content->nid;
+        $content->uid = (int)$content->uid;
+        $content->changed = (int)$content->changed;
+        if(isset($content->picture) && !empty($content->picture)) $content->picture = image_style_url("300x300", $content->picture);
+        if(isset($content->picture_s) && !empty($content->picture_s)) $content->picture_s = image_style_url("350x350", $content->picture_s);
+        if(isset($content->audio_size)) $content->audio_size = (int) $content->audio_size;
+        if(isset($content->audio) && !empty($content->audio)) $content->audio = generate_file_address($content->audio);
+        if(strcmp($content->type , "college") == 0){
+            $content->list_price = round($content->list_price , 0);
+            $content->sell_price = round($content->sell_price , 0);
+
+            $off = false;
+            $festival = false;
+            if(in_array($content->nid , $options_off) || $content->sell_price < $content->list_price) $off = true;
+            $discount = new stdClass();
+            if($festival && $off){
+                $discount = array("name" => "festival" , "color" => 1, "enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
+            }
+            elseif($off){
+                $discount = array("name" => "off" , "color" => 2, "enable" => true, "amount" => 0.2, "message" => "فروش ویژه");
+            }
+            $content->discount = $discount;
+
+            switch ($content->college_step){
+                case "0" :
+                    $content->college_step = array("id" => 0 , "state" => "در حال ثبت نام");
+                    break;
+                case "1" :
+                    $content->college_step = array("id" => 1 , "state" => "در حال برگزاری");
+                    break;
+                case "2" :
+                    $content->college_step = array("id" => 2 , "state" => "برگزار شده");
+                    break;
+            }
+        }
+        if(strcmp($type , "publication") == 0){
+            $content->price = (int) $content->price;
+
+            if (empty($content->free_for_vip)) $free_for_vip = false;
+            else $free_for_vip = true;
+            unset($content->free_for_vip);
+
+            $discount = new stdClass();
+            if($content->price != 0){
+                /*this is used for discount on festival*/
+                $festival = false;
+
+                $vip = false;
+                if (in_array("Vip", $user->roles)) $vip = true;
+
+                if ($vip && $free_for_vip) {
+                    $discount = array("name" => "free", "color" => 2, "enable" => true, "amount" => 1, "message" => "رایگان برای کاربران VIP");
+                    $content->price = 0;
+                }
+                elseif ($vip && !$free_for_vip && !$festival) {
+                    $discount = array("name" => "vip", "color" => 3, "enable" => true, "amount" => 0.1, "message" => "10% تخفیف VIP");
+                    $content->price = 0.9 * $content->price;
+                }
+                elseif (!$vip && !$festival && $free_for_vip) {
+                    $discount = array("name" => "free", "color" => 2, "enable" => false, "amount" => 1, "message" => "رایگان برای کاربران VIP");
+                }
+                elseif (!$vip && !$festival && !$free_for_vip) {
+                    $discount = array("name" => "vip", "color" => 3, "enable" => false, "amount" => 0.1, "message" => "10% تخفیف VIP");
+                }
+                elseif ($festival) {
+                    $discount = array("name" => "festival", "color" => 1, "enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
+                    $content->price = 0.8 * $content->price;
+                }
+            }
+            $content->discount = $discount;
+        }
+        if(strcmp($type , "education") == 0){
+            $content->price = empty($content->price) ? 0 : (int) $content->price;
+            $free_for_vip = (empty($content->free_for_vip)) ? false : true;
+            $discount = new stdClass();
+            if($free_for_vip){
+                $vip = in_array("Vip", $user->roles) ? true : false;
+
+                if($vip)
+                    $discount = array("name" => "free", "color" => 1, "enable" => true, "amount" => 0, "message" => "رایگان برای کاربران VIP");
+                else
+                    $discount = array("name" => "free", "color" => 1, "enable" => false, "amount" => 1, "message" => "رایگان برای کاربران VIP");
+            }
+            $content->discount = $discount;
+        }
+        if(strcmp($type , "product_kit") == 0){
+            foreach ($products as $product){
+                if($content->nid  == $product->nid){
+                    $content->list_price = (int) $product->list_price;
+                    $content->sell_price = (int) $product->sell_price;
+                }
+            }
+
+            $off = ($content->sell_price < $content->list_price) ? true : false;
+            $festival = false;
+            $discount = new stdClass();
+            if($festival && $off){
+                $discount = array("name" => "festival" , "color" => 1, "enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
+            }
+            elseif($off){
+                $discount = array("name" => "off" , "color" => 2, "enable" => true, "amount" => 0.2, "message" => "فروش ویژه");
+            }
+            $content->discount = $discount;
+        }
+    }
+
+    $response["content"] = $contents;
+
+    return $response;
+}
 /*
  * Make query for fetching the contents of a content type
  * Return a query
@@ -366,9 +675,15 @@ function get_nodes_query($type){
     $query->fields('node' , array('nid' , 'type' , 'title' , 'uid' , 'changed'));
     $query->leftJoin("profile" , "profile" , "profile.uid = node.uid and profile.type = 'main'");
     $query->leftJoin("field_data_field_full_name" , "name" , "name.entity_id = profile.pid and name.entity_type = 'profile2' and name.bundle = 'main'");
-    $query->leftJoin("field_data_field_image", "field_image", "node.nid = field_image.entity_id and field_image.delta = '0' and  field_image.bundle = '" . $type . "'");
-    $query->leftJoin("file_managed", "file_image", "field_image.field_image_fid = file_image.fid");
-    if(strcmp($type , "college") == 0 || strcmp($type , "podcast") == 0){
+    if(strcmp($type , "product") == 0 || strcmp($type , "product_kit") == 0){
+        $query->leftJoin("field_data_uc_product_image" , "uc_product_image" , "uc_product_image.entity_id = node.nid and uc_product_image.delta = '0' and uc_product_image.bundle = '" . $type . "'");
+        $query->leftJoin("file_managed" , "file_image" , "file_image.fid = uc_product_image.uc_product_image_fid");
+    }
+    else{
+        $query->leftJoin("field_data_field_image", "field_image", "node.nid = field_image.entity_id and field_image.delta = '0' and  field_image.bundle = '" . $type . "'");
+        $query->leftJoin("file_managed", "file_image", "field_image.field_image_fid = file_image.fid");
+    }
+    if(strcmp($type , "education") == 0 || strcmp($type , "college") == 0 || strcmp($type , "podcast") == 0){
         $query->leftJoin("field_data_field_image", "image_s", "node.nid = image_s.entity_id and image_s.delta = '1' and  field_image.bundle = '" . $type . "'");
         $query->leftJoin("file_managed", "file_image_s", "image_s.field_image_fid = file_image_s.fid");
         $query->addField('file_image_s', 'uri', 'picture_s');
@@ -379,31 +694,6 @@ function get_nodes_query($type){
     $query->condition('node.type' , $type);
 
     return $query;
-}
-/*
- * Return list of nodes that contain the value
- * It's used for searching in contents
- */
-function search_content_by_value($value , $type){
-    /*search the value in titles*/
-    $query = db_select("node", "node");
-    $query->fields('node', array('nid'));
-    $query->condition('node.title', '%' . db_like($value) . '%', 'LIKE');
-    $query->condition('node.type' , $type);
-    $nid1 = $query->execute()->fetchCol();
-
-    /*search the value in bodies*/
-    $query = db_select("field_data_body", "body");
-    $query->fields('body', array('entity_id'));
-    $query->condition('body.body_value', '%' . db_like($value) . '%', 'LIKE');
-    $query->condition('body.entity_type' , 'node');
-    $query->condition('body.bundle' , $type);
-    $nid2 = $query->execute()->fetchCol();
-
-    $custom_list = array_merge($nid1, $nid2);
-    $custom_list = array_unique($custom_list);
-
-    return $custom_list;
 }
 
 function content_resource_retrieve($hash , $nid , $parameter){
@@ -526,6 +816,10 @@ function retrieve_a_content_v_1($parameter){
     $node->picture = image_style_url("800x600" , $node->picture);
     $node->body = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $node->body);
     if(strpos($node->body, "<!--break-->") != false) $node->body = substr($node->body, 0, strpos($node->body, "<!--break-->"));
+    $parts = explode('="/sites/default', $node->body);
+    $node->body = implode('="https://civil808.com/sites/default', $parts);
+    $parts = explode('="/node/', $node->body);
+    $node->body = implode('="https://civil808.com/node/', $parts);
 
     if(strcmp($node->type , "publication") == 0){
         $query = db_select("field_data_field_publish_file" , "field_file_published");
@@ -622,9 +916,6 @@ function retrieve_a_content_v_1($parameter){
         else $node->bought = false;
     }
     elseif(strcmp($node->type , "college") == 0){
-        $parts = explode('="/sites/default', $node->body);
-        $node->body = implode('="https://civil808.com/sites/default', $parts);
-
         $query = db_select("field_data_field_image" , "field_image");
         $query->join("file_managed" , "picture_s" , "picture_s.fid = field_image.field_image_fid");
         $query->addField('picture_s' , 'uri' , 'picture_s');
@@ -750,6 +1041,101 @@ function retrieve_a_content_v_1($parameter){
         $node->company = (!empty($company)) ? $company->field_company_value : null;
 
     }
+    elseif(strcmp($node->type , "education") == 0){
+        $query = db_select("field_data_field_image" , "field_image");
+        $query->join("file_managed" , "picture_s" , "picture_s.fid = field_image.field_image_fid");
+        $query->addField('picture_s' , 'uri' , 'picture_s');
+        $query->condition("field_image.entity_id" , $node->nid);
+        $query->condition("field_image.entity_type" , "node");
+        $query->condition("field_image.delta" , "1");
+        $picture_s = $query->execute()->fetch();
+        $node->picture_s = (!empty($picture_s)) ? image_style_url("350x350" , $picture_s->picture_s) : null;
+
+        $query = db_select("field_data_field_videoamozesh" , "field_film");
+        $query->join("file_managed" , "film" , "film.fid = field_film.field_videoamozesh_fid and field_film.bundle = 'education' ");
+        $query->addField("film" , "uri" , "film");
+        $query->condition("field_film.entity_id" , $nid);
+        $film = $query->execute()->fetch();
+        $node->film_link = (!empty($film)) ? generate_file_address($film->film) : null;
+
+        $query = db_select("field_data_field_eventtime" , "eventtime");
+        $query->fields("eventtime" , array("field_eventtime_value"));
+        $query->condition("eventtime.entity_id" , $node->nid);
+        $query->condition("eventtime.bundle" , "education");
+        $start_time = $query->execute()->fetch();
+        $node->start_time = (!empty($start_time)) ? $start_time->field_eventtime_value : null;
+
+        $query = db_select("field_data_field_company" , "company");
+        $query->fields("company" , array("field_company_value"));
+        $query->condition("company.entity_id" , $node->nid);
+        $query->condition("company.bundle" , "education");
+        $company = $query->execute()->fetch();
+        $node->company = (!empty($company)) ? $company->field_company_value : null;
+
+        $query = db_select("field_data_field_ifwebinar" , "ifwebinar");
+        $query->fields("ifwebinar" , array("field_ifwebinar_value"));
+        $query->condition("ifwebinar.entity_id" , $node->nid);
+        $query->condition("ifwebinar.bundle" , "education");
+        $ifwebinar = $query->execute()->fetch();
+        $node->ifwebinar = $ifwebinar->field_ifwebinar_value;
+
+
+
+    }
+    elseif(strcmp($node->type , "product_kit") == 0){
+        $query = db_select("field_data_uc_product_image" , "field_image");
+        $query->join("file_managed" , "picture" , "picture.fid = field_image.uc_product_image_fid");
+        $query->addField('picture' , 'uri' , 'picture');
+        $query->condition("field_image.entity_id" , $node->nid);
+        $query->condition("field_image.entity_type" , "node");
+        $query->condition("field_image.delta" , "0");
+        $picture = $query->execute()->fetch();
+        $node->picture = (!empty($picture)) ? image_style_url("350x350" , $picture->picture) : null;
+
+        $query = db_select("field_data_field_text" , "field_text");
+        $query->addField("field_text" , "field_text_value" , "model");
+        $query->condition("field_text.entity_id" , $node->nid);
+        $query->condition("field_text.bundle" ,  "product_kit");
+        $node->model = $query->execute()->fetch()->model;
+        $products = db_select("uc_product_kits");
+        $products->join("uc_products" , "uc_products" , "uc_products.nid = uc_product_kits.product_id");
+        $products->join("node" , "node" , "node.nid = uc_products.nid");
+        $products->leftJoin("field_data_uc_product_image" , "uc_product_image" , "uc_product_image.entity_id = node.nid and uc_product_image.delta = '0' and uc_product_image.bundle = 'product' ");
+        $products->leftJoin("file_managed" , "picture" , "picture.fid = uc_product_image.uc_product_image_fid");
+        $products->fields("uc_product_kits" , array("product_id"));
+        $products->fields("uc_products" , array("list_price" , "sell_price"));
+        $products->fields("node" , array("title"));
+        $products->addField("picture" , "uri" , "picture");
+        $products->condition("uc_product_kits.nid" , $node->nid);
+        $products = $products->execute()->fetchAll();
+
+        $list_price = 0;
+        $sell_price = 0;
+        foreach ($products as $value){
+            $value->product_id = (int)$value->product_id;
+            $value->list_price = (int)$value->list_price;
+            $value->sell_price = (int)$value->sell_price;
+            $list_price += $value->list_price;
+            $sell_price += $value->sell_price;
+            $value->url = "https://civil808.com/node/" . $value->product_id;
+            $value->picture = !empty($value->picture) ? image_style_url("200x200" , $value->picture) : null;
+        }
+        $node->products = $products;
+        $node->list_price = $list_price;
+        $node->sell_price = $sell_price;
+
+        $festival = false;
+        $off = ($sell_price < $list_price) ? true : false;
+        $discount = new stdClass();
+        if($festival && $off){
+            $discount = array("name" => "festival" , "color" => 1, "enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
+        }
+        elseif($off){
+            $discount = array("name" => "off" , "color" => 2, "enable" => true, "amount" => 0.2, "message" => "فروش ویژه");
+        }
+        $node->discount = $discount;
+
+    }
     else return services_error("This content type is not supported!" , 17);
 
     $query = db_select("users" , "user");
@@ -784,6 +1170,32 @@ function retrieve_a_content_v_1($parameter){
 function content_resource_search_previous($hash , $type , $value){
     if(!(hash_true($hash , "content"))) return services_error(t('Failed to access'), 10);
     return list_of_contents_v_0(array("type" => $type , "search_value" => $value));
+}
+/*
+ * Return list of nodes that contain the value
+ * It's used for searching in contents on version 0
+ * Do not delete it
+ */
+function search_content_by_value($value , $type){
+    /*search the value in titles*/
+    $query = db_select("node", "node");
+    $query->fields('node', array('nid'));
+    $query->condition('node.title', '%' . db_like($value) . '%', 'LIKE');
+    $query->condition('node.type' , $type);
+    $nid1 = $query->execute()->fetchCol();
+
+    /*search the value in bodies*/
+    $query = db_select("field_data_body", "body");
+    $query->fields('body', array('entity_id'));
+    $query->condition('body.body_value', '%' . db_like($value) . '%', 'LIKE');
+    $query->condition('body.entity_type' , 'node');
+    $query->condition('body.bundle' , $type);
+    $nid2 = $query->execute()->fetchCol();
+
+    $custom_list = array_merge($nid1, $nid2);
+    $custom_list = array_unique($custom_list);
+
+    return $custom_list;
 }
 /*--------------------------------------------------------------------------------*/
 
@@ -866,7 +1278,7 @@ function content_search_list_v_1($parameter){
      *if it's empty search will be done in all types
      */
     if(isset($parameter["types"])) $types = explode("," , $parameter["types"]);
-    $all_types = array("publication" , "podcast" , "college" , "video" , "designteam" , "article" , "pedia");
+    $all_types = array("publication" , "podcast" , "college" , "video" , "designteam" , "article" , "pedia" , "education" , "product_kit");
 //    $persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
 //    $num = range(0, 9);
 //    $parameter["value"] = str_replace($persian, $num, $parameter["value"]);
@@ -929,5 +1341,38 @@ function content_type_v_1($parameter){
 
     if(empty($type)) return services_error("Invalid nid!" , 13);
     return $type->type;
+}
+
+function content_resource_homepage_data($list , $parameter){
+    if(!(hash_true($parameter["hash"] , "content"))) return services_error(t('Failed to access'), 10);
+    $source_name = (isset($parameter["source"]) && !empty($parameter["source"])) ? $parameter["source"] : "android";
+    $version = (isset($parameter["version"]) && !empty($parameter["version"])) ? (int)$parameter["version"] : 0;
+
+    $function = get_compatible_function_name("/content/list/homepage" , "GET" , $source_name , $version);
+
+    if(!empty($function) && strlen($function) > 0) {
+        return call_user_func($function, $parameter);
+    }
+    return services_error(t('This version is not supported'), 11);
+}
+function homepage_content_v_2($parameter){
+    $types = array("college" , "education" , "product_kit");
+    $response = array();
+    foreach ($types as $type){
+        $query = get_nodes_query($type);
+        $query->orderBy("node.nid" , "DESC");
+        $query->range(0 , 10);
+        $contents = $query->execute()->fetchAll();
+        foreach ($contents as $content){
+            $content->nid = (int) $content->nid;
+            unset ($content->uid);
+            unset ($content->changed);
+            unset ($content->author_name);
+            unset ($content->picture_s);
+            $content->picture = !empty($content->picture) ? image_style_url("300x300" , $content->picture) : null;
+        }
+        $response[$type] = $contents;
+    }
+    return $response;
 }
 /*--------------------------------------------------------------------------------*/
