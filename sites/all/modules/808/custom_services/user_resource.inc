@@ -193,7 +193,7 @@ function login_v_1($data){
         $login_data->user = $user;
         $login_data->profile = profile_data($user->uid);
         add_log($uid , "/user/login2" , "login" , "" , 0 , $data["source"] , $data["version"] , "successful" , "user logged in successfully");
-        $login_data->user->uid = (int) $login_data->user->uid;
+//        $login_data->user->uid = (int) $login_data->user->uid;
         $login_data->user->created = (int) $login_data->user->created;
 
         return $login_data;

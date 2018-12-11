@@ -12,7 +12,7 @@ function festival_resource_index($parameter){
 function festival_information_v_1($parameter){
     $info = array();
     $info["enable"] = true;
-    $info["text"] = '<div> جشنواره روز دانشجو <br> ۲۵% شارژ رایگان برای ۸۰۸+ </div>';
+    $info["text"] = '<div> ۵% شارژ رایگان   <br>  فقط برای کاربران ۸۰۸+ </div>';
     $info["image"] = "https://civil808.com/sites/default/files/appfestival.jpg";
     $info["color"] = array("r" => 255, "g" => 255, "b" => 255, "alpha" => 255);
     return $info;

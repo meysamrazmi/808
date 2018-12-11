@@ -13,9 +13,12 @@ function make_order_by_user_point($hash , $type , $data){
 }
 
 function order_content($nid){
+    global $user;
     $order = pay_for_node($nid , True);
-
-    if(gettype($order) != "string") return $order;
+    if(gettype($order) != "string") {
+        add_log($user->uid , "/order/by_user_point" , "buy" , "node" , $nid , "android" , "" , "successful" , "User bought a node successfully!");
+        return $order;
+    }
 
     switch ($order) {
         case "LoginError":
