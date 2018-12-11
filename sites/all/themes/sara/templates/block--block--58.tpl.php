@@ -2,18 +2,29 @@
 function check_808_options($mlid){
 
 }
-function render_menu_items($menu){
+function render_menu_items($menu, &$level = 0, $sub = false){
 	$output = '';
 	foreach($menu as $link){
-	    if($link['link']['hidden'] || $link['link']['mlid'] == 8832)
-	        continue;
-		$sub_menu = '';
-		if ($link['below']) {
-			$sub_menu = '<div class="sub"><ul class="sub">'. render_menu_items($link['below']) . '</ul></div>';
-		}
+        if($level == 0)
+	        $output .= '<ul class="sub">';
+
+		$level++;
+
 		$a = l($link['link']['link_title'], '/'. $link['link']['link_path'], $link['link']['localized_options']);
-		$output .= '<li>' . $a . $sub_menu . "</li>\n";
+		$output .= '<li class="'. (!$sub?'main':'') .'">' . $a ."</li>\n";
+
+		if($level >= 13){
+			$output .= '</ul>';
+			$level = 0;
+		}
+		if ($link['below']) {
+			$output .= render_menu_items($link['below'], $level, true) ;
+		}
+//		$output .= (!$sub?'</ul>':'');
 	}
+	if((!$sub && $level < 13) || ($sub && $level == 13)){
+		$output .= '</ul>';
+    }
 	return $output;
 }
 $menu = menu_build_tree('main-menu');
@@ -21,9 +32,52 @@ $menu = menu_build_tree('main-menu');
 <div id="main-nav">
     <ul class="main">
         <span class="active-item"></span>
-        <?php
-            print render_menu_items($menu);
-        ?>
+        <a href="/" class="logo" target="_blank"><img src="/sites/all/themes/sara/logo.png" style="height: 50px;padding: 3px;"></a>
+        <li class="">
+            <a href="/" class="has-sub">808</a>
+            <div class="sub">
+                <?php print render_menu_items(menu_build_tree('menu-civil-column1')); ?>
+            </div>
+        </li>
+        <li class="">
+            <a href="/saze/808" title="">عمران</a>
+        </li>
+        <li class="">
+            <a href="/arch" title="">معماری</a>
+        </li>
+        <li class="">
+            <a href="#" class="has-sub">لبه دانش</a>
+            <div class="sub no-mega">
+		        <?php print render_menu_items(menu_build_tree('menu-pedia')); ?>
+            </div>
+        </li>
+        <li class="">
+            <a href="/pedia" class="has-sub">محتوای تخصصی</a>
+            <div class="sub">
+			    <?php print render_menu_items(menu_build_tree('menu-contents')); ?>
+            </div>
+        </li>
+        <li class="">
+            <a href="/college" class="has-sub">آموزشگاه</a>
+            <div class="sub">
+			    <?php print render_menu_items(menu_build_tree('menu-college-links')); ?>
+            </div>
+        </li>
+        <li class="">
+            <a href="/shop" class="has-sub">فروشگاه</a>
+            <div class="sub">
+			    <?php print render_menu_items(menu_build_tree('menu-shop')); ?>
+            </div>
+        </li>
+        <li class="">
+            <a href="/gallery" class="has-sub">گالری</a>
+            <div class="sub">
+			    <?php print render_menu_items(menu_build_tree('menu-gallery')); ?>
+            </div>
+        </li>
+        <li class="">
+            <a href="/app">اپلیکیشن</a>
+        </li>
         <li>
             <a href="">جستجو</a>
             <div class="sub">
@@ -52,12 +106,6 @@ body:not(.uid-3300) #main-nav {
     margin: 0;
     padding: 0;
 }
-#main-nav a {
-    line-height: 2.2em;
-    display: inline-block;
-    color: #444;
-    transition: all 0.2s ease;
-}
 #main-nav ul.main {
     display: flex;
     position: relative;
@@ -69,6 +117,22 @@ body:not(.uid-3300) #main-nav {
 }
 #main-nav ul.main > li > a:hover,
 #main-nav ul.main > li.active > a {
+    color: #000;
+}
+#main-nav a {
+    line-height: 2.2em;
+    display: inline-block;
+    color: #444;
+    transition: all 0.2s ease;
+}
+#main-nav .sub a {
+    color: #666;
+    padding: 0 10px;
+    width: 100%;
+    /* overflow: hidden; */
+}
+#main-nav .sub a:hover {
+    background: #f5f5f5;
     color: #000;
 }
 #main-nav div.sub {
@@ -83,6 +147,15 @@ body:not(.uid-3300) #main-nav {
     border-radius: 0 0 2px 2px;
     right: 0;
 }
+#main-nav div.sub.no-mega {
+    width: 250px;
+    right: unset;
+    margin-right: -70px;
+}
+#main-nav div.sub.no-mega ul.sub {
+    width: 100%;
+    margin: 0;
+}
 span.active-item {
     position: absolute;
     height: 50px;
@@ -96,7 +169,18 @@ span.active-item {
     display: flex;
 }
 #main-nav ul.sub {
-    width: 20%;
+    min-width: calc(20% - 15px);
+    margin-left: 15px;
+}
+#main-nav li.main a {
+    color: #2196F3;
+}
+#main-nav a.has-sub:after {
+    content: "\f140";
+    font-family: mat;
+    position: absolute;
+    color: #ccc;
+    margin-right: 3px;
 }
 </style>
 
@@ -105,17 +189,17 @@ $(document).ready(function () {
 	$('#main-nav ul.main > li').mouseenter(function(){
 		var el = $(this)
 		$('.active-item').css({'width': el.width(), 'left': el.position().left})
+		el.addClass('hover')
 		setTimeout(function(){
 			el.parent().find('.active').removeClass('active')
-			el.addClass('active')
+			if(el.hasClass('hover'))
+				el.addClass('active')
 		}, 500)
 	}).mouseleave(function(){
 		var el = $(this)
 		$('.active-item').css({'width': 0, 'left': (el.position().left + el.width()/2)})
 		el.removeClass('active')
-		setTimeout(function(){
-			el.removeClass('active')
-		}, 505)
+		el.removeClass('hover')
 	})
 })
 </script>

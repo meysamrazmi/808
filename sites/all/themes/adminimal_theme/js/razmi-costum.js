@@ -33,6 +33,14 @@ $('.ADRES-CONTEINER .POSTI .DATA ,.ADRES-CONTEINER .PHON .DATA').each(function()
 	$(this).attr('dir' , 'ltr');
 });
 
+/*-------------------*/
+$('select.menu-title-select option').each(function(){
+	if($(this).text().indexOf("<") == 0)
+		$(this).css({'background': '#fdd'})
+})
+/*-------------------*/
+
+
 
 
 });
