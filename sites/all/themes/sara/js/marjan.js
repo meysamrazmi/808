@@ -54,6 +54,9 @@ $(document).ready(function () {
 	if($('.page-landing.page-bim .view-tags-content').length){
         $('.page-landing.page-bim .view-tags-content .view-content').addClass('owl-carousel');
 	}
+	if($('.page-landing.page-bim .view-tag-content').length){
+        $('.page-landing.page-bim .view-tag-content .view-content').addClass('owl-carousel');
+	}
 
 	/*runing owl*/
 	if($('.owl-carousel').length){

@@ -272,15 +272,14 @@
             </section>
 
             <section class="diff" id="relatives">
-                <h2> مطالب بخش های مختلف سایت در دانشنامه های موجود </h2>
+                <h2> مطالب بخش های مختلف سایت در تگ های مرتبط </h2>
                 <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">
                     برای مشاهده مطالب بیشتر
                     <a href="https://civil808.com/pedia?title=bim" target="_blank">کلیک کنید</a>
                 </p>
                 <?php
                 $args1 = 3753;
-                $args2 = 'architect';
-                print views_embed_view('tags_content', 'block_1', $args1 , $args2 ); ?>
+                print views_embed_view('tag_content', 'block', $args1 ); ?>
             </section>
 
             <section id="relatives" >
@@ -384,7 +383,7 @@
         font-size: 24px;
         text-align: center;
         position: relative;
-        font-weight:500px;
+        font-weight:500;
         line-height: 40px;
     }
     .node section > h2:before {
@@ -439,7 +438,8 @@
         max-height: none;
     }
     .owl-item .row .title,
-    #block-system-main > .content .field-name-body .owl-item .row .node:not(.node-product-kit):not(.node-product) .field-name-title a{
+    #block-system-main > .content .field-name-body .owl-item .row .node:not(.node-product-kit):not(.node-product) .field-name-title a,
+    #block-system-main > .content .field-name-body .owl-item .row .views-field-name a{
         padding: 10px 10px 2px 10px;
         color: #333 !important;
         line-height: 26px !important;
