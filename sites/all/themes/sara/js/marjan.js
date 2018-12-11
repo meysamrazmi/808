@@ -54,6 +54,9 @@ $(document).ready(function () {
 	if($('.page-landing.page-bim .view-tags-content').length){
         $('.page-landing.page-bim .view-tags-content .view-content').addClass('owl-carousel');
 	}
+	if($('.page-landing.page-bim .view-tag-content').length){
+        $('.page-landing.page-bim .view-tag-content .view-content').addClass('owl-carousel');
+	}
 
 	/*runing owl*/
 	if($('.owl-carousel').length){
@@ -308,5 +311,11 @@ function all_pedia_js() {
             $(this).parents('.node-type-relative').remove();
         }
     });
+
+    if($('.page-taxonomy.page-pedia').length){
+        if(!$('.term-listing-heading > .vocabulary-expert > .group-header > .group-anchor .taxonomy-term-description').length){
+            $('.flag-outer-bookmark-tag').remove()
+        }
+    }
 
 }

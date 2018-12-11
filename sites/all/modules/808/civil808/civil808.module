@@ -1259,3 +1259,43 @@ function civil808_form_taxonomy_form_term_alter(&$form, &$form_state, $form_id){
 	$form['field_relations']['#suffix'] = '</div>';
 	return $form;
 }
+/**
+ * Implements hook_field_formatter_info().
+ */
+function civil808_field_formatter_info() {
+    return array(
+        'taxonomy_term_reference_tag' => array(
+            'label' => t('tags'),
+            'field types' => array('taxonomy_term_reference'),
+        ),
+    );
+}
+/**
+ * Implements hook_field_formatter_view().
+ */
+function civil808_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+    $element = array();
+    if($display['type'] == 'taxonomy_term_reference_tag')
+    foreach ($items as $delta => $item) {
+        $term = isset($item['taxonomy_term'])? $item['taxonomy_term'] : taxonomy_term_load($item['tid']);
+
+        //check to see if term's data is filled properly and it's published.
+        if($term->field_bool['und'][0]['value'] == 0
+            || !isset($term->field_image['und'][0])
+            || empty($term->description)){
+            return $element;
+        }
+        $uri = entity_uri('taxonomy_term', $term);
+        $element[$delta] = array(
+            '#type' => 'link',
+            '#title' => $term->name,
+            '#href' => $uri['path'],
+            '#options' => $uri['options'],
+        );
+    }
+    return $element;
+}
+
+function civil808_field_formatter_prepare_view($entity_type, $entities, $field, $instances, $langcode, &$items, $displays) {
+    taxonomy_field_formatter_prepare_view($entity_type, $entities, $field, $instances, $langcode, $items, $displays);
+}

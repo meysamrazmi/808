@@ -245,6 +245,20 @@ function push_notification_form_submit($from, &$form_state){
  *
  */
 function taxonomy_term_page($term){
+    if($term->vid == 28){
+        $query = db_select("field_data_field_bool" , "field_bool");
+        $query->fields("field_bool" , array("field_bool_value"));
+        $query->condition("field_bool.entity_type" , "taxonomy_term");
+        $query->condition("field_bool.bundle" , "expert");
+        $query->condition("field_bool.entity_id" , $term->tid);
+        $bool = $query->execute()->fetch();
+        global $user;
+        if((empty($bool) || $bool->field_bool_value == 0) && !in_array("administrator" , $user->roles)){
+            drupal_access_denied();
+            module_invoke_all('exit');
+            drupal_exit();
+        }
+    }
     // If there is a menu link to this term, the link becomes the last part of
     // the active trail, and the link name becomes the page title. Thus, we must
     // explicitly set the page title to be the term title.

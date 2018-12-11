@@ -60,6 +60,8 @@ function retrieve_pedia_v_1($parameter){
     $pedia->description = implode('="https://civil808.com/sites/default', $parts);
     $parts = explode('href="/', $pedia->description);
     $pedia->description = implode('href="https://civil808.com/', $parts);
+    $parts = explode('="/node/', $pedia->body);
+    $pedia->body = implode('="https://civil808.com/node/', $parts);
 
 
     $pedia->tid = (int) $pedia->tid;

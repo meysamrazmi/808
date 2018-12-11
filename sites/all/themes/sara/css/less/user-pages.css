@@ -2717,3 +2717,141 @@ form#uc-addresses-get-address-form a.cancel-address-link:focus {
 .page-user-login #block-block-59 a.poster.view:before {
   content: '\f349';
 }
+/*----------------from razmia3.css---------------------*/
+.paper {
+  background: #fbfbfb;
+  padding: 15px;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+}
+#quicktabs-user_contents .ui-tabs-panel .views-field-title a,
+#quicktabs-user_bookmark .ui-tabs-panel .views-field-title a,
+#quicktabs-user_bookmark .ui-tabs-panel .views-field-name a {
+  color: #666 !important;
+  padding: 19px 13px 19px;
+  display: block;
+  height: 86px;
+  overflow: hidden;
+  font-size: 1em;
+  position: relative;
+}
+#quicktabs-user_contents .ui-tabs-panel .views-field-title a:after,
+#quicktabs-user_bookmark .ui-tabs-panel .views-field-title a:after,
+#quicktabs-user_bookmark .ui-tabs-panel .views-field-name a:after {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 100%;
+  right: 0;
+  background: #fbfbfb;
+  bottom: 0;
+}
+#quicktabs-user_contents .ui-tabs-panel img,
+#quicktabs-user_bookmark .ui-tabs-panel img {
+  width: 100%;
+  margin-bottom: -10px;
+}
+.page-user .quicktabs-ui-wrapper .view-uc-orders-user tbody tr td {
+  background-color: white;
+}
+.page-user .quicktabs-ui-wrapper .ui-tabs-panel {
+  padding: 0;
+  position: relative;
+}
+.pane-quicktabs-user-all-boughts .pane-title:before {
+  content: "\f135";
+  font-family: mat;
+  font-size: 30px;
+  color: #3f51b5;
+}
+#quicktabs-user_all_boughts .ui-tabs-nav {
+  margin-bottom: 0px;
+}
+#quicktabs-user_all_boughts thead tr th {
+  border-bottom: 1px solid #eeeeee !important;
+  background: #ffffff;
+  height: 42px;
+  /* background: #f1f1f1; */
+}
+.page-user .quicktabs-ui-wrapper {
+  background: #fff;
+  margin-bottom: 50px;
+  border: none;
+  padding: 0;
+}
+/* .page-user .quicktabs-ui-wrapper li.pager-first ,
+.page-user .quicktabs-ui-wrapper lli.pager-last a:before{
+	display: none;
+} */
+#quicktabs-user_contents .node-product.node-teaser,
+#quicktabs-user_bookmark .node-product.node-teaser {
+  width: 100%;
+}
+#quicktabs-user_contents .node-product.node-teaser .field-items,
+#quicktabs-user_bookmark .node-product.node-teaser .field-items {
+  float: none;
+  width: inherit;
+}
+.page-user .quicktabs-ui-wrapper .ui-tabs-nav {
+  display: flex;
+  margin-bottom: 20px;
+  position: relative;
+  padding: 0;
+  border-radius: 0;
+}
+.page-user .quicktabs-ui-wrapper#quicktabs-user_all_boughts .ui-tabs-nav li,
+.page-user .quicktabs-ui-wrapper#quicktabs-sold_content_tab .ui-tabs-nav li {
+  width: 100%;
+}
+.page-user .quicktabs-ui-wrapper .ui-tabs-nav li {
+  width: 50%;
+  float: right;
+  margin: 0;
+  border: none;
+  background: #fcfcfc;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  border-radius: 0;
+  display: inline-block;
+  position: relative;
+}
+.page-user .quicktabs-ui-wrapper .ui-tabs-nav li a {
+  color: #000 !important;
+  opacity: 0.5;
+  float: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 1.2em;
+  transition: all 0.3s ease;
+}
+.page-user .quicktabs-ui-wrapper .ui-tabs-nav li.ui-state-active a {
+  opacity: 1;
+  color: #AA00FF !important;
+}
+.page-user .quicktabs-ui-wrapper .ui-tabs-nav *:focus {
+  outline: none;
+}
+.page-user .quicktabs-ui-wrapper .ui-tabs-panel:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  transition: all 0.3s ease;
+  display: none;
+}
+.page-user .quicktabs-ui-wrapper .ui-tabs-panel.started:after {
+  display: block;
+}
+.page-user .quicktabs-ui-wrapper .ui-tabs-panel.action:after {
+  opacity: 1;
+}
+.page-user th {
+  background: #fcfcfc;
+  border-bottom: 1px solid #ddd;
+}
+/*-------------end from razmia3.css--------------------*/
