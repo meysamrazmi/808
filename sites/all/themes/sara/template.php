@@ -111,6 +111,14 @@ function sara_preprocess_html(&$variables) {
 			drupal_add_js(array('status' => 'not-published'), 'setting');
 		}
 	}
+
+	//by Marjan to adding class based on a boolean fields for expert taxonomy terms
+    if($aliases[0] == 'pedia' && $aliases[1] == 'tag' && isset($aliases[2]) && is_numeric($aliases[2])){
+        $term = taxonomy_term_load($aliases[2]);
+        if($term->field_bool['und'][0]['value'] == 0){
+            $variables['classes_array'][] = 'tag_not_published';
+        }
+    }
 }
 
 /**

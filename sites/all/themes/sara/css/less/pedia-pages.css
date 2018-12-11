@@ -912,3 +912,19 @@
 #users .views-row {
   height: 287px;
 }
+body.page-taxonomy-term.page-pedia.tag_not_published section#main {
+  border-top: 5px solid #d50000;
+}
+body.page-taxonomy-term.page-pedia.tag_not_published section#main:before {
+  content: 'تایید نشده';
+  color: #d50000 !important;
+  border: 1px solid currentColor;
+  padding: 2px 17px;
+  border-radius: 2px;
+  margin: 14px 19px 0 0;
+  cursor: default;
+  display: inline-block;
+}
+body.page-taxonomy-term.page-pedia.tag_not_published .feed-icon {
+  display: none;
+}

@@ -1,5 +1,5 @@
 <!--<img src="/sites/default/files/importviaftp/423.jpg" width="100%" height="auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">-->
-<img src="/sites/default/files/field/image/node_19160_0.jpg" width="100%" height="auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;" alt="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)" title="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)">
+<img src="/sites/default/files/field/image/node_19160.jpg" width="100%" height="auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;" alt="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)" title="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)">
 <section class="kargah-sec">
     <h2>ورکشاپ حضوری تخصصی معرفی (BIM (Revit, Dynamo, Naviswork</h2>
 <!--    <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره فقط به صورت حضوری برگزار می شود.</p>-->
@@ -164,10 +164,10 @@
                 <div class="city-name"><span>ثبت نام در دوره به صورت حضوری</span></div>
                 <div class="inner-text">
                     <p style="padding: 9px 12px 0px 0px;">به همراه ارسال فیلم وبینار به ایمیل ثبت نام کنندگاه بعد از برگزاری همایش</p>
-                    <div class="tarikh">چهارشنبه 21 آذر ماه 1397</div>
-                    <div class="makan">گیشا، فروزانفر، جنب بانک صادرات، پلاک ۱، واحد ۷، موسسه 808 </div>
+                    <div class="tarikh">جمعه ۲۳ آذر ماه ۱۳۹۷</div>
+                    <div class="makan">گیشا، فروزانفر، جنب بانک صادرات، پلاک ۱، واحد ۷، موسسه ۸۰۸ </div>
                     <div class="zaman"> ساعت ۱۷ تا ۲۰ </div>
-                    <div class="mablagh"> 25,000 تومان </div>
+                    <div class="mablagh"> ۲۵,۰۰۰ تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
             </a>
@@ -272,15 +272,14 @@
             </section>
 
             <section class="diff" id="relatives">
-                <h2> مطالب بخش های مختلف سایت در دانشنامه های موجود </h2>
+                <h2> مطالب بخش های مختلف سایت در تگ های مرتبط </h2>
                 <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">
                     برای مشاهده مطالب بیشتر
                     <a href="https://civil808.com/pedia?title=bim" target="_blank">کلیک کنید</a>
                 </p>
                 <?php
                 $args1 = 3753;
-                $args2 = 'architect';
-                print views_embed_view('tags_content', 'block_1', $args1 , $args2 ); ?>
+                print views_embed_view('tag_content', 'block', $args1 ); ?>
             </section>
 
             <section id="relatives" >
@@ -384,7 +383,7 @@
         font-size: 24px;
         text-align: center;
         position: relative;
-        font-weight:500px;
+        font-weight:500;
         line-height: 40px;
     }
     .node section > h2:before {
@@ -439,7 +438,8 @@
         max-height: none;
     }
     .owl-item .row .title,
-    #block-system-main > .content .field-name-body .owl-item .row .node:not(.node-product-kit):not(.node-product) .field-name-title a{
+    #block-system-main > .content .field-name-body .owl-item .row .node:not(.node-product-kit):not(.node-product) .field-name-title a,
+    #block-system-main > .content .field-name-body .owl-item .row .views-field-name a{
         padding: 10px 10px 2px 10px;
         color: #333 !important;
         line-height: 26px !important;
