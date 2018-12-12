@@ -113,6 +113,15 @@ margin-bottom: 30px;">
 			</div>
 		</section>
 
+        <div style="width: 70%; background-color: #ffffff; padding: 10px; margin: 0px auto 120px auto; border: solid #b39dd9; border-width: 0px 3px; box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px; text-align: center;">
+            <a href="/node/20534" target="_blank" style="color: #909090 !important; font-size: 16px; margin: 5px; display: block;">
+                مجموعه تصاویر آشنایی با برخی از ویژگی های نسخه جدید اپلیکیشن 808 پلاس
+            </a>
+            <a href="/gallery/videos/playlist/4973/20533" target="_blank" style="color: #909090 !important; font-size: 16px; margin: 5px; display: block;">
+                مشاهده پلی لیست همه فیلم های معرفی اپلیکیشن 808 پلاس در گالری سایت
+            </a>
+        </div>
+
 		<section id="film" style="text-align:center;margin-bottom: 60px;">
 			<h2 data-aos="zoom-in-up" data-aos-delay="400"  style=" margin-bottom: 51px;"> فیلم معرفی  </h2>
 			<div data-aos="zoom-out" data-aos-delay="900" class="aboutus" style="margin: 10px auto 20px; position: relative; width: 840px; height: 500px;">
