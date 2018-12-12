@@ -335,7 +335,7 @@ klickmore($('.page-college #mini-panel-college_top > div > div') , 250);
 
 $('.klick-for-more').click(function(){
 	if($(this).hasClass('closed')){
-		$(this).parent().css({'max-height' : $(this).parent().children('div:nth-child(1)').height() + 100 , 'padding-bottom':'100px'});
+		$(this).parent().css({'max-height' : $(this).parent().children('div:nth-child(1)').height() + 200 , 'padding-bottom':'100px'});
 		$(this).html('<span>بستن</span>');
 		$(this).removeClass('closed');
 		$(this).addClass('opend');
