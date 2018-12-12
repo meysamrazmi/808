@@ -72,7 +72,7 @@
       print '<div class="inine-audio" style="display: inline-block;background: #000;padding-top: 0;border-radius: 5px;margin: 15px 0 25px;">'.
           theme('mediaelement_audio', array('attributes' => $video_attrs, 'settings' => $video_sett))
             . '</div>';
-      print '<style>.inine-audio .mejs-container {border: none !important;}</style>';
+      print '<style>.inine-audio .mejs-container {border: none !important;} .inine-audio .film-time {display: none;}</style>';
     }
 
 	print render($content);
