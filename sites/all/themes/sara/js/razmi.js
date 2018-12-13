@@ -844,7 +844,7 @@ $('iframe').each(function(){
 	$(this).attr('allowFullScreen' , 'true').attr('webkitallowfullscreen' , 'true').attr('mozallowfullscreen' , 'true').css({'max-width' : '840px'});
 });
 /*for video time*/
-if($('.mejs-container').length){
+/*if($('.mejs-container').length){
 	var time = '';
 	if($('.field-name-field-film-time').length){
 		time = '<div class="film-time manual">' + $('.mejs-container').parents('.node').children().children('.field-name-field-film-time').find('.hms').text() + '</div>';
@@ -861,7 +861,7 @@ if($('.mejs-container').length){
 $('.mejs-overlay-play ,.mejs-overlay-play * ,.mejs-playpause-button').click(function(e){
 	$('.film-time').css({'display' : 'none'});
 	$('.film-time').addClass('none');
-});
+});*/
 /*for video suggestion after it's finished*/
 $('video').on('ended', function myHandler(e) {
 	$(this).parents('.mediaelement-video').addClass('ended');
