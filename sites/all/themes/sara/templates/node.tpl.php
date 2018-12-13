@@ -7,6 +7,10 @@
 
   <div class="content"<?php print $content_attributes; ?>>
     <?php
+    //print created time for News.
+    if($node->type == 'article'){
+        print '<span class="created-time">'.format_date($node->created).'</span>';
+    }
 	  if ($node->type == 'education' && isset($content['field_image']['#items'][0]['is_default'])) 
 		  hide($content['field_image']); 
 
