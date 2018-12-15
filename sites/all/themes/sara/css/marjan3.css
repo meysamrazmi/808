@@ -890,6 +890,7 @@ div#unavailable ,
 }
 #block-panels-mini-user-panel.opened{
 	left:-1px;
+	z-index: 5;
 }
 #block-panels-mini-user-panel h2.block-title{
 	position: absolute;
