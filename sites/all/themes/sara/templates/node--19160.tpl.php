@@ -1,14 +1,18 @@
 <!--<img src="/sites/default/files/importviaftp/423.jpg" width="100%" height="auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">-->
-<img src="/sites/default/files/field/image/node_19160.jpg" width="100%" height="auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;" alt="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)" title="دوره های آنلاین مدل سازی اطلاعات ساختمان (BIM)">
+<?php
+    $node_content = node_load(19160);
+    $url = substr($node_content->field_image['und'][0]['uri'] , 8);
+    $url = "https://civil808.com/sites/default/files" . $url;
+?>
+<img src="<?php print $url;?>" width="100%" height="auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;" alt="<?php print $node_content->title;?>" title="دوره های آنلاین <?php print $node_content->title;?>">
 <section class="kargah-sec">
-    <h2>ورکشاپ حضوری تخصصی معرفی (BIM (Revit, Dynamo, Naviswork</h2>
+    <h2><?php print $node_content->title;?></h2>
 <!--    <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره فقط به صورت حضوری برگزار می شود.</p>-->
     <!--<p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">برای مشاهده مجموعه تصاویر اولین همایش انقلاب بیم در صنعت ساخت و سازه به <a href="/node/19756" target="_blank"> این صفحه </a> مراجعه کنید</p>-->
     <div class="first-row" style="margin-top: 40px;">
         <div>
             <?php
-            $body_value = node_load(19160);
-            print($body_value->body['und'][0]['value']);
+            print($node_content->body['und'][0]['value']);
             ?>
         </div>
         <div class="lecturer">
@@ -140,7 +144,7 @@
         </div>
     </div>
 </section>-->
-<section class="second">
+<!--<section class="second">
     <h2 class="text" style="width:820px;"> ثبت نام در ورکشاپ حضوری تخصصی معرفی (BIM (Revit, Dynamo, Naviswork </h2>
     <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">علاوه بر این دوره شما می توانید در
         <a href="#edu-form" class="title"> دوره های حضوری و آنلاین BIM </a>
@@ -148,7 +152,7 @@
     </p>
     <div class="tickets">
         <div>
-            <!--<a target="_blank">
+            <a target="_blank">
                 <div class="city-name"><span>ثبت نام در دوره به صورت حضوری</span></div>
                 <div class="inner-text">
                     <p class="text"> برنامه زمان بندی و نام اساتید را می توانید در بخش بالا مشاهده کنید </p>
@@ -159,7 +163,7 @@
                     <div class="mablagh"> 20,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
-            </a>-->
+            </a>
             <a href="/cart/add/p20476?destination=cart" target="_blank">
                 <div class="city-name"><span>ثبت نام در دوره به صورت حضوری</span></div>
                 <div class="inner-text">
@@ -175,9 +179,9 @@
         <div class="bought-tickets">سوال های خود را می توانید از طریق شماره تماس موسسه و سیستم پیغام خصوصی با ما در میان بگذارید.</div>
 	</div>
 
-</section>
+</section>-->
 
-<div style="width: 70%; background-color: #ffffff; padding: 10px; margin: -17px auto 25px auto; border: solid #b39dd9; border-width: 0px 3px; box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px; text-align: center;">
+<div style="width: 70%; background-color: #ffffff; padding: 10px; margin: 45px auto 25px auto; border: solid #b39dd9; border-width: 0px 3px; box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px; text-align: center;">
     <a href="/node/20487" target="_blank" style="color: #909090 !important; font-size: 16px; margin: 5px; display: block;">
         مجموعه تصاویر و فیلم از اولین همایش انقلاب در صنعت ساخت و ساز با BIM برگزار شده در مرداد 97
     </a>

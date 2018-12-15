@@ -285,6 +285,9 @@ function all_pedia_js() {
             }
         });*/
     }
+    else{
+        $('.page-taxonomy.page-pedia .view-mode-full .group-anchor > div .flag-outer-bookmark-tag').css('top','40px');
+    }
 
     $('.divanchors a , .page-moshaver a.moshaver-links:not(.b) , .page-moshaver .search-links').click(function(e) {
         e.preventDefault();
