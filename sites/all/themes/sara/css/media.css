@@ -292,10 +292,6 @@ div#block-views-playlist-block-1{
   .page-conference.page-pt .pane-webform-client-block-5707.register {
     padding: 30px 10px;
   }
-  .tb-megamenu-block .block-search .form-item-search-block-form {
-    min-width: inherit;
-    display: block !important;
-  }
   .page-shop .views-slideshow-controls-text-previous {
 	left: 15% !important;
 	top: -80px !important;
@@ -912,13 +908,6 @@ a.all-members {
 #block-panels-mini-user-panel {
   left: -260px;
 }
-.tb-megamenu .tb-not-collapsed {
-  width: 250px !important;
-}
-.tb-megamenu-button {
-  right: 199px;
-  z-index: 1000;
-}
 .related .views-row {
   width: 100% !important;
 }
@@ -1008,9 +997,6 @@ div#edit-populate-wrapper {
   left: 20px;
   bottom: -135px;
 }
-.tb-megamenu {
-  max-width: 300px;
-}
 form.uc-cart-checkout-form:before,
 .uc-cart-checkout-form .form-actions:before, .uc-cart-checkout-form fieldset legend:before,
 div#payment-details {
@@ -1071,19 +1057,5 @@ div#block-views-playlist-block-1 {
   padding-bottom: 445px;
 }
 
-
-
-
-
-
-
 }
-@media (min-width: 980px) and (max-width: 1200px){
-.tb-megamenu-main-menu >div > ul {
-  white-space: nowrap;
-  display: flex;
-  max-width: calc(100vw - 130px);
-  overflow: overlay;
-}
-	
-}
+

@@ -23,11 +23,11 @@ scripts[] = js/marjan.min.js
 scripts[] = js/app.min.js
 scripts[] = js/jquery.once.min.js
 
-regions[ads3] = Ads 3
+regions[menu] = Top Menu
 regions[highlight] = Highlight
 regions[content] = Content
-regions[ads1] = Ads 1
-regions[ads2] = Ads 2
+regions[leftbar1] = Left Bar 1
+regions[leftbar2] = Left Bar 2
 regions[bottom3] = Bottom 3
 regions[bottom1] = Bottom 1
 regions[footer_contact] = Footer Contact area

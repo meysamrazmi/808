@@ -1861,7 +1861,7 @@ $('.dd + .dd').remove();
 	margin-top: 19px;
 	overflow: hidden;
 }
-body:not(.page-gallery) #main > div.container.main .region-ads1{
+body:not(.page-gallery) #main > div.container.main .region-leftbar1{
 	padding-top: 46px;
 }
 .page-messages [id*=edit-field-files-und] [id*= edit-field-files-und] thead,

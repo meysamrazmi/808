@@ -5,7 +5,6 @@
  *
  * @see template_preprocess()
  * @see template_preprocess_page()
- * @see andromeda_preprocess_page()
  */
 ?>
 <?php

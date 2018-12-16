@@ -294,7 +294,8 @@ function taxonomy_term_page($term){
         '#suffix' => '</div>',
         'term' => taxonomy_term_view($term, 'full'),
     );
-    if($term->vid == 28) {
+
+    if($term->vid == 28) {//tags vocabulary
         $query = db_select("taxonomy_index", "t_index");
         $query->join("node", "node", "node.nid = t_index.nid");
         $query->fields("node", array("nid", "type"));
@@ -331,16 +332,6 @@ function taxonomy_term_page($term){
                 $build[$type]["term"] = node_view_multiple($nodes, $view_mode);
             }
 
-	        $build["experts"] = array(
-		        "#prefix" => '<div id="advisors" class="node-type-relative"><h2 class="field-label">مشاوران این تخصص</h2><div class="field-items">',
-		        "#suffix" => views_embed_view('user_experts', 'pedia_experts_advisors', $term->tid) .'</div></div>',
-		        "term" => ''
-	        );
-	        $build["users"] = array(
-		        "#prefix" => '<div id="users" class="node-type-relative"><h2 class="field-label">کاربران</h2><div class="field-items">',
-		        "#suffix" => views_embed_view('user_experts', 'pedia_experts_users', $term->tid) .'</div></div>',
-		        "term" => '',
-	        );
         }
         else {
             $build['no_content'] = array(
@@ -349,7 +340,19 @@ function taxonomy_term_page($term){
                 '#suffix' => '</p>',
             );
         }
-    }else{
+
+        //add users of taxonomy term which isn't provided by default
+	    $build["experts"] = array(
+		    "#prefix" => '<div id="advisors" class="node-type-relative"><h2 class="field-label">مشاوران این تخصص</h2><div class="field-items">',
+		    "#suffix" => views_embed_view('user_experts', 'pedia_experts_advisors', $term->tid) .'</div></div>',
+		    "term" => ''
+	    );
+	    $build["users"] = array(
+		    "#prefix" => '<div id="users" class="node-type-relative"><h2 class="field-label">کاربران</h2><div class="field-items">',
+		    "#suffix" => views_embed_view('user_experts', 'pedia_experts_users', $term->tid) .'</div></div>',
+		    "term" => '',
+	    );
+    }else{ //default taxonomy terms page output
         if ($nids = taxonomy_select_nodes($term->tid, TRUE, variable_get('default_nodes_main', 10))) {
             $nodes = node_load_multiple($nids);
             $build += node_view_multiple($nodes);
