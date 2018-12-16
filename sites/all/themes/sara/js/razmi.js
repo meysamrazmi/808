@@ -170,21 +170,7 @@ if ($('.all-contents').length){
 		}
 	});
 }
-/*-------------------------------------------------------------------------------------------------------------------------------*/
-if ($('#menu-toggle').length){
-	var menu = $('.page-civil #content .pane-menu-main-civil');
-	$('#menu-toggle').click(function () {
-			if (!menu.hasClass('opend')){
-				$(this).addClass('opend');
-				menu.addClass('opend');
-				menu.css({ 'height' : '100%' , 'opacity': '1' });
-			} 			else {
-				$(this).removeClass('opend');
-				menu.removeClass('opend');
-				setTimeout(menu.css({ 'height' : '0' , 'opacity': '0' }), 500);
-			}
-	});
-}
+
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 /*front page*/
 /*for front shop section*/
@@ -196,16 +182,6 @@ $('.page-civil .main-four .views-row').each(function(){
 	}
 });
 
-/*-------------------------------------------------------------------------------------------------------------------------------*/
-$('.tb-megamenu .nav-collapse').css({ 'max-height' : screen.height + 5 });
-$('.tb-megamenu-button').addClass('first');
-$('.tb-megamenu-button').click(function() {
-  if($(this).hasClass('first')) {
-	$(this).removeClass('first');
-  }
-});
-/*-------------------------------------------------------------------------------------------------------------------------------*/
-$('.menu-mlid-6400').replaceWith('<li data-id="8832" data-level="1" data-type="menu_item" data-alignsub="justify" data-group="0" data-hidewcol="0" data-hidesub="0" class="tb-megamenu-item level-1 mega mega-align-justify dropdown leaf" style="position: inherit;"> <a href="/search/google" class="dropdown-toggle">جستجو<span class="caret"></span>          </a>  <div data-class="" data-width="" class="tb-megamenu-submenu dropdown-menu mega-dropdown-menu nav-child">  <div class="mega-dropdown-inner">    <div class="tb-megamenu-row row-fluid">  <div data-showblocktitle="0" data-class="" data-width="12" data-hidewcol="" id="tb-megamenu-column-35" class="tb-megamenu-column span12  mega-col-nav">  <div class="tb-megamenu-column-inner mega-inner clearfix">        <div data-type="block" data-block="search--form" class="tb-megamenu-block tb-block tb-megamenu-block">  <div class="block-inner">    <div id="block-search-form" class="block block-search odd">      <div class="content">    <form class="google-cse" action="/search/google" method="post" id="search-block-form--2" accept-charset="UTF-8"><div><div class="container-inline">      <h2 class="element-invisible">فرم جستجو</h2>    <div class="form-item form-type-textfield form-item-search-block-form">  <label class="element-invisible" for="edit-search-block-form--4">جستجو </label> <input title="عبارتی را که می&zwnj;خواهید جستجو گردد را وارد نمایید." type="text" id="edit-search-block-form--4" name="search_block_form" value="" size="15" maxlength="128" class="form-text"></div><div class="form-actions form-wrapper" id="edit-actions--3"><input type="submit" id="edit-submit--2" name="op" value="جستجو" class="form-submit"></div><input type="hidden" name="form_build_id" value="form-uJGhrcfjItMclRoB2SX-01xel0dQRoW3-ATj7uAXlOQ"><input type="hidden" name="form_token" value="DOUoK0RVXRvmr2GKLHDNcKnjvNmaJJV3QLckKCXagns"><input type="hidden" name="form_id" value="search_block_form"></div></div></form>  </div></div>  </div></div>  </div></div></div>  </div></div></li>');
 /*-------------------------------------------------------------------------------------------------------------------------------*/
 $('.add-to-cart .form-actions').click(function(){
 	$(this).children('input')[0].click();

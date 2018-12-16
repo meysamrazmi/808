@@ -5,7 +5,6 @@
  *
  * @see template_preprocess()
  * @see template_preprocess_page()
- * @see andromeda_preprocess_page()
  */
 ?>
 <script type="text/javascript" src="/sites/all/themes/sara/js/bootstrap.min.js"></script> 

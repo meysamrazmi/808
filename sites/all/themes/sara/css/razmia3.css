@@ -70,8 +70,6 @@ span.uc-takhfif,
   font-family: fanum;
 }
 input, button, select, textarea,
-.tb-megamenu input, .tb-megamenu button, .tb-megamenu select, .tb-megamenu textarea,
-.tb-megamenu-main-menu li.tb-megamenu-item.level-1 > a,
 .ui-widget {
   font-family: irans;
 }
@@ -2572,23 +2570,6 @@ div#block-views-exp-taxonomy-term-page-1 #edit-field-wrapper {
 }
 .main-product-image {
   max-height: 430px;
-}
-li[data-id="8541"] {
-  display: none;
-}
-.role-administrator li[data-id="8541"] {
-  display: block;
-}
-li[data-id="12336"].tb-megamenu-item .span3 {
-  /*min-height: 250px !important;
-  margin-bottom: 0px !important;*/
-}
-li:hover > span.nolink {
-  color: #46b8da;
-}
-.tb-megamenu li[data-id="12336"].tb-megamenu-item li > a {
-  /*padding: 0 10px !important;
-  color: #666 !important;*/
 }
 span.stocknotify.off {
   background: #bdbdbd;
