@@ -114,6 +114,7 @@ function get_questions($parameter){
 
     $query = db_select("field_data_field_experts" , "experts_tid");
     $query->join("taxonomy_term_data" , "expert_data" , "expert_data.tid = experts_tid.field_experts_tid");
+    $query->join("field_data_field_bool" , "bool" , "bool.entity_id = expert_data.tid and bool.entity_type = 'taxonomy_term' and bool.bundle = 'expert' and bool.field_bool_value = '1' ");
     $query->fields("experts_tid" , array("entity_id"));
     $query->fields("expert_data" , array("tid" , "name"));
     $query->condition("experts_tid.entity_id" , $nids , "IN");

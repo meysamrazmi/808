@@ -56,12 +56,13 @@ function retrieve_pedia_v_1($parameter){
     $query->condition("pedia.vid" , 28);
     $pedia = $query->execute()->fetch();
 
+    $pedia->description = preg_replace('/<iframe.*?\/iframe>/i','', $pedia->description);
     $parts = explode('="/sites/default', $pedia->description);
     $pedia->description = implode('="https://civil808.com/sites/default', $parts);
     $parts = explode('href="/', $pedia->description);
     $pedia->description = implode('href="https://civil808.com/', $parts);
-    $parts = explode('="/node/', $pedia->body);
-    $pedia->body = implode('="https://civil808.com/node/', $parts);
+    $parts = explode('="/node/', $pedia->description);
+    $pedia->description = implode('="https://civil808.com/node/', $parts);
 
 
     $pedia->tid = (int) $pedia->tid;

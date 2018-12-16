@@ -489,7 +489,7 @@ function get_pedia($page){
 	$query = db_select('node' , 'n');
 	$query->fields('n' , array('nid' , 'uid' , 'title' , 'created' , 'changed' , 'status'));
 	$query->condition('n.type', 'architect');
-	$query->condition('n.status', 1);
+//	$query->condition('n.status', 1);
 	$query->orderBy('changed', 'DESC');
 	$query->range($page*24, 24);
 	$nodes = $query->execute()->fetchAll();
