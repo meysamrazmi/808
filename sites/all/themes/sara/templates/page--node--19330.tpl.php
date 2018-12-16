@@ -1,6 +1,6 @@
 <header id="header">
         <section class="bottom" id="main-menu">
-			<?php print render($page['ads3']); ?>
+			<?php print render($page['menu']); ?>
         </section>
 </header>
 

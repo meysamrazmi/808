@@ -8,11 +8,11 @@
  */
 ?>
 <script type="text/javascript" src="/sites/all/themes/sara/js/bootstrap.min.js"></script> 
-<?php if($page['ads3']) : ?>
+<?php if($page['menu']) : ?>
 <header id="header">
-	<?php if($page['ads3']):?>
+	<?php if($page['menu']):?>
 		<section class="bottom" id="main-menu">
-			<?php print render($page['ads3']); ?>
+			<?php print render($page['menu']); ?>
 		</section>
 	<?php endif; ?>
 </header>
@@ -33,12 +33,12 @@
 
   <div class="container main">
     <?php
-		if($page['ads1'])  {
+		if($page['leftbar1'])  {
 			print '<div class="row with-sidebar with-left-sidebar">';
 			print '<div class="span9 right">';
-		}else if($page['ads2']){
+		}else if($page['leftbar2']){
 			print '<div class="row with-sidebar with-right-sidebar">';		
-			print '<div class="span3 right rightads"><div class="ads2">'.render($page['ads2']).'</div></div>';
+			print '<div class="span3 right rightads"><div class="leftbar2">'.render($page['leftbar2']).'</div></div>';
 			print '<div class="span9 right">';
 		}else{
 			print '<div class="row no-sidebar no-left-sidebar no-right-sidebar">';
@@ -71,9 +71,9 @@
       </div>
     
         <?php
-			if($page['ads1'])  {
+			if($page['leftbar1'])  {
 				print '<div class="span3 left leftads">';
-					print '<div class="ads1">'.render($page['ads1']).'</div>';
+					print '<div class="leftbar1">'.render($page['leftbar1']).'</div>';
 				print '</div>';
 			}
         ?>

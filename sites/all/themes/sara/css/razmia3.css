@@ -1951,11 +1951,11 @@ body.uc-product-node ul.tabs.primary li:last-child {
 .node-product-kit.vijeh .field-name-field-text, .vijeh .product-info.model {
   left: 100px;
 }
-.ads2 .content {
+.leftbar2 .content {
   padding: 0 !important;
   position: relative;
 }
-.ads2 {
+.leftbar2 {
   padding: 0;
 }
 .pager li>a, 
@@ -3736,7 +3736,7 @@ div#block-views-playlist-block-1 .playlist {
   position: absolute;
   top: 50px;
 }
-.page-playlist .ads1 {
+.page-playlist .leftbar1 {
   overflow: visible;
 }
 div#block-views-playlist-block-1 .block-title {
@@ -4710,7 +4710,7 @@ div#block-views-exp-glrnew-page-2 div#edit-populate-wrapper >div>div {
 .vefl-region #button-wrapper {
   display: none;
 }
-.page-gallery .region-ads1 > div:first-child {
+.page-gallery .region-leftbar1 > div:first-child {
   margin-top: 0 !important;
 }
 .landing h1#page-title {

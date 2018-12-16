@@ -79,20 +79,21 @@ $menu = menu_build_tree('main-menu');
         <li class="">
             <a href="/question/list">پرسش و پاسخ</a>
         </li>
+        <li class="">
+            <a href="/app">اپلیکیشن</a>
+        </li>
         <li class="search">
-            <a href="" class="has-sub">جستجو</a>
+            <a href="/search/google" class="has-sub">جستجو</a>
             <div class="sub">
-                <form class="google-cse" action="/" method="post" id="search-block-form--2" accept-charset="UTF-8">
+                <form class="google-cse" action="/search/google" method="post" id="search-form" accept-charset="UTF-8">
                     <div>
                         <div class="container-inline">
-                            <h2 class="element-invisible">فرم جستجو</h2>
                             <div class="form-item form-type-textfield form-item-search-block-form">
-                                <label class="element-invisible" for="edit-search-block-form--4">جستجو </label>
-                                <input title="عبارتی را که می‌خواهید جستجو گردد را وارد نمایید." type="text" id="edit-search-block-form--4" name="search_block_form" value="" size="15" maxlength="128" class="form-text">
+                                <input title="عبارتی را که می‌خواهید جستجو گردد را وارد نمایید." type="text" id="search-block-form" name="keys" value="" size="15" maxlength="128" class="form-text">
                             </div>
-                            <div class="form-actions form-wrapper" id="edit-actions--2"><input type="submit" id="edit-submit--3" name="op" value="جستجو" class="form-submit has-wave"></div><input type="hidden" name="form_build_id" value="form-tG0rRhEJinsIf5y-j67nJhWKHXUDuAGXBc9SA99Zhz8">
-                            <input type="hidden" name="form_token" value="UPRMB0YFiJRgzT2D5ibImg0F5_f33Mk95seJhrxCRVM">
-                            <input type="hidden" name="form_id" value="search_block_form">
+                            <div class="form-actions form-wrapper">
+                                <input type="submit" id="search-submit" name="op" value="جستجو" class="form-submit has-wave">
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -182,7 +183,8 @@ span.active-item {
     font-weight: 500;
     position: relative;
 }
-#main-nav li.main a:before {
+#main-nav li.main a:before,
+span.nolink:before {
     content: "\f141";
     font-family: mat;
     font-size: 16px;
@@ -249,7 +251,6 @@ span.active-item {
 }
 .search a {
     font-size: 0;
-    background: #f5f5f5;
 }
 .search a:before {
     content: "\f349";
@@ -262,6 +263,11 @@ span.active-item {
 .search a:after {
     font-size: 14px;
     margin: 0 !important;
+}
+span.nolink {
+    padding: 5px 10px 3px !important;
+    display: block;
+    position: relative;
 }
 
 
@@ -317,8 +323,12 @@ span.active-item {
     }
     #main-nav .sub a {
         padding: 0 25px;
-        line-height: 40px;
         height: 40px;
+        white-space: nowrap;
+        line-height: 40px;
+    }
+    #main-nav .sub a:hover {
+        background: #ddd;
     }
     #main-nav ul.main > li > a {
         padding: 0 16px;
@@ -329,6 +339,7 @@ span.active-item {
     }
     #main-nav li.main a {
         color: #666;
+        font-weight: normal;
     }
     #main-nav div.sub {
         position: unset;
@@ -378,11 +389,35 @@ span.active-item {
     .search a {
         font-size: inherit;
     }
+    span.nolink {
+        display: none;
+    }
+    #main-nav form .form-submit {
+        border-radius: 40px;
+        position: absolute;
+        z-index: 1;
+        left: 7px;
+        height: 33px;
+        padding: 0px 15px 2px !important;
+        min-width: auto;
+        font-size: 12px;
+        margin: 7px 0 0 0;
+        line-height: 28px;
+        background: #f5f5f5;
+        color: #666 !important;
+    }
+    #main-nav form .form-item input {
+        padding-left: 70px;
+        border-radius: 30px;
+        margin: 10px;
+        width: 285px;
+    }
 }
 </style>
 
 <script>
 $(document).ready(function () {
+	//handling sub menu in desktop
 	$('#main-nav ul.main > li').mouseenter(function(){
 		var el = $(this)
 		$('.active-item').css({'width': el.width(), 'left': el.position().left})
@@ -399,6 +434,21 @@ $(document).ready(function () {
 		el.removeClass('hover')
 	})
 
+    //handling search in menu
+	$('#main-nav form .form-item input').keyup(function(e){
+		$(this).parents('form').attr('action', ('/search/google/'+ $(this).val()) )
+	}).keypress(function(e) {
+		if(e.which == 13){
+			e.preventDefault()
+			window.location.replace('/search/google/'+ $(this).val())
+		}
+	})
+	$('#main-nav form .form-submit').click(function(e){
+		e.preventDefault()
+		window.location.replace('/search/google/'+ $('#main-nav form .form-item input').val())
+	})
+
+    //handling submenu in mobile
     $('a.has-sub').click(function(e){
     	e.preventDefault()
         $(this).parent().toggleClass('open')

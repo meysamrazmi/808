@@ -1,6 +1,6 @@
 <header id="header">
         <section class="bottom" id="main-menu">
-			<?php print render($page['ads3']); ?>
+			<?php print render($page['menu']); ?>
         </section>
 </header>
 <link href="https://fonts.googleapis.com/css?family=Roboto:100:300,400|Material+Icons" rel=stylesheet>

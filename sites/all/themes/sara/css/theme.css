@@ -1,4 +1,4 @@
-.ads1 tr th, .ads1 tr td {
+.leftbar1 tr th, .leftbar1 tr td {
   border: none;
 }
 .body.cke_show_borders,
@@ -313,7 +313,7 @@ display: inline-block;
 .leftads {
   /* overflow: hidden; */
 }
-.ads,.ads2,.ads3{
+.ads,.leftbar2,.menu{
   padding: 10px;
 }
 .leftads .ads .block {
@@ -832,7 +832,7 @@ margin-right: 0;
 
 /* Direction Nav */
 
-.ads2 .content,.ads3 .content {
+.leftbar2 .content,.menu .content {
 padding:5px !important;
 }
 

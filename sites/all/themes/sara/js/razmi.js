@@ -1333,12 +1333,12 @@ function video_comment_share_close(){
 }
 /*for video comments responsive*/
 function video_playlist_side_to_main(){
-	$('.group-header .field-name-field-film-time').after($('.region-ads1 div#block-views-playlist-block-1'));
-	$('.region-ads1 div#block-views-playlist-block-1').remove();
+	$('.group-header .field-name-field-film-time').after($('.region-leftbar1 div#block-views-playlist-block-1'));
+	$('.region-leftbar1 div#block-views-playlist-block-1').remove();
 	$('div#block-views-playlist-block-1').addClass('opened');
 }
 function video_playlist_main_to_side(){
-	$('.region-ads1').prepend($('.group-header div#block-views-playlist-block-1'));
+	$('.region-leftbar1').prepend($('.group-header div#block-views-playlist-block-1'));
 	$('.group-header div#block-views-playlist-block-1').remove();
 	$('div#block-views-playlist-block-1').removeClass('opened');
 }
