@@ -2,18 +2,18 @@
     <div id="block-block-45" class="block block-block contextual-links-region first odd">
         <div class="content">
             <span class="close-banner">X</span>
-            <a href="http://land.civil808.com/97/daneshjoo" target="_blank">
+            <a href="http://land.civil808.com/97/yalda" target="_blank">
                 <div class="new-title">
-                    <img style="display: none;" class="right" src="/sites/all/themes/sara/images/banners/engineerGuy.png">
+<!--                    <img style="display: none;" class="right" src="/sites/all/themes/sara/images/banners/engineerGuy.png">-->
                     <div style="margin-top: 5px;">
-                        <div>تا ۳۵٪ تخفیف در سایت و اپلیکیشن ۸۰۸ پلاس، به مناسبت روز دانشجو</div>
-                        فقط ۱۶ و ۱۷ آذرماه
+                        <div>تا ۴۰٪ تخفیف به مناسبت شب یلدا </div>
+                        ۲۵ + ۱۰ + ۵ % تا اول دیماه
                     </div>
                 </div>
-                <!--<div class="left">تخفیف های این جشنواره رو از دست ندید!!
+                <div class="left"> تخفیف های این جشنواره رو از دست ندید!!
                     <span></span>
-                </div>-->
-                <img style="display: none;" class="left" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">
+                </div>
+<!--                <img style="display: none;" class="left" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">-->
             </a>
         </div>
     </div>
@@ -27,12 +27,12 @@
             height: 70px;
             z-index: 100;
             background-position-y: center;
-            /* background-size: cover; */
+             background-size: cover;
             display: flex;
             align-items: self-start;
             /*background-image: url(/sites/all/themes/sara/images/banners/pattern.svg);*/
-            background-image: url(/sites/all/themes/sara/images/banners/pattern.svg);
-            background-size: 34%;
+            background-image: url(/sites/all/themes/sara/images/banners/yalda.jpg);
+            /*background-size: 34%;*/
         }
         div#block-block-45 .content {
             display: flex;
@@ -61,9 +61,12 @@
             display: flex;
             justify-content: center;
         }
+        div#block-block-45 .new-title > div{
+            color: #E91E63;
+        }
         div#block-block-45 .new-title > div > div{
             font-size: 20px;
-            color: #000f5f;
+            color: #8bc34a;
             margin-top: 2px;
         }
         div#block-block-45 img.right{
@@ -79,7 +82,7 @@
             position: absolute;
             left: 12px;
             top: 22px;
-            color: #000;
+            color: #E91E63;
             font-size: 15px;
         }
         @media (max-width: 1200px){}
