@@ -92,7 +92,7 @@ input, select, textarea{
 		line-height: 30px;
 		margin: 0;
 	}
-	.form-item:not(.form-type-checkbox) input {
+	.form-item:not(.form-type-checkbox) input:not(#edit-profile-main-field-link-und-0-title):not(#edit-profile-main-field-link-und-0-url) {
 		float: left;
 		min-width: 250px;
 		width: 30%;
@@ -135,6 +135,21 @@ input, select, textarea{
 }
 #user-profile-form{
 	.user-register-login();
+	#profile-main-field-link-add-more-wrapper > .form-item{
+		position: relative;
+		> label{
+			margin-bottom: 37px;
+		}
+		> .description{
+			position: absolute;
+			top: 38px;
+			padding: 8px 12px 7px;
+			display: block;
+			background-color: #f6f6f6;
+			width: 100%;
+			border-right: 4px solid #ffb300;
+		}
+	}
 }
 
 .form-type-managed-file{
