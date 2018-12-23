@@ -1169,6 +1169,7 @@ function custom_services_services_resources(){
             ),
         ),
 
+
         /*------------------------------------------------------------------------------------------*/
         /* pre-request is used for remote login
          * agent should send pre request and received token for authorization
@@ -1237,6 +1238,40 @@ function custom_services_services_resources(){
                     ),
                 ),
             ),
+        ),
+        /*------------------------------------------------------------------------------------------*/
+        /*------------------------------------------------------------------------------------------*/
+        /*
+         * create, update, retrieve, delete, index info about the films that are encrypted
+         * used in desktop lock application
+         * */
+        'encrypted_film' => array(
+            'operations' => array(
+                'index' => array(),
+                'retrieve' => array(),
+                'create' => array(
+                    'help' => 'Create a record for encrypted film',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'desktop_resource'),
+                    'callback' => 'encrypted_film_create',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'data',
+                            'type' => 'array',
+                            'description' => 'The data of request.',
+                            'source' => 'data',
+                            'optional' => False,
+                        ),
+                    ),
+                ),
+                'update' => array(),
+                'delete' => array(),
+            ),
+            'action' => array(),
+            'target_action' => array(),
+            'relationships' => array(),
         ),
         /*------------------------------------------------------------------------------------------*/
 

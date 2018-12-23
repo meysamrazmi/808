@@ -133,7 +133,7 @@ function push_notification_form($from, &$form_state){
         $form['type'] = array(
             '#type' => 'select',
             '#title' => t('نوع محتوا را مشخص کنید'),
-            '#options' => array("main" => "سایر" , "publication" => "ایبوک" , "college" => "دوره"),
+            '#options' => array("main" => "سایر" , "publication" => "ایبوک" , "college" => "دوره" , "questions" => "پرسش و پاسخ" , "education" => "ورکشاپ" , "product_kit" => "پکیج"),
         );
         $form['nid'] = array(
             '#type' => 'textfield',
