@@ -47,6 +47,9 @@ $menu = menu_build_tree('main-menu');
             <a href="/arch" title="">معماری</a>
         </li>
         <li class="">
+            <a href="/pedia" title="">دانشنامه</a>
+        </li>
+        <li class="">
             <a href="#" class="has-sub">لبه دانش</a>
             <div class="sub no-mega">
 		        <?php print render_menu_items(menu_build_tree('menu-pedia')); ?>
@@ -179,7 +182,7 @@ span.active-item {
     margin-left: 15px;
 }
 #main-nav li.main a {
-    color: #bc23d6;
+    color: #5a3ab7;
     font-weight: 500;
     position: relative;
 }
