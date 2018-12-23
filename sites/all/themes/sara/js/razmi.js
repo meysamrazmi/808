@@ -1069,7 +1069,7 @@ var interval = setInterval( function(){
 
 /*------------------------------tag part on nodes------------------------------*/
 /*experts functionality*/
-$('.page-node .field-name-field-experts a').each(function(){
+$('.page-node:not(.page-question) .field-name-field-experts a').each(function(){
 	var href = $(this).attr('href');
 	var arr = href.split("/");
 	$(this).attr('tid' , arr[3]);
@@ -1077,7 +1077,7 @@ $('.page-node .field-name-field-experts a').each(function(){
 	$(this).after('<div class="information"><div class="pic"></div><div class="data"><div></div><div></div></div></div>');
 });
 var ajax;
-$('.page-node .field-name-field-experts .field-item > a').on('mouseenter' , function(){
+$('.page-node:not(.page-question) .field-name-field-experts .field-item > a').not('.page-question').on('mouseenter' , function(){
 	$(this).parent().addClass('open');
 	if(!$(this).next(".information").hasClass("filled")){
 		var tid = $(this).attr('tid');
@@ -1095,7 +1095,7 @@ $('.page-node .field-name-field-experts .field-item > a').on('mouseenter' , func
 		});
 	}
 });
-$('.page-node .field-name-field-experts .field-item').on('mouseleave' , function(){
+$('.page-node:not(.page-question) .field-name-field-experts .field-item').not('.page-question').on('mouseleave' , function(){
         $(this).removeClass('open');
         if(ajax){
             ajax.abort();

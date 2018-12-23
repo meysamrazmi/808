@@ -189,14 +189,15 @@ function custom808_cron(){
         $query->join("users_roles" , "u_role" , "u_role.uid = user.uid and u_role.rid = '10' ");
         $query->condition("q_experts.entity_id" , $nid)->condition("q_experts.entity_type" , "node")->condition("q_experts.bundle" , "questions");
         $query->condition("u_experts.entity_type" , "profile2")->condition("u_experts.bundle" , "main");
-        $query->fields("user" , array("mail"));
-        $emails = $query->execute()->fetchCol();
-        $emails = array_unique($emails);
+        $query->fields("user" , array("uid"));
+        $uids = $query->execute()->fetchCol();
+        $uids = array_unique($uids);
 
         $node = db_select("node")->fields("node" , array("nid" , "title"))->condition("nid" , $nid)->execute()->fetch();
         $message = '<p>مشاور محترم، سوال زیر که مرتبط با تخصص شما است، در سیستم پرسش و پاسخ سایت 808 توسط کاربران ثبت شده است.</p><p>" ' . $node->title .' "<br>برای مشاهده کامل سوال و پاسخ به آن از لینک زیر وارد شوید :<br><a href="/node/' . $node->nid . '" style="text-decoration: none;">پاسخ به سوال</a><br>با تشکر از همکاری شما</p>';
-        foreach($emails as $mail){
-            simple_mail_send("info@civil808.com", $mail, "سوالی مرتبط با تخصص شما در سایت 808 پرسیده شده است.", $message);
+        foreach($uids as $uid){
+            send_pm($uid , $message);
+//            simple_mail_send("info@civil808.com", $mail, "سوالی مرتبط با تخصص شما در سایت 808 پرسیده شده است.", $message);
         }
     }
 }
