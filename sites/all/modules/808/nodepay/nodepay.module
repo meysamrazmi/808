@@ -284,7 +284,7 @@ function nodepay_uc_order($op, $order, $arg) {
 						$subtotal += ($product->qty * $product->price);
 					}
 					//todo: make this section based on site setting
-					else if (isset($node->field_backend['und']) && isset($node->taxonomy_catalog['und']) && in_array_r('3751', $node->taxonomy_catalog)) { // 3751 is for "پکیج های s1 تا s30 "
+					else if (isset($node->taxonomy_catalog['und']) && in_array_r('3751', $node->taxonomy_catalog)) { // 3751 is for "پکیج های s1 تا s30 "
 						$subtotal += ($product->qty * $product->price);
 					} else if ($node->nid == 19074) {
 						$subtotal += ($product->qty * $product->price);

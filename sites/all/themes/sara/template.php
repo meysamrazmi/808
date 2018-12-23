@@ -84,7 +84,17 @@ function sara_preprocess_html(&$variables) {
 	foreach($user->roles as $role) {
 		$variables['classes_array'][] = 'role-'. drupal_clean_css_identifier($role);
 	}
-	
+
+    //by marjan Ashofteh to adding classes based on user being viewed is Vip or not
+    if($aliases[0] == 'user' && isset($aliases[1]) && is_numeric($aliases[1])){
+        $viewed_user = user_load($aliases[1]);
+        foreach($viewed_user->roles as $role) {
+            if($role == 'Vip'){
+                $variables['classes_array'][] = 'user-being-viewed-role-'. drupal_clean_css_identifier($role);
+            }
+        }
+    }
+
  	if(arg(0) == 'node' && is_numeric(arg(1))){
 	    /*add css file to all nodes*/
         drupal_add_css(drupal_get_path('theme', 'sara') . '/css/less/content-pages.min.css');
@@ -115,7 +125,7 @@ function sara_preprocess_html(&$variables) {
 	//by Marjan to adding class based on a boolean fields for expert taxonomy terms
     if($aliases[0] == 'pedia' && $aliases[1] == 'tag' && isset($aliases[2]) && is_numeric($aliases[2])){
         $term = taxonomy_term_load($aliases[2]);
-        if($term->field_bool['und'][0]['value'] == 0){
+        if(!isset($term->field_bool['und'][0]) || $term->field_bool['und'][0]['value'] == 0){
             $variables['classes_array'][] = 'tag_not_published';
         }
     }

@@ -361,6 +361,8 @@ function list_of_contents_v_2($parameter){
     global $user;
     $type = $parameter["type"]; $page = (int)$parameter["page"];
 
+    if(strcmp($type , "homepage") == 0) return homepage_content_v_2($parameter);
+
     $response = array();
     /*Get query related to the @type*/
     $query = get_nodes_query($type);
@@ -508,12 +510,6 @@ function list_of_contents_v_2($parameter){
         else $query->orderBy("node.nid" , "DESC");
     }
     elseif(strcmp($type , "education") == 0){
-        $query->leftJoin("field_data_field_point_needed" , "point_needed" , "node.nid = point_needed.entity_id  and point_needed.bundle = 'education' ");
-        $query->addField("point_needed" , "field_point_needed_value" , "price");
-
-        $query->leftJoin("field_data_field_isvip" , "vip" , "node.nid = vip.entity_id and vip.bundle = 'education' and vip.field_isvip_tid = '1760' ");
-        $query->addField("vip" , "field_isvip_tid" , "free_for_vip");
-
         $query->orderBy("node.nid" , "DESC");
         if(isset($parameter["custom_list"]) && !empty($parameter["custom_list"])){
             $query->condition("node.nid" , $parameter["custom_list"] , "IN");
@@ -524,17 +520,42 @@ function list_of_contents_v_2($parameter){
         $query->join("field_data_field_text" , "field_text" , "node.nid = field_text.entity_id and field_text.bundle = 'product_kit' and field_text.entity_type = 'node' ");
         $query->addField("field_text" , "field_text_value" , "model");
 
+        $query->leftJoin("field_data_taxonomy_catalog" , "catalog" , "node.nid = catalog.entity_id and catalog.bundle = 'product_kit' and catalog.taxonomy_catalog_tid = '3751' ");
+        $query->addField("catalog" , "taxonomy_catalog_tid" , "catalog");
+
         $products = db_select("uc_product_kits");
         $products->join("uc_products" , "uc_products" , "uc_products.nid = uc_product_kits.product_id");
         $products->fields("uc_product_kits" , array("nid"));
-        $products->fields("uc_products" , array("list_price" , "sell_price"));
         $products->groupBy("uc_product_kits.nid");
         $products->addExpression("sum(list_price)" , "list_price");
         $products->addExpression("sum(sell_price)" , "sell_price");
-        $products->orderBy("sell_price", "DESC");
-        $products = $products->execute()->fetchAll();
+        $query->join($products , "price" , "price.nid = node.nid");
+        $query->fields("price" , array("list_price" , "sell_price"));
 
-        $query->orderBy("node.nid" , "DESC");
+        if(isset($parameter["sort"]))
+            switch ($parameter["sort"]){
+                case "last" :
+                    $query->orderBy("node.nid" , "DESC");
+                    break;
+                case "first" :
+                    $query->orderBy("node.nid" , "ASC");
+                    break;
+                case "cheap" :
+                    $query->orderBy("price.sell_price" , "ASC");
+                    break;
+                case "expensive" :
+                    $query->orderBy("price.sell_price" , "DESC");
+                    break;
+                default :
+                    $query->orderBy("node.nid" , "DESC");
+                    break;
+            }
+        else $query->orderBy("node.nid" , "DESC");
+
+        if(isset($parameter["custom_list"]) && !empty($parameter["custom_list"])){
+            $query->condition("node.nid" , $parameter["custom_list"] , "IN");
+            return $query;
+        }
     }
     elseif(strcmp($type , "designteam") == 0){
         $query->orderBy("node.nid" , "DESC");
@@ -559,6 +580,7 @@ function list_of_contents_v_2($parameter){
         $content->nid = (int)$content->nid;
         $content->uid = (int)$content->uid;
         $content->changed = (int)$content->changed;
+        if(strlen($content->webinar) > 0) $content->webinar = (int)$content->webinar;
         if(isset($content->picture) && !empty($content->picture)) $content->picture = image_style_url("300x300", $content->picture);
         if(isset($content->picture_s) && !empty($content->picture_s)) $content->picture_s = image_style_url("350x350", $content->picture_s);
         if(isset($content->audio_size)) $content->audio_size = (int) $content->audio_size;
@@ -627,27 +649,14 @@ function list_of_contents_v_2($parameter){
             }
             $content->discount = $discount;
         }
-        if(strcmp($type , "education") == 0){
-            $content->price = empty($content->price) ? 0 : (int) $content->price;
-            $free_for_vip = (empty($content->free_for_vip)) ? false : true;
-            $discount = new stdClass();
-            if($free_for_vip){
-                $vip = in_array("Vip", $user->roles) ? true : false;
-
-                if($vip)
-                    $discount = array("name" => "free", "color" => 1, "enable" => true, "amount" => 0, "message" => "رایگان برای کاربران VIP");
-                else
-                    $discount = array("name" => "free", "color" => 1, "enable" => false, "amount" => 1, "message" => "رایگان برای کاربران VIP");
-            }
-            $content->discount = $discount;
-        }
         if(strcmp($type , "product_kit") == 0){
-            foreach ($products as $product){
-                if($content->nid  == $product->nid){
-                    $content->list_price = (int) $product->list_price;
-                    $content->sell_price = (int) $product->sell_price;
-                }
-            }
+            $content->list_price = (int) $content->list_price;
+            $content->sell_price = (int) $content->sell_price;
+
+            $catalog = empty($content->catalog) ? false : true;
+            $vip = false;
+            if (in_array("Vip", $user->roles)) $vip = true;
+            unset($content->catalog);
 
             $off = ($content->sell_price < $content->list_price) ? true : false;
             $festival = false;
@@ -657,6 +666,13 @@ function list_of_contents_v_2($parameter){
             }
             elseif($off){
                 $discount = array("name" => "off" , "color" => 2, "enable" => true, "amount" => 0.2, "message" => "فروش ویژه");
+            }
+            elseif($catalog && $vip){
+                $content->sell_price = 0.9 * $content->sell_price;
+                $discount = array("name" => "vip", "color" => 2, "enable" => true, "amount" => 0.1, "message" => "10% تخفیف VIP");
+            }
+            elseif($catalog && !$vip){
+                $discount = array("name" => "vip", "color" => 4, "enable" => false, "amount" => 0.1, "message" => "10% تخفیف VIP");
             }
             $content->discount = $discount;
         }
@@ -694,6 +710,29 @@ function get_nodes_query($type){
     $query->condition('node.type' , $type);
 
     return $query;
+}
+/*
+ * return the content 30 content for homepage just for version 2 of android app
+ * */
+function homepage_content_v_2($parameter){
+    $types = array("college" , "education" , "product_kit");
+    $response = array();
+    foreach ($types as $type){
+        $query = get_nodes_query($type);
+        $query->orderBy("node.nid" , "DESC");
+        $query->range(0 , 10);
+        $contents = $query->execute()->fetchAll();
+        foreach ($contents as $content){
+            $content->nid = (int) $content->nid;
+            unset ($content->uid);
+            unset ($content->changed);
+            unset ($content->author_name);
+            unset ($content->picture_s);
+            $content->picture = !empty($content->picture) ? image_style_url("300x300" , $content->picture) : null;
+        }
+        $response[$type] = $contents;
+    }
+    return $response;
 }
 
 function content_resource_retrieve($hash , $nid , $parameter){
@@ -815,11 +854,14 @@ function retrieve_a_content_v_1($parameter){
 
     $node->picture = image_style_url("800x600" , $node->picture);
     $node->body = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $node->body);
+    $node->body = preg_replace('/<iframe.*?\/iframe>/i','', $node->body);
     if(strpos($node->body, "<!--break-->") != false) $node->body = substr($node->body, 0, strpos($node->body, "<!--break-->"));
     $parts = explode('="/sites/default', $node->body);
     $node->body = implode('="https://civil808.com/sites/default', $parts);
     $parts = explode('="/node/', $node->body);
     $node->body = implode('="https://civil808.com/node/', $parts);
+    $parts = explode('="/taxonomy/', $node->body);
+    $node->body = implode('="https://civil808.com/taxonomy/', $parts);
 
     if(strcmp($node->type , "publication") == 0){
         $query = db_select("field_data_field_publish_file" , "field_file_published");
@@ -1077,7 +1119,7 @@ function retrieve_a_content_v_1($parameter){
         $query->condition("ifwebinar.entity_id" , $node->nid);
         $query->condition("ifwebinar.bundle" , "education");
         $ifwebinar = $query->execute()->fetch();
-        $node->ifwebinar = $ifwebinar->field_ifwebinar_value;
+        $node->ifwebinar = (int) $ifwebinar->field_ifwebinar_value;
 
 
 
@@ -1091,6 +1133,28 @@ function retrieve_a_content_v_1($parameter){
         $query->condition("field_image.delta" , "0");
         $picture = $query->execute()->fetch();
         $node->picture = (!empty($picture)) ? image_style_url("350x350" , $picture->picture) : null;
+
+        $query = db_select("field_data_field_costum_content" , "custom_content");
+        $query->addField('custom_content' , 'field_costum_content_value' , 'description');
+        $query->condition("custom_content.entity_id" , $node->nid);
+        $query->condition("custom_content.entity_type" , "node");
+        $query->condition("custom_content.bundle" , "product_kit");
+        $description = $query->execute()->fetch();
+        if(!empty($description)){
+            $parts = explode('="/node/', $description->description);
+            $node->description = implode('="https://civil808.com/node/', $parts);
+        }
+        else
+            $node->description = null;
+
+        $query = db_select("field_data_field_files" , "field_files");
+        $query->join("file_managed" , "files" , "files.fid = field_files.field_files_fid");
+        $query->fields('files' , array('uri'));
+        $query->condition("field_files.entity_id" , $node->nid);
+        $query->condition("field_files.entity_type" , "node");
+        $query->condition("field_files.bundle" , "product_kit");
+        $files = $query->execute()->fetch();
+        $node->film_link = empty($files) ? null : generate_file_address($files->uri);
 
         $query = db_select("field_data_field_text" , "field_text");
         $query->addField("field_text" , "field_text_value" , "model");
@@ -1124,6 +1188,16 @@ function retrieve_a_content_v_1($parameter){
         $node->list_price = $list_price;
         $node->sell_price = $sell_price;
 
+        $query = db_select("field_data_taxonomy_catalog" , "catalog");
+        $query->addField("catalog" , "taxonomy_catalog_tid" , "catalog");
+        $query->condition("catalog.entity_id" , $node->nid);
+        $query->condition("catalog.bundle" , "product_kit");
+        $query->condition("catalog.taxonomy_catalog_tid",  3751);
+        $catalog = empty($query->execute()->fetch()) ? false : true;
+
+        $vip = false;
+        if (in_array("Vip", $user->roles)) $vip = true;
+
         $festival = false;
         $off = ($sell_price < $list_price) ? true : false;
         $discount = new stdClass();
@@ -1132,6 +1206,13 @@ function retrieve_a_content_v_1($parameter){
         }
         elseif($off){
             $discount = array("name" => "off" , "color" => 2, "enable" => true, "amount" => 0.2, "message" => "فروش ویژه");
+        }
+        elseif($catalog && $vip){
+            $node->sell_price = 0.9 * $node->sell_price;
+            $discount = array("name" => "vip", "color" => 2, "enable" => true, "amount" => 0.1, "message" => "10% تخفیف VIP");
+        }
+        elseif($catalog && !$vip){
+            $discount = array("name" => "vip", "color" => 4, "enable" => false, "amount" => 0.1, "message" => "10% تخفیف VIP");
         }
         $node->discount = $discount;
 
@@ -1278,7 +1359,7 @@ function content_search_list_v_1($parameter){
      *if it's empty search will be done in all types
      */
     if(isset($parameter["types"])) $types = explode("," , $parameter["types"]);
-    $all_types = array("publication" , "podcast" , "college" , "video" , "designteam" , "article" , "pedia" , "education" , "product_kit");
+    $all_types = array("publication" , "podcast" , "college" , "designteam" , "article" , "pedia");
 //    $persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
 //    $num = range(0, 9);
 //    $parameter["value"] = str_replace($persian, $num, $parameter["value"]);
@@ -1322,6 +1403,91 @@ function content_search_list_v_1($parameter){
 
     return array("contents" => $contents , "count" => $type_count);
 }
+function content_search_list_v_2($parameter){
+    /*$types shows that in which contents the value should be searched
+     *if it's empty search will be done in all types
+     */
+    if(isset($parameter["types"])) $types = explode("," , $parameter["types"]);
+    $all_types = array("publication" , "podcast" , "college" , "designteam" , "article" , "pedia" , "education" , "product_kit");
+    $persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    $num = range(0, 9);
+    $parameter["value"] = str_replace($num , $persian, $parameter["value"]);
+
+    /*
+    $values = explode(" ", $parameter["value"]);
+    foreach ($values as $key => $value){
+        $values[$key] = trim($values[$key]);
+        $values[$key] = str_replace(array("," , ":" , "-" , "." , "?" , "؟" , "<" , ">" , "=") , array("") , $values[$key]);
+
+        $persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+        $num = range(0, 9);
+        $tmp = str_replace($num , $persian, $values[$key]);
+        if(strlen($tmp) > 0) array_push($values , $tmp);
+        if(empty($values[$key])) unset($values[$key]);
+    }
+    $values = array_unique($values);
+    /*search in titles
+    $result = array();
+    foreach ($values as $value) {
+        $query = db_select("node", "node");
+        $query->fields("node", array("nid"));
+
+        $query->condition("node.title", "%" . db_like($value) . "%", 'LIKE');
+
+        $query->condition("node.type", (isset($types) && !empty($types)) ? $types : $all_types, "IN");
+        $nids = $query->execute()->fetchCol();
+        $result = array_merge($result , $nids);
+    }
+    $val = array_count_values($result);
+    $duplicates = array_filter($val, function($count) { return $count > 1; });
+    $duplicates = array_keys($duplicates);
+    $nids = empty($duplicates) ? $result : $duplicates;
+    */
+
+
+    /*search in titles*/
+    $query = db_select("node" , "node");
+    $query->fields("node" , array("nid"));
+    $query->condition("node.title" , '%' . db_like($parameter["value"]) . '%', 'LIKE');
+    $nids = $query->execute()->fetchCol();
+    if(empty($nids)) return array("contents" => []);
+
+    /*get information of nids*/
+    $query = db_select("node" , "node");
+    $query->leftJoin("field_data_field_image", "field_image", "node.nid = field_image.entity_id and field_image.delta = '0' ");
+    $query->leftJoin("file_managed", "file_image", "field_image.field_image_fid = file_image.fid");
+    $query->leftJoin("field_data_uc_product_image" , "uc_product_image" , "uc_product_image.entity_id = node.nid and uc_product_image.delta = '0' and uc_product_image.bundle = 'product_kit' ");
+    $query->leftJoin("file_managed" , "product_image" , "product_image.fid = uc_product_image.uc_product_image_fid");
+    $query->condition("node.status" , 1);
+    $query->condition("node.nid" , $nids , "IN");
+    $query->orderBy("node.nid" , "DESC");
+    $query->addField("node" , "type" , "type");
+    $type_count_query = clone($query);
+    $query->condition("node.type" , (isset($types) && !empty($types)) ? $types : $all_types , "IN"); //use filter or not
+    $query->fields("node" , array("nid" , "title"));
+    $query->addField("file_image" , "uri" , "content_image");
+    $query->addField("product_image" , "uri" , "product_image");
+    $query->range((isset($parameter["page"])) ? $parameter["page"]*20 : 0, 20);
+    $contents = $query->execute()->fetchAll();
+
+    /*shows the result's number of each types*/
+    $type_count_query->condition("node.type" , $all_types , "IN");
+    $type_count_query->groupBy("node.type")->addExpression("count(node.type)" , "count");
+    $type_count_query = $type_count_query->execute()->fetchAll();
+    $type_count = array("publication" => 0, "podcast" => 0, "college" => 0, "designteam" => 0, "article" => 0, "pedia" => 0, "education" => 0, "product_kit" => 0);
+    foreach ($type_count_query as $value) $type_count[$value->type] = (int)$value->count;
+
+    foreach($contents as $content){
+        $content->nid = (int) $content->nid;
+        $content->image = null;
+        if(!empty($content->content_image)) $content->image = image_style_url("350x350" , $content->content_image);
+        elseif(!empty($content->product_image)) $content->image = image_style_url("350x350" , $content->product_image);
+        unset($content->content_image);
+        unset($content->product_image);
+    }
+
+    return array("contents" => $contents , "count" => $type_count);
+}
 
 
 function content_resource_content_type($nid , $parameter){
@@ -1341,38 +1507,5 @@ function content_type_v_1($parameter){
 
     if(empty($type)) return services_error("Invalid nid!" , 13);
     return $type->type;
-}
-
-function content_resource_homepage_data($list , $parameter){
-    if(!(hash_true($parameter["hash"] , "content"))) return services_error(t('Failed to access'), 10);
-    $source_name = (isset($parameter["source"]) && !empty($parameter["source"])) ? $parameter["source"] : "android";
-    $version = (isset($parameter["version"]) && !empty($parameter["version"])) ? (int)$parameter["version"] : 0;
-
-    $function = get_compatible_function_name("/content/list/homepage" , "GET" , $source_name , $version);
-
-    if(!empty($function) && strlen($function) > 0) {
-        return call_user_func($function, $parameter);
-    }
-    return services_error(t('This version is not supported'), 11);
-}
-function homepage_content_v_2($parameter){
-    $types = array("college" , "education" , "product_kit");
-    $response = array();
-    foreach ($types as $type){
-        $query = get_nodes_query($type);
-        $query->orderBy("node.nid" , "DESC");
-        $query->range(0 , 10);
-        $contents = $query->execute()->fetchAll();
-        foreach ($contents as $content){
-            $content->nid = (int) $content->nid;
-            unset ($content->uid);
-            unset ($content->changed);
-            unset ($content->author_name);
-            unset ($content->picture_s);
-            $content->picture = !empty($content->picture) ? image_style_url("300x300" , $content->picture) : null;
-        }
-        $response[$type] = $contents;
-    }
-    return $response;
 }
 /*--------------------------------------------------------------------------------*/

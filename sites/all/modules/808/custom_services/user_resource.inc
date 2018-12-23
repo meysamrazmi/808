@@ -193,8 +193,6 @@ function login_v_1($data){
         $login_data->user = $user;
         $login_data->profile = profile_data($user->uid);
         add_log($uid , "/user/login2" , "login" , "" , 0 , $data["source"] , $data["version"] , "successful" , "user logged in successfully");
-//        $login_data->user->uid = (int) $login_data->user->uid;
-        $login_data->user->created = (int) $login_data->user->created;
 
         return $login_data;
     }
@@ -406,6 +404,7 @@ function user_purchased_products_list_v_1($parameter){
             $row->uid = (int) $row->uid;
             $row->changed = (int) $row->changed;
             $row->price = (int) $row->price;
+            unset($row->free_for_vip);
             $bought_list[$row->nid] = $row;
         }
         foreach ($bought as $row) if(isset($bought_list[$row->nid])) $bought_list[$row->nid]->bought_date = (int) $row->date;
@@ -420,7 +419,7 @@ function user_purchased_products_list_v_1($parameter){
         $files = $query->execute()->fetchAll();
         foreach($files as $file){
             if(isset($bought_list[$file->entity_id]))
-                array_push($bought_list[$file->entity_id]->files , array("uri" => $file->uri , "filesize" => (int) $file->filesize));
+                array_push($bought_list[$file->entity_id]->files , array("uri" => generate_file_address($file->uri) , "filesize" => (int) $file->filesize));
         }
         $bought_list = array_values($bought_list);
         return $bought_list;
@@ -533,7 +532,8 @@ function user_bookmark_contents_list_v_1($parameter){
             $row->nid = (int) $row->nid;
             $row->uid = (int) $row->uid;
             $row->changed = (int) $row->changed;
-            $row->picture = image_style_url("300x300", $row->picture);
+            if(isset($row->picture) && !empty($row->picture)) $row->picture = image_style_url("300x300", $row->picture);
+            if(isset($row->picture_s) && !empty($row->picture_s)) $row->picture_s = image_style_url("350x350", $row->picture_s);
             $row->files = array();
             if($row->price == 0) array_push($permission, $row->nid);
             if(in_array($row->nid , $permission)) $row->bought = true;
@@ -586,9 +586,7 @@ function user_bookmark_contents_list_v_1($parameter){
             $files = $query->execute()->fetchAll();
 
             foreach ($files as $file) {
-                $file->uri = generate_file_address($file->uri);
-                $file->filesize = (int) $file->filesize;
-                array_push($bookmark_list[$file->entity_id]->files, array("uri" => $file->uri , "filesize" => $file->filesize));
+                array_push($bookmark_list[$file->entity_id]->files, array("uri" => generate_file_address($file->uri) , "filesize" => (int) $file->filesize));
             }
         }
         $bookmark_list = array_values($bookmark_list);
@@ -601,7 +599,8 @@ function user_bookmark_contents_list_v_1($parameter){
             $row->audio_size = (int) $row->audio_size;
             $row->changed = (int) $row->changed;
             $row->audio = generate_file_address($row->audio);
-            $row->picture = image_style_url("200x200" , $row->picture);
+            if(isset($row->picture) && !empty($row->picture)) $row->picture = image_style_url("300x300", $row->picture);
+            if(isset($row->picture_s) && !empty($row->picture_s)) $row->picture_s = image_style_url("350x350", $row->picture_s);
         }
         return $list;
     }
@@ -618,19 +617,19 @@ function user_bookmark_contents_list_v_1($parameter){
             if(!empty($cost[$option->nid])) $opt_cost[$option->nid] += $option->cost; else $opt_cost[$option->nid] = $option->cost;
         }
 
-        foreach ($list as $node){
-            $node->nid = (int) $node->nid;
-            $node->uid = (int) $node->uid;
-            $node->changed = (int) $node->changed;
-            $node->list_price = (int) $node->list_price;
-            $node->sell_price = (int) $node->sell_price;
+        foreach ($list as $row){
+            $row->nid = (int) $row->nid;
+            $row->uid = (int) $row->uid;
+            $row->changed = (int) $row->changed;
+            $row->list_price = (int) $row->list_price;
+            $row->sell_price = (int) $row->sell_price;
 
-            $node->picture = generate_file_address($node->picture);
-            $node->picture_s = generate_file_address($node->picture_s);
+            $row->picture = image_style_url("300x300", $row->picture);
+            $row->picture_s = image_style_url("350x350", $row->picture_s);
 
             $off = false;
             $festival = false;
-            if($opt_price[$node->nid] < $opt_cost[$node->nid] || $node->sell_price < $node->list_price) $off = true;
+            if($opt_price[$row->nid] < $opt_cost[$row->nid] || $row->sell_price < $row->list_price) $off = true;
             $discount = new stdClass();
             if($festival && $off){
                 $discount = array("name" => "festival" , "color" => 1, "enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
@@ -638,19 +637,232 @@ function user_bookmark_contents_list_v_1($parameter){
             elseif($off){
                 $discount = array("name" => "off" , "color" => 2, "enable" => true, "amount" => 0.2, "message" => "فروش ویژه");
             }
-            $node->discount = $discount;
+            $row->discount = $discount;
 
-            switch ($node->college_step){
+            switch ($row->college_step){
                 case "0" :
-                    $node->college_step = array("id" => 0 , "state" => "در حال ثبت نام");
+                    $row->college_step = array("id" => 0 , "state" => "در حال ثبت نام");
                     break;
                 case "1" :
-                    $node->college_step = array("id" => 1 , "state" => "در حال برگزاری");
+                    $row->college_step = array("id" => 1 , "state" => "در حال برگزاری");
                     break;
                 case "2" :
-                    $node->college_step = array("id" => 2 , "state" => "برگزار شده");
+                    $row->college_step = array("id" => 2 , "state" => "برگزار شده");
                     break;
             }
+        }
+        return $list;
+    }
+
+    return array();
+}
+function user_bookmark_contents_list_v_2($parameter){
+    if(!isset($parameter["type"]) || empty($parameter["type"])) return services_error("Error in request!" , 15);
+    global $user;
+
+    $query = db_select("flagging", "flagging");
+    $query->fields("flagging", array("entity_id"));
+    $query->condition('flagging.uid', $parameter["uid"]);
+    $query->condition('flagging.fid', 1);
+    $custom_list = $query->execute()->fetchCol();
+    if (empty($custom_list)) return array();
+    module_load_include("inc", "custom_services", "content_resource");
+    $param["type"] = $parameter["type"];
+    $param["custom_list"] = $custom_list;
+    $query = list_of_contents_v_2($param);
+    $list = $query->execute()->fetchAll();
+    if(empty($list)) return array();
+    if(strcmp($parameter["type"] , "publication") == 0) {
+        $permission = array();
+        $query = db_select('m_buyed_nodes', 'buyed');
+        $query->fields('buyed', array('nid'));
+        $query->condition('buyed.uid', $parameter["uid"]);
+        $query->condition('buyed.nid', $custom_list , "IN");
+        $bought = $query->execute()->fetchCol();
+        $permission = array_merge($permission , $bought);
+
+        $vip = false;
+        if (in_array('Vip', $user->roles)) $vip = true;
+
+        if($vip) {
+            $query = db_select('field_data_field_isvip', 'vip');
+            $query->fields('vip', array('entity_id'));
+            $query->condition('vip.entity_id', $custom_list, "IN");
+            $query->condition('vip.bundle', 'publication');
+            $query->condition('vip.field_isvip_tid', 1760);
+            $permission = array_merge($permission , $query->execute()->fetchCol());
+        }
+        $bookmark_list = array();
+        foreach ($list as $row){
+            $row->nid = (int) $row->nid;
+            $row->uid = (int) $row->uid;
+            $row->changed = (int) $row->changed;
+            if(isset($row->picture) && !empty($row->picture)) $row->picture = image_style_url("300x300", $row->picture);
+            if(isset($row->picture_s) && !empty($row->picture_s)) $row->picture_s = image_style_url("350x350", $row->picture_s);
+            $row->files = array();
+            if($row->price == 0) array_push($permission, $row->nid);
+            if(in_array($row->nid , $permission)) $row->bought = true;
+            else $row->bought = false;
+
+            $row->price = (int) $row->price;
+            $row->original_price = $row->price;
+
+            if (empty($row->free_for_vip)) $free_for_vip = false;
+            else $free_for_vip = true;
+            unset($row->free_for_vip);
+
+            $discount = new stdClass();
+            if($row->price != 0){
+                /*this is used for discount on festival*/
+                $festival = false;
+
+                if ($vip && $free_for_vip) {
+                    $discount = array("name" => "free", "color" => 2, "enable" => true, "amount" => 1, "message" => "رایگان برای کاربران VIP");
+                    $row->price = 0;
+                }
+                elseif ($vip && !$free_for_vip && !$festival) {
+                    $discount = array("name" => "vip", "color" => 3, "enable" => true, "amount" => 0.1, "message" => "10% تخفیف VIP");
+                    $row->price = 0.9 * $row->price;
+                }
+                elseif (!$vip && !$festival && $free_for_vip) {
+                    $discount = array("name" => "free", "color" => 2, "name" => "vip", "enable" => false, "amount" => 1, "message" => "رایگان برای کاربران VIP");
+                }
+                elseif (!$vip && !$festival && !$free_for_vip) {
+                    $discount = array("name" => "vip", "color" => 3, "enable" => false, "amount" => 0.1, "message" => "10% تخفیف VIP");
+                }
+                elseif ($festival) {
+                    $discount = array("name" => "festival", "color" => 1, "enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
+                    $row->price = 0.8 * $row->price;
+                }
+            }
+            $row->discount = $discount;
+
+            $bookmark_list[$row->nid] = $row;
+        }
+
+        if(!empty($permission)) {
+            $query = db_select("field_data_field_files", "field_file");
+            $query->join("file_managed", "file", "field_file.field_files_fid = file.fid and file.filemime = 'application/pdf' ");
+            $query->fields('field_file', array('entity_id'));
+            $query->fields('file', array('uri', 'filesize'));
+            $query->condition('field_file.entity_id', $permission, "IN");
+            $query->condition('field_file.entity_type', 'node');
+            $query->condition('field_file.bundle', 'publication');
+            $files = $query->execute()->fetchAll();
+
+            foreach ($files as $file) {
+                array_push($bookmark_list[$file->entity_id]->files, array("uri" => generate_file_address($file->uri) , "filesize" => (int) $file->filesize));
+            }
+        }
+        $bookmark_list = array_values($bookmark_list);
+        return $bookmark_list;
+    }
+    if(strcmp($parameter["type"] , "podcast") == 0){
+        foreach ($list as $row) {
+            $row->nid = (int) $row->nid;
+            $row->uid = (int) $row->uid;
+            $row->audio_size = (int) $row->audio_size;
+            $row->changed = (int) $row->changed;
+            $row->audio = generate_file_address($row->audio);
+            if(isset($row->picture) && !empty($row->picture)) $row->picture = image_style_url("300x300", $row->picture);
+            if(isset($row->picture_s) && !empty($row->picture_s)) $row->picture_s = image_style_url("350x350", $row->picture_s);
+        }
+        return $list;
+    }
+    if(strcmp($parameter["type"] , "college") == 0){
+        $subquery = db_select("uc_product_options" , "product_options");
+        $subquery->join("node" , "node" , " node.nid = product_options.nid and node.type = 'college' ");
+        $subquery->fields("product_options" , array("nid" , "oid" , "cost" , "price"));
+        $subquery->condition("product_options.nid" , $custom_list , "IN");
+        $options = $subquery->execute()->fetchAll();
+        $opt_cost = array();
+        $opt_price = array();
+        foreach ($options as $option){
+            if(!empty($price[$option->nid])) $opt_price[$option->nid] += $option->price; else $opt_price[$option->nid] = $option->price;
+            if(!empty($cost[$option->nid])) $opt_cost[$option->nid] += $option->cost; else $opt_cost[$option->nid] = $option->cost;
+        }
+
+        foreach ($list as $row){
+            $row->nid = (int) $row->nid;
+            $row->uid = (int) $row->uid;
+            $row->changed = (int) $row->changed;
+            $row->list_price = (int) $row->list_price;
+            $row->sell_price = (int) $row->sell_price;
+
+            $row->picture = image_style_url("300x300", $row->picture);
+            $row->picture_s = image_style_url("350x350", $row->picture_s);
+
+            $off = false;
+            $festival = false;
+            if($opt_price[$row->nid] < $opt_cost[$row->nid] || $row->sell_price < $row->list_price) $off = true;
+            $discount = new stdClass();
+            if($festival && $off){
+                $discount = array("name" => "festival" , "color" => 1, "enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
+            }
+            elseif($off){
+                $discount = array("name" => "off" , "color" => 2, "enable" => true, "amount" => 0.2, "message" => "فروش ویژه");
+            }
+            $row->discount = $discount;
+
+            switch ($row->college_step){
+                case "0" :
+                    $row->college_step = array("id" => 0 , "state" => "در حال ثبت نام");
+                    break;
+                case "1" :
+                    $row->college_step = array("id" => 1 , "state" => "در حال برگزاری");
+                    break;
+                case "2" :
+                    $row->college_step = array("id" => 2 , "state" => "برگزار شده");
+                    break;
+            }
+        }
+        return $list;
+    }
+    if(strcmp($parameter["type"] , "education") == 0){
+        foreach($list as $row){
+            $row->nid = (int) $row->nid;
+            $row->uid = (int) $row->uid;
+            $row->changed = (int) $row->changed;
+            if(isset($row->picture) && !empty($row->picture)) $row->picture = image_style_url("300x300", $row->picture);
+            if(isset($row->picture_s) && !empty($row->picture_s)) $row->picture_s = image_style_url("350x350", $row->picture_s);
+        }
+
+        return $list;
+    }
+    if(strcmp($parameter["type"] , "product_kit") == 0){
+        foreach ($list as $row){
+            $row->nid = (int) $row->nid;
+            $row->uid = (int) $row->uid;
+            $row->changed = (int) $row->changed;
+            if(isset($row->picture) && !empty($row->picture)) $row->picture = image_style_url("300x300", $row->picture);
+            if(isset($row->picture_s) && !empty($row->picture_s)) $row->picture_s = image_style_url("350x350", $row->picture_s);
+
+
+            $row->list_price = (int) $row->list_price;
+            $row->sell_price = (int) $row->sell_price;
+
+            $catalog = empty($row->catalog) ? false : true;
+            $vip = false;
+            if (in_array("Vip", $user->roles)) $vip = true;
+            unset($row->catalog);
+
+            $off = ($row->sell_price < $row->list_price) ? true : false;
+            $festival = false;
+            $discount = new stdClass();
+            if($festival && $off){
+                $discount = array("name" => "festival" , "color" => 1, "enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
+            }
+            elseif($off){
+                $discount = array("name" => "off" , "color" => 2, "enable" => true, "amount" => 0.2, "message" => "فروش ویژه");
+            }
+            elseif($catalog && $vip){
+                $row->sell_price = 0.9 * $row->sell_price;
+                $discount = array("name" => "vip", "color" => 2, "enable" => true, "amount" => 0.1, "message" => "10% تخفیف VIP");
+            }
+            elseif($catalog && !$vip){
+                $discount = array("name" => "vip", "color" => 4, "enable" => false, "amount" => 0.1, "message" => "10% تخفیف VIP");
+            }
+            $row->discount = $discount;
         }
         return $list;
     }
@@ -706,7 +918,6 @@ function profile_data($uid){
         array_push($profile->experts, array($expert->tid => $expert->name));
     }
 
-
     return $profile;
 }
 function user_data($uid){
@@ -733,8 +944,6 @@ function user_data($uid){
     foreach ($results as $result) {
         $roles[$result->rid] = $result->name;
     }
-
-
     $user->roles = $roles;
 
     $user->uid = (int) $user->uid;
