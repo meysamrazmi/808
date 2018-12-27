@@ -56,18 +56,28 @@ body:not(.page-landing) #block-system-main > .content .taxonomy-term-description
 #block-system-main > .content .field-type-text-with-summary blockquote,
 #block-system-main > .content .taxonomy-term-description blockquote {
   padding: 12px 12px 10px 11px;
-  margin: 12px 0px;
+  margin: 15px 0px;
   border-right: 5px solid #4DD0E1;
   background-color: #f9f9f9;
 }
 #block-system-main > .content .field-name-body blockquote p,
 #block-system-main > .content .field-type-text-with-summary blockquote p,
 #block-system-main > .content .taxonomy-term-description blockquote p {
-  margin-bottom: 0;
-  font-size: 13px;
+  margin-bottom: 0 !important;
+  font-size: 13px !important;
   line-height: 28px !important;
-  color: #676666;
-  font-weight: normal;
+  color: #676666 !important;
+  font-weight: normal !important;
+}
+#block-system-main > .content .field-name-body blockquote *,
+#block-system-main > .content .field-type-text-with-summary blockquote *,
+#block-system-main > .content .taxonomy-term-description blockquote * {
+  text-align: right!important;
+}
+#block-system-main > .content .field-name-body blockquote strong,
+#block-system-main > .content .field-type-text-with-summary blockquote strong,
+#block-system-main > .content .taxonomy-term-description blockquote strong {
+  font-weight: normal!important;
 }
 #block-system-main > .content .field-name-body p.article-links,
 #block-system-main > .content .field-type-text-with-summary p.article-links,
