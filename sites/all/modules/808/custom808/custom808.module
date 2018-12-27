@@ -55,6 +55,19 @@ function custom808_menu(){
         'file' => 'custom808.inc',
     );
 
+
+    /*It is used for locked films for each node*/
+    $items['node/%/locked'] = array(
+        'title' => t('locked film list'),
+        'description' => t('Update node encrypted film'),
+        'page callback' => array('drupal_get_form'),
+        'page arguments' => array('node_lock_form' , 1),
+        'access arguments' => array('administer modules'),
+        'type' => MENU_LOCAL_TASK,
+        'file' => 'custom808.inc',
+        'weight' => 50,
+    );
+
     return $items;
 }
 

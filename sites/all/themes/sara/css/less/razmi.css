@@ -1989,6 +1989,7 @@ body:not(.uid-10628):not(.uid-3300):not(.uid-3989) .admin-error {
 .owl-carousel .owl-dots {
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 .owl-carousel .owl-dots .owl-dot {
   padding: 0 5px;
@@ -2681,4 +2682,43 @@ form .field-type-file .form-submit {
 }
 .page-colleges div.tabs {
   margin-top: 30px;
+}
+.page-node-locked .container {
+  width: 100% !important;
+}
+.page-node-locked .container .region-content {
+  padding-bottom: 50px;
+  margin: 50px 10px;
+}
+.page-node-locked fieldset {
+  border: solid #ccc;
+  border-width: 0px 1px 1px 1px;
+  text-align: center;
+}
+.page-node-locked fieldset:first-child {
+  border-width: 1px 1px 1px 1px;
+}
+.page-node-locked .fieldset-wrapper {
+  display: inline-flex;
+  text-align: center;
+  width: 100%;
+  padding: 0px;
+}
+.page-node-locked .fieldset-wrapper div {
+  width: 100%;
+  margin: 0px;
+  padding: 10px;
+  border: solid #eee;
+  border-width: 0px 1px;
+  overflow-wrap: break-word;
+}
+.page-node-locked .fieldset-wrapper div input,
+.page-node-locked .fieldset-wrapper div select {
+  width: inherit;
+}
+.page-node-locked .fieldset-wrapper div:first-child {
+  width: 300px !important;
+}
+.page-node-locked input#edit-submit {
+  margin: 15px 0px;
 }
