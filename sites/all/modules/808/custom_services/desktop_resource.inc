@@ -22,7 +22,7 @@ function encrypted_film_create_v_1($data){
     $nid = db_select("node" , "node")->fields("node" , array("nid"))->condition("nid" , $data["nid"])->execute()->fetch();
     if(empty($nid)) return services_error("Wrong nid!" , 400);
 
-    $new_name = db_select("desktop_lock_encryption" , "lock")->fields("lock" , array("new_name"))->condition("new_name" , $data["new_name"])->execute()->fetch();
+    $new_name = db_select("r" , "locked")->fields("locked" , array("new_name"))->condition("new_name" , $data["new_name"])->execute()->fetch();
     if(!empty($new_name)) return services_error("Duplicate new_name!" , 409);
 
     $insert = db_insert("desktop_lock_encryption")->fields(array(

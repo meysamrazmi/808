@@ -215,6 +215,48 @@ function custom808_cron(){
     }
 }
 
+/**
+ * Implements hook_node_update().
+ * hook_node_update is in node.api.php
+ * @param $node
+ *   The node that is being updated.
+ */
+function custom808_node_update($node){
+    $files = array();
+    if(isset($node->field_locked_files) && isset($node->field_locked_files["und"])) {
+        foreach ($node->field_locked_files["und"] as $file){
+            $name = explode("." , $file["origname"]);
+            array_push($files , array("fid" => $file["fid"] , "name" => $name[0]));
+        }
+    }
+
+    if(!empty($files)) {
+        $fids = array();
+        foreach ($files as $file) {
+            array_push($fids , $file["fid"]);
+
+            db_update("desktop_lock_encryption")->fields(array(
+                "fid" => $file["fid"],
+                "updated" => REQUEST_TIME
+            ))
+                ->condition("nid", $node->nid)
+                ->condition("fid", $file["fid"] , "<>")
+                ->condition("new_name", $file["name"])
+                ->execute();
+        }
+        db_delete("desktop_lock_encryption")
+            ->condition("nid", $node->nid)
+            ->condition("fid", $fids , "NOT IN")
+            ->execute();
+    }
+    else{
+        db_delete("desktop_lock_encryption")
+            ->condition("nid", $node->nid)
+            ->execute();
+    }
+
+}
+
 /*
  * check that a product has a unique sku-model
  * it is used for admin page for adding or editing a product

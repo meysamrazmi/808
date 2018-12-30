@@ -274,9 +274,8 @@ function node_lock_form($form , &$form_state , $nid){
                 '#markup' => $value->uid,
             );
             $form['lock_'. $key]['fid_' . $key] = array(
-                '#type' => 'textfield',
-                '#size'=> 10,
-                '#default_value' => $value->fid,
+                '#type' => 'item',
+                '#markup' => $value->fid,
             );
             $form['lock_'. $key]['active_' . $key] = array(
                 '#type' => 'select',
@@ -312,13 +311,11 @@ function node_lock_form_submit($form , &$form_state){
             $key = array("id" , "fid" , "active" , "description");
             $old_results[$i] = array(
                 "id" => $form["lock_" . $i]['id_' . $i]["#value"],
-                "fid" => $form["lock_" . $i]['fid_' . $i]["#default_value"],
                 "active" => $form["lock_" . $i]['active_' . $i]["#default_value"],
                 "description" => $form["lock_" . $i]['description_' . $i]["#default_value"],
             );
             $results[$i] = array(
                 "id" => $form_state['values']['id_' . $i],
-                "fid" => $form_state['values']['fid_' . $i],
                 "active" => $form_state['values']['active_' . $i],
                 "description" => $form_state['values']['description_' . $i],
             );
@@ -335,7 +332,6 @@ function node_lock_form_submit($form , &$form_state){
                 db_merge("desktop_lock_encryption")
                     ->key(array("id" => $result["id"]))
                     ->fields(array(
-                        'fid' => $result["fid"],
                         'active' => $result["active"],
                         'description' => $result["description"],
                         'updated' => REQUEST_TIME,

@@ -479,6 +479,22 @@ function user_purchased_products_list_v_1($parameter){
     }
     return array();
 }
+function user_purchased_products_list_desktop_v_1($parameter){
+    global $user;
+    if($user->uid != $parameter["uid"]) return services_error("Permission denied!" , 401);
+
+    $query = db_select("uc_orders" , "order");
+    $query->join("uc_order_products" , "order_product" , "order.order_id = order_product.order_id");
+    $query->join("node" , "node" , "order_product = node.nid and node.status = '1' ");
+    $subquery = db_select("desktop_lock_encryption" , "lock");
+    $subquery->fields("lock" , array("nid"))->groupBy("lock.nid");
+    $query->join("");
+    $query->fields("order_product" , array());
+    $query->condition("order.status" , array("completed" , "payment_received" , "sent") , "IN");
+    $query->condition("order.uid" , $parameter["uid"]);
+    $query->condition("node.type" , array("product" , "college") , "IN");
+    $query->execute()->fetchAll();
+}
 
 function user_resource_bookmark_contents_list($uid , $parameter){
     if(!isset($parameter["hash"]) || !(hash_true($parameter["hash"] , "user"))) return services_error(t('Failed to access'), 10);

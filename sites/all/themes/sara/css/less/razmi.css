@@ -2710,7 +2710,7 @@ form .field-type-file .form-submit {
   padding: 10px;
   border: solid #eee;
   border-width: 0px 1px;
-  overflow-wrap: break-word;
+  overflow: auto;
 }
 .page-node-locked .fieldset-wrapper div input,
 .page-node-locked .fieldset-wrapper div select {
