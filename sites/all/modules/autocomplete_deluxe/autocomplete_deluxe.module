@@ -420,7 +420,6 @@ function autocomplete_deluxe_taxonomy_callback_user($uid , $tags_typed = ''){
     $tag_last = drupal_strtolower(array_pop($tags_typed));
 
     $query = db_select("taxonomy_term_data" , "taxonomy");
-    $query->join("field_data_field_bool" , "confirm" , "confirm.entity_id = taxonomy.tid and confirm.entity_type = 'taxonomy_term' and  confirm.bundle = 'expert' and confirm.field_bool_value = '1' ");
     $query->join("field_data_field_tag_is_not_expert" , "is_expert" , "taxonomy.tid = is_expert.entity_id and is_expert.field_tag_is_not_expert_value = '0' ");
     $query->fields("taxonomy" , array("tid" , "name"));
     $query->condition("taxonomy.vid" , 28);

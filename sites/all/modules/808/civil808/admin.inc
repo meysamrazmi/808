@@ -360,7 +360,6 @@ function merge_experts_form_submit($from, &$form_state){
             $query->condition('experts.bundle', 'main');
             $query->condition('experts.field_experts_tid', $source_term->tid);
             $pids = $query->execute()->fetchCol();
-
 			if($form_state['values']['destination_tid'. $i] == 0){
                 $message_title = 'تخصص شما حذف شد';
                 $message_body = ' تخصص ' . $source_term->name . ' شما حذف شد <br>' . 'در صورت نادرست بودن آن ، تخصص خود را ویراش کنید و از همین طریق  به ما اطلاع دهید';
@@ -388,11 +387,14 @@ function merge_experts_form_submit($from, &$form_state){
                 $message_title = 'تخصص شما تغییر کرد';
                 $message_body = ' تخصص '. $source_term->name .' شما به '. $destination_term->name .' تغییر کرد <br>'.
                     'در صورت نادرست بودن آن ، تخصص خود را ویراش کنید و از همین طریق  به ما اطلاع دهید';
-			    foreach ($pids as $pid){
+
+                foreach ($pids as $pid){
                     $profile = profile2_load($pid);
-                    foreach($profile->field_experts['und'] as $key=>$field_expert){
-                        if($field_expert['tid'] == $source_term->tid)
-                            unset($profile->field_experts['und'][$key]);
+                    if($delete_expert == true) {
+                        foreach ($profile->field_experts['und'] as $key => $field_expert) {
+                            if ($field_expert['tid'] == $source_term->tid)
+                                unset($profile->field_experts['und'][$key]);
+                        }
                     }
                     if(!in_array_r($destination_term->tid, $profile->field_experts['und'])){
                         array_push($profile->field_experts['und'], ['tid' => $destination_term->tid]);
@@ -417,12 +419,11 @@ function merge_experts_form_submit($from, &$form_state){
                 foreach ($nids as $nid){
                     $node = node_load($nid);
                     if(!in_array_r($destination_term->tid, $node->field_experts['und'])){
-                        array_push($node->field_experts['und'], ['tid' => $destination_term->tid]);
+                        array_push($node->field_experts['und'], array('tid' => $destination_term->tid));
                         node_save($node);
                     }
                 }
-
-                if($delete_expert){
+                if($delete_expert == true){
                     taxonomy_term_delete($source_term->tid);
                     drupal_set_message('تخصص ' . $source_term->name . ' حذف شد. ');
                 }

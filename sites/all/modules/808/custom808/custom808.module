@@ -194,6 +194,7 @@ function custom808_cron(){
     if(empty($comments)) return;
 
     $nids = array_diff($questions , $comments);
+    $nids = array_unique($nids);
     foreach ($nids as $nid){
         $query = db_select("field_data_field_experts" , "q_experts");
         $query->join("field_data_field_experts" , "u_experts" , "q_experts.field_experts_tid = u_experts.field_experts_tid");
