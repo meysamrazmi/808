@@ -5859,3 +5859,11 @@ img.lazy:before {
 	from { width: 100%; }
 	to { width: 0; }
 }
+
+form#privatemsg-list tr:hover {
+	background: #f9f9f9;
+}
+
+form#privatemsg-list tr {
+	cursor: pointer;
+}

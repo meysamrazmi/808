@@ -1036,7 +1036,17 @@ function privatemsg_sql_list($account, $argument = 'list') {
   // Required columns
   $query->addField('pmi', 'thread_id');
   // $query->addExpression('MIN(pm.subject)', 'subject');
-  $query->addExpression('SUBSTRING(pm.body, 1 , 200)', 'subject');
+//  $query->addExpression('SUBSTRING(pm.body, 1 , 200)', 'subject');
+
+  $query->addExpression("(
+        SELECT SUBSTRING(pm2.body, 1 , 200) 
+        FROM `megapil_808_pm_message` pm2
+        LEFT JOIN `megapil_808_pm_index` pmi2 on pmi2.mid = pm2.mid
+        WHERE pmi2.thread_id = pmi.thread_id
+        order by pm2.mid DESC
+      	limit 1
+  	)", 'subject');
+
   $query->addExpression('MAX(pm.timestamp)', 'last_updated');
   $query->addExpression('MAX(pm.has_tokens)', 'has_tokens');
   $query->addExpression('SUM(pmi.is_new)', 'is_new');
@@ -1072,7 +1082,7 @@ function privatemsg_sql_list($account, $argument = 'list') {
 	foreach($q as $row){
 		array_push($arr, $row->max_mid);
 	}
-		
+
   return $query
     ->condition('pmi.recipient', $account->uid)
 //	->condition('pmi.mid', $arr, 'IN')

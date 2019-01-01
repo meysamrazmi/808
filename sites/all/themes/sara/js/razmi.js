@@ -1101,8 +1101,12 @@ $('.page-node .field-name-field-experts .field-item').on('mouseleave' , function
             ajax.abort();
         }
     });
-/*-----------------------------------------------------------------------------*/
-
+/*------------------------------------enable clicking on each row-----------------------------------------*/
+if($('form#privatemsg-list tr').length){
+	$('form#privatemsg-list tr').click(function(){
+		document.location.href = 	$(this).find('.privatemsg-list-subject a').attr('href')
+	})
+}
 
 
 }); /*===> end of document.ready-function*/
