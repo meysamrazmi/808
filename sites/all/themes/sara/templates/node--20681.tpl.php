@@ -28,6 +28,13 @@
         <a href="/node/20664" target="_blank">
             <img width="800px" height="auto" src="https://civil808.com/sites/default/files/styles/808/public/field/image/node_20664.jpg?itok=88Fuhvlw">
         </a>
+        <div style="text-align: center;margin-top: 50px;">
+            <div style="max-width: 840px;margin: auto;">
+                <div style="position: relative;padding-bottom: 56.25%;">
+                    <iframe allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src ="https://www.civil808.com/file/iframe/20745" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;max-width: 840px;max-height: 472px;">        </iframe>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -57,7 +64,7 @@
         <div class="sis">
             <div class="description">
                 <h3 class="title">SeismoMatch</h3>
-                <p class="text">تنظیم شتاب‌سنج زمین لرزه به منظور مطابقت با طیف پاسخ هدف با استفاده از الگوریتم موج‌های کوچکفرضیه های مناسب
+                <p class="text">تنظیم شتاب‌سنج زمین لرزه به منظور مطابقت با طیف پاسخ هدف با استفاده از الگوریتم موج‌های کوچک
                     <br>
                     <a href="https://civil808.com/node/16050" target="_blank">بیشتر بخوانید...</a>
                 </p>
@@ -66,19 +73,11 @@
                     300€
                 </div>
                 <div class="iran-price">
-                    <b>قیمت بازار ایران با ۵۰٪ تخفیف: </b>
-                    150€
-                </div>
-                <div class="iran-price">
-                    <b>قیمت با ۲۵٪ تخفیف سال نو میلادی: </b>
-                    112.5€
-                </div>
-                <div class="iran-price">
-                    <b>قیمت جشنواره برای دانشگاهیان: </b>
-                    101.25€
+                    <b>قیمت با تخفیف برای دانشگاهیان: </b>
+                    135€
                 </div>
                 <a href="https://civil808.com/node/20631" target="_blank" class="fest-price">
-                    خرید با ۲۵٪ تخفیف فقط 112.5€
+                    خرید با ۵۰٪ تخفیف مخصوص بازار ایران 150€
                 </a>
             </div>
             <div class="pic">
@@ -88,7 +87,7 @@
         <div class="sis">
             <div class="description">
                 <h3 class="title">SeismoSpect</h3>
-                <p class="text">ایجاد کتابخانه ای از رکوردهای حرکت زمین و ذخیره ی ان ها در یک فایل برای دسترسی سریع و اشتراک گذاری آسان آن هافرضیه های مناسب فرضیه های مناسب
+                <p class="text">ایجاد کتابخانه ای از رکوردهای حرکت زمین و ذخیره ی ان ها در یک فایل برای دسترسی سریع و اشتراک گذاری آسان آن ها
                     <br>
                     <a href="https://civil808.com/taxonomy/term/4932" target="_blank">بیشتر بخوانید...</a>
                 </p>
@@ -97,19 +96,11 @@
                     200€
                 </div>
                 <div class="iran-price">
-                    <b>قیمت بازار ایران با ۵۰% تخفیف: </b>
-                    100€
-                </div>
-                <div class="iran-price">
-                    <b>قیمت با ۲۵٪ تخفیف سال نو میلادی: </b>
-                    75€
-                </div>
-                <div class="iran-price">
-                    <b>قیمت جشنواره برای دانشگاهیان: </b>
-                    67.5€
+                    <b>قیمت با تخفیف برای دانشگاهیان: </b>
+                    90€
                 </div>
                 <a href="https://civil808.com/node/20630" target="_blank" class="fest-price">
-                    خرید با ۲۵٪ تخفیف فقط 75€
+                    خرید با ۵۰٪ تخفیف مخصوص بازار ایران 100€
                 </a>
             </div>
             <div class="pic">
@@ -119,7 +110,7 @@
         <div class="sis">
             <div class="description">
                 <h3 class="title">SeismoArtif</h3>
-                <p class="text">ایجاد شتاب‌دهنده های زلزله ی مصنوعی متناسب با یک طیف پاسخ هدف با استفاده از روش های مختلف و فرضیه های مناسب فرضیه های مناسب
+                <p class="text">ایجاد شتاب‌دهنده های زلزله ی مصنوعی متناسب با یک طیف پاسخ هدف با استفاده از روش های مختلف و فرضیه های مناسب
                 <br>
                     <a href="https://civil808.com/taxonomy/term/4934" target="_blank">بیشتر بخوانید...</a>
                 </p>
@@ -128,19 +119,11 @@
                     300€
                 </div>
                 <div class="iran-price">
-                    <b>قیمت بازار ایران با ۵۰% تخفیف: </b>
-                    150€
-                </div>
-                <div class="iran-price">
-                    <b>قیمت با ۲۵٪ تخفیف سال نو میلادی: </b>
-                    112.5€
-                </div>
-                <div class="iran-price">
-                    <b>قیمت جشنواره برای دانشگاهیان: </b>
-                    101.25€
+                    <b>قیمت با تخفیف برای دانشگاهیان: </b>
+                    135€
                 </div>
                 <a href="https://civil808.com/node/20632" target="_blank" class="fest-price">
-                    خرید با ۲۵٪ تخفیف فقط 112.5€
+                    خرید با ۵۰٪ تخفیف مخصوص بازار ایران 150€
                 </a>
             </div>
             <div class="pic">
@@ -150,10 +133,8 @@
         <div class="sis">
             <div class="description">
                 <h3 class="title">SeismoSignal</h3>
-                <p class="text">پردازش داده‌های حاصل از حرکت‌های قوی را با رابط‌های بصری به صورت کاربر پسندانه
-                    خواندن شتابنگاشت در دوحالت تعریف شده 1- مقادیر تکی 2- مقادیر چند‌گانه برای فرمت‌های خطی و اعمال اصلاحات پایه‌ای و فیلتراسیون پیش از انتگرال‌گیری از سیگنال
-                    فیلتر کردن سیگنال‌های ناخواسته از میان سیگنال‌های موجود
-                    گذاری آسان آن ها
+                <p class="text">
+                    پردازش داده‌های حاصل از حرکت‌های قوی با رابط‌های بصری به صورت کاربر پسندانه، خواندن شتابنگاشت در دوحالت تعریف شده 1- مقادیر تکی 2- مقادیر چند‌گانه برای فرمت‌های خطی و اعمال اصلاحات پایه‌ای و فیلتراسیون پیش از انتگرال‌گیری از سیگنال، فیلتر کردن سیگنال‌های ناخواسته از میان سیگنال‌های موجود
                     <br>
                     <a href="https://civil808.com/node/16049" target="_blank">بیشتر بخوانید...</a>
                 </p>
@@ -162,19 +143,11 @@
                     200€
                 </div>
                 <div class="iran-price">
-                    <b>قیمت بازار ایران با ۵۰% تخفیف: </b>
-                    100€
-                </div>
-                <div class="iran-price">
-                    <b>قیمت با ۲۵٪ تخفیف سال نو میلادی: </b>
-                    75€
-                </div>
-                <div class="iran-price">
-                    <b>قیمت جشنواره برای دانشگاهیان: </b>
-                    67.5€
+                    <b>قیمت با تخفیف برای دانشگاهیان: </b>
+                    90€
                 </div>
                 <a href="https://civil808.com/node/20629" target="_blank" class="fest-price">
-                    خرید با ۲۵٪ تخفیف فقط 75€
+                    خرید با ۵۰٪ تخفیف مخصوص بازار ایران 100€
                 </a>
             </div>
             <div class="pic">
@@ -193,27 +166,19 @@
                     2000€
                 </div>
                 <div class="iran-price">
-                    <b>قیمت بازار ایران با ۵۰% تخفیف: </b>
-                    1000€
-                </div>
-                <div class="iran-price">
-                    <b>قیمت با ۲۵٪ تخفیف سال نو میلادی: </b>
-                    750€
-                </div>
-                <div class="iran-price">
-                    <b>قیمت جشنواره برای دانشگاهیان: </b>
-                    675€
+                    <b>قیمت با تخفیف برای دانشگاهیان: </b>
+                    900€
                 </div>
                 <div class="three-price">
                     <b>نسخه ۳ ماه: </b>
-                    150€
+                    200€
                 </div>
                 <div class="six-price">
                     <b>نسخه ۶ ماه: </b>
-                    225€
+                    300€
                 </div>
                 <a href="https://civil808.com/node/20627" target="_blank" class="fest-price">
-                    خرید با ۲۵٪ تخفیف فقط 750€
+                    خرید با ۵۰٪ تخفیف مخصوص بازار ایران 1000€
                 </a>
             </div>
             <div class="pic">
@@ -232,27 +197,19 @@
                     2000€
                 </div>
                 <div class="iran-price">
-                    <b>قیمت بازار ایران با ۵۰% تخفیف: </b>
-                    1000€
-                </div>
-                <div class="iran-price">
-                    <b>قیمت با ۲۵٪ تخفیف سال نو میلادی: </b>
-                    750€
-                </div>
-                <div class="iran-price">
-                    <b>قیمت جشنواره برای دانشگاهیان: </b>
-                    675€
+                    <b>قیمت با تخفیف برای دانشگاهیان: </b>
+                    900€
                 </div>
                 <div class="three-price">
                     <b>نسخه ۳ ماه: </b>
-                    150€
+                    200€
                 </div>
                 <div class="six-price">
                     <b>نسخه ۶ ماه: </b>
-                    225€
+                    300€
                 </div>
                 <a href="https://civil808.com/node/20628" target="_blank" class="fest-price">
-                    خرید با ۲۵٪ تخفیف فقط 750€
+                    خرید با ۵۰٪ تخفیف مخصوص بازار ایران 1000€
                 </a>
             </div>
             <div class="pic">
@@ -275,9 +232,9 @@
                 <div><img src="http://land.civil808.com/97/yalda/images/Artif.png" title="" alt=""></div>
             </div>
             <div class="forth-bottom">
-                قیمت مجموع دو نرم افزارهای SeismoArtif و SeismoMatch در صورتی که به صورت جداگانه تهیه شوند، 300€ است. اما شما می‌توانید این پکیج را با قیمت استثنایی 225€ در طول سال و با تخفیف ویژه سال نو میلادی با 168.7€ خریداری کنید.
+                قیمت مجموع دو نرم افزارهای SeismoArtif و SeismoMatch در صورتی که به صورت جداگانه تهیه شوند، 300€ است. اما شما می‌توانید این پکیج را با قیمت استثنایی 225€ خریداری کنید.
                 <a href="https://civil808.com/node/20638" target="_blank" class="btn">
-                    خرید با تخفیف کریسمس فقط 168.7€
+                    خرید بسته با ۲۵٪ تخفیف فقط 225€
                 </a>
             </div>
         </div>
@@ -288,9 +245,9 @@
                 <div><img src="http://land.civil808.com/97/yalda/images/Build.png" title="" alt=""></div>
             </div>
             <div class="forth-bottom">
-                قیمت مجموع دو نرم افزارهای SeismoStruct و SeismoBuild در صورتی که به صورت جداگانه تهیه شوند، 2000€ است. اما شما می‌توانید این پکیج را با قیمت استثنایی 1500€ در طول سال و با تخفیف ویژه سال نو میلادی با 1125€ خریداری کنید.
+                قیمت مجموع دو نرم افزارهای SeismoStruct و SeismoBuild در صورتی که به صورت جداگانه تهیه شوند، 2000€ است. اما شما می‌توانید این پکیج را با قیمت استثنایی 1500€ خریداری کنید.
                 <a href="https://civil808.com/node/20638" target="_blank" class="btn">
-                    خرید با تخفیف کریسمس فقط 1125€
+                    خرید بسته با ۲۵٪ تخفیف فقط 1500€
                 </a>
             </div>
         </div>
@@ -301,9 +258,9 @@
                 <div><img src="http://land.civil808.com/97/yalda/images/Signal.png" title="" alt=""></div>
             </div>
             <div class="forth-bottom">
-                قیمت مجموع دو نرم افزارهای SeismoSpect و SeismoSignal در صورتی که به صورت جداگانه تهیه شوند، 200€ است. اما شما می‌توانید این پکیج را با قیمت استثنایی 150€ در طول سال و با تخفیف ویژه سال نو میلادی با 112.5€ خریداری کنید.
+                قیمت مجموع دو نرم افزارهای SeismoSpect و SeismoSignal در صورتی که به صورت جداگانه تهیه شوند، 200€ است. اما شما می‌توانید این پکیج را با قیمت استثنایی 150€ خریداری کنید.
                 <a href="https://civil808.com/node/20637" target="_blank" class="btn">
-                    خرید با تخفیف کریسمس فقط 112.5€
+                    خرید بسته با ۲۵٪ تخفیف فقط 150€
                 </a>
             </div>
         </div>
@@ -351,7 +308,7 @@
         </ul>
         <p>
             <strong>توجه ۱:</strong>
-            قیمت مجموع این نرم‌افزارها در صورتی که به صورت جداگانه تهیه شوند، 2500€ است. اما شما می‌توانید این پکیج را با قیمت استثنایی 1875€ و با تخفیف سال نو میلادی با 1406.25€ خریداری کنید.
+            قیمت مجموع این نرم‌افزارها در صورتی که به صورت جداگانه تهیه شوند، 2500€ است. اما شما می‌توانید این پکیج را با 25% تخفیف و با قیمت 1875€ خریداری کنید.
         </p>
         <p>
             <strong>توجه ۲:</strong>
@@ -361,7 +318,7 @@
             قیمت‌ها به قیمت روز یورو محاسبه شده است.</p><p>برای اطلاع از نحوه پرداخت از طریق Paypal برای خرید نرم‌افزارهای سایزموسافت به <a href="/node/20418" target="_blank">این صفحه</a>
             مراجعه کنید.</p>
         <a href="https://civil808.com/node/20643" target="_blank" class="btn">
-            خرید با تخفیف کریسمس فقط 1406.25€
+            خرید با تخفیف ویژه فقط 1875€
         </a>
     </div>
 </section>
