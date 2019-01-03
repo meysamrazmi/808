@@ -217,12 +217,46 @@ function custom808_cron(){
 }
 
 /**
+ * Implements hook_insert().
+ * hook_insert is in node.api.php
+ * @param $node
+ *   The node that is being updated.
+ */
+function custom808_node_insert($node) {
+    /*
+     * this part is for SKU model and Stock table
+     * if the node does not have stock we insert a de-active record if uc_product_stock
+     * */
+    if($node->type == "product"){
+        $query = db_select("uc_product_stock" , "stock")->distinct();
+        $query->fields("stock" , array("nid"));
+        $query->condition("stock.nid" , $node->nid);
+        $stocks = $query->execute()->fetchCol();
+        if(empty($stocks)){
+            $query = db_insert('uc_product_stock')->fields(
+                array(
+                    "sku" => $node->model,
+                    "nid" => $node->nid,
+                    "active" => 0,
+                    "stock" => 0,
+                    "threshold" => 0
+                )
+            )->execute();
+        }
+    }
+}
+/**
  * Implements hook_node_update().
  * hook_node_update is in node.api.php
  * @param $node
  *   The node that is being updated.
  */
 function custom808_node_update($node){
+    /*
+     * this part is for locked files
+     *it is updating the fid of locked file for  desktop_lock_encryption table
+     *or delete record in desktop_lock_encryption table if the locked file is deleted from the node
+     */
     $files = array();
     if(isset($node->field_locked_files) && isset($node->field_locked_files["und"])) {
         foreach ($node->field_locked_files["und"] as $file){
@@ -230,7 +264,6 @@ function custom808_node_update($node){
             array_push($files , array("fid" => $file["fid"] , "name" => $name[0]));
         }
     }
-
     if(!empty($files)) {
         $fids = array();
         foreach ($files as $file) {
@@ -256,12 +289,80 @@ function custom808_node_update($node){
             ->execute();
     }
 
+    /*
+     * this part is for SKU model and Stock table
+     * if the node does not have stock we insert a de-active record if uc_product_stock
+     * */
+    if($node->type == "product"){
+        $query = db_select("uc_product_stock" , "stock")->distinct();
+        $query->fields("stock" , array("nid" , "sku"));
+        $query->condition("stock.nid" , $node->nid);
+        $stocks = $query->execute()->fetchAll();
+
+        /*if there is no stock we insert one*/
+        if(empty($stocks)){
+            $query = db_insert('uc_product_stock')->fields(
+                array(
+                    "sku" => $node->model,
+                    "nid" => $node->nid,
+                    "active" => 0,
+                    "stock" => 0,
+                    "threshold" => 0
+                )
+            )->execute();
+        }
+        /*if there is stock we check that the node model and stock sku be same*/
+        else{
+            foreach ($stocks as $stock){
+                if($node->model != $stock->sku){
+                    $query = db_select("uc_product_stock" , "stock")->distinct();
+                    $query->fields("stock" , array("nid" , "sku"));
+                    $query->condition("stock.nid" , $node->nid);
+                    $query->condition("stock.sku" , $node->model);
+                    $sku = $query->execute()->fetchAll();
+
+                    /*if this nid have stock that sku != model just update the sku*/
+                    if(empty($sku)){
+                        db_update("uc_product_stock")
+                            ->fields(array("sku" => $node->model))
+                            ->condition("nid" , $stock->nid)
+                            ->execute();
+                    }
+                    /*else if there is at least one stock that sku = model delete the wrong sku*/
+                    else{
+                        db_delete("uc_product_stock")
+                            ->condition("nid" , $stock->nid)
+                            ->condition("sku" , $stock->sku)
+                            ->execute();
+                    }
+                }
+            }
+        }
+    }
 }
 
-/*
+/**
+ * Implements hook_node_delete().
+ * hook_delete is in node.api.php
+ * @param $node
+ *   The node that is being deleted.
+ */
+function custom808_node_delete($node) {
+    /*
+     * delete stock from uc_product_stock table after the node deleted
+     * */
+    if($node->type == "product"){
+        db_delete('uc_product_stock')
+            ->condition('nid', $node->nid)
+            ->execute();
+    }
+}
+
+/**
+ * Implements hook_node_validate().
  * check that a product has a unique sku-model
  * it is used for admin page for adding or editing a product
-*/
+ */
 function custom808_node_validate($node, $form, &$form_state) {
     if(in_array_r($node->type , uc_product_types()) && isset($node->model)) {
         $query = db_select("uc_products", "products");
