@@ -180,8 +180,8 @@ function custom808_cron(){
     $query = db_select("node" , "node");
     $query->fields("node" , array("nid"));
     $query->condition("node.type" , "questions")->condition("node.status" , 1);
-    $and_1 = db_and()->condition("node.changed" , strtotime('-3 day', REQUEST_TIME) , "<")->condition("node.changed" , strtotime('-3 day -5 hour', REQUEST_TIME) , ">");
-    $and_2 = db_and()->condition("node.changed" , strtotime('-6 day', REQUEST_TIME) , "<")->condition("node.changed" , strtotime('-6 day -5 hour', REQUEST_TIME) , ">");
+    $and_1 = db_and()->condition("node.changed" , strtotime('-5 hour -50 minutes', REQUEST_TIME) , ">");
+    $and_2 = db_and()->condition("node.changed" , strtotime('-5 day -5 hour -50 minutes', REQUEST_TIME) , ">")->condition("node.changed" , strtotime('-5 day', REQUEST_TIME) , "<");
     $query->condition(db_or()->condition($and_1)->condition($and_2));
     $questions = $query->execute()->fetchCol();
     if(empty($questions)) return;
@@ -278,10 +278,12 @@ function custom808_node_update($node){
                 ->condition("new_name", $file["name"])
                 ->execute();
         }
+        /*
         db_delete("desktop_lock_encryption")
             ->condition("nid", $node->nid)
             ->condition("fid", $fids , "NOT IN")
             ->execute();
+        */
     }
     else{
         db_delete("desktop_lock_encryption")
@@ -298,7 +300,6 @@ function custom808_node_update($node){
         $query->fields("stock" , array("nid" , "sku"));
         $query->condition("stock.nid" , $node->nid);
         $stocks = $query->execute()->fetchAll();
-
         /*if there is no stock we insert one*/
         if(empty($stocks)){
             $query = db_insert('uc_product_stock')->fields(

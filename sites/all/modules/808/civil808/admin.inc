@@ -552,5 +552,10 @@ function discount_configuration_form_submit($from, &$form_state){
 }
 
 function developer(){
+    /*
+    adump(openssl_get_cipher_methods());
+    $test = openssl_encrypt("test" , "AES-128-CBC" , "api808");
+    adump($test);
+    */
     die();
 }
