@@ -1109,6 +1109,7 @@ body:not(.uid-10628):not(.uid-3300):not(.uid-3989) .admin-error {
 .owl-carousel {
 	.owl-dots {
 		.flex('';'';center);
+		overflow: hidden;
 		.owl-dot {
 			padding: 0 5px;
 			span:before {
@@ -1609,4 +1610,48 @@ form .field-type-file{
 }
 .page-colleges div.tabs {
 	margin-top: 30px;
+}
+
+
+.page-node-locked{
+	.container{
+		width: 100% !important;
+		.region-content{
+			padding-bottom: 50px;
+			margin: 50px 10px;
+		}
+	}
+	fieldset {
+		border: solid #ccc;
+		border-width: 0px 1px 1px 1px;
+		text-align: center;
+	}
+	fieldset:first-child{
+		border-width: 1px 1px 1px 1px;
+	}
+	.fieldset-wrapper {
+		display: inline-flex;
+		text-align: center;
+		width: 100%;
+		padding: 0px;
+	}
+	.fieldset-wrapper div {
+		width: 100%;
+		margin: 0px;
+		padding: 10px;
+		border: solid #eee;
+		border-width: 0px 1px;
+		overflow: auto;
+
+		input,select{
+			width: inherit;
+		}
+
+		&:first-child{
+			width: 300px !important;
+		}
+	}
+	input#edit-submit{
+		margin: 15px 0px;
+	}
 }

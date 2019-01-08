@@ -51,7 +51,7 @@ $(document).ready(function(){
     $('.page-question-list .views-field-field-experts a').each(function(){
         $(this).attr('href', '/question/list?field_experts_tid='+$(this).text());
     });
-    
+
     /*check question is published or not*/
     if(Drupal.settings.status){
         body.addClass(Drupal.settings.status);

@@ -1880,13 +1880,13 @@ background: transparent;
   text-align: center;
 }
 
-.uc-product-node ul.tabs.primary li:nth-last-child(2) {
+.uc-product-node ul.tabs.primary li.buyed_report {
   display: none;
 }
-.page-node ul.tabs.primary li:last-child {
+.page-node ul.tabs.primary li.sale_report {
   display: none;
 }
-body.uc-product-node ul.tabs.primary li:last-child {
+body.uc-product-node ul.tabs.primary li.sale_report {
   display: inline-flex;
 }
 .page-gallery .action-links {

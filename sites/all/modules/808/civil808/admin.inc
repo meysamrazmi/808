@@ -360,7 +360,6 @@ function merge_experts_form_submit($from, &$form_state){
             $query->condition('experts.bundle', 'main');
             $query->condition('experts.field_experts_tid', $source_term->tid);
             $pids = $query->execute()->fetchCol();
-
 			if($form_state['values']['destination_tid'. $i] == 0){
                 $message_title = 'تخصص شما حذف شد';
                 $message_body = ' تخصص ' . $source_term->name . ' شما حذف شد <br>' . 'در صورت نادرست بودن آن ، تخصص خود را ویراش کنید و از همین طریق  به ما اطلاع دهید';
@@ -388,11 +387,14 @@ function merge_experts_form_submit($from, &$form_state){
                 $message_title = 'تخصص شما تغییر کرد';
                 $message_body = ' تخصص '. $source_term->name .' شما به '. $destination_term->name .' تغییر کرد <br>'.
                     'در صورت نادرست بودن آن ، تخصص خود را ویراش کنید و از همین طریق  به ما اطلاع دهید';
-			    foreach ($pids as $pid){
+
+                foreach ($pids as $pid){
                     $profile = profile2_load($pid);
-                    foreach($profile->field_experts['und'] as $key=>$field_expert){
-                        if($field_expert['tid'] == $source_term->tid)
-                            unset($profile->field_experts['und'][$key]);
+                    if($delete_expert == true) {
+                        foreach ($profile->field_experts['und'] as $key => $field_expert) {
+                            if ($field_expert['tid'] == $source_term->tid)
+                                unset($profile->field_experts['und'][$key]);
+                        }
                     }
                     if(!in_array_r($destination_term->tid, $profile->field_experts['und'])){
                         array_push($profile->field_experts['und'], ['tid' => $destination_term->tid]);
@@ -417,12 +419,11 @@ function merge_experts_form_submit($from, &$form_state){
                 foreach ($nids as $nid){
                     $node = node_load($nid);
                     if(!in_array_r($destination_term->tid, $node->field_experts['und'])){
-                        array_push($node->field_experts['und'], ['tid' => $destination_term->tid]);
+                        array_push($node->field_experts['und'], array('tid' => $destination_term->tid));
                         node_save($node);
                     }
                 }
-
-                if($delete_expert){
+                if($delete_expert == true){
                     taxonomy_term_delete($source_term->tid);
                     drupal_set_message('تخصص ' . $source_term->name . ' حذف شد. ');
                 }
@@ -550,184 +551,6 @@ function discount_configuration_form_submit($from, &$form_state){
     }
 }
 
-function developer()
-{
-    /*
-    $query = db_select("field_data_field_tag_is_not_expert" , "not_expert");
-    $query->fields("not_expert" , array("entity_id"));
-    $not_expert = $query->execute()->fetchCol();
-
-    $query = db_select("taxonomy_term_data" , "term");
-    $query->fields("term" , array("tid"));
-    $query->condition("term.vid" , 28);
-    $query->condition("term.tid" , $not_expert , "NOT IN");
-    $terms = $query->execute()->fetchCol();
-    adump($terms);
-    foreach ($terms as $term){
-        $query = db_select("field_data_field_tag_is_not_expert" , "not_expert");
-        $query->fields("not_expert" , array("entity_id"));
-        $query->condition("not_expert.entity_id" , $term);
-        $result = $query->execute()->fetchCol();
-        if(empty($result)){
-            db_insert("field_data_field_tag_is_not_expert")->fields(
-                array(
-                    "entity_type" => "taxonomy_term",
-                    "bundle" => "expert",
-                    "deleted" => 0,
-                    "entity_id" => $term,
-                    "revision_id" => $term,
-                    "language" => "und",
-                    "delta" => 0,
-                    "field_tag_is_not_expert_value" => 0,
-                )
-            )->execute();
-
-            db_insert("field_revision_field_tag_is_not_expert")->fields(
-                array(
-                    "entity_type" => "taxonomy_term",
-                    "bundle" => "expert",
-                    "deleted" => 0,
-                    "entity_id" => $term,
-                    "revision_id" => $term,
-                    "language" => "und",
-                    "delta" => 0,
-                    "field_tag_is_not_expert_value" => 0,
-                )
-            )->execute();
-        }
-    }
-    */
-    /*
-    $query = db_select("field_data_field_experts" , "field_experts")->distinct();
-    $query->fields("field_experts" , array("entity_id"))
-        ->condition("field_experts.entity_type" , "node")->condition("field_experts.bundle" , "architect");
-    $pedias = $query->execute()->fetchCol();
-    foreach ($pedias as $pedia){
-        $nids = array();
-        $query = db_select("field_data_field_maghalat", "pedia");
-        $query->fields("pedia" , array("field_maghalat_nid"));
-        $query->condition("pedia.entity_id" , $pedia);
-        $nids = array_merge($nids , $query->execute()->fetchCol());
-
-        $query = db_select("field_data_field_akhbar", "pedia");
-        $query->fields("pedia" , array("field_akhbar_nid"));
-        $query->condition("pedia.entity_id" , $pedia);
-        $nids = array_merge($nids , $query->execute()->fetchCol());
-
-        $query = db_select("field_data_field_entesharat", "pedia");
-        $query->fields("pedia" , array("field_entesharat_nid"));
-        $query->condition("pedia.entity_id" , $pedia);
-        $nids = array_merge($nids , $query->execute()->fetchCol());
-
-        $query = db_select("field_data_field_porojhe", "pedia");
-        $query->fields("pedia" , array("field_porojhe_nid"));
-        $query->condition("pedia.entity_id" , $pedia);
-        $nids = array_merge($nids , $query->execute()->fetchCol());
-
-        $query = db_select("field_data_field_shopproduct", "pedia");
-        $query->fields("pedia" , array("field_shopproduct_nid"));
-        $query->condition("pedia.entity_id" , $pedia);
-        $nids = array_merge($nids , $query->execute()->fetchCol());
-
-        $query = db_select("field_data_field_podcast808", "pedia");
-        $query->fields("pedia" , array("field_podcast808_nid"));
-        $query->condition("pedia.entity_id" , $pedia);
-        $nids = array_merge($nids , $query->execute()->fetchCol());
-
-        $query = db_select("field_data_field_edu_college", "pedia");
-        $query->fields("pedia" , array("field_edu_college_nid"));
-        $query->condition("pedia.entity_id" , $pedia);
-        $nids = array_merge($nids , $query->execute()->fetchCol());
-
-        $query = db_select("field_data_field_filmmortabet", "pedia");
-        $query->fields("pedia" , array("field_filmmortabet_nid"));
-        $query->condition("pedia.entity_id" , $pedia);
-        $nids = array_merge($nids , $query->execute()->fetchCol());
-
-        $nids = array_unique($nids);
-
-        $query = db_select("field_data_field_experts" , "field_experts");
-        $query->fields("field_experts" , array("field_experts_tid"))
-            ->condition("field_experts.entity_type" , "node")->condition("field_experts.bundle" , "architect")->condition("field_experts.entity_id" , $pedia);
-        $tids = $query->execute()->fetchCol();
-
-        foreach ($nids as $nid){
-            $node = node_load($nid);
-            if(!$node) continue;
-
-            foreach ($tids as $tid){
-                $query = db_select("field_data_field_experts" , "experts");
-                $query->fields("experts" , array("delta" , "field_experts_tid"));
-                $query->condition("experts.entity_type" , "node")
-                    ->condition("experts.bundle" , $node->type)
-                    ->condition("experts.entity_id" , $node->nid);
-                $query = $query->execute()->fetchAll();
-                $delta = 0;
-                $experts = array();
-                foreach ($query as $value){
-                    array_push($experts , $value->field_experts_tid);
-                    if($value->delta > $delta) $delta = $value->delta;
-                }
-                if(!empty($experts)) $delta = $delta + 1;
-
-                if(!in_array($tid , $experts)){
-                    db_insert("field_data_field_experts")
-                        ->fields(array(
-                            "entity_type" => "node",
-                            "bundle" => $node->type,
-                            "deleted" => 0,
-                            "entity_id" => $node->nid,
-                            "revision_id" => $node->nid,
-                            "language" => "und",
-                            "delta" => $delta,
-                            "field_experts_tid" => $tid
-                        ))
-                        ->execute();
-                    db_insert("field_revision_field_experts")
-                        ->fields(array(
-                            "entity_type" => "node",
-                            "bundle" => $node->type,
-                            "deleted" => 0,
-                            "entity_id" => $node->nid,
-                            "revision_id" => $node->nid,
-                            "language" => "und",
-                            "delta" => $delta,
-                            "field_experts_tid" => $tid
-                        ))
-                        ->execute();
-                }
-            }
-        }
-
-    }
-    adump($pedias);
-    */
-    /*
-    $query = db_select("uc_product_stock" , "stock")->distinct();
-    $query->join("node" , "node" , "node.nid = stock.nid and node.status = '1' ");
-    $query->fields("stock" , array("nid"));
-    $query->condition("node.type" , array("product" , "product_kit") , "IN");
-    $stocks = $query->execute()->fetchCol();
-
-    $query = db_select("uc_products" , "product");
-    $query->join("node" , "node" , "node.nid = product.nid and node.status = '1' ");
-    $query->fields("product" , array("nid" , "model"));
-    $query->condition("node.type" , array("product" , "product_kit") , "IN");
-    $query->condition("product.nid" , $stocks , "NOT IN");
-    $witout_stocks = $query->execute()->fetchAll();
-    adump($witout_stocks);
-    foreach ($witout_stocks as $row){
-        $query = db_insert('uc_product_stock')->fields(
-            array(
-                "sku" => $row->model,
-                "nid" => $row->nid,
-                "active" => 0,
-                "stock" => 0,
-                "threshold" => 0
-            )
-        )->execute();
-    }
-    adump("ok");
-    */
+function developer(){
     die();
 }

@@ -1085,7 +1085,7 @@ function privatemsg_sql_list($account, $argument = 'list') {
 
   return $query
     ->condition('pmi.recipient', $account->uid)
-//	->condition('pmi.mid', $arr, 'IN')
+	//->condition('pmi.mid', $arr, 'IN')
     ->condition('pmi.type', array('hidden', 'user'))
     ->condition('pmi.deleted', 0)
     ->groupBy('pmi.thread_id')
