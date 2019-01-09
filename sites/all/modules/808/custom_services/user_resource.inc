@@ -483,17 +483,67 @@ function user_purchased_products_list_desktop_v_1($parameter){
     global $user;
     if($user->uid != $parameter["uid"]) return services_error("Permission denied!" , 401);
 
-    $query = db_select("uc_orders" , "order");
-    $query->join("uc_order_products" , "order_product" , "order.order_id = order_product.order_id");
-    $query->join("node" , "node" , "order_product = node.nid and node.status = '1' ");
-    $subquery = db_select("desktop_lock_encryption" , "lock");
-    $subquery->fields("lock" , array("nid"))->groupBy("lock.nid");
-    $query->join("");
-    $query->fields("order_product" , array());
-    $query->condition("order.status" , array("completed" , "payment_received" , "sent") , "IN");
-    $query->condition("order.uid" , $parameter["uid"]);
+    $query = db_select("uc_orders" , "orders");
+    $query->join("uc_order_products" , "order_product" , "orders.order_id = order_product.order_id");
+    $query->join("node" , "node" , "order_product.nid = node.nid and node.status = '1' ");
+    $query->join("users" , "user" , "user.uid = node.uid");
+    $query->join("profile" , "profile" , "profile.uid = user.uid and profile.type = 'main' ");
+    $query->join("field_data_field_full_name" , "author" , "author.entity_id = profile.pid and author.entity_type = 'profile2' and author.bundle = 'main' ");
+    $query->leftJoin("field_data_uc_product_image" , "product_image" , "product_image.entity_id = node.nid and product_image.bundle = 'product' ");
+    $query->leftJoin("file_managed" , "image" , "image.fid = product_image.uc_product_image_fid");
+    $query->fields("node" , array("nid" , "title" , "type"));
+    $query->fields("orders" , array("modified" , "order_total"));
+    $query->addField("author" , "field_full_name_value" , "author");
+    $query->addField("image" , "uri" , "picture");
+    $query->condition("orders.order_status" , array("completed" , "payment_received" , "sent") , "IN");
+    $query->condition("orders.uid" , $user->uid);
     $query->condition("node.type" , array("product" , "college") , "IN");
-    $query->execute()->fetchAll();
+    $products = $query->execute()->fetchAll();
+    $nids = array();
+    $return_products = array();
+    foreach ($products as $product){
+        array_push($nids , $product->nid);
+        $product->nid = (int) $product->nid;
+        $product->order_time = (int) $product->modified;
+        unset($product->modified);
+        $product->price = round($product->order_total);
+        unset($product->order_total);
+        if(!empty($product->picture)) $product->picture = image_style_url("200x200" , $product->picture);
+        $product->files = array();
+        $return_products[$product->nid] = $product;
+    }
+    if(!empty($nids)) {
+        $query = db_select("field_data_field_locked_files", "locked_files");
+        $query->join("file_managed", "files", "files.fid = locked_files.field_locked_files_fid");
+        $query->join("desktop_lock_encryption", "info", "files.fid = info.fid and info.active = '1' ");
+        $query->fields("files", array("uri", "filesize"));
+        $query->fields("locked_files", array("entity_id"));
+        $query->fields("info", array("title", "name", "password", "new_name"));
+        $query->condition("locked_files.entity_type", "node");
+        $query->condition("locked_files.bundle", "product");
+        $query->condition("locked_files.entity_id", $nids, "IN");
+        $locked_files = $query->execute()->fetchAll();
+        foreach ($locked_files as $file) {
+            array_push($return_products[$file->entity_id]->files, array(
+                    "url" => generate_file_address($file->uri),
+                    "filesize" => (int)$file->filesize,
+                    "title" => $file->title,
+                    "name" => $file->name,
+                    "new_name" => $file->new_name,
+                    "password" => $file->password,
+                )
+            );
+        }
+
+        $products = array_values($return_products);
+    }
+    $response = array("product" => array(), "college" => array());
+    foreach ($products as $product){
+        $type = $product->type;
+        unset($product->type);
+        array_push($response[$type] , $product);
+    }
+    return $response;
 }
 
 function user_resource_bookmark_contents_list($uid , $parameter){

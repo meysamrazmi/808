@@ -242,7 +242,7 @@ function node_lock_form($form , &$form_state , $nid){
         $data = db_select("desktop_lock_encryption" , "encryption")
             ->fields("encryption")->condition("nid" , $nid)->orderBy("id" , "DESC")->execute()->fetchAll();
 
-        $head = array("row" , "title" , "name" , "new_name" , "uid" , "fid" , "active" , "description");
+        $head = array("row" , "title" , "name" , "new_name" , "uid" , "fid" , "active" , "description" , "delete");
         $form['lock_head'] = array('#type' => 'fieldset');
         foreach($head as $key=>$value){
             $form['lock_head'][$key] = array(
@@ -286,6 +286,9 @@ function node_lock_form($form , &$form_state , $nid){
                 '#type' => 'textfield',
                 '#default_value' => empty($value->description) ? "" : $value->description,
             );
+            $form['lock_'. $key]['delete_' . $key] = array(
+                '#type' =>'checkbox',
+            );
 
             $form['lock_'. $key]['id_' . $key] = array('#type' => 'hidden', '#value' => $value->id);
         }
@@ -308,17 +311,29 @@ function node_lock_form_submit($form , &$form_state){
         $results = array();
         $old_results = array();
         for($i = 0; $i < $form_state['values']['lock_count']; $i++){
-            $key = array("id" , "fid" , "active" , "description");
+            $results[$i]["id"] = $form_state['values']['id_' . $i];
+            $results[$i]["change"] = false;
+            $results[$i]["delete"] = false;
+
+            if($form_state['values']['delete_' . $i] == 1){
+                $query = db_select("desktop_lock_encryption" , "locked");
+                $query->join("field_data_field_locked_files" , "file" , "file.field_locked_files_fid = locked.fid and file.entity_id = locked.nid");
+                $query->fields("locked" , array("nid" , "fid"));
+                $query->condition("locked.id" , $form_state['values']['id_' . $i]);
+                $files = $query->execute()->fetch();
+                if(empty($files)) $results[$i]["delete"] = true;
+                else drupal_set_message("row " . $i . " can not deleted because the file is exist on node");
+            }
+
+
+            $key = array("active" , "description");
             $old_results[$i] = array(
-                "id" => $form["lock_" . $i]['id_' . $i]["#value"],
                 "active" => $form["lock_" . $i]['active_' . $i]["#default_value"],
                 "description" => $form["lock_" . $i]['description_' . $i]["#default_value"],
             );
-            $results[$i] = array(
-                "id" => $form_state['values']['id_' . $i],
-                "active" => $form_state['values']['active_' . $i],
-                "description" => $form_state['values']['description_' . $i],
-            );
+            $results[$i]["active"] =  $form_state['values']['active_' . $i];
+            $results[$i]["description"] =  $form_state['values']['description_' . $i];
+
             foreach ($key as $item){
                 if($results[$i][$item] != $old_results[$i][$item]) {
                     $results[$i]["change"] = true;
@@ -328,7 +343,10 @@ function node_lock_form_submit($form , &$form_state){
         }
 
         foreach ($results as $result){
-            if(isset($result["change"])) {
+            if($result["delete"] == true){
+                db_delete("desktop_lock_encryption")->condition("id" , $result["id"])->execute();
+            }
+            elseif($result["change"] == true) {
                 db_merge("desktop_lock_encryption")
                     ->key(array("id" => $result["id"]))
                     ->fields(array(
