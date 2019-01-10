@@ -791,7 +791,8 @@ function custom_services_services_resources(){
                             'type' => 'string',
                             'description' => 'The type of product.',
                             'source' => array('param' => 'type'),
-                            'optional' => False,
+                            'optional' => True,
+                            'default value' => ""
                         ),
                         array(
                             'name' => 'page',
@@ -963,10 +964,10 @@ function custom_services_services_resources(){
                         ),
                     ),
                 ),
-                'homepage' => array(
-                    'help' => 'Get the content for homepage',
+                'suggestion' => array(
+                    'help' => 'return the contents that is related to the user purchased',
                     'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'content_resource'),
-                    'callback' => 'content_resource_homepage_data',
+                    'callback' => 'content_resource_suggestion_content_to_user',
                     'access callback' => 'user_access',
                     'access arguments' => array('access content'),
                     'access arguments append' => FALSE,
@@ -976,7 +977,7 @@ function custom_services_services_resources(){
                             'optional' => FALSE,
                             'source' => array('path' => 0),
                             'type' => 'string',
-                            'description' => 'use for url',
+                            'description' => 'use for url'
                         ),
                         array(
                             'name' => 'parameter',

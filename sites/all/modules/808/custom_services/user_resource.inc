@@ -19,7 +19,6 @@ function retrieve_user_v_1($parameter){
     global $user;
     if($user->uid != $parameter["uid"]){
         unset($result["mail"]);
-        unset($result["pid"]);
         unset($result["user_point"]);
         unset($result["mobile"]);
     }
@@ -43,9 +42,10 @@ function user_resource_update($uid , $data){
 function user_update_v_1($data){
     $user = user_load($data["uid"]);
     $profile = profile2_load_by_user($user , "main");
-    $user_update = false;
-    $profile_update = false;
+    $user_update = false; //if there is any changes it will be true
+    $profile_update = false; //if there is any changes it will be true
 
+    /*check for each field and update the user if is needed*/
     if(isset($data["username"]) && !empty($data["username"])){
         $query = db_select("users" , "user");
         $query->fields("user" , array("name"));
@@ -91,7 +91,7 @@ function user_update_v_1($data){
         user_save($user);
         add_log($data["uid"], "/user/uid" , "update" , "user" , $user->uid , $data["source"] , $data["version"] , "successful" , "update user data");
     }
-
+    /*check for each field and update the profile if is needed*/
     if(isset($data["full_name"]) && !empty($data["full_name"])){
         $profile->field_full_name['und'][0]['value'] = $data['full_name'];
         $profile_update = true;
@@ -136,18 +136,17 @@ function user_update_v_1($data){
         $profile->field_address['und'][0]['value'] = $data['address'];
         $profile_update = true;
     }
-
     if($profile_update){
         profile2_save($profile);
         add_log($data["uid"], "/user/uid" , "update" , "profile2" , $profile->pid , $data["source"] , $data["version"] , "successful" , "update profile data");
     }
+
     return true;
 }
 /*---------------------actions part------------------------------------*/
 function user_resource_login($data){
     if(!isset($data["hash"]) || !(hash_true($data["hash"] , "user"))) return services_error(t('Failed to access'), 10);
     if(empty($data["source"]) || empty($data["version"])) return services_error("source or version is empty!" , 11);
-
 
     $function = get_compatible_function_name("/user/login2" , "POST" , $data["source"] , $data["version"]);
 
@@ -267,6 +266,13 @@ function register_v_1($data){
     return $newUser;
 }
 
+/* It is used for Android App
+ * When any user install Android App and logging a token send automatically and saved in database
+ * This token is unique for each device
+ * Token is used for sending notification
+ * Token is saved in "app_notification_token" table
+ * Token and UID should be unique together
+ */
 function user_resource_phone_token($data){
     $function = get_compatible_function_name("/user/phoneToken" , "POST" , $data["source"] , $data["version"]);
     if(!empty($function) && strlen($function) > 0) {
@@ -277,10 +283,10 @@ function user_resource_phone_token($data){
 function insert_user_phone_token_v_1($data){
     global $user;
     if(empty($data["uid"]) || empty($data["token"]) || empty($data["serial"])) return services_error("Incomplete Data!" , 15);
-    if($user->uid != $data["uid"]) return services_error("Unauthorize Error!" , 18);
+    if($user->uid != $data["uid"]) return services_error("Unauthorized Error!" , 18);
 
     $token = db_select("app_notification_token" , "app_token")->fields("app_token" , array("token"))->condition("serial" , $data["serial"])->condition("uid" , $user->uid)->execute()->fetch();
-
+    /*if the toked saved before return true*/
     if(!empty($token) && strcmp($data["token"] , $token->token) == 0) return true;
     $insert = db_merge("app_notification_token")
         ->key(array('serial' => $data["serial"]))
@@ -482,7 +488,11 @@ function user_purchased_products_list_v_1($parameter){
 function user_purchased_products_list_desktop_v_1($parameter){
     global $user;
     if($user->uid != $parameter["uid"]) return services_error("Permission denied!" , 401);
-
+    /* find the products that user purchased
+     * order status IN ("completed" , "payment_received" , "sent")
+     * product type IN ("product" , "college")
+     * fields ("nid" , "title" , "type" , "author name" , "author picture" , "order time" , "order total price")
+     */
     $query = db_select("uc_orders" , "orders");
     $query->join("uc_order_products" , "order_product" , "orders.order_id = order_product.order_id");
     $query->join("node" , "node" , "order_product.nid = node.nid and node.status = '1' ");
@@ -497,7 +507,7 @@ function user_purchased_products_list_desktop_v_1($parameter){
     $query->addField("image" , "uri" , "picture");
     $query->condition("orders.order_status" , array("completed" , "payment_received" , "sent") , "IN");
     $query->condition("orders.uid" , $user->uid);
-    $query->condition("node.type" , array("product" , "college") , "IN");
+    $query->condition("node.type" , array("product" , "college" , "product_kit") , "IN");
     $products = $query->execute()->fetchAll();
     $nids = array();
     $return_products = array();
@@ -512,6 +522,7 @@ function user_purchased_products_list_desktop_v_1($parameter){
         $product->files = array();
         $return_products[$product->nid] = $product;
     }
+    /* find the locked files for each product and attach them */
     if(!empty($nids)) {
         $query = db_select("field_data_field_locked_files", "locked_files");
         $query->join("file_managed", "files", "files.fid = locked_files.field_locked_files_fid");
@@ -537,12 +548,17 @@ function user_purchased_products_list_desktop_v_1($parameter){
 
         $products = array_values($return_products);
     }
-    $response = array("product" => array(), "college" => array());
+    /*
+     * prepare the response
+     * categorize the products with their type
+     */
+    $response = array("product" => array(), "college" => array() , "product_kit" => array());
     foreach ($products as $product){
         $type = $product->type;
         unset($product->type);
         array_push($response[$type] , $product);
     }
+
     return $response;
 }
 
@@ -934,6 +950,80 @@ function user_bookmark_contents_list_v_2($parameter){
     }
     return array();
 }
+function user_bookmark_contents_list_desktop_v_1($parameter){
+    global $user;
+    if($user->uid != $parameter["uid"]) return services_error("Permission denied!" , 401);
+    $response = array(
+        "article" => array(),
+        "blog" => array(),
+        "college" => array(),
+        "designteam" => array(),
+        "education" => array(),
+        "film" => array(),
+        "gallerynew" => array(),
+        "podcast" => array(),
+        "product" => array(),
+        "product_kit" => array(),
+        "publication" => array(),
+        "pedia" => array(),
+        );
+
+    /*list of contents that user bookmarked*/
+    $query = db_select("flagging", "flagging");
+    $query->join("node" , "node" , "node.nid = flagging.entity_id and node.status ='1' ");
+
+    $query->leftJoin("field_data_uc_product_image" , "p_field_image" , "p_field_image.entity_id = node.nid and p_field_image.entity_type = 'node' and p_field_image.delta = '0' ");
+    $query->leftJoin("file_managed" , "p_image" , "p_image.fid = p_field_image.uc_product_image_fid");
+    $query->addField("p_image" , "uri" , "p_image");
+
+    $query->leftJoin("field_data_field_image" , "c_field_image" , "c_field_image.entity_id = node.nid and c_field_image.entity_type = 'node' and c_field_image.delta = '0' ");
+    $query->leftJoin("file_managed" , "c_image" , "c_image.fid = c_field_image.field_image_fid ");
+    $query->addField("c_image" , "uri" , "c_image");
+
+    $query->fields("node" , array("nid" , "type" , "title"));
+    $query->condition('flagging.uid', $parameter["uid"]);
+    $query->condition('flagging.fid', 1);
+    $bookmarks = $query->execute()->fetchAll();
+
+    /*categorize nodes with their types*/
+    foreach ($bookmarks as $bookmark){
+        $bookmark->url = "https://civil808.com/node/" . $bookmark->nid;
+        $bookmark->nid = (int) $bookmark->nid;
+
+        if(!empty($bookmark->p_image)) $bookmark->picture = image_style_url("400x225" , $bookmark->p_image);
+        elseif(!empty($bookmark->c_image)) $bookmark->picture = image_style_url("400x225" , $bookmark->c_image);
+        else $bookmark->picture = null;
+        unset($bookmark->p_image);
+        unset($bookmark->c_image);
+        $type = $bookmark->type;
+        unset($bookmark->type);
+        array_push($response[$type] , $bookmark);
+    }
+
+    /*list of taxonomies that user bookmarked*/
+    $query = db_select("flagging", "flagging");
+    $query->join("taxonomy_term_data" , "term" , "term.tid = flagging.entity_id and term.vid = '28' ");
+    $query->leftJoin("field_data_field_image" , "field_image" , "field_image.entity_id = term.tid and field_image.entity_type = 'taxonomy_term' ");
+    $query->leftJoin("file_managed" , "image" , "image.fid = field_image.field_image_fid ");
+    $query->condition("flagging.fid" , 4);
+    $query->condition('flagging.uid', $parameter["uid"]);
+    $query->fields("term" , array("tid" , "name"));
+    $query->addField("image" , "uri" , "picture");
+    $tbookmarks = $query->execute()->fetchAll();
+    if(!empty($tbookmarks)) {
+        foreach ($tbookmarks as $tbookmark) {
+            $tbookmark->url = "https://civil808.com/taxonomy/term/" . $tbookmark->tid;
+            $tbookmark->nid = (int)$tbookmark->tid;
+            unset($tbookmark->tid);
+            $tbookmark->title = $tbookmark->name;
+            unset($tbookmark->name);
+            if (!empty($tbookmark->picture)) $tbookmark->picture = image_style_url("400x225", $tbookmark->image);
+            array_push($response["pedia"], $tbookmark);
+        }
+    }
+
+    return $response;
+}
 /*---------------------functions part----------------------------------*/
 function profile_data($uid){
     $query = db_select("profile" , "profile");
@@ -984,6 +1074,7 @@ function profile_data($uid){
         array_push($profile->experts, array($expert->tid => $expert->name));
     }
 
+    unset($profile->pid);
     return $profile;
 }
 function user_data($uid){

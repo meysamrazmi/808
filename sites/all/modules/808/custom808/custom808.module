@@ -5,7 +5,7 @@
  */
 function custom808_menu(){
     $items = array();
-
+    /*list of api functions that is used for versions*/
     $items['admin/structure/services/apiversion'] = array(
         'title' => t('api versions list'),
         'description' => t('Get the list of api versions'),
@@ -14,7 +14,7 @@ function custom808_menu(){
         'type' => MENU_LOCAL_TASK,
         'file' => 'custom808.inc',
     );
-
+    /*add and api function that is used for versions*/
     $items['admin/structure/services/apiversion/add'] = array(
         'title' => t('add api versions'),
         'description' => t('Add api versions'),
@@ -24,7 +24,7 @@ function custom808_menu(){
         'type' => MENU_LOCAL_TASK,
         'file' => 'custom808.inc',
     );
-
+    /*Edit and api function that is used for versions*/
     $items['admin/structure/services/apiversion/edit/%'] = array(
         'title' => t('edit api versions'),
         'description' => t('Update api versions'),
@@ -34,7 +34,7 @@ function custom808_menu(){
         'type' => MENU_CALLBACK,
         'file' => 'custom808.inc',
     );
-
+    /*Delete and api function that is used for versions*/
     $items['admin/structure/services/apiversion/delete/%'] = array(
         'title' => t('edit api versions'),
         'description' => t('Update api versions'),
@@ -44,7 +44,7 @@ function custom808_menu(){
         'type' => MENU_CALLBACK,
         'file' => 'custom808.inc',
     );
-
+    /*Admin page for sending notification for android app*/
     $items['admin/structure/services/notification/push'] = array(
         'title' => t('push notification'),
         'description' => t('Send notification to app'),
@@ -54,8 +54,6 @@ function custom808_menu(){
         'type' => MENU_LOCAL_TASK,
         'file' => 'custom808.inc',
     );
-
-
     /*It is used for locked films for each node*/
     $items['node/%/locked'] = array(
         'title' => t('locked film list'),
@@ -177,24 +175,28 @@ function theme_copy_lazy_image_formatter($variables) {
 }
 
 function custom808_cron(){
+    /**
+     * find the questions that have not any response
+     * and send private message to the related advisors
+     */
+    /*-------------------------------------------------------*/
     $query = db_select("node" , "node");
     $query->fields("node" , array("nid"));
     $query->condition("node.type" , "questions")->condition("node.status" , 1);
     $and_1 = db_and()->condition("node.changed" , strtotime('-5 hour -50 minutes', REQUEST_TIME) , ">");
     $and_2 = db_and()->condition("node.changed" , strtotime('-5 day -5 hour -50 minutes', REQUEST_TIME) , ">")->condition("node.changed" , strtotime('-5 day', REQUEST_TIME) , "<");
     $query->condition(db_or()->condition($and_1)->condition($and_2));
-    $questions = $query->execute()->fetchCol();
+    $questions = $query->execute()->fetchCol(); //all the questions' nid between specific time
     if(empty($questions)) return;
-
     $query = db_select("comment" , "comment")->distinct();
     $query->join("node" , "node" , "node.nid = comment.nid and node.type = 'questions' and node.status = '1' ");
     $query->fields("comment" , array("nid"));
     $query->condition("comment.status" , 1);
-    $comments = $query->execute()->fetchCol();
+    $comments = $query->execute()->fetchCol(); //all questions' nid that have response
     if(empty($comments)) return;
-
     $nids = array_diff($questions , $comments);
     $nids = array_unique($nids);
+    /*find the related advisors and send private message */
     foreach ($nids as $nid){
         $query = db_select("field_data_field_experts" , "q_experts");
         $query->join("field_data_field_experts" , "u_experts" , "q_experts.field_experts_tid = u_experts.field_experts_tid");
@@ -214,6 +216,7 @@ function custom808_cron(){
 //            simple_mail_send("info@civil808.com", $mail, "سوالی مرتبط با تخصص شما در سایت 808 پرسیده شده است.", $message);
         }
     }
+    /*----------------------------------------------------*/
 }
 
 /**
@@ -341,7 +344,6 @@ function custom808_node_update($node){
         }
     }
 }
-
 /**
  * Implements hook_node_delete().
  * hook_delete is in node.api.php
@@ -358,13 +360,15 @@ function custom808_node_delete($node) {
             ->execute();
     }
 }
-
 /**
  * Implements hook_node_validate().
  * check that a product has a unique sku-model
  * it is used for admin page for adding or editing a product
  */
 function custom808_node_validate($node, $form, &$form_state) {
+    /* The model of each product or college should be unique
+     * Check it when the node is saving
+     */
     if(in_array_r($node->type , uc_product_types()) && isset($node->model)) {
         $query = db_select("uc_products", "products");
         $query->fields("products", array("model"));

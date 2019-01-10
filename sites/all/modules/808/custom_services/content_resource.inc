@@ -735,6 +735,30 @@ function homepage_content_v_2($parameter){
     return $response;
 }
 
+/*last contents of site for desktop App*/
+function last_content_desktop_v_1($parameter){
+    $types = array("product" , "product_kit" , "college");
+    $response = array();
+    foreach ($types as $type){
+        $query = get_nodes_query($type);
+        $query->orderBy("node.nid" , "DESC");
+        $query->range(0 , 10);
+        $contents = $query->execute()->fetchAll();
+        foreach ($contents as $content){
+            $content->nid = (int) $content->nid;
+            unset ($content->uid);
+            unset ($content->changed);
+            unset ($content->author_name);
+            unset ($content->picture_s);
+            $content->picture = !empty($content->picture) ? image_style_url("400x225" , $content->picture) : null;
+            unset($content->type);
+            $content->url = "https://civil808.com/node/" . $content->nid;
+        }
+        $response[$type] = $contents;
+    }
+    return $response;
+}
+
 function content_resource_retrieve($hash , $nid , $parameter){
     if(!(hash_true($hash , "content"))) return services_error(t('Failed to access'), 10);
     $source_name = (isset($parameter["source"]) && !empty($parameter["source"])) ? $parameter["source"] : "android";
@@ -1489,7 +1513,7 @@ function content_search_list_v_2($parameter){
     return array("contents" => $contents , "count" => $type_count);
 }
 
-
+/*return the type of each nid*/
 function content_resource_content_type($nid , $parameter){
     if(!(hash_true($parameter["hash"] , "content"))) return services_error(t('Failed to access'), 10);
     if(empty($parameter["source"]) || empty($parameter["version"])) return services_error("source or version is empty!" , 11);
@@ -1507,5 +1531,103 @@ function content_type_v_1($parameter){
 
     if(empty($type)) return services_error("Invalid nid!" , 13);
     return $type->type;
+}
+
+/*return the list of suggestion contents to user*/
+function content_resource_suggestion_content_to_user($list , $parameter){
+    if(!(hash_true($parameter["hash"] , "content"))) return services_error('Failed to access', 10);
+    if(empty($parameter["source"]) || empty($parameter["version"])) return services_error("source or version is empty!" , 11);
+    $function = get_compatible_function_name("/content/uid/related_purchased" , "GET" , $parameter["source"] , $parameter["version"]);
+
+    if(!empty($function) && strlen($function) > 0) {
+        return call_user_func($function, $parameter);
+    }
+    return services_error(t('This version is not supported'), 11);
+}
+function content_suggestion_desktop_v_1($parameter){
+    global $user;
+    /*if user is not logged in return the last products*/
+    if($user->uid == 0) return last_content_desktop_v_1(array());
+
+    /*get the list of products that user purchased*/
+    $param["uid"] = $user->uid;
+    module_load_include("inc", "custom_services", "user_resource");
+    $purchased_contents = user_purchased_products_list_desktop_v_1($param);
+
+    $purchased_nids = array();
+    foreach ($purchased_contents as $purchased_content){
+        foreach ($purchased_content as $content){
+            array_push($purchased_nids , $content->nid);
+        }
+    }
+
+    $related_nids = array();
+    if(!empty($purchased_nids)) {
+        /*fetch products that are related to $purchased_contents*/
+        $query = db_select("field_data_field_experts", "main_node");
+        $query->join("field_data_field_experts", "related_node", "related_node.field_experts_tid = main_node.field_experts_tid and related_node.entity_type = 'node' ");
+        $query->condition("main_node.entity_id", $purchased_nids, "IN");
+        $query->condition("main_node.entity_type", "node");
+        $query->condition("related_node.entity_id", $purchased_nids, "NOT IN");
+        $query->condition("related_node.bundle", array("product", "product_kit", "college"));
+        $query->fields("related_node", array("entity_id"));
+        $related_nids = array_merge($related_nids , $query->execute()->fetchCol());
+    }
+    /*fetch the products that are related to the user expert*/
+    $query = db_select("field_data_field_experts" , "user_expert");
+    $query->join("profile" , "profile" , "user_expert.entity_id = profile.pid and profile.type = 'main' and profile.uid = '" . $parameter["uid"] . "'");
+    $query->join("field_data_field_experts" , "related_node" , "related_node.field_experts_tid = user_expert.field_experts_tid and related_node.entity_type = 'node' ");
+    $query->fields("related_node" , array("entity_id"));
+    $query->condition("related_node.bundle" , array("product" , "product_kit" , "college"));
+    $related_nids = array_merge($related_nids , $query->execute()->fetchCol());
+    if(empty($related_nids)) return array();
+
+    $related_contents = array("product" => array() , "product_kit" => array() , "college" => array());
+    /*make the data for related nids*/
+    $query = db_select("node" , "node");
+
+    $query->leftJoin("field_data_uc_product_image" , "p_field_image" , "p_field_image.entity_id = node.nid and p_field_image.entity_type = 'node' and p_field_image.delta = '0' ");
+    $query->leftJoin("file_managed" , "p_image" , "p_image.fid = p_field_image.uc_product_image_fid");
+    $query->addField("p_image" , "uri" , "p_image");
+
+    $query->leftJoin("field_data_field_image" , "c_field_image" , "c_field_image.entity_id = node.nid and c_field_image.entity_type = 'node' and c_field_image.delta = '0' ");
+    $query->leftJoin("file_managed" , "c_image" , "c_image.fid = c_field_image.field_image_fid ");
+    $query->addField("c_image" , "uri" , "c_image");
+
+    $query->fields("node" , array("nid" , "type" , "title"));
+    $query->condition("node.nid" , $related_nids , "IN");
+    $query->condition("node.status" , 1);
+    $contents = $query->execute()->fetchAll();
+    if(empty($contents)) return array();
+
+    /*categorize the response with the types*/
+    foreach ($contents as $content){
+        $content->nid = (int) $content->nid;
+
+        if(!empty($content->p_image)) $content->picture = image_style_url("400x225" , $content->p_image);
+        elseif(!empty($content->c_image)) $content->picture = image_style_url("400x225" , $content->c_image);
+        else $content->picture = null;
+        unset($content->p_image);
+        unset($content->c_image);
+
+        $type = $content->type;
+        unset($content->type);
+
+        $content->url = "https://civil808.com/node/" . $content->nid;
+        if(count($related_contents[$type]) < 10) array_push($related_contents[$type] , $content);
+    }
+
+    /*if there is not enough content add the last ones*/
+    $last_contents = last_content_desktop_v_1(array());
+    $types = array_keys($related_contents);
+    foreach ($types as $type){
+        $i = 0;
+        while (count($related_contents[$type]) < 10){
+            array_push($related_contents[$type] , $last_contents[$type][$i]);
+            $i++;
+        }
+    }
+
+    return $related_contents;
 }
 /*--------------------------------------------------------------------------------*/
