@@ -276,6 +276,11 @@ function expert_information($tid){
 							->condition('entity_type', 'profile2')
 							->execute();
 	$user_count = $query->rowCount();
+
+	$not_expert = db_select("field_data_field_tag_is_not_expert" , "not_expert")
+                ->fields("not_expert" , array("field_tag_is_not_expert_value"))
+                ->condition("entity_id" , $tid)->execute()->fetch();
+	$is_expert = (empty($not_expert)) ? true : !$not_expert->field_tag_is_not_expert_value;
 	
 	$query = db_select("field_data_field_image" , "field_image");
 	$query->join("file_managed" , "pic" , "field_image.field_image_fid = pic.fid");
@@ -286,7 +291,7 @@ function expert_information($tid){
 	$pic = $query->execute()->fetch();
 
 	$pic = image_style_url("200x200" , $pic->pic);
-	$data = array('question_count' => $question_count, 'user_count' => $user_count, 'pic' => $pic , 'tid' => $tid);
+	$data = array('question_count' => $question_count, 'user_count' => $user_count, 'pic' => $pic , 'tid' => $tid , 'expert' => $is_expert);
 
 	drupal_json_output($data);
 	drupal_exit();
