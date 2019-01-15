@@ -94,7 +94,7 @@ function pay_for_node($nid , $ws_api = false) {
 
 	$description =  ($flag)? ' با 20 درصد تخفیف برای' . $festival :'';
 
-	if(isset($user->roles[8]) && !$flag){ //for vip user only
+	if(isset($user->roles[8]) && !$flag && $nid != 19224){ //for vip user only
 		$description .= ', با 10 درصد تخفیف vip';
 		$points = round(intval($points * 0.9) , -1);
 	}
