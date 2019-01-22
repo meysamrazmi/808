@@ -26,7 +26,8 @@ $(document).ready(function(){
                 type: 'GET',
                 url: '/experts/information/' + tid,
                 success: function(result){
-                    element.next('.information').html('<div class="pic"><image src="'+ result['pic'] +'"/></div><div class="data"><div class="q-count">  سوالات این تخصص : ' + result['question_count'] + ' </div><div class="u-count"> کاربران این تخصص : ' + result['user_count'] + '</div><a href="/taxonomy/term/' + result['tid'] + ' " target="_blank">دانشنامه</a></div>');
+                    if(result['expert'] === true) element.next('.information').html('<div class="pic"><image src="'+ result['pic'] +'"/></div><div class="data"><div class="q-count">  سوالات این تخصص : ' + result['question_count'] + ' </div><div class="u-count"> کاربران این تخصص : ' + result['user_count'] + '</div><a href="/taxonomy/term/' + result['tid'] +' " target="_blank">بیشتر...</a></div>');
+                    else element.next('.information').html('<div class="pic"><image src="'+ result['pic'] +'"/></div><div class="data"><div class="q-count">  سوالات این تگ : ' + result['question_count'] + ' </div><a href="/taxonomy/term/' + result['tid'] +' " target="_blank">بیشتر...</a></div>');
                     element.next('.information').addClass("filled");
                     
                 },
@@ -51,7 +52,7 @@ $(document).ready(function(){
     $('.page-question-list .views-field-field-experts a').each(function(){
         $(this).attr('href', '/question/list?field_experts_tid='+$(this).text());
     });
-    
+
     /*check question is published or not*/
     if(Drupal.settings.status){
         body.addClass(Drupal.settings.status);

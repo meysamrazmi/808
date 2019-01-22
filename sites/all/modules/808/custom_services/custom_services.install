@@ -294,6 +294,111 @@ function custom_services_update_7108() {
     db_add_field('app_notification_token', 'serial', $newCol);
     db_add_unique_key('app_notification_token', 'unique_fields', array('serial'));
 }
+/**
+ * Create new database table {desktop_lock_encryption}.
+ */
+function custom_services_update_7109(){
+    $schema['desktop_lock_encryption'] = array(
+        'fields' => array(
+            'id' => array(
+                'type' => 'serial',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'description' => t('Primary Key : id'),
+            ),
+            'nid' => array(
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'description' => t('node_foreign_key'),
+            ),
+            'title' => array(
+                'type' => 'varchar',
+                'length' => 256,
+                'not null' => TRUE,
+                'default' => '',
+                'description' => t('title_of_film'),
+            ),
+            'password' => array(
+                'type' => 'varchar',
+                'length' => 64,
+                'not null' => TRUE,
+                'default' => '',
+                'description' => t('password of encryption'),
+            ),
+            'name' => array(
+                'type' => 'varchar',
+                'length' => 256,
+                'not null' => True,
+                'default' => '',
+                'description' => t('Name of file'),
+            ),
+            'extension' => array(
+                'type' => 'varchar',
+                'length' => 20,
+                'not null' => True,
+                'default' => '',
+                'description' => t('Extension of file'),
+            ),
+            'new_name' => array(
+                'type' => 'varchar',
+                'length' => 64,
+                'not null' => True,
+                'default' => '',
+                'description' => t('New name of file with hash code'),
+            ),
+            'new_extension' => array(
+                'type' => 'varchar',
+                'length' => 20,
+                'not null' => True,
+                'default' => '',
+                'description' => t('New extension of file with hash code'),
+            ),
+            'uid' => array(
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'description' => t('uid of the user who inserts the film'),
+            ),
+            'fid' => array(
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'description' => t('file_managed table fid foreign_key'),
+            ),
+            'active' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+                'default' => 1,
+                'description' => t('Is this film active for user to download'),
+            ),
+            'created' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+                'default' => 0,
+                'description' => 'Timestamp for when new encrypt file was created.',
+            ),
+            'updated' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+                'default' => 0,
+                'description' => 'Timestamp for when new encrypt file was updated.',
+            ),
+            'description' => array(
+                'type' => 'text',
+                'size' => 'normal',
+                'not null' => FALSE,
+                'description' => t('Any description about this record'),
+            )
+        ),
+
+        'primary key' => array('id'),
+        'unique keys' => array(
+            'unique' => array('fid' , 'new_name'),
+        ),
+    );
+    db_create_table('desktop_lock_encryption', $schema['desktop_lock_encryption']);
+}
 
 /*
  * Implementation of hook_install()

@@ -1,6 +1,6 @@
 <?php
 
-/***********api version code admin menu**********/
+/*------------------api version code admin menu-------------------*/
 function api_version_lists(){
     $query = db_select("api_code_version" , "version")
         ->fields("version")->execute()->fetchAll();
@@ -114,9 +114,7 @@ function api_version_delete($id){
 
     drupal_goto('admin/structure/services/apiversion');
 }
-/************************/
-
-
+/*----------------------------------------------------------------*/
 /*----------------------push notification-------------------------*/
 function push_notification_form($from, &$form_state){
     try {
@@ -133,7 +131,7 @@ function push_notification_form($from, &$form_state){
         $form['type'] = array(
             '#type' => 'select',
             '#title' => t('نوع محتوا را مشخص کنید'),
-            '#options' => array("main" => "سایر" , "publication" => "ایبوک" , "college" => "دوره"),
+            '#options' => array("main" => "سایر" , "publication" => "ایبوک" , "college" => "دوره" , "questions" => "پرسش و پاسخ" , "education" => "ورکشاپ" , "product_kit" => "پکیج"),
         );
         $form['nid'] = array(
             '#type' => 'textfield',
@@ -181,7 +179,7 @@ function push_notification_form_validate($from, &$form_state){
         $form_state["values"]["nid"] = "";
     }else{
         if(empty($form_state["values"]["nid"]) && strlen($form_state['values']['nid']) == 0) form_set_error('nid', t('انتخاب شماره نود برای نوع محتوااجباری است.'));
-        $query = db_select("node")->fields("node" , array("nid"))->condition("nid" , $form_state["values"]["nid"])->condition("type" , $form_state["values"]["type"])->execuete()->fetchAll();
+        $query = db_select("node" , "node")->fields("node" , array("nid"))->condition("nid" , $form_state["values"]["nid"])->condition("type" , $form_state["values"]["type"])->execute()->fetchAll();
         if(empty($query)) form_set_error('nid', t('شماره نود با نوع محتوا مطابقت ندارد'));
     }
 }
@@ -238,6 +236,134 @@ function push_notification_form_submit($from, &$form_state){
     drupal_set_message($message , "status");
 }
 /*----------------------------------------------------------------*/
+/*---------------------------lock part----------------------------*/
+function node_lock_form($form , &$form_state , $nid){
+    try {
+        $data = db_select("desktop_lock_encryption" , "encryption")
+            ->fields("encryption")->condition("nid" , $nid)->orderBy("id" , "DESC")->execute()->fetchAll();
+
+        $head = array("row" , "title" , "name" , "new_name" , "uid" , "fid" , "active" , "description" , "delete");
+        $form['lock_head'] = array('#type' => 'fieldset');
+        foreach($head as $key=>$value){
+            $form['lock_head'][$key] = array(
+                '#type' => 'item',
+                '#markup' => $value,
+            );
+        }
+        $form['lock_count'] = array('#type' => 'hidden', '#value' => count($data));
+        foreach ($data as $key => $value){
+            $form['lock_'. $key] = array('#type' => 'fieldset',);
+            $form['lock_'. $key]['row_' . $key] = array(
+                '#type' => 'item',
+                '#markup' => $key,
+            );
+            $form['lock_'. $key]['title_' . $key] = array(
+                '#type' => 'item',
+                '#markup' => $value->title,
+            );
+            $form['lock_'. $key]['name_' . $key] = array(
+                '#type' => 'item',
+                '#markup' => $value->name,
+            );
+            $form['lock_'. $key]['new_name_' . $key] = array(
+                '#type' => 'item',
+                '#markup' => $value->new_name,
+            );
+            $form['lock_'. $key]['uid_' . $key] = array(
+                '#type' => 'item',
+                '#markup' => $value->uid,
+            );
+            $form['lock_'. $key]['fid_' . $key] = array(
+                '#type' => 'item',
+                '#markup' => $value->fid,
+            );
+            $form['lock_'. $key]['active_' . $key] = array(
+                '#type' => 'select',
+                '#options' => array(0 => "No" , 1 => "Yes"),
+                '#default_value' => $value->active,
+            );
+            $form['lock_'. $key]['description_' . $key] = array(
+                '#type' => 'textfield',
+                '#default_value' => empty($value->description) ? "" : $value->description,
+            );
+            $form['lock_'. $key]['delete_' . $key] = array(
+                '#type' =>'checkbox',
+            );
+
+            $form['lock_'. $key]['id_' . $key] = array('#type' => 'hidden', '#value' => $value->id);
+        }
+        $form['submit'] = array(
+            '#type' => 'submit',
+            '#value' => "save"
+        );
+
+        return $form;
+
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+}
+function node_lock_form_validate($form , &$form_state){
+
+}
+function node_lock_form_submit($form , &$form_state){
+    try {
+        $results = array();
+        $old_results = array();
+        for($i = 0; $i < $form_state['values']['lock_count']; $i++){
+            $results[$i]["id"] = $form_state['values']['id_' . $i];
+            $results[$i]["change"] = false;
+            $results[$i]["delete"] = false;
+
+            if($form_state['values']['delete_' . $i] == 1){
+                $query = db_select("desktop_lock_encryption" , "locked");
+                $query->join("field_data_field_locked_files" , "file" , "file.field_locked_files_fid = locked.fid and file.entity_id = locked.nid");
+                $query->fields("locked" , array("nid" , "fid"));
+                $query->condition("locked.id" , $form_state['values']['id_' . $i]);
+                $files = $query->execute()->fetch();
+                if(empty($files)) $results[$i]["delete"] = true;
+                else drupal_set_message("row " . $i . " can not deleted because the file is exist on node");
+            }
+
+
+            $key = array("active" , "description");
+            $old_results[$i] = array(
+                "active" => $form["lock_" . $i]['active_' . $i]["#default_value"],
+                "description" => $form["lock_" . $i]['description_' . $i]["#default_value"],
+            );
+            $results[$i]["active"] =  $form_state['values']['active_' . $i];
+            $results[$i]["description"] =  $form_state['values']['description_' . $i];
+
+            foreach ($key as $item){
+                if($results[$i][$item] != $old_results[$i][$item]) {
+                    $results[$i]["change"] = true;
+                    break;
+                }
+            }
+        }
+
+        foreach ($results as $result){
+            if($result["delete"] == true){
+                db_delete("desktop_lock_encryption")->condition("id" , $result["id"])->execute();
+            }
+            elseif($result["change"] == true) {
+                db_merge("desktop_lock_encryption")
+                    ->key(array("id" => $result["id"]))
+                    ->fields(array(
+                        'active' => $result["active"],
+                        'description' => $result["description"],
+                        'updated' => REQUEST_TIME,
+                    ))->execute();
+            }
+        }
+
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+}
+/*----------------------------------------------------------------*/
+
+
 
 
 /*

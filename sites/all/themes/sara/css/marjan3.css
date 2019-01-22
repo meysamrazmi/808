@@ -1634,12 +1634,12 @@ div#toboggan-login-link-container {
     line-height: 40px;
 }
 .pane-page-gallery .views-field-field-pictures a:before{
-    content: "\f24d";
+    content: "\f24f";
     position: absolute;
     left: 0px;
     color: white;
     font-size: 15px;
-    font-family: aw;
+    font-family: mat;
     bottom: 0px;
     background-color: rgba(0, 0, 0, 0.43);
     padding: 0px;
@@ -1653,7 +1653,7 @@ div#toboggan-login-link-container {
     width: 200px;
 }
 .pane-page-gallery .gallery.pics.small-pic .views-field-field-pictures a:before {
-    font-size: 14px;
+    font-size: 20px;
 }
 .pane-page-gallery .gallery.pics.small-pic .views-field-field-posterfilm a:before{
     left: 79px !important;
@@ -1812,9 +1812,12 @@ div#toboggan-login-link-container {
     overflow-y: scroll;
 }
 .page-arch .pane-page-arch a:before {
-    content: "\f00c";
-    font-family: aw;
-    margin-left: 8px;
+	content: "\f141";
+	font-family: mat;
+	margin-left: 2px;
+	font-size: 18px;
+	display: inline-block;
+	vertical-align: bottom;
 }
 .page-arch .pane-page-arch div.more-link a:before {
     content: "";
@@ -1891,6 +1894,7 @@ div#toboggan-login-link-container {
     z-index: -1000;
     height: 407px;
     overflow: hidden;
+	padding-top: 7px;
 }
 .page-arch .beside-workshop-civil .pane-arch-article .pane-content{
 	height: 404px;
@@ -1914,36 +1918,8 @@ div#toboggan-login-link-container {
     margin: 7px 10px 0px 10px;
     background-color: #f9f9f9;
 	}
-.page-arch .pane-gloevents .pane-content .views-row{
-	width: 100%;
-    display: block;
-    color: black !important;
-    line-height: 30px;
-    background-color: white;
-    padding: 15px 10px 15px 10px;
-    border-bottom: 1px solid #eee;
-    box-shadow: none;
-    margin: 0px;
-}
 .page-civil.page-arch  .beside-workshop-civil {
     background-color: white;
-}
-.page-civil.page-arch .pane-gloevents .views-field-title span {
-    padding: 0px;
-}
-.page-civil.page-arch .pane-gloevents .views-field.views-field-field-company {
-    max-width: 66%;
-}
-.page-civil.page-arch .pane-gloevents .views-field-field-eventtime-1{
-	margin-top: 11px;
-    margin-right: 8px;
-    line-height: 23px;
-    color: #999;
-}
-.page-civil.page-arch .pane-gloevents .views-field-field-company{
-	margin-top: 11px;
-    line-height: 23px;
-    color: #999;
 }
 .page-civil.page-arch .slide-beside-workshop {
     float: left;
@@ -1979,7 +1955,8 @@ div#toboggan-login-link-container {
 .page-civil.page-arch .view-conference-news .view-content,
 .page-civil.page-arch .views-slideshow-controls-text-next,
 .page-civil.page-arch .views-slideshow-controls-text-previous {
-    background: #f5f5f5;
+	background: #f5f5f5;
+	padding-bottom: 90px;
 }
 .page-civil.page-eng .view-conference-news .view-content,
 .page-civil.page-eng .views-slideshow-controls-text-next,

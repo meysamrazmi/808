@@ -5,7 +5,7 @@
  */
 function custom808_menu(){
     $items = array();
-
+    /*list of api functions that is used for versions*/
     $items['admin/structure/services/apiversion'] = array(
         'title' => t('api versions list'),
         'description' => t('Get the list of api versions'),
@@ -14,7 +14,7 @@ function custom808_menu(){
         'type' => MENU_LOCAL_TASK,
         'file' => 'custom808.inc',
     );
-
+    /*add and api function that is used for versions*/
     $items['admin/structure/services/apiversion/add'] = array(
         'title' => t('add api versions'),
         'description' => t('Add api versions'),
@@ -24,7 +24,7 @@ function custom808_menu(){
         'type' => MENU_LOCAL_TASK,
         'file' => 'custom808.inc',
     );
-
+    /*Edit and api function that is used for versions*/
     $items['admin/structure/services/apiversion/edit/%'] = array(
         'title' => t('edit api versions'),
         'description' => t('Update api versions'),
@@ -34,7 +34,7 @@ function custom808_menu(){
         'type' => MENU_CALLBACK,
         'file' => 'custom808.inc',
     );
-
+    /*Delete and api function that is used for versions*/
     $items['admin/structure/services/apiversion/delete/%'] = array(
         'title' => t('edit api versions'),
         'description' => t('Update api versions'),
@@ -44,7 +44,7 @@ function custom808_menu(){
         'type' => MENU_CALLBACK,
         'file' => 'custom808.inc',
     );
-
+    /*Admin page for sending notification for android app*/
     $items['admin/structure/services/notification/push'] = array(
         'title' => t('push notification'),
         'description' => t('Send notification to app'),
@@ -53,6 +53,17 @@ function custom808_menu(){
         'access arguments' => array('administer modules'),
         'type' => MENU_LOCAL_TASK,
         'file' => 'custom808.inc',
+    );
+    /*It is used for locked films for each node*/
+    $items['node/%/locked'] = array(
+        'title' => t('locked film list'),
+        'description' => t('Update node encrypted film'),
+        'page callback' => array('drupal_get_form'),
+        'page arguments' => array('node_lock_form' , 1),
+        'access arguments' => array('administer modules'),
+        'type' => MENU_LOCAL_TASK,
+        'file' => 'custom808.inc',
+        'weight' => 50,
     );
 
     return $items;
@@ -164,23 +175,28 @@ function theme_copy_lazy_image_formatter($variables) {
 }
 
 function custom808_cron(){
+    /**
+     * find the questions that have not any response
+     * and send private message to the related advisors
+     */
+    /*-------------------------------------------------------*/
     $query = db_select("node" , "node");
     $query->fields("node" , array("nid"));
     $query->condition("node.type" , "questions")->condition("node.status" , 1);
-    $and_1 = db_and()->condition("node.changed" , strtotime('-3 day', REQUEST_TIME) , "<")->condition("node.changed" , strtotime('-3 day -5 hour', REQUEST_TIME) , ">");
-    $and_2 = db_and()->condition("node.changed" , strtotime('-6 day', REQUEST_TIME) , "<")->condition("node.changed" , strtotime('-6 day -5 hour', REQUEST_TIME) , ">");
+    $and_1 = db_and()->condition("node.changed" , strtotime('-5 hour -50 minutes', REQUEST_TIME) , ">");
+    $and_2 = db_and()->condition("node.changed" , strtotime('-5 day -5 hour -50 minutes', REQUEST_TIME) , ">")->condition("node.changed" , strtotime('-5 day', REQUEST_TIME) , "<");
     $query->condition(db_or()->condition($and_1)->condition($and_2));
-    $questions = $query->execute()->fetchCol();
+    $questions = $query->execute()->fetchCol(); //all the questions' nid between specific time
     if(empty($questions)) return;
-
     $query = db_select("comment" , "comment")->distinct();
     $query->join("node" , "node" , "node.nid = comment.nid and node.type = 'questions' and node.status = '1' ");
     $query->fields("comment" , array("nid"));
     $query->condition("comment.status" , 1);
-    $comments = $query->execute()->fetchCol();
+    $comments = $query->execute()->fetchCol(); //all questions' nid that have response
     if(empty($comments)) return;
-
     $nids = array_diff($questions , $comments);
+    $nids = array_unique($nids);
+    /*find the related advisors and send private message */
     foreach ($nids as $nid){
         $query = db_select("field_data_field_experts" , "q_experts");
         $query->join("field_data_field_experts" , "u_experts" , "q_experts.field_experts_tid = u_experts.field_experts_tid");
@@ -189,23 +205,170 @@ function custom808_cron(){
         $query->join("users_roles" , "u_role" , "u_role.uid = user.uid and u_role.rid = '10' ");
         $query->condition("q_experts.entity_id" , $nid)->condition("q_experts.entity_type" , "node")->condition("q_experts.bundle" , "questions");
         $query->condition("u_experts.entity_type" , "profile2")->condition("u_experts.bundle" , "main");
-        $query->fields("user" , array("mail"));
-        $emails = $query->execute()->fetchCol();
-        $emails = array_unique($emails);
+        $query->fields("user" , array("uid"));
+        $uids = $query->execute()->fetchCol();
+        $uids = array_unique($uids);
 
         $node = db_select("node")->fields("node" , array("nid" , "title"))->condition("nid" , $nid)->execute()->fetch();
         $message = '<p>مشاور محترم، سوال زیر که مرتبط با تخصص شما است، در سیستم پرسش و پاسخ سایت 808 توسط کاربران ثبت شده است.</p><p>" ' . $node->title .' "<br>برای مشاهده کامل سوال و پاسخ به آن از لینک زیر وارد شوید :<br><a href="/node/' . $node->nid . '" style="text-decoration: none;">پاسخ به سوال</a><br>با تشکر از همکاری شما</p>';
-        foreach($emails as $mail){
-            simple_mail_send("info@civil808.com", $mail, "سوالی مرتبط با تخصص شما در سایت 808 پرسیده شده است.", $message);
+        foreach($uids as $uid){
+            send_pm($uid , $message);
+//            simple_mail_send("info@civil808.com", $mail, "سوالی مرتبط با تخصص شما در سایت 808 پرسیده شده است.", $message);
+        }
+    }
+    /*----------------------------------------------------*/
+}
+
+/**
+ * Implements hook_insert().
+ * hook_insert is in node.api.php
+ * @param $node
+ *   The node that is being updated.
+ */
+function custom808_node_insert($node) {
+    /*
+     * this part is for SKU model and Stock table
+     * if the node does not have stock we insert a de-active record if uc_product_stock
+     * */
+    if($node->type == "product"){
+        $query = db_select("uc_product_stock" , "stock")->distinct();
+        $query->fields("stock" , array("nid"));
+        $query->condition("stock.nid" , $node->nid);
+        $stocks = $query->execute()->fetchCol();
+        if(empty($stocks)){
+            $query = db_insert('uc_product_stock')->fields(
+                array(
+                    "sku" => $node->model,
+                    "nid" => $node->nid,
+                    "active" => 0,
+                    "stock" => 0,
+                    "threshold" => 0
+                )
+            )->execute();
         }
     }
 }
+/**
+ * Implements hook_node_update().
+ * hook_node_update is in node.api.php
+ * @param $node
+ *   The node that is being updated.
+ */
+function custom808_node_update($node){
+    /*
+     * this part is for locked files
+     *it is updating the fid of locked file for  desktop_lock_encryption table
+     *or delete record in desktop_lock_encryption table if the locked file is deleted from the node
+     */
+    $files = array();
+    if(isset($node->field_locked_files) && isset($node->field_locked_files["und"])) {
+        foreach ($node->field_locked_files["und"] as $file){
+            $name = explode("." , $file["origname"]);
+            array_push($files , array("fid" => $file["fid"] , "name" => $name[0]));
+        }
+    }
+    if(!empty($files)) {
+        $fids = array();
+        foreach ($files as $file) {
+            array_push($fids , $file["fid"]);
 
-/*
+            db_update("desktop_lock_encryption")->fields(array(
+                "fid" => $file["fid"],
+                "updated" => REQUEST_TIME
+            ))
+                ->condition("nid", $node->nid)
+                ->condition("fid", $file["fid"] , "<>")
+                ->condition("new_name", $file["name"])
+                ->execute();
+        }
+        /*
+        db_delete("desktop_lock_encryption")
+            ->condition("nid", $node->nid)
+            ->condition("fid", $fids , "NOT IN")
+            ->execute();
+        */
+    }
+    else{
+        db_delete("desktop_lock_encryption")
+            ->condition("nid", $node->nid)
+            ->execute();
+    }
+
+    /*
+     * this part is for SKU model and Stock table
+     * if the node does not have stock we insert a de-active record if uc_product_stock
+     * */
+    if($node->type == "product"){
+        $query = db_select("uc_product_stock" , "stock")->distinct();
+        $query->fields("stock" , array("nid" , "sku"));
+        $query->condition("stock.nid" , $node->nid);
+        $stocks = $query->execute()->fetchAll();
+        /*if there is no stock we insert one*/
+        if(empty($stocks)){
+            $query = db_insert('uc_product_stock')->fields(
+                array(
+                    "sku" => $node->model,
+                    "nid" => $node->nid,
+                    "active" => 0,
+                    "stock" => 0,
+                    "threshold" => 0
+                )
+            )->execute();
+        }
+        /*if there is stock we check that the node model and stock sku be same*/
+        else{
+            foreach ($stocks as $stock){
+                if($node->model != $stock->sku){
+                    $query = db_select("uc_product_stock" , "stock")->distinct();
+                    $query->fields("stock" , array("nid" , "sku"));
+                    $query->condition("stock.nid" , $node->nid);
+                    $query->condition("stock.sku" , $node->model);
+                    $sku = $query->execute()->fetchAll();
+
+                    /*if this nid have stock that sku != model just update the sku*/
+                    if(empty($sku)){
+                        db_update("uc_product_stock")
+                            ->fields(array("sku" => $node->model))
+                            ->condition("nid" , $stock->nid)
+                            ->execute();
+                    }
+                    /*else if there is at least one stock that sku = model delete the wrong sku*/
+                    else{
+                        db_delete("uc_product_stock")
+                            ->condition("nid" , $stock->nid)
+                            ->condition("sku" , $stock->sku)
+                            ->execute();
+                    }
+                }
+            }
+        }
+    }
+}
+/**
+ * Implements hook_node_delete().
+ * hook_delete is in node.api.php
+ * @param $node
+ *   The node that is being deleted.
+ */
+function custom808_node_delete($node) {
+    /*
+     * delete stock from uc_product_stock table after the node deleted
+     * */
+    if($node->type == "product"){
+        db_delete('uc_product_stock')
+            ->condition('nid', $node->nid)
+            ->execute();
+    }
+}
+/**
+ * Implements hook_node_validate().
  * check that a product has a unique sku-model
  * it is used for admin page for adding or editing a product
-*/
+ */
 function custom808_node_validate($node, $form, &$form_state) {
+    /* The model of each product or college should be unique
+     * Check it when the node is saving
+     */
     if(in_array_r($node->type , uc_product_types()) && isset($node->model)) {
         $query = db_select("uc_products", "products");
         $query->fields("products", array("model"));
