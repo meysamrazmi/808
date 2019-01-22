@@ -2497,6 +2497,7 @@ form .field-type-file .form-submit {
 .ui-pnotify .brighttheme-error {
   background-color: #EF5350;
 }
+.ui-pnotify .brighttheme-info,
 .ui-pnotify .brighttheme-notice {
   background-color: #FFEE58;
   color: #000;

@@ -2,18 +2,13 @@
     <div id="block-block-45" class="block block-block contextual-links-region first odd">
         <div class="content">
             <span class="close-banner">X</span>
-            <a href="http://land.civil808.com/97/yalda" target="_blank">
+            <a href="/seismosoft" target="_blank">
                 <div class="new-title">
 <!--                    <img style="display: none;" class="right" src="/sites/all/themes/sara/images/banners/engineerGuy.png">-->
                     <div style="margin-top: 5px;">
-                        <div>تا ۴۰٪ تخفیف به مناسبت شب یلدا </div>
-                        ۲۵ + ۱۰ + ۵ % تا اول دیماه
+                        <div><span>25% + 10%</span>تخفیف محصولات Seismosoft به مناسبت سال نو میلادی</div>
                     </div>
                 </div>
-                <div class="left"> تخفیف های این جشنواره رو از دست ندید!!
-                    <span></span>
-                </div>
-<!--                <img style="display: none;" class="left" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">-->
             </a>
         </div>
     </div>
@@ -23,16 +18,12 @@
             position: fixed;
             bottom: 0;
             right: 0;
-            border-top: 3px solid #821639;
-            height: 70px;
+            border-top: 3px solid #ff0057;
+            height: 63px;
             z-index: 100;
-            background-position-y: center;
-             background-size: cover;
             display: flex;
             align-items: self-start;
-            /*background-image: url(/sites/all/themes/sara/images/banners/pattern.svg);*/
-            background-image: url(/sites/all/themes/sara/images/banners/yalda.jpg);
-            /*background-size: 34%;*/
+            background-image: url(/sites/all/themes/sara/images/aa.jpg);
         }
         div#block-block-45 .content {
             display: flex;
@@ -62,12 +53,24 @@
             justify-content: center;
         }
         div#block-block-45 .new-title > div{
-            color: #E91E63;
+            background: rgb(255, 255, 255);
+            padding: 9px 40px 15px;
+            border-radius: 50px;
+            margin-top: 0px !important;
         }
-        div#block-block-45 .new-title > div > div{
-            font-size: 20px;
-            color: #8bc34a;
-            margin-top: 2px;
+        div#block-block-45 .new-title > div > div {
+            font-size: 16px;
+            color: #000000;
+            font-weight: normal;
+            margin-top: 7px;
+            text-shadow: 0 0px 7px #fff, 0 0px 10px #fff, 0 0px 15px #fff, 0 0px 20px #fff, 0 0px 25px #fff, 0 0px 30px #FFF, 0 0px 2px #fff, 0 0px 7px #fff, 0 0px 10px #fff, 0 0px 15px #fff, 0 0px 20px #fff, 0 0px 25px #fff, 0 0px 30px #FFF, 0 0px 2px #fff, 0 0px 7px #fff, 0 0px 10px #fff, 0 0px 15px #fff, 0 0px 20px #fff, 0 0px 25px #fff, 0 0px 30px #FFF, 0 0px 2px #fff;
+        }
+        div#block-block-45 .new-title > div > div span {
+            margin: 9px;
+            color: #E91E63;
+            font-family: fanum;
+            font-weight: bold;
+            font-size: 19px;brighttheme-notice
         }
         div#block-block-45 img.right{
             margin: -20px 0px 0 18px;

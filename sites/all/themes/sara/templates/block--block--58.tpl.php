@@ -118,11 +118,13 @@ div#main-nav {
     display: flex;
     position: relative;
     height: 50px;
+    max-width: calc(100% - 130px);
 }
 #main-nav ul.main > li > a {
     padding: 0 20px;
     line-height: 50px;
     height: 50px;
+    white-space: nowrap;
 }
 #main-nav ul.main > li > a:hover,
 #main-nav ul.main > li.active > a {
@@ -280,6 +282,7 @@ span.nolink {
         height: 100vh;
         position: fixed;
         right: -300px;
+        top: 0;
         background: #fff;
         flex-direction: column;
         z-index: 2;
@@ -288,6 +291,10 @@ span.nolink {
         overflow: scroll;
         overflow: auto;
         margin-right: -6px;
+    }
+    .admin-menu #main-nav ul.main {
+        top: inherit;
+        margin-top: -15px;
     }
     #main-nav.open ul.main {
         right: 0px;
@@ -414,6 +421,19 @@ span.nolink {
         border-radius: 30px;
         margin: 10px;
         width: 285px;
+    }
+    #main-nav li.main a:before, span.nolink:before{
+        display: none;
+    }
+}
+
+@media all and (min-width: 1024px) and (max-width: 1200px){
+    #main-nav li.active > div.sub {
+        width: 100vw;
+    }
+    #main-nav ul.main > li > a {
+        padding-right: 10px;
+        padding-left: 18px;
     }
 }
 </style>

@@ -126,6 +126,7 @@ function uc_p_report_report($product_id) {
 		$temparray[]= t($order->status);		
 
 		$email_addresses[] = $order->email;  //add to the list
+		$phones[] = $order->email;  //add to the list
 
 		$mydata=unserialize($order->orderdata);
 		$total_sell += $order->total;
