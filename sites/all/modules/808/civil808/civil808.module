@@ -279,7 +279,17 @@ function civil808_menu() {
 		'weight' => 100,
 	);
 
+	$items['user/%user/vip'] = array(
+		'title' => 'پروفایل تخصصی کاربر',
+		'page callback' => 'vip_user_page',
+		'page arguments' => array(1),
+		'access callback' => 'user_vip_access',
+		'access arguments' => array(1),
+		'description' => 'پروفایل تخصصی کاربر',
+		'type' => MENU_LOCAL_TASK,
+	);
 
+	//remote
     $items['user/%/edit/remote/subscription'] = array(
         'title' => t('Remote Login'),
         'description' => t('Login from other sites'),
@@ -660,7 +670,9 @@ function zarinpal_receive($resnumber , $Amount){
 //		);
 //	}
 
-	if(isset($_GET['Status']) && $_GET['Status'] == 'OK'){
+//	if(isset($_GET['Status']) && $_GET['Status'] == 'OK'){
+
+	if(isset($_GET['Authority'])){
 		$Authority = $_GET['Authority'];
 
 		$client = new SoapClient('https://ir.zarinpal.com/pg/services/WebGate/wsdl', array('encoding' => 'UTF-8'));
@@ -1319,4 +1331,29 @@ function civil808_field_formatter_view($entity_type, $entity, $field, $instance,
 
 function civil808_field_formatter_prepare_view($entity_type, $entities, $field, $instances, $langcode, &$items, $displays) {
     taxonomy_field_formatter_prepare_view($entity_type, $entities, $field, $instances, $langcode, $items, $displays);
+}
+
+/**
+ * Access callback for user's vip page
+ */
+function user_vip_access($user_been_viewed) {
+	$profile = profile2_load_by_user($user_been_viewed, 'vip');
+	if(!isset($profile->pid)){
+		return false;
+	}
+	global $user;
+	if($user->uid == $user_been_viewed->uid || isset($user->roles[3]) || isset($user_been_viewed->roles[8]))//admin role = 3, vip role= 8
+		return true;
+	return false;
+}
+
+/**
+ * callback for user's vip page
+ */
+function vip_user_page($user) {
+	$profile = profile2_load_by_user($user, 'vip');
+	if(!isset($profile->pid)){
+		return array();
+	}
+	return $profile->view('default');
 }

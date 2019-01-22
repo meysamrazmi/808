@@ -8,7 +8,7 @@
   width: 0px;
 }
 .no-paper {
-  background: transparent; 
+  background: transparent;
   padding: 0;
   box-shadow: none;
 }
@@ -2718,7 +2718,12 @@ form .field-type-file .form-submit {
   width: inherit;
 }
 .page-node-locked .fieldset-wrapper div:first-child {
-  width: 300px !important;
+  width: 30% !important;
+}
+.page-node-locked .fieldset-wrapper div.form-type-checkbox,
+.page-node-locked .fieldset-wrapper div:last-child {
+  width: 30% !important;
+  display: block;
 }
 .page-node-locked input#edit-submit {
   margin: 15px 0px;
