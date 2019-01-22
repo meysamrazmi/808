@@ -937,6 +937,7 @@ h1#page-title {
 	.user-edit-page-media();
 	.page-user-edit-advisor &,
 	.page-user-edit-bank &,
+	.page-user-edit-vip &,
 	.page-user-edit-main &{
 		.paper(z1);
 	}
@@ -1077,6 +1078,7 @@ h1#page-title {
 		display: none;
 	}
 }
+
 .password-strength {
 	.absolute(initial;'';-4px;'';'';0);
 	float: left;
@@ -1106,7 +1108,6 @@ h1#page-title {
 		}
 	}
 }
-
 div.password-confirm {
 	&:extend(.password-strength);
 	left: 260px;
@@ -1712,6 +1713,92 @@ form#uc-addresses-get-address-form{
 		a.poster.view:before {
 			content: '\f349';
 		}
+	}
+}
+
+#edit-profile-vip-field-experience{
+	thead th {
+		text-align: right;
+		background: transparent !important;
+		color: #000;
+		padding: 0 0px 5px;
+		height: inherit;
+	}
+	tbody tr {
+		position: relative;
+		background: #f5f5f5;
+		border: 1px solid #ddd;
+	}
+	td{
+		position: relative;
+		&:not(.field-multiple-drag){
+			padding: 5px 15px;
+		}
+		.form-submit {
+			min-width: inherit !important;
+			width: 27px !important;
+			font-size: 11px;
+			padding: 0;
+			height: 28px;
+			line-height: 27px;
+			position: absolute !important;
+			bottom: 1px;
+			right: -29px;
+		}
+		&.field-multiple-drag {
+			background: #fff;
+			border-left: 1px solid #ddd;
+		}
+	}
+	.tabledrag-toggle-weight-wrapper {
+		display: none;
+	}
+	.field-group-div {
+		display: flex;
+		width: 100%;
+		flex-flow: wrap;
+		padding: 5px 0 10px;
+		.form-wrapper {
+			width: 50%;
+			padding-left: 15px;
+		}
+		label {
+			font-size: 12px;
+		}
+		input {
+			min-width: 200px !important;
+			width: 100% !important;
+		}
+	}
+	.group-year {
+		padding-top: 30px;
+		position: relative;
+		margin-top: 10px;
+		h3 {
+			position: absolute;
+			font-weight: normal;
+			font-size: 13px;
+			top: 0;
+			margin: 0;
+			line-height: inherit;
+		}
+		input, select {
+			float: inherit !important;
+			min-width: 100px !important;
+			margin: 0 15px !important;
+			width: 100px !important;
+		}
+		.form-wrapper {
+			padding-bottom: 5px;
+			width: 25%;
+		}
+	}
+	.field-add-more-submit{
+		.btn();
+		min-width: inherit !important;
+		width: inherit !important;
+		margin-top: 15px !important;
+		font-size: 12px !important;
 	}
 }
 /*----------------from razmia3.css---------------------*/

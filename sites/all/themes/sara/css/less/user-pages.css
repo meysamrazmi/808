@@ -1476,6 +1476,7 @@
 }
 .page-user-edit-advisor #user-profile-form,
 .page-user-edit-bank #user-profile-form,
+.page-user-edit-vip #user-profile-form,
 .page-user-edit-main #user-profile-form {
   background: #fff;
   border: none;
@@ -2719,6 +2720,112 @@ form#uc-addresses-get-address-form a.cancel-address-link:focus {
 .page-user-register #block-block-59 a.poster.view:before,
 .page-user-login #block-block-59 a.poster.view:before {
   content: '\f349';
+}
+#edit-profile-vip-field-experience thead th {
+  text-align: right;
+  background: transparent !important;
+  color: #000;
+  padding: 0 0px 5px;
+  height: inherit;
+}
+#edit-profile-vip-field-experience tbody tr {
+  position: relative;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+}
+#edit-profile-vip-field-experience td {
+  position: relative;
+}
+#edit-profile-vip-field-experience td:not(.field-multiple-drag) {
+  padding: 5px 15px;
+}
+#edit-profile-vip-field-experience td .form-submit {
+  min-width: inherit !important;
+  width: 27px !important;
+  font-size: 11px;
+  padding: 0;
+  height: 28px;
+  line-height: 27px;
+  position: absolute !important;
+  bottom: 1px;
+  right: -29px;
+}
+#edit-profile-vip-field-experience td.field-multiple-drag {
+  background: #fff;
+  border-left: 1px solid #ddd;
+}
+#edit-profile-vip-field-experience .tabledrag-toggle-weight-wrapper {
+  display: none;
+}
+#edit-profile-vip-field-experience .field-group-div {
+  display: flex;
+  width: 100%;
+  flex-flow: wrap;
+  padding: 5px 0 10px;
+}
+#edit-profile-vip-field-experience .field-group-div .form-wrapper {
+  width: 50%;
+  padding-left: 15px;
+}
+#edit-profile-vip-field-experience .field-group-div label {
+  font-size: 12px;
+}
+#edit-profile-vip-field-experience .field-group-div input {
+  min-width: 200px !important;
+  width: 100% !important;
+}
+#edit-profile-vip-field-experience .group-year {
+  padding-top: 30px;
+  position: relative;
+  margin-top: 10px;
+}
+#edit-profile-vip-field-experience .group-year h3 {
+  position: absolute;
+  font-weight: normal;
+  font-size: 13px;
+  top: 0;
+  margin: 0;
+  line-height: inherit;
+}
+#edit-profile-vip-field-experience .group-year input,
+#edit-profile-vip-field-experience .group-year select {
+  float: inherit !important;
+  min-width: 100px !important;
+  margin: 0 15px !important;
+  width: 100px !important;
+}
+#edit-profile-vip-field-experience .group-year .form-wrapper {
+  padding-bottom: 5px;
+  width: 25%;
+}
+#edit-profile-vip-field-experience .field-add-more-submit {
+  background: #fbfbfb;
+  border: none;
+  height: 36px;
+  border-radius: 2px;
+  line-height: 36px;
+  text-align: center;
+  color: #444 !important;
+  padding: 0 16px;
+  text-shadow: none;
+  display: inline-block;
+  font-size: 14px;
+  min-width: 88px;
+  transition: all 0.2s;
+  text-decoration: none;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  outline: none;
+  min-width: inherit !important;
+  width: inherit !important;
+  margin-top: 15px !important;
+  font-size: 12px !important;
+}
+#edit-profile-vip-field-experience .field-add-more-submit:hover {
+  background-color: #eee;
+}
+#edit-profile-vip-field-experience .field-add-more-submit:focus {
+  background: #f5f5f5;
+  box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
 }
 /*----------------from razmia3.css---------------------*/
 .paper {
