@@ -425,11 +425,11 @@ function list_of_contents_v_2($parameter){
         if(isset($parameter["college_type"]) && !empty($parameter["college_type"])) {
             $college_type = explode("," , $parameter["college_type"]);
 
-            $query->join("field_data_field_course_type", "college_type", "node.nid = college_type.entity_id");
+            $query->join("field_data_field_course_type", "college_type", "node.nid = college_type.entity_id and college_type.delta = '0' ");
             $query->condition("college_type.field_course_type_value" , $college_type , "IN");
         }
         else
-            $query->leftJoin("field_data_field_course_type", "college_type", "node.nid = college_type.entity_id");
+            $query->leftJoin("field_data_field_course_type", "college_type", "node.nid = college_type.entity_id and college_type.delta = '0' ");
         $query->addField("college_type" , "field_course_type_value" , "college_type");
 
 
