@@ -122,6 +122,7 @@
                   <span class="meghdar" style="color: #F44336;"><?php print formatMoney($point_needed);?> تومان</span>
               </div>
           <?php endif;?>
+          <?php if($node->nid != 19224) : ?>
           <div class="cta-2-row cta-row">
               <div class="cta-icon"></div>
               <?php
@@ -129,10 +130,11 @@
                     print '<span class="n-label" style="width: 80%;">با 20% تخفیف برای جشنواره عید فطر :</span><span class="meghdar" style="color: #4CAF50;">' . formatMoney(round(($point_needed * 0.8), -1)) .' تومان </span>';
 				} else if(!$for_vip){ //normal vip discount
                     print '<span class="n-label">برای کاربران vip :</span><span class="meghdar" style="color: #4CAF50;">' . formatMoney(round(($point_needed * 0.9), -1)) .' تومان </span>';
-				 }
+				}
               ?>
           </div>
-            <a href="/pay/node/<?php echo $node->nid; ?>" class="btn-green" style="margin-top: 15px;">پرداخت <?php echo formatMoney(isset($user->roles[8])? round(($point_needed * 0.9), -1) : $point_needed);?> تومان و مشاهده محتوا</a>
+          <?php endif;?>
+          <a href="/pay/node/<?php echo $node->nid; ?>" class="btn-green" style="margin-top: 15px;">پرداخت <?php echo formatMoney((isset($user->roles[8]) && $node->nid != 19224)? round(($point_needed * 0.9), -1) : $point_needed);?> تومان و مشاهده محتوا</a>
       </div>
   </div>
 
