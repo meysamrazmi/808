@@ -934,15 +934,9 @@ span.file {
   font-weight: bold;
 }
 
-
-.page-node-add-latin-contents.adminimal-theme .group-fields .fieldset-wrapper{
-  text-align: center;
+.page-admin-structure-services-log .content .form-wrapper .fieldset-wrapper{
+  display: flex;
+  justify-content: space-around;
 }
-
-.page-node-add-latin-contents.adminimal-theme .group-fields .fieldset-wrapper  .field-type-taxonomy-term-reference{
-  display: inline-block;
-  vertical-align: text-top;
-  min-width: 350px;
-  margin: 10px;
-  text-align: right;
-}
+.page-admin-structure-services-log .content table th{text-align: center;}
+.page-admin-structure-services-log .content table td{text-align: center;}

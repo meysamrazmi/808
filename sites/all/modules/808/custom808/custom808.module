@@ -66,6 +66,16 @@ function custom808_menu(){
         'weight' => 50,
     );
 
+    $items['admin/structure/services/log'] = array(
+        'title' => t('logs'),
+        'description' => t('Get the list of api versions'),
+        'page callback' => array('drupal_get_form'),
+        'page arguments' => array('log_form'),
+        'access arguments' => array('administer modules'),
+        'type' => MENU_LOCAL_TASK,
+        'file' => 'custom808.inc',
+    );
+
     return $items;
 }
 
