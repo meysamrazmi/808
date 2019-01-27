@@ -1644,6 +1644,7 @@
 }
 #user-profile-form .form-actions {
   padding: 0;
+  text-align: center;
 }
 #user-profile-form .form-actions input#edit-cancel,
 form#user-cancel-confirm-form input#edit-submit {
@@ -1720,6 +1721,7 @@ div.password-confirm {
 }
 .password-strength .password-strength-text {
   position: absolute;
+  top: 15px;
   right: -50px;
   left: 102%;
   white-space: nowrap;
@@ -2963,5 +2965,26 @@ form#uc-addresses-get-address-form a.cancel-address-link:focus {
 .page-user th {
   background: #fcfcfc;
   border-bottom: 1px solid #ddd;
+}
+.form-item.form-type-file.form-item-files-picture-upload .btn.btn-primary {
+  border: 0;
+  height: 42px;
+  border-radius: 2px;
+  line-height: 42px;
+  text-align: center;
+  padding: 6px 16px;
+  text-shadow: none;
+  margin-right: 5px;
+  display: inline-block;
+  font-size: 14px;
+  transition: all 0.2s;
+  text-decoration: none;
+  box-shadow: none;
+  outline: 0;
+  color: #fff !important;
+  background-color: #42a5f5;
+}
+.form-item.form-type-file.form-item-files-picture-upload .btn.btn-primary:hover {
+  background-color: #64B5F6;
 }
 /*-------------end from razmia3.css--------------------*/

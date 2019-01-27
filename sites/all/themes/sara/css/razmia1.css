@@ -1151,10 +1151,12 @@ form#user-login, form#user-register-form {
   max-width: 700px;
   box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
 }
+
 #user-login .form-actions,#user-register-form .form-actions {
     border: medium none;
     margin: 10px 0;
     padding: 0;
+	text-align: center;
 }
 .form-type-password-confirm{
     background: #fcfcfc none repeat scroll 0 0;
@@ -1180,7 +1182,7 @@ form#user-login, form#user-register-form {
     width: 100%;
 }
 .form-item {
-    min-height: 30px;
+    min-height: 42px;
 }
 .form-managed-file input {
 	background-color: #eee;

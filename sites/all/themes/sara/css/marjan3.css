@@ -908,7 +908,8 @@ div#unavailable ,
 	-webkit-transition: all 0.4s ease;
 	margin: 0px;
 	cursor: pointer;
-} 
+}
+
 #block-panels-mini-user-panel > .content {
 	height: 100%;
 	overflow: auto;
