@@ -18,7 +18,7 @@ function api_version_lists(){
 
     return theme('table', array('header'=>array(t('url'), t('method'),t('source'),t('version'), t('last_function'), t('action')), 'rows'=>$rows));
 }
-function add_api_version_form($from, &$form_state , $id = 0){
+function add_api_version_form($form, &$form_state , $id = 0){
     try {
         $data = (array) db_select("api_code_version" , "version")
             ->fields("version")->condition("id" , $id)->execute()->fetch();
@@ -72,7 +72,7 @@ function add_api_version_form($from, &$form_state , $id = 0){
         echo 'Caught exception: ',  $e->getMessage(), "\n";
     }
 }
-function add_api_version_form_validate($from, &$form_state){
+function add_api_version_form_validate($form, &$form_state){
     try{
         if(empty($form_state['values']['url']) && strlen($form_state['values']['url']) == 0) form_set_error('url', t('مسیر اجباری است'));
         if(empty($form_state['values']['method']) && strlen($form_state['values']['method']) == 0) form_set_error('method', t('متود اجباری است'));
@@ -85,7 +85,7 @@ function add_api_version_form_validate($from, &$form_state){
         watchdog('Submit api code version failed', $e->getMessage(), WATCHDOG_CRITICAL);
     }
 }
-function add_api_version_form_submit($from, &$form_state){
+function add_api_version_form_submit($form, &$form_state){
     try{
         db_merge('api_code_version')
             ->key(array('id' => $form_state["values"]["id"]))
@@ -116,7 +116,7 @@ function api_version_delete($id){
 }
 /*----------------------------------------------------------------*/
 /*----------------------push notification-------------------------*/
-function push_notification_form($from, &$form_state){
+function push_notification_form($form, &$form_state){
     try {
         $form['title'] = array(
             '#type' => 'textfield',
@@ -173,7 +173,7 @@ function push_notification_form($from, &$form_state){
         echo 'Caught exception: ',  $e->getMessage(), "\n";
     }
 }
-function push_notification_form_validate($from, &$form_state){
+function push_notification_form_validate($form, &$form_state){
     if(strcmp($form_state["values"]["type"] , "main") == 0) {
         $form_state["values"]["type"] = "";
         $form_state["values"]["nid"] = "";
@@ -183,7 +183,7 @@ function push_notification_form_validate($from, &$form_state){
         if(empty($query)) form_set_error('nid', t('شماره نود با نوع محتوا مطابقت ندارد'));
     }
 }
-function push_notification_form_submit($from, &$form_state){
+function push_notification_form_submit($form, &$form_state){
     $data = array();
 
     $file = file_save_upload('file', array(), 'public://');
@@ -362,9 +362,155 @@ function node_lock_form_submit($form , &$form_state){
     }
 }
 /*----------------------------------------------------------------*/
+/*-------------applications log table for admin-------------------*/
+function log_form($form, &$form_state){
+    try {
+        /*get the default value for filtering from url parameters*/
+        $default = $_GET;
+        /*this fieldset is used for filter part*/
+        $form['filter'] = array('#type' => 'fieldset');
 
+        /*fetch the list of actions for filter the actions*/
+        $query = db_select("app_log" , "log")->distinct();
+        $query->fields("log" , array("action"));
+        $query->condition("log.action" , "login" , "<>");
+        $query->condition("log.action" , "encrypting" , "<>");
+        $result = $query->execute()->fetchCol();
+        $action = array("all" => "all");
+        foreach ($result as $value){
+            if(!empty($value) && strlen($value) > 0) $action[$value] = $value;
+        }
+        $form['filter']['action'] = array(
+            '#type' => 'select',
+            '#title' => 'action',
+            '#options' => $action,
+            '#default_value' => empty($default['action']) ? array("all" => "all") : array($default['action'] => $default['action']),
+        );
 
+        /*fetch the list of entity_types for filter the entity_types*/
+        $query = db_select("app_log" , "log")->distinct();
+        $query->fields("log" , array("entity_type"));
+        $result = $query->execute()->fetchCol();
+        $entity_type = array("all" => "all");
+        foreach ($result as $value){
+            if(!empty($value) && strlen($value) > 0) $entity_type[$value] = $value;
+        }
+        $form['filter']['entity_type'] = array(
+            '#type' => 'select',
+            '#title' => 'type',
+            '#options' => $entity_type,
+            '#default_value' => empty($default['entity_type']) ? array("all" => "all") : array($default['entity_type'] => $default['entity_type']),
+        );
 
+        /*fetch the list of app_names for filter the app_names*/
+        $query = db_select("app_log" , "log")->distinct();
+        $query->fields("log" , array("app_name"));
+        $result = $query->execute()->fetchCol();
+        $app_name = array("all" => "all");
+        foreach ($result as $value){
+            if(!empty($value) && strlen($value) > 0) $app_name[$value] = $value;
+        }
+        $form['filter']['app_name'] = array(
+            '#type' => 'select',
+            '#title' => 'app',
+            '#options' => $app_name,
+            '#default_value' => empty($default['app_name']) ? array("all" => "all") : array($default['app_name'] => $default['app_name']),
+        );
+
+        /*fetch the list of app_versions for filter the app_versions*/
+        $query = db_select("app_log" , "log")->distinct();
+        $query->fields("log" , array("app_version"));
+        $result = $query->execute()->fetchCol();
+        $app_version = array("all" => "all");
+        foreach ($result as $value){
+            if(!empty($value) && strlen($value) > 0) $app_version[$value] = $value;
+        }
+        $form['filter']['app_version'] = array(
+            '#type' => 'select',
+            '#title' => 'version',
+            '#options' => $app_version,
+            '#default_value' => empty($default['app_version']) ? array("all" => "all") : array($default['app_version'] => $default['app_version']),
+        );
+
+        /*fetch the list of statuses for filter the statuses*/
+        $query = db_select("app_log" , "log")->distinct();
+        $query->fields("log" , array("status"));
+        $result = $query->execute()->fetchCol();
+        $status = array("all" => "all");
+        foreach ($result as $value){
+            if(!empty($value) && strlen($value) > 0) $status[$value] = $value;
+        }
+        $form['filter']['status'] = array(
+            '#type' => 'select',
+            '#title' => 'status',
+            '#options' => $status,
+            '#default_value' => empty($default['status']) ? array("all" => "all") : array($default['status'] => $default['status']),
+        );
+
+        $form['filter']['save'] = array(
+            '#type' => 'submit',
+            '#value' => "save",
+        );
+
+        /*fetch the data from app_log table in db
+         *show the 30 row for each page
+         * filter the data with default values
+         */
+        $query = db_select("app_log" , "log")->extend('PagerDefault')->extend('TableSort');
+        $query->join("users" , "user" , "user.uid = log.uid");
+        $query->fields("user" , array("name"));
+        $query->fields("log" , array("uid" , "action" , "entity_type" , "entity_id" , "app_name" , "app_version" , "created" , "status"));
+        $query->condition("log.action" , "login" , "<>");
+        $query->condition("log.action" , "encrypting" , "<>");
+        if(!empty($default['action']) && $default['action'] != "all"){
+            $query->condition("log.action" , $default['action']);
+        }
+        if(!empty($default['entity_type']) && $default['entity_type'] != "all"){
+            $query->condition("log.entity_type" , $default['entity_type']);
+        }
+        if(!empty($default['app_name']) && $default['app_name'] != "all"){
+            $query->condition("log.app_name" , $default['app_name']);
+        }
+        if(!empty($default['app_version']) && $default['app_version'] != "all"){
+            $query->condition("log.app_version" , $default['app_version']);
+        }
+        if(!empty($default['status']) && $default['status'] != "all"){
+            $query->condition("log.status" , $default['status']);
+        }
+        $query->orderBy("log.id" , "DESC");
+        $query->limit(30);
+        $result = $query->execute()->fetchAll();
+
+        /*render the table log*/
+        $header = array("user" , "action" , "entity_type" , "entity_id" , "app" , "version" , "time" , "status");
+        $rows = array();
+        foreach ($result as $row) {
+            $row->name = l($row->name , "user/" . $row->uid);
+            $row->created = format_date($row->created);
+            unset($row->uid);
+            $rows[] = array('data' => $row);
+        }
+        $form['table'] = array(
+            '#markup' => theme('table', array('header' => $header, 'rows' => $rows)) . theme('pager'),
+        );
+
+        return $form;
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+}
+/* just call the page with filter parameter
+ * it sends the filters in the parameter of url
+ * */
+function log_form_submit($form, &$form_state){
+    $default = array("action" , "entity_type" , "app_name" , "app_version" , "status");
+    $parameter = array();
+    foreach ($default as $key){
+        if(!empty($form_state['values'][$key]))$parameter[$key] = $form_state['values'][$key];
+    }
+    drupal_goto("admin/structure/services/log" , array("query" => $parameter));
+}
+/*----------------------------------------------------------------*/
 
 /*
  * custom taxonomy term page
