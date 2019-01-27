@@ -271,7 +271,7 @@
 .page-pedia.page-tags h1#page-title {
   padding: 45px 24px 68px 24px;
 }
-.page-pedia.page-tags #content > a.mainpedia:nth-child(2) {
+a.mainpedia {
   position: absolute;
   top: 121px;
   display: block;
@@ -466,6 +466,12 @@
 .page-pedia.node-type-architect .container.main {
   margin-top: 15px !important;
 }
+.page-pedia #edit-name-wrapper .form-item {
+  min-height: 35px;
+}
+.page-pedia #edit-name-wrapper .form-item input[type="text"] {
+  padding: 5px 6px;
+}
 .page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter > div > div > div > div,
 .page-pedia #views-exposed-form-pedia-tag-page-mefibs-form-filter > div > div > div > div {
   display: flex;
@@ -527,6 +533,7 @@
   margin-top: 0;
   margin-bottom: 0;
   text-align: right;
+  min-height: 35px;
 }
 .page-pedia #views-exposed-form-page-arch-page-3-mefibs-form-filter #edit-mefibs-form-filter-title-wrapper {
   display: none;
