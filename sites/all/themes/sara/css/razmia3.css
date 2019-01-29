@@ -5875,3 +5875,77 @@ form#privatemsg-list tr:hover {
 form#privatemsg-list tr {
 	cursor: pointer;
 }
+
+/*added by mohsen bagheri*/
+
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
+	border-color: rgba(206,147,216, 0.6) !important;
+	box-shadow: none!important;
+}
+.form-item label {
+	font-size: 14px;
+	font-weight: 500;#42a5f5
+}
+
+.file-resup-wrapper .drop {
+	display: table;
+	width: 75%;
+	box-sizing: border-box;
+	border-radius: 3px;
+	background-color: #f5f5f5;
+	border: 1px dashed #dbdbdb;
+	height: 3em;
+}
+.file-resup-wrapper .browse {
+	border: 0;
+	height: 36px;
+	border-radius: 2px;
+	line-height: 36px;
+	text-align: center;
+	padding: 0 16px;
+	text-shadow: none;
+	margin-top: 20px!important;
+	margin-bottom: 20px!important;
+	display: inline-block;
+	font-size: 14px;
+	transition: all .2s;
+	text-decoration: none;
+	box-shadow: none;
+	outline: 0;
+	color: #fff !important;
+	background-color: #b4b4b4;
+}
+.file-resup-wrapper .browse:hover {
+	background-color: #BDBDBD;
+}
+
+.file-resup-wrapper .upload {
+	border: 0;
+	height: 36px;
+	border-radius: 2px;
+	line-height: 36px;
+	text-align: center;
+	padding: 0 16px;
+	text-shadow: none;
+	margin-top: 20px!important;
+	margin-bottom: 20px!important;
+	display: inline-block;
+	font-size: 14px;
+	transition: all .2s;
+	text-decoration: none;
+	box-shadow: none;
+	outline: 0;
+	color: #212121 !important;
+	background-color: #EEEEEE;
+}
+.file-resup-wrapper .upload:hover {
+	background-color: #FAFAFA;
+}
+div.image-widget-data {
+	float: right;
+	width: 100%!important;
+}
+#edit-field-laws .form-checkbox {
+	margin-top: 12px;
+	margin-bottom: 12px;
+}

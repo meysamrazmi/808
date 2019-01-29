@@ -89,7 +89,7 @@ input, select, textarea{
 .user-register-login(){
 	label{
 		display: inline-block;
-		line-height: 30px;
+		line-height: 42px;
 		margin: 0;
 	}
 	.form-item:not(.form-type-checkbox) input:not(#edit-profile-main-field-link-und-0-title):not(#edit-profile-main-field-link-und-0-url) {
@@ -558,6 +558,9 @@ body:not(.uid-10628):not(.uid-3300):not(.uid-3989) .admin-error {
 			}
 		}
 	}
+	.btn-green, .green-btn, input[type="submit"] {
+		float: left;
+	}
 }
 .all-members{
 	&.view:not(.view-relations){
@@ -919,17 +922,20 @@ body:not(.uid-10628):not(.uid-3300):not(.uid-3989) .admin-error {
 	}
 }
 .autocomplete-deluxe-container {
-	background: #fefefe !important;
-	border: 1px solid #dbdbdb !important;
+	background: none!important;
+	background-color: #f5f5f5!important;
+	border: 1px solid #dbdbdb!important;
 	box-shadow: none !important;
+	padding: 6px 5px!important;
 	border-radius: 2px;
 	display: block !important;
 	width: 100% !important;
 	input#autocomplete-deluxe-input {
 		float: none !important;
+		background-color: #f5f5f5!important;
 	}
 	.autocomplete-deluxe-item {
-		background: #f9f9f9;
+		background: #fff;
 		border: none;
 		padding: 5px 10px 5px 22px;
 		border-radius: 0;
@@ -1315,28 +1321,34 @@ body:not(.uid-10628):not(.uid-3300):not(.uid-3989) .admin-error {
 }
 .file-resup-wrapper {
 	display: flex;
+	margin: 0!important;
 	.drop {
 		display: table;
-		width: 75%;
+		width: calc(100% - 170px);
+		margin: 0!important;
 		box-sizing: border-box;
 		border: 1px dashed #ccc;
-		height: 4em;
+		height: 40px;
 	}
 	.browse {
 		float: right;
 		display: table !important;
-		height: 4em;
-		margin: 0.6em 0 !important;
-		padding: 0 1em;
-		width: 10%;
+		height: 40px;
+		margin-top: 0px!important;
+		margin-bottom: 0px!important;
+		margin-right: 5px!important;
+		padding: 0;
+		width: 80px;
 	}
 	.upload {
 		float: right;
 		display: table !important;
-		height: 4em;
-		margin: 0.6em 0 !important;
-		padding: 0 1em;
-		width: 10%;
+		height: 40px;
+		margin-top: 0px!important;
+		margin-bottom: 0px!important;
+		margin-right: 5px!important;
+		padding: 0;
+		width: 80px;
 	}
 	.progress{
 		bottom: -15px;

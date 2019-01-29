@@ -248,7 +248,7 @@ function civil808_page_admin_people_export($form, $form_state) {
 	return $form;
 }
 
-function civil808_page_admin_people_export_submit($from, &$form_state) {
+function civil808_page_admin_people_export_submit($form, &$form_state) {
 	header("Content-Type: text/plain");
 	header("Content-Disposition: attachment; filename=\"export.txt\"");
 	$calendar = calendar_systems_get_calendar_instance('iranian');
@@ -273,7 +273,7 @@ function civil808_page_admin_people_export_submit($from, &$form_state) {
 	die;
 }
 
-function merge_experts_form($from, &$form_state){
+function merge_experts_form($form, &$form_state){
 	try {
 		for($i = 0; $i < 5; $i++){
 			$form['experts'. $i] = array(
@@ -306,7 +306,7 @@ function merge_experts_form($from, &$form_state){
 	}
 }
 
-function merge_experts_form_validate($from, &$form_state){
+function merge_experts_form_validate($form, &$form_state){
 	try{
 		for($i = 0; $i < 5; $i++){
 			if (strlen($form_state['values']['source_tid'. $i]) > 0) {
@@ -333,7 +333,7 @@ function merge_experts_form_validate($from, &$form_state){
 	}
 }
 
-function merge_experts_form_submit($from, &$form_state){
+function merge_experts_form_submit($form, &$form_state){
 	try{
 		for($i = 0; $i < 5; $i++){
 			/*skip if source and destination are null*/
@@ -436,7 +436,7 @@ function merge_experts_form_submit($from, &$form_state){
 	}
 }
 
-function discount_configuration_form($from, &$form_state){
+function discount_configuration_form($form, &$form_state){
     try {
         $kinds = array("extra_charge" , "article_software" , "article_store" , "publication" , "education" , "vip");
         foreach($kinds as $kind){
@@ -488,7 +488,7 @@ function discount_configuration_form($from, &$form_state){
     }
 }
 
-function discount_configuration_form_validate($from, &$form_state){
+function discount_configuration_form_validate($form, &$form_state){
     try{
         $kinds = array("extra_charge" , "article_software" , "article_store" , "publication" , "education" , "vip");
         foreach($kinds as $kind){
@@ -528,7 +528,7 @@ function discount_configuration_form_validate($from, &$form_state){
 
 }
 
-function discount_configuration_form_submit($from, &$form_state){
+function discount_configuration_form_submit($form, &$form_state){
     try{
         $kinds = array("extra_charge" , "article_software" , "article_store" , "publication" , "education" , "vip");
         foreach($kinds as $kind){
