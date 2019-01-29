@@ -557,6 +557,5 @@ function developer(){
     $test = openssl_encrypt("test" , "AES-128-CBC" , "api808");
     adump($test);
     */
-
     die();
 }
