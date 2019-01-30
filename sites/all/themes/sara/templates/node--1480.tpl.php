@@ -7,7 +7,11 @@ $url = "https://civil808.com/sites/default/files" . $url;
 
 
 <section id="profile-features" class="panel" style="padding-bottom:139px;!important;">
-    <h2 style="margin-bottom: 75px;">مزایای ارتقاء پروفایل به عضویت Vip</h2>
+    <h2>مزایای ارتقاء پروفایل به عضویت Vip</h2>
+    <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888; margin-bottom: 35px;">
+        برای مشاهده توضیحات بیشتر
+        <a href="/node/20945" target="_blank">کلیک کنید</a>
+    </p>
     <div class="features">
         <div style="position: relative">
             <span class="hexa">
@@ -95,6 +99,19 @@ $url = "https://civil808.com/sites/default/files" . $url;
 </section>
 
 <style>
+    #profile-features h2{
+        position: relative;
+    }
+    #profile-features h2:before{
+        content: "";
+        position: absolute;
+        width: 130px;
+        height: 3px;
+        background: #883ab7;
+        bottom: -10px;
+        right: calc(50% - 65px);
+        box-shadow: rgba(136,58,183,0.15) 0px 1px 6px, rgba(136,58,183,0.157) 0px 1px 4px;
+    }
     .hexa {
         visibility: visible;
         position: absolute;
@@ -153,7 +170,7 @@ $url = "https://civil808.com/sites/default/files" . $url;
     }
     #profile-features {
         background: #f5f5f5;
-        padding: 114px 2vw 50px;
+        padding: 92px 2vw 50px;
         margin: auto;
         position: relative;
         overflow: visible;
