@@ -37,6 +37,8 @@ $url = "https://civil808.com/sites/default/files" . $url;
                 <a href="/article/software" target="_blank">نرم افزارها </a>
                 ،
                 <a href="/education" target="_blank">کارگاه های آموزشی و فیلم ضبط شده آن </a>
+                ،
+                <a href="/article/store" target="_blank">فیلم های دوبله شده در CSI </a>
             </p>
         </div>
         <div class="moshaver">

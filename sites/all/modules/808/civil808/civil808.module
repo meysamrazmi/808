@@ -1337,11 +1337,11 @@ function civil808_field_formatter_prepare_view($entity_type, $entities, $field, 
  * Access callback for user's vip page
  */
 function user_vip_access($user_been_viewed) {
+	global $user;
 	$profile = profile2_load_by_user($user_been_viewed, 'vip');
-	if(!isset($profile->pid)){
+	if(!isset($profile->pid) && $user->uid != $user_been_viewed->uid){
 		return false;
 	}
-	global $user;
 	if($user->uid == $user_been_viewed->uid || isset($user->roles[3]) || isset($user_been_viewed->roles[8]))//admin role = 3, vip role= 8
 		return true;
 	return false;

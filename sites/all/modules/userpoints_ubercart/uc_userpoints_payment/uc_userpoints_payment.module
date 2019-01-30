@@ -361,7 +361,7 @@ function uc_userpoints_payment_payment($order) {
     exit();
   }
   if ($order->payment_method == 'points') {
-    $user_points = userpoints_get_current_points($arg1->uid,'all'); 
+    $user_points = userpoints_get_current_points($order->uid,'all');
 	if($user_points >= $points){
 		//prevent transactions that are wrong or duplicated
 		if(uc_payment_balance($order) != $points){
@@ -389,8 +389,8 @@ function uc_userpoints_payment_payment($order) {
 		->execute();	
 	}
 	else{
-		unset($form['panes']['payment']['payment_method']['#options']['points']);
-		drupal_set_message(t('You do not have enough !points to complete this purchase. Please select another payment method.', array_merge(uc_userpoints_translation(), array('@user_points' => $user_points, '@order_points' => $order_points))), 'error');
+//		unset($form['panes']['payment']['payment_method']['#options']['points']);
+		drupal_set_message(t('You do not have enough !points to complete this purchase. Please select another payment method.', array_merge(uc_userpoints_translation(), array('@user_points' => $user_points, '@order_points' => uc_payment_balance($order)))), 'error');
 		drupal_goto('cart/checkout');
 	}
   }

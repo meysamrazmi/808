@@ -449,7 +449,7 @@ function log_form($form, &$form_state){
 
         $form['filter']['save'] = array(
             '#type' => 'submit',
-            '#value' => "save",
+            '#value' => "اعمال",
         );
 
         /*fetch the data from app_log table in db
@@ -482,12 +482,21 @@ function log_form($form, &$form_state){
         $result = $query->execute()->fetchAll();
 
         /*render the table log*/
-        $header = array("user" , "action" , "entity_type" , "entity_id" , "app" , "version" , "time" , "status");
+        $header = array("row" , "user" , "action" , "entity_type" , "entity_id" , "app" , "version" , "time" , "status");
         $rows = array();
-        foreach ($result as $row) {
-            $row->name = l($row->name , "user/" . $row->uid);
+        foreach ($result as $key=>$row) {
+            /*linking username to the profile*/
+            $row->name = l($row->name , "user/" . $row->uid , array("attributes" => array("target" => "_blank")));
+            /*convert timestamp to date*/
             $row->created = format_date($row->created);
             unset($row->uid);
+            /*convert object to array for being able to add row number at the first column*/
+            $row = (array)$row;
+            /*computing the row number based on the page number*/
+            $page = isset($default["page"]) ? $default["page"]*30 : 0;
+            $num = $key + 1 + $page;
+            $row = array("row" => $num) + $row;
+
             $rows[] = array('data' => $row);
         }
         $form['table'] = array(

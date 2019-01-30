@@ -6,9 +6,13 @@
  */
 function require_alt_node_presave($node) {
 
-  if(isset($node->field_image)) {
-    $node->field_image[LANGUAGE_NONE][0]['alt']=$node->title;
-    $node->field_image[LANGUAGE_NONE][0]['title']=$node->title;
+  if(isset($node->field_image) && !empty($node->field_image) && isset($node->field_image[LANGUAGE_NONE])) {
+    foreach ($node->field_image[LANGUAGE_NONE] as $image){
+        if(empty($image['alt']) || $image['title']){
+            $image['alt']=$node->title;
+            $image['title']=$node->title;
+        }
+    }
   }
 
 }

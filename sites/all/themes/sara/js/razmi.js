@@ -1109,6 +1109,23 @@ if($('form#privatemsg-list tr').length){
 	})
 }
 
+/*------------------------------------bootstrap file style-----------------------------------------*/
+var boot_file_selector = $(
+	'input#edit-picture-upload'+
+	', #user-profile-form .form-item input.form-file'+
+	', input.form-file');
+if(boot_file_selector.length){
+	$.getScript('/sites/all/themes/sara/js/lib/bootstrap-filestyle.min.js', function(){
+		$(":file").filestyle({buttonText: "انتخاب فایل", buttonName: "btn-primary",placeholder: "فایلی انتخاب نشده"});
+	});
+}
+
+
+
+
+
+
+
 
 }); /*===> end of document.ready-function*/
 /*#################################################*/
@@ -1180,16 +1197,7 @@ function initialise(){
 	applyHeight($('.node-product .group-right') , $('.node-product .group-left'));
 	
 	/*-----------------------------------------------------------------------------------------------------------------*/
-	var boot_file_selector = $(
-	'div#edit-support-ticket-upload .file-widget, div#edit-field-hw-video .file-widget'+
-	', input#edit-picture-upload'+
-	', #user-profile-form .form-item input.form-file'+
-	', input.form-file');
-	if(boot_file_selector.length){
-		$.getScript('/sites/all/themes/sara/js/lib/bootstrap-filestyle.min.js', function(){
-		$(":file").filestyle({buttonText: "انتخاب فایل", buttonName: "btn-primary",placeholder: "فایلی انتخاب نشده"});
-		});
-	}
+
 
 	/*this is for pnotify messages*/
 	/*$('.ui-state-error .ui-pnotify-text').each(function(){

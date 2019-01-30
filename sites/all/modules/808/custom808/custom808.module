@@ -65,7 +65,7 @@ function custom808_menu(){
         'file' => 'custom808.inc',
         'weight' => 50,
     );
-
+    /*It is used for the admin page to show the applications logs*/
     $items['admin/structure/services/log'] = array(
         'title' => t('logs'),
         'description' => t('Get the list of api versions'),
@@ -267,8 +267,8 @@ function custom808_node_insert($node) {
 function custom808_node_update($node){
     /*
      * this part is for locked files
-     *it is updating the fid of locked file for  desktop_lock_encryption table
-     *or delete record in desktop_lock_encryption table if the locked file is deleted from the node
+     * it is updating the fid of locked file for  desktop_lock_encryption table
+     * or delete record in desktop_lock_encryption table if the all locked files are deleted from the node
      */
     $files = array();
     if(isset($node->field_locked_files) && isset($node->field_locked_files["und"])) {
@@ -278,10 +278,7 @@ function custom808_node_update($node){
         }
     }
     if(!empty($files)) {
-        $fids = array();
         foreach ($files as $file) {
-            array_push($fids , $file["fid"]);
-
             db_update("desktop_lock_encryption")->fields(array(
                 "fid" => $file["fid"],
                 "updated" => REQUEST_TIME
@@ -291,12 +288,6 @@ function custom808_node_update($node){
                 ->condition("new_name", $file["name"])
                 ->execute();
         }
-        /*
-        db_delete("desktop_lock_encryption")
-            ->condition("nid", $node->nid)
-            ->condition("fid", $fids , "NOT IN")
-            ->execute();
-        */
     }
     else{
         db_delete("desktop_lock_encryption")
