@@ -631,22 +631,18 @@ h1#page-title {
 		}
 		
 		/* for user personal link in profile page */
-		
-			
 		&.field-name-field-link {
-			.field-item {
-				a.btn {
-					background-color: @mat-teal-500;
-					color: #FFF !important;
-					.before(f339,'',14px,#FFF);
-					&:before {
-						margin-left: 5px;
-					}
-				}
+			a.btn {
+				.absolute(100%; 42px; ''; 0; -42px);
+				border-radius: 0 0 2px 2px;
+				border-top: 1px solid #2196F3;
+				line-height: 40px;
+				background: #f0f0f0;
+				font-weight: 500;
+ 				.after(f04d,'',20px,@mat-blue);
+				&:after {.absolute('';'';'';'';'';15px);}
 			}
 		}
-			
-		
 	}
 	dl {
 		margin: 0;
@@ -1027,6 +1023,7 @@ h1#page-title {
 		// &.left .region-first,
 		&.right .region{
 			.paper(z1);
+			position: relative;
 		}
 	}
 	.column-17-3{

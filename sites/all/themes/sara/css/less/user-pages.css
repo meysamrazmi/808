@@ -679,18 +679,27 @@
 .profile .field.field-name-field-about-me .field-items {
   width: 65%;
 }
-.profile .field.field-name-field-link .field-item a.btn {
-  background-color: #009688;
-  color: #FFF !important;
+.profile .field.field-name-field-link a.btn {
+  position: absolute;
+  width: 100%;
+  height: 42px;
+  right: 0;
+  bottom: -42px;
+  border-radius: 0 0 2px 2px;
+  border-top: 1px solid #2196F3;
+  line-height: 40px;
+  background: #f0f0f0;
+  font-weight: 500;
 }
-.profile .field.field-name-field-link .field-item a.btn:before {
-  content: "\f339";
+.profile .field.field-name-field-link a.btn:after {
+  content: "\f04d";
   font-family: mat;
-  font-size: 14px;
-  color: #FFF;
+  font-size: 20px;
+  color: #2196F3;
 }
-.profile .field.field-name-field-link .field-item a.btn:before {
-  margin-left: 5px;
+.profile .field.field-name-field-link a.btn:after {
+  position: absolute;
+  left: 15px;
 }
 .profile dl {
   margin: 0;
@@ -1298,6 +1307,7 @@
   padding: 15px;
   box-shadow: 0 2px 2px #edeef0;
   box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  position: relative;
 }
 @media (max-width: 960px) {
   .panels-flexible-17 .column-17-3 {
