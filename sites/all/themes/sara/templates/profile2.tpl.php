@@ -28,6 +28,19 @@
  * @see template_process()
  */
 ?>
+<?php
+
+$loged_in_user = user_load($GLOBALS['user']->uid);
+
+	$path = explode("/", current_path());
+	if( ($path[0] == 'user' || $path[0] == 'users') && isset($path[1]) && is_numeric($path[1])){
+		$user = user_load(intval($path[1]));
+	}else{
+		$user = $loged_in_user;
+	}
+
+
+?>
 <div class="overlay"></div>
 <div class="costum <?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
@@ -38,18 +51,45 @@
 		  <?php
 //            var_dump($content);
 //            die();
+		  if(isset($content['field_about_me']['#items'][0]['value'])){
             $html = '<div class="card">
                         <b>سوابق خدمات حرفه ای من</b>
                         <br><p>';
-          if(isset($content['field_about_me']['#items'][0]['value'])){
+
 	          $html = $html .$content['field_about_me']['#items'][0]['value'];
-          }
-          $html = $html.'</p></div>';
-          print $html
+            $html = $html.'</p></div>';
+            print $html;
+            }
+
 		  ?>
 
           <div class="left">
               <?php
+
+              if($loged_in_user->uid == $user->uid) {
+
+                  if(!empty($content)) {
+	                  print '<div class="field-name-edit-vip-profile">
+                        
+                            <a href="/user/'.
+		                  $user->uid
+
+		                  .'/edit/vip">
+                            ویرایش اطلاعات
+                            </a>
+                        
+                    </div>';
+                  }else {
+
+	                  header("Location: /user/{$user->uid}/edit/vip");
+	                  die();
+
+                  }
+
+
+              }
+
+
               if(isset($content['field_episode'])){
 	              $link = 'modal-show';
 
@@ -73,6 +113,8 @@
                         </span>
                     </div>';
               }
+
+
 
 
 	          ?>
@@ -220,6 +262,8 @@
     span.file img {
         display: none;
     }
+
+
     .field-name-field-episode {
         margin-bottom: 15px;
         box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
@@ -266,6 +310,57 @@
     }
     .field-name-field-episode a:hover:before {
         color: #b71c1c;
+    }
+
+
+
+
+    .field-name-edit-vip-profile {
+        margin-bottom: 15px;
+        box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+        /*background: linear-gradient(to bottom left, rgba(73, 118, 245, 0.7) ,rgba(136, 40, 218, 0.7));*/
+        background: #fff;
+        position: relative;
+        color: #424242;
+        border-radius: 5px;
+        font-size: 15px;
+        font-weight: 500;
+    }
+    .field-name-edit-vip-profile a{
+        color: #424242!important;
+        display: block;
+        padding: 15px;
+        position: relative;
+        cursor: pointer;
+    }
+    .field-name-edit-vip-profile a:before {
+        transition: 0.5s;
+
+        content: "\f3eb";
+        font-family: mat;
+        color: #009688;
+        font-size: 24px;
+        line-height: 54px;
+        position: absolute;
+        left: 15px;
+        top: 0px;
+    }
+    .field-name-edit-vip-profile a:after {
+        transition: 0.5s;
+        content: ' ';
+        position: absolute;
+        background: #009688;
+        opacity: 0.2;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 0%;
+    }
+    .field-name-edit-vip-profile a:hover:after {
+        width: 100%;
+    }
+    .field-name-edit-vip-profile a:hover:before {
+        color: #00796B;
     }
 
     .work-experience {
@@ -327,21 +422,22 @@
         border-bottom: 1px solid #EEEEEE;
     }
     .work-experience .card .work-experience-co {
+        margin-left: 36px;
         font-family: fanum;
-        font-size: 18px;
+        font-size: 14px;
         font-weight: 500;
         margin-bottom: 5px;
     }
     .work-experience .card .work-experience-job {
         font-family: fanum;
         font-weight: 500;
-        font-size: 16px;
+        font-size: 13px;
         color: #9E9E9E;
         margin-bottom: 5px;
     }
     .work-experience .card .work-experience-period {
         font-family: fanum;
-        font-size: 12px;
+        font-size: 11px;
         color: #9E9E9E;
     }
     .work-experience .card .md-icon:before {
@@ -350,8 +446,8 @@
         color: #E0E0E0;
         font-size: 36px;
         position: absolute;
-        left: 25px;
-        top: 25px;
+        left: 15px;
+        top: 15px;
     }
     .flex {
         display: flex;
@@ -456,9 +552,12 @@
 			$('.overlay').fadeOut()
 		})
 
-        if($('.field-name-field-episode').length == 0 && $('.field-name-field-publish-file').length == 0){
-            $('.profile2-vip .top .card').css('width','100%')
-            $('.left').css('width','0%')
+        if($('.field-name-field-episode').length == 0 &&
+            $('.field-name-field-publish-file').length == 0 &&
+            $('.field-name-edit-vip-profile').length == 0) {
+
+                $('.profile2-vip .top .card').css('width','100%')
+                $('.left').css('width','0%')
         }
 
 	})

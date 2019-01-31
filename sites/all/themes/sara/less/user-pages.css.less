@@ -120,6 +120,353 @@
 				margin: 7px;
 			}
 		}
+		
+		
+		/*added by mohsen bagheri*/
+		
+		
+		
+		/*for page: user/orders/{id}*/
+		
+		#order-pane-ship_to.order-pane{
+			.ADRES-CONTEINER {
+				margin-bottom: 5px;
+			}
+			.ADRES-CONTEINER > div:first-child {
+				font-size: 14px !important;
+				line-height: 24px;
+			}
+			.ADRES-CONTEINER > div:first-child:before {
+				content: 'نام تحویل گیرنده: ';
+				font-weight: bold;
+				font-family: irans;
+				
+			}
+			.ADRES-CONTEINER > .ADRES {
+				padding: 0!important;
+				line-height: 24px;
+			}
+			.ADRES-CONTEINER > .ADRES:before {
+				content: 'آدرس: ';
+				font-weight: bold;
+				font-family: irans;
+			}
+			.ADRES-CONTEINER > .POSTI span:first-child {
+				font-weight: bold;
+				font-family: irans;
+				line-height: 24px;
+			}
+			.ADRES-CONTEINER > .POSTI span.DATA {
+				line-height: 24px;
+			}
+			.ADRES-CONTEINER > .PHON span:first-child {
+				display: none;
+				font-weight: bold;
+				font-family: irans;
+				line-height: 24px;
+			}
+			.ADRES-CONTEINER > .PHON span.DATA {
+				display: none;
+				line-height: 24px;
+			}
+			
+		}
+		#order-pane-ship_to {
+			background: #fff;
+			padding: 15px;
+			padding-top: 10px;
+			box-shadow: @z1;
+			margin: .5em!important;
+			border: none!important;
+			font-size: 14px;
+			border-radius: 3px;
+			font-family: fanum;
+			float: none;
+			.order-pane-title {
+				line-height: 24px;
+				color: #424242;
+				border-bottom: 1px solid #E0E0E0;
+				margin-bottom: 10px;
+				.before(f5d2;'';18px;@mat-deep-purple-500);
+				
+			}
+			.order-pane-title:before {
+				position: relative;
+				top: 3px;
+				font-weight: normal;
+				line-height: 24px;
+				margin-left: 10px;
+			}
+			br {
+				display: none;
+			}
+		}
+		
+		#order-pane-bill_to {
+			display: none;
+		}
+		
+		#order-pane-payment {
+			width: calc(50% - 1em);
+			background: #fff;
+			padding: 15px;
+			padding-top: 10px;
+			box-shadow: @z1;
+			margin: .5em!important;
+			border: none!important;
+			font-size: 14px;
+			border-radius: 3px;
+			font-family: fanum;
+			line-height: 24px;
+			
+			.order-pane-title:before {
+				position: relative;
+				top: 3px;
+				font-weight: normal;
+				margin-left: 10px;
+			}
+			.order-pane-title {
+				color: #424242;
+				border-bottom: 1px solid #e0e0e0;
+				margin-bottom: 10px;
+				font-weight: bold;
+				line-height: 24px;
+				.before(f19b;'';18px;@mat-deep-purple-500);
+				
+				padding: 0;
+				padding-bottom: .5em;
+			}
+		}
+		#block-system-main {
+			.field.field-name-field-text.field-type-text.field-label-above{
+				width: calc(50% - 1em);
+				background: #fff;
+				padding: 15px;
+				padding-top: 10px;
+				box-shadow: @z1;
+				margin: .5em!important;
+				border: none!important;
+				font-size: 14px;
+				float: right;
+				border-radius: 3px;
+				font-family: fanum;
+			}
+			.field.field-name-field-text.field-type-text.field-label-above .field-label{
+				padding-bottom: .5em;
+				line-height: 24px;
+				color: #424242;
+				border-bottom: 1px solid #e0e0e0;
+				margin-bottom: 10px;
+				.before(f1ee;'';18px;@mat-deep-purple-500);
+				
+			}
+			.field.field-name-field-text.field-type-text.field-label-above .field-label:before{
+				position: relative;
+				top: 3px;
+				margin-left: 10px;
+				font-weight: normal;
+			}
+		}
+		
+		
+		.order-pane#order-pane-products {
+			padding: 15px;
+			padding-top: 10px;
+			background-color: #fff;
+			box-shadow: @z1;
+			margin: .5em!important;
+			border: none!important;
+			font-size: 14px;
+			float: right;
+			border-radius: 3px;
+			font-family: fanum;
+			width: calc(100% - 1em);
+			overflow-x: scroll;
+			.order-pane-title {
+				color: #424242;
+				border-bottom: 1px solid #e0e0e0;
+				margin-bottom: 10px;
+				font-weight: bold;
+				line-height: 24px;
+				padding: 0;
+				padding-bottom: .5em;
+				.before(f110;'';18px;@mat-deep-purple-500);
+				
+			}
+			.order-pane-title:before{
+				position: relative;
+				top: 3px;
+				font-weight: normal;
+				margin-left: 10px;
+			}
+			table{
+				tr {
+					line-height: 32px;
+				 	td {
+						padding: 4px 8px;
+						
+						&.product {
+							min-width: 200px;
+						}
+					}
+					th{
+						background-color: #fff;
+						height: 40px;
+						line-height: 40px;
+					}
+					
+				}
+				tr:nth-child(even) {
+					background-color: #F5F5F5;
+				}
+			}
+			
+		}
+		
+		#order-pane-line_items {
+			padding: 15px;
+			padding-top: 10px;
+			background-color: #fff;
+			box-shadow: @z1;
+			margin: .5em!important;
+			border: none!important;
+			font-size: 14px;
+			float: right;
+			border-radius: 3px;
+			font-family: fanum;
+			width: calc( 100% - 1em );
+			overflow-x: scroll;
+			overflow-x: overlay;
+			
+			table {
+				tr:nth-child(even) {
+					background-color: #F5F5F5;
+					
+				}
+				tr {
+					line-height: 32px;
+					
+					td {
+						padding: 4px 8px;
+						
+					}
+					
+					
+				}
+			}
+		}
+		#order-pane-print_button {
+			padding: 0;
+			border: none;
+			background: none;
+			text-align: left;
+			a {
+				//display: inline-block;
+				//text-align: center;
+				//border-radius: 2px;
+				//min-width: 88px;
+				//width: 88px;
+				//padding: 0 5px;
+				//height: 36px;
+				//line-height: 36px;
+				font-size: 0px!important;
+				//transition: all .2s;
+				//text-decoration: none;
+				//box-shadow: rgba(0,0,0,0.117647) 0 1px 6px, rgba(0,0,0,0.117647) 0 1px 4px;
+				//outline: 0;
+				//background-color: #fff;
+				.btn();
+				
+				.before(f42a;'';18px;@mat-blue-500);
+				
+				&:after {
+					position: relative;
+					bottom: 3px;
+					content: 'چاپ';
+					font-size: 14px;
+					font-weight: 500;
+					color: @mat-blue-500;
+					line-height: 36px;
+				}
+				&:before {
+					font-weight: normal;
+					margin-left: 5px;
+					line-height: 36px;
+				}
+				
+			}
+			
+			
+		}
+		
+		.order-pane#order-pane-order_comments {
+			padding: 15px;
+			padding-top: 10px;
+			background-color: #fff;
+			box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+			margin: .5em!important;
+			border: none!important;
+			font-size: 14px;
+			float: right;
+			border-radius: 3px;
+			font-family: fanum;
+			width: calc(100% - 1em);
+			overflow-x: scroll;
+			overflow-x: overlay;
+			.order-pane-title {
+				color: #424242;
+				border-bottom: 1px solid #e0e0e0;
+				margin-bottom: 10px;
+				font-weight: bold;
+				line-height: 24px;
+				padding: 0;
+				padding-bottom: .5em;
+				.before(f42a;'';18px;@mat-deep-purple-500);
+				
+				&:before{
+					position: relative;
+					top: 3px;
+					font-weight: normal;
+					margin-left: 10px;
+				}
+			}
+			table {
+				tr {
+					line-height: 32px;
+					
+					td{
+						padding: 4px 8px;
+						&.message {
+							min-width: 200px;
+						}
+					}
+					th{
+						background-color: #fff;
+						height: 40px;
+						line-height: 40px;
+						
+					}
+					&:nth-child(even) {
+						background-color: #F5F5F5;
+					}
+				}
+			}
+		}
+		@media @600 {
+			#block-system-main .field.field-name-field-text.field-type-text.field-label-above{
+				width: calc(100% - 1em);
+			}
+			#order-pane-payment {
+				width: calc(100% - 1em);
+			}
+			.order-pane#order-pane-products table * {
+				font-size: 12px!important;
+			}
+			.order-pane#order-pane-products table {
+				font-size: 12px!important;
+				
+			}
+		}
 	}
 	
 	&.page-user-points{
@@ -154,6 +501,8 @@
 			}
 		}
 	}
+	
+	
 }
 .page-reward, .page-charge, .page-login , .page-register , .page-user-password , .page-user.role-anonymous-user:not(.page-user-){
 	section#main:before {
@@ -280,6 +629,24 @@ h1#page-title {
 		&.field-name-field-about-me .field-items {
 			width: 65%;
 		}
+		
+		/* for user personal link in profile page */
+		
+			
+		&.field-name-field-link {
+			.field-item {
+				a.btn {
+					background-color: @mat-teal-500;
+					color: #FFF !important;
+					.before(f339,'',14px,#FFF);
+					&:before {
+						margin-left: 5px;
+					}
+				}
+			}
+		}
+			
+		
 	}
 	dl {
 		margin: 0;
@@ -348,6 +715,17 @@ h1#page-title {
 			li {
 				&.messages{.not-same-user &{display: none;}}
 				&.request-relationship{display: none;}
+				&.user.vip{
+					a {
+						.after(f12f,'',6px,@mat-red-500);
+						&:after {
+							position: absolute;
+							margin-right: 5px;
+							top: -5px;
+							//animation: vipRedDot 2s infinite;
+						}
+					}
+				}
 				a{
 					background: transparent;
 					border: none;
@@ -1965,6 +2343,12 @@ form#uc-addresses-get-address-form{
 	.btn.btn-primary:hover {
 		background-color: #64B5F6 ;
 	}
+}
+
+@keyframes vipRedDot {
+	0% {color: @mat-red-100;}
+	50% {color: @mat-red-500;}
+	100% {color: @mat-red-100;}
 }
 
 /*-------------end from razmia3.css--------------------*/
