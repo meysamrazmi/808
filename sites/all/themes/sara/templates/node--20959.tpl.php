@@ -1,7 +1,7 @@
-<img src="/sites/default/files/field/image/node_19986.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
+<img src="/sites/default/files/field/image/node_20959.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
 
 <section class="kargah-sec">
-    <div style="width: 70%; background-color: #ffffff; padding: 10px; margin: -17px auto 25px auto; border: solid #b39dd9; border-width: 0px 3px; box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px; text-align: center;">
+    <!--<div style="width: 70%; background-color: #ffffff; padding: 10px; margin: -17px auto 25px auto; border: solid #b39dd9; border-width: 0px 3px; box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px; text-align: center;">
         <a href="/node/20209" target="_blank" style="color: #909090 !important; font-size: 16px; margin: 5px; display: block;">
             انتشار فایل ارائه پروفسور مقدم در دومین دوره آموزش جامع طراحی عملکردی سازه ها
         </a>
@@ -10,9 +10,9 @@
         <a href="/node/20167" target="_blank" style="color: #909090 !important; font-size: 16px; margin: 5px; display: block;">
             مجموعه تصاوير دوره دوم آموزش اصول محاسبات لرزه‌ای و طراحی عملکردی سازه‌ها 25 و 26 مهرماه، دانشگاه صنعتی شريف
         </a>
-    </div>
+    </div>-->
     <h2>
-        <b>دومین </b>
+        <b>سومین </b>
         دوره جامع آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها</h2>
     <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره فقط حضوری و بدون ضبط فیلم است.</p>
     <div class="first-row" style="margin-top: 40px;">
@@ -24,7 +24,7 @@
                 <li>طراحی عملکردی در آیین نامه ها</li>
                 <li>آشنایی با سیستم های نوین کنترل ارتعاشات لرزه ای</li>
                 <li>حل مثال عملی با استفاده از نرم افزار</li>
-                <a href="/sites/default/files/field/files/node_19986-civil808-pbd_course-2.pdf" style="margin-top: 9px;" class="btn" target="_blank">سرفصل های دوره</a>
+                <a href="/sites/default/files/field/files/node_20959-pbdcourse-topics.pdf" style="margin-top: 9px;" class="btn" target="_blank">سرفصل های دوره</a>
             </ul>
             <p><strong>پکیج همراه با دوره:</strong></p>
             <ul>
@@ -32,10 +32,6 @@
                 <li>
                     اعطای گواهینامه از موسسه 808 به عنوان نماینده رسمی SeismoSoft در ایران
                 </li>
-                <li>
-                    به همراه اعطای فلش پکیج استثنائی 808 به شرکت کنندگان دوره
-                </li>
-                <a href="https://civil808.com/node/19704" style="margin-top: 9px;" class="btn" target="_blank">مشاهده محتوای فلش</a>
                 <li style="margin-top: 18px;">
                     و جزوه چاپ شده بخش تئوری با تالیف پروفسور مقدم
                 </li>
@@ -56,6 +52,68 @@
     </div>
 </section>
 
+<section id="forth">
+    <h2 class="section-title"> با خرید هر یک از بسته های پیشنهادی زیر، در این دوره به صورت
+        <span style="color: red"> رایگان </span>
+        شرکت کنید </h2>
+    <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">
+        اطلاعات بیشتر را می توانید از
+        <a target="_blank" href="/seismosoft"> این صفحه </a>
+        دریافت کنید.
+    </p>
+    <div class="forth-wh">
+        <div class="forth-box">
+            <div class="forth-top">
+                <div><img src="http://land.civil808.com/97/yalda/images/Struct.png" title="" alt="" style="max-width: 140px"></div>
+            </div>
+            <div class="forth-bottom">
+                این نرم‌افزار یک پکیج المان محدود است که توانایی پیش‌بینی رفتار جابه‌جایی‌ زیاد سازه‌های فضایی تحت بارگذاری دینامیکی یا استاتیکی با در نظر گرفتن هر دو رفتار غیرخطی هندسی و غیرالاستیسته بودن مواد را دارد.
+                <br>
+                <a href="https://civil808.com/node/20627" target="_blank" class="btn">
+                    خرید با ۵۰٪ تخفیف مخصوص بازار ایران 1000€
+                </a>
+            </div>
+        </div>
+        <div class="forth-box">
+            <div class="forth-top" style="min-height: 245px;">
+                <div><img src="http://land.civil808.com/97/yalda/images/Match.png" title="" alt=""></div>
+                <div><img src="http://land.civil808.com/97/yalda/images/Artif.png" title="" alt=""></div>
+                <div><img src="http://land.civil808.com/97/yalda/images/Spect.png" title="" alt=""></div>
+                <div><img src="http://land.civil808.com/97/yalda/images/Signal.png" title="" alt=""></div>
+            </div>
+            <div class="forth-bottom">
+                قیمت مجموع چهار نرم افزار SeismoArtif و SeismoMatch و SeismoSpect و SeismoSignal  در صورتی که به صورت جداگانه تهیه شوند، 500€ است. اما شما می‌توانید این پکیج را با قیمت استثنایی 375€ خریداری کنید.
+                <a href="/cart/add/p20638-p20637?destination=cart" target="_blank" class="btn">
+                    خرید بسته با ۲۵٪ تخفیف فقط 375€
+                </a>
+            </div>
+        </div>
+        <div class="forth-box">
+            <div class="forth-top">
+                <div><img src="http://land.civil808.com/97/yalda/images/Build.png" title="" alt="" style="max-width: 140px"></div>
+            </div>
+            <div class="forth-bottom">
+                این نرم افزار پکیج اجزا محدودی است که به صورت کامل و ویژه به ارزیابی و مقاوم‌سازی سازه‌های بتن آرمه در دفتر طراحی اختصاص داشته و از آیین نامه آمریکا و نشریه 360 داخلی با همکاری و نمایندگی موسسه 808 پشتیبانی می کند.
+                <a href="https://civil808.com/node/20628" target="_blank" class="btn">
+                    خرید با ۵۰٪ تخفیف مخصوص بازار ایران 1000€
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="data">
+        <p>
+            <b>توجه ۱: </b>
+            دانشجویان و اساتید دانشگاه‌ها می‌توانند مدارک شناسایی (کارت دانشجویی، گواهی اشتغال به تحصیل یا هر مدرک معتبر دیگر) خود را به آدرس ایمیل edu@civil808.com ارسال کنند تا از ۱۰ درصد تخفیف بیشتر بر قیمت نهایی استفاده کنند.
+        </p>
+        <p>
+            <b>توجه ۲: </b>
+            در داخل سایت قیمت‌ها به قیمت روز یورو محاسبه شده است و برای پرداخت از طریق Paypal، اطلاعات لازم را در
+            <a href="https://civil808.com/node/20418" target="_blank">این صفحه</a>
+            مطالعه کنید.
+        </p>
+    </div>
+</section>
+
 <section id="more-data">
     <h2>طرح ویژه بورسیه رایگان تحصیلی مختص دانشجویان جدیدالورود مقطع کارشناسی ارشد مهندسی عمران</h2>
     <p style="text-align: center;margin-bottom: 40px;margin-top: 30px;	font-size: 15px;color: #888;">
@@ -70,7 +128,6 @@
             <li>دانشجو میبایست اصل کارت دانشجویی خود را در روز نخست برگزاری دوره ارائه نماید.</li>
             <li>بعد از اتمام موفقیت آمیز دوره، دانشجویان حاضر در این طرح می توانند در صورت تمایل، طی یک دوره ی کارآموزی به مدت معلوم با موسسه همکاری کرده و این همکاری بعد از اتمام دوره کارآموزی و در صورت تایید کارشناسان مجموعه، در قالب همکاری حرفه ای ادامه پیدا خواهد کرد.</li>
             <li> ظرفیت طرح بورسیه تحصیلی دوره ی طراحی عملکردی، 10 نفر می باشد و اولویت با دانشجویانی است که مرحله ی دوم ثبت نام را زودتر انجام دهند.</li>
-            <li>ضمنا فلش ویژه ی رایگان، به دانشجویان طرح بورسیه تعلق نمی گیرد.</li>
             <li>برای مشاهده فیلم معرفی طرح بورسیه رایگان تحصیلی در موسسه 808،
                 <a href="/node/20097" target="_blank">کلیک کنید.</a>
             </li>
@@ -104,9 +161,9 @@
 
 <section class="second">
     <h2 class="text"> ثبت نام در دوره جامع آموزش اصول محاسبات بهسازی لرزه ای و طراحی عملکردی سازه ها + حل مثال عملی با نرم افزار</h2>
-    <p style="text-align: center;margin-top: -18px;font-size: 15px;color:red;margin-bottom: 29px;">
+    <!--<p style="text-align: center;margin-top: -18px;font-size: 15px;color:red;margin-bottom: 29px;">
         ظرفیت دوره رو به اتمام است.
-    </p>
+    </p>-->
     <div class="takhfifat" style="margin-bottom: 15px;">
         <p>
             <span>10 %</span>تخفیف برای اعضای VIP، <a href="/landing/vip" target="_blank">عضو ویژه شوید</a>        </p>
@@ -121,9 +178,9 @@
                 <div class="inner-text">
                     <p class="text"> مدرس: پروفسور حسن مقدم </p>
                     <p style="padding: 9px 12px 0px 0px;">شامل پذیرایی ناهار و پکیج همراه دوره</p>
-                    <div class="tarikh">25 و 26 مهر ماه 1397</div>
+                    <div class="tarikh">8 و 9 اسفندماه 1397</div>
                     <div class="makan"> دانشگاه صنعتی شریف، سالن انجمن فارغ التحصیلان </div>
-                    <div class="zaman">25 مهر ساعت 8 تا 17 و 26 مهر 8 تا 12 (جمعا 12 ساعت) </div>
+                    <!--<div class="zaman">25 مهر ساعت 8 تا 17 و 26 مهر 8 تا 12 (جمعا 12 ساعت) </div>-->
                     <div class="mablagh"> 300,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
@@ -136,9 +193,9 @@
                     <p style="padding: 9px 12px 0px 0px;"> شامل پذیرایی ناهار در 2 روز اول و پکیج همراه دوره </p>
                     <!--<p class="important" style="margin: 2px 12px 5px 0;font-weight: bold;background-color: #f5f5f5;padding: 6px 14px;display: inline-block;">به همراه پکیج مخصوص
                     </p>-->
-                    <div class="tarikh"> 25 و 26 مهرماه + پنج شنبه ها و جمعه ها شروع از 27 مهرماه به مدت 3 هفته</div>
+                    <div class="tarikh"> 8 و 9 اسفندماه + پنج شنبه ها و جمعه ها به مدت 3 هفته</div>
                     <div class="makan"> موسسه آموزشی 808 </div>
-                    <div class="zaman"> دوره تئوری: 25 مهر ساعت 8 تا 17 و 26 مهر 8 تا 12، دوره نرم افزاری: 6 روز 9 تا 16 - جمعا 48 ساعت </div>
+                    <!--<div class="zaman"> دوره تئوری: 25 مهر ساعت 8 تا 17 و 26 مهر 8 تا 12، دوره نرم افزاری: 6 روز 9 تا 16 - جمعا 48 ساعت </div>-->
                     <div class="mablagh"> 800,000 تومان </div>
                 </div>
                 <span class="sabtenam"> ثبت نام </span>
@@ -185,11 +242,11 @@
 <section id="ebooks">
     <h2> دوره های مرتبط </h2>
     <div class="aks3">
-        <a href="/node/19701" target="_blank">
-            <img src="/sites/default/files/photo_2018-09-11_14-56-27.jpg" width="350" height="350" >
+        <a href="/node/20930" target="_blank">
+            <img src="/sites/default/files/photo_2019-01-28_10-42-54.jpg" width="350" height="350" >
         </a>
-        <a href="/node/19856" target="_blank">
-            <img src="/sites/default/files/damper-4.jpg" width="350" height="350" >
+        <a href="/node/20646" target="_blank">
+            <img src="/sites/default/files/photo_2018-12-22_10-39-51.jpg" width="350" height="350" >
         </a>
     </div>
 </section>
@@ -224,7 +281,7 @@
     font-size: 14px;">خرید همزمان هر دو نرم افزار شامل 10 درصد تخفیف می شود :
                 <b style="font-family: Tahoma;">1800€</b>
             </p>
-            <a href="/pbd/seismobuild" target="_blank" class="btn btn-primary" style="    margin: auto;
+            <a href="/seismosoft" target="_blank" class="btn btn-primary" style="    margin: auto;
     display: block;
     width: 220px;">اطلاعات بیشتر</a>
         </div>
@@ -1334,6 +1391,39 @@
         right: 0;
         height: 1321px;
         transform: skew(-68deg);
+    }
+    /*------------------------forth-section-----------------*/
+    #forth .forth-box {
+        margin: 10px 3vw;
+        padding: 15px 15px 15px 15px;
+        box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+        box-sizing: border-box;
+        position: relative;
+        max-width: 372px;
+        background-color: white;
+        display: inline-block;
+        vertical-align: top;
+    }
+    #forth .forth-wh {
+        margin: 75px 0;
+        text-align: center;
+    }
+    #forth .forth-top {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #forth {
+        padding: 100px 1vw 100px 1vw;
+        background-color: #f5f5f5;
+    }
+    #forth .forth-bottom a{
+        display: block;
+        margin-top: 31px;
+    }
+    #forth .data{
+        max-width: 1100px;
+        margin: auto;
     }
 </style>
 
