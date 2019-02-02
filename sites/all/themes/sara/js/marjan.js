@@ -159,10 +159,10 @@ $(document).ready(function () {
 	   }
     });
     // add homepage link to every tag pages
-    $('.page-pedia.page-tags h1#page-title').after('<a href="/pedia" class="mainpedia" target="_blank">صفحه اصلی دانشنامه</a>');
+    $('.page-pedia.page-tags h1#page-title').after('<a href="/pedia" class="mainpedia1" target="_blank">صفحه اصلی دانشنامه</a>');
 
     //add a blog link to pedia homepage
-    $('.page-pedia:not(.page-node):not(.page-tags):not(.page-tag) h1#page-title').after('<a href="/node/14053" class="mainpedia" target="_blank">دانشنامه چیست</a>');
+    $('.page-pedia:not(.page-node):not(.page-tags):not(.page-tag) h1#page-title').after('<a href="/node/14053" class="btn mainpedia" target="_blank">دانشنامه چیست</a>');
 
 	$('.page-eng .pane-jquery-countdown-timer-jquery-countdown-timer').append('<a style="font-size:16px;color: #000000;margin: 15px auto;display: block;max-width: 373px;background-color: #90CAF6;padding: 20px 16px;border-radius: 11px;text-align: center;" href="/node/19807" target="_blank"> مشاوره تخصصی آزمون ورود به حرفه عمران و معماری به همراه ورکشاپ رایگان آموزشی </a>');
     $('.page-eng .pane-jquery-countdown-timer-jquery-countdown-timer').append('<a style="font-size:16px;color: #000000;margin: 15px auto;display: block;max-width: 373px;background-color: #90CAF6;padding: 20px 16px;border-radius: 11px;text-align: center;" href="/node/20190" target="_blank"> برای ثبت نام دوره حضوری ورود به حرفه کلیک کنید </a>');
