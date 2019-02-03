@@ -137,6 +137,10 @@
   margin: 20px auto 0;
   max-width: 600px;
 }
+.page-user.page-user-orders {
+  /*added by mohsen bagheri*/
+  /*for page: user/orders/{id}*/
+}
 .page-user.page-user-orders .view-empty {
   background-color: white;
   padding: 20px;
@@ -153,6 +157,343 @@
 }
 .page-user.page-user-orders .view-empty a {
   margin: 7px;
+}
+.page-user.page-user-orders #order-pane-ship_to.order-pane .ADRES-CONTEINER {
+  margin-bottom: 5px;
+}
+.page-user.page-user-orders #order-pane-ship_to.order-pane .ADRES-CONTEINER > div:first-child {
+  font-size: 14px !important;
+  line-height: 24px;
+}
+.page-user.page-user-orders #order-pane-ship_to.order-pane .ADRES-CONTEINER > div:first-child:before {
+  content: 'نام تحویل گیرنده: ';
+  font-weight: bold;
+  font-family: irans;
+}
+.page-user.page-user-orders #order-pane-ship_to.order-pane .ADRES-CONTEINER > .ADRES {
+  padding: 0!important;
+  line-height: 24px;
+}
+.page-user.page-user-orders #order-pane-ship_to.order-pane .ADRES-CONTEINER > .ADRES:before {
+  content: 'آدرس: ';
+  font-weight: bold;
+  font-family: irans;
+}
+.page-user.page-user-orders #order-pane-ship_to.order-pane .ADRES-CONTEINER > .POSTI span:first-child {
+  font-weight: bold;
+  font-family: irans;
+  line-height: 24px;
+}
+.page-user.page-user-orders #order-pane-ship_to.order-pane .ADRES-CONTEINER > .POSTI span.DATA {
+  line-height: 24px;
+}
+.page-user.page-user-orders #order-pane-ship_to.order-pane .ADRES-CONTEINER > .PHON span:first-child {
+  display: none;
+  font-weight: bold;
+  font-family: irans;
+  line-height: 24px;
+}
+.page-user.page-user-orders #order-pane-ship_to.order-pane .ADRES-CONTEINER > .PHON span.DATA {
+  display: none;
+  line-height: 24px;
+}
+.page-user.page-user-orders #order-pane-ship_to {
+  background: #fff;
+  padding: 15px;
+  padding-top: 10px;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  margin: 0.5em !important;
+  border: none!important;
+  font-size: 14px;
+  border-radius: 3px;
+  font-family: fanum;
+  float: none;
+}
+.page-user.page-user-orders #order-pane-ship_to .order-pane-title {
+  line-height: 24px;
+  color: #424242;
+  border-bottom: 1px solid #E0E0E0;
+  margin-bottom: 10px;
+}
+.page-user.page-user-orders #order-pane-ship_to .order-pane-title:before {
+  content: "\f5d2";
+  font-family: mat;
+  font-size: 18px;
+  color: #673AB7;
+}
+.page-user.page-user-orders #order-pane-ship_to .order-pane-title:before {
+  position: relative;
+  top: 3px;
+  font-weight: normal;
+  line-height: 24px;
+  margin-left: 10px;
+}
+.page-user.page-user-orders #order-pane-ship_to br {
+  display: none;
+}
+.page-user.page-user-orders #order-pane-bill_to {
+  display: none;
+}
+.page-user.page-user-orders #order-pane-payment {
+  width: calc(50% - 1em);
+  background: #fff;
+  padding: 15px;
+  padding-top: 10px;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  margin: 0.5em !important;
+  border: none!important;
+  font-size: 14px;
+  border-radius: 3px;
+  font-family: fanum;
+  line-height: 24px;
+}
+.page-user.page-user-orders #order-pane-payment .order-pane-title:before {
+  position: relative;
+  top: 3px;
+  font-weight: normal;
+  margin-left: 10px;
+}
+.page-user.page-user-orders #order-pane-payment .order-pane-title {
+  color: #424242;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 10px;
+  font-weight: bold;
+  line-height: 24px;
+  padding: 0;
+  padding-bottom: 0.5em;
+}
+.page-user.page-user-orders #order-pane-payment .order-pane-title:before {
+  content: "\f19b";
+  font-family: mat;
+  font-size: 18px;
+  color: #673AB7;
+}
+.page-user.page-user-orders #block-system-main .field.field-name-field-text.field-type-text.field-label-above {
+  width: calc(50% - 1em);
+  background: #fff;
+  padding: 15px;
+  padding-top: 10px;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  margin: 0.5em !important;
+  border: none!important;
+  font-size: 14px;
+  float: right;
+  border-radius: 3px;
+  font-family: fanum;
+}
+.page-user.page-user-orders #block-system-main .field.field-name-field-text.field-type-text.field-label-above .field-label {
+  padding-bottom: 0.5em;
+  line-height: 24px;
+  color: #424242;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 10px;
+}
+.page-user.page-user-orders #block-system-main .field.field-name-field-text.field-type-text.field-label-above .field-label:before {
+  content: "\f1ee";
+  font-family: mat;
+  font-size: 18px;
+  color: #673AB7;
+}
+.page-user.page-user-orders #block-system-main .field.field-name-field-text.field-type-text.field-label-above .field-label:before {
+  position: relative;
+  top: 3px;
+  margin-left: 10px;
+  font-weight: normal;
+}
+.page-user.page-user-orders .order-pane#order-pane-products {
+  padding: 15px;
+  padding-top: 10px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  margin: 0.5em !important;
+  border: none!important;
+  font-size: 14px;
+  float: right;
+  border-radius: 3px;
+  font-family: fanum;
+  width: calc(100% - 1em);
+  overflow-x: scroll;
+}
+.page-user.page-user-orders .order-pane#order-pane-products .order-pane-title {
+  color: #424242;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 10px;
+  font-weight: bold;
+  line-height: 24px;
+  padding: 0;
+  padding-bottom: 0.5em;
+}
+.page-user.page-user-orders .order-pane#order-pane-products .order-pane-title:before {
+  content: "\f110";
+  font-family: mat;
+  font-size: 18px;
+  color: #673AB7;
+}
+.page-user.page-user-orders .order-pane#order-pane-products .order-pane-title:before {
+  position: relative;
+  top: 3px;
+  font-weight: normal;
+  margin-left: 10px;
+}
+.page-user.page-user-orders .order-pane#order-pane-products table tr {
+  line-height: 32px;
+}
+.page-user.page-user-orders .order-pane#order-pane-products table tr td {
+  padding: 4px 8px;
+}
+.page-user.page-user-orders .order-pane#order-pane-products table tr td.product {
+  min-width: 200px;
+}
+.page-user.page-user-orders .order-pane#order-pane-products table tr th {
+  background-color: #fff;
+  height: 40px;
+  line-height: 40px;
+}
+.page-user.page-user-orders .order-pane#order-pane-products table tr:nth-child(even) {
+  background-color: #F5F5F5;
+}
+.page-user.page-user-orders #order-pane-line_items {
+  padding: 15px;
+  padding-top: 10px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  margin: 0.5em !important;
+  border: none!important;
+  font-size: 14px;
+  float: right;
+  border-radius: 3px;
+  font-family: fanum;
+  width: calc(100% - 1em);
+  overflow-x: scroll;
+  overflow-x: overlay;
+}
+.page-user.page-user-orders #order-pane-line_items table tr:nth-child(even) {
+  background-color: #F5F5F5;
+}
+.page-user.page-user-orders #order-pane-line_items table tr {
+  line-height: 32px;
+}
+.page-user.page-user-orders #order-pane-line_items table tr td {
+  padding: 4px 8px;
+}
+.page-user.page-user-orders #order-pane-print_button {
+  padding: 0;
+  border: none;
+  background: none;
+  text-align: left;
+}
+.page-user.page-user-orders #order-pane-print_button a {
+  font-size: 0px!important;
+  background: #fbfbfb;
+  border: none;
+  height: 36px;
+  border-radius: 2px;
+  line-height: 36px;
+  text-align: center;
+  color: #444 !important;
+  padding: 0 16px;
+  text-shadow: none;
+  display: inline-block;
+  font-size: 14px;
+  min-width: 88px;
+  transition: all 0.2s;
+  text-decoration: none;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  outline: none;
+}
+.page-user.page-user-orders #order-pane-print_button a:hover {
+  background-color: #eee;
+}
+.page-user.page-user-orders #order-pane-print_button a:focus {
+  background: #f5f5f5;
+  box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+}
+.page-user.page-user-orders #order-pane-print_button a:before {
+  content: "\f42a";
+  font-family: mat;
+  font-size: 18px;
+  color: #2196F3;
+}
+.page-user.page-user-orders #order-pane-print_button a:after {
+  position: relative;
+  bottom: 3px;
+  content: 'چاپ';
+  font-size: 14px;
+  font-weight: 500;
+  color: #2196F3;
+  line-height: 36px;
+}
+.page-user.page-user-orders #order-pane-print_button a:before {
+  font-weight: normal;
+  margin-left: 5px;
+  line-height: 36px;
+}
+.page-user.page-user-orders .order-pane#order-pane-order_comments {
+  padding: 15px;
+  padding-top: 10px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  margin: 0.5em !important;
+  border: none!important;
+  font-size: 14px;
+  float: right;
+  border-radius: 3px;
+  font-family: fanum;
+  width: calc(100% - 1em);
+  overflow-x: scroll;
+  overflow-x: overlay;
+}
+.page-user.page-user-orders .order-pane#order-pane-order_comments .order-pane-title {
+  color: #424242;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 10px;
+  font-weight: bold;
+  line-height: 24px;
+  padding: 0;
+  padding-bottom: 0.5em;
+}
+.page-user.page-user-orders .order-pane#order-pane-order_comments .order-pane-title:before {
+  content: "\f42a";
+  font-family: mat;
+  font-size: 18px;
+  color: #673AB7;
+}
+.page-user.page-user-orders .order-pane#order-pane-order_comments .order-pane-title:before {
+  position: relative;
+  top: 3px;
+  font-weight: normal;
+  margin-left: 10px;
+}
+.page-user.page-user-orders .order-pane#order-pane-order_comments table tr {
+  line-height: 32px;
+}
+.page-user.page-user-orders .order-pane#order-pane-order_comments table tr td {
+  padding: 4px 8px;
+}
+.page-user.page-user-orders .order-pane#order-pane-order_comments table tr td.message {
+  min-width: 200px;
+}
+.page-user.page-user-orders .order-pane#order-pane-order_comments table tr th {
+  background-color: #fff;
+  height: 40px;
+  line-height: 40px;
+}
+.page-user.page-user-orders .order-pane#order-pane-order_comments table tr:nth-child(even) {
+  background-color: #F5F5F5;
+}
+@media (max-width: 600px) {
+  .page-user.page-user-orders #block-system-main .field.field-name-field-text.field-type-text.field-label-above {
+    width: calc(100% - 1em);
+  }
+  .page-user.page-user-orders #order-pane-payment {
+    width: calc(100% - 1em);
+  }
+  .page-user.page-user-orders .order-pane#order-pane-products table * {
+    font-size: 12px!important;
+  }
+  .page-user.page-user-orders .order-pane#order-pane-products table {
+    font-size: 12px!important;
+  }
 }
 .page-user.page-user-points .empty-userpoint {
   background-color: white;
@@ -319,6 +660,7 @@
 .profile .field {
   display: flex;
   flex-direction: row;
+  /* for user personal link in profile page */
 }
 .profile .field .field-label {
   font-weight: normal !important;
@@ -336,6 +678,28 @@
 }
 .profile .field.field-name-field-about-me .field-items {
   width: 65%;
+}
+.profile .field.field-name-field-link a.btn {
+  position: absolute;
+  width: 100%;
+  height: 42px;
+  right: 0;
+  bottom: -42px;
+  border-radius: 0 0 2px 2px;
+  border-top: 1px solid #2196F3;
+  line-height: 40px;
+  background: #f0f0f0;
+  font-weight: 500;
+}
+.profile .field.field-name-field-link a.btn:after {
+  content: "\f04d";
+  font-family: mat;
+  font-size: 20px;
+  color: #2196F3;
+}
+.profile .field.field-name-field-link a.btn:after {
+  position: absolute;
+  left: 15px;
 }
 .profile dl {
   margin: 0;
@@ -408,6 +772,17 @@
 }
 .page-user .pane-page-tabs ul li.request-relationship {
   display: none;
+}
+.page-user .pane-page-tabs ul li.user.vip a:after {
+  content: "\f12f";
+  font-family: mat;
+  font-size: 6px;
+  color: #F44336;
+}
+.page-user .pane-page-tabs ul li.user.vip a:after {
+  position: absolute;
+  margin-right: 5px;
+  top: -5px;
 }
 .page-user .pane-page-tabs ul li a {
   background: transparent;
@@ -932,6 +1307,7 @@
   padding: 15px;
   box-shadow: 0 2px 2px #edeef0;
   box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  position: relative;
 }
 @media (max-width: 960px) {
   .panels-flexible-17 .column-17-3 {
@@ -2986,5 +3362,16 @@ form#uc-addresses-get-address-form a.cancel-address-link:focus {
 }
 .form-item.form-type-file.form-item-files-picture-upload .btn.btn-primary:hover {
   background-color: #64B5F6;
+}
+@keyframes vipRedDot {
+  0% {
+    color: #FFCDD2;
+  }
+  50% {
+    color: #F44336;
+  }
+  100% {
+    color: #FFCDD2;
+  }
 }
 /*-------------end from razmia3.css--------------------*/
