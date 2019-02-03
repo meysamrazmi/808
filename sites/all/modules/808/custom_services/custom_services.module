@@ -31,6 +31,14 @@ function custom_services_services_resources(){
                             'optional' => True,
                             'default' => '',
                         ),
+                        array(
+                            'name' => 'vid',
+                            'type' => 'string',
+                            'description' => 'The version id.',
+                            'source' => array('param' => 'vid'),
+                            'optional' => True,
+                            'default' => '',
+                        ),
                     ),
                 ),
                 'retrieve' => array(
