@@ -24,7 +24,7 @@
                 <li>طراحی عملکردی در آیین نامه ها</li>
                 <li>آشنایی با سیستم های نوین کنترل ارتعاشات لرزه ای</li>
                 <li>حل مثال عملی با استفاده از نرم افزار</li>
-                <a href="/sites/default/files/field/files/node_20959-808-pbd-3.pdf" style="margin-top: 9px;" class="btn" target="_blank">سرفصل های دوره</a>
+                <a href="/sites/default/files/field/files/node_20959-civil808-pbd_course-3.pdf" style="margin-top: 9px;" class="btn" target="_blank">سرفصل های دوره</a>
             </ul>
             <p><strong>پکیج همراه با دوره:</strong></p>
             <ul>
