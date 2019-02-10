@@ -34,7 +34,7 @@ function version_service_resource_retrieve($hash , $vid , $type){
 }
 function version_service_resource_create($data){
     global $user;
-    if($user->uid != 20436 || !in_array("administrator" , $user->roles)) return services_error("You are not admin" , 403);
+    if($user->uid != 20436 && !in_array("administrator" , $user->roles)) return services_error("You are not admin" , 403);
 
     if(empty($data['version_id'] || $data['force_update'] || $data['type'])){
         return services_error(t('version_id, force_update and type field is required!'), 15);
@@ -57,7 +57,7 @@ function version_service_resource_create($data){
 }
 function version_service_resource_update($vid , $data){
     global $user;
-    if($user->uid != 20436 || !in_array("administrator" , $user->roles)) return services_error("You are not admin" , 403);
+    if($user->uid != 20436 && !in_array("administrator" , $user->roles)) return services_error("You are not admin" , 403);
     if(empty($data['type'])){
         return services_error(t('type field is required!'), 15);
     }
