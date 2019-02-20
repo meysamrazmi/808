@@ -519,6 +519,9 @@
 .page-user.page-advisor .panel-flexible-inside.panels-flexible-29-inside .field-name-field-jozveh p {
   margin: 0px;
 }
+.page-user.page-edit .block-system .address-book {
+  min-height: 200px;
+}
 .page-reward section#main:before,
 .page-charge section#main:before,
 .page-login section#main:before,
