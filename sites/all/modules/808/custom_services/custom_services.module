@@ -1282,6 +1282,80 @@ function custom_services_services_resources(){
             'target_action' => array(),
             'relationships' => array(),
         ),
+        'system_info' => array(
+            'operations' => array(
+                'retrieve' => array(
+                    'help' => 'Return data of system of this ID',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'desktop_resource'),
+                    'callback' => 'system_info_retrieve',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'id',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'The id of system',
+                        ),
+                        array(
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
+                        ),
+                    ),
+                ),
+                'create' => array(
+                    'help' => 'Insert information of the user`s system',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'desktop_resource'),
+                    'callback' => 'system_info_create',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'data',
+                            'type' => 'array',
+                            'description' => 'The data of request.',
+                            'source' => 'data',
+                            'optional' => False,
+                        ),
+                    ),
+                ),
+                'delete' => array(
+                    'help' => 'Delete the data of system of this ID',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'desktop_resource'),
+                    'callback' => 'system_info_delete',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'id',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'The id of system',
+                        ),
+                        array(
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
+                        ),
+                )
+            ),
+            ),
+            'action' => array(),
+            'target_action' => array(),
+            'relationships' => array(),
+        ),
         /*------------------------------------------------------------------------------------------*/
 
 		'advisorlist' => array(

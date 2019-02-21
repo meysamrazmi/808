@@ -400,6 +400,81 @@ function custom_services_update_7109(){
     db_create_table('desktop_lock_encryption', $schema['desktop_lock_encryption']);
 }
 
+/**
+ * Create new database table {desktop_lock_systems_info}.
+ */
+function custom_services_update_7110(){
+    $schema['desktop_lock_systems_info'] = array(
+        'fields' => array(
+            'id' => array(
+                'type' => 'serial',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'description' => t('Primary Key : id'),
+            ),
+            'uid' => array(
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'description' => t('user uid'),
+            ),
+            'cpu_serial' => array(
+                'type' => 'varchar',
+                'length' => 256,
+                'not null' => TRUE,
+                'default' => '',
+                'description' => t('cpu_serial'),
+            ),
+            'cpu_model' => array(
+                'type' => 'varchar',
+                'length' => 256,
+                'not null' => TRUE,
+                'default' => '',
+                'description' => t('cpu_model'),
+            ),
+            'main_board_serial' => array(
+                'type' => 'varchar',
+                'length' => 256,
+                'not null' => TRUE,
+                'default' => '',
+                'description' => t('main_board_serial'),
+            ),
+            'hdd_serial' => array(
+                'type' => 'varchar',
+                'length' => 256,
+                'not null' => TRUE,
+                'default' => '',
+                'description' => t('hdd_serial'),
+            ),
+            'created' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+                'default' => 0,
+                'description' => 'Timestamp for when a user logged in for the first time.',
+            ),
+            'last_login' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+                'default' => 0,
+                'description' => 'Timestamp for the last time that user logged in.',
+            ),
+        ),
+
+        'primary key' => array('id'),
+    );
+    db_create_table('desktop_lock_systems_info', $schema['desktop_lock_systems_info']);
+}
+function custom_services_update_7111() {
+    $newCol = array(
+        'type' => 'int',
+        'not null' => False,
+        'default' => 0,
+        'description' => 'Timestamp for the that user logout!.',
+    );
+    db_add_field('desktop_lock_systems_info', 'logout', $newCol);
+}
+
+
 /*
  * Implementation of hook_install()
 */
