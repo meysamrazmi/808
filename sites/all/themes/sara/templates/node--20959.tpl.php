@@ -50,9 +50,16 @@
             <a href="/node/18098" target="_blank" class="btn btn-primary">رزومه</a>
         </div>
     </div>
+
 </section>
 
 <section id="forth">
+    <p style="text-align: center;	margin-top: 30px; margin-bottom: 20px;	font-size: 15px;color: #888;">
+        برای مشاهده ویدئوی قسمت‌هایی از دوره‌های پیشین در گالری وبسایت 808
+        <a target="_blank" href="https://civil808.com/gallery/videos/playlist/2440/20150">
+            کلیک کنید.
+        </a>
+    </p>
     <h2 class="section-title"> با خرید هر یک از بسته های پیشنهادی زیر، در این دوره به صورت
         <span style="color: red"> رایگان </span>
         شرکت کنید </h2>
@@ -179,7 +186,7 @@
                     <p class="text"> مدرس: پروفسور حسن مقدم </p>
                     <p style="padding: 9px 12px 0px 0px;">شامل پذیرایی ناهار و پکیج همراه دوره</p>
                     <div class="tarikh">8 و 9 اسفندماه 1397</div>
-                    <div class="makan"> دانشگاه صنعتی شریف، سالن انجمن فارغ التحصیلان </div>
+                    <div class="makan"> موسسه آموزشی 808 </div>
                     <!--<div class="zaman">25 مهر ساعت 8 تا 17 و 26 مهر 8 تا 12 (جمعا 12 ساعت) </div>-->
                     <div class="mablagh"> 300,000 تومان </div>
                 </div>
@@ -235,6 +242,10 @@
                 برای مشاهده مجموعه تصاوير دوره اول آموزش اصول محاسبات لرزه‌ای و طراحی عملکردی سازه‌ها، ٥ و ٦ تير ماه در دانشگاه صنعتی شريف،
                 <a href="https://civil808.com/node/19335" target="_blank">کلیک کنید.</a>
             </li>
+            <li>
+                برای مشاهده مجموعه تصاوير دوره دوم آموزش اصول محاسبات لرزه‌ای و طراحی عملکردی سازه‌ها، 25 و 26 مهر ماه 97 در دانشگاه صنعتی شريف،
+                <a href="https://civil808.com/gallery/picture/%D8%AA%D8%B5%D8%A7%D9%88%DB%8C%D8%B1%DB%8C-%D8%A7%D8%B2-%D8%AF%D9%88%D8%B1%D9%87-%D8%AF%D9%88%D9%85-%D8%B7%D8%B1%D8%A7%D8%AD%DB%8C-%D8%B9%D9%85%D9%84%DA%A9%D8%B1%D8%AF%DB%8C-%D9%88-%D8%A8%D9%87%D8%B3%D8%A7%D8%B2%DB%8C-%D9%84%D8%B1%D8%B2%D9%87-%D8%A7%DB%8C-%D8%A8%D8%A7-%D9%BE%D8%B1%D9%88%D9%81%D8%B3%D9%88%D8%B1-%D8%AD%D8%B3%D9%86-%D9%85%D9%82%D8%AF%D9%85/20167" target="_blank">کلیک کنید.</a>
+            </li>
         </ol>
     </div>
 </section>
@@ -243,10 +254,13 @@
     <h2> دوره های مرتبط </h2>
     <div class="aks3">
         <a href="/node/20930" target="_blank">
-            <img src="/sites/default/files/photo_2019-01-28_10-42-54.jpg" width="350" height="350" >
+            <img src="/sites/default/files/photo_2019-02-17_17-42-51.jpg" width="250" height="250" >
         </a>
         <a href="/node/20646" target="_blank">
-            <img src="/sites/default/files/photo_2018-12-22_10-39-51.jpg" width="350" height="350" >
+            <img src="/sites/default/files/photo_2018-12-22_10-39-51.jpg" width="250" height="250" >
+        </a>
+        <a href="/node/21042" target="_blank">
+            <img src="/sites/default/files/field/image/node_21042_0.jpg" width="250" height="250" >
         </a>
     </div>
 </section>
@@ -278,8 +292,8 @@
     border-right: 3px solid #F44336;
     padding: 5px 10px 5px 0;
     margin: 22px 0;
-    font-size: 14px;">خرید همزمان هر دو نرم افزار شامل 10 درصد تخفیف می شود :
-                <b style="font-family: Tahoma;">1800€</b>
+    font-size: 14px;">قیمت خرید همزمان هر دو نرم افزار:
+                <b style="font-family: Tahoma;">1500€</b>
             </p>
             <a href="/seismosoft" target="_blank" class="btn btn-primary" style="    margin: auto;
     display: block;
@@ -659,7 +673,7 @@
     }
     .aks3 a{
         display: inline-block;
-        margin: 10px 17px;
+        margin: 10px 5px;
     }
     #block-system-main section:not(.plus808) h2{
         position: relative;

@@ -224,6 +224,12 @@
     <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">
         با خرید بسته های معرفی شده می توانید از %۲۵ تخفیف بیشتر هنگام خرید استفاده کنید.
     </p>
+    <p style="text-align: center;	margin-top: 10px;	font-size: 15px;color: #888;">
+        شرکت در
+        <a href="https://civil808.com/landing/pbdcourse">دوره های طراحی عملکردی </a>
+        برای خریداران بسته های زیر رایگان میباشد.
+
+    </p>
     <div class="forth-wh">
         <div class="forth-box">
             <div class="forth-top">
@@ -246,7 +252,7 @@
             </div>
             <div class="forth-bottom">
                 قیمت مجموع دو نرم افزارهای SeismoStruct و SeismoBuild در صورتی که به صورت جداگانه تهیه شوند، 2000€ است. اما شما می‌توانید این پکیج را با قیمت استثنایی 1500€ خریداری کنید.
-                <a href="https://civil808.com/node/20638" target="_blank" class="btn">
+                <a href="https://civil808.com/shop/products/kits/s43-2-s43-1/20636/%D9%BE%DA%A9%DB%8C%D8%AC-%D9%86%D8%B1%D9%85-%D8%A7%D9%81%D8%B2%D8%A7%D8%B1%D9%87%D8%A7%DB%8C-seismostruct-%D9%88-seismobuild" target="_blank" class="btn">
                     خرید بسته با ۲۵٪ تخفیف فقط 1500€
                 </a>
             </div>
@@ -429,7 +435,6 @@
         <div class="view-content">
             <div class="views-row views-row-1 views-row-odd views-row-first">
 
-                <div class="views-field views-field-counter">    <span class="views-label views-label-counter">#</span>    <span class="field-content">1</span>  </div>
                 <div class="views-field views-field-picture">        <div class="field-content"><a href="/user/10358/hamed-talati"><img src="https://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-10358-1543074329.jpg?itok=was2NOXW" width="220" height="220" alt=""></a></div>  </div>
                 <div class="views-field views-field-field-full-name">        <div class="field-content"><a href="/user/10358" target="_blank">حامد طلعتى</a></div>  </div>
                 <span class="vip_icon" title="کاربر vip"></span>
@@ -438,10 +443,11 @@
                 <div class="views-field views-field-field-experts">        <div class="field-content"><a href="/landing/members?field_experts_tid=طراحی عملکردی، Performance Based Seismic Design">طراحی عملکردی، Performance Based Seismic Design</a><a href="/landing/members?field_experts_tid=نرم افزار آباکوس، ABAQUS">نرم افزار آباکوس، ABAQUS</a><a href="/landing/members?field_experts_tid=نرم افزار ایتبس، ETABS">نرم افزار ایتبس، ETABS</a></div>  </div>
                 <div class="views-field views-field-php send-pm">        <span class="field-content"><a href="/messages/new/10358">ارسال پیام</a></span>  </div>
                 <div class="views-field views-field-php-1">        <span class="field-content views-field-status-link"><span class="add"><a href="/relationship/10358/request/1?destination=landing/members%3Ffield_full_name_value_1%3D%25D8%25AD%25D8%25A7%25D9%2585%25D8%25AF%2520%25D8%25B7%25D9%2584%25D8%25B9%25D8%25AA%25D9%2589%26field_education_degree_value%3D%26field_education_field_value%3D%26field_university_value%3D%26field_job_value%3D%26field_about_me_value%3D%26field_experts_tid%3D%26rid%3DAll%26sort_by%3Dpoints%26sort_order%3DASC" class="user_relationships_popup_link">ایجاد ارتباط</a></span>
-    </span>  </div>  </div>
+    </span>
+                </div>
+            </div>
             <div class="views-row views-row-2 views-row-even views-row-last">
 
-                <div class="views-field views-field-counter">    <span class="views-label views-label-counter">#</span>    <span class="field-content">1</span>  </div>
                 <div class="views-field views-field-picture">        <div class="field-content"><a href="/user/8900/mhadi"><img src="https://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-8900-1544959666.jpg?itok=tBWUxTwx" width="220" height="220" alt=""></a></div>  </div>
                 <div class="views-field views-field-field-full-name">        <div class="field-content"><a href="/user/8900" target="_blank">مهدی هادی</a></div>  </div>
                 <span class="vip_icon" title="کاربر vip"></span>
@@ -451,6 +457,18 @@
                 <div class="views-field views-field-php send-pm">        <span class="field-content"><a href="/messages/new/8900">ارسال پیام</a></span>  </div>
                 <div class="views-field views-field-php-1">        <span class="field-content views-field-status-link"><span class="add"><a href="/relationship/8900/request/1?destination=landing/members%3Ffield_full_name_value_1%3D%25D9%2585%25D9%2587%25D8%25AF%25DB%258C%2520%25D9%2587%25D8%25A7%25D8%25AF%25DB%258C%26field_education_degree_value%3D%26field_education_field_value%3D%26field_university_value%3D%26field_job_value%3D%26field_about_me_value%3D%26field_experts_tid%3D%26rid%3DAll%26sort_by%3Dpoints%26sort_order%3DASC" class="user_relationships_popup_link">ایجاد ارتباط</a></span>
     </span>  </div>  </div>
+
+
+            <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+
+                <div class="views-field views-field-picture">        <div class="field-content"><img typeof="Image" src="/sites/all/themes/sara/images/user-100.png" width="220" height="220" alt=""></div>  </div>
+                <div class="views-field views-field-field-full-name">        <div class="field-content"><a href="/user/22753" target="_blank">روح اله هیزجی</a></div>  </div>
+
+                <div class="views-field views-field-created">    <span class="views-label views-label-created">عضو به مدت: </span>    <span class="field-content">2 هفته 1 روز</span>  </div>
+                <div class="views-field views-field-field-experts">        <div class="field-content"><a href="/landing/members?field_experts_tid=سایزمو آرتیف، SeismoArtif">سایزمو آرتیف، SeismoArtif</a><a href="/landing/members?field_experts_tid=نرم افزار SeismoMatch">نرم افزار SeismoMatch</a><a href="/landing/members?field_experts_tid=سایزمو اسپکت، SeismoSpect">سایزمو اسپکت، SeismoSpect</a></div>  </div>
+                <div class="views-field views-field-php send-pm">        <span class="field-content"><a href="/messages/new/22753">ارسال پیام</a></span>  </div>
+                <div class="views-field views-field-php-1">        <span class="field-content views-field-status-link"><span class="add"><a href="/relationship/22753/request/1?destination=landing/members%3Ffield_full_name_value_1%3D%25D8%25B1%25D9%2588%25D8%25AD%2520%25D8%25A7%25D9%2584%25D9%2587%2520%25D9%2587%25DB%258C%25D8%25B2%25D8%25AC%25DB%258C%26field_education_degree_value%3D%26field_education_field_value%3D%26field_university_value%3D%26field_job_value%3D%26field_about_me_value%3D%26field_experts_tid%3D%26rid%3DAll%26sort_by%3Dpoints%26sort_order%3DASC" class="user_relationships_popup_link">ایجاد ارتباط</a></span>
+</span>  </div>  </div>
         </div>
     </div>
 </section>
