@@ -492,16 +492,16 @@ function civil808_page_accounting_charge($form, &$form_state, $uid) {
 		);
 		/*
 			برای تخفیفات گروهی برای 20 درصد شارژ هدیه
-        *
+        */
 	$form['festival'] = array(
 		'#markup' => '<div id="smile">
 			<canvas>
 			</canvas>
-			<div class="festival">۲۰ شارژ هدیه به مناسبت جشنواره روز دانشجو</div>
+			<div class="festival">۲۰ شارژ هدیه به مناسبت جشنواره روز مهندس</div>
 			<div class="last-price">مبلغ نهایی شارژ: <span></span> تومان</div>
 			</div>',
 		);
-        */
+
 	return $form;
 }
 
@@ -562,7 +562,7 @@ function civil808_page_accounting_bankcallback($type, $resnumber) {
 				drupal_set_message(t('charge transaction success'), 'status');
 				$params = array(
 			      'uid' => $event->user,
-			      'points' => ($price), /* ($price * 1.2) شارژ اضافه برای جشنواره*/
+			      'points' => ($price * 1.2), /* ($price * 1.2) شارژ اضافه برای جشنواره*/
 			      'operation' => t('Charge from bank'),
 			    );
 			    userpoints_userpointsapi($params);
