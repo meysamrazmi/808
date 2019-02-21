@@ -1708,18 +1708,6 @@ section#pbd {
 
 }
 
-@media screen and (max-width: 720px) {
-	.course-container {
-		display: flex;
-		width: 90%;
-		margin: auto;
-	}
-	.course-container .course {
-		width: 100%;
-		margin: 10px;
-
-	}
-}
 @media screen and (max-width: 1000px) {
 	.course-container {
 		display: flex;
@@ -1730,5 +1718,40 @@ section#pbd {
 		width: calc(50% - 20px);
 		margin: 10px;
 
+	}
+}
+
+@media screen and (max-width: 720px) {
+	.course-container {
+		display: flex;
+		width: 90%;
+		margin: auto;
+		flex-wrap: wrap;
+	}
+	.course-container .course {
+		width: 100%;
+		margin: 10px;
+
+	}
+	#aplication {
+		padding: 50px 0px;
+		background: #f5f5f5;
+		box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
+
+	}
+	p.tagline {
+		font-size: 3rem;
+	}
+	p.tagline span{
+		font-size: 4rem;
+	}
+	section.panel.main .inner {
+		z-index: 1;
+		width: 90%;
+		max-width: 730px;
+		text-align: center;
+		background-color: #abababbd;
+		padding: 20px;
+		border-radius: 25px;
 	}
 }
