@@ -192,7 +192,7 @@
 
 
                 <div class="course">
-                    <a href="http://civil808.com/landing/pbd">
+                    <a href="http://civil808.com/landing/pbdcourse">
                         <div class="course-image" style="background-image: url(./images/pbd-card.jpg)">
                             <div class="course-overlay">
                                 <h3>سومین دوره جامع آموزش اصول محاسبات بهسازی لرزه‌ای و طراحی عملکردی سازه‌ها</h3>
