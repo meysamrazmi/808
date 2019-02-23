@@ -40,7 +40,7 @@
 				</div>
 				<div class="percent" data-aos="fade-up" data-aos-delay="800">
 					<span>تا 35%</span>
-					<span>تخفیف</span>
+					<span>تخفیف و شارژ هدیه</span>
 				</div>
 				<a href="#steps" class="scroll" data-aos="zoom-out" data-aos-delay="1500" data-aos-anchor-placement="top-bottom"></a>
 			</div>
