@@ -104,6 +104,7 @@ function system_info_create_v_1($data){
     if(empty($info)){
         $insert = db_insert("desktop_lock_systems_info")
             ->fields(array(
+                "uid" => $user->uid,
                 "cpu_serial" => $data["cpu_serial"],
                 "cpu_model" => $data["cpu_model"],
                 "main_board_serial" => $data["main_board_serial"],
