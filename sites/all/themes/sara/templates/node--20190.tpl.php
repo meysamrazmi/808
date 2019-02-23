@@ -87,6 +87,20 @@
 </section>
 
 <section style="margin: 50px 0 80px 0;">
+    <div class="kargah-vip">
+        <a target="_blank" href="/node/21036">
+            <div>
+                ورکشاپ آنلاین تخصصی بیان دغدغه ها و راه حل های اساسی در آزمون محاسبات عمران
+                <br>
+                <ul>
+                    <li style="font-size: 13px;color: #909090 !important; padding: 18px 5px 10px 5px;">شرکت در این ورکشاپ برای اعضای VIP رایگان است.</li>
+                    <li style="font-size: 13px;color: #909090 !important; padding: 5px 5px;"> به همراه تخفیف ویژه برای شرکت در باقی دوره های آموزشی موسسه</li>
+                </ul>
+            </div>
+            <img class="vip-icon" src="/sites/all/themes/sara/images/icon/vip.svg"/>
+        </a>
+    </div>
+
     <h2> قسمتی از فیلم ورکشاپ آشنایی با آزمون نظام مهندسی عمران </h2>
     <p style="text-align: center;margin-bottom: 40px;margin-top: 30px;	font-size: 15px;color: #888;">برای مشاهده نمونه فیلم های بیشتر
         <a href="/gallery/videos/playlist/2605/15748" target="_blank">کلیک کنید.</a>
@@ -277,7 +291,7 @@
         </div>
         <div class="row">
             <a href="/node/17089" target="_blank">
-                <img src="/sites/default/files/styles/200x200/public/fe-exam.jpg?itok=4C4U40Ru" width="300" height="170" alt="آزمون FE یا Fundamentals of Engineering" title="آزمون FE یا Fundamentals of Engineering">
+                <img src="/sites/default/files/styles/200x200/public/field/image/tag/tag_4862.jpg?itok=tP91XcKP" width="300" height="170" alt="آزمون FE یا Fundamentals of Engineering" title="آزمون FE یا Fundamentals of Engineering">
             </a>
             <a href="/node/17089" target="_blank" class="title">
                 آزمون FE یا Fundamentals of Engineering
@@ -285,7 +299,7 @@
         </div>
         <div class="row">
             <a href="/node/17090" target="_blank">
-                <img src="/sites/default/files/styles/200x200/public/pe-exam.jpg?itok=rK3SwDau" width="300" height="170" alt="آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam" title="آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam">
+                <img src="/sites/default/files/styles/200x200/public/field/image/tag/tag_4861.jpg?itok=qGsw7Hsk" width="300" height="170" alt="آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam" title="آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam">
             </a>
             <a href="/node/17090" target="_blank" class="title">
                 آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam
@@ -293,7 +307,7 @@
         </div>
         <div class="row">
             <a href="/node/17077" target="_blank">
-                <img src="/sites/default/files/styles/200x200/public/engineering-system-test.jpg?itok=CNPf4UzR" width="300" height="170" alt="آزمون نظام مهندسی، Engineering system test" title="آزمون نظام مهندسی، Engineering system test">
+                <img src="/sites/default/files/styles/200x200/public/field/image/tag/tag_4787.jpg?itok=rjUkkfDP" width="300" height="170" alt="آزمون نظام مهندسی، Engineering system test" title="آزمون نظام مهندسی، Engineering system test">
             </a>
             <a href="/node/17077" target="_blank" class="title">
                 آزمون نظام مهندسی، Engineering system test
@@ -357,6 +371,41 @@ $(document).ready(function(){
 })
 </script>
 <style>
+    .kargah-vip{
+        position: relative;
+        width: 70%;
+        background-color: #ffffff;
+        padding: 19px 23px;
+        margin: 30px auto 93px auto;
+        border: solid #b39dd9;
+        border-width: 0px 3px;
+        box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+        text-align: right;
+    }
+    @media (max-width: 768px){
+        .kargah-vip{
+            width: 96%;
+            padding: 2% 2.5%;
+        }
+        .kargah-vip a{
+            flex-direction: column-reverse;
+        }
+        .kargah-vip .vip-icon{
+            margin: 0 0 18px 0;
+        }
+    }
+    .kargah-vip a{
+        color: black !important;
+        font-size: 16px;
+        margin: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .kargah-vip .vip-icon{
+        width: 95px;
+        margin-left: 2%;
+    }
     .product-node .owl-stage-outer {
         margin-bottom: 45px;
     }
