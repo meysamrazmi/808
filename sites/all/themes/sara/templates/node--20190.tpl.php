@@ -18,7 +18,7 @@
 
     <div class="doreh">
         <div class="doreh-1">
-            <table style="width: 325px;" dir="RTL" border="0" cellspacing="0" cellpadding="0">
+            <table style="width: 551px;" dir="RTL" border="0" cellspacing="0" cellpadding="0">
                 <colgroup><col style="width: 47pt;" span="2" width="63"> <col style="mso-width-source: userset; mso-width-alt: 3766; width: 77pt;" width="103"> <col width="96"> </colgroup>
                 <tbody>
                 <tr><td class="xl66" style="height: 21.75pt; mso-ignore: colspan; width: 243pt;" dir="RTL" colspan="4" align="right" width="325" height="29">دوره حضوری ورود به حرفه محاسبات&nbsp; عمران</td></tr>
@@ -365,7 +365,6 @@ $(document).ready(function(){
 	$('.doreha p').click(function(){
 		var a = $(this).data('selector')
 		$('.doreh').children().slideUp()
-		console.log(a)
 		$('.doreh').find('.' + a).slideDown()
 	})
 })
@@ -1375,7 +1374,7 @@ $(document).ready(function(){
 
     .doreha {
         display: flex;
-        width: 800px;
+        max-width: 800px;
         margin: auto;
         justify-content: space-around;
         padding: 30px 0;
@@ -1414,6 +1413,14 @@ $(document).ready(function(){
         background: #fff;
         box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 4px;
         padding: 15px;
+    }
+    @media (max-width: 1100px){
+        .doreh > div {
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: center;
+            padding: 15px 0;
+        }
     }
     .doreh table:last-child tr:first-child {
         border-bottom: 2px solid #F44336;
