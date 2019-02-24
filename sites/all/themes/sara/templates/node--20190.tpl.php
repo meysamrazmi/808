@@ -17,69 +17,116 @@
     </div>
 
     <div class="doreh">
-        <div class="doreh-1">
-            <table style="width: 325px;" dir="RTL" border="0" cellspacing="0" cellpadding="0">
-                <colgroup><col style="width: 47pt;" span="2" width="63"> <col style="mso-width-source: userset; mso-width-alt: 3766; width: 77pt;" width="103"> <col width="96"> </colgroup>
+        <div class="doreh-1" style="display: none;">
+            <table border="0" style="width: 600px;">
                 <tbody>
-                <tr><td class="xl66" style="height: 21.75pt; mso-ignore: colspan; width: 243pt;" dir="RTL" colspan="4" align="right" width="325" height="29">دوره حضوری ورود به حرفه محاسبات&nbsp; عمران</td></tr>
-                <tr><td class="xl67" style="height: 21.75pt;" dir="RTL" align="right" height="29">عنوان دوره&nbsp;</td><td class="xl67" dir="RTL" align="right">طول دوره&nbsp;</td><td class="xl67" dir="RTL" align="right">هزینه ( تومان )</td><td class="xl67" dir="RTL" align="right">ایام تشکیل کلاس&nbsp;</td></tr>
-                <tr><td class="xl68" style="height: 22.5pt; width: 47pt;" dir="RTL" align="right" width="63" height="30">طراحی سازه های فولادی <br> +<br> 4 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td class="xl67" dir="RTL" align="right">45 ساعت&nbsp;</td><td class="xl69" dir="LTR" align="right">500,000</td><td class="xl68" style="width: 72pt;" dir="RTL" align="right" width="96">5شنبه 14 الی 18<br> جمعه 8 الی 16</td></tr>
-                <tr><td class="xl68" dir="RTL" align="right" width="63" height="29">طراحی سازه های بتنی <br> +<br> 4 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td class="xl67" dir="RTL" align="right">45 ساعت&nbsp;</td><td class="xl69" dir="LTR" align="right">500,000</td><td class="xl68" style="width: 72pt;" dir="RTL" align="right" width="96">5شنبه 14 الی 18<br> جمعه 8 الی 16</td></tr>
-                <tr><td class="xl68" style="height: 22.5pt; width: 47pt;" dir="RTL" align="right" width="63" height="30">آیین نامه 2800+بارگذاری<br> +<br> 4 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td class="xl67" dir="RTL" align="right">40 ساعت&nbsp;</td><td class="xl69" dir="LTR" align="right">500,000</td><td class="xl68" style="width: 72pt;" dir="RTL" align="right" width="96">5شنبه 14 الی 18<br> جمعه 8 الی 16</td></tr>
-                <tr><td class="xl68" dir="RTL" align="right" width="63" height="29">پی سازی +مصالح بنایی<br> +<br> 2 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td class="xl67" dir="RTL" align="right">20 ساعت&nbsp;</td><td class="xl69" dir="LTR" align="right">300,000</td><td class="xl68" style="width: 72pt;" dir="RTL" align="right" width="96">5شنبه 14 الی 18<br> جمعه 8 الی 16</td></tr>
-                <tr><td class="xl67" dir="RTL" align="right">جمع کل دوره&nbsp;</td><td class="xl70" dir="RTL" align="right">150 ساعت</td><td class="xl71" dir="LTR" align="right">1,800,000</td><td class="xl65" dir="LTR">&nbsp;</td></tr>
+                <tr><td colspan="4">دوره حضوری ورود به حرفه محاسبات&nbsp; عمران</td></tr>
+                <tr><td>عنوان دوره&nbsp;</td><td>طول دوره&nbsp;</td><td>هزینه ( تومان )</td><td>ایام تشکیل کلاس&nbsp;</td></tr>
+                <tr><td>طراحی سازه های فولادی <br> +<br> 4 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>45 ساعت&nbsp;</td><td>500,000</td><td>5شنبه 14 الی 18<br> جمعه 8 الی 16</td></tr>
+                <tr><td>طراحی سازه های بتنی <br> +<br> 4 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>45 ساعت&nbsp;</td><td>500,000</td><td>5شنبه 14 الی 18<br> جمعه 8 الی 16</td></tr>
+                <tr><td>آیین نامه 2800+بارگذاری<br> +<br> 4 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>40 ساعت&nbsp;</td><td>500,000</td><td>5شنبه 14 الی 18<br> جمعه 8 الی 16</td></tr>
+                <tr><td>پی سازی +مصالح بنایی<br> +<br> 2 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>20 ساعت&nbsp;</td><td>300,000</td><td>5شنبه 14 الی 18<br> جمعه 8 الی 16</td></tr>
+                <tr><td>جمع کل دوره&nbsp;</td><td>150 ساعت</td><td>1,800,000</td><td>&nbsp;</td></tr>
                 </tbody>
             </table>
-            <table style="width: 287px;" border="0" cellspacing="0" cellpadding="0"><tbody><tr style="height: 15.0pt;border-bottom: 2px solid #F44336;background: #f5f5f5;"><td class="xl65" style="height: 15.0pt; width: 125pt;" dir="RTL" align="right" width="167" height="20" colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری محاسبات دوره بهار 98</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td class="xl65" dir="RTL" align="right">قیمت&nbsp; دوره (تومان)</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">20 اسفند 97</td><td class="xl66" align="right">1,200,000</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">5 فروردین&nbsp; 98</td><td class="xl66" align="right">1,500,000</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">20 فروردین 98</td><td class="xl66" align="right">1,650,000</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">از روز 21 فروردین 98</td><td class="xl66" align="right">1,800,000</td></tr></tbody></table>
-        </div>
-        <div class="doreh-2">
-            <table style="width: 429px;" border="0" cellspacing="0" cellpadding="0">
-                <tbody><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt; width: 125pt;" dir="RTL" colspan="4" align="right" width="167" height="20">دوره حضوری ورود به حرفه نظارت عمران</td></tr><tr style="height: 15.0pt;"><td class="xl66" style="height: 15.0pt;" dir="RTL" align="right" height="20">عنوان دوره&nbsp;</td><td class="xl66" dir="RTL" align="right">طول دوره&nbsp;</td><td class="xl66" dir="RTL" align="right">هزینه ( تومان )</td><td class="xl66" dir="RTL" align="right">ایام تشکیل کلاس&nbsp;</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl67" style="height: 15.0pt; width: 125pt;" dir="RTL" align="right" width="167" height="20">طراحی سازه های فولادی +جوش<br> +<br> طراحی سازه های بتنی&nbsp;</td><td class="xl66" dir="RTL" align="right">60 ساعت&nbsp;</td><td class="xl68" align="right">700,000</td><td class="xl67" style="width: 48pt;" dir="RTL" align="right" width="64">شنبه 17 الی 21<br> دوشنبه 17 الی 21</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl67" style="height: 15.0pt; width: 125pt;" dir="RTL" align="right" width="167" height="20">آیین نامه 2800<br> +<br> بارگذاری</td><td class="xl66" dir="RTL" align="right">20 ساعت&nbsp;</td><td class="xl68" align="right">250,000</td><td class="xl67" style="width: 48pt;" dir="RTL" align="right" width="64">شنبه 17 الی 21<br> دوشنبه&nbsp; 17 الی 21</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl67" style="height: 15.0pt; width: 125pt;" dir="RTL" align="right" width="167" height="20">پی سازی <br> +<br> مصالح بنایی</td><td class="xl66" dir="RTL" align="right">25 ساعت&nbsp;</td><td class="xl68" align="right">350,000</td><td class="xl67" style="width: 48pt;" dir="RTL" align="right" width="64">شنبه 17 الی 21<br> چهارشنبه 17 الی 21</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl67" style="height: 15.0pt; width: 125pt;" dir="RTL" align="right" width="167" height="20">مباحث 5(مصالح ساختمانی)<br> مبحث 11(ساختمان صنعتی)<br> مبحث 12 ( ایمنی )</td><td class="xl66" dir="RTL" align="right">15 ساعت&nbsp;</td><td class="xl68" align="right">200,000</td><td class="xl67" style="width: 48pt;" dir="RTL" align="right" width="64">شنبه 17 الی 21<br> چهارشنبه 17 الی 21</td></tr><tr style="height: 15.0pt;"><td class="xl66" style="height: 15.0pt;" dir="RTL" align="right" height="20">جمع کل دوره&nbsp;</td><td class="xl70" dir="RTL" align="right">120 ساعت</td><td class="xl68" align="right">1,500,000</td><td class="xl68">&nbsp;</td></tr><tr style="height: 15.0pt;"><td class="xl69" style="height: 15.0pt;" dir="RTL" colspan="4" align="right" height="20">شروع دوره نظارت : 24 فروردین سال 98</td></tr><tr style="height: 15.0pt;"><td class="xl69" style="height: 15.0pt;" dir="RTL" colspan="4" align="right" height="20">ایام تشکیل کلاس دوره نظارت : آخر هفته ها (5شنبه +جمعه)</td></tr></tbody>
-            </table>
-            <table style="width: 251px;" border="0" cellspacing="0" cellpadding="0"><colgroup><col style="mso-width-source: userset; mso-width-alt: 6107; width: 125pt;" width="167"> <col style="mso-width-source: userset; mso-width-alt: 3072; width: 63pt;" width="84"> </colgroup><tbody><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt; width: 125pt;" dir="RTL" colspan="2" align="right" width="167" height="20">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری نظارت دوره بهار 98</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td class="xl65" dir="RTL" align="right">قیمت&nbsp; دوره (تومان)</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">20 اسفند 97</td><td class="xl66" align="right">1,000,000</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">5 فروردین&nbsp; 98</td><td class="xl66" align="right">1,200,000</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">20 فروردین 98</td><td class="xl66" align="right">1,300,000</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">از روز 21 فروردین 98</td><td class="xl66" align="right">1,500,000</td></tr></tbody>
-            </table>
-
-        </div>
-
-        <div class="doreh-3">
-            <table style="width: 588px;" border="0" cellspacing="0" cellpadding="0"><tbody><tr style="height: 15.0pt;"><td class="xl66" style="height: 15.0pt; width: 255pt;" dir="RTL" colspan="4" align="right" width="340" height="20">دوره آنلاین ورود به حرفه محاسبات عمران</td></tr><tr style="height: 15.0pt;"><td class="xl67" style="height: 15.0pt;" dir="RTL" align="right" height="20">عنوان دوره&nbsp;</td><td class="xl67" dir="RTL" align="right">طول دوره&nbsp;</td><td class="xl67" dir="RTL" align="right">هزینه ( تومان )</td><td class="xl67" dir="RTL" align="right">ایام تشکیل کلاس&nbsp;</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl68" style="height: 15.0pt; width: 255pt;" dir="RTL" align="right" width="340" height="20">طراحی سازه های فولادی <br> +<br> 4 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td class="xl67" dir="RTL" align="right">45 ساعت&nbsp;</td><td class="xl69" align="right">400,000</td><td class="xl68" style="width: 71pt;" dir="RTL" align="right" width="94">5شنبه 14 الی 18<br> جمعه 8 الی 16</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl68" style="height: 15.0pt; width: 255pt;" dir="RTL" align="right" width="340" height="20">طراحی سازه های بتنی <br> +<br> 4 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td class="xl67" dir="RTL" align="right">45 ساعت&nbsp;</td><td class="xl69" align="right">400,000</td><td class="xl68" style="width: 71pt;" dir="RTL" align="right" width="94">5شنبه 14 الی 18<br> جمعه 8 الی 16</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl68" style="height: 15.0pt; width: 255pt;" dir="RTL" align="right" width="340" height="20">آیین نامه 2800+بارگذاری<br> +<br> 4 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td class="xl67" dir="RTL" align="right">40 ساعت&nbsp;</td><td class="xl69" align="right">400,000</td><td class="xl68" style="width: 71pt;" dir="RTL" align="right" width="94">5شنبه 14 الی 18<br> جمعه 8 الی 16</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl68" style="height: 15.0pt; width: 255pt;" dir="RTL" align="right" width="340" height="20">پی سازی +مصالح بنایی<br> +<br> 2 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td class="xl67" dir="RTL" align="right">30 ساعت&nbsp;</td><td class="xl69" align="right">300,000</td><td class="xl68" style="width: 71pt;" dir="RTL" align="right" width="94">5شنبه 14 الی 18<br> جمعه 8 الی 16</td></tr><tr style="height: 15.0pt;"><td class="xl67" style="height: 15.0pt;" dir="RTL" align="right" height="20">جمع کل دوره&nbsp;</td><td class="xl71" dir="RTL" align="right">150 ساعت</td><td class="xl69" align="right">1,400,000</td><td class="xl69">&nbsp;</td></tr><tr style="height: 15.0pt;"><td class="xl70" style="height: 15.0pt;" dir="RTL" colspan="4" align="right" height="20">شروع دوره آنلاین محاسبات : 12 اردیبهشت سال 98</td></tr><tr style="height: 15.0pt;"><td class="xl70" style="height: 15.0pt;" dir="RTL" colspan="4" align="right" height="20">ایام تشکیل کلاس دوره محاسبات : 1شنبه -3 شنبه -5شنبه - جمعه</td></tr></tbody>
-            </table>
-            <table style="width: 363px;" border="0" cellspacing="0" cellpadding="0">
-                <tbody><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt; width: 194pt;" dir="RTL" colspan="2" align="right" width="259" height="20">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین محاسبات دوره بهار 98</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td class="xl65" dir="RTL" align="right">قیمت&nbsp; دوره (تومان)</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">20 اسفند 97</td><td class="xl66" align="right">900,000</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">5 فروردین&nbsp; 98</td><td class="xl66" align="right">1,100,000</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">20 فروردین 98</td><td class="xl66" align="right">1,300,000</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">از روز 21 فروردین 98</td><td class="xl66" align="right">1,400,000</td></tr></tbody>
-            </table>
-        </div>
-
-        <div class="doreh-4">
-            <table style="width: 471px;" border="0" cellspacing="0" cellpadding="0">
-                <tbody><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt; width: 194pt;" dir="RTL" colspan="4" align="right" width="259" height="20">دوره آنلاین ورود به حرفه نظارت</td></tr><tr style="height: 15.75pt;"><td class="xl65" style="height: 15.75pt;" dir="RTL" align="right" height="21">عنوان دوره&nbsp;</td><td class="xl65" dir="RTL" align="right">طول دوره&nbsp;</td><td class="xl65" dir="RTL" align="right">هزینه ( تومان )</td><td class="xl65" dir="RTL" align="right">ایام تشکیل کلاس&nbsp;</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl66" style="height: 15.0pt; width: 194pt;" dir="RTL" align="right" width="259" height="20">طراحی سازه های فولادی +جوش<br> +<br> طراحی سازه های بتنی&nbsp;</td><td class="xl65" dir="RTL" align="right">60 ساعت&nbsp;</td><td class="xl67" align="right">500,000</td><td class="xl66" style="width: 48pt;" dir="RTL" align="right" width="64">شنبه 17 الی 21<br> دوشنبه 17 الی 21</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl66" style="height: 15.0pt; width: 194pt;" dir="RTL" align="right" width="259" height="20">آیین نامه 2800<br> +<br> بارگذاری</td><td class="xl65" dir="RTL" align="right">25 ساعت&nbsp;</td><td class="xl67" align="right">200,000</td><td class="xl66" style="width: 48pt;" dir="RTL" align="right" width="64">شنبه 17 الی 21<br> دوشنبه&nbsp; 17 الی 21</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl66" style="height: 15.0pt; width: 194pt;" dir="RTL" align="right" width="259" height="20">پی سازی <br> +<br> مصالح بنایی</td><td class="xl65" dir="RTL" align="right">20 ساعت&nbsp;</td><td class="xl67" align="right">200,000</td><td class="xl66" style="width: 48pt;" dir="RTL" align="right" width="64">شنبه 17 الی 21<br> چهارشنبه 17 الی 21</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl66" style="height: 15.0pt; width: 194pt;" dir="RTL" align="right" width="259" height="20">مباحث 5(مصالح ساختمانی)<br> مبحث 11(ساختمان صنعتی)<br> مبحث 12 ( ایمنی )</td><td class="xl65" dir="RTL" align="right">25 ساعت&nbsp;</td><td class="xl67" align="right">200,000</td><td class="xl66" style="width: 48pt;" dir="RTL" align="right" width="64">شنبه 17 الی 21<br> چهارشنبه 17 الی 21</td></tr><tr style="height: 15.75pt;"><td class="xl65" style="height: 15.75pt;" dir="RTL" align="right" height="21">جمع کل دوره&nbsp;</td><td class="xl68" dir="RTL" align="right">140 ساعت</td><td class="xl67" align="right">1,100,000</td><td class="xl67">&nbsp;</td></tr><tr style="height: 15.75pt;"><td class="xl65" style="height: 15.75pt;" dir="RTL" colspan="4" align="right" height="21">شروع دوره آنلاین نظارت : 12 اردیبهشت سال 98</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" colspan="4" align="right" height="20">ایام تشکیل کلاس دوره محاسبات : 1شنبه -3 شنبه -5شنبه - جمعه</td></tr></tbody>
-            </table>
-            <table style="width: 330px;" border="0" cellspacing="0" cellpadding="0">
-                <tbody><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt; width: 194pt;" dir="RTL" colspan="2" align="right" width="259" height="20">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین نظارت دوره بهار 98</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td class="xl65" dir="RTL" align="right">قیمت&nbsp; دوره (تومان)</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">20 اسفند 97</td><td class="xl67" align="right">700,000</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">5 فروردین&nbsp; 98</td><td class="xl67" align="right">800,000</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">20 فروردین 98</td><td class="xl67" align="right">1,000,000</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">از روز 21 فروردین 98</td><td class="xl67" align="right">1,100,000</td></tr></tbody>
-            </table>
-        </div>
-
-        <div class="doreh-5" style="display: flex;">
-            <table style="width: 459px;" border="0" cellspacing="0" cellpadding="0">
+            <table style="width: 300px;" border="0">
                 <tbody>
-                <tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt; width: 194pt;" dir="RTL" colspan="4" align="right" width="259" height="20">دوره حضوری ورود به حرفه نظارت و اجرا&nbsp; معماری&nbsp;</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">عنوان دوره&nbsp;</td><td class="xl65" dir="RTL" align="right">طول دوره (ساعت)</td><td class="xl65" dir="RTL" align="right">هزینه ( تومان )</td><td class="xl65" dir="RTL" align="right">ایام تشکیل کلاس&nbsp;</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl68" style="height: 15.0pt; width: 194pt;" dir="RTL" align="right" width="259" height="20">طراحی سازه های فولادی +جوش<br> +<br> طراحی سازه های بتنی&nbsp;</td><td class="xl65" dir="RTL" align="right">20</td><td class="xl67" align="right">300,000</td><td class="xl68" style="width: 48pt;" dir="RTL" align="right" width="64">هفته دوم اردیبهشت</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl68" style="height: 15.0pt; width: 194pt;" dir="RTL" align="right" width="259" height="20">پی سازی<br> +<br> مصالح بنایی</td><td class="xl65" dir="RTL" align="right">16</td><td class="xl67" align="right">250,000</td><td class="xl68" style="width: 48pt;" dir="RTL" align="right" width="64">هفته دوم اردیبهشت</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl68" style="height: 15.0pt; width: 194pt;" dir="RTL" align="right" width="259" height="20">الزامات عمومی&nbsp;</td><td class="xl65" dir="RTL" align="right">10</td><td class="xl67" align="right">150,000</td><td class="xl68" style="width: 48pt;" dir="RTL" align="right" width="64">هفته دوم اردیبهشت</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl68" style="height: 15.0pt; width: 194pt;" dir="RTL" align="right" width="259" height="20">مبحث 5(مصالح ساختمانی)<br> مبحث 11(ساختمان صنعتی)<br> مبحث 12 ( ایمنی )</td><td class="xl65" dir="RTL" align="right">15</td><td class="xl67" align="right">200,000</td><td class="xl68" style="width: 48pt;" dir="RTL" align="right" width="64">هفته دوم اردیبهشت</td></tr><tr style="mso-height-source: userset; height: 15.75pt;"><td class="xl68" style="height: 15.75pt; width: 194pt;" dir="RTL" align="right" width="259" height="21">مبحث 13(تاسیسات برقی)<br> مبحث 15 (آسانسور و پلکان برقی )</td><td class="xl65" dir="RTL" align="right">15</td><td class="xl67" align="right">200,000</td><td class="xl65" dir="RTL" align="right">هفته دوم اردیبهشت</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20"><br> مبحث 16(تاسیسات بهداشتی)<br> </td><td class="xl65" dir="RTL" align="right">10</td><td class="xl67" align="right">150,000</td><td class="xl65" dir="RTL" align="right">هفته دوم اردیبهشت</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">مبحث17 ( لوله کشی گاز طبیعی)</td><td class="xl65" dir="RTL" align="right">10</td><td class="xl67" align="right">150,000</td><td class="xl65" dir="RTL" align="right">هفته دوم اردیبهشت</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">مبحث 14(تاسیسات مکانیکی)</td><td class="xl65" dir="RTL" align="right">10</td><td class="xl67" align="right">150,000</td><td class="xl65" dir="RTL" align="right">هفته دوم اردیبهشت</td></tr><tr style="mso-height-source: userset; height: 15.75pt;"><td class="xl68" style="height: 15.75pt; width: 194pt;" dir="RTL" align="right" width="259" height="21">مبحث 18(عایق بندی و تنظیم صدا)<br> مبحث 19(صرفه جویی در انرژی)<br> مبحث 20 (علائم و تابلو )</td><td class="xl65" dir="RTL" align="right">12</td><td class="xl67" align="right">180,000</td><td class="xl65" dir="RTL" align="right">هفته دوم اردیبهشت</td></tr><tr style="mso-height-source: userset; height: 15.75pt;"><td class="xl68" style="height: 15.75pt; width: 194pt;" dir="RTL" align="right" width="259" height="21">مبحث 3 <br> ( حفاظت ساختمان در برابر حریق)</td><td class="xl65" dir="RTL" align="right">8</td><td class="xl67" align="right">120,000</td><td class="xl65" dir="RTL" align="right">هفته دوم اردیبهشت</td></tr><tr style="mso-height-source: userset; height: 15.75pt;"><td class="xl68" style="height: 15.75pt; width: 194pt;" dir="RTL" align="right" width="259" height="21">مبحث 21(پدافند غیر عامل)<br> مبحث 22 (مراقبت و نگهداری ساختمان )</td><td class="xl65" dir="RTL" align="right">10</td><td class="xl67" align="right">150,000</td><td class="xl65" dir="RTL" align="right">هفته دوم اردیبهشت</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">جمع کل دوره&nbsp;</td><td class="xl69" dir="RTL" align="right">136</td><td class="xl67" align="right">2,000,000</td><td class="xl67">&nbsp;</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" colspan="4" align="right" height="20">شروع دوره حضوری نظارت&nbsp; معماری: 14 اردیبهشت سال 98</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" colspan="4" align="right" height="20">ایام تشکیل کلاس دوره نظارت&nbsp; معماری : 1شنبه -3 شنبه -5شنبه - جمعه</td></tr>
+                    <tr style="height: 15.0pt;border-bottom: 2px solid #F44336;background: #f5f5f5;"><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری محاسبات دوره بهار 98</td></tr>
+                    <tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr>
+                    <tr><td>20 اسفند 97</td><td>1,200,000</td></tr>
+                    <tr><td>5 فروردین&nbsp; 98</td><td>1,500,000</td></tr>
+                    <tr><td>20 فروردین 98</td><td>1,650,000</td></tr>
+                    <tr><td>از روز 21 فروردین 98</td><td>1,800,000</td></tr>
+                    <tr><td colspan="2" style="padding: 0;"><a href="/node/21058" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
                 </tbody>
             </table>
-            <table style="width: 450px;" border="0" cellspacing="0" cellpadding="0">
+        </div>
+
+        <div class="doreh-2" style="display: none;">
+            <table border="0" style="width: 600px;">
+                <tbody><tr><td colspan="4">دوره حضوری ورود به حرفه نظارت عمران</td></tr><tr><td>عنوان دوره&nbsp;</td><td>طول دوره&nbsp;</td><td>هزینه ( تومان )</td><td>ایام تشکیل کلاس&nbsp;</td></tr><tr><td>طراحی سازه های فولادی +جوش<br> +<br> طراحی سازه های بتنی&nbsp;</td><td>60 ساعت&nbsp;</td><td>700,000</td><td>شنبه 17 الی 21<br> دوشنبه 17 الی 21</td></tr><tr><td>آیین نامه 2800<br> +<br> بارگذاری</td><td>20 ساعت&nbsp;</td><td>250,000</td><td>شنبه 17 الی 21<br> دوشنبه&nbsp; 17 الی 21</td></tr><tr><td>پی سازی <br> +<br> مصالح بنایی</td><td>25 ساعت&nbsp;</td><td>350,000</td><td>شنبه 17 الی 21<br> چهارشنبه 17 الی 21</td></tr><tr><td>مباحث 5(مصالح ساختمانی)<br> مبحث 11(ساختمان صنعتی)<br> مبحث 12 ( ایمنی )</td><td>15 ساعت&nbsp;</td><td>200,000</td><td>شنبه 17 الی 21<br> چهارشنبه 17 الی 21</td></tr><tr><td>جمع کل دوره&nbsp;</td><td>120 ساعت</td><td>1,500,000</td><td>&nbsp;</td></tr><tr><td colspan="4">شروع دوره نظارت : 24 فروردین سال 98</td></tr><tr><td colspan="4">ایام تشکیل کلاس دوره نظارت : آخر هفته ها (5شنبه +جمعه)</td></tr></tbody>
+            </table>
+            <table border="0" style="width: 300px;">
                 <tbody>
-                <tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt; width: 260pt;" dir="RTL" colspan="2" align="right" width="346" height="20">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری نظارت و اجرا معماری دوره بهار 98</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td class="xl65" dir="RTL" align="right">قیمت&nbsp; دوره (تومان)</td></tr><tr style="mso-height-source: userset; height: 15.75pt;"><td class="xl65" style="height: 15.75pt;" dir="RTL" align="right" height="21">20 اسفند 97</td><td class="xl66" align="right">1,400,000</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">5 فروردین&nbsp; 98</td><td class="xl66" align="right">1,550,000</td></tr><tr style="mso-height-source: userset; height: 15.75pt;"><td class="xl65" style="height: 15.75pt;" dir="RTL" align="right" height="21">20 فروردین 98</td><td class="xl66" align="right">1,850,000</td></tr><tr style="mso-height-source: userset; height: 15.75pt;"><td class="xl65" style="height: 15.75pt;" dir="RTL" align="right" height="21">از روز 21 فروردین 98</td><td class="xl66" align="right">2,000,000</td></tr><tr style="mso-height-source: userset; height: 15.75pt;"><td class="xl65" style="height: 25.75pt;border-right-color: transparent;border-left-color: transparent;" dir="RTL" align="right" height="21"></td><td class="xl66" align="right" style="border-left-color: transparent;"></td></tr>
+                    <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری نظارت دوره بهار 98</td></tr>
+                    <tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr>
+                    <tr><td>20 اسفند 97</td><td>1,000,000</td></tr>
+                    <tr><td>5 فروردین&nbsp; 98</td><td>1,200,000</td></tr>
+                    <tr><td>20 فروردین 98</td><td>1,300,000</td></tr>
+                    <tr><td>از روز 21 فروردین 98</td><td>1,500,000</td></tr>
+                    <tr><td colspan="2" style="padding: 0;"><a href="/node/21059" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="doreh-3" style="display: none;">
+            <table border="0" style="width: 600px;">
+                <tbody>
+                    <tr><td colspan="5">دوره آنلاین ورود به حرفه محاسبات عمران</td></tr>
+                    <tr><td>عنوان دوره&nbsp;</td><td>طول دوره&nbsp;</td><td>هزینه ( تومان )</td><td>ایام تشکیل کلاس&nbsp;</td><td>ثبت نام</td></tr>
+                    <tr><td>طراحی سازه های فولادی <br> +<br> 4 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>45 ساعت&nbsp;</td><td>400,000</td><td>5شنبه 14 الی 18<br> جمعه 8 الی 16</td><td><a href="/node/21054" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                    <tr><td>طراحی سازه های بتنی <br> +<br> 4 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>45 ساعت&nbsp;</td><td>400,000</td><td>5شنبه 14 الی 18<br> جمعه 8 الی 16</td><td><a href="/node/21053" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                    <tr><td>آیین نامه 2800+بارگذاری<br> +<br> 4 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>40 ساعت&nbsp;</td><td>400,000</td><td>5شنبه 14 الی 18<br> جمعه 8 الی 16</td><td><a href="/node/21056" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                    <tr><td>پی سازی<br> +<br> 2 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>20 ساعت&nbsp;</td><td>200,000</td><td>5شنبه 14 الی 18<br> جمعه 8 الی 16</td><td><a href="/node/21057" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                    <tr><td>مصالح بنایی<br> +<br> 2 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>10 ساعت&nbsp;</td><td>100,000</td><td>5شنبه 14 الی 18<br> جمعه 8 الی 16</td><td><a href="/node/21052" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                    <tr><td>جمع کل دوره&nbsp;</td><td>150 ساعت</td><td>1,400,000</td><td>&nbsp;</td><td></td></tr>
+                    <tr><td colspan="5">شروع دوره آنلاین محاسبات : 12 اردیبهشت سال 98</td></tr>
+                    <tr><td colspan="5">ایام تشکیل کلاس دوره محاسبات : 1شنبه -3 شنبه -5شنبه - جمعه</td></tr>
+                </tbody>
+            </table>
+            <table border="0" style="width: 300px;">
+                <tbody><tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین محاسبات دوره بهار 98</td></tr><tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr><tr><td>20 اسفند 97</td><td>900,000</td></tr><tr><td>5 فروردین&nbsp; 98</td><td>1,100,000</td></tr><tr><td>20 فروردین 98</td><td>1,300,000</td></tr><tr><td>از روز 21 فروردین 98</td><td>1,400,000</td></tr></tbody>
+            </table>
+        </div>
+
+        <div class="doreh-4" style="display: none;">
+            <table border="0" style="width: 700px;">
+                <tbody>
+                    <tr><td colspan="5">دوره آنلاین ورود به حرفه نظارت</td></tr>
+                    <tr><td>عنوان دوره&nbsp;</td><td>طول دوره&nbsp;</td><td>هزینه ( تومان )</td><td>ایام تشکیل کلاس&nbsp;</td><td>ثبت نام</td></tr>
+                    <tr><td>طراحی سازه های فولادی +جوش<br> +<br> طراحی سازه های بتنی&nbsp;</td><td>60 ساعت&nbsp;</td><td>500,000</td><td>شنبه 17 الی 21<br> دوشنبه 17 الی 21</td><td><a href="/node/21067" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                    <tr><td>آیین نامه 2800<br> +<br> بارگذاری</td><td>25 ساعت&nbsp;</td><td>200,000</td><td>شنبه 17 الی 21<br> دوشنبه&nbsp; 17 الی 21</td><td><a href="/node/21069" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                    <tr><td>پی سازی <br> +<br> مصالح بنایی</td><td>20 ساعت&nbsp;</td><td>200,000</td><td>شنبه 17 الی 21<br> چهارشنبه 17 الی 21</td><td><a href="/node/21069" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                    <tr><td>مباحث 5(مصالح ساختمانی)<br> مبحث 11(ساختمان صنعتی)<br> مبحث 12 ( ایمنی )</td><td>25 ساعت&nbsp;</td><td>200,000</td><td>شنبه 17 الی 21<br> چهارشنبه 17 الی 21</td><td><a href="/node/21069" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                    <tr><td>جمع کل دوره&nbsp;</td><td>140 ساعت</td><td>1,100,000</td><td>&nbsp;</td><td></td></tr>
+                    <tr><td colspan="5">شروع دوره آنلاین نظارت : 12 اردیبهشت سال 98</td></tr>
+                    <tr><td colspan="5">ایام تشکیل کلاس دوره محاسبات : 1شنبه -3 شنبه -5شنبه - جمعه</td></tr>
+                </tbody>
+            </table>
+            <table border="0" style="width: 300px;">
+                <tbody><tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین نظارت دوره بهار 98</td></tr><tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr><tr><td>20 اسفند 97</td><td>700,000</td></tr><tr><td>5 فروردین&nbsp; 98</td><td>800,000</td></tr><tr><td>20 فروردین 98</td><td>1,000,000</td></tr><tr><td>از روز 21 فروردین 98</td><td>1,100,000</td></tr></tbody>
+            </table>
+        </div>
+
+        <div class="doreh-5" style="display: none;">
+            <table border="0" style="width: 600px;">
+                <tbody>
+                <tr><td colspan="4">دوره حضوری ورود به حرفه نظارت و اجرا&nbsp; معماری&nbsp;</td></tr><tr><td>عنوان دوره&nbsp;</td><td>طول دوره (ساعت)</td><td>هزینه ( تومان )</td><td>ایام تشکیل کلاس&nbsp;</td></tr><tr><td>طراحی سازه های فولادی +جوش<br> +<br> طراحی سازه های بتنی&nbsp;</td><td>20</td><td>300,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>پی سازی<br> +<br> مصالح بنایی</td><td>16</td><td>250,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>الزامات عمومی&nbsp;</td><td>10</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 5(مصالح ساختمانی)<br> مبحث 11(ساختمان صنعتی)<br> مبحث 12 ( ایمنی )</td><td>15</td><td>200,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 13(تاسیسات برقی)<br> مبحث 15 (آسانسور و پلکان برقی )</td><td>15</td><td>200,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td><br> مبحث 16(تاسیسات بهداشتی)<br> </td><td>10</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث17 ( لوله کشی گاز طبیعی)</td><td>10</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 14(تاسیسات مکانیکی)</td><td>10</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 18(عایق بندی و تنظیم صدا)<br> مبحث 19(صرفه جویی در انرژی)<br> مبحث 20 (علائم و تابلو )</td><td>12</td><td>180,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 3 <br> ( حفاظت ساختمان در برابر حریق)</td><td>8</td><td>120,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 21(پدافند غیر عامل)<br> مبحث 22 (مراقبت و نگهداری ساختمان )</td><td>10</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>جمع کل دوره&nbsp;</td><td>136</td><td>2,000,000</td><td>&nbsp;</td></tr><tr><td colspan="4">شروع دوره حضوری نظارت&nbsp; معماری: 14 اردیبهشت سال 98</td></tr><tr><td colspan="4">ایام تشکیل کلاس دوره نظارت&nbsp; معماری : 1شنبه -3 شنبه -5شنبه - جمعه</td></tr>
+                </tbody>
+            </table>
+            <table border="0" style="width: 300px;">
+                <tbody>
+                    <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری نظارت و اجرا معماری دوره بهار 98</td></tr><tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr><tr><td>20 اسفند 97</td><td>1,400,000</td></tr><tr><td>5 فروردین&nbsp; 98</td><td>1,550,000</td></tr><tr><td>20 فروردین 98</td><td>1,850,000</td></tr><tr><td>از روز 21 فروردین 98</td><td>2,000,000</td></tr>
+                    <tr><td colspan="2" style="padding: 0;"><a href="/node/21088" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                    <tr><td style="height: 25.75pt;border-right-color: transparent;border-left-color: transparent;"></td><td style="border-left-color: transparent;"></td></tr>
                 </tbody>
                 <tbody>
-                <tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt; width: 234pt;" dir="RTL" colspan="2" align="right" width="312" height="20">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری طراحی معماری دوره بهار 98</td></tr><tr style="mso-height-source: userset; height: 15.75pt;"><td class="xl65" style="height: 15.75pt;" dir="RTL" align="right" height="21">ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td class="xl65" dir="RTL" align="right">قیمت&nbsp; دوره (تومان)</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">20 اسفند 97</td><td class="xl66" align="right">500,000</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">5 فروردین&nbsp; 98</td><td class="xl66" align="right">6,500,000</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">20 فروردین 98</td><td class="xl66" align="right">800,000</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">از روز 21 فروردین 98</td><td class="xl66" align="right">900,000</td></tr>
+                    <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری طراحی معماری دوره بهار 98</td></tr><tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr><tr><td>20 اسفند 97</td><td>500,000</td></tr><tr><td>5 فروردین&nbsp; 98</td><td>6,500,000</td></tr><tr><td>20 فروردین 98</td><td>800,000</td></tr><tr><td>از روز 21 فروردین 98</td><td>900,000</td></tr>
+                    <tr><td colspan="2" style="padding: 0;"><a href="/node/21089" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
                 </tbody>
             </table>
         </div>
 
         <div class="doreh-6" style="display: flex;">
-            <table style="width: 698px;" border="0" cellspacing="0" cellpadding="0">
-                <tbody><tr style="height: 15.0pt;"><td class="xl70" style="height: 15.0pt; width: 234pt;" dir="RTL" colspan="4" align="right" width="312" height="20">دوره آنلاین ورود به حرفه نظارت معماری&nbsp;</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">عنوان دوره&nbsp;</td><td class="xl65" dir="RTL" align="right">طول دوره&nbsp;</td><td class="xl65" dir="RTL" align="right">هزینه ( تومان )</td><td class="xl65" dir="RTL" align="right">ایام تشکیل کلاس&nbsp;</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl66" style="height: 15.0pt; width: 234pt;" dir="RTL" align="right" width="312" height="20">طراحی سازه های فولادی +جوش<br> +<br> طراحی سازه های بتنی&nbsp;</td><td class="xl65" dir="RTL" align="right">20 ساعت&nbsp;</td><td class="xl67" align="right">200,000</td><td class="xl66" style="width: 113pt;" dir="RTL" align="right" width="151">هفته دوم اردیبهشت</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl66" style="height: 15.0pt; width: 234pt;" dir="RTL" align="right" width="312" height="20">پی سازی<br> +<br> مصالح بنایی</td><td class="xl65" dir="RTL" align="right">16 ساعت&nbsp;</td><td class="xl67" align="right">180,000</td><td class="xl66" style="width: 113pt;" dir="RTL" align="right" width="151">هفته دوم اردیبهشت</td></tr><tr style="height: 15.0pt;"><td class="xl66" style="height: 15.0pt; width: 234pt;" dir="RTL" align="right" width="312" height="20">الزامات عمومی&nbsp;</td><td class="xl65" dir="RTL" align="right">10 ساعت&nbsp;</td><td class="xl67" align="right">120,000</td><td class="xl66" style="width: 113pt;" dir="RTL" align="right" width="151">هفته دوم اردیبهشت</td></tr><tr style="mso-height-source: userset; height: 15.0pt;"><td class="xl66" style="height: 15.0pt; width: 234pt;" dir="RTL" align="right" width="312" height="20">مبحث 5(مصالح ساختمانی)<br> مبحث 11(ساختمان صنعتی)<br> مبحث 12 ( ایمنی )</td><td class="xl65" dir="RTL" align="right">15 ساعت&nbsp;</td><td class="xl67" align="right">180,000</td><td class="xl66" style="width: 113pt;" dir="RTL" align="right" width="151">هفته دوم اردیبهشت</td></tr><tr style="mso-height-source: userset; height: 15.75pt;"><td class="xl66" style="height: 15.75pt; width: 234pt;" dir="RTL" align="right" width="312" height="21">مبحث 13(تاسیسات برقی)<br> مبحث 15 (آسانسور و پلکان برقی )</td><td class="xl65" dir="RTL" align="right">15 ساعت</td><td class="xl67" align="right">180,000</td><td class="xl65" dir="RTL" align="right">هفته دوم اردیبهشت</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20"><br> مبحث 16(تاسیسات بهداشتی)<br> </td><td class="xl65" dir="RTL" align="right">10 ساعت</td><td class="xl67" align="right">120,000</td><td class="xl65" dir="RTL" align="right">هفته دوم اردیبهشت</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">مبحث17 ( لوله کشی گاز طبیعی)</td><td class="xl65" dir="RTL" align="right">10 ساعت&nbsp;</td><td class="xl67" align="right">120,000</td><td class="xl65" dir="RTL" align="right">هفته دوم اردیبهشت</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">مبحث 14(تاسیسات مکانیکی)</td><td class="xl65" dir="RTL" align="right">10 ساعت&nbsp;</td><td class="xl67" align="right">150,000</td><td class="xl65" dir="RTL" align="right">هفته دوم اردیبهشت</td></tr><tr style="mso-height-source: userset; height: 15.75pt;"><td class="xl66" style="height: 15.75pt; width: 234pt;" dir="RTL" align="right" width="312" height="21">مبحث 18(عایق بندی و تنظیم صدا)<br> مبحث 19(صرفه جویی در انرژی)<br> مبحث 20 (علائم و تابلو )</td><td class="xl65" dir="RTL" align="right">12 ساعت</td><td class="xl67" align="right">150,000</td><td class="xl65" dir="RTL" align="right">هفته دوم اردیبهشت</td></tr><tr style="mso-height-source: userset; height: 15.75pt;"><td class="xl66" style="height: 15.75pt; width: 234pt;" dir="RTL" align="right" width="312" height="21">مبحث 3 <br> ( حفاظت ساختمان در برابر حریق)</td><td class="xl65" dir="RTL" align="right">8 ساعت&nbsp;</td><td class="xl67" align="right">100,000</td><td class="xl65" dir="RTL" align="right">هفته دوم اردیبهشت</td></tr><tr style="mso-height-source: userset; height: 15.75pt;"><td class="xl66" style="height: 15.75pt; width: 234pt;" dir="RTL" align="right" width="312" height="21">مبحث 21(پدافند غیر عامل)<br> مبحث 22 (مراقبت و نگهداری ساختمان )</td><td class="xl65" dir="RTL" align="right">10 ساعت&nbsp;</td><td class="xl67" align="right">120,000</td><td class="xl65" dir="RTL" align="right">هفته دوم اردیبهشت</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">جمع کل دوره&nbsp;</td><td class="xl69" dir="RTL" align="right">136 ساعت</td><td class="xl67" align="right">1,500,000</td><td class="xl67">&nbsp;</td></tr></tbody>
+            <table border="0" style="width: 600px;">
+                <tbody><tr><td colspan="4">دوره آنلاین ورود به حرفه نظارت معماری&nbsp;</td></tr><tr><td>عنوان دوره&nbsp;</td><td>طول دوره&nbsp;</td><td>هزینه ( تومان )</td><td>ایام تشکیل کلاس&nbsp;</td></tr><tr><td>طراحی سازه های فولادی +جوش<br> +<br> طراحی سازه های بتنی&nbsp;</td><td>20 ساعت&nbsp;</td><td>200,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>پی سازی<br> +<br> مصالح بنایی</td><td>16 ساعت&nbsp;</td><td>180,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>الزامات عمومی&nbsp;</td><td>10 ساعت&nbsp;</td><td>120,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 5(مصالح ساختمانی)<br> مبحث 11(ساختمان صنعتی)<br> مبحث 12 ( ایمنی )</td><td>15 ساعت&nbsp;</td><td>180,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 13(تاسیسات برقی)<br> مبحث 15 (آسانسور و پلکان برقی )</td><td>15 ساعت</td><td>180,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td><br> مبحث 16(تاسیسات بهداشتی)<br> </td><td>10 ساعت</td><td>120,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث17 ( لوله کشی گاز طبیعی)</td><td>10 ساعت&nbsp;</td><td>120,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 14(تاسیسات مکانیکی)</td><td>10 ساعت&nbsp;</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 18(عایق بندی و تنظیم صدا)<br> مبحث 19(صرفه جویی در انرژی)<br> مبحث 20 (علائم و تابلو )</td><td>12 ساعت</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 3 <br> ( حفاظت ساختمان در برابر حریق)</td><td>8 ساعت&nbsp;</td><td>100,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 21(پدافند غیر عامل)<br> مبحث 22 (مراقبت و نگهداری ساختمان )</td><td>10 ساعت&nbsp;</td><td>120,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>جمع کل دوره&nbsp;</td><td>136 ساعت</td><td>1,500,000</td><td>&nbsp;</td></tr></tbody>
             </table>
-            <table style="width: 463px;" border="0" cellspacing="0" cellpadding="0">
-                <tbody><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt; width: 234pt;" dir="RTL" colspan="2" align="right" width="312" height="20">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین نظارت و اجرا معماری دوره بهار 98</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td class="xl65" dir="RTL" align="right">قیمت&nbsp; دوره (تومان)</td></tr><tr style="mso-height-source: userset; height: 15.75pt;"><td class="xl65" style="height: 15.75pt;" dir="RTL" align="right" height="21">20 اسفند 97</td><td class="xl66" align="right">1,000,000</td></tr><tr style="height: 15.0pt;"><td class="xl65" style="height: 15.0pt;" dir="RTL" align="right" height="20">5 فروردین&nbsp; 98</td><td class="xl66" align="right">1,200,000</td></tr><tr style="mso-height-source: userset; height: 15.75pt;"><td class="xl65" style="height: 15.75pt;" dir="RTL" align="right" height="21">20 فروردین 98</td><td class="xl66" align="right">1,350,000</td></tr><tr style="mso-height-source: userset; height: 15.75pt;"><td class="xl65" style="height: 15.75pt;" dir="RTL" align="right" height="21">از روز 21 فروردین 98</td><td class="xl66" align="right">1,500,000</td></tr></tbody>
+            <table border="0" style="width: 300px;">
+                <tbody>
+                    <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین نظارت و اجرا معماری دوره بهار 98</td></tr><tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr><tr><td>20 اسفند 97</td><td>1,000,000</td></tr><tr><td>5 فروردین&nbsp; 98</td><td>1,200,000</td></tr><tr><td>20 فروردین 98</td><td>1,350,000</td></tr><tr><td>از روز 21 فروردین 98</td><td>1,500,000</td></tr>
+                    <tr><td colspan="2" style="padding: 0;"><a href="/node/21089" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                </tbody>
             </table>
         </div>
     </div>
@@ -87,6 +134,20 @@
 </section>
 
 <section style="margin: 50px 0 80px 0;">
+    <div class="kargah-vip">
+        <a target="_blank" href="/node/21036">
+            <div>
+                ورکشاپ آنلاین تخصصی بیان دغدغه ها و راه حل های اساسی در آزمون محاسبات عمران
+                <br>
+                <ul>
+                    <li style="font-size: 13px;color: #909090 !important; padding: 18px 5px 10px 5px;">شرکت در این ورکشاپ برای اعضای VIP رایگان است.</li>
+                    <li style="font-size: 13px;color: #909090 !important; padding: 5px 5px;"> به همراه تخفیف ویژه برای شرکت در باقی دوره های آموزشی موسسه</li>
+                </ul>
+            </div>
+            <img class="vip-icon" src="/sites/all/themes/sara/images/icon/vip.svg"/>
+        </a>
+    </div>
+
     <h2> قسمتی از فیلم ورکشاپ آشنایی با آزمون نظام مهندسی عمران </h2>
     <p style="text-align: center;margin-bottom: 40px;margin-top: 30px;	font-size: 15px;color: #888;">برای مشاهده نمونه فیلم های بیشتر
         <a href="/gallery/videos/playlist/2605/15748" target="_blank">کلیک کنید.</a>
@@ -277,7 +338,7 @@
         </div>
         <div class="row">
             <a href="/node/17089" target="_blank">
-                <img src="/sites/default/files/styles/200x200/public/fe-exam.jpg?itok=4C4U40Ru" width="300" height="170" alt="آزمون FE یا Fundamentals of Engineering" title="آزمون FE یا Fundamentals of Engineering">
+                <img src="/sites/default/files/styles/200x200/public/field/image/tag/tag_4862.jpg?itok=tP91XcKP" width="300" height="170" alt="آزمون FE یا Fundamentals of Engineering" title="آزمون FE یا Fundamentals of Engineering">
             </a>
             <a href="/node/17089" target="_blank" class="title">
                 آزمون FE یا Fundamentals of Engineering
@@ -285,7 +346,7 @@
         </div>
         <div class="row">
             <a href="/node/17090" target="_blank">
-                <img src="/sites/default/files/styles/200x200/public/pe-exam.jpg?itok=rK3SwDau" width="300" height="170" alt="آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam" title="آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam">
+                <img src="/sites/default/files/styles/200x200/public/field/image/tag/tag_4861.jpg?itok=qGsw7Hsk" width="300" height="170" alt="آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam" title="آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam">
             </a>
             <a href="/node/17090" target="_blank" class="title">
                 آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam
@@ -293,7 +354,7 @@
         </div>
         <div class="row">
             <a href="/node/17077" target="_blank">
-                <img src="/sites/default/files/styles/200x200/public/engineering-system-test.jpg?itok=CNPf4UzR" width="300" height="170" alt="آزمون نظام مهندسی، Engineering system test" title="آزمون نظام مهندسی، Engineering system test">
+                <img src="/sites/default/files/styles/200x200/public/field/image/tag/tag_4787.jpg?itok=rjUkkfDP" width="300" height="170" alt="آزمون نظام مهندسی، Engineering system test" title="آزمون نظام مهندسی، Engineering system test">
             </a>
             <a href="/node/17077" target="_blank" class="title">
                 آزمون نظام مهندسی، Engineering system test
@@ -357,6 +418,41 @@ $(document).ready(function(){
 })
 </script>
 <style>
+    .kargah-vip{
+        position: relative;
+        width: 70%;
+        background-color: #ffffff;
+        padding: 19px 23px;
+        margin: 30px auto 93px auto;
+        border: solid #b39dd9;
+        border-width: 0px 3px;
+        box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+        text-align: right;
+    }
+    @media (max-width: 768px){
+        .kargah-vip{
+            width: 96%;
+            padding: 2% 2.5%;
+        }
+        .kargah-vip a{
+            flex-direction: column-reverse;
+        }
+        .kargah-vip .vip-icon{
+            margin: 0 0 18px 0;
+        }
+    }
+    .kargah-vip a{
+        color: black !important;
+        font-size: 16px;
+        margin: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .kargah-vip .vip-icon{
+        width: 95px;
+        margin-left: 2%;
+    }
     .product-node .owl-stage-outer {
         margin-bottom: 45px;
     }
@@ -1141,6 +1237,16 @@ $(document).ready(function(){
         .link-hamayesh{
             width: 90%;
         }
+        .owl-carousel {
+            width: 100% !important;
+            padding: 50px 1%;
+        }
+        .owl-carousel .owl-item {
+            padding-left: 0;
+        }
+        .product-node .owl-item .row {
+            margin: 0px;
+        }
     }
     @media (max-width: 480px) {
         .link-hamayesh a{
@@ -1326,7 +1432,7 @@ $(document).ready(function(){
 
     .doreha {
         display: flex;
-        width: 800px;
+        max-width: 800px;
         margin: auto;
         justify-content: space-around;
         padding: 30px 0;
@@ -1365,6 +1471,32 @@ $(document).ready(function(){
         background: #fff;
         box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 4px;
         padding: 15px;
+    }
+    @media (max-width: 1100px){
+        .doreh > div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 15px 0;
+        }
+        .doreh table:first-child {
+            min-width: calc(100% - 30px) !important;
+            max-width: none;
+        }
+        .doreha p {
+            padding: 10px 25px;
+            border-radius: 3px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+    }
+    @media (max-width: 600px) {
+        .doreha p {
+            text-align: center;
+        }
+        .doreha p:before{display: none;}
     }
     .doreh table:last-child tr:first-child {
         border-bottom: 2px solid #F44336;
