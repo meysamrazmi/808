@@ -1754,4 +1754,8 @@ section#pbd {
 		padding: 20px;
 		border-radius: 25px;
 	}
+	section.movie {
+		padding: 50px 2%;
+		border-top: 1px solid #ddd;
+	}
 }

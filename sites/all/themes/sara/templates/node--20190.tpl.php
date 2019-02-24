@@ -7,7 +7,7 @@
         <div>
             <p data-selector="doreh-1">دوره حضوری محاسبات عمران</p>
             <p data-selector="doreh-2">دوره حضوری نظارت و اجرا عمران</p>
-            <p data-selector="doreh-5">دوره حضوری نظارت و اجرا معماری</p>
+            <p data-selector="doreh-5">دوره حضوری طراحی و نظارت و اجرا معماری</p>
         </div>
         <div>
             <p data-selector="doreh-3">دوره آنلاین محاسبات عمران</p>

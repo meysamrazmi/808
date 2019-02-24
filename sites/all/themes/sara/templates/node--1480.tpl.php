@@ -102,10 +102,23 @@ $url = "https://civil808.com/sites/default/files" . $url;
     </div>
 </section>
 
+<section id="product" class="panel">
+    <h2 style="margin-bottom: 50px;">پکیج استثنائی 808</h2>
+    <div class="">
+        <a class="" href="/cart/add/p19704?destination=cart">
+            <img src="/sites/default/files/field/image/node_19704_2.jpg">
+        </a>
+    </div>
+</section>
+
 <style>
-    #profile-features h2{
+    #profile-features h2, #product h2 {
+        font-weight: normal !important;
+        text-align: center;
+        display: block;
         position: relative;
     }
+    #product h2:before,
     #profile-features h2:before{
         content: "";
         position: absolute;
@@ -217,11 +230,6 @@ $url = "https://civil808.com/sites/default/files" . $url;
         display: inline-block;
         vertical-align: top;
     }
-    #profile-features h2 {
-        font-weight: normal !important;
-        text-align: center;
-        display: block;
-    }
     .profile-vip {
         margin: 50px auto 0;
         max-width: 800px;
@@ -272,5 +280,9 @@ $url = "https://civil808.com/sites/default/files" . $url;
         color: #31cc17;
         font-size: 20px;
     }
-
+    section#product {
+        text-align: center;
+        padding: 50px;
+        background: #fff;
+    }
 </style>
