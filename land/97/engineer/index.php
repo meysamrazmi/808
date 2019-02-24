@@ -40,7 +40,7 @@
 				</div>
 				<div class="percent" data-aos="fade-up" data-aos-delay="800">
 					<span>تا 35%</span>
-					<span>تخفیف</span>
+					<span>تخفیف و شارژ هدیه</span>
 				</div>
 				<a href="#steps" class="scroll" data-aos="zoom-out" data-aos-delay="1500" data-aos-anchor-placement="top-bottom"></a>
 			</div>
@@ -192,7 +192,7 @@
 
 
                 <div class="course">
-                    <a href="http://civil808.com/landing/pbd">
+                    <a href="http://civil808.com/landing/pbdcourse">
                         <div class="course-image" style="background-image: url(./images/pbd-card.jpg)">
                             <div class="course-overlay">
                                 <h3>سومین دوره جامع آموزش اصول محاسبات بهسازی لرزه‌ای و طراحی عملکردی سازه‌ها</h3>

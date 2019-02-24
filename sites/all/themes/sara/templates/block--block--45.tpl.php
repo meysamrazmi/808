@@ -2,17 +2,56 @@
     <div id="block-block-45" class="block block-block contextual-links-region first odd">
         <div class="content">
             <span class="close-banner">X</span>
-            <a href="/node/20959" target="_blank">
-                <img class="right" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">
+            <a href="http://land.civil808.com/97/engineer" target="_blank">
+
                 <div class="new-title">
-                    سومین دوره جامع آموزش اصول محاسبات
-                    <div>بهسازی لرزه ای و طراحی عملکردی سازه ها</div>
+                    <p style="margin-top: 10px;font-weight: 500;">تا ٣٥درصد تخفيف از ٣ تا ٥ اسفند
+                        <br>
+                        <span class="sub-title">
+                             ٢٥درصد شارژ هديه
+                            <span>
+                                +
+                            </span>
+                            ١٠درصد؜ تخفيف اعضای VIP
+                        </span>
+
+                    </p>
                 </div>
-                <img class="left" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">
+                <img id="kolah" src="/sites/all/themes/sara/images/banners/engineerGuy.png" width="50px" style="    position: absolute;
+    right: 51px;
+    top: -26px;">
+
+                <span id="clickkonid" style="color:#424242;font-weight:bold;font-size: 16px;position: absolute; left: 50px; top: 15px;background: rgba(255,255,255,0.7);z-index: 2;display: inline-block; padding: 5px;border-radius: 5px">کلیک کنید!</span>
+
             </a>
         </div>
     </div>
     <style>
+        @media screen and (max-width: 720px) {
+            #kolah {
+                display: none;
+            }
+            #clickkonid {
+                display: none!important;
+
+            }
+        }
+        .sub-title{
+            color: #004279;
+            font-size: 17px;
+            font-weight: bold;
+            padding-top: 3px;
+            display: block;
+        }
+        .sub-title > span{
+            color: #9f4d4d;
+            padding: 0 5px;
+        }
+        @media screen and (max-width: 500px) {
+            .sub-title{
+                font-size: 14px;
+            }
+        }
         div#block-block-45 {
             width: 100%;
             position: fixed;
@@ -40,6 +79,17 @@
             right: 0;
             top: 0;
             z-index: 1;
+        }
+        div#block-block-45 a:before{
+            content: "";
+            background:url(/sites/all/themes/sara/images/festival.jpg);
+            opacity: 0.6;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1;
         }
         .new-title{
             font-size: 12px;
@@ -73,7 +123,7 @@
         @media (max-width: 1200px){}
         @media (max-width: 979px){
             .new-title{
-                text-align: right;
+                text-align: center;
                 margin-right: 15px;
             }
             img.right{
