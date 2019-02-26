@@ -127,8 +127,11 @@ margin-bottom: 30px;">
 
 		<section id="film" style="text-align:center;margin-bottom: 60px;">
 			<h2 data-aos="zoom-in-up" data-aos-delay="400"  style=" margin-bottom: 51px;"> فیلم معرفی  </h2>
-			<div data-aos="zoom-out" data-aos-delay="900" class="aboutus" style="margin: 10px auto 20px; position: relative; width: 840px; height: 500px;">
-				<iframe  allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src="https://www.civil808.com/file/iframe/20533" style="position: absolute; top: 0px; left: 0px; width: 840px; height: 447px;"></iframe>
+			<div data-aos="zoom-out" data-aos-delay="900" class="aboutus" style="margin: 10px auto 20px; position: relative; width: 840px; height: 0px;max-width: 100%;">
+<!--                <video controls="" __idm_id__="274214914" style="position: absolute; top: 0px; left: 0px; width: 840px; height: 100%;max-width: 100%;">-->
+<!--                    <source src="https://civil808.com/sites/default/files/filed/files/node_20533-node_20580-app2_01_vp8.webm" type="video/mp4">-->
+<!--                </video>-->
+				<iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src="https://civil808.com/sites/default/files/filed/files/node_20533-node_20580-app2_01_vp8.webm" style="position: absolute; top: 0px; left: 0px; width: 840px; height: 100%;max-width: 100%;"></iframe>
 			</div>
 		</section>
 		
@@ -201,8 +204,22 @@ margin-bottom: 30px;">
 			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 			
-			ga('create', 'UA-81136025-1', 'auto');
+			ga('create', 'UA-107721597-1', 'auto');
 			ga('send', 'pageview');
 			</script>
+    <style>
+        section#film .aboutus {
+            padding-bottom: 472px;
+        }
+        @media (max-width: 840px){
+            section#film .aboutus {
+                padding-bottom: 56.25%;
+            }
+        }
+        section {
+            max-width: 100%;
+            overflow: hidden;
+        }
+    </style>
 	</body>
 </html>

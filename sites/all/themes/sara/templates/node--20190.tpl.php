@@ -76,7 +76,9 @@
                 </tbody>
             </table>
             <table border="0" style="width: 300px;">
-                <tbody><tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین محاسبات دوره بهار 98</td></tr><tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr><tr><td>20 اسفند 97</td><td>900,000</td></tr><tr><td>5 فروردین&nbsp; 98</td><td>1,100,000</td></tr><tr><td>20 فروردین 98</td><td>1,300,000</td></tr><tr><td>از روز 21 فروردین 98</td><td>1,400,000</td></tr></tbody>
+                <tbody><tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین محاسبات دوره بهار 98</td></tr><tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr><tr><td>20 اسفند 97</td><td>900,000</td></tr><tr><td>5 فروردین&nbsp; 98</td><td>1,100,000</td></tr><tr><td>20 فروردین 98</td><td>1,300,000</td></tr><tr><td>از روز 21 فروردین 98</td><td>1,400,000</td></tr>
+                    <tr><td colspan="2" style="padding: 0;"><a href="/node/21094" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                </tbody>
             </table>
         </div>
 
@@ -95,7 +97,9 @@
                 </tbody>
             </table>
             <table border="0" style="width: 300px;">
-                <tbody><tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین نظارت دوره بهار 98</td></tr><tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr><tr><td>20 اسفند 97</td><td>700,000</td></tr><tr><td>5 فروردین&nbsp; 98</td><td>800,000</td></tr><tr><td>20 فروردین 98</td><td>1,000,000</td></tr><tr><td>از روز 21 فروردین 98</td><td>1,100,000</td></tr></tbody>
+                <tbody><tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین نظارت دوره بهار 98</td></tr><tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr><tr><td>20 اسفند 97</td><td>700,000</td></tr><tr><td>5 فروردین&nbsp; 98</td><td>800,000</td></tr><tr><td>20 فروردین 98</td><td>1,000,000</td></tr><tr><td>از روز 21 فروردین 98</td><td>1,100,000</td></tr>
+                <tr><td colspan="2" style="padding: 0;"><a href="/node/21095" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                </tbody>
             </table>
         </div>
 

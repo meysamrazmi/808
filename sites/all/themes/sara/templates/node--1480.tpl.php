@@ -104,6 +104,7 @@ $url = "https://civil808.com/sites/default/files" . $url;
 
 <section id="product" class="panel">
     <h2 style="margin-bottom: 50px;">پکیج استثنائی 808</h2>
+    <a href="/node/19704" class="btn btn-primary" style="margin-bottom: 35px;">مشاهده جزئیات محصول</a>
     <div class="">
         <a class="" href="/cart/add/p19704?destination=cart">
             <img src="/sites/default/files/field/image/node_19704_2.jpg">
