@@ -112,7 +112,7 @@ function system_info_create_v_1($data){
                 "last_login" => REQUEST_TIME,
                 "logout" => 0
             ))->execute();
-        add_log($user->uid , "/system_info" , "insertSystemInfo" , "desktop_lock_systems_info" , $insert , "desktop" , "1" , "successful" , "New System Info is saved!");
+        add_log($user->uid , "/system_info" , "create" , "desktop_lock_systems_info" , $insert , "desktop" , "1" , "successful" , "New System Info is saved!");
         if($insert) return $insert;
         else return services_error("Internal Server Error!" , 500);
     }
@@ -123,7 +123,7 @@ function system_info_create_v_1($data){
                 "last_login" => REQUEST_TIME,
                 "logout" => 0
             ))->execute();
-        add_log($user->uid , "/system_info" , "updateSystemInfo" , "desktop_lock_systems_info" , $info->id , "desktop" , "1" , "successful" , "Update New System Info!");
+        add_log($user->uid , "/system_info" , "update" , "desktop_lock_systems_info" , $info->id , "desktop" , "1" , "successful" , "Update New System Info!");
         if($update) return $info->id;
         else return services_error("Internal Server Error!" , 500);
     }
@@ -151,7 +151,7 @@ function system_info_delete_v_1($parameter){
 
     global $user;
     if($delete){
-        add_log($user->uid , "/system_info" , "deleteSystemInfo" , "desktop_lock_systems_info" , $parameter["id"] , "desktop" , "1" , "successful" , "Delete a System Info");
+        add_log($user->uid , "/system_info" , "delete" , "desktop_lock_systems_info" , $parameter["id"] , "desktop" , "1" , "successful" , "Delete a System Info");
         return true;
     }
     else return services_error("This System Information is not Found!" , 404);

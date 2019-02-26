@@ -1,6 +1,6 @@
 <?php
 
-function remote_subscription_form($from, &$form_state , $uid){
+function remote_subscription_form($form, &$form_state , $uid){
     try{
         /*check that user is being administrator*/
         global $user;
@@ -58,14 +58,14 @@ function remote_subscription_form($from, &$form_state , $uid){
         drupal_set_message($e->getMessage() , 'error');
     }
 }
-function remote_subscription_form_validate($from, &$form_state){
+function remote_subscription_form_validate($form, &$form_state){
     try{
     }
     catch (Exception $e){
         drupal_set_message($e->getMessage() , 'error');
     }
 }
-function remote_subscription_form_submit($from, &$form_state){
+function remote_subscription_form_submit($form, &$form_state){
     try{
         $validators = array();
         $file = file_save_upload('file', $validators, 'public://');
@@ -102,7 +102,7 @@ function remote_subscription_form_submit($from, &$form_state){
 
 
 /*remote login form*/
-function remote_login_form($from, &$form_state , $token){
+function remote_login_form($form, &$form_state , $token){
     try{
         /*check if token is valid or not*/
         $query = db_select("remote_login_log" , "log");
@@ -175,7 +175,7 @@ function remote_login_form($from, &$form_state , $token){
         drupal_set_message($e->getMessage() , 'error');
     }
 }
-function remote_login_form_validate($from, &$form_state){
+function remote_login_form_validate($form, &$form_state){
     try{
         /*check username or email exists or not*/
         $username_email = trim($form_state["values"]["username_email"]);
@@ -198,7 +198,7 @@ function remote_login_form_validate($from, &$form_state){
         drupal_set_message($e->getMessage() , 'error');
     }
 }
-function remote_login_form_submit($from, &$form_state){
+function remote_login_form_submit($form, &$form_state){
     try{
         $uid = $form_state["values"]["uid"];
         global $user;

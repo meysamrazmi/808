@@ -322,10 +322,8 @@ function privatemsg_user_access($permission = 'read privatemsg', $account = NULL
     $account = $user;
   }
 	//privatemsg fails to restrict users from viewing messages tab of other users
-	$path = drupal_get_path_alias();
-	$aliases = explode('/', $path);
-	if($aliases[0] == 'user'){
-		if(($account->uid != $aliases[1]) && !user_has_role(3)){ 
+	if(arg(0) === 'user'){
+		if(($account->uid != arg(1)) && !user_has_role(3)){
 			return FALSE;
 		}
 	}
