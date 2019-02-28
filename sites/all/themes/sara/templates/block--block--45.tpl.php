@@ -6,7 +6,7 @@
                 <div class="new-title">
                     <img class="right" src="/sites/all/themes/sara/images/banners/engineerGuy.png">
                     <div style="margin-top: 5px;">
-                        <div>ثبت نام دوره حضوری آمادگی آزمون ورود به حرفه</div>
+                        <div>ثبت نام دوره های حضوری و آنلاین آمادگی آزمون ورود به حرفه</div>
                         محاسبات، نظارت، اجرا و طراحی
                     </div>
                 </div>
