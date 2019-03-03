@@ -40,9 +40,9 @@
 				</div>
 				<div class="percent" data-aos="fade-up" data-aos-delay="800">
 					<span>تا 35%</span>
-					<span>تخفیف</span>
+					<span>تخفیف و شارژ هدیه</span>
 				</div>
-				<a href="#steps" class="scroll" data-aos="zoom-out" data-aos-delay="1500" data-aos-anchor-placement="top-bottom"></a>
+				<a href="#steps" class="scroll" data-aos="zoom-out" data-aos-delay="1200" data-aos-anchor-placement="top-bottom"></a>
 			</div>
 		</section>
 
@@ -59,7 +59,7 @@
         <section id="festival-prods" style="padding-top: 20px">
 <!--            <h2 data-aos="zoom-in-up" data-aos-delay="400" class="aos-init aos-animate"> رونمایی از سایت لاتین 808 </h2>-->
             <h1 data-aos="fade-up" style="text-align: center">+</h1>
-            <div data-aos="zoom-in-up" data-aos-delay="400" class="card-holder aos-init aos-animate">
+            <div data-aos="zoom-in-up" class="card-holder aos-init aos-animate">
                 <div class="card">
                     <a href="https://civil808.com/shop/products/fair97/19704/%D9%BE%DA%A9%DB%8C%D8%AC-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%DB%8C-808">
                         <div class="card-content">
@@ -103,11 +103,11 @@
         </section>
 
 		<section id="latin">
-			<h2 data-aos="zoom-in-up" data-aos-delay="400" class="aos-init aos-animate">
+			<h2 data-aos="zoom-in-up" class="aos-init aos-animate">
                 آخرین به‌روز‌رسانی‌های سایت 808 ویژه روز مهندس
             </h2>
 
-            <div data-aos="zoom-in-up" data-aos-delay="400" class="card-holder aos-init aos-animate">
+            <div data-aos="zoom-in-up" class="card-holder aos-init aos-animate">
                 <div class="card" >
                     <a href="https://civil808.com/store">
                         <div class="card-content">
@@ -185,14 +185,14 @@
 	
 
 		<section id="pbd">
-            <h2 data-aos="zoom-in-up" data-aos-delay="400" class="aos-init aos-animate">
+            <h2 data-aos="zoom-in-up" class="aos-init aos-animate">
                 دوره‌های پیشنهادی در حال ثبت نام وبسایت 808
             </h2>
-            <div data-aos="zoom-in-up" data-aos-delay="400" class="course-container aos-init aos-animate" style="margin-top: 30px">
+            <div data-aos="zoom-in-up" class="course-container aos-init aos-animate" style="margin-top: 30px">
 
 
                 <div class="course">
-                    <a href="http://civil808.com/landing/pbd">
+                    <a href="http://civil808.com/landing/pbdcourse">
                         <div class="course-image" style="background-image: url(./images/pbd-card.jpg)">
                             <div class="course-overlay">
                                 <h3>سومین دوره جامع آموزش اصول محاسبات بهسازی لرزه‌ای و طراحی عملکردی سازه‌ها</h3>
@@ -225,12 +225,16 @@
 
 		</section>
 
+        <section class="movie" data-aos="zoom-in-up">
+            <div style="max-width: 840px;margin: auto;"><div style="position: relative;padding-bottom: 56.25%;"><iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src="https://www.civil808.com/file/iframe/21091" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;max-width: 840px;max-height: 472px;" __idm_id__="467812353"></iframe></div></div>
+        </section>
+
         <section id="aplication">
 
 
             <div class="wh">
-                <h2 data-aos="zoom-in-up" data-aos-delay="400" class="aos-init aos-animate"> اپلیکیشن اندروید 808 پلاس  </h2>
-                <div data-aos="zoom-out" data-aos-delay="900" class="aboutus aos-init aos-animate">
+                <h2 data-aos="zoom-in-up" class="aos-init aos-animate"> اپلیکیشن اندروید 808 پلاس  </h2>
+                <div data-aos="zoom-out" class="aboutus aos-init aos-animate">
                     <div class="sec-li li">
 						<span class="icon-laptop">
 							<img class="phone" src="https://civil808.com/app/images/10.png" width="530" height="auto" alt="اپلیکیشن اندروید 808 پلاس" title="اپلیکیشن اندروید 808 پلاس">
@@ -309,7 +313,7 @@
 			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 			
-			ga('create', 'UA-81136025-1', 'auto');
+			ga('create', 'UA-107721597-1', 'auto');
 			ga('send', 'pageview');
 			</script>
 	</body>

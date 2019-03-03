@@ -87,23 +87,39 @@ $url = "https://civil808.com/sites/default/files" . $url;
             <div class="middle">سه ماهه</div>
             <div class="gheymat">۱۲۰,۰۰۰ تومان</div>
         </a>
-        <a class="ozviyat" href="/cart/add/p20657_a73o230?destination=cart">
-            <div class="top">عضویت</div>
+        <a class="ozviyat bold" href="/cart/add/p20657_a73o230?destination=cart">
+            <div class="top">تخفیف ویژه عضویت</div>
             <div class="middle">شش ماهه</div>
-            <div class="gheymat">۲۲۰,۰۰۰ تومان</div>
+            <div class="gheymat">۱۷۰,۰۰۰ تومان</div>
+            <div class="gheymat-ghadim">۲۲۰,۰۰۰ تومان</div>
         </a>
-        <a class="ozviyat" href="/cart/add/p20657_a73o231?destination=cart">
-            <div class="top">عضویت</div>
+        <a class="ozviyat bold" href="/cart/add/p20657_a73o231?destination=cart">
+            <div class="top">تخفیف ویژه عضویت</div>
             <div class="middle">یک ساله</div>
-            <div class="gheymat">۴۲۰,۰۰۰ تومان</div>
+            <div class="gheymat">۲۱۰,۰۰۰ تومان</div>
+            <div class="gheymat-ghadim">۴۲۰,۰۰۰ تومان</div>
+        </a>
+    </div>
+</section>
+
+<section id="product" class="panel">
+    <h2 style="margin-bottom: 50px;">پکیج استثنائی 808</h2>
+    <a href="/node/19704" class="btn btn-primary" style="margin-bottom: 35px;">مشاهده جزئیات محصول</a>
+    <div class="">
+        <a class="" href="/cart/add/p19704?destination=cart">
+            <img src="/sites/default/files/field/image/node_19704_2.jpg">
         </a>
     </div>
 </section>
 
 <style>
-    #profile-features h2{
+    #profile-features h2, #product h2 {
+        font-weight: normal !important;
+        text-align: center;
+        display: block;
         position: relative;
     }
+    #product h2:before,
     #profile-features h2:before{
         content: "";
         position: absolute;
@@ -215,11 +231,6 @@ $url = "https://civil808.com/sites/default/files" . $url;
         display: inline-block;
         vertical-align: top;
     }
-    #profile-features h2 {
-        font-weight: normal !important;
-        text-align: center;
-        display: block;
-    }
     .profile-vip {
         margin: 50px auto 0;
         max-width: 800px;
@@ -247,6 +258,17 @@ $url = "https://civil808.com/sites/default/files" . $url;
         text-align: center;
         display: inline-block;
         margin: 28px 2vw;
+        vertical-align: top;
+    }
+    a.bold.ozviyat {
+        border: 1px solid #f44336;
+        box-shadow: rgba(253, 0, 0, 0.227451) 0 3px 10px, rgba(255, 0, 0, 0.227451) 0 3px 10px;
+        width: 300px;
+        height: 200px;
+    }
+    .gheymat-ghadim {
+        text-decoration: line-through;
+        color: #555;
     }
     .top {
         color: black;
@@ -258,5 +280,10 @@ $url = "https://civil808.com/sites/default/files" . $url;
     .gheymat {
         color: #31cc17;
         font-size: 20px;
+    }
+    section#product {
+        text-align: center;
+        padding: 50px;
+        background: #fff;
     }
 </style>

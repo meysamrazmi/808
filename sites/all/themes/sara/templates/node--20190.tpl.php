@@ -1,26 +1,157 @@
 <img src="/sites/default/files/field/image/node_20190.jpg" width="100%" height="auto" style="	box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;">
 
 <section class="kargah-sec">
-    <h2>دوره حضوری ورود به حرفه محاسبات، نظارت و اجرا</h2>
-    <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره فقط حضوری و بدون ضبط فیلم است.</p>
-    <div class="first-row" style="margin-top: 40px;">
+    <h2>دوره های ورود به حرفه محاسبات، نظارت و اجرا - عمران و معماری</h2>
+    <p style="text-align: center;padding: 15px 0 0;color: #888;">برای اطلاعات بیشتر روی آیتم های زیر کلیک کنید</p>
+    <div class="doreha">
         <div>
-            <?php
-                $body_value = node_load(20190);
-                print($body_value->body['und'][0]['value']);
-            ?>
+            <p data-selector="doreh-1">دوره حضوری محاسبات عمران</p>
+            <p data-selector="doreh-2">دوره حضوری نظارت و اجرا عمران</p>
+            <p data-selector="doreh-5">دوره حضوری طراحی و نظارت و اجرا معماری</p>
         </div>
-        <div class="lecturer">
-            <img src="/sites/default/files/styles/200x200/public/pictures/picture-1138-1446395095.jpg?itok=5NJ8JRPM" width="150px" height="auto">
-            <p style="margin: 10px 0 0 0"><strong> مدرس </strong></p>
-            <h3 style="margin:5px"> مهندس مصطفی دوگوهرانی </h3>
-            <p> کارشناس ارشد سازه </p>
-            <a href="/sites/default/files/field/file/cv/profile_1004.pdf" target="_blank" class="btn btn-primary" download="cv">رزومه</a>
+        <div>
+            <p data-selector="doreh-3">دوره آنلاین محاسبات عمران</p>
+            <p data-selector="doreh-4">دوره آنلاین نظارت و اجرا عمران</p>
+            <p data-selector="doreh-6">دوره آنلاین نظارت و اجرا معماری</p>
         </div>
     </div>
+
+    <div class="doreh">
+        <div class="doreh-1" style="display: none;">
+            <table border="0" style="width: 600px;">
+                <tbody>
+                <tr><td colspan="4">دوره حضوری ورود به حرفه محاسبات&nbsp; عمران</td></tr>
+                <tr><td>عنوان دوره&nbsp;</td><td>طول دوره&nbsp;</td><td>هزینه ( تومان )</td><td>ایام تشکیل کلاس&nbsp;</td></tr>
+                <tr><td>طراحی سازه های فولادی <br> +<br> 4 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>45 ساعت&nbsp;</td><td>500,000</td><td>5شنبه 14 الی 18<br> جمعه 8 الی 16</td></tr>
+                <tr><td>طراحی سازه های بتنی <br> +<br> 4 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>45 ساعت&nbsp;</td><td>500,000</td><td>5شنبه 14 الی 18<br> جمعه 8 الی 16</td></tr>
+                <tr><td>آیین نامه 2800+بارگذاری<br> +<br> 4 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>40 ساعت&nbsp;</td><td>500,000</td><td>5شنبه 14 الی 18<br> جمعه 8 الی 16</td></tr>
+                <tr><td>پی سازی +مصالح بنایی<br> +<br> 2 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>20 ساعت&nbsp;</td><td>300,000</td><td>5شنبه 14 الی 18<br> جمعه 8 الی 16</td></tr>
+                <tr><td>جمع کل دوره&nbsp;</td><td>150 ساعت</td><td>1,800,000</td><td>&nbsp;</td></tr>
+                </tbody>
+            </table>
+            <table style="width: 300px;" border="0">
+                <tbody>
+                    <tr style="height: 15.0pt;border-bottom: 2px solid #F44336;background: #f5f5f5;"><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری محاسبات دوره بهار 98</td></tr>
+                    <tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr>
+                    <tr><td>20 اسفند 97</td><td>1,200,000</td></tr>
+                    <tr><td>5 فروردین&nbsp; 98</td><td>1,500,000</td></tr>
+                    <tr><td>20 فروردین 98</td><td>1,650,000</td></tr>
+                    <tr><td>از روز 21 فروردین 98</td><td>1,800,000</td></tr>
+                    <tr><td colspan="2" style="padding: 0;"><a href="/node/21058" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="doreh-2" style="display: none;">
+            <table border="0" style="width: 600px;">
+                <tbody><tr><td colspan="4">دوره حضوری ورود به حرفه نظارت عمران</td></tr><tr><td>عنوان دوره&nbsp;</td><td>طول دوره&nbsp;</td><td>هزینه ( تومان )</td><td>ایام تشکیل کلاس&nbsp;</td></tr><tr><td>طراحی سازه های فولادی +جوش<br> +<br> طراحی سازه های بتنی&nbsp;</td><td>60 ساعت&nbsp;</td><td>700,000</td><td>شنبه 17 الی 21<br> دوشنبه 17 الی 21</td></tr><tr><td>آیین نامه 2800<br> +<br> بارگذاری</td><td>20 ساعت&nbsp;</td><td>250,000</td><td>شنبه 17 الی 21<br> دوشنبه&nbsp; 17 الی 21</td></tr><tr><td>پی سازی <br> +<br> مصالح بنایی</td><td>25 ساعت&nbsp;</td><td>350,000</td><td>شنبه 17 الی 21<br> چهارشنبه 17 الی 21</td></tr><tr><td>مباحث 5(مصالح ساختمانی)<br> مبحث 11(ساختمان صنعتی)<br> مبحث 12 ( ایمنی )</td><td>15 ساعت&nbsp;</td><td>200,000</td><td>شنبه 17 الی 21<br> چهارشنبه 17 الی 21</td></tr><tr><td>جمع کل دوره&nbsp;</td><td>120 ساعت</td><td>1,500,000</td><td>&nbsp;</td></tr><tr><td colspan="4">شروع دوره نظارت : 24 فروردین سال 98</td></tr><tr><td colspan="4">ایام تشکیل کلاس دوره نظارت : آخر هفته ها (5شنبه +جمعه)</td></tr></tbody>
+            </table>
+            <table border="0" style="width: 300px;">
+                <tbody>
+                    <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری نظارت دوره بهار 98</td></tr>
+                    <tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr>
+                    <tr><td>20 اسفند 97</td><td>1,000,000</td></tr>
+                    <tr><td>5 فروردین&nbsp; 98</td><td>1,200,000</td></tr>
+                    <tr><td>20 فروردین 98</td><td>1,300,000</td></tr>
+                    <tr><td>از روز 21 فروردین 98</td><td>1,500,000</td></tr>
+                    <tr><td colspan="2" style="padding: 0;"><a href="/node/21059" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="doreh-3" style="display: none;">
+            <table border="0" style="width: 600px;">
+                <tbody>
+                    <tr><td colspan="5">دوره آنلاین ورود به حرفه محاسبات عمران</td></tr>
+                    <tr><td>عنوان دوره&nbsp;</td><td>طول دوره&nbsp;</td><td>هزینه ( تومان )</td><td>ایام تشکیل کلاس&nbsp;</td><td>ثبت نام</td></tr>
+                    <tr><td>طراحی سازه های فولادی <br> +<br> 4 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>45 ساعت&nbsp;</td><td>400,000</td><td>5شنبه 14 الی 18<br> جمعه 8 الی 16</td><td><a href="/node/21054" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                    <tr><td>طراحی سازه های بتنی <br> +<br> 4 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>45 ساعت&nbsp;</td><td>400,000</td><td>5شنبه 14 الی 18<br> جمعه 8 الی 16</td><td><a href="/node/21053" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                    <tr><td>آیین نامه 2800+بارگذاری<br> +<br> 4 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>40 ساعت&nbsp;</td><td>400,000</td><td>5شنبه 14 الی 18<br> جمعه 8 الی 16</td><td><a href="/node/21056" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                    <tr><td>پی سازی<br> +<br> 2 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>20 ساعت&nbsp;</td><td>200,000</td><td>5شنبه 14 الی 18<br> جمعه 8 الی 16</td><td><a href="/node/21057" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                    <tr><td>مصالح بنایی<br> +<br> 2 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>10 ساعت&nbsp;</td><td>100,000</td><td>5شنبه 14 الی 18<br> جمعه 8 الی 16</td><td><a href="/node/21052" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                    <tr><td>جمع کل دوره&nbsp;</td><td>150 ساعت</td><td>1,400,000</td><td>&nbsp;</td><td></td></tr>
+                    <tr><td colspan="5">شروع دوره آنلاین محاسبات : 12 اردیبهشت سال 98</td></tr>
+                    <tr><td colspan="5">ایام تشکیل کلاس دوره محاسبات : 1شنبه -3 شنبه -5شنبه - جمعه</td></tr>
+                </tbody>
+            </table>
+            <table border="0" style="width: 300px;">
+                <tbody><tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین محاسبات دوره بهار 98</td></tr><tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr><tr><td>20 اسفند 97</td><td>900,000</td></tr><tr><td>5 فروردین&nbsp; 98</td><td>1,100,000</td></tr><tr><td>20 فروردین 98</td><td>1,300,000</td></tr><tr><td>از روز 21 فروردین 98</td><td>1,400,000</td></tr>
+                    <tr><td colspan="2" style="padding: 0;"><a href="/node/21094" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="doreh-4" style="display: none;">
+            <table border="0" style="width: 700px;">
+                <tbody>
+                    <tr><td colspan="5">دوره آنلاین ورود به حرفه نظارت</td></tr>
+                    <tr><td>عنوان دوره&nbsp;</td><td>طول دوره&nbsp;</td><td>هزینه ( تومان )</td><td>ایام تشکیل کلاس&nbsp;</td><td>ثبت نام</td></tr>
+                    <tr><td>طراحی سازه های فولادی +جوش<br> +<br> طراحی سازه های بتنی&nbsp;</td><td>60 ساعت&nbsp;</td><td>500,000</td><td>شنبه 17 الی 21<br> دوشنبه 17 الی 21</td><td><a href="/node/21067" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                    <tr><td>آیین نامه 2800<br> +<br> بارگذاری</td><td>25 ساعت&nbsp;</td><td>200,000</td><td>شنبه 17 الی 21<br> دوشنبه&nbsp; 17 الی 21</td><td><a href="/node/21069" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                    <tr><td>پی سازی <br> +<br> مصالح بنایی</td><td>20 ساعت&nbsp;</td><td>200,000</td><td>شنبه 17 الی 21<br> چهارشنبه 17 الی 21</td><td><a href="/node/21069" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                    <tr><td>مباحث 5(مصالح ساختمانی)<br> مبحث 11(ساختمان صنعتی)<br> مبحث 12 ( ایمنی )</td><td>25 ساعت&nbsp;</td><td>200,000</td><td>شنبه 17 الی 21<br> چهارشنبه 17 الی 21</td><td><a href="/node/21069" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                    <tr><td>جمع کل دوره&nbsp;</td><td>140 ساعت</td><td>1,100,000</td><td>&nbsp;</td><td></td></tr>
+                    <tr><td colspan="5">شروع دوره آنلاین نظارت : 12 اردیبهشت سال 98</td></tr>
+                    <tr><td colspan="5">ایام تشکیل کلاس دوره محاسبات : 1شنبه -3 شنبه -5شنبه - جمعه</td></tr>
+                </tbody>
+            </table>
+            <table border="0" style="width: 300px;">
+                <tbody><tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین نظارت دوره بهار 98</td></tr><tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr><tr><td>20 اسفند 97</td><td>700,000</td></tr><tr><td>5 فروردین&nbsp; 98</td><td>800,000</td></tr><tr><td>20 فروردین 98</td><td>1,000,000</td></tr><tr><td>از روز 21 فروردین 98</td><td>1,100,000</td></tr>
+                <tr><td colspan="2" style="padding: 0;"><a href="/node/21095" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="doreh-5" style="display: none;">
+            <table border="0" style="width: 600px;">
+                <tbody>
+                <tr><td colspan="4">دوره حضوری ورود به حرفه نظارت و اجرا&nbsp; معماری&nbsp;</td></tr><tr><td>عنوان دوره&nbsp;</td><td>طول دوره (ساعت)</td><td>هزینه ( تومان )</td><td>ایام تشکیل کلاس&nbsp;</td></tr><tr><td>طراحی سازه های فولادی +جوش<br> +<br> طراحی سازه های بتنی&nbsp;</td><td>20</td><td>300,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>پی سازی<br> +<br> مصالح بنایی</td><td>16</td><td>250,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>الزامات عمومی&nbsp;</td><td>10</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 5(مصالح ساختمانی)<br> مبحث 11(ساختمان صنعتی)<br> مبحث 12 ( ایمنی )</td><td>15</td><td>200,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 13(تاسیسات برقی)<br> مبحث 15 (آسانسور و پلکان برقی )</td><td>15</td><td>200,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td><br> مبحث 16(تاسیسات بهداشتی)<br> </td><td>10</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث17 ( لوله کشی گاز طبیعی)</td><td>10</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 14(تاسیسات مکانیکی)</td><td>10</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 18(عایق بندی و تنظیم صدا)<br> مبحث 19(صرفه جویی در انرژی)<br> مبحث 20 (علائم و تابلو )</td><td>12</td><td>180,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 3 <br> ( حفاظت ساختمان در برابر حریق)</td><td>8</td><td>120,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 21(پدافند غیر عامل)<br> مبحث 22 (مراقبت و نگهداری ساختمان )</td><td>10</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>جمع کل دوره&nbsp;</td><td>136</td><td>2,000,000</td><td>&nbsp;</td></tr><tr><td colspan="4">شروع دوره حضوری نظارت&nbsp; معماری: 14 اردیبهشت سال 98</td></tr><tr><td colspan="4">ایام تشکیل کلاس دوره نظارت&nbsp; معماری : 1شنبه -3 شنبه -5شنبه - جمعه</td></tr>
+                </tbody>
+            </table>
+            <table border="0" style="width: 300px;">
+                <tbody>
+                    <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری نظارت و اجرا معماری دوره بهار 98</td></tr><tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr><tr><td>20 اسفند 97</td><td>1,400,000</td></tr><tr><td>5 فروردین&nbsp; 98</td><td>1,550,000</td></tr><tr><td>20 فروردین 98</td><td>1,850,000</td></tr><tr><td>از روز 21 فروردین 98</td><td>2,000,000</td></tr>
+                    <tr><td colspan="2" style="padding: 0;"><a href="/node/21088" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                    <tr><td style="height: 25.75pt;border-right-color: transparent;border-left-color: transparent;"></td><td style="border-left-color: transparent;"></td></tr>
+                </tbody>
+                <tbody>
+                    <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری طراحی معماری دوره بهار 98</td></tr><tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr><tr><td>20 اسفند 97</td><td>500,000</td></tr><tr><td>5 فروردین&nbsp; 98</td><td>6,500,000</td></tr><tr><td>20 فروردین 98</td><td>800,000</td></tr><tr><td>از روز 21 فروردین 98</td><td>900,000</td></tr>
+                    <tr><td colspan="2" style="padding: 0;"><a href="/node/21089" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="doreh-6" style="display: flex;">
+            <table border="0" style="width: 600px;">
+                <tbody><tr><td colspan="4">دوره آنلاین ورود به حرفه نظارت معماری&nbsp;</td></tr><tr><td>عنوان دوره&nbsp;</td><td>طول دوره&nbsp;</td><td>هزینه ( تومان )</td><td>ایام تشکیل کلاس&nbsp;</td></tr><tr><td>طراحی سازه های فولادی +جوش<br> +<br> طراحی سازه های بتنی&nbsp;</td><td>20 ساعت&nbsp;</td><td>200,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>پی سازی<br> +<br> مصالح بنایی</td><td>16 ساعت&nbsp;</td><td>180,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>الزامات عمومی&nbsp;</td><td>10 ساعت&nbsp;</td><td>120,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 5(مصالح ساختمانی)<br> مبحث 11(ساختمان صنعتی)<br> مبحث 12 ( ایمنی )</td><td>15 ساعت&nbsp;</td><td>180,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 13(تاسیسات برقی)<br> مبحث 15 (آسانسور و پلکان برقی )</td><td>15 ساعت</td><td>180,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td><br> مبحث 16(تاسیسات بهداشتی)<br> </td><td>10 ساعت</td><td>120,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث17 ( لوله کشی گاز طبیعی)</td><td>10 ساعت&nbsp;</td><td>120,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 14(تاسیسات مکانیکی)</td><td>10 ساعت&nbsp;</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 18(عایق بندی و تنظیم صدا)<br> مبحث 19(صرفه جویی در انرژی)<br> مبحث 20 (علائم و تابلو )</td><td>12 ساعت</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 3 <br> ( حفاظت ساختمان در برابر حریق)</td><td>8 ساعت&nbsp;</td><td>100,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 21(پدافند غیر عامل)<br> مبحث 22 (مراقبت و نگهداری ساختمان )</td><td>10 ساعت&nbsp;</td><td>120,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>جمع کل دوره&nbsp;</td><td>136 ساعت</td><td>1,500,000</td><td>&nbsp;</td></tr></tbody>
+            </table>
+            <table border="0" style="width: 300px;">
+                <tbody>
+                    <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین نظارت و اجرا معماری دوره بهار 98</td></tr><tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr><tr><td>20 اسفند 97</td><td>1,000,000</td></tr><tr><td>5 فروردین&nbsp; 98</td><td>1,200,000</td></tr><tr><td>20 فروردین 98</td><td>1,350,000</td></tr><tr><td>از روز 21 فروردین 98</td><td>1,500,000</td></tr>
+                    <tr><td colspan="2" style="padding: 0;"><a href="/node/21089" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </section>
 
 <section style="margin: 50px 0 80px 0;">
+    <div class="kargah-vip">
+        <a target="_blank" href="/node/21036">
+            <div>
+                ورکشاپ آنلاین تخصصی بیان دغدغه ها و راه حل های اساسی در آزمون محاسبات عمران
+                <br>
+                <ul>
+                    <li style="font-size: 13px;color: #909090 !important; padding: 18px 5px 10px 5px;">شرکت در این ورکشاپ برای اعضای VIP رایگان است.</li>
+                    <li style="font-size: 13px;color: #909090 !important; padding: 5px 5px;"> به همراه تخفیف ویژه برای شرکت در باقی دوره های آموزشی موسسه</li>
+                </ul>
+            </div>
+            <img class="vip-icon" src="/sites/all/themes/sara/images/icon/vip.svg"/>
+        </a>
+    </div>
+
     <h2> قسمتی از فیلم ورکشاپ آشنایی با آزمون نظام مهندسی عمران </h2>
     <p style="text-align: center;margin-bottom: 40px;margin-top: 30px;	font-size: 15px;color: #888;">برای مشاهده نمونه فیلم های بیشتر
         <a href="/gallery/videos/playlist/2605/15748" target="_blank">کلیک کنید.</a>
@@ -44,7 +175,7 @@
     ?>
 </section>
 
-<section class="second">
+<section style="display: none;" class="second">
     <h2 class="text"> ثبت نام در دوره حضوری ورود به حرفه محاسبات، نظارت و اجرا</h2>
     <p style="text-align: center;margin-top: -18px;font-size: 15px;color: #888;margin-bottom: 29px;">
         با تخفیفات ویژه برای شرکت کنندگان دوره
@@ -211,7 +342,7 @@
         </div>
         <div class="row">
             <a href="/node/17089" target="_blank">
-                <img src="/sites/default/files/styles/200x200/public/fe-exam.jpg?itok=4C4U40Ru" width="300" height="170" alt="آزمون FE یا Fundamentals of Engineering" title="آزمون FE یا Fundamentals of Engineering">
+                <img src="/sites/default/files/styles/200x200/public/field/image/tag/tag_4862.jpg?itok=tP91XcKP" width="300" height="170" alt="آزمون FE یا Fundamentals of Engineering" title="آزمون FE یا Fundamentals of Engineering">
             </a>
             <a href="/node/17089" target="_blank" class="title">
                 آزمون FE یا Fundamentals of Engineering
@@ -219,7 +350,7 @@
         </div>
         <div class="row">
             <a href="/node/17090" target="_blank">
-                <img src="/sites/default/files/styles/200x200/public/pe-exam.jpg?itok=rK3SwDau" width="300" height="170" alt="آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam" title="آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam">
+                <img src="/sites/default/files/styles/200x200/public/field/image/tag/tag_4861.jpg?itok=qGsw7Hsk" width="300" height="170" alt="آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam" title="آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam">
             </a>
             <a href="/node/17090" target="_blank" class="title">
                 آزمون حرفه ای مهندسی (PE) یا Profasional Engineering Exam
@@ -227,7 +358,7 @@
         </div>
         <div class="row">
             <a href="/node/17077" target="_blank">
-                <img src="/sites/default/files/styles/200x200/public/engineering-system-test.jpg?itok=CNPf4UzR" width="300" height="170" alt="آزمون نظام مهندسی، Engineering system test" title="آزمون نظام مهندسی، Engineering system test">
+                <img src="/sites/default/files/styles/200x200/public/field/image/tag/tag_4787.jpg?itok=rjUkkfDP" width="300" height="170" alt="آزمون نظام مهندسی، Engineering system test" title="آزمون نظام مهندسی، Engineering system test">
             </a>
             <a href="/node/17077" target="_blank" class="title">
                 آزمون نظام مهندسی، Engineering system test
@@ -279,8 +410,53 @@
     </div>
 </section>-->
 
-
+<script>
+$(document).ready(function(){
+	$('.doreh').children().slideUp()
+	$('.doreha p').click(function(){
+		var a = $(this).data('selector')
+		$('.doreh').children().slideUp()
+		console.log(a)
+		$('.doreh').find('.' + a).slideDown()
+	})
+})
+</script>
 <style>
+    .kargah-vip{
+        position: relative;
+        width: 70%;
+        background-color: #ffffff;
+        padding: 19px 23px;
+        margin: 30px auto 93px auto;
+        border: solid #b39dd9;
+        border-width: 0px 3px;
+        box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+        text-align: right;
+    }
+    @media (max-width: 768px){
+        .kargah-vip{
+            width: 96%;
+            padding: 2% 2.5%;
+        }
+        .kargah-vip a{
+            flex-direction: column-reverse;
+        }
+        .kargah-vip .vip-icon{
+            margin: 0 0 18px 0;
+        }
+    }
+    .kargah-vip a{
+        color: black !important;
+        font-size: 16px;
+        margin: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .kargah-vip .vip-icon{
+        width: 95px;
+        margin-left: 2%;
+    }
     .product-node .owl-stage-outer {
         margin-bottom: 45px;
     }
@@ -294,12 +470,6 @@
         margin: 15px;
         box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
         background: #fff;
-    }
-    .node-product.node-teaser, .node-product-kit.node-teaser {
-        width: 100%;
-    }
-    #more-data{
-        margin: 86px 20px;
     }
     #more-data li{
         line-height:29px;
@@ -421,13 +591,6 @@
         max-width: 300px;
         margin: 0 5px;
     }
-    .des-top {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 15px;
-        border-bottom: 1px solid #eee;
-    }
     .des-top img {
         width: 70px;
         height: 70px;
@@ -436,16 +599,9 @@
         box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
         /* overflow: hidden; */
     }
-    .des-left {
-        text-align: right;
-        margin: 0 15px 0 0;
-    }
     .des-left div {
         margin-top: 5px;
         font-size: 12px;
-    }
-    .des-down {
-        padding: 15px;
     }
     .time1 .des-down a{
         display: block;
@@ -457,47 +613,6 @@
         font-family: mat;
         font-size: 18px;
         vertical-align: middle;
-    }
-    .timebox {
-        text-align: center;
-        z-index: 2;
-    }
-    .moddat {
-        font-family: fanum;
-        margin-bottom: 7px;
-        font-size: 15px;
-        font-weight: bold;
-    }
-    .circle {
-        width: 40px;
-        height: 40px;
-        background-color: #eee;
-        border-radius: 50%;
-        margin: auto;
-        border: 2px solid #873ab6;
-        padding: 3px;
-    }
-    .circle:before {
-        width: 100%;
-        height: 100%;
-        content: ' ';
-        background-color: #ffffff;
-        display: block;
-        border-radius: 50%;
-    }
-    .line {
-        width: 2px;
-        height: 40px;
-        background-color: #883ab75c;
-        margin: auto;
-    }
-    .timing-wh:before {
-        content: " ";
-        position: absolute;
-        top: 171px;
-        width: 72%;
-        height: 2px;
-        background-color: #d1b5e2;
     }
     @media (max-width: 992px) and (min-width: 769px){
         .des-left {
@@ -608,10 +723,6 @@
         }
     }
 
-    .aks3{
-        margin: 57px auto;
-        text-align: center;
-    }
     .aks3 a{
         display: inline-block;
         margin: 10px 17px;
@@ -976,19 +1087,6 @@
     .owl-dot.active span:before {
         background: #333;
     }
-    .owl-dots {
-        display: flex;
-        justify-content: center;
-    }
-    .owl-dot {
-        padding: 0 10px;
-        margin: 0 5px;
-    }
-    .owl-nav {
-        display: flex;
-        justify-content: center;
-        display: none !important;
-    }
     .owl-nav div {
         background: #eee;
         margin: 10px 20px 20px;
@@ -1008,24 +1106,12 @@
         position: relative;
         padding: 80px 50px 70px;
     }
-    .mediaelement-download-link{
-        display: block !important;
-    }
     .mediaelement-download-link a:after {
         content: 'دانلود';
         vertical-align: middle;
         padding-bottom: 5px;
         display: inline-block;
     }
-    .takhfifat {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-        margin: -10px 0 30px 0;
-    }
-
     .takhfifat p {
         background: #fff;
         border-radius: 50px;
@@ -1034,7 +1120,6 @@
         box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
         font-family: fanum;
     }
-
     .takhfifat p:before {
         content: "\f415";
         font-family: mat;
@@ -1050,7 +1135,6 @@
         align-items: center;
         justify-content: center;
     }
-
     .takhfifat p span {
         font-size: 15px;
         margin: 0 5px;
@@ -1066,7 +1150,6 @@
         font-size: 15px;
         color: #888;
     }
-
     .bought-tickets a {
         padding: 20px 40px;
         border-radius: 30px;
@@ -1075,7 +1158,6 @@
         box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
         font-size: 15px;
     }
-
     .bought-tickets a:before {
         content: "\f518";
         font-family: mat;
@@ -1148,17 +1230,6 @@
             height: 32px;
         }
     }
-
-    .link-hamayesh{
-        width: 70%;
-        background-color: #ffffff;
-        padding: 20px;
-        margin: 0px auto 50px auto;
-        border: solid #b39dd9;
-        border-width: 0px 3px;
-        box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-    }
-
     .link-hamayesh a{
         color: #909090 !important;
         font-size: 16px;
@@ -1166,10 +1237,19 @@
     .link-hamayesh a:hover{
         color: #c0c0c0 !important;
     }
-
     @media (max-width: 768px) {
         .link-hamayesh{
             width: 90%;
+        }
+        .owl-carousel {
+            width: 100% !important;
+            padding: 50px 1%;
+        }
+        .owl-carousel .owl-item {
+            padding-left: 0;
+        }
+        .product-node .owl-item .row {
+            margin: 0px;
         }
     }
     @media (max-width: 480px) {
@@ -1352,6 +1432,86 @@
         right: 0;
         height: 1321px;
         transform: skew(-68deg);
+    }
+
+    .doreha {
+        display: flex;
+        max-width: 800px;
+        margin: auto;
+        justify-content: space-around;
+        padding: 30px 0;
+        font-size: 15px;
+    }
+    .doreha p:before {
+        content: "\f04e";
+        font-family: mat;
+        color: #673AB7;
+        vertical-align: middle;
+        margin-left: 10px;
+        font-size: 20px;
+    }
+    .doreha p {
+        padding: 10px 25px;
+        border-radius: 3px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        border: 1px solid #ddd;
+    }
+    .doreha p:hover {
+        background: #fff;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 4px;
+    }
+    .doreh td {
+        white-space: nowrap;
+        text-align: center;
+        border: 1px solid #ccc;
+        line-height: 20px;
+    }
+    .doreh > div {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+        background: #fff;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 4px;
+        padding: 15px;
+    }
+    @media (max-width: 1100px){
+        .doreh > div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 15px 0;
+        }
+        .doreh table:first-child {
+            min-width: calc(100% - 30px) !important;
+            max-width: none;
+        }
+        .doreha p {
+            padding: 10px 25px;
+            border-radius: 3px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+    }
+    @media (max-width: 600px) {
+        .doreha p {
+            text-align: center;
+        }
+        .doreha p:before{display: none;}
+    }
+    .doreh table:last-child tr:first-child {
+        border-bottom: 2px solid #F44336;
+        background: #f5f5f5;
+    }
+    .pane-shop-products .views-row, .node-product.node-teaser, .node-product-kit.node-teaser {
+        width: 100%;
+    }
+    .doreh table:first-child tr:first-child {
+        border-bottom: 2px solid #673AB7;
+        background: #f5f5f5;
     }
 </style>
 

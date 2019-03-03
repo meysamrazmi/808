@@ -1,7 +1,4 @@
 <?php
-function check_808_options($mlid){
-
-}
 function render_menu_items($menu, &$level = 0, $sub = false){
 	$output = '';
 	foreach($menu as $link){

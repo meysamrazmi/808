@@ -1481,10 +1481,18 @@ if($('.form-managed-file').find('.file-resup-wrapper').length){$('.form-managed-
 	}
 	
 	if(!$('[id*=edit-panes-payment-payment-method-other] ~ span').length){
-		$('[id*=edit-panes-payment-payment-method-other] + label').text('سایر (کارت به کارت، انتقال وجه به مستر کارت، واریز به حساب و ...)').after('<span>جهت كسب اطلاعات بيشتر از نحوه پرداخت ميتوانيد با آي دي مديريت موسسه ٨٠٨ در تلگرام در ارتباط باشيد: <a href="http://t.me/mojtaba808" target="_blank">@mojtaba808</a></span>');
+		$('[id*=edit-panes-payment-payment-method-other] + label').text('سایر (کارت به کارت، انتقال وجه به مستر کارت، واریز به حساب و ...)').after('<span>جهت كسب اطلاعات بيشتر از سایر روش های پرداخت در ایران و یا پرداخت از سراسر دنیا از طریق اکانت paypal ميتوانيد با آی دی تلگرام موسسه ٨٠٨ در ارتباط باشيد: <a href="http://t.me/Civil808_Support" target="_blank"> @Civil808_Support </a></span>');
 	}
+
 	$('[id*=edit-panes-payment-payment-method-other]').change(function(){
 		$('[id*=edit-panes-payment-payment-method-other] ~ span').slideDown();
+	});
+
+	if(!$('[id*=edit-panes-payment-payment-method-points] ~ span').length){
+		$('[id*=edit-panes-payment-payment-method-points] + label').after('<span>با شارژ حساب خود از اپلیکیشن 5% شارژ هدیه دریافت کنید: <a href="/app" target="_blank">  دانلود اپلیکیشن </a></span>');
+	}
+	$('[id*=edit-panes-payment-payment-method-points]').change(function(){
+		$('[id*=edit-panes-payment-payment-method-points] ~ span').slideDown();
 	});
 	
 	if($('.page-user-myresults #block-system-main > .content').children().length == 0){
@@ -1503,7 +1511,7 @@ if($('.form-managed-file').find('.file-resup-wrapper').length){$('.form-managed-
 Drupal.behaviors.custom_808_ajax = {
 	'attach': function(context) {
 		//we suggest user when he scrolled half the page, and of course not in all pages
-		var flag = false, page_flag = false;;
+		var flag = false, page_flag = false;
 		var pages = ['.page-take' , '.page-cart' , '.page-user' , '.page-file'];
 		for (i = 0; i < pages.length; i++) {
 			if($(pages[i]).length){

@@ -2,13 +2,18 @@
     <div id="block-block-45" class="block block-block contextual-links-region first odd">
         <div class="content">
             <span class="close-banner">X</span>
-            <a href="/node/20959" target="_blank">
-                <img class="right" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">
+            <a href="/node/20190" target="_blank">
                 <div class="new-title">
-                    سومین دوره جامع آموزش اصول محاسبات
-                    <div>بهسازی لرزه ای و طراحی عملکردی سازه ها</div>
+                    <img class="right" src="/sites/all/themes/sara/images/banners/engineerGuy.png">
+                    <div style="margin-top: 5px;">
+                        <div>ثبت نام دوره های حضوری و آنلاین آمادگی آزمون ورود به حرفه</div>
+                        محاسبات، نظارت، اجرا و طراحی
+                    </div>
                 </div>
-                <img class="left" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">
+                <div class="left">کلیک کنید
+                    <span>   </span>
+                </div>
+                <img style="display: none;" class="left" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">
             </a>
         </div>
     </div>
@@ -41,63 +46,65 @@
             top: 0;
             z-index: 1;
         }
-        .new-title{
+        div#block-block-45 .new-title{
             font-size: 12px;
             width: auto;
             background-position: center;
             background-repeat: no-repeat;
-            margin: 7px auto 0 auto;
             color: black;
             text-align: center;
             font-weight: bold;
             z-index: 2;
             position: relative;
+            display: flex;
+            justify-content: center;
         }
-        .new-title > div{
+        div#block-block-45 .new-title > div > div{
             font-size: 20px;
             color: #E65100;
             margin-top: 2px;
         }
-        img.right{
-            position: absolute;
-            right: 0;
-            top: 0;
+        div#block-block-45 img.right{
+            margin: -20px 0px 0 18px;
         }
-        img.left{
+        div#block-block-45 img.left{
             transform: rotateY(180deg);
             position: absolute;
             left: 0;
             top: 0;
         }
+        div#block-block-45 div.left{
+            position: absolute;
+            left: 12px;
+            top: 22px;
+            color: #000;
+            font-size: 15px;
+        }
 
         @media (max-width: 1200px){}
         @media (max-width: 979px){
-            .new-title{
-                text-align: right;
-                margin-right: 15px;
-            }
-            img.right{
+            div#block-block-45 div.left{
                 display: none;
             }
         }
         @media (max-width: 979px) and (min-width: 769px) {}
         @media all and (max-width: 768px) {}
         @media all and (max-width: 600px) {
-            .new-title > div{
+            div#block-block-45 .new-title > div > div{
                 font-size: 18px;
-            }
-            img.left{
-                opacity: 0.3;
-                height: 70px;
             }
         }
         @media all and (max-width: 500px) {
-            .new-title{
+            div#block-block-45 .new-title{
                 text-align: center;
                 margin-right: auto;
             }
+            div#block-block-45 img.right{
+                display: none;
+            }
         }
         @media all and (max-width: 400px) {}
+
         /*----------------------------------------------------*/
         .close-banner {
             position: absolute;
@@ -127,6 +134,7 @@
             white-space: nowrap;
             opacity: 0;
         }
+
     </style>
 
 <?php endif;?>
