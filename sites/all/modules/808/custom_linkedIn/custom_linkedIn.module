@@ -18,6 +18,13 @@ function custom_linkedIn_menu(){
         'page arguments' => array('register'),
         'access callback' => True,
     );
+    $items['user/%/linkedInConnection'] = array(
+        'type' => MENU_CALLBACK,
+        'description' => 'LinkedIn profile data',
+        'page callback' => 'linked_in_connection',
+        'page arguments' => array(1),
+        'access callback' => True,
+    );
 
     $items['linkedin/login/finalize'] = array(
         'title' => t('LinkedIn Login'),
@@ -34,13 +41,26 @@ function custom_linkedIn_menu(){
         'type' => MENU_CALLBACK,
     );
 
-
     return $items;
 }
+/**
+ * Implements hook_theme().
+ */
+function custom_linkedIn_theme(){
+    $return = array();
 
+    $return['custom_linkedIn_user_page'] = array(
+        'variables' => array('profile' => Null),
+        'template' => 'custom-linkedIn-user-page',
+    );
+
+    return $return;
+}
+
+/*
 /**
  * Implements hook_form_alter : adds LinkedIn login to the login forms().
- */
+ *
 function custom_linkedIn_form_alter(&$form, &$form_state, $form_id) {
     switch ($form_id) {
         //add login link to the login form
@@ -61,6 +81,7 @@ function custom_linkedIn_form_alter(&$form, &$form_state, $form_id) {
     }
     return $form;
 }
+*/
 
 /**
  * It is called the Linkedin api with ClientID
@@ -68,12 +89,10 @@ function custom_linkedIn_form_alter(&$form, &$form_state, $form_id) {
  * $arg: because it is called from different hook_menu we use arg for parameter
  */
 function linkedin_get_token_request($arg){
-    global $user;
-    if($user->uid > 0) drupal_goto("/user/" . $user->uid);
     $parameter[] = "response_type=code";
     $parameter[] = "client_id=77xpw5r1ppmuby";
     $parameter[] = "redirect_uri=https://civil808.com/linkedin/" . $arg . "/finalize";
-    $parameter[] = "scope=r_emailaddress r_liteprofile";
+    $parameter[] = "scope=r_emailaddress r_basicprofile";
     $param = implode("&" , $parameter);
     $base_url = "https://www.linkedin.com/oauth/v2/authorization";
     $path = $base_url . "?" . $param;
@@ -91,10 +110,12 @@ function linked_in_login(){
     if(($error === "user_cancelled_login" || $error === "user_cancelled_authorize")){
         drupal_set_message(t('Login with Linkedin is not completed'), 'status');
         drupal_goto("/user/login");
+        die();
     }
     if(empty($code)){
         drupal_set_message(t('There was a problem with the configuration of LinkedIn on this website. Please try again later.'), 'error');
         drupal_goto("/user/login");
+        die();
     }
 
     /*sending a request to get access token*/
@@ -118,11 +139,13 @@ function linked_in_login(){
     if($err){
         drupal_set_message(t('There was a problem with the configuration of LinkedIn on this website. Please try again later.'), 'error');
         drupal_goto("/user/login");
+        die();
     }
     $response = json_decode($response, true);
     if(isset($response["error"]) && !empty($response["error"])){
         drupal_set_message(t('There was a problem with the configuration of LinkedIn on this website. Please try again later.'), 'error');
         drupal_goto("/user/login");
+        die();
     }
 
     /* If token is fetched correctly
@@ -130,7 +153,8 @@ function linked_in_login(){
      */
     $curl = curl_init();
     curl_setopt_array($curl, array(
-        CURLOPT_URL => "https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))",
+//        CURLOPT_URL => "https://api.linkedin.com/v1/people/~:(id,public-profile-url,first-name,last-name,email-address,location,summary,num-connections,formatted-name,headline,industry,specialties,positions,picture-url,picture-urls::(original))?format=json",
+        CURLOPT_URL => "https://api.linkedin.com/v1/people/~:(email-address)?format=json",
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => "",
         CURLOPT_MAXREDIRS => 10,
@@ -151,7 +175,7 @@ function linked_in_login(){
         drupal_goto("/user/login");
     }
     $email = json_decode($data, true);
-    $email = $email["elements"][0]["handle~"]["emailAddress"];
+    $email = $email["emailAddress"];
 
     /*if user has already logged in, just redirect */
     global $user;
@@ -167,6 +191,17 @@ function linked_in_login(){
     /*login user*/
     $user = user_load($uid->uid);
     user_login_finalize();
+
+    db_merge("custom_linkedIn_token")
+        ->key(array(
+            "uid" => $user->uid
+        ))
+        ->fields(array(
+            "token" => $response["access_token"],
+            "location" => "login",
+            "expire" => REQUEST_TIME + $response["expires_in"]
+        ))->execute();
+
     drupal_goto("/user/" . $user->uid);
 }
 function linked_in_register(){
@@ -212,7 +247,8 @@ function linked_in_register(){
 
     $curl = curl_init();
     curl_setopt_array($curl, array(
-        CURLOPT_URL => "https://api.linkedin.com/v2/me",
+//        CURLOPT_URL => "https://api.linkedin.com/v1/people/~:(id,public-profile-url,first-name,last-name,email-address,location,summary,num-connections,formatted-name,headline,industry,specialties,positions,picture-url,picture-urls::(original))?format=json",
+        CURLOPT_URL => "https://api.linkedin.com/v1/people/~:(first-name,last-name,formatted-name,email-address)?format=json",
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => "",
         CURLOPT_MAXREDIRS => 10,
@@ -233,46 +269,34 @@ function linked_in_register(){
         drupal_goto("/user/login");
     }
     $profile = json_decode($data, true);
-    $first_name = isset($profile["firstName"]["localized"]["en_US"]) ? $profile["firstName"]["localized"]["en_US"] : "";
-    $last_name = isset($profile["lastName"]["localized"]["en_US"]) ? $profile["lastName"]["localized"]["en_US"] : "";
-    $full_name = $first_name . " " . $last_name;
-
-    $curl = curl_init();
-    curl_setopt_array($curl, array(
-        CURLOPT_URL => "https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "GET",
-        CURLOPT_HTTPHEADER => array(
-            "authorization: Bearer " . $response["access_token"],
-            "cache-control: no-cache",
-            "connection: Keep-Alive"
-        ),
-    ));
-    $data = curl_exec($curl);
-    $err = curl_error($curl);
-    curl_close($curl);
-    if($err){
-        drupal_set_message(t('There was a problem with the configuration of LinkedIn on this website. Please try again later.'), 'error');
-        drupal_goto("/user/login");
-    }
-    $email = json_decode($data, true);
-    $email = $email["elements"][0]["handle~"]["emailAddress"];
-
+    $full_name = $profile["formatted-name"];
+    $email = $profile["emailAddress"];
     $username = explode("@" , $email);
     $username = $username[0];
 
     global $user;
-    if($user->uid > 0) drupal_goto("/user/" . $user->uid);
+    if($user->uid > 0) {
+        drupal_goto("/user/" . $user->uid);
+        die();
+    }
+
 
     $uid = db_select("users" , "user")->fields("user" , array("uid"))->condition("mail" , $email)->execute()->fetch();
     if(!empty($uid)){
         $user = user_load($uid->uid);
         user_login_finalize();
+        db_merge("custom_linkedIn_token")
+            ->key(array(
+                "uid" => $user->uid
+            ))
+            ->fields(array(
+                "token" => $response["access_token"],
+                "location" => "login",
+                "expire" => REQUEST_TIME + $response["expires_in"]
+            ))->execute();
+
         drupal_goto("/user/" . $user->uid);
+        die();
     }
     do {
         $check_username = db_select("users", "user")->fields("user", array("uid"))->condition("name", $username)->execute()->fetch();
@@ -297,6 +321,82 @@ function linked_in_register(){
     /*login user*/
     user_login_finalize();
 
-    drupal_set_message(t('Note: choose a secret Password!'), 'warning');
-    drupal_goto("user/" . $user->uid . "/edit");
+    db_merge("custom_linkedIn_token")
+        ->key(array(
+            "uid" => $user->uid
+        ))
+        ->fields(array(
+            "token" => $response["access_token"],
+            "location" => "login",
+            "expire" => REQUEST_TIME + $response["expires_in"]
+        ))->execute();
+
+    drupal_set_message(t('Note: choose a secret Password or You can not login again!'), 'warning');
+    drupal_goto("user/" . $user->uid . "/edit#edit-account");
+    die();
+}
+
+function linked_in_connection($uid){
+    $token = db_select("custom_linkedIn_token" , "token")
+        ->fields("token" , array("token"))
+        ->condition("uid" , $uid)
+        ->condition("expire" , REQUEST_TIME , ">")
+        ->execute()->fetch();
+
+    if(!empty($token)){
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.linkedin.com/v1/people/~:(id,public-profile-url,first-name,last-name,email-address,location,summary,num-connections,formatted-name,headline,industry,specialties,positions,picture-url,picture-urls::(original))?format=json",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "authorization: Bearer " . $token->token,
+                "cache-control: no-cache",
+                "connection: Keep-Alive"
+            ),
+        ));
+        $data = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+        if ($err) {
+            drupal_set_message(t('There was a problem with the configuration of LinkedIn on this website. Please try again later.'), 'error');
+            drupal_goto("/user/login");
+        }
+        $data = json_decode($data, true);
+
+        $result = array();
+        $result["full_name"] = $data["formattedName"];
+        $result["headline"] = $data["headline"];
+        $result["location"] = $data["location"]["name"];
+        $result["Industry"] = $data["industry"];
+        $result["summary"] = $data["summary"];
+        $result["connections"] = $data["numConnections"];
+        $result["profile"] = $data["publicProfileUrl"];
+        $result["picture"] = !empty($data["pictureUrls"]["values"]) ? $data["pictureUrls"]["values"][0] : null;
+        $result["positions"] = $data["positions"]["values"];
+
+        return theme('custom_linkedIn_user_page', array('profile' => $result));
+    }
+    else{
+        return previous_data($uid);
+    }
+}
+
+function previous_data($uid){
+    $token = db_select("linkedin_token" , "token")
+        ->fields("token" , array())
+        ->condition("uid" , $uid)
+        ->condition("type" , "access")
+        ->execute()->fetch();
+    if(empty($token)) die();
+
+    module_load_include("inc", "linkedin_profile", "linkedin_profile.pages");
+    $account = user_load($uid);
+    $access = linkedin_profile_display_access($account);
+    if($access) return linkedin_profile_display($account);
+    else return drupal_access_denied();
 }

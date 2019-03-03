@@ -1,0 +1,45 @@
+<?php
+/**
+ * Implements hook_schema().
+ */
+function custom_linkedIn_schema() {
+    $schema['custom_linkedIn_token'] = array(
+        'fields' => array(
+            'id' => array(
+                'type' => 'serial',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'description' => t('Primary Key : id'),
+            ),
+            'uid' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+                'default' => 0,
+                'description' => t('User uid'),
+            ),
+            'token' => array(
+                'type' => 'text',
+                'size' => 'normal',
+                'not null' => True,
+                'description' => t('stores token'),
+            ),
+            'location' => array(
+                'type' => 'varchar',
+                'length' => 40,
+                'not null' => TRUE,
+                'default' => '',
+                'description' => t('The location that Token fetch'),
+            ),
+            'expire' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+                'default' => 0,
+                'description' => 'Timestamp for when new version was created.',
+            ),
+        ),
+
+        'primary key' => array('id'),
+    );
+
+    return $schema;
+}
