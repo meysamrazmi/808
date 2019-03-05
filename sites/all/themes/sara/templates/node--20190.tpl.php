@@ -138,17 +138,43 @@
 </section>
 
 <section style="margin: 50px 0 80px 0;">
-    <div class="kargah-vip">
+    <div class="kargah-vip" style="margin-bottom: 15px;">
         <a target="_blank" href="/node/21036">
             <div>
                 ورکشاپ آنلاین تخصصی بیان دغدغه ها و راه حل های اساسی در آزمون محاسبات عمران
                 <br>
                 <ul>
                     <li style="font-size: 13px;color: #909090 !important; padding: 18px 5px 10px 5px;">شرکت در این ورکشاپ برای اعضای VIP رایگان است.</li>
-                    <li style="font-size: 13px;color: #909090 !important; padding: 5px 5px;"> به همراه تخفیف ویژه برای شرکت در باقی دوره های آموزشی موسسه</li>
+                    <li style="font-size: 13px;color: #909090 !important; padding: 5px 5px;"> شرکت‌کنندگان ورکشاپ از تخفیف ۳۰٪ از دوره آنلاین یا حضوری موسسه برخوردار خواهند بود.</li>
                 </ul>
+                <button class="btn btn-primary">ثبت نام</button>
             </div>
-            <img class="vip-icon" src="/sites/all/themes/sara/images/icon/vip.svg"/>
+            <div class="date-fan">
+                <div class="day">17</div>
+                <div class="month">اسفند</div>
+                <div class="year">1397</div>
+            </div>
+            <!--<img class="vip-icon" src="/sites/all/themes/sara/images/icon/vip.svg"/>-->
+        </a>
+    </div>
+
+    <div class="kargah-vip">
+        <a target="_blank" href="/node/21144">
+            <div>
+                ورکشاپ تخصصی راهکارهای موفقیت در آزمون طراحی معماری با بررسی موردی آزمون بهمن ۹۷
+                <br>
+                <ul>
+                    <li style="font-size: 13px;color: #909090 !important; padding: 18px 5px 10px 5px;">شرکت در این ورکشاپ برای اعضای VIP رایگان است.</li>
+                    <li style="font-size: 13px;color: #909090 !important; padding: 5px 5px;"> شرکت‌کنندگان ورکشاپ از تخفیف ۳۰٪ از دوره آنلاین یا حضوری موسسه برخوردار خواهند بود.</li>
+                </ul>
+                <button class="btn btn-primary">ثبت نام</button>
+            </div>
+            <div class="date-fan">
+                <div class="day">19</div>
+                <div class="month">اسفند</div>
+                <div class="year">1397</div>
+            </div>
+            <!--<img class="vip-icon" src="/sites/all/themes/sara/images/icon/vip.svg"/>-->
         </a>
     </div>
 
@@ -433,16 +459,53 @@ $(document).ready(function(){
         box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
         text-align: right;
     }
-    @media (max-width: 768px){
+    .kargah-vip button{
+        float:right;
+        margin-right:10px;
+    }
+    .date-fan {
+        font-family: fanum;
+        position: relative;
+        min-width: 105px;
+        min-height: 100px;
+        margin-bottom: 10px;
+    }
+    .date-fan .day {
+        font-size: 64px;
+        color: #bbb;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .date-fan .month {
+        font-size: 23px;
+        color: #dadada;
+        position: absolute;
+        left: 0;
+        top: 39px;
+    }
+    .date-fan .year {
+        color: #b5b5b5;
+        position: absolute;
+        top: 67px;
+        left: 27px;
+    }
+    @media (max-width: 1100px){
         .kargah-vip{
             width: 96%;
             padding: 2% 2.5%;
         }
+    }
+    @media (max-width: 768px){
         .kargah-vip a{
             flex-direction: column-reverse;
         }
         .kargah-vip .vip-icon{
             margin: 0 0 18px 0;
+        }
+        .kargah-vip button{
+            float: none;
+            margin-right:auto;
         }
     }
     .kargah-vip a{
