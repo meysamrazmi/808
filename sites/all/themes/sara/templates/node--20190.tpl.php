@@ -251,7 +251,7 @@
         مراجعه کنید</p>
     <div class="owl-carousel">
         <?php
-        $nids = array( 5552 , 11160 , 5532 , 5533 , 13647, 8424);
+        $nids = array( 11160 , 5532 , 5533 , 13647, 8424);
         $view_mode = 'teaser';
         foreach ($nids as $nid){
             $node = node_load($nid);
