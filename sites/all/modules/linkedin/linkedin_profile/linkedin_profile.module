@@ -24,6 +24,7 @@ function linkedin_profile_init() {
  * Implementation of hook_menu
  */
 
+/*
 function linkedin_profile_menu() {
   $items = array();
   if (variable_get('linkedin_profile_user_page_enabled', 0) == 1) {
@@ -39,7 +40,7 @@ function linkedin_profile_menu() {
     );
   }
   return $items;
-}
+}*/
 
 /*
  * Custom access callback for user/%user/linkedin

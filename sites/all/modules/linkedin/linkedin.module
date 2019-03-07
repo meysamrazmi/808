@@ -22,7 +22,7 @@ function linkedin_init() {
 
 /*
  * Implements of hook_menu
- */
+ *
 function linkedin_menu() {
 
   $items = array();
@@ -60,7 +60,7 @@ function linkedin_menu() {
   );
 
   return $items;
-}
+}*/
 
 /*
  * Custom access callback for linkedin/token/%user

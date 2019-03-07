@@ -329,7 +329,7 @@ function _comment_resource_delete($cid) {
   return TRUE;
 }
 /**
- * Return an array of optionally paged cids baed on a set of criteria.
+ * Return an array of optionally paged cids based on a set of criteria.
  *
  * An example request might look like
  *

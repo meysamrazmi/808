@@ -161,7 +161,7 @@ function _node_resource_definition() {
               'optional' => TRUE,
               'source' => array('data' => 'attach'),
               'description' => 'Attach the file(s) to the node. If FALSE, this clears ALL files attached, and attaches the files',
-              'type' => 'file',
+              'type' => 'int',
               'default value' => TRUE,
             ),
             array(
@@ -582,7 +582,7 @@ function _node_resource_delete($nid) {
 }
 
 /**
- * Return an array of optionally paged nids baed on a set of criteria.
+ * Return an array of optionally paged nids based on a set of criteria.
  *
  * An example request might look like
  *
@@ -935,7 +935,7 @@ function _node_resource_attach_file($nid, $field_name, $attach, $field_values) {
   else {
     $node->{$field_name}[LANGUAGE_NONE] = array();
   }
-	
+
   $options = array('attach' => $attach, 'file_count' => $counter);
 
   list($files, $file_objs) = _node_resource_file_save_upload($node_type, $field_name, $options);
