@@ -146,7 +146,7 @@
 /*-----------------------------video-comercial--------------------------*/
 .video-finished .attachment.attachment-before{
 	position: absolute;
-    top: 0px;
+	bottom: 0px;
     right: 0px;
 	display:none;
 	z-index:1;
