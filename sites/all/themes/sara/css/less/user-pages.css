@@ -2247,6 +2247,75 @@ p.description.profile-percent a:nth-child(n+2) {
 }
 .linkedin-profile.head-info {
   margin-bottom: 50px;
+  position: relative;
+}
+.linkedin-profile .linkdin-refresh {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+.linkedin-profile .linkdin-refresh a:before {
+  content: "\f450";
+  font-family: mat;
+  font-size: 25px;
+  color: #3F51B5;
+}
+.linkedin-profile .linkdin-refresh a:before {
+  display: inline-block;
+  transform: rotate(90deg);
+  padding: 5px;
+}
+.linkedin-profile .linkdin-refresh a:hover + .expire {
+  visibility: visible;
+  display: block;
+}
+.linkedin-profile .linkdin-refresh .expire {
+  position: absolute;
+  min-width: 130px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0 1px 6px, rgba(0, 0, 0, 0.117647) 0 1px 4px;
+  color: #000;
+  text-align: center;
+  border-radius: 2px;
+  padding: 10px 10px;
+  font-size: 10px;
+  top: 40px;
+  right: 0px;
+  z-index: 999;
+  margin-top: 8px;
+  visibility: hidden;
+  display: none;
+}
+@media (max-width: 600px) {
+  .linkedin-profile .linkdin-refresh .expire {
+    min-width: 80px;
+    padding: 5px 5px;
+    font-size: 7px;
+    top: 30px;
+  }
+}
+.linkedin-profile .linkdin-refresh .expire:after {
+  position: absolute;
+  content: '';
+  top: -10px;
+  right: 7px;
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+  border: solid #eee;
+  border-width: 1px 0 0 1px;
+}
+@media (max-width: 600px) {
+  .linkedin-profile .linkdin-refresh .expire:after {
+    width: 10px;
+    height: 10px;
+    top: -6px;
+    right: 10px;
+  }
 }
 .linkedin-positions > h2 {
   text-align: left;

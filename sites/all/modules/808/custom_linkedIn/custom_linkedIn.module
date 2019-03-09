@@ -18,13 +18,13 @@ function custom_linkedIn_menu(){
         'page arguments' => array('register'),
         'access callback' => True,
     );
-    $items['linkedin/connect/%'] = array(
+    $items['linkedin/%/connect'] = array(
         'type' => MENU_CALLBACK,
         'description' => 'Login with Linked In',
         'page callback' => 'linkedin_get_token_request',
         'page arguments' => array('connect'),
         'access callback' => 'connect_access',
-        'access arguments' => array(2),
+        'access arguments' => array(1),
     );
 
     $items['linkedin/login/finalize'] = array(
@@ -62,6 +62,7 @@ function custom_linkedIn_menu(){
 
     return $items;
 }
+
 /**
  * Implements hook_theme().
  */
@@ -74,10 +75,6 @@ function custom_linkedIn_theme(){
     );
 
     return $return;
-}
-
-function custom_linkedIn_cron(){
-    $token = db_select("custom_linkedIn_token" , "token");
 }
 
 /**
@@ -418,17 +415,10 @@ function linked_in_connect(){
 }
 function connect_access($uid){
     global $user;
-    if($user->uid == $uid) {
-        $token = db_select("custom_linkedIn_token", "token")
-            ->fields("token", array("token"))
-            ->condition("uid", $user->uid)
-            ->condition("expire", REQUEST_TIME, ">")
-            ->execute()->fetch();
-
-        if (empty($token)) return true;
+    if($user->uid == $uid)
+        return true;
+    else
         return false;
-    }
-    return false;
 }
 
 function linked_in_profile($uid){
@@ -523,7 +513,7 @@ function linkedin_token_expire(){
             ->condition("uid" , $user->uid)
             ->execute()->fetch();
         if(empty($token)) return 0;
-        return format_date($token->expire);
+        return format_date($token->expire ,'short');
     }
     return false;
 }

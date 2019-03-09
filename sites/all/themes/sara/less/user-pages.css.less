@@ -1598,8 +1598,71 @@ p.description.profile-percent {
 	}
 	&.head-info{
 		margin-bottom: 50px;
+		position: relative;
 	}
-	
+
+	.linkdin-refresh{
+		position: absolute;
+		right: 10px;
+		top: 5px;
+		a {
+			.before(f450 , '' , 25px , #3F51B5);
+			&:before{
+				display: inline-block;
+				transform: rotate(90deg);
+				padding: 5px;
+			}
+			&:hover+.expire{
+				visibility: visible;
+				display: block;
+			}
+		}
+		.expire{
+			position: absolute;
+			min-width: 130px;
+			background-color: #fff;
+			box-shadow: rgba(0,0,0,0.117647) 0 1px 6px, rgba(0,0,0,0.117647) 0 1px 4px;
+			color: #000;
+			text-align: center;
+			border-radius: 2px;
+			padding: 10px 10px;
+			font-size: 10px;
+			top: 40px;
+			right: 0px;
+			z-index: 999;
+			margin-top: 8px;
+			visibility: hidden;
+			display: none;
+			@media @600{
+				min-width: 80px;
+				padding: 5px 5px;
+				font-size: 7px;
+				top: 30px;
+			}
+
+			&:after{
+				position: absolute;
+				content: '';
+				top: -10px;
+				right: 7px;
+				width: 15px;
+				height: 15px;
+				background-color: white;
+				-ms-transform: rotate(45deg);
+				-webkit-transform: rotate(45deg);
+				-moz-transform: rotate(45deg);
+				transform: rotate(45deg);
+				border: solid #eee;
+				border-width: 1px 0 0 1px;
+				@media @600{
+					width: 10px;
+					height: 10px;
+					top: -6px;
+					right: 10px;
+				}
+			}
+		}
+	}
 }
 .linkedin-positions{
 	> h2 {

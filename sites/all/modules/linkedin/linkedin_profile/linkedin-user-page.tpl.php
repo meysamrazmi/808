@@ -17,6 +17,18 @@ $profile == $variables['profile'];
       </a>
   <?php endif; ?>
 
+    <?php
+    global $user;
+    if($user->uid == arg(1)):
+        $expire = linkedin_token_expire();
+        if($expire === 0):
+            ?>
+            <div class="linkdin-refresh"><a href="/linkedin/<?php print arg(1) ?>/connect"></a><div class="expire">به روز رسانی</div></div>
+        <?php
+        endif;
+    endif;
+    ?>
+
   <div class="linkedin-head">
 		<?php if ($profile['first-name']['value'] || $profile['last-name']['value']) : ?>
 			<a href="<?php print $profile['public-profile-url']['value']; ?>" title="Public profile of <?php print $profile['first-name']['value'] . ' ' . $profile['last-name']['value']; ?> on www.linkedin.com.">
