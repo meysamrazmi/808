@@ -2023,4 +2023,30 @@ function push_notification($data , $uid){
     $response = json_decode($response);
     return $response;
 }
+
+/*---------------festival setting---------------*/
+function festivals(){
+    $setting = array();
+
+    /*publication*/
+    $setting["publication"]["festival"] = false; //true of false
+    $setting["publication"]["percent"] = 0.3; // 100% discount is equal to 1, just determine amount of discount in decimal
+    $setting["publication"]["message"] = "۳۰% تخفیف جشنواره"; //use short sentence, just change the amount of discount
+
+    /*college*/
+    $setting["college"]["festival"] = false;
+    $setting["college"]["percent"] = 0.3;
+    $setting["college"]["message"] = "۳۰% تخفیف جشنواره";
+
+    /*product_kit*/
+    $setting["product_kit"]["festival"] = false;
+    $setting["product_kit"]["percent"] = 0.3;
+    $setting["product_kit"]["message"] = "۳۰% تخفیف جشنواره";
+
+    /*free_charge*/
+    $setting["free_charge"]["price"] = 0.05; // 1 is equal to 100% extra charging
+    /** for free charging message check festival_resource.inc, festival_information_v_1() function **/
+
+    return $setting;
+}
 /*-------------------------------------------------------------------------------------------------*/

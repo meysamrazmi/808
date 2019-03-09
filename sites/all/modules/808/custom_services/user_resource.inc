@@ -589,6 +589,7 @@ function user_bookmark_contents_list_v_1($parameter){
     $query = list_of_contents_v_1($param);
     $list = $query->execute()->fetchAll();
     if(empty($list)) return array();
+    $festival_setting = festivals();
     if(strcmp($parameter["type"] , "publication") == 0) {
         $permission = array();
         $query = db_select('m_buyed_nodes', 'buyed');
@@ -631,7 +632,7 @@ function user_bookmark_contents_list_v_1($parameter){
             $discount = new stdClass();
             if($row->price != 0){
                 /*this is used for discount on festival*/
-                $festival = false;
+                $festival = $festival_setting["publication"]["festival"];
 
                 if ($vip && $free_for_vip) {
                     $discount = array("name" => "free", "color" => 2, "enable" => true, "amount" => 1, "message" => "رایگان برای کاربران VIP");
@@ -648,8 +649,8 @@ function user_bookmark_contents_list_v_1($parameter){
                     $discount = array("name" => "vip", "color" => 3, "enable" => false, "amount" => 0.1, "message" => "10% تخفیف VIP");
                 }
                 elseif ($festival) {
-                    $discount = array("name" => "festival", "color" => 1, "enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
-                    $row->price = 0.8 * $row->price;
+                    $discount = array("name" => "festival", "color" => 1, "enable" => true, "amount" => $festival_setting["publication"]["price"], "message" => $festival_setting["publication"]["message"]);
+                    $row->price = (1 - $festival_setting["publication"]["price"]) * $row->price;
                 }
             }
             $row->discount = $discount;
@@ -709,12 +710,12 @@ function user_bookmark_contents_list_v_1($parameter){
             $row->picture = image_style_url("300x300", $row->picture);
             $row->picture_s = image_style_url("350x350", $row->picture_s);
 
+            $festival = $festival_setting["college"]["festival"];
             $off = false;
-            $festival = false;
             if($opt_price[$row->nid] < $opt_cost[$row->nid] || $row->sell_price < $row->list_price) $off = true;
             $discount = new stdClass();
             if($festival && $off){
-                $discount = array("name" => "festival" , "color" => 1, "enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
+                $discount = array("name" => "festival" , "color" => 1, "enable" => true, "amount" => $festival_setting["college"]["price"], "message" => $festival_setting["college"]["message"]);
             }
             elseif($off){
                 $discount = array("name" => "off" , "color" => 2, "enable" => true, "amount" => 0.2, "message" => "فروش ویژه");
@@ -754,6 +755,8 @@ function user_bookmark_contents_list_v_2($parameter){
     $query = list_of_contents_v_2($param);
     $list = $query->execute()->fetchAll();
     if(empty($list)) return array();
+
+    $festival_setting = festivals();
     if(strcmp($parameter["type"] , "publication") == 0) {
         $permission = array();
         $query = db_select('m_buyed_nodes', 'buyed');
@@ -796,7 +799,7 @@ function user_bookmark_contents_list_v_2($parameter){
             $discount = new stdClass();
             if($row->price != 0){
                 /*this is used for discount on festival*/
-                $festival = false;
+                $festival = $festival_setting["publication"]["festival"];
 
                 if ($vip && $free_for_vip) {
                     $discount = array("name" => "free", "color" => 2, "enable" => true, "amount" => 1, "message" => "رایگان برای کاربران VIP");
@@ -813,8 +816,8 @@ function user_bookmark_contents_list_v_2($parameter){
                     $discount = array("name" => "vip", "color" => 3, "enable" => false, "amount" => 0.1, "message" => "10% تخفیف VIP");
                 }
                 elseif ($festival) {
-                    $discount = array("name" => "festival", "color" => 1, "enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
-                    $row->price = 0.8 * $row->price;
+                    $discount = array("name" => "festival", "color" => 1, "enable" => true, "amount" => $festival_setting["publication"]["price"], "message" => $festival_setting["publication"]["message"]);
+                    $row->price = (1 - $festival_setting["publication"]["price"]) * $row->price;
                 }
             }
             $row->discount = $discount;
@@ -874,12 +877,12 @@ function user_bookmark_contents_list_v_2($parameter){
             $row->picture = image_style_url("300x300", $row->picture);
             $row->picture_s = image_style_url("350x350", $row->picture_s);
 
+            $festival = $festival_setting["college"]["festival"];
             $off = false;
-            $festival = false;
             if($opt_price[$row->nid] < $opt_cost[$row->nid] || $row->sell_price < $row->list_price) $off = true;
             $discount = new stdClass();
             if($festival && $off){
-                $discount = array("name" => "festival" , "color" => 1, "enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
+                $discount = array("name" => "festival" , "color" => 1, "enable" => true, "amount" => $festival_setting["college"]["price"], "message" => $festival_setting["college"]["message"]);
             }
             elseif($off){
                 $discount = array("name" => "off" , "color" => 2, "enable" => true, "amount" => 0.2, "message" => "فروش ویژه");
@@ -929,10 +932,10 @@ function user_bookmark_contents_list_v_2($parameter){
             unset($row->catalog);
 
             $off = ($row->sell_price < $row->list_price) ? true : false;
-            $festival = false;
+            $festival = $festival_setting["product_kit"]["festival"];
             $discount = new stdClass();
             if($festival && $off){
-                $discount = array("name" => "festival" , "color" => 1, "enable" => true, "amount" => 0.2, "message" => "20% تخفیف جشنواره");
+                $discount = array("name" => "festival" , "color" => 1, "enable" => true, "amount" => $festival_setting["product_kit"]["price"], "message" => $festival_setting["product_kit"]["message"]);
             }
             elseif($off){
                 $discount = array("name" => "off" , "color" => 2, "enable" => true, "amount" => 0.2, "message" => "فروش ویژه");
