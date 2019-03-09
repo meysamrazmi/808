@@ -58,10 +58,10 @@ class AddThis {
   const TWITTER_TEMPLATE_DEFAULT = '{{title}} {{url}} via @AddThis';
 
   // External resources.
-  const DEFAULT_BOOKMARK_URL = 'http://www.addthis.com/bookmark.php?v=300';
-  const DEFAULT_SERVICES_CSS_URL = 'http://cache.addthiscdn.com/icons/v1/sprites/services.css';
-  const DEFAULT_SERVICES_JSON_URL = 'http://cache.addthiscdn.com/services/v1/sharing.en.json';
-  const DEFAULT_WIDGET_JS_URL = 'http://s7.addthis.com/js/300/addthis_widget.js';
+  const DEFAULT_BOOKMARK_URL = 'https://www.addthis.com/bookmark.php?v=300';
+  const DEFAULT_SERVICES_CSS_URL = 'https://cache.addthiscdn.com/icons/v1/sprites/services.css';
+  const DEFAULT_SERVICES_JSON_URL = 'https://cache.addthiscdn.com/services/v1/sharing.en.json';
+  const DEFAULT_WIDGET_JS_URL = 'https://s7.addthis.com/js/300/addthis_widget.js';
   const DEFAULT_WIDGET_JS_LOAD_DOMREADY = TRUE;
   const DEFAULT_WIDGET_JS_LOAD_ASYNC = FALSE;
 

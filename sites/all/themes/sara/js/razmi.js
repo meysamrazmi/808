@@ -860,7 +860,7 @@ $('.ads-enabled .mejs-overlay-play ,.ads-enabled .mejs-overlay-play * ,.ads-enab
 			$('.started').removeClass('started');
 			$('.ads-enabled').removeClass('ads-enabled');
 			player.play();
-		}, 5000);
+		}, 7000);
 	}
 });
 /*for responsive page*/
