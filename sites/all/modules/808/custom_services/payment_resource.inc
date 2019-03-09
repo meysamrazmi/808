@@ -67,8 +67,9 @@ function final_payment_v_1($data){
     /*
      * @todo apply discount for festivals
      * */
-    //$result->value = $result->value * 1.25;
-    $result->value = $result->value * 1.05;
+
+    $festival_setting = festivals();
+    $result->value = $result->value * (1 + $festival_setting["free_charge"]["price"]);
 
     if($result->status == 'success'){
         add_log($result->user, "/payment/final_payment", "final_charging" , "charge" , $result->id , $data["source"] , $data["version"] , "successful" , "account charging was successful");

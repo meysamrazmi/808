@@ -30,12 +30,12 @@ $profile == $variables['profile'];
         <?php endif; ?>
 
         <ul>
-            <?php if(!empty($profile["headline"])): ?><li class="linkedin-headline"><span class="label">Headline : </span><span><?php print $profile['headline']?></span></li> <?php endif; ?>
-            <?php if(!empty($profile["location"])): ?><li class="linkedin-location"><span class="label">Location : </span><span><?php print $profile['location']?></span></li> <?php endif; ?>
-            <?php if(!empty($profile["location"])): ?><li class="linkedin-industry"><span class="label">Industry : </span><span><?php print $profile['location']?></span></li> <?php endif; ?>
-            <?php if(!empty($profile["summary"])): ?><li class="linkedin-summary"><span class="label">Summary : </span><span><?php print $profile['summary']?></span></li> <?php endif; ?>
-            <?php if(!empty($profile["connections"])): ?><li class="linkedin-num-connections"><span class="label">connections : </span><span><?php print $profile['connections']?></span></li> <?php endif; ?>
-            <?php if(!empty($profile["profile"])): ?><li class="linkedin-public-profile-url">View Profile On <a href="<?php print $profile['profile']?>" target="_blank">Linked</a></li> <?php endif; ?>
+            <?php if(isset($profile["headline"]) && !empty($profile["headline"])): ?><li class="linkedin-headline"><span class="label">Headline : </span><span><?php print $profile['headline']?></span></li> <?php endif; ?>
+            <?php if(isset($profile["location"]) && !empty($profile["location"])): ?><li class="linkedin-location"><span class="label">Location : </span><span><?php print $profile['location']?></span></li> <?php endif; ?>
+            <?php if(isset($profile["industry"]) && !empty($profile["industry"])): ?><li class="linkedin-industry"><span class="label">Industry : </span><span><?php print $profile['industry']?></span></li> <?php endif; ?>
+            <?php if(isset($profile["summary"]) && !empty($profile["summary"])): ?><li class="linkedin-summary"><span class="label">Summary : </span><span><?php print $profile['summary']?></span></li> <?php endif; ?>
+            <?php if(isset($profile["connections"]) && !empty($profile["connections"])): ?><li class="linkedin-num-connections"><span class="label">connections : </span><span><?php print $profile['connections']?></span></li> <?php endif; ?>
+            <?php if(isset($profile["profile"]) && !empty($profile["profile"])): ?><li class="linkedin-public-profile-url">View Profile On <a href="<?php print $profile['profile']?>" target="_blank">Linked</a></li> <?php endif; ?>
         </ul>
     </div>
 </div>
