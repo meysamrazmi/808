@@ -370,18 +370,23 @@ function list_of_contents_v_2($parameter){
 
     /*add custom features of the content type*/
     if(strcmp($type , "publication") == 0){
+        /*add ebooks prices*/
         $query->join("field_data_field_point_needed" , "point_needed" , "node.nid = point_needed.entity_id  and point_needed.bundle = 'publication'");
         $query->addField("point_needed" , "field_point_needed_value" , "price");
 
+        /*add the filed "isvip" */
         $query->leftJoin("field_data_field_isvip" , "vip" , "node.nid = vip.entity_id and vip.bundle = 'publication' and vip.field_isvip_tid = '1760' ");
         $query->addField("vip" , "field_isvip_tid" , "free_for_vip");
 
+        /*if it calls from other functions with custom nids*/
         if(isset($parameter["custom_list"]) && !empty($parameter["custom_list"])){
             $query->condition("node.nid" , $parameter["custom_list"] , "IN");
             return $query;
         }
+        /*filter on free ebooks*/
         if(isset($parameter["free"]) && strcmp($parameter["free"] , "1") == 0) $query->condition("point_needed.field_point_needed_value" , 0);
 
+        /*sort ebooks*/
         if(isset($parameter["sort"]))
             switch($parameter["sort"]){
                 case "last" :
@@ -403,6 +408,7 @@ function list_of_contents_v_2($parameter){
                     break;
             }
         else $query->orderBy("node.nid" , "DESC");
+
     }
     elseif(strcmp($type , "podcast") == 0){
         $query->leftJoin("field_data_field_episode" , "field_episode" , "node.nid = field_episode.entity_id and field_episode.bundle = 'podcast'");
@@ -418,11 +424,12 @@ function list_of_contents_v_2($parameter){
         }
     }
     elseif(strcmp($type , "college") == 0){
+        /*fetch the distinct course_types and send them in response*/
         $course_type = db_select("field_data_field_course_type" , "course_type")->distinct();
         $course_type->fields("course_type" , array("field_course_type_value"));
         $response["college_type"] = $course_type->execute()->fetchCol();
 
-        /*select a specious type or all types of the courses*/
+        /*filter the colleges based on type*/
         if(isset($parameter["college_type"]) && !empty($parameter["college_type"])) {
             $college_type = explode("," , $parameter["college_type"]);
 
@@ -433,7 +440,10 @@ function list_of_contents_v_2($parameter){
             $query->leftJoin("field_data_field_course_type", "college_type", "node.nid = college_type.entity_id and college_type.delta = '0' ");
         $query->addField("college_type" , "field_course_type_value" , "college_type");
 
-
+        /* fetch the options for each college
+         * we gather the nid of the contents that have options
+         * we gather sum of the costs and prices for checking the discount
+         * */
         $subquery = db_select("uc_product_options" , "product_options");
         $subquery->join("node" , "node" , " node.nid = product_options.nid and node.type = 'college' ");
         $subquery->fields("product_options" , array("nid" , "oid" , "cost" , "price"));
@@ -441,11 +451,13 @@ function list_of_contents_v_2($parameter){
         $options = array();
         $options_nid = array();
         $options_off = array();
+        /*fill $options_nid*/
         foreach ($options_db as $option){
             array_push($options_nid , $option->nid);
             if(!isset($options[$option->nid])) $options[$option->nid] = array();
             array_push($options[$option->nid] , $option);
         }
+        /*fill $options_off*/
         foreach ($options as $key => $option){
             $cost = 0;
             $price = 0;
@@ -479,10 +491,12 @@ function list_of_contents_v_2($parameter){
         }
         $query->addField("step" , "field_course_step_value" , "college_step");
 
+        /*return query with custom nid*/
         if(isset($parameter["custom_list"]) && !empty($parameter["custom_list"])){
             $query->condition("node.nid" , $parameter["custom_list"] , "IN");
             return $query;
         }
+
         /*sort the courses*/
         if(isset($parameter["sort"]))
             switch ($parameter["sort"]){

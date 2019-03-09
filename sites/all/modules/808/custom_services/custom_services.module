@@ -2024,6 +2024,7 @@ function push_notification($data , $uid){
     return $response;
 }
 
+/*---------------festival setting---------------*/
 function festivals(){
     $setting = array();
 
