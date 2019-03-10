@@ -5,6 +5,36 @@
     $url = "https://civil808.com/sites/default/files" . $url;
 ?>
 <img src="<?php print $url;?>" width="100%" height="auto" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 5px;" alt="<?php print $node_content->title;?>" title="دوره های آنلاین <?php print $node_content->title;?>">
+
+<section style="margin: 87px 0 30px 0;">
+    <div class="kargah-vip" style="margin-bottom: 15px;">
+        <a target="_blank" href="/node/21180">
+            <div>
+                دوره حضوری مدل سازی اطلاعات ساختمان "Steps Towards Implementing BIM"
+                <ul>
+                    <li style="font-size: 13px;color: #909090 !important; padding: 18px 5px 5px 5px;">
+                        Case study example: UAE Expolink Project
+                    </li>
+                    <li style="font-size: 13px;color: #909090 !important; padding: 5px 5px;">
+                        lecturer: Omare Muhammad Azam
+                    </li>
+                    <li style="font-size: 13px;color: #909090 !important; padding: 5px 5px;">
+                        will be held on 25-26th April 2019, IRAN, Tehran
+                    </li>
+
+                </ul>
+                <button class="btn btn-primary has-wave"><span class="click-wave"></span>ثبت نام</button>
+            </div>
+            <div class="date-fan">
+                <div class="day">5</div>
+                <div class="month">اردیبهشت</div>
+                <div class="year">1398</div>
+            </div>
+        </a>
+    </div>
+
+</section>
+
 <section class="kargah-sec">
     <h2><?php print $node_content->title;?></h2>
 <!--    <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره فقط به صورت حضوری برگزار می شود.</p>-->
@@ -383,6 +413,78 @@
 </div>
 
 <style>
+    .kargah-vip{
+        position: relative;
+        width: 70%;
+        background-color: #ffffff;
+        padding: 19px 23px;
+        margin: 30px auto 93px auto;
+        border: solid #b39dd9;
+        border-width: 0px 3px;
+        box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+        text-align: right;
+    }
+    .kargah-vip button{
+        float:right;
+        margin-right:10px;
+    }
+    .date-fan {
+        font-family: fanum;
+        position: relative;
+        min-width: 98px;
+        min-height: 129px;
+        margin-bottom: 10px;
+    }
+    .date-fan .day {
+        font-size: 64px;
+        color: #bbb;
+        position: absolute;
+        right: 25px;
+        top: 0;
+    }
+    .date-fan .month {
+        font-size: 23px;
+        color: #dadada;
+        position: absolute;
+        left: 2px;
+        top: 69px;
+    }
+    .date-fan .year {
+        color: #b5b5b5;
+        position: absolute;
+        top: 103px;
+        left: 30px;
+    }
+    @media (max-width: 1100px){
+        .kargah-vip{
+            width: 96%;
+            padding: 2% 2.5%;
+        }
+    }
+    @media (max-width: 768px){
+        .kargah-vip a{
+            flex-direction: column-reverse;
+        }
+        .kargah-vip .vip-icon{
+            margin: 0 0 18px 0;
+        }
+        .kargah-vip button{
+            float: none;
+            margin-right:auto;
+        }
+    }
+    .kargah-vip a{
+        color: black !important;
+        font-size: 16px;
+        margin: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .kargah-vip .vip-icon{
+        width: 95px;
+        margin-left: 2%;
+    }
     .node section > h2{
         font-size: 24px;
         text-align: center;

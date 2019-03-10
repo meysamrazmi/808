@@ -395,7 +395,9 @@
   width: 195px;
   text-align: right;
 }
-.page-translator .field-name-body .field-item .lists {
+.page-translator .field-name-body .field-item .lists,
+.page-advisor .field-name-body .field-item .lists,
+.page-affiliate .field-name-body .field-item .lists {
   display: inline-block;
   text-align: right;
   box-shadow: 0 2px 2px #edeef0;
@@ -405,48 +407,69 @@
   vertical-align: top;
   background-color: #fbfbfb;
 }
-.page-translator .field-name-body .field-item .lists a {
+.page-translator .field-name-body .field-item .lists a,
+.page-advisor .field-name-body .field-item .lists a,
+.page-affiliate .field-name-body .field-item .lists a {
   color: #555 !important;
 }
-.page-translator .field-name-body .field-item .lists a:before {
+.page-translator .field-name-body .field-item .lists a:hover,
+.page-advisor .field-name-body .field-item .lists a:hover,
+.page-affiliate .field-name-body .field-item .lists a:hover {
+  color: #999 !important;
+}
+.page-translator .field-name-body .field-item .lists a:hover:before,
+.page-advisor .field-name-body .field-item .lists a:hover:before,
+.page-affiliate .field-name-body .field-item .lists a:hover:before {
+  padding: 0px 5px;
+}
+.page-translator .field-name-body .field-item .lists p,
+.page-advisor .field-name-body .field-item .lists p,
+.page-affiliate .field-name-body .field-item .lists p {
+  font-size: 13px;
+  padding: 5px;
+  margin: 5px 0px;
+}
+.page-translator .field-name-body .field-item .lists p:before,
+.page-advisor .field-name-body .field-item .lists p:before,
+.page-affiliate .field-name-body .field-item .lists p:before {
   content: "\f04f";
   font-family: mat;
   font-size: 13px;
   color: #673AB7;
 }
-.page-translator .field-name-body .field-item .lists a:before {
-  padding: 0px 3px;
+.page-translator .field-name-body .field-item .lists p:before,
+.page-advisor .field-name-body .field-item .lists p:before,
+.page-affiliate .field-name-body .field-item .lists p:before {
+  padding: 0 3px 0 11px;
 }
-.page-translator .field-name-body .field-item .lists a:hover {
-  color: #999 !important;
-}
-.page-translator .field-name-body .field-item .lists a:hover:before {
-  padding: 0px 5px;
-}
-.page-translator .field-name-body .field-item .lists p {
-  font-size: 13px;
-  padding: 5px;
-  margin: 5px 0px;
-}
-.page-translator .field-name-body .field-item .lists .omran {
+.page-translator .field-name-body .field-item .lists .omran,
+.page-advisor .field-name-body .field-item .lists .omran,
+.page-affiliate .field-name-body .field-item .lists .omran {
   display: inline-block;
   vertical-align: top;
-  width: 330px;
 }
-.page-translator .field-name-body .field-item .lists .memari {
+.page-translator .field-name-body .field-item .lists .memari,
+.page-advisor .field-name-body .field-item .lists .memari,
+.page-affiliate .field-name-body .field-item .lists .memari {
   display: inline-block;
 }
 @media all and (max-width: 1100px) {
-  .page-translator .field-name-body .field-item .lists {
+  .page-translator .field-name-body .field-item .lists,
+  .page-advisor .field-name-body .field-item .lists,
+  .page-affiliate .field-name-body .field-item .lists {
     margin: 30px 0px 0px 0px;
   }
 }
 @media (max-width: 840px) {
-  .page-translator .field-name-body .field-item .lists {
+  .page-translator .field-name-body .field-item .lists,
+  .page-advisor .field-name-body .field-item .lists,
+  .page-affiliate .field-name-body .field-item .lists {
     width: 400px;
   }
 }
-.page-translator .field-name-body .field-item .sarparast {
+.page-translator .field-name-body .field-item .sarparast,
+.page-advisor .field-name-body .field-item .sarparast,
+.page-affiliate .field-name-body .field-item .sarparast {
   background-color: #f8f8f8;
   box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
   padding: 10px;
@@ -455,22 +478,30 @@
   display: inline-block;
   min-height: 370px;
 }
-.page-translator .field-name-body .field-item .sarparast .info span {
+.page-translator .field-name-body .field-item .sarparast .info span,
+.page-advisor .field-name-body .field-item .sarparast .info span,
+.page-affiliate .field-name-body .field-item .sarparast .info span {
   font-size: 10px;
   color: #aaa;
 }
-.page-translator .field-name-body .field-item .sarparast .pic {
+.page-translator .field-name-body .field-item .sarparast .pic,
+.page-advisor .field-name-body .field-item .sarparast .pic,
+.page-affiliate .field-name-body .field-item .sarparast .pic {
   width: 140px;
   display: block;
   padding: 10px;
   margin: auto;
 }
-.page-translator .field-name-body .field-item .sarparast .pic img {
+.page-translator .field-name-body .field-item .sarparast .pic img,
+.page-advisor .field-name-body .field-item .sarparast .pic img,
+.page-affiliate .field-name-body .field-item .sarparast .pic img {
   box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24);
   margin: 0 auto;
   border-radius: 50%;
 }
-.page-translator .field-name-body .field-item .sarparast .links {
+.page-translator .field-name-body .field-item .sarparast .links,
+.page-advisor .field-name-body .field-item .sarparast .links,
+.page-affiliate .field-name-body .field-item .sarparast .links {
   padding: 15px;
   margin-bottom: 10px;
 }

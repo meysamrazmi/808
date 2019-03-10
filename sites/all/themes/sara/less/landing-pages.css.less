@@ -400,7 +400,9 @@
 	}
 }
 
-.page-translator .field-name-body .field-item{
+.page-translator .field-name-body .field-item,
+.page-advisor .field-name-body .field-item,
+.page-affiliate .field-name-body .field-item{
 	.lists{
 		display: inline-block;
 		text-align: right;
@@ -413,14 +415,14 @@
 		
 		a{
 			color: #555 !important;
-			.before('f04f', '', 13px , #673AB7);
-			&:before{padding: 0px 3px;}
 			&:hover{
 				color: #999 !important;
 				&:before{padding: 0px 5px;}
 			}
 		}
 		p{
+			.before('f04f', '', 13px , #673AB7);
+			&:before{padding: 0 3px 0 11px;}
 			font-size: 13px;
 			padding: 5px;
 			margin: 5px 0px;
@@ -428,7 +430,6 @@
 		.omran{
 			display: inline-block;
 			vertical-align: top;
-			width: 330px;
 		}
 		.memari{
 			display: inline-block;
