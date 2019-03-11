@@ -177,7 +177,7 @@
                 </div>
             </div>
 
-			<div class="features aos-init" data-aos="zoom-in-up">
+			<div class="features aos-init" data-aos="zoom-in-up" style="margin-top: 30px">
 				<div class="moshaver">
                     <div style="max-width: 840px;margin: auto;">
                         <div style="position: relative;padding-bottom: 56.25%;">
