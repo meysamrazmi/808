@@ -181,6 +181,7 @@ section.panel.main:before {
 section.panel.main .inner {
 	z-index: 1;
 	width: 90%;
+	position: relative;
 	max-width: 730px;
 	text-align: center;
 	background-color: #abababbd;
@@ -1460,7 +1461,7 @@ a.poster.view:before {
 	}
 	#pbd .sec-li > div {
     margin-top: 230px;
-    padding: 50px 0% 37px 5%;
+    padding: 50px 0 37px 5%;
 	}
 	#pbd ol{
 		padding-right: 31px;
@@ -1576,6 +1577,7 @@ a.poster.view:before {
 	flex-wrap: wrap;
 	text-align: center;
 	align-content: center;
+	align-items: center;
 }
 #festival-prods .card-holder .card {
 	width: calc(50% - 20px);
@@ -1758,4 +1760,10 @@ section#pbd {
 		padding: 50px 2%;
 		border-top: 1px solid #ddd;
 	}
+}
+
+#tamdid {
+	position: absolute;
+	left: calc(50% - 60px);
+	top: -25px;
 }

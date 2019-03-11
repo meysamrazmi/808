@@ -29,14 +29,17 @@
 		</ul>
 		<section class="panel main" id="intro">
 			<div class="inner">
-				<header data-aos="fade-up" data-aos-delay="400">
+                <img id="tamdid" src="https://civil808.com/sites/all/themes/sara/images/banners/tamdid.png" width="120px" alt="">
+                <header data-aos="fade-up" data-aos-delay="400">
 					<p class="tagline">روز<span>مهندس</span> مبارک </p>
-					<h1>جشنواره فروش محصولات 808 ویژه‌ی روز مهندس</h1>
+					<h1 style="display: inline-block;position: relative">
+                        جشنواره فروش محصولات 808 ویژه‌ی روز مهندس
+                    </h1>
 <!--					<p style="font-size: 19px;color: #E91E63;color: #f22;font-weight: 500;">به علاوه رونمایی از اپلیکیشن 808 پلاس و سایت لاتین </p>-->
 				</header>
 				<div class="tarikh" data-aos="fade-up" data-aos-delay="800">
-					<span>3 - 5</span>
-					<span>اسفند ماه</span>
+					<span>تا 7</span>
+					<span>اسفند ماه تمدید شد!</span>
 				</div>
 				<div class="percent" data-aos="fade-up" data-aos-delay="800">
 					<span>تا 35%</span>
@@ -230,10 +233,10 @@
         </section>
 
         <section id="aplication">
+            <h2 data-aos="zoom-in-up" class="aos-init aos-animate"> اپلیکیشن اندروید 808 پلاس  </h2>
 
 
             <div class="wh">
-                <h2 data-aos="zoom-in-up" class="aos-init aos-animate"> اپلیکیشن اندروید 808 پلاس  </h2>
                 <div data-aos="zoom-out" class="aboutus aos-init aos-animate">
                     <div class="sec-li li">
 						<span class="icon-laptop">
