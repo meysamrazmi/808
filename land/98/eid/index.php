@@ -11,7 +11,7 @@
 		<!--[if lt IE 9]>
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-		<meta name="description" content="30+15% تخفیف ویژه فقط تا انتهای اسفند 97">
+		<meta name="description" content="تا 50% تخفیف ویژه فقط تا انتهای اسفند 97">
 		
 		<link rel="stylesheet" href="./src/main.css">
 		<link rel="stylesheet" href="./src/aos.css">
@@ -165,28 +165,35 @@
 		</section>
 
 		<section id="profile-features" class="panel">
-            <div class="contain profit"   data-aos="fade-up">
-                <div class="contain-header" style="text-align: center;background-color: transparent">
-                    <h3 class="more-about">با 808 بیشتر آشنا شوید</h3>
+            <div style="text-align: center">
+                <div class="contain profit"   data-aos="fade-up">
+                    <div class="contain-header" style="text-align: center;background-color: transparent">
+                        <h3 class="more-about">با 808 بیشتر آشنا شوید</h3>
+                    </div>
+                </div>
+                <div style="text-align: center" data-aos="fade-up">
+                    <a href="https://civil808.com/gallery/videos/playlist/5189/21190" class="btn" style="display: inline-block">مشاهده سایر فیلم های معرفی 808</a>
+
                 </div>
             </div>
+
 			<div class="features aos-init" data-aos="zoom-in-up">
 				<div class="moshaver">
                     <div style="max-width: 840px;margin: auto;">
-<!--                        <div style="position: relative;padding-bottom: 56.25%;">-->
-                        <div style="position: relative;">
-<!--                            <iframe allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src ="https://www.civil808.com/file/iframe/12720" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;"></iframe>-->
-                            <img src="images/civil808.jpg" width="100%" alt="" style="width: 100%">
+                        <div style="position: relative;padding-bottom: 56.25%;">
+<!--                        <div style="position: relative;">-->
+                            <iframe allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src ="https://www.civil808.com/file/iframe/21190" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;"></iframe>
+<!--                            <img src="images/civil808.jpg" width="100%" alt="" style="width: 100%">-->
                         </div>
                     </div>
                     <a href="http://civil808.com/page/about" style="margin-bottom: 0" target="_blank" class="btn">درباره تیم 808</a>
 				</div>
 				<div class="connection">
                     <div style="max-width: 840px;margin: auto;">
-<!--                        <div style="position: relative;padding-bottom: 56.25%;">-->
-                        <div style="position: relative;">
-<!--                            <iframe allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src ="https://www.civil808.com/file/iframe/12720" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;"></iframe>-->
-                            <img src="images/ED808.jpg" width="100%" alt="" style="width: 100%">
+                        <div style="position: relative;padding-bottom: 56.25%;">
+<!--                        <div style="position: relative;">-->
+                            <iframe allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src ="https://www.civil808.com/file/iframe/21191" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;"></iframe>
+<!--                            <img src="images/ED808.jpg" width="100%" alt="" style="width: 100%">-->
                         </div>
                     </div>
 					<a href="https://ed808.com" style="margin-bottom: 0" target="_blank" class="btn">
@@ -247,6 +254,15 @@
                             </div>
                         </div>
                     </a>
+                </div>
+            </div>
+            <div class="certificate-video" data-aos="zoom-in-up" >
+                <div style="max-width: 840px;margin: auto;">
+                    <div style="position: relative;padding-bottom: 56.25%;">
+                        <!--                        <div style="position: relative;">-->
+                        <iframe allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src ="https://www.civil808.com/file/iframe/21192" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;"></iframe>
+                        <!--                            <img src="images/ED808.jpg" width="100%" alt="" style="width: 100%">-->
+                    </div>
                 </div>
             </div>
         </section>
