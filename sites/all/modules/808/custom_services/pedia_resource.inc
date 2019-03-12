@@ -14,7 +14,7 @@ function pedia_resource_index($parameter){
 function list_of_pedias_v_1($parameter){
     $query = db_select("taxonomy_term_data" , "pedia");
     $query->join("field_data_field_bool" , "field_bool" , "pedia.tid = field_bool.entity_id and field_bool.entity_type = 'taxonomy_term' and field_bool.bundle = 'expert' and field_bool.field_bool_value = '1' ");
-    $query->leftJoin("field_data_field_image" , "field_image" , "pedia.tid = field_image.entity_id and field_image.entity_type = 'taxonomy_term' and field_image.bundle = 'expert'");
+    $query->leftJoin("field_data_field_image" , "field_image" , "pedia.tid = field_image.entity_id and field_image.entity_type = 'taxonomy_term' and field_image.bundle = 'expert' and field_image.delta = '0' ");
     $query->leftJoin("file_managed" , "image" , "image.fid = field_image.field_image_fid");
     $query->fields("pedia" , array("tid" , "name"));
     $query->fields("image" , array("uri" , "filesize"));
