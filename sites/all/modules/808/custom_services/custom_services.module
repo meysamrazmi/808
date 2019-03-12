@@ -775,6 +775,32 @@ function custom_services_services_resources(){
                         ),
                     ),
                 ),
+                'verify' => array(
+                    'help' => 'check if user is login or not',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'user_resource'),
+                    'callback' => 'user_resource_login_check',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'url',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'string',
+                            'description' => 'The url for request',
+                            'default' => 'session'
+                        ),
+                        array(
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameters of request',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => TRUE,
+                            'default value' => array(),
+                        ),
+                    ),
+                ),
             ),
         ),
         'content' => array(
