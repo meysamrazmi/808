@@ -424,7 +424,7 @@ function send_sms($to , $message){
 	ini_set("soap.wsdl_cache_enabled", "0");
 	try {
 		$user = "9113546642";
-		$pass = "2929957";
+		$pass = "2191";
 		
 		$client = new SoapClient("http://87.107.121.52/post/send.asmx?wsdl");
 		
