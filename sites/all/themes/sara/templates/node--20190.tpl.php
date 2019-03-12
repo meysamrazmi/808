@@ -145,9 +145,8 @@
                 <br>
                 <ul>
                     <li style="font-size: 13px;color: #909090 !important; padding: 18px 5px 10px 5px;">شرکت در این ورکشاپ برای اعضای VIP رایگان است.</li>
-                    <li style="font-size: 13px;color: #909090 !important; padding: 5px 5px;"> شرکت‌کنندگان ورکشاپ از تخفیف ۳۰٪ از دوره آنلاین یا حضوری موسسه برخوردار خواهند بود.</li>
                 </ul>
-                <button class="btn btn-primary">ثبت نام</button>
+                <button class="btn btn-primary">مشاهده فیلم ورکشاپ</button>
             </div>
             <div class="date-fan">
                 <div class="day">17</div>
