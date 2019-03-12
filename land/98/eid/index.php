@@ -218,7 +218,7 @@
 
                 <div class="course" data-aos="zoom-in-up">
                     <a href="http://civil808.com/landing/pbdcourse">
-                        <div class="course-image" style="background-image: url(./images/pbd-card.jpg)">
+                        <div class="course-image" style="background-image: url(./images/pbd-card.jpg);background-size: cover;">
                             <div class="course-overlay">
                                 <h3>چهارمین دوره جامع آموزش اصول محاسبات بهسازی لرزه‌ای و طراحی عملکردی سازه‌ها</h3>
                                 <h4 style="color: #0b0d12">
@@ -280,7 +280,7 @@
                         <a href="https://civil808.com/landing/translator" rel="nofollow">مترجمین 808</a>
                     </li>
                     <li>به تیم مدرسین و مشاورین اختصاصی 808 بپیوندید
-                        <a href="https://civil808.com/advisor" rel="nofollow"> مشاورین 808 </a>
+                        <a href="https://civil808.com/landing/advisor" rel="nofollow"> مشاورین 808 </a>
                     </li>
                     <li>با انتشار لینک محصولات 808 در وبسایت، وبلاگ، یا در شبکه های اجتماعی خود
                         <a href="https://civil808.com/landing/affiliate" rel="nofollow"> نمایندگی فروش </a>

@@ -12,7 +12,7 @@
 
 <?php /*
 	* برای تخفیفات نوروزی
-	*
+	*/
 	$flag = true;
 		if(isset($node->field_isvip['und'])){
 			for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){
@@ -30,7 +30,7 @@
 		if($flag){
 			print '<div id="takhfifdar"></div>';
 		}
-	*/
+	
 ?>
 
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
@@ -50,7 +50,7 @@
     ?>
   </a>
   </div>
-    <h2<?php print $title_attributes; ?>><i class="fa fa-book hide"></i> <a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
+    <h2 <?php print $title_attributes; ?>><i class="fa fa-book hide"></i> <a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
   <div class="content"<?php print $content_attributes; ?>>
     <?php if($submitted): ?>
     <div class="submitted">
@@ -63,7 +63,7 @@
 
 <?php /*
 	* برای تخفیفات نوروزی
-	*
+	*/
 	$flag = true;
 		if(isset($node->field_isvip['und'])){
 			for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){
@@ -81,11 +81,11 @@
 		if($flag){
 			print '<div id="takhfifdar"></div>';
 		}
-	*/
+	
 ?>
 
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-    <h2<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
+    <h2 <?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
 
   <div class="teaser-img">
 
