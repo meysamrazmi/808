@@ -244,8 +244,7 @@ function uc_userpoints_payment_uc_payment_method() {
 /**
  * Implementation of hook_uc_order().
  */
-function uc_userpoints_payment_uc_order($op, &$arg1, $arg2) {
-  $order = $arg1;
+function uc_userpoints_payment_uc_order($op, $order, $arg2) {
   $paymethod = strtolower($order->payment_method);
   switch ($op) {
     case 'submit':
