@@ -76,6 +76,16 @@ function custom808_menu(){
         'file' => 'custom808.inc',
     );
 
+    $items["admin/structure/services/notification/sent"] = array(
+        'title' => t('Sent notifications'),
+        'description' => t('Sent notifications message'),
+        'page callback' => array('drupal_get_form'),
+        'page arguments' => array('sent_notification_table_form'),
+        'access arguments' => array('administer modules'),
+        'type' => MENU_LOCAL_TASK,
+        'file' => 'custom808.inc',
+    );
+
     return $items;
 }
 
@@ -379,6 +389,15 @@ function custom808_node_validate($node, $form, &$form_state) {
         if (!empty($result) && count($result) > 0) {
             form_set_error('model', t('SKU-Model should be unique.'));
         }
+    }
+}
+/**
+ * Implements hook_entity_view_mode_alter().
+ */
+function custom808_entity_view_mode_alter(&$view_mode, $context) {
+    // Only alter the view mode if we are on the test callback.
+    if($context['entity_type'] == 'node' && $context['entity']->nid == 21193){
+        $view_mode = 'landing';
     }
 }
 

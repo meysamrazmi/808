@@ -474,6 +474,98 @@ function custom_services_update_7111() {
     db_add_field('desktop_lock_systems_info', 'logout', $newCol);
 }
 
+/**
+ * Create new database table {push_notification_info}.
+ */
+function custom_services_update_7112(){
+    $schema['push_notification_info'] = array(
+        'fields' => array(
+            'id' => array(
+                'type' => 'serial',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'description' => t('Primary Key : id'),
+            ),
+            'uid' => array(
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'description' => t('sender uid'),
+            ),
+            'title' => array(
+                'type' => 'varchar',
+                'length' => 256,
+                'not null' => TRUE,
+                'description' => t('title'),
+            ),
+            'message' => array(
+                'type' => 'text',
+                'size' => 'normal',
+                'not null' => TRUE,
+                'description' => t('message'),
+            ),
+            'content_type' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'not null' => False,
+                'default' => null,
+                'description' => t('content type'),
+            ),
+            'nid' => array(
+                'type' => 'int',
+                'size' => 'normal',
+                'not null' => True,
+                'default' => 0,
+                'description' => t('node nid'),
+            ),
+            'fid' => array(
+                'type' => 'int',
+                'size' => 'normal',
+                'not null' => True,
+                'default' => 0,
+                'description' => t('picture fid'),
+            ),
+            'picture' => array(
+                'type' => 'varchar',
+                'length' => 256,
+                'not null' => False,
+                'default' => null,
+                'description' => t('picture url'),
+            ),
+            'receivers' => array(
+                'type' => 'varchar',
+                'length' => 256,
+                'not null' => False,
+                'default' => null,
+                'description' => t('receivers'),
+            ),
+            'success' => array(
+                'type' => 'int',
+                'size' => 'normal',
+                'not null' => False,
+                'default' => 0,
+                'description' => t('success send'),
+            ),
+            'failure' => array(
+                'type' => 'int',
+                'size' => 'normal',
+                'not null' => False,
+                'default' => 0,
+                'description' => t('failure send'),
+            ),
+            'time' => array(
+                'type' => 'int',
+                'not null' => TRUE,
+                'default' => 0,
+                'description' => 'Timestamp for when a user logged in for the first time.',
+            ),
+
+        ),
+
+        'primary key' => array('id'),
+    );
+    db_create_table('push_notification_info', $schema['push_notification_info']);
+}
 
 /*
  * Implementation of hook_install()

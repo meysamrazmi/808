@@ -232,8 +232,54 @@ function push_notification_form_submit($form, &$form_state){
     curl_close($curl);
     $response = json_decode($response);
 
+    global $user;
+    db_insert("push_notification_info")->fields(array(
+        "uid" => $user->uid,
+        "title" => $data["title"],
+        "message" => $data["message"],
+        "content_type" => $data["type"],
+        "nid" => $data["nid"],
+        "fid" => !empty($file->fid) ? $file->fid : 0,
+        "picture" => $data["image"],
+        "receivers" => !empty($roles) ? implode(" , " , $roles) : "",
+        "success" => $response->success,
+        "failure" => $response->failure,
+        "time" => REQUEST_TIME,
+    ))->execute();
+
     $message = "اعلان های درست : " . $response->success . " <br> " . "اعلان های نادرست : " . $response->failure;
     drupal_set_message($message , "status");
+}
+
+/*table to show the previous sent notification*/
+function sent_notification_table_form($form, &$form_state){
+    try {
+        /*fetch the list of actions for filter the actions*/
+        $query = db_select("push_notification_info" , "notif_info");
+        $query->fields("notif_info" , array("id" , "title" , "message" , "content_type" , "nid" , "picture" , "success" , "failure" , "time"));
+        $query->orderBy("notif_info.id" , "DESC");
+        $result = $query->execute()->fetchAll();
+
+        /*render the table log*/
+        $header = array("id" , "title" , "message" , "content_type" , "nid" , "picture" , "success" , "failure" , "time");
+        $rows = array();
+        foreach ($result as $key=>$row) {
+            $row->time = format_date($row->time);
+            $row->picture = '<img src="' . $row->picture . '" height=50px; width=50px>';
+
+            /*convert object to array for being able to add row number at the first column*/
+            $row = (array)$row;
+            $rows[] = array('data' => $row);
+        }
+        $form['table'] = array(
+//            '#markup' => theme('table', array('header' => $header, 'rows' => $rows)) . theme('pager'),
+            '#markup' => theme('table', array('header' => $header, 'rows' => $rows)),
+        );
+
+        return $form;
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
 }
 /*----------------------------------------------------------------*/
 /*---------------------------lock part----------------------------*/
