@@ -1313,7 +1313,8 @@ function civil808_field_formatter_view($entity_type, $entity, $field, $instance,
         $term = isset($item['taxonomy_term'])? $item['taxonomy_term'] : taxonomy_term_load($item['tid']);
 
         //check to see if term's data is filled properly and it's published.
-        if($term->field_bool['und'][0]['value'] == 0
+        if( isset($term->field_bool['und'][0])
+	        && $term->field_bool['und'][0]['value'] == 0
             || !isset($term->field_image['und'][0])
             || empty($term->description)){
             return $element;
