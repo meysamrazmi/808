@@ -58,13 +58,13 @@ function pay_for_node($nid , $ws_api = false) {
 		drupal_goto("node/". $nid);
 	}
 
-	$flag = false; //default value for discount flag
+	$flag = true; //default value for discount flag
 	/*
 	* برای تخفیفات ویژه نوروز که تمامی محتوا ها تخفیف داشتند
 	*/
-	/*if(strcmp($node->type , "designteam") == 0)
+	if(strcmp($node->type , "designteam") == 0)
 	{
-		$festival = 'جشنواره عید فطر';
+		$festival = 'جشنواره عید نوروز';
 
 		$field_publication = array();
 		if(!empty($node->field_publication808['und'])) {
@@ -86,15 +86,16 @@ function pay_for_node($nid , $ws_api = false) {
 			if( $node->field_isvip['und'][$i]['tid'] == 2217) // no discount will be applied
 				$flag=false;
 		}
-	}*/
+	}
 
 	if($flag)
-		$points = round(intval($points * 0.8) , -1);
+		$points = round(intval($points * 0.7) , -1);
 
 
-	$description =  ($flag)? ' با 20 درصد تخفیف برای' . $festival :'';
+	$description =  ($flag)? ' با 30 درصد تخفیف برای' . $festival :'';
 
-	if(isset($user->roles[8]) && !$flag && $nid != 19224){ //for vip user only
+	/*if(isset($user->roles[8]) && !$flag && $nid != 19224){ //for vip user only*/
+	if(isset($user->roles[8]) && $nid != 19224){ //for vip user only
 		$description .= ', با 10 درصد تخفیف vip';
 		$points = round(intval($points * 0.9) , -1);
 	}
@@ -105,7 +106,7 @@ function pay_for_node($nid , $ws_api = false) {
 		drupal_goto("node/$nid");
 	}
 	if($flag)
-		drupal_set_message('20 درصد تخفیف به مناسبت '. $festival .' برای شما اعمال شد.');
+		drupal_set_message('30 درصد تخفیف به مناسبت '. $festival .' برای شما اعمال شد.');
 
 	$_sql = "INSERT INTO {m_buyed_nodes} (uid, nid, date, price, description) VALUES (:uid, :nid, :date, :price, :description)";
 	if($sht = db_query($_sql, array( ':uid' => $user->uid, ':nid' => $nid, ':date' => time(), ':price' => $points, ':description' => $description ))){

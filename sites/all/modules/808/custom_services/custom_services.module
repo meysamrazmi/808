@@ -2029,17 +2029,17 @@ function festivals(){
     $setting = array();
 
     /*publication*/
-    $setting["publication"]["festival"] = false; //true of false
+    $setting["publication"]["festival"] = true; //true of false
     $setting["publication"]["percent"] = 0.3; // 100% discount is equal to 1, just determine amount of discount in decimal
     $setting["publication"]["message"] = "۳۰% تخفیف جشنواره"; //use short sentence, just change the amount of discount
 
     /*college*/
-    $setting["college"]["festival"] = false;
+    $setting["college"]["festival"] = true;
     $setting["college"]["percent"] = 0.3;
     $setting["college"]["message"] = "۳۰% تخفیف جشنواره";
 
     /*product_kit*/
-    $setting["product_kit"]["festival"] = false;
+    $setting["product_kit"]["festival"] = true;
     $setting["product_kit"]["percent"] = 0.3;
     $setting["product_kit"]["message"] = "۳۰% تخفیف جشنواره";
 

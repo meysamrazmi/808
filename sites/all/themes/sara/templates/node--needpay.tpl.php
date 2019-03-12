@@ -10,7 +10,7 @@
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <?php print render($title_prefix); ?>
   <?php if (!$page): ?>
-    <h2<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
+    <h2 <?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
   <?php endif; ?>
   <?php print render($title_suffix); ?>
 
@@ -19,16 +19,16 @@
 	/*
 	* برای تخفیفات ویژه نوروزی و برای چاپ بنر بالاییش
 	*/
-  $festival = false;
-  /*
+  $festival = true;
+  
   if(isset($node->field_isvip['und'])){
 	  for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){
 		  if( $node->field_isvip['und'][$i]['tid'] == 2217) // no discount will be applied
 			  $festival=false;
 	  }
-  }*/
+  }
 
-      /*if(strcmp($node->type , "designteam") == 0)
+      if(strcmp($node->type , "designteam") == 0)
       {
           $field_publication = array();
           if(!empty($node->field_publication808['und'])) {
@@ -45,7 +45,7 @@
           }
           if(in_array(2174 , $field_publication) && !in_array_r(2217 , $field_discount)) $festival = true;
           else $festival = false;
-      }*/
+      }
 
 	if($festival){
 		print '<div id="takhfifdar"></div>';
@@ -126,8 +126,10 @@
           <div class="cta-2-row cta-row">
               <div class="cta-icon"></div>
               <?php
-				if($festival){ //festival time
-                    print '<span class="n-label" style="width: 80%;">با 20% تخفیف برای جشنواره عید فطر :</span><span class="meghdar" style="color: #4CAF50;">' . formatMoney(round(($point_needed * 0.8), -1)) .' تومان </span>';
+				if($festival && $for_vip){ //festival time
+                    print '<span class="n-label" style="width: 80%;">با 40% تخفیف برای جشنواره عید نوروز :</span><span class="meghdar" style="color: #4CAF50;">' . formatMoney(round(($point_needed * 0.6), -1)) .' تومان </span>';
+				} else if($festival){ //normal vip discount
+                    print '<span class="n-label" style="width: 80%;">با 30% تخفیف برای جشنواره عید نوروز :</span><span class="meghdar" style="color: #4CAF50;">' . formatMoney(round(($point_needed * 0.7), -1)) .' تومان </span>';
 				} else if(!$for_vip){ //normal vip discount
                     print '<span class="n-label">برای کاربران vip :</span><span class="meghdar" style="color: #4CAF50;">' . formatMoney(round(($point_needed * 0.9), -1)) .' تومان </span>';
 				}
