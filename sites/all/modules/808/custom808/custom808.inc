@@ -131,11 +131,11 @@ function push_notification_form($form, &$form_state){
         $form['type'] = array(
             '#type' => 'select',
             '#title' => t('نوع محتوا را مشخص کنید'),
-            '#options' => array("main" => "سایر" , "publication" => "ایبوک" , "college" => "دوره" , "questions" => "پرسش و پاسخ" , "education" => "ورکشاپ" , "product_kit" => "پکیج"),
+            '#options' => array("main" => "سایر" , "publication" => "ایبوک" , "college" => "دوره" , "questions" => "پرسش و پاسخ" , "education" => "ورکشاپ" , "product_kit" => "پکیج" , "link" => "لینک"),
         );
         $form['nid'] = array(
             '#type' => 'textfield',
-            '#title' => t('شماره نود'),
+            '#title' => t('شماره نود یا لینک'),
         );
         $form['playsound'] = array(
             '#type' => 'select',
@@ -177,7 +177,11 @@ function push_notification_form_validate($form, &$form_state){
     if(strcmp($form_state["values"]["type"] , "main") == 0) {
         $form_state["values"]["type"] = "";
         $form_state["values"]["nid"] = "";
-    }else{
+    }elseif(strcmp($form_state["values"]["type"] , "link") == 0){
+        if(empty($form_state["values"]["nid"]) && strlen($form_state['values']['nid']) == 0)
+            form_set_error('nid', t('فیلد لینک اجباری است.'));
+    }
+    else{
         if(empty($form_state["values"]["nid"]) && strlen($form_state['values']['nid']) == 0) form_set_error('nid', t('انتخاب شماره نود برای نوع محتوااجباری است.'));
         $query = db_select("node" , "node")->fields("node" , array("nid"))->condition("nid" , $form_state["values"]["nid"])->condition("type" , $form_state["values"]["type"])->execute()->fetchAll();
         if(empty($query)) form_set_error('nid', t('شماره نود با نوع محتوا مطابقت ندارد'));
@@ -238,7 +242,7 @@ function push_notification_form_submit($form, &$form_state){
         "title" => $data["title"],
         "message" => $data["message"],
         "content_type" => $data["type"],
-        "nid" => $data["nid"],
+        "nid" => $data["type"] != "link" ? $data["nid"] : 0,
         "fid" => !empty($file->fid) ? $file->fid : 0,
         "picture" => $data["image"],
         "receivers" => !empty($roles) ? implode(" , " , $roles) : "",

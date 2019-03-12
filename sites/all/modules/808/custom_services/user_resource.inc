@@ -1027,6 +1027,11 @@ function user_bookmark_contents_list_desktop_v_1($parameter){
 
     return $response;
 }
+
+function user_resource_login_check($url , $parameter){
+    global $user;
+    return array("uid" => (int)$user->uid);
+}
 /*---------------------functions part----------------------------------*/
 function profile_data($uid){
     $query = db_select("profile" , "profile");
