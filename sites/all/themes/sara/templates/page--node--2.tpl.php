@@ -3,7 +3,7 @@
 		<?php print render($page['menu']); ?>
     </section>
 </header>
-<img width="1200" height="589" alt="درباره‌ ما" title="درباره‌ ما" class="" src="https://civil808.com/sites/default/files/styles/808/public/field/image/node_2.jpg?itok=BTVnZMe7" style="width: 100%;">
+<img width="1200" height="589" alt="درباره‌ ما" title="درباره‌ ما" class="" src="/sites/default/files/styles/808/public/field/image/node_2_0.jpg" style="width: 100%;">
 <div class="heder">
     <h1 class="title" id="page-title">درباره ما</h1>
     <p>مجموعه ای خلاق،‌ در مسیر رشد و شکوفایی</p>
@@ -18,7 +18,7 @@
     </div>
 </section>
 
-<section id="about-founder">
+<section id="about-founder" style="padding-bottom: 50px;">
     <div class="heder">
         <h1 class="title" id="page-title">درباره موسس</h1>
     </div>
@@ -29,30 +29,17 @@
                 <img src="/sites/default/files/styles/200x200/public/pictures/picture-59-1446387563.jpg?itok=_VY3gWJB" width="150px" height="auto">
                 <h3 style="margin:5px"> مجتبی اصغری سرخی </h3>
                 <p> موسس و مدیر عامل موسسه 808 </p>
+                <span class="btn btn-primary small-btn">مشاهده پروفایل</span>
             </a>
             <div class="right-part">
                 <p>
-                    <b>کوتاه درباره من: </b>
+                    <b>کوتاه درباره من: </b><br>
                     مجتبی اصغری هستم ، دیوانه ای که فکر میکند میتواند دنیا را تغییر دهد ، علاقه عجیبی به وب و IT دارم و به نوعی یک گیگ عمرانی محسوب میشم. از درون دانشگاه متوجه به علاقه همزمان تکنولوژی و مهندسی عمران در خودم شدم و سعی کردم در حرفه آینده خودم این دو علاقه مندی رو با دو توانایی دیگرم در آموزش و کارآفرینی ادغام کنم و ماحصل اون تشکیل تیم آموزش مجازی 808 از مهر ماه 86 شد و امروز امیدوارم تونسته باشم در سیستم کنونی آموزش مهندسی کشورمون با کمک همکارانم در گروه آموزشی 808 تغییری ایجاد کرده باشم.
                 </p>
             </div>
-
-            <div class="show-profile">
-                <a href="/user/59/mojtaba808" class="btn btn-primary">مشاهده پروفایل</a>
-
-            </div>
         </div>
-
     </div>
 </section>
-
-<!-- <div><div><a href="/user/59/mojtaba808"><img src="/sites/default/files/styles/200x200/public/pictures/picture-59-1446387563.jpg?itok=_VY3gWJB" width="220" height="220" alt=""></a></div>  </div>-->
-<!--<div class="views-field-field-full-name"><div><a href="/user/59" target="_blank">مجتبی اصغری سرخی</a></div>  </div>-->
-<!--<span class="vip_icon" title="کاربر vip"></span>-->
-<!--<div class="views-field-rid">    <span class="views-label-rid">نقش‌ها: </span>    <span class=" role--rid-rid role--rid-role role-administrator-editor-Vip">administrator, editor, Vip</span>  </div>-->
-<!--<div >    <span>عضو به مدت: </span>    <span>4 سال 11 ماه</span>  </div>-->
-<!--<div class="views-field-field-experts"><div><a href="/landing/members?field_experts_tid=عمران- مهندسی سازه، Structural Engineering">عمران- مهندسی سازه، Structural Engineering</a></div>  </div>-->
-<!--<div class="send-pm"><span><a href="/messages/new/59">ارسال پیام</a></span>  </div>-->
 
 <section class="members">
     <div class="heder">
@@ -807,11 +794,11 @@
         position: relative;
         text-align: center;
         background: #fff;
-        width: 600px;
         box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 4px;
         margin: auto;
-        padding: 24px 15px 15px;
-        padding-bottom: 50px;
+        padding: 15px 15px 15px;
+        max-width: 800px;
+        width: 100%;
     }
     .lecturer > a > img{
         border-radius: 50%;
@@ -840,6 +827,7 @@
     .lecturer .right-part p{
         text-align: justify;
         margin-top: 15px;
+        line-height: 2.2;
     }
 
     .lecturer:after {
