@@ -3,7 +3,7 @@
 		<?php print render($page['menu']); ?>
     </section>
 </header>
-<img width="1200" height="589" alt="درباره‌ ما" title="درباره‌ ما" class="" src="/sites/default/files/styles/808/public/field/image/node_2_0.jpg" style="width: 100%;">
+<img width="1200" height="589" alt="درباره‌ ما" title="درباره‌ ما" class="" src="/sites/default/files/field/image/node_2_0.jpg" style="width: 100%;">
 <div class="heder">
     <h1 class="title" id="page-title">درباره ما</h1>
     <p>مجموعه ای خلاق،‌ در مسیر رشد و شکوفایی</p>
