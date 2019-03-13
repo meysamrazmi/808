@@ -14,7 +14,7 @@
     </div>
 
     <section class="second">
-        <h2 class="text"> ثبت نام در دوره دوره حضوری گام های اجرایی BIM </h2>
+        <h2 class="text"> ثبت نام در دوره حضوری گام های اجرایی BIM </h2>
         <!--<p style="text-align: center;margin-top: -18px;font-size: 15px;color:red;margin-bottom: 29px;">
             ظرفیت دوره رو به اتمام است.
         </p>
