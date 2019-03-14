@@ -218,13 +218,14 @@ function list_of_contents_v_1($parameter){
          * If the college has no price we use default option price instead
          */
         $attributest = db_select("uc_product_attributes" , "p_attar");
-        $attributest->join("uc_attribute_options" , "a_options" , "a_options.aid = p_attar.aid and  a_options.oid = p_attar.default_option");
+        $attributest->join("uc_product_options" , "a_options" , "a_options.oid = p_attar.default_option");
         $attributest->fields("p_attar" , array("nid"));
         $attributest->fields("a_options" , array("cost" , "price"));
         $attributest->orderBy("p_attar.aid" , "DESC");
         $attributest->range(0,1);
         $query->leftJoin($attributest , "defaults" , "node.nid = defaults.nid");
         $query->addField("defaults" , "price" , "default_option_price");
+        $query->addField("defaults" , "cost" , "default_option_cost");
 
         /*add prices of the courses*/
         $query->join("uc_products" , "product" , "node.nid = product.nid");
@@ -305,8 +306,10 @@ function list_of_contents_v_1($parameter){
         if(strcmp($content->type , "college") == 0){
             $content->list_price = round($content->list_price , 0);
             $content->sell_price = round($content->sell_price , 0);
+            if($content->list_price == 0 && !empty($content->default_option_cost)) $content->list_price = (int) $content->default_option_cost;
             if($content->sell_price == 0 && !empty($content->default_option_price)) $content->sell_price = (int) $content->default_option_price;
             unset($content->default_option_price);
+            unset($content->default_option_cost);
 
             $festival = $festival_settings["college"]["festival"];
             $off = false;
@@ -491,13 +494,14 @@ function list_of_contents_v_2($parameter){
          * If the college has no price we use default option price instead
          */
         $attributest = db_select("uc_product_attributes" , "p_attar");
-        $attributest->join("uc_attribute_options" , "a_options" , "a_options.aid = p_attar.aid and  a_options.oid = p_attar.default_option");
+        $attributest->join("uc_product_options" , "a_options" , "a_options.oid = p_attar.default_option");
         $attributest->fields("p_attar" , array("nid"));
         $attributest->fields("a_options" , array("cost" , "price"));
         $attributest->orderBy("p_attar.aid" , "DESC");
         $attributest->range(0,1);
         $query->leftJoin($attributest , "defaults" , "node.nid = defaults.nid");
         $query->addField("defaults" , "price" , "default_option_price");
+        $query->addField("defaults" , "cost" , "default_option_cost");
 
 
         /*add prices of the courses*/
@@ -631,8 +635,10 @@ function list_of_contents_v_2($parameter){
         if(strcmp($content->type , "college") == 0){
             $content->list_price = round($content->list_price , 0);
             $content->sell_price = round($content->sell_price , 0);
+            if($content->list_price == 0 && !empty($content->default_option_cost)) $content->list_price = (int) $content->default_option_cost;
             if($content->sell_price == 0 && !empty($content->default_option_price)) $content->sell_price = (int) $content->default_option_price;
             unset($content->default_option_price);
+            unset($content->default_option_cost);
 
             $festival = $festival_settings["college"]["festival"];
             $off = false;

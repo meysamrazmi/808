@@ -27,16 +27,17 @@
                 <tr><td>آیین نامه 2800+بارگذاری<br> +<br> 4 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>40 ساعت&nbsp;</td><td>500,000</td><td>5شنبه 15 الی 21<br> جمعه 9 الی 17</td></tr>
                 <tr><td>پی سازی +مصالح بنایی<br> +<br> 2 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>20 ساعت&nbsp;</td><td>300,000</td><td>5شنبه 15 الی 21<br> جمعه 9 الی 17</td></tr>
                 <tr><td>جمع کل دوره&nbsp;</td><td>150 ساعت</td><td>1,800,000</td><td>&nbsp;</td></tr>
+                <tr><td colspan="4">شروع دوره حضوری محاسبات : 29 فروردین سال 98</td></tr>
                 </tbody>
             </table>
             <table style="width: 300px;" border="0">
                 <tbody>
                 <tr style="height: 15.0pt;border-bottom: 2px solid #F44336;background: #f5f5f5;"><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری محاسبات دوره بهار 98</td></tr>
                 <tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr>
-                <tr><td>20 اسفند 97</td><td>1,200,000</td></tr>
-                <tr><td>5 فروردین&nbsp; 98</td><td>1,500,000</td></tr>
-                <tr><td>20 فروردین 98</td><td>1,650,000</td></tr>
-                <tr><td>از روز 21 فروردین 98</td><td>1,800,000</td></tr>
+<!--                <tr><td>20 اسفند 97</td><td>1,200,000</td></tr>-->
+                <tr><td>15 فروردین تا 5 اردیبهشت 98</td><td>1,500,000</td></tr>
+                <tr><td>6 اردیبهشت  تا 20 اردیبهشت 98</td><td>1,650,000</td></tr>
+                <tr><td>از 20 اردیبهشت 98 به بعد</td><td>1,800,000</td></tr>
                 <tr><td colspan="2" style="padding: 0;"><a href="/node/21058" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
                 </tbody>
             </table>
@@ -44,16 +45,26 @@
 
         <div class="doreh-2" style="display: none;">
             <table border="0" style="width: 600px;">
-                <tbody><tr><td colspan="4">دوره حضوری ورود به حرفه نظارت عمران</td></tr><tr><td>عنوان دوره&nbsp;</td><td>طول دوره&nbsp;</td><td>هزینه ( تومان )</td><td>ایام تشکیل کلاس&nbsp;</td></tr><tr><td>طراحی سازه های فولادی +جوش<br> +<br> طراحی سازه های بتنی&nbsp;</td><td>60 ساعت&nbsp;</td><td>700,000</td><td>شنبه 17 الی 21<br> دوشنبه 17 الی 21</td></tr><tr><td>آیین نامه 2800<br> +<br> بارگذاری</td><td>20 ساعت&nbsp;</td><td>250,000</td><td>شنبه 17 الی 21<br> دوشنبه&nbsp; 17 الی 21</td></tr><tr><td>پی سازی <br> +<br> مصالح بنایی</td><td>25 ساعت&nbsp;</td><td>350,000</td><td>شنبه 17 الی 21<br> چهارشنبه 17 الی 21</td></tr><tr><td>مباحث 5(مصالح ساختمانی)<br> مبحث 11(ساختمان صنعتی)<br> مبحث 12 ( ایمنی )</td><td>15 ساعت&nbsp;</td><td>200,000</td><td>شنبه 17 الی 21<br> چهارشنبه 17 الی 21</td></tr><tr><td>جمع کل دوره&nbsp;</td><td>120 ساعت</td><td>1,500,000</td><td>&nbsp;</td></tr><tr><td colspan="4">شروع دوره نظارت : 24 فروردین سال 98</td></tr><tr><td colspan="4">ایام تشکیل کلاس دوره نظارت : آخر هفته ها (5شنبه +جمعه)</td></tr></tbody>
+                <tbody>
+                <tr><td colspan="4">دوره حضوری ورود به حرفه نظارت عمران</td></tr>
+                <tr><td>عنوان دوره&nbsp;</td><td>طول دوره&nbsp;</td><td>هزینه ( تومان )</td><td>ایام تشکیل کلاس&nbsp;</td></tr>
+                <tr><td>طراحی سازه های فولادی +جوش<br> +<br> طراحی سازه های بتنی&nbsp;</td><td>60 ساعت&nbsp;</td><td>700,000</td><td>شنبه 17 الی 21<br> دوشنبه 17 الی 21</td></tr>
+                <tr><td>آیین نامه 2800<br> +<br> بارگذاری</td><td>20 ساعت&nbsp;</td><td>250,000</td><td>شنبه 17 الی 21<br> دوشنبه&nbsp; 17 الی 21</td></tr>
+                <tr><td>پی سازی <br> +<br> مصالح بنایی</td><td>25 ساعت&nbsp;</td><td>350,000</td><td>شنبه 17 الی 21<br> چهارشنبه 17 الی 21</td></tr>
+                <tr><td>مباحث 5(مصالح ساختمانی)<br> مبحث 11(ساختمان صنعتی)<br> مبحث 12 ( ایمنی )</td><td>15 ساعت&nbsp;</td><td>200,000</td><td>شنبه 17 الی 21<br> چهارشنبه 17 الی 21</td></tr>
+                <tr><td>جمع کل دوره&nbsp;</td><td>120 ساعت</td><td>1,500,000</td><td>&nbsp;</td></tr>
+                <tr><td colspan="4">شروع دوره نظارت : 24 فروردین سال 98</td></tr>
+<!--                <tr><td colspan="4">ایام تشکیل کلاس دوره نظارت : آخر هفته ها (5شنبه +جمعه)</td></tr>-->
+                </tbody>
             </table>
             <table border="0" style="width: 300px;">
                 <tbody>
                 <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری نظارت دوره بهار 98</td></tr>
                 <tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr>
-                <tr><td>20 اسفند 97</td><td>1,000,000</td></tr>
-                <tr><td>5 فروردین&nbsp; 98</td><td>1,200,000</td></tr>
-                <tr><td>20 فروردین 98</td><td>1,300,000</td></tr>
-                <tr><td>از روز 21 فروردین 98</td><td>1,500,000</td></tr>
+<!--                <tr><td>20 اسفند 97</td><td>1,000,000</td></tr>-->
+                <tr><td>15 فروردین تا 5 اردیبهشت 98</td><td>1,200,000</td></tr>
+                <tr><td>6 اردیبهشت  تا 20 اردیبهشت 98</td><td>1,300,000</td></tr>
+                <tr><td>از 20 اردیبهشت 98 به بعد</td><td>1,500,000</td></tr>
                 <tr><td colspan="2" style="padding: 0;"><a href="/node/21059" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
                 </tbody>
             </table>
@@ -72,12 +83,18 @@
                 <tr><td>مصالح بنایی<br> +<br> 2 مرحله آزمون دوره ای+1 مرحله آزمون جامع</td><td>10 ساعت&nbsp;</td><td>100,000</td><td>5شنبه 21 الی 24</td><td><a href="/node/21052" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
                 <tr><td>جمع کل دوره&nbsp;</td><td>150 ساعت</td><td>1,400,000</td><td>&nbsp;</td><td></td></tr>
                 <tr><td colspan="5">شروع دوره آنلاین محاسبات : 12 اردیبهشت سال 98</td></tr>
-                <tr><td colspan="5">ایام تشکیل کلاس دوره محاسبات : شنبه -2 شنبه -4شنبه - 5شنبه</td></tr>
+<!--                <tr><td colspan="5">ایام تشکیل کلاس دوره محاسبات : شنبه -2 شنبه -4شنبه - 5شنبه</td></tr>-->
                 </tbody>
             </table>
             <table border="0" style="width: 300px;">
-                <tbody><tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین محاسبات دوره بهار 98</td></tr><tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr><tr><td>20 اسفند 97</td><td>900,000</td></tr><tr><td>5 فروردین&nbsp; 98</td><td>1,100,000</td></tr><tr><td>20 فروردین 98</td><td>1,300,000</td></tr><tr><td>از روز 21 فروردین 98</td><td>1,400,000</td></tr>
-                    <tr><td colspan="2" style="padding: 0;"><a href="/node/21094" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                <tbody>
+                <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین محاسبات دوره بهار 98</td></tr>
+                <tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr>
+<!--                <tr><td>20 اسفند 97</td><td>900,000</td></tr>-->
+                <tr><td>15 فروردین تا 5 اردیبهشت 98</td><td>1,100,000</td></tr>
+                <tr><td>6 اردیبهشت  تا 20 اردیبهشت 98</td><td>1,300,000</td></tr>
+                <tr><td>از 20 اردیبهشت 98 به بعد</td><td>1,400,000</td></tr>
+                <tr><td colspan="2" style="padding: 0;"><a href="/node/21094" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
                 </tbody>
             </table>
         </div>
@@ -92,12 +109,18 @@
                 <tr><td>پی سازی <br> +<br> مصالح بنایی</td><td>20 ساعت&nbsp;</td><td>200,000</td><td>1شنبه 21 الی 24<br> 3شنبه 21 الی 24</td><td><a href="/node/21069" target="_blank" class="btn btn-block btn-primary has-wave"><span class="click-wave"></span>ثبت نام</a></td></tr>
                 <tr><td>مباحث 5(مصالح ساختمانی)<br> مبحث 11(ساختمان صنعتی)<br> مبحث 12 ( ایمنی )</td><td>25 ساعت&nbsp;</td><td>200,000</td><td>1شنبه 21 الی 24<br> 3شنبه 21 الی 24</td><td><a href="/node/21069" target="_blank" class="btn btn-block btn-primary has-wave"><span class="click-wave"></span>ثبت نام</a></td></tr>
                 <tr><td>جمع کل دوره&nbsp;</td><td>140 ساعت</td><td>1,100,000</td><td>&nbsp;</td><td></td></tr>
-                <tr><td colspan="5">شروع دوره آنلاین نظارت : 12 اردیبهشت سال 98</td></tr>
-                <tr><td colspan="5">ایام تشکیل کلاس دوره محاسبات : 1شنبه -3 شنبه </td></tr>
+                <tr><td colspan="5">شروع دوره آنلاین نظارت : 15 اردیبهشت سال 98</td></tr>
+<!--                <tr><td colspan="5">ایام تشکیل کلاس دوره محاسبات : 1شنبه -3 شنبه </td></tr>-->
                 </tbody>
             </table>
             <table border="0" style="width: 300px;">
-                <tbody><tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین نظارت دوره بهار 98</td></tr><tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr><tr><td>20 اسفند 97</td><td>700,000</td></tr><tr><td>5 فروردین&nbsp; 98</td><td>800,000</td></tr><tr><td>20 فروردین 98</td><td>1,000,000</td></tr><tr><td>از روز 21 فروردین 98</td><td>1,100,000</td></tr>
+                <tbody>
+                <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین نظارت دوره بهار 98</td></tr>
+                <tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr>
+<!--                <tr><td>20 اسفند 97</td><td>700,000</td></tr>-->
+                <tr><td>15 فروردین تا 5 اردیبهشت 98</td><td>800,000</td></tr>
+                <tr><td>6 اردیبهشت  تا 20 اردیبهشت 98</td><td>1,000,000</td></tr>
+                <tr><td>از 20 اردیبهشت 98 به بعد</td><td>1,100,000</td></tr>
                 <tr><td colspan="2" style="padding: 0;"><a href="/node/21095" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
                 </tbody>
             </table>
@@ -106,31 +129,77 @@
         <div class="doreh-5" style="display: none;">
             <table border="0" style="width: 600px;">
                 <tbody>
-                <tr><td colspan="4">دوره حضوری ورود به حرفه نظارت و اجرا&nbsp; معماری&nbsp;</td></tr><tr><td>عنوان دوره&nbsp;</td><td>طول دوره (ساعت)</td><td>هزینه ( تومان )</td><td>ایام تشکیل کلاس&nbsp;</td></tr><tr><td>طراحی سازه های فولادی +جوش<br> +<br> طراحی سازه های بتنی&nbsp;</td><td>20</td><td>300,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>پی سازی<br> +<br> مصالح بنایی</td><td>16</td><td>250,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>الزامات عمومی&nbsp;</td><td>10</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 5(مصالح ساختمانی)<br> مبحث 11(ساختمان صنعتی)<br> مبحث 12 ( ایمنی )</td><td>15</td><td>200,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 13(تاسیسات برقی)<br> مبحث 15 (آسانسور و پلکان برقی )</td><td>15</td><td>200,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td><br> مبحث 16(تاسیسات بهداشتی)<br> </td><td>10</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث17 ( لوله کشی گاز طبیعی)</td><td>10</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 14(تاسیسات مکانیکی)</td><td>10</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 18(عایق بندی و تنظیم صدا)<br> مبحث 19(صرفه جویی در انرژی)<br> مبحث 20 (علائم و تابلو )</td><td>12</td><td>180,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 3 <br> ( حفاظت ساختمان در برابر حریق)</td><td>8</td><td>120,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 21(پدافند غیر عامل)<br> مبحث 22 (مراقبت و نگهداری ساختمان )</td><td>10</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>جمع کل دوره&nbsp;</td><td>136</td><td>2,000,000</td><td>&nbsp;</td></tr><tr><td colspan="4">شروع دوره حضوری نظارت&nbsp; معماری: 14 اردیبهشت سال 98</td></tr><tr><td colspan="4">ایام تشکیل کلاس دوره نظارت&nbsp; معماری: 1شنبه(17الی21) _3شنبه(17الی21) -5شنبه(17الی21)  </td>
+                <tr><td colspan="4">دوره حضوری ورود به حرفه نظارت و اجرا&nbsp; معماری&nbsp;</td></tr>
+                <tr><td>عنوان دوره&nbsp;</td><td>طول دوره (ساعت)</td><td>هزینه ( تومان )</td><td>ایام تشکیل کلاس&nbsp;</td></tr>
+                <tr><td>طراحی سازه های فولادی +جوش<br> +<br> طراحی سازه های بتنی&nbsp;</td><td>20</td><td>300,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td>پی سازی<br> +<br> مصالح بنایی</td><td>16</td><td>250,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td>الزامات عمومی&nbsp;</td><td>10</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td>مبحث 5(مصالح ساختمانی)<br> مبحث 11(ساختمان صنعتی)<br> مبحث 12 ( ایمنی )</td><td>15</td><td>200,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td>مبحث 13(تاسیسات برقی)<br> مبحث 15 (آسانسور و پلکان برقی )</td><td>15</td><td>200,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td><br> مبحث 16(تاسیسات بهداشتی)<br> </td><td>10</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td>مبحث17 ( لوله کشی گاز طبیعی)</td><td>10</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td>مبحث 14(تاسیسات مکانیکی)</td><td>10</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td>مبحث 18(عایق بندی و تنظیم صدا)<br> مبحث 19(صرفه جویی در انرژی)<br> مبحث 20 (علائم و تابلو )</td><td>12</td><td>180,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td>مبحث 3 <br> ( حفاظت ساختمان در برابر حریق)</td><td>8</td><td>120,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td>مبحث 21(پدافند غیر عامل)<br> مبحث 22 (مراقبت و نگهداری ساختمان )</td><td>10</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td>جمع کل دوره&nbsp;</td><td>136</td><td>2,000,000</td><td>&nbsp;</td></tr>
+                <tr><td colspan="4">شروع دوره حضوری نظارت معماری: 14 اردیبهشت سال 98</td></tr>
+<!--                <tr><td colspan="4">ایام تشکیل کلاس دوره نظارت&nbsp; معماری: 1شنبه(17الی21) _3شنبه(17الی21) -5شنبه(17الی21)  </td>-->
                 </tr>
                 </tbody>
             </table>
             <table border="0" style="width: 300px;">
                 <tbody>
-                <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری نظارت و اجرا معماری دوره بهار 98</td></tr><tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr><tr><td>20 اسفند 97</td><td>1,400,000</td></tr><tr><td>5 فروردین&nbsp; 98</td><td>1,550,000</td></tr><tr><td>20 فروردین 98</td><td>1,850,000</td></tr><tr><td>از روز 21 فروردین 98</td><td>2,000,000</td></tr>
-                    <tr><td colspan="2" style="padding: 0;"><a href="/node/21088" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری نظارت و اجرا معماری دوره بهار 98</td></tr>
+                <tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr>
+<!--                <tr><td>20 اسفند 97</td><td>1,400,000</td></tr>-->
+                <tr><td>15 فروردین تا 5 اردیبهشت 98</td><td>1,550,000</td></tr>
+                <tr><td>6 اردیبهشت  تا 20 اردیبهشت 98</td><td>1,850,000</td></tr>
+                <tr><td>از 20 اردیبهشت 98 به بعد</td><td>2,000,000</td></tr>
+                <tr><td colspan="2" style="padding: 0;"><a href="/node/21088" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
                 <tr><td style="height: 25.75pt;border-right-color: transparent;border-left-color: transparent;"></td><td style="border-left-color: transparent;"></td></tr>
                 </tbody>
                 <tbody>
-                <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری طراحی معماری دوره بهار 98</td></tr><tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr><tr><td>20 اسفند 97</td><td>500,000</td></tr><tr><td>5 فروردین&nbsp; 98</td><td>6,500,000</td></tr><tr><td>20 فروردین 98</td><td>800,000</td></tr><tr><td>از روز 21 فروردین 98</td><td>900,000</td></tr>
-                    <tr><td colspan="2" style="padding: 0;"><a href="/node/21089" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری طراحی معماری دوره بهار 98</td></tr>
+                <tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr>
+<!--                <tr><td>20 اسفند 97</td><td>500,000</td></tr>-->
+                <tr><td>15 فروردین تا 5 اردیبهشت 98</td><td>6,500,000</td></tr>
+                <tr><td>6 اردیبهشت  تا 20 اردیبهشت 98</td><td>800,000</td></tr>
+                <tr><td>از 20 اردیبهشت 98 به بعد</td><td>900,000</td></tr>
+                <tr><td colspan="2" style="padding: 0;"><a href="/node/21089" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
                 </tbody>
             </table>
         </div>
 
         <div class="doreh-6" style="display: none;">
             <table border="0" style="width: 600px;">
-                <tbody><tr><td colspan="4">دوره آنلاین ورود به حرفه نظارت معماری&nbsp;</td></tr><tr><td>عنوان دوره&nbsp;</td><td>طول دوره&nbsp;</td><td>هزینه ( تومان )</td><td>ایام تشکیل کلاس&nbsp;</td></tr><tr><td>طراحی سازه های فولادی +جوش<br> +<br> طراحی سازه های بتنی&nbsp;</td><td>20 ساعت&nbsp;</td><td>200,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>پی سازی<br> +<br> مصالح بنایی</td><td>16 ساعت&nbsp;</td><td>180,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>الزامات عمومی&nbsp;</td><td>10 ساعت&nbsp;</td><td>120,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 5(مصالح ساختمانی)<br> مبحث 11(ساختمان صنعتی)<br> مبحث 12 ( ایمنی )</td><td>15 ساعت&nbsp;</td><td>180,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 13(تاسیسات برقی)<br> مبحث 15 (آسانسور و پلکان برقی )</td><td>15 ساعت</td><td>180,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td><br> مبحث 16(تاسیسات بهداشتی)<br> </td><td>10 ساعت</td><td>120,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث17 ( لوله کشی گاز طبیعی)</td><td>10 ساعت&nbsp;</td><td>120,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 14(تاسیسات مکانیکی)</td><td>10 ساعت&nbsp;</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 18(عایق بندی و تنظیم صدا)<br> مبحث 19(صرفه جویی در انرژی)<br> مبحث 20 (علائم و تابلو )</td><td>12 ساعت</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 3 <br> ( حفاظت ساختمان در برابر حریق)</td><td>8 ساعت&nbsp;</td><td>100,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>مبحث 21(پدافند غیر عامل)<br> مبحث 22 (مراقبت و نگهداری ساختمان )</td><td>10 ساعت&nbsp;</td><td>120,000</td><td>هفته دوم اردیبهشت</td></tr><tr><td>جمع کل دوره&nbsp;</td><td>136 ساعت</td><td>1,500,000</td><td>&nbsp;</td></tr></tbody>
+                <tbody>
+                <tr><td colspan="4">دوره آنلاین ورود به حرفه نظارت معماری&nbsp;</td></tr>
+                <tr><td>عنوان دوره&nbsp;</td><td>طول دوره&nbsp;</td><td>هزینه ( تومان )</td><td>ایام تشکیل کلاس&nbsp;</td></tr>
+                <tr><td>طراحی سازه های فولادی +جوش<br> +<br> طراحی سازه های بتنی&nbsp;</td><td>20 ساعت&nbsp;</td><td>200,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td>پی سازی<br> +<br> مصالح بنایی</td><td>16 ساعت&nbsp;</td><td>180,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td>الزامات عمومی&nbsp;</td><td>10 ساعت&nbsp;</td><td>120,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td>مبحث 5(مصالح ساختمانی)<br> مبحث 11(ساختمان صنعتی)<br> مبحث 12 ( ایمنی )</td><td>15 ساعت&nbsp;</td><td>180,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td>مبحث 13(تاسیسات برقی)<br> مبحث 15 (آسانسور و پلکان برقی )</td><td>15 ساعت</td><td>180,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td><br> مبحث 16(تاسیسات بهداشتی)<br> </td><td>10 ساعت</td><td>120,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td>مبحث17 ( لوله کشی گاز طبیعی)</td><td>10 ساعت&nbsp;</td><td>120,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td>مبحث 14(تاسیسات مکانیکی)</td><td>10 ساعت&nbsp;</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td>مبحث 18(عایق بندی و تنظیم صدا)<br> مبحث 19(صرفه جویی در انرژی)<br> مبحث 20 (علائم و تابلو )</td><td>12 ساعت</td><td>150,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td>مبحث 3 <br> ( حفاظت ساختمان در برابر حریق)</td><td>8 ساعت&nbsp;</td><td>100,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td>مبحث 21(پدافند غیر عامل)<br> مبحث 22 (مراقبت و نگهداری ساختمان )</td><td>10 ساعت&nbsp;</td><td>120,000</td><td>هفته دوم اردیبهشت</td></tr>
+                <tr><td>جمع کل دوره&nbsp;</td><td>136 ساعت</td><td>1,500,000</td><td>&nbsp;</td></tr>
+                <tr><td colspan="4">شروع دوره آنلاین نظارت معماری: 14 اردیبهشت سال 98</td></tr>
+                </tbody>
             </table>
             <table border="0" style="width: 300px;">
                 <tbody>
-                <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین نظارت و اجرا معماری دوره بهار 98</td></tr><tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr><tr><td>20 اسفند 97</td><td>1,000,000</td></tr><tr><td>5 فروردین&nbsp; 98</td><td>1,200,000</td></tr><tr><td>20 فروردین 98</td><td>1,350,000</td></tr><tr><td>از روز 21 فروردین 98</td><td>1,500,000</td></tr>
-                    <tr><td colspan="2" style="padding: 0;"><a href="/node/21089" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین نظارت و اجرا معماری دوره بهار 98</td></tr>
+                <tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr>
+<!--                <tr><td>20 اسفند 97</td><td>1,000,000</td></tr>-->
+                <tr><td>15 فروردین تا 5 اردیبهشت 98</td><td>1,200,000</td></tr>
+                <tr><td>6 اردیبهشت  تا 20 اردیبهشت 98</td><td>1,350,000</td></tr>
+                <tr><td>از 20 اردیبهشت 98 به بعد</td><td>1,500,000</td></tr>
+                <tr><td colspan="2" style="padding: 0;"><a href="/node/21089" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
                 </tbody>
             </table>
         </div>

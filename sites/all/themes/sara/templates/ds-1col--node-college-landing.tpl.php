@@ -12,6 +12,15 @@
         print render($content);
         ?>
     </div>
+    <section class="iframe">
+        <h2 class="text">معرفی گواهینامه‌های جدید 808 مبتنی بر سیستم بلاک‌چین</h2>
+
+        <div style="max-width: 840px; margin: auto;">
+            <div style="position: relative; padding-bottom: 56.25%;">
+                <iframe style="background-image: url('../../img/iframe.gif'); position: absolute; top: 0px; left: 0px; width: 840px; height: 472px; max-width: 840px; max-height: 472px;" src="https://www.civil808.com/file/iframe/21192" width="320" height="240"></iframe>
+            </div>
+        </div>
+    </section>
 
     <section class="second">
         <h2 class="text"> ثبت نام در دوره حضوری گام های اجرایی BIM </h2>
@@ -25,6 +34,13 @@
         <div class="takhfifat">
             <p>و<span>5 %</span> تخفیف به ازای اضافه شدن هر نفر تا سقف 20 درصد</p>
         </div>-->
+        <div class="takhfifat" style="margin-bottom: 15px;">
+            <p>
+                <span>10 %</span>تخفیف برای اعضای VIP، <a href="/landing/vip" target="_blank">عضو ویژه شوید</a>        </p>
+        </div>
+        <div class="takhfifat">
+            <p>و<span>5 %</span> تخفیف به ازای اضافه شدن هر نفر تا سقف 20 درصد</p>
+        </div>
         <div class="tickets">
             <div>
                 <a href="/cart/add/p<?php print $node->nid; ?>?destination=cart" style="width: auto;">
@@ -48,7 +64,6 @@
             </div>
             <!--<div class="bought-tickets">سوال های خود را می توانید از طریق شماره تماس موسسه و سیستم پیغام خصوصی با ما در میان بگذارید.</div>-->
         </div>
-
     </section>
 
 </div>
@@ -75,6 +90,63 @@
     .field-name-body{
         margin-top: -66px;
     }
+
+    div.presenter img {
+        border-radius: 50%;
+        border: 2px solid #fff;
+        box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
+    }
+    div.presenter {
+        position: relative;
+        text-align: center;
+        background: #fff;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 4px;
+        margin: auto;
+        padding: 15px 15px 15px;
+        max-width: 800px;
+        width: 100%;
+    }
+    .takhfifat {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        margin: -10px 0 30px 0;
+    }
+    .takhfifat p {
+        background: #fff;
+        border-radius: 50px;
+        margin: 5px 15px;
+        padding: 15px;
+        box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
+        font-family: fanum;
+    }
+    .takhfifat p:before {
+        content: "\f415";
+        font-family: mat;
+        font-size: 30px;
+        vertical-align: middle;
+        margin: -10px -10px -10px 15px;
+        border: 1px solid #aaa;
+        border-radius: 50%;
+        width: 40px;
+        display: inline-flex;
+        height: 40px;
+        color: #F44336;
+        align-items: center;
+        justify-content: center;
+    }
+    .takhfifat p span {
+        font-size: 15px;
+        margin: 0 5px;
+        color: #F44336;
+        border: 1px solid;
+        padding: 0 10px;
+        border-radius: 30px;
+        background: #ffffff;
+    }
+
     <?php
         echo readfile("https://civil808.com/sites/all/themes/sara/css/less/kargah-land.min.css");
     ?>
