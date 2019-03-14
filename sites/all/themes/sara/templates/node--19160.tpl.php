@@ -8,7 +8,7 @@
 
 <section style="margin: 87px 0 30px 0;">
     <div class="kargah-vip" style="margin-bottom: 15px;">
-        <a target="_blank" href="/node/21180">
+        <a target="_blank" href="/node/21193">
             <div>
                 دوره حضوری مدل سازی اطلاعات ساختمان "Steps Towards Implementing BIM"
                 <ul>

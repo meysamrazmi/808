@@ -775,6 +775,32 @@ function custom_services_services_resources(){
                         ),
                     ),
                 ),
+                'verify' => array(
+                    'help' => 'check if user is login or not',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'user_resource'),
+                    'callback' => 'user_resource_login_check',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'url',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'string',
+                            'description' => 'The url for request',
+                            'default' => 'session'
+                        ),
+                        array(
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameters of request',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => TRUE,
+                            'default value' => array(),
+                        ),
+                    ),
+                ),
             ),
         ),
         'content' => array(
@@ -2029,17 +2055,17 @@ function festivals(){
     $setting = array();
 
     /*publication*/
-    $setting["publication"]["festival"] = false; //true of false
+    $setting["publication"]["festival"] = true; //true of false
     $setting["publication"]["percent"] = 0.3; // 100% discount is equal to 1, just determine amount of discount in decimal
     $setting["publication"]["message"] = "۳۰% تخفیف جشنواره"; //use short sentence, just change the amount of discount
 
     /*college*/
-    $setting["college"]["festival"] = false;
+    $setting["college"]["festival"] = true;
     $setting["college"]["percent"] = 0.3;
     $setting["college"]["message"] = "۳۰% تخفیف جشنواره";
 
     /*product_kit*/
-    $setting["product_kit"]["festival"] = false;
+    $setting["product_kit"]["festival"] = true;
     $setting["product_kit"]["percent"] = 0.3;
     $setting["product_kit"]["message"] = "۳۰% تخفیف جشنواره";
 

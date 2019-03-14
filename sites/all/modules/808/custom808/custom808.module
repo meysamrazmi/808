@@ -76,6 +76,16 @@ function custom808_menu(){
         'file' => 'custom808.inc',
     );
 
+    $items["admin/structure/services/notification/sent"] = array(
+        'title' => t('Sent notifications'),
+        'description' => t('Sent notifications message'),
+        'page callback' => array('drupal_get_form'),
+        'page arguments' => array('sent_notification_table_form'),
+        'access arguments' => array('administer modules'),
+        'type' => MENU_LOCAL_TASK,
+        'file' => 'custom808.inc',
+    );
+
     return $items;
 }
 
@@ -381,6 +391,15 @@ function custom808_node_validate($node, $form, &$form_state) {
         }
     }
 }
+/**
+ * Implements hook_entity_view_mode_alter().
+ */
+function custom808_entity_view_mode_alter(&$view_mode, $context) {
+    // Only alter the view mode if we are on the test callback.
+    if($context['entity_type'] == 'node' && $context['entity']->nid == 21193 && $view_mode == 'full'){
+        $view_mode = 'landing';
+    }
+}
 
 function in_array_r($needle, $haystack, $strict = false) {
 	if(!is_array($haystack)) return false;
@@ -405,7 +424,7 @@ function send_sms($to , $message){
 	ini_set("soap.wsdl_cache_enabled", "0");
 	try {
 		$user = "9113546642";
-		$pass = "2929957";
+		$pass = "2191";
 		
 		$client = new SoapClient("http://87.107.121.52/post/send.asmx?wsdl");
 		

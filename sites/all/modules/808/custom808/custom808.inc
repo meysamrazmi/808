@@ -131,11 +131,11 @@ function push_notification_form($form, &$form_state){
         $form['type'] = array(
             '#type' => 'select',
             '#title' => t('نوع محتوا را مشخص کنید'),
-            '#options' => array("main" => "سایر" , "publication" => "ایبوک" , "college" => "دوره" , "questions" => "پرسش و پاسخ" , "education" => "ورکشاپ" , "product_kit" => "پکیج"),
+            '#options' => array("main" => "سایر" , "publication" => "ایبوک" , "college" => "دوره" , "questions" => "پرسش و پاسخ" , "education" => "ورکشاپ" , "product_kit" => "پکیج" , "link" => "لینک"),
         );
         $form['nid'] = array(
             '#type' => 'textfield',
-            '#title' => t('شماره نود'),
+            '#title' => t('شماره نود یا لینک'),
         );
         $form['playsound'] = array(
             '#type' => 'select',
@@ -177,7 +177,11 @@ function push_notification_form_validate($form, &$form_state){
     if(strcmp($form_state["values"]["type"] , "main") == 0) {
         $form_state["values"]["type"] = "";
         $form_state["values"]["nid"] = "";
-    }else{
+    }elseif(strcmp($form_state["values"]["type"] , "link") == 0){
+        if(empty($form_state["values"]["nid"]) && strlen($form_state['values']['nid']) == 0)
+            form_set_error('nid', t('فیلد لینک اجباری است.'));
+    }
+    else{
         if(empty($form_state["values"]["nid"]) && strlen($form_state['values']['nid']) == 0) form_set_error('nid', t('انتخاب شماره نود برای نوع محتوااجباری است.'));
         $query = db_select("node" , "node")->fields("node" , array("nid"))->condition("nid" , $form_state["values"]["nid"])->condition("type" , $form_state["values"]["type"])->execute()->fetchAll();
         if(empty($query)) form_set_error('nid', t('شماره نود با نوع محتوا مطابقت ندارد'));
@@ -232,8 +236,54 @@ function push_notification_form_submit($form, &$form_state){
     curl_close($curl);
     $response = json_decode($response);
 
+    global $user;
+    db_insert("push_notification_info")->fields(array(
+        "uid" => $user->uid,
+        "title" => $data["title"],
+        "message" => $data["message"],
+        "content_type" => $data["type"],
+        "nid" => $data["type"] != "link" ? $data["nid"] : 0,
+        "fid" => !empty($file->fid) ? $file->fid : 0,
+        "picture" => $data["image"],
+        "receivers" => !empty($roles) ? implode(" , " , $roles) : "",
+        "success" => $response->success,
+        "failure" => $response->failure,
+        "time" => REQUEST_TIME,
+    ))->execute();
+
     $message = "اعلان های درست : " . $response->success . " <br> " . "اعلان های نادرست : " . $response->failure;
     drupal_set_message($message , "status");
+}
+
+/*table to show the previous sent notification*/
+function sent_notification_table_form($form, &$form_state){
+    try {
+        /*fetch the list of actions for filter the actions*/
+        $query = db_select("push_notification_info" , "notif_info");
+        $query->fields("notif_info" , array("id" , "title" , "message" , "content_type" , "nid" , "picture" , "success" , "failure" , "time"));
+        $query->orderBy("notif_info.id" , "DESC");
+        $result = $query->execute()->fetchAll();
+
+        /*render the table log*/
+        $header = array("id" , "title" , "message" , "content_type" , "nid" , "picture" , "success" , "failure" , "time");
+        $rows = array();
+        foreach ($result as $key=>$row) {
+            $row->time = format_date($row->time);
+            $row->picture = '<img src="' . $row->picture . '" height=50px; width=50px>';
+
+            /*convert object to array for being able to add row number at the first column*/
+            $row = (array)$row;
+            $rows[] = array('data' => $row);
+        }
+        $form['table'] = array(
+//            '#markup' => theme('table', array('header' => $header, 'rows' => $rows)) . theme('pager'),
+            '#markup' => theme('table', array('header' => $header, 'rows' => $rows)),
+        );
+
+        return $form;
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
 }
 /*----------------------------------------------------------------*/
 /*---------------------------lock part----------------------------*/

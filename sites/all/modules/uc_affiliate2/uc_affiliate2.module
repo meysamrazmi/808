@@ -800,7 +800,7 @@ function uc_affiliate2_uc_order($op, &$order, $status) {
  * @param $affiliate_id
  *   Affiliate ID to apply commission if there are no product specific commissions.
  */
-function uc_affiliate2_apply_commission($order, $affiliate_id = NULL) {
+function uc_affiliate2_apply_commission($order, $affiliate_id = 0) {
   // order ready for commission assignment
   // find all affiliates included in order
   $affcom = array();
