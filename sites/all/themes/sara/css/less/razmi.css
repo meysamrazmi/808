@@ -2491,15 +2491,13 @@ form .field-type-file .form-submit {
   font-family: mat;
   font-size: 24px;
 }
-.node-pay .n-label {
-  display: inline-block;
-  width: 40%;
-}
 .node-pay .meghdar {
-  display: inline-block;
-  width: 50%;
+  display: block;
+  margin-right: auto;
   font-size: 15px;
   font-weight: 500;
+  float: left;
+  text-align: left;
 }
 .node-pay .cta-1-row .cta-icon:before {
   content: "\f214";

@@ -88,16 +88,14 @@ function pay_for_node($nid , $ws_api = false) {
 		}
 	}
 
-	if($flag)
-		$points = round(intval($points * 0.7) , -1);
-
-
 	$description =  ($flag)? ' با 30 درصد تخفیف برای' . $festival :'';
 
 	/*if(isset($user->roles[8]) && !$flag && $nid != 19224){ //for vip user only*/
-	if(isset($user->roles[8]) && $nid != 19224){ //for vip user only
+	if(isset($user->roles[8]) && $nid != 19224 && $flag){ //for vip user only
 		$description .= ', با 10 درصد تخفیف vip';
-		$points = round(intval($points * 0.9) , -1);
+		$points = round(intval($points * 0.6) , -1);
+	}elseif ($flag){
+		$points = round(intval($points * 0.7) , -1);
 	}
 	$num_pts = userpoints_get_current_points($user->uid, 'all');
 	if ($num_pts < $points) {
