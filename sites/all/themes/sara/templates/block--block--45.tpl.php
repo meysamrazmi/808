@@ -35,11 +35,11 @@
         }
 
         #festival-desc {
-            margin-top: 10px;
+            margin-top: 5px;
             font-weight: bold;
             font-family: fanum;
             color: #388E3C;
-            font-size: 13px;
+            font-size: 16px;
             text-shadow:
                     3px 3px 5px #fff,
                     -1px -1px 0 #fff,
@@ -65,7 +65,7 @@
         }
 
         .sub-title{
-            color: #FF5722!important;
+            color: #F44336!important;
             font-size: 17px;
             font-weight: bold;
             padding-top: 3px;
@@ -111,7 +111,7 @@
         div#block-block-45 a:before {
             content: "";
             background:url(/sites/all/themes/sara/images/nowruz.jpg);
-            opacity: 0.6;
+            opacity: 0.3;
             top: 0;
             left: 0;
             bottom: 0;

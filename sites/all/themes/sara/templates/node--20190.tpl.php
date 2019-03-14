@@ -209,6 +209,23 @@
 
 <section style="margin: 50px 0 80px 0;">
     <div class="kargah-vip" style="margin-bottom: 15px;">
+        <a target="_blank" href="https://civil808.com/node/19807">
+            <div>
+                مشاوره تخصصی آزمون ورود به حرفه عمران و معماری
+                <br>
+                <ul>
+                    <li style="font-size: 13px;color: #909090 !important; padding: 18px 5px 10px 5px;list-style: none;">مشاوره آزمون ورود به حرفه مختص داوطلبان رشته‌های عمران (نظارت- اجرا- محاسبات) و معماری (نظارت- اجرا) خواهد بود.</li>
+                </ul>
+                <button class="btn btn-primary">ثبت نام</button>
+            </div>
+            <div class="date-fan">
+                <div class="day">9</div>
+                <div class="month">شهریور</div>
+                <div class="year">1397</div>
+            </div>
+        </a>
+    </div>
+    <div class="kargah-vip" style="margin-bottom: 15px;">
         <a target="_blank" href="/node/21036">
             <div>
                 فیلم ورکشاپ آنلاین تخصصی بیان دغدغه ها و راه حل های اساسی در آزمون محاسبات عمران
@@ -317,7 +334,7 @@
         مراجعه کنید</p>
     <div class="owl-carousel">
         <?php
-        $nids = array( 11160 , 5532 , 5533 , 13647, 8424);
+        $nids = array( 11160 , 5532 , 5533 , 13647, 8424, 20917);
         $view_mode = 'teaser';
         foreach ($nids as $nid){
             $node = node_load($nid);
