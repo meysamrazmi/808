@@ -222,7 +222,6 @@ function list_of_contents_v_1($parameter){
         $attributest->fields("p_attar" , array("nid"));
         $attributest->fields("a_options" , array("cost" , "price"));
         $attributest->orderBy("p_attar.aid" , "DESC");
-        $attributest->range(0,1);
         $query->leftJoin($attributest , "defaults" , "node.nid = defaults.nid");
         $query->addField("defaults" , "price" , "default_option_price");
         $query->addField("defaults" , "cost" , "default_option_cost");
@@ -498,7 +497,6 @@ function list_of_contents_v_2($parameter){
         $attributest->fields("p_attar" , array("nid"));
         $attributest->fields("a_options" , array("cost" , "price"));
         $attributest->orderBy("p_attar.aid" , "DESC");
-        $attributest->range(0,1);
         $query->leftJoin($attributest , "defaults" , "node.nid = defaults.nid");
         $query->addField("defaults" , "price" , "default_option_price");
         $query->addField("defaults" , "cost" , "default_option_cost");
