@@ -163,7 +163,7 @@
                 <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری طراحی معماری دوره بهار 98</td></tr>
                 <tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr>
 <!--                <tr><td>20 اسفند 97</td><td>500,000</td></tr>-->
-                <tr><td>15 فروردین تا 5 اردیبهشت 98</td><td>6,500,000</td></tr>
+                <tr><td>15 فروردین تا 5 اردیبهشت 98</td><td>650,000</td></tr>
                 <tr><td>6 اردیبهشت  تا 20 اردیبهشت 98</td><td>800,000</td></tr>
                 <tr><td>از 20 اردیبهشت 98 به بعد</td><td>900,000</td></tr>
                 <tr><td colspan="2" style="padding: 0;"><a href="/node/21089" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
