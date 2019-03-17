@@ -552,7 +552,10 @@ height: 17vw;
     margin: 20px 0 0 0;
 }
 .main-three .views-field-title {
-    height: 85px;
+   	height: 65px;
+	overflow: hidden;
+	line-height: 26px;
+	font-size: 13px;
 }
 .main-three .views-field.views-field-body .field-content{
     width: 28%;
@@ -604,7 +607,7 @@ display: none;
     width: 60%;
 }
 .main-three img {
-    max-width: 47%;
+    max-width: 100%;
 }
 .main-three .views-field.views-field-body .field-content {
     width: 45%;
@@ -671,8 +674,8 @@ width: 50%;
 }
 .main-three .views-view-grid tr {
   display: flex;
-  padding: 10px 30px;
-  border: none;
+  padding: 10px 5px;
+  border: 0;
 }
 .pane-sidebar-ads td {
   padding: 0 !important;
