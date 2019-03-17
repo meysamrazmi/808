@@ -279,7 +279,7 @@ span.nolink {
         height: 100vh;
         position: fixed;
         right: -300px;
-        top: 0;
+        top: inherit;
         background: #fff;
         flex-direction: column;
         z-index: 2;
@@ -288,10 +288,6 @@ span.nolink {
         overflow: scroll;
         overflow: auto;
         margin-right: -6px;
-    }
-    .admin-menu #main-nav ul.main {
-        top: inherit;
-        margin-top: -15px;
     }
     #main-nav.open ul.main {
         right: 0px;

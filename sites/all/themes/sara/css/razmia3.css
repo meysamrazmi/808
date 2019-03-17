@@ -2108,12 +2108,10 @@ body.fixed {
 body.fixed header#header {
   position: fixed;
 }
-body.admin-menu.fixed header#header {
-  /*top: 29px;*/
-}
 section#main-menu {
   max-width: 1360px;
   margin: 0 auto;
+  height: 50px;
 }
 .page-shop.page-store .container {
   margin-top: 0 !important;
