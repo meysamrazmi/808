@@ -1209,7 +1209,7 @@ ul.sidebar_menu_user li.edit a:before {
 	position: absolute;
 }
 #block-panels-mini-user-panel h2.block-title .message-num:before{
-    content: "\2709";
+    content: "\f1f0";
 }
 span.message-num:after,
 span.num-items:after {

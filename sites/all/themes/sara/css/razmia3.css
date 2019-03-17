@@ -530,13 +530,13 @@ form#uc-cart-checkout-review-form .btn:before,
 #uc-cart-checkout-review-form #edit-submit:before,
 form#uc-zarinpal-pay-submission-form .btn:before,
 .uc-cart-checkout-form .form-actions #edit-continue:before, #uc-cart-view-form .form-actions button:last-child:before {
-  content: "\e013";
+  content: "\f12c";
 }
 #edit-update:before {
-  content: "\e031";
+  content: "\f450";
 }
 #edit-empty:before {
-  content: "\e014";
+  content: "\f156";
 }
 #order-pane-line_items td {
     text-align: left;
@@ -1006,12 +1006,14 @@ fieldset#coupon-pane .form-submit {
   top: 54px;
   font-weight: normal;
 }
-fieldset#coupon-pane label {
+fieldset#coupon-pane .form-item-panes-coupon-code label {
   visibility: hidden;
   height: 10px;
 }
-fieldset#coupon-pane .form-item.form-type-checkbox label {
-  visibility: visible;
+.form-item-panes-coupon-coupons {
+	margin-top: 10px !important;
+	border-top: 1px solid #ddd;
+	padding-top: 10px;
 }
 div#coupon-messages div:before {
   visibility: hidden;
@@ -4090,7 +4092,7 @@ input#edit-populate::-webkit-input-placeholder {
   padding: 0 0 0 10px;
 }
 .opened .click-to-open button:before {
-  content: "\2212";
+  content: "\f374";
 }
 .view-taxonomy-term .gd_infinite_scroll-ajax-loader {
   bottom: 0;
