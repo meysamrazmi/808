@@ -43,12 +43,14 @@ function pay_for_node($nid , $ws_api = false) {
 			'!register' => l(t('User register'), 'user/register'),
 		)), 'error');
 		drupal_goto("node/". $nid);
+		die();
 	}
 	$node = node_load($nid);
 	if(empty($node)){
 		if($ws_api) return "NodeError";
 		drupal_set_message(t('این محتوا وجود ندارد'), 'error');
 		drupal_goto("/");
+		die();
 	}
 	if (isset($node->field_point_needed['und'][0])) {
 		$points = $node->field_point_needed['und'][0]['value'];
@@ -56,55 +58,68 @@ function pay_for_node($nid , $ws_api = false) {
 		if($ws_api) return "PriceError";
 		drupal_set_message(t('خطایی در فرم رخ داده است. لطفا با پشتیبانی تماس حاصل فرمایید. کد خطا: 15'), 'error');
 		drupal_goto("node/". $nid);
+		die();
 	}
 
-	$flag = true; //default value for discount flag
-	/*
-	* برای تخفیفات ویژه نوروز که تمامی محتوا ها تخفیف داشتند
-	*/
-	if(strcmp($node->type , "designteam") == 0)
-	{
-		$festival = 'جشنواره عید نوروز';
+	$discount = 0; //amount of discount between 0 and 1, 1 is  equal to 100% discount
 
-		$field_publication = array();
-		if(!empty($node->field_publication808['und'])) {
-			foreach ($node->field_publication808['und'] as $row) {
-				array_push($field_publication, $row['tid']);
-			}
-		}
+    /*setting for festival*/
+	$festival_setting = array(
+	    "enable" => true,
+        "message" => "30 درصد تخفیف برای جشنواره عید نوروز",
+        "amount" => 0.3,
+        "type" => array("publication" , "designteam" , "education")
+    );
 
-		$field_discount = array();
-		if(!empty($node->field_isvip['und'])) {
-			foreach ($node->field_isvip['und'] as $row) {
-				array_push($field_discount, $row['tid']);
-			}
-		}
-		if(in_array(2174 , $field_publication) && !in_array_r(2217 , $field_discount)) $flag = true;
-		else $flag = false;
+	$vip = in_array("Vip", $user->roles) ? true : false; //the user is VIP or not
 
-		for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){
-			if( $node->field_isvip['und'][$i]['tid'] == 2217) // no discount will be applied
-				$flag=false;
-		}
-	}
+    $free_for_vip = false; //the node is free for VIP or not
+    $no_discount = false; //the node has not any discount
+    $no_festival_discount = false; //the node has not discount just for festival
+    if(isset($node->field_isvip) && !empty($node->field_isvip)){
+        foreach ($node->field_isvip['und'] as $tid){
+            if($tid == 2217) $no_discount = true; //has taxonomy = no discount
+            if($tid == 17160) $free_for_vip = true; //has taxonomy = free for VIP
+            if($tid == 5239) $no_festival_discount = true; //has taxonomy = no discount just for festival
+        }
+    }
 
-	$description =  ($flag)? ' با 30 درصد تخفیف برای' . $festival :'';
+    /*if $no_discount, it means that no discount will be applied*/
+    if(!$no_discount){
+        /*if user is vip else we have festival*/
+        if($vip){
+            if($festival_setting["enable"] && in_array($node->type , $festival_setting["type"]) && !$no_festival_discount && !$free_for_vip){
+                $discount = $festival_setting["amount"] + 0.1;
+                $description = $festival_setting["message"];
+                $description .= '، با 10 درصد تخفیف VIP';
+            }
+            elseif(!$free_for_vip){
+                $discount = 0.1;
+                $description = '10 درصد تخفیف VIP';
+            }
+            elseif($free_for_vip){
+                $discount = 1;
+                $description = 'رایگان برای کاربران VIP';
+            }
+            drupal_set_message($description);
+        }
+        elseif(!$vip && $festival_setting["enable"] && in_array($node->type , $festival_setting["type"]) && !$no_festival_discount){
+            $discount = $festival_setting["amount"];
+            $description = $festival_setting["message"];
+            drupal_set_message($description);
+        }
+    }
+    $points = round(intval($points * (1 - $discount)) , -1);
 
-	/*if(isset($user->roles[8]) && !$flag && $nid != 19224){ //for vip user only*/
-	if(isset($user->roles[8]) && $nid != 19224 && $flag){ //for vip user only
-		$description .= ', با 10 درصد تخفیف vip';
-		$points = round(intval($points * 0.6) , -1);
-	}elseif ($flag){
-		$points = round(intval($points * 0.7) , -1);
-	}
-	$num_pts = userpoints_get_current_points($user->uid, 'all');
-	if ($num_pts < $points) {
+	/*check if user doesn't have enough points*/
+    $num_pts = userpoints_get_current_points($user->uid, 'all');
+    if ($num_pts < $points) {
 		if($ws_api) return "UserPointError";
 		drupal_set_message(t("You haven't enough point in your account, please charge your account."), 'error');
 		drupal_goto("node/$nid");
+		die();
 	}
-	if($flag)
-		drupal_set_message('30 درصد تخفیف به مناسبت '. $festival .' برای شما اعمال شد.');
+
 
 	$_sql = "INSERT INTO {m_buyed_nodes} (uid, nid, date, price, description) VALUES (:uid, :nid, :date, :price, :description)";
 	if($sht = db_query($_sql, array( ':uid' => $user->uid, ':nid' => $nid, ':date' => time(), ':price' => $points, ':description' => $description ))){
@@ -180,6 +195,7 @@ function pay_for_node($nid , $ws_api = false) {
 
 	if($ws_api) return $buy_id;
 	drupal_goto("node/$nid");
+	die();
 }
 
 function nodebuyes_report($id) {

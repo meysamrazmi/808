@@ -26,7 +26,7 @@
             <a href="/college/software" class="soft">نرم افزار</a>
         </li>
         <li class="">
-            <a href="/college/Dadgostari" class="dadgostari">دادگستری</a>
+            <a href="/college/dadgostari" class="dadgostari">دادگستری</a>
         </li>
         <li class="">
             <a href="/college/search" class="sear">جستجو</a>

@@ -1459,6 +1459,19 @@
   top: 10px;
   left: 9px;
 }
+.user-left-links .row-inside .region-first .pane-content .ad_video a:before,
+.user-left-links .column-inside .region-first .pane-content .ad_video a:before {
+  content: "\f5d2";
+  font-family: mat;
+  font-size: 22px;
+  color: #795548;
+}
+.user-left-links .row-inside .region-first .pane-content .ad_video a:before,
+.user-left-links .column-inside .region-first .pane-content .ad_video a:before {
+  position: absolute;
+  top: 10px;
+  left: 9px;
+}
 .user-left-links .row-inside .region-first .pane-content .laghv a:before,
 .user-left-links .column-inside .region-first .pane-content .laghv a:before {
   content: "\f150";
@@ -3447,3 +3460,549 @@ form#uc-addresses-get-address-form a.cancel-address-link:focus {
   }
 }
 /*-------------end from razmia3.css--------------------*/
+/*new css for profile page by ali :)*/
+.page-user .main-profile .pane-content .advisorbanner {
+  text-align: center;
+  background-color: #fff;
+  padding: 10px;
+  max-width: 100%;
+  margin: 20px auto;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0 1px 6px, rgba(0, 0, 0, 0.117647) 0 1px 4px;
+  border: solid #a0f;
+  border-width: 0 4px;
+}
+.page-user .main-profile .pane-content .advisorbanner h5 {
+  display: inline-block;
+  padding-left: 20px;
+}
+@media (max-width: 768px) {
+  .page-user .main-profile .pane-content .advisorbanner {
+    padding: 10px;
+    max-width: 95%;
+  }
+}
+.page-user .main-profile .pane-content .user-info {
+  display: flex;
+}
+@media (max-width: 768px) {
+  .page-user .main-profile .pane-content .user-info {
+    flex-direction: column;
+  }
+}
+.page-user .main-profile .pane-content .user-info .region-right {
+  width: 50%;
+  margin-left: 10px;
+}
+@media (max-width: 960px) {
+  .page-user .main-profile .pane-content .user-info .region-right {
+    width: 45%;
+  }
+}
+@media (max-width: 768px) {
+  .page-user .main-profile .pane-content .user-info .region-right {
+    width: 95%;
+    margin: 5px auto;
+  }
+}
+.page-user .main-profile .pane-content .user-info .region-middle {
+  width: 30%;
+  margin-left: 10px;
+}
+@media (max-width: 960px) {
+  .page-user .main-profile .pane-content .user-info .region-middle {
+    width: 45%;
+  }
+}
+@media (max-width: 768px) {
+  .page-user .main-profile .pane-content .user-info .region-middle {
+    width: 95%;
+    margin: 5px auto;
+  }
+}
+.page-user .main-profile .pane-content .user-info .region-left {
+  width: 20%;
+}
+@media (max-width: 960px) {
+  .page-user .main-profile .pane-content .user-info .region-left {
+    width: 30%;
+  }
+}
+@media (max-width: 768px) {
+  .page-user .main-profile .pane-content .user-info .region-left {
+    width: 95%;
+    margin: 5px auto;
+  }
+}
+.page-user .main-profile .pane-content .user-info .profile-information {
+  background: #fff;
+  border: 0;
+  border-radius: 0;
+  padding: 15px;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0 1px 6px, rgba(0, 0, 0, 0.117647) 0 1px 4px;
+}
+.page-user .main-profile .pane-content .user-info .profile-information .field-name-user-experts .field-items a {
+  overflow: hidden;
+}
+.page-user .main-profile .pane-content .user-info .profile-information .field-name-field-emailtext .field-item {
+  padding-top: 6px;
+}
+.page-user .main-profile .pane-content .user-info .profile-relations {
+  padding: 15px;
+  text-align: center;
+  background: white;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0 1px 6px, rgba(0, 0, 0, 0.117647) 0 1px 4px;
+  border-top: 3px solid #a0f;
+  margin-bottom: 10px;
+}
+.page-user .main-profile .pane-content .user-info .profile-relations .relation-title {
+  margin-bottom: 10px !important;
+  border-bottom: 1px solid #eee;
+  width: 200px;
+  margin: auto;
+  font-size: 15px;
+  font-family: fanum;
+}
+.page-user .main-profile .pane-content .user-info .profile-relations .relation-title:before {
+  content: "\f00e";
+  font-family: mat;
+  font-size: 50px;
+  display: block;
+  color: #555;
+}
+.page-user .main-profile .pane-content .user-info .profile-relations .picture {
+  display: inline-flex;
+  white-space: nowrap;
+}
+.page-user .main-profile .pane-content .user-info .profile-relations .picture img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 0px -5px;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+}
+.page-user .main-profile .pane-content .user-info .profile-relations .picture a {
+  margin: 2px 20px 0 0;
+  width: 45px;
+  min-width: auto;
+  height: 45px;
+  border-radius: 50%;
+  padding: 0;
+}
+.page-user .main-profile .pane-content .user-info .profile-relations .picture a:before {
+  content: "\f04d";
+  font-family: mat;
+  font-size: 24px;
+  line-height: 45px;
+  color: #673AB7;
+  width: 45px;
+}
+.page-user .main-profile .pane-content .user-info .user-points {
+  background: #a06eff;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  color: #fff;
+  position: relative;
+  margin-bottom: 15px;
+  min-height: 100px;
+}
+.page-user .main-profile .pane-content .user-info .user-points .pane-content-user-points {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  width: calc(100% - 100px);
+  height: 100%;
+  left: 0;
+}
+.page-user .main-profile .pane-content .user-info .user-points h3 {
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  right: -100px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  text-align: center;
+  border: none;
+  line-height: inherit;
+}
+.page-user .main-profile .pane-content .user-info .user-points .item-list {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+.page-user .main-profile .pane-content .user-info .user-points ul.userpoints-points {
+  position: relative;
+  margin: 20px 0 !important;
+}
+.page-user .main-profile .pane-content .user-info .user-points ul.userpoints-points li {
+  font-size: 18px;
+  margin: 0;
+  text-align: center;
+}
+.page-user .main-profile .pane-content .user-info .user-points .userpoints-links {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+.page-user .main-profile .pane-content .user-info .user-points .userpoints-links.num4,
+.page-user .main-profile .pane-content .user-info .user-points .userpoints-links.num3 {
+  position: absolute;
+  height: 30px;
+  top: 65px;
+  flex-direction: column;
+  z-index: 1;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.page-user .main-profile .pane-content .user-info .user-points .userpoints-links.num4:before,
+.page-user .main-profile .pane-content .user-info .user-points .userpoints-links.num3:before {
+  content: "\f1d8";
+  font-family: mat;
+  font-size: 24px;
+  color: #fff;
+}
+.page-user .main-profile .pane-content .user-info .user-points .userpoints-links.num4:before,
+.page-user .main-profile .pane-content .user-info .user-points .userpoints-links.num3:before {
+  width: 30px;
+  background: rgba(0, 0, 0, 0.15);
+  display: block;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+}
+.page-user .main-profile .pane-content .user-info .user-points .userpoints-links.num4 li,
+.page-user .main-profile .pane-content .user-info .user-points .userpoints-links.num3 li {
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+}
+.page-user .main-profile .pane-content .user-info .user-points .userpoints-links.num4 li a,
+.page-user .main-profile .pane-content .user-info .user-points .userpoints-links.num3 li a {
+  color: #555 !important;
+  background-color: transparent;
+  display: block;
+  padding: 8px;
+}
+.page-user .main-profile .pane-content .user-info .user-points .userpoints-links.num4:hover,
+.page-user .main-profile .pane-content .user-info .user-points .userpoints-links.num3:hover {
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  height: initial;
+}
+.page-user .main-profile .pane-content .user-info .user-points .userpoints-links.num4:hover:before,
+.page-user .main-profile .pane-content .user-info .user-points .userpoints-links.num3:hover:before {
+  height: 0;
+  padding: 0;
+}
+.page-user .main-profile .pane-content .user-info .user-points .userpoints-links li {
+  display: inline-block;
+  margin: 0 10px;
+}
+.page-user .main-profile .pane-content .user-info .user-points .userpoints-links a {
+  color: #fff !important;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  padding: 7px 11px;
+  text-align: center;
+  user-select: none;
+  background-image: none;
+  border-color: #2e6da4;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+.page-user .main-profile .pane-content .user-info .user-points .userpoints-links a:hover {
+  background-color: rgba(0, 0, 0, 0.15) !important;
+}
+.page-user .main-profile .pane-content .user-info .user-bank {
+  background: #a06eff;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  color: #fff;
+  position: relative;
+  margin-bottom: 15px;
+  min-height: 100px;
+  background: #E91E63;
+}
+.page-user .main-profile .pane-content .user-info .user-bank .pane-content-user-points {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  width: calc(100% - 100px);
+  height: 100%;
+  left: 0;
+}
+.page-user .main-profile .pane-content .user-info .user-bank h3 {
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  right: -100px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  text-align: center;
+  border: none;
+  line-height: inherit;
+}
+.page-user .main-profile .pane-content .user-info .user-bank .item-list {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+.page-user .main-profile .pane-content .user-info .user-bank ul.userpoints-points {
+  position: relative;
+  margin: 20px 0 !important;
+}
+.page-user .main-profile .pane-content .user-info .user-bank ul.userpoints-points li {
+  font-size: 18px;
+  margin: 0;
+  text-align: center;
+}
+.page-user .main-profile .pane-content .user-info .user-bank .userpoints-links {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+.page-user .main-profile .pane-content .user-info .user-bank .userpoints-links.num4,
+.page-user .main-profile .pane-content .user-info .user-bank .userpoints-links.num3 {
+  position: absolute;
+  height: 30px;
+  top: 65px;
+  flex-direction: column;
+  z-index: 1;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.page-user .main-profile .pane-content .user-info .user-bank .userpoints-links.num4:before,
+.page-user .main-profile .pane-content .user-info .user-bank .userpoints-links.num3:before {
+  content: "\f1d8";
+  font-family: mat;
+  font-size: 24px;
+  color: #fff;
+}
+.page-user .main-profile .pane-content .user-info .user-bank .userpoints-links.num4:before,
+.page-user .main-profile .pane-content .user-info .user-bank .userpoints-links.num3:before {
+  width: 30px;
+  background: rgba(0, 0, 0, 0.15);
+  display: block;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+}
+.page-user .main-profile .pane-content .user-info .user-bank .userpoints-links.num4 li,
+.page-user .main-profile .pane-content .user-info .user-bank .userpoints-links.num3 li {
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+}
+.page-user .main-profile .pane-content .user-info .user-bank .userpoints-links.num4 li a,
+.page-user .main-profile .pane-content .user-info .user-bank .userpoints-links.num3 li a {
+  color: #555 !important;
+  background-color: transparent;
+  display: block;
+  padding: 8px;
+}
+.page-user .main-profile .pane-content .user-info .user-bank .userpoints-links.num4:hover,
+.page-user .main-profile .pane-content .user-info .user-bank .userpoints-links.num3:hover {
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  height: initial;
+}
+.page-user .main-profile .pane-content .user-info .user-bank .userpoints-links.num4:hover:before,
+.page-user .main-profile .pane-content .user-info .user-bank .userpoints-links.num3:hover:before {
+  height: 0;
+  padding: 0;
+}
+.page-user .main-profile .pane-content .user-info .user-bank .userpoints-links li {
+  display: inline-block;
+  margin: 0 10px;
+}
+.page-user .main-profile .pane-content .user-info .user-bank .userpoints-links a {
+  color: #fff !important;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  padding: 7px 11px;
+  text-align: center;
+  user-select: none;
+  background-image: none;
+  border-color: #2e6da4;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+.page-user .main-profile .pane-content .user-info .user-bank .userpoints-links a:hover {
+  background-color: rgba(0, 0, 0, 0.15) !important;
+}
+.page-user .main-profile .pane-content .user-info .user-bank dl {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+.page-user .main-profile .pane-content .user-info .user-bank ~ .page-user .main-profile .pane-content .user-info .user-bank {
+  display: none;
+}
+.page-user .main-profile .pane-content .user-info .user-bank .field {
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+}
+.page-user .main-profile .pane-content .user-info .user-bank .field:nth-child(2) {
+  display: none;
+}
+.page-user .main-profile .pane-content .user-info .user-bank .field .field-label {
+  width: inherit !important;
+  color: #fff !important;
+  margin: 0px !important;
+}
+.page-user .main-profile .pane-content .user-info .left-info a {
+  background: #fff;
+  border: none;
+  border-radius: 0;
+  padding: 15px;
+  box-shadow: 0 2px 2px #edeef0;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  margin-bottom: 10px;
+  text-align: center;
+  padding: 10px;
+  display: block;
+  position: relative;
+  color: #333 !important;
+}
+.page-user .main-profile .pane-content .user-info .left-info .linkedin a {
+  color: #fff !important;
+  background: #0077b5;
+  position: relative;
+}
+.page-user .main-profile .pane-content .user-info .left-info .linkedin a:before {
+  content: "\f33c";
+  font-family: mat;
+  font-size: 25px;
+}
+.page-user .main-profile .pane-content .user-info .left-info .linkedin a:before {
+  position: absolute;
+  top: 6px;
+  left: 9px;
+}
+.page-user .main-profile .pane-content .user-info .left-info .vip a:before {
+  content: "\f1a5";
+  font-family: mat;
+  font-size: 30px;
+  color: #FF9800;
+}
+.page-user .main-profile .pane-content .user-info .left-info .vip a:before {
+  position: absolute;
+  top: 4px;
+  left: 7px;
+}
+.page-user .main-profile .pane-content .user-info .left-info .send-message a:before {
+  content: "\f36a";
+  font-family: mat;
+  font-size: 22px;
+  color: #D32F2F;
+}
+.page-user .main-profile .pane-content .user-info .left-info .send-message a:before {
+  position: absolute;
+  top: 10px;
+  left: 9px;
+}
+.page-user .main-profile .pane-content .user-info .left-info .connections a:before {
+  content: "\f00e";
+  font-family: mat;
+  font-size: 24px;
+  color: #4CAF50;
+}
+.page-user .main-profile .pane-content .user-info .left-info .connections a:before {
+  position: absolute;
+  top: 8px;
+  left: 9px;
+}
+.page-user .main-profile .pane-content .user-info .left-info .joyride_start_link a:before {
+  content: "\f186";
+  font-family: mat;
+  font-size: 22px;
+  color: #2196F3;
+}
+.page-user .main-profile .pane-content .user-info .left-info .joyride_start_link a:before {
+  position: absolute;
+  top: 10px;
+  left: 9px;
+}
+.page-user .main-profile .pane-content .user-info .left-info .ad_video a:before {
+  content: "\f5d2";
+  font-family: mat;
+  font-size: 22px;
+  color: #795548;
+}
+.page-user .main-profile .pane-content .user-info .left-info .ad_video a:before {
+  position: absolute;
+  top: 10px;
+  left: 9px;
+}
+.page-user .main-profile .pane-content .user-info .left-info .laghv a:before {
+  content: "\f150";
+  font-family: mat;
+  font-size: 22px;
+  color: #4CAF50;
+}
+.page-user .main-profile .pane-content .user-info .left-info .laghv a:before {
+  position: absolute;
+  top: 9px;
+  left: 9px;
+}
+.page-user .main-profile .pane-content .user-info .left-info .accept a:before {
+  content: "\f134";
+  font-family: mat;
+  font-size: 22px;
+  color: #4CAF50;
+}
+.page-user .main-profile .pane-content .user-info .left-info .accept a:before {
+  position: absolute;
+  top: 10px;
+  left: 9px;
+}
+.page-user .main-profile .pane-content .user-info .left-info .add a:before {
+  content: "\f339";
+  font-family: mat;
+  font-size: 22px;
+  color: #4CAF50;
+}
+.page-user .main-profile .pane-content .user-info .left-info .add a:before {
+  position: absolute;
+  top: 10px;
+  left: 9px;
+}
+.page-user .main-profile .pane-content .user-info .left-info .azl a:before {
+  content: "\f008";
+  font-family: mat;
+  font-size: 22px;
+  color: #4CAF50;
+}
+.page-user .main-profile .pane-content .user-info .left-info .azl a:before {
+  position: absolute;
+  top: 10px;
+  left: 9px;
+}
+.page-user .main-profile .pane-content .user-info .left-info .conference a {
+  padding-left: 25px;
+}
+.page-user .main-profile .pane-content .user-info .left-info .conference a:before {
+  content: "\f518";
+  font-family: mat;
+  font-size: 26px;
+  color: #bd471d;
+}
+.page-user .main-profile .pane-content .user-info .left-info .conference a:before {
+  position: absolute;
+  top: 20px;
+  left: 6px;
+}
+.page-user .row.row-17-2.clearfix.top-row {
+  display: none;
+}

@@ -392,15 +392,41 @@ section.timing h2 {
   vertical-align: middle;
 }
 /*--------------------------------------------------------------------------*/
+/*section-iframe*/
+section.iframe {
+  background: #f9f9f9;
+  max-width: 1300px;
+  margin: 0px auto;
+  padding: 50px 10%;
+}
+section.iframe h2 {
+  text-align: center;
+  margin: 30px auto 35px;
+  background: #f9f9f9;
+  width: 670px;
+  max-width: 96%;
+  z-index: 2;
+  position: relative;
+}
+section.iframe h2:before {
+  content: "";
+  position: absolute;
+  width: 130px;
+  height: 3px;
+  background: #883ab7;
+  bottom: -10px;
+  right: calc(50% - 65px);
+  box-shadow: rgba(136, 58, 183, 0.15) 0 1px 6px, rgba(136, 58, 183, 0.157) 0 1px 4px;
+}
 /*second-tikets*/
 section.second {
   background: #f9f9f9;
   max-width: 1300px;
-  margin: 50px auto 100px;
+  margin: 100px auto;
 }
 section.second h2 {
   text-align: center;
-  margin: 30px auto 35px;
+  margin: 30px auto 50px;
   background: #f9f9f9;
   width: 670px;
   max-width: 96%;
