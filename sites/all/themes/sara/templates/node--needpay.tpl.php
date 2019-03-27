@@ -19,7 +19,7 @@
 	/*
 	* برای تخفیفات ویژه نوروزی و برای چاپ بنر بالاییش
 	*/
-      $festival = true;
+      $festival = false;
 
       if(isset($node->field_isvip['und'])){
           for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){

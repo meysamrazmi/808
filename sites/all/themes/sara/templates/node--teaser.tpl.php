@@ -13,7 +13,7 @@
 <?php /*
 	* برای تخفیفات نوروزی
 	*/
-	$flag = true;
+	$flag = false;
 		if(isset($node->field_isvip['und'])){
 			for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){
 				if( $node->field_isvip['und'][$i]['tid'] == 2217)
@@ -64,7 +64,7 @@
 <?php /*
 	* برای تخفیفات نوروزی
 	*/
-	$flag = true;
+	$flag = false;
 		if(isset($node->field_isvip['und'])){
 			for ( $i=0 ; $i < count( $node->field_isvip['und'] ) ; $i++){
 				if( $node->field_isvip['und'][$i]['tid'] == 2217)
