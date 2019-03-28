@@ -65,7 +65,7 @@ function pay_for_node($nid , $ws_api = false) {
 
     /*setting for festival*/
 	$festival_setting = array(
-	    "enable" => true,
+	    "enable" => false,
         "message" => "30 درصد تخفیف برای جشنواره عید نوروز",
         "amount" => 0.3,
         "type" => array("publication" , "designteam" , "education")
