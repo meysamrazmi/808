@@ -219,9 +219,9 @@
                 <button class="btn btn-primary">ثبت نام</button>
             </div>
             <div class="date-fan">
-                <div class="day">9</div>
-                <div class="month">شهریور</div>
-                <div class="year">1397</div>
+<!--                <div class="day">9</div>-->
+<!--                <div class="month">شهریور</div>-->
+<!--                <div class="year">1397</div>-->
             </div>
         </a>
     </div>

@@ -56,8 +56,8 @@
                         <div class="tarikh"> ۲۵ و ۲۶ آوریل سال ۲۰۱۹ معادل با ۵ و ۶ اردیبهشت سال ۹۸ از ساعت ۹:۰۰ تا ۲۰:۰۰ </div>
                         <div class="makan"> موسسه آموزشی 808 </div>
                         <!--<div class="zaman"> دوره تئوری: 25 مهر ساعت 8 تا 17 و 26 مهر 8 تا 12، دوره نرم افزاری: 6 روز 9 تا 16 - جمعا 48 ساعت </div>-->
-                        <div class="mablagh ghabl"> 300,000 تومان </div>
-                        <div class="mablagh"> 210,000 تومان </div>
+                        <div class="mablagh"> 300,000 تومان </div>
+<!--                        <div class="mablagh"> 210,000 تومان </div>-->
                     </div>
                     <span class="sabtenam"> ثبت نام </span>
                 </a>

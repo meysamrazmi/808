@@ -189,8 +189,8 @@
                     <div class="tarikh"> بهار 1398 </div>
                     <div class="makan"> موسسه آموزشی 808 </div>
                     <!--<div class="zaman">25 مهر ساعت 8 تا 17 و 26 مهر 8 تا 12 (جمعا 12 ساعت) </div>-->
-                    <div class="mablagh ghabl"> 400,000 تومان </div>
-                    <div class="mablagh"> 280,000 تومان </div>
+                    <div class="mablagh"> 400,000 تومان </div>
+<!--                    <div class="mablagh"> 280,000 تومان </div>-->
                 </div>
                 <span class="sabtenam"> پیش ثبت نام </span>
             </a>
@@ -205,8 +205,8 @@
                     <div class="tarikh"> بهار 1398 </div>
                     <div class="makan"> موسسه آموزشی 808 </div>
                     <!--<div class="zaman"> دوره تئوری: 25 مهر ساعت 8 تا 17 و 26 مهر 8 تا 12، دوره نرم افزاری: 6 روز 9 تا 16 - جمعا 48 ساعت </div>-->
-                    <div class="mablagh ghabl"> 1,200,000 تومان </div>
-                    <div class="mablagh"> 840,000 تومان </div>
+                    <div class="mablagh"> 1,200,000 تومان </div>
+<!--                    <div class="mablagh"> 840,000 تومان </div>-->
                 </div>
                 <span class="sabtenam"> پیش ثبت نام </span>
             </a>
