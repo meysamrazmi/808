@@ -32,7 +32,34 @@
             </div>
         </a>
     </div>
+</section>
 
+<section style="margin: 87px 0 30px 0;">
+    <div class="kargah-vip" style="margin-bottom: 15px;">
+        <a target="_blank" href="/node/21270">
+            <div>
+                تور تخصصی آزمون Autodesk Revit در شهر استانبول ترکیه به همراه آموزش قبولی در آزمون
+                <ul>
+                    <li style="font-size: 13px;color: #909090 !important; padding: 18px 5px 5px 5px;">
+                        محل برگزاری آزمون: شهر استانبول ترکیه
+                    </li>
+                    <li style="font-size: 13px;color: #909090 !important; padding: 5px 5px;">
+                        رشته های مورد استفاده:  عمران-معماری-مکانیک-برق
+                    </li>
+                    <li style="font-size: 13px;color: #909090 !important; padding: 5px 5px;">
+                        مدت زمان تور:  3 روز (1 روز شرکت در آزمون- 1 روز بازدید از پروژه های در حال اجرای بیم در شهر استانبول - 1 روز آموزش رایگان نرم افزار های مرتبط در بیم در محل برگزاری آزمون در شهر استانبول) - کلاس آموزشی قبل از آزمون به مدت 8 ساعت در یکروز در محل موسسه 808 یک هفته قبل آزمون با تدریس مهندس قاسم آریانی برگزار میگردد
+                    </li>
+
+                </ul>
+                <button class="btn btn-primary has-wave"><span class="click-wave"></span>ثبت نام</button>
+            </div>
+            <!--<div class="date-fan">
+                <div class="day"></div>
+                <div class="month">خرداد</div>
+                <div class="year">1398</div>
+            </div>-->
+        </a>
+    </div>
 </section>
 
 <section class="kargah-sec">

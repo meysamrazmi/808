@@ -87,17 +87,20 @@ $url = "https://civil808.com/sites/default/files" . $url;
             <div class="middle">سه ماهه</div>
             <div class="gheymat">۱۲۰,۰۰۰ تومان</div>
         </a>
-        <a class="ozviyat bold" href="/cart/add/p20657_a73o230?destination=cart">
-            <div class="top">تخفیف ویژه عضویت</div>
+        <!-- for applying discout just add "bold" class to a tag and add a div with "gheymat-ghadim" class at the end of the a tag -->
+        <a class="ozviyat" href="/cart/add/p20657_a73o230?destination=cart">
+            <!--<div class="top">تخفیف ویژه عضویت</div>-->
+            <div class="top">عضویت</div>
             <div class="middle">شش ماهه</div>
-            <div class="gheymat">۱۷۰,۰۰۰ تومان</div>
-            <div class="gheymat-ghadim">۲۲۰,۰۰۰ تومان</div>
+            <div class="gheymat">۲۲۰,۰۰۰ تومان</div>
+            <!--<div class="gheymat-ghadim">۲۲۰,۰۰۰ تومان</div>-->
         </a>
-        <a class="ozviyat bold" href="/cart/add/p20657_a73o231?destination=cart">
-            <div class="top">تخفیف ویژه عضویت</div>
+        <a class="ozviyat" href="/cart/add/p20657_a73o231?destination=cart">
+            <!--<div class="top">تخفیف ویژه عضویت</div>-->
+            <div class="top">عضویت</div>
             <div class="middle">یک ساله</div>
-            <div class="gheymat">۲۱۰,۰۰۰ تومان</div>
-            <div class="gheymat-ghadim">۴۲۰,۰۰۰ تومان</div>
+            <div class="gheymat">۴۲۰,۰۰۰ تومان</div>
+            <!--<div class="gheymat-ghadim">۴۲۰,۰۰۰ تومان</div>-->
         </a>
     </div>
 </section>

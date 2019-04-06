@@ -469,6 +469,18 @@
                 <div class="views-field views-field-php send-pm">        <span class="field-content"><a href="/messages/new/22753">ارسال پیام</a></span>  </div>
                 <div class="views-field views-field-php-1">        <span class="field-content views-field-status-link"><span class="add"><a href="/relationship/22753/request/1?destination=landing/members%3Ffield_full_name_value_1%3D%25D8%25B1%25D9%2588%25D8%25AD%2520%25D8%25A7%25D9%2584%25D9%2587%2520%25D9%2587%25DB%258C%25D8%25B2%25D8%25AC%25DB%258C%26field_education_degree_value%3D%26field_education_field_value%3D%26field_university_value%3D%26field_job_value%3D%26field_about_me_value%3D%26field_experts_tid%3D%26rid%3DAll%26sort_by%3Dpoints%26sort_order%3DASC" class="user_relationships_popup_link">ایجاد ارتباط</a></span>
 </span>  </div>  </div>
+
+            <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+
+                <div class="views-field views-field-picture">        <div class="field-content"><a href="/user/864/amiran2000"><img src="https://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-864-1553007398.jpg?itok=JrKEKepD" width="220" height="220" alt=""></a></div>  </div>
+                <div class="views-field views-field-field-full-name">        <div class="field-content"><a href="/user/864" target="_blank">امیر فتحی راد</a></div>  </div>
+
+                <div class="views-field views-field-created">    <span class="views-label views-label-created">عضو به مدت: </span>    <span class="field-content">4 سال 8 ماه</span>  </div>
+                <div class="views-field views-field-field-experts">        <div class="field-content"><a href="/landing/members?field_experts_tid=مقاوم سازی، Structural Strengthening">مقاوم سازی، Structural Strengthening</a><a href="/landing/members?field_experts_tid=نرم افزار سایسمو بیلد، SeismoBuild">نرم افزار سایسمو بیلد، SeismoBuild</a><a href="/landing/members?field_experts_tid=بهسازی لرزه ای، Seismic Rehabilitation">بهسازی لرزه ای، Seismic Rehabilitation</a></div>  </div>
+                <div class="views-field views-field-php send-pm">        <span class="field-content"><a href="/messages/new/864">ارسال پیام</a></span>  </div>
+                <div class="views-field views-field-php-1">        <span class="field-content views-field-status-link"><span class="add"><a href="/relationship/864/request/1?destination=landing/members%3Ffield_full_name_value_1%3D%25D8%25A7%25D9%2585%25DB%258C%25D8%25B1%2520%25D9%2581%25D8%25AA%25D8%25AD%25DB%258C%2520%25D8%25B1%25D8%25A7%25D8%25AF%26field_education_degree_value%3D%26field_education_field_value%3D%26field_university_value%3D%26field_job_value%3D%26field_about_me_value%3D%26field_experts_tid%3D%26rid%3DAll%26sort_by%3Dpoints%26sort_order%3DASC" class="user_relationships_popup_link">ایجاد ارتباط</a></span>
+</span>  </div>  </div>
+
         </div>
     </div>
 </section>

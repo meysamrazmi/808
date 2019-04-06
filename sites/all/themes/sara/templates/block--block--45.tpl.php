@@ -2,25 +2,25 @@
     <div id="block-block-45" class="block block-block contextual-links-region first odd">
         <div class="content">
             <span class="close-banner">X</span>
-            <a href="http://land.civil808.com/98/eid" target="_blank">
+            <a href="https://civil808.com/node/21193" target="_blank">
 
                 <div class="new-title">
-                    <p id="festival-desc" style="">تا 50 درصد تخفيف تا پایان اسفند
+                    <p id="festival-desc" style="">دوره حضوری گام های اجرایی BIM؛ مطالعه موردی: پروژه Expolink امارات
                         <br>
                         <span class="sub-title" style="position: relative; font-weight: bold">
-                             30 تخفیف ویژه +
-                            10 درصد؜ تخفيف اعضای VIP + تخفیف گروهی و شارژ هدیه اپلیکیشن
+                            اردیبهشت ماه 98
                         </span>
 
                     </p>
                 </div>
-<!--                <img id="tamdid" src="/sites/all/themes/sara/images/banners/tamdid.png" width="85px" alt="">-->
+                <!--
+                <img id="tamdid" src="/sites/all/themes/sara/images/banners/tamdid.png" width="85px" alt="">
                 <img id="kolah" src="/sites/all/themes/sara/images/7sin.png" width="100px"
                      style="position: absolute;
                             right: 51px;
                             top: -26px;">
-
-                <span id="clickkonid" style="color:#424242;font-weight:bold;font-size: 16px;position: absolute; left: 50px; top: 15px;background: rgba(255,255,255,0.7);z-index: 2;display: inline-block; padding: 5px;border-radius: 5px">کلیک کنید!</span>
+                 -->
+                <!--<span id="clickkonid" style="color:#424242;font-weight:bold;font-size: 16px;position: absolute; left: 50px; top: 15px;background: rgba(255,255,255,0.7);z-index: 2;display: inline-block; padding: 5px;border-radius: 5px">ثبت نام کنید</span>-->
 
             </a>
         </div>
@@ -35,17 +35,12 @@
         }
 
         #festival-desc {
-            margin-top: 5px;
+            margin-top: 9px;
             font-weight: bold;
             font-family: fanum;
-            color: #388E3C;
+            color: #000000;
             font-size: 16px;
-            text-shadow:
-                    3px 3px 5px #fff,
-                    -1px -1px 0 #fff,
-                    1px -1px 0 #fff,
-                    -1px 1px 0 #fff,
-                    1px 1px 0 #fff;
+            text-shadow: 3px 3px 5px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
         }
 
         @media screen and (max-width: 720px) {
@@ -65,11 +60,9 @@
         }
 
         .sub-title{
-            color: #F44336!important;
-            font-size: 17px;
-            font-weight: bold;
+            color: #6f6f6f!important;
+            font-size: 11px;
             padding-top: 3px;
-            /*display: block;*/
         }
         .sub-title > span{
             color: #9f4d4d;
@@ -85,7 +78,7 @@
             position: fixed;
             bottom: 0;
             right: 0;
-            border-top: 3px solid #1a68a9;
+            border-top: 3px solid #9E9E9E;
             height: 70px;
             z-index: 100;
             background-position-x: center;
@@ -110,7 +103,7 @@
         }
         div#block-block-45 a:before {
             content: "";
-            background:url(/sites/all/themes/sara/images/nowruz.jpg);
+            background: url(/sites/all/themes/sara/images/banners/building-back.PNG);
             opacity: 0.3;
             top: 0;
             left: 0;
@@ -118,6 +111,9 @@
             right: 0;
             position: absolute;
             z-index: -1;
+            background-position-x: center;
+            background-size: 70%;
+            background-position-y: center;
         }
         .new-title{
             font-size: 12px;
