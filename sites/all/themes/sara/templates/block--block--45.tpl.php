@@ -1,28 +1,34 @@
-<?php if(!isset($_COOKIE['banner'])): ?>
+<?php if(!isset($_COOKIE['banner'])):?>
     <div id="block-block-45" class="block block-block contextual-links-region first odd">
         <div class="content">
             <span class="close-banner">X</span>
-            <a href="https://civil808.com/node/21193" target="_blank">
+            <?php if(rand(0,1) == 0){ ?>
+                <a class="bim" href="/node/21193" target="_blank">
+                    <div class="new-title">
+                        <p id="festival-desc" style="">دوره حضوری گام های اجرایی BIM؛ مطالعه موردی: پروژه Expolink امارات
+                            <br>
+                            <span class="sub-title" style="position: relative; font-weight: bold">
+                                اردیبهشت ماه 98
+                            </span>
 
-                <div class="new-title">
-                    <p id="festival-desc" style="">دوره حضوری گام های اجرایی BIM؛ مطالعه موردی: پروژه Expolink امارات
-                        <br>
-                        <span class="sub-title" style="position: relative; font-weight: bold">
-                            اردیبهشت ماه 98
-                        </span>
-
-                    </p>
-                </div>
-                <!--
-                <img id="tamdid" src="/sites/all/themes/sara/images/banners/tamdid.png" width="85px" alt="">
-                <img id="kolah" src="/sites/all/themes/sara/images/7sin.png" width="100px"
-                     style="position: absolute;
-                            right: 51px;
-                            top: -26px;">
-                 -->
-                <!--<span id="clickkonid" style="color:#424242;font-weight:bold;font-size: 16px;position: absolute; left: 50px; top: 15px;background: rgba(255,255,255,0.7);z-index: 2;display: inline-block; padding: 5px;border-radius: 5px">ثبت نام کنید</span>-->
-
-            </a>
+                        </p>
+                    </div>
+                </a>
+            <?php }else{ ?>
+                <a class="herfe" href="/node/20190" target="_blank">
+                    <div class="new-title">
+                        <img class="right" src="/sites/all/themes/sara/images/banners/engineerGuy.png">
+                        <div style="margin-top: 5px;">
+                            <div>ثبت نام دوره حضوری آمادگی آزمون ورود به حرفه</div>
+                            محاسبات، نظارت و اجرا
+                        </div>
+                    </div>
+                    <div class="left">کلیک کنید
+                        <span>></span>
+                    </div>
+                    <img style="display: none;" class="left" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">
+                </a>
+            <?php }?>
         </div>
     </div>
     <style>
@@ -78,7 +84,7 @@
             position: fixed;
             bottom: 0;
             right: 0;
-            border-top: 3px solid #9E9E9E;
+            border-top: 3px solid #1a68a9;
             height: 70px;
             z-index: 100;
             background-position-x: center;
@@ -101,7 +107,7 @@
             top: 0;
             z-index: 1;
         }
-        div#block-block-45 a:before {
+        div#block-block-45 a.bim:before {
             content: "";
             background: url(/sites/all/themes/sara/images/banners/building-back.PNG);
             opacity: 0.3;
@@ -115,7 +121,7 @@
             background-size: 70%;
             background-position-y: center;
         }
-        .new-title{
+        div#block-block-45 a.bim .new-title{
             font-size: 12px;
             width: auto;
             background-position: center;
@@ -127,51 +133,89 @@
             z-index: 2;
             position: relative;
         }
-        .new-title > div{
+        div#block-block-45 a.herfe .new-title{
+            font-size: 12px;
+            width: auto;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: black;
+            text-align: center;
+            font-weight: bold;
+            z-index: 2;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+        div#block-block-45 a.bim .new-title > div{
             font-size: 20px;
             color: #E65100;
             margin-top: 2px;
         }
-        img.right{
-            position: absolute;
-            right: 0;
-            top: 0;
+
+        div#block-block-45 a.herfe .new-title > div > div{
+            font-size: 20px;
+            color: #E65100;
+            margin-top: 2px;
         }
-        img.left{
+        div#block-block-45 a.herfe img.right{
+            margin: -20px 0px 0 18px;
+        }
+        div#block-block-45 a.herfe  img.left{
             transform: rotateY(180deg);
             position: absolute;
             left: 0;
             top: 0;
         }
+        div#block-block-45 a.herfe div.left{
+            position: absolute;
+            left: 12px;
+            top: 22px;
+            color: #000;
+            font-size: 15px;
+        }
 
         @media (max-width: 1200px){}
         @media (max-width: 979px){
-            .new-title{
+            div#block-block-45 a.herfe div.left{
+                display: none;
+            }
+            div#block-block-45 a.bim .new-title{
                 text-align: center;
                 margin-right: 15px;
-            }
-            img.right{
-                display: none;
             }
         }
         @media (max-width: 979px) and (min-width: 769px) {}
         @media all and (max-width: 768px) {}
         @media all and (max-width: 600px) {
-            .new-title > div{
-                font-size: 18px;
+            div#block-block-45 a.herfe .new-title > div > div{
+                font-size: 15px;
             }
-            img.left{
-                opacity: 0.3;
-                height: 70px;
+            div#block-block-45 a.bim .new-title > div{
+                font-size: 18px;
             }
         }
         @media all and (max-width: 500px) {
-            .new-title{
+            div#block-block-45 a.herfe .new-title{
                 text-align: center;
                 margin-right: auto;
             }
+            div#block-block-45 a.herfe img.right{
+                display: none;
+            }
+            div#block-block-45 a.bim .new-title{
+                text-align: center;
+                margin-right: auto;
+            }
+            div#block-block-45 a.bim .new-title #festival-desc{
+                font-size: 12px;
+                margin-top: 17px;
+            }
+            div#block-block-45 a.bim .new-title #festival-desc .sub-title{
+                display: none;
+            }
         }
         @media all and (max-width: 400px) {}
+
         /*----------------------------------------------------*/
         .close-banner {
             position: absolute;
