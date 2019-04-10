@@ -396,7 +396,8 @@ function custom808_node_validate($node, $form, &$form_state) {
  */
 function custom808_entity_view_mode_alter(&$view_mode, $context) {
     // Only alter the view mode if we are on the test callback.
-    if($context['entity_type'] == 'node' && $context['entity']->nid == 21193 && $view_mode == 'full'){
+    //madump($context['entity']->field_college_landing['und'][0]['value']);
+    if($context['entity_type'] == 'node' && $context['entity']->type == 'college' && isset($context['entity']->field_college_landing['und'][0]) && $context['entity']->field_college_landing['und'][0]['value'] == 1 && $view_mode == 'full'){
         $view_mode = 'landing';
     }
 }

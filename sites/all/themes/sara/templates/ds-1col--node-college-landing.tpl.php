@@ -1,12 +1,8 @@
 
 
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-    <?php print render($title_prefix); ?>
-    <?php if (!$page): ?>
-
-    <?php endif; ?>
-    <?php print render($title_suffix); ?>
-
+    <?php print render($title_prefix); ?><?php if (!$page): ?><?php endif; ?><?php print render($title_suffix); ?>
+    <?php if ($node->nid == 21193): ?>
     <div class="content"<?php print $content_attributes; ?>>
         <?php
         print render($content);
@@ -21,7 +17,6 @@
             </div>
         </div>
     </section>
-
     <section class="second">
         <h2 class="text"> ثبت نام در دوره حضوری گام های اجرایی BIM </h2>
         <!--<p style="text-align: center;margin-top: -18px;font-size: 15px;color:red;margin-bottom: 29px;">
@@ -65,10 +60,44 @@
             <!--<div class="bought-tickets">سوال های خود را می توانید از طریق شماره تماس موسسه و سیستم پیغام خصوصی با ما در میان بگذارید.</div>-->
         </div>
     </section>
+    <?php endif; ?>
+
+    <?php if($node->nid == 19124): ?>
+    <div class="content"<?php print $content_attributes; ?>>
+    <?php
+        //madump($node);
+        //madump(entity_load('field_collection_item', array(2157)));
+    /**
+     * text | متن ساده
+     * iframe | iframe
+     * teacherUid | مدرس با uid
+     * teacherNid | مدرس از دانشنامه با nid
+     * relateTid | مطالب مرتبط با دسته بندی
+     * relateNid | مطالب مرتبط با nid
+     */
+        foreach ($node->field_college_landing_collection['und'] as $key => $section){
+            $section_id = $section['value'];
+            $collection_load = entity_load('field_collection_item', array($section_id));
+            $section_name = $collection_load[$section_id]->field_collection_section['und'][0]['value'];
+            $section_title = $collection_load[$section_id]->field_collection_title['und'][0]['value'];
+            $section_subtitle = $collection_load[$section_id]->field_collection_subtitle['und'][0]['value']; ?>
+            <section class="<?php print $section_name; ?>">
+                <h2 class="text"><?php print $section_title; ?></h2>
+                <p style="text-align: center;padding: 15px 0 0;color: #888;"><?php print $section_subtitle; ?></p>
+            </section>
+
+        <?php
+        }
+        ?>
+    </div>
+    <?php endif; ?>
 
 </div>
 
 <style>
+    .node-unpublished {
+        background-color: transparent;
+    }
     .field-name-title h2{
         text-align: center;
         margin: 64px auto 35px;
