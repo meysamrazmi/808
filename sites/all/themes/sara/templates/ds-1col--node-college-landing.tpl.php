@@ -81,7 +81,7 @@
             $section_name = $collection_load[$section_id]->field_collection_section['und'][0]['value'];
             $section_title = $collection_load[$section_id]->field_collection_title['und'][0]['value'];
             $section_subtitle = $collection_load[$section_id]->field_collection_subtitle['und'][0]['value']; ?>
-            <section class="<?php print $section_name; ?>">
+            <section class="section <?php print $section_name; ?>">
                 <h2 class="text"><?php print $section_title; ?></h2>
                 <p style="text-align: center;padding: 15px 0 0;color: #888;"><?php print $section_subtitle; ?></p>
             </section>

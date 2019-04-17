@@ -1,8 +1,22 @@
 /*added to this files:
   node--19130.tpl.php --> landing/ENG97
   node--19160.tpl.php --> landing/BIM
+  ds-1col--node-college-landing.tpl.php
 */
 @import "vars.css.less";
+
+/*--------global less for ds-1col--node-college-landing.tpl.php ------------*/
+
+section.section{
+  .fancy_h2();
+}
+
+
+
+
+
+/*--------global less for ds-1col--node-college-landing.tpl.php ------------*/
+
 .ghabl.mablagh {
   color: #F44336;
   font-size: 15px;
@@ -25,7 +39,8 @@
   .fancy_h2()
 }
 /*first section - the main explain of landing page*/
-section.kargah-sec {
+section.kargah-sec,
+section.section.text{
   padding: 80px 5% 30px 5%;
   @media (max-width: 600px){
     padding: 50px 15px 30px;

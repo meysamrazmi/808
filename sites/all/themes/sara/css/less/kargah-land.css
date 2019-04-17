@@ -1,6 +1,7 @@
 /*added to this files:
   node--19130.tpl.php --> landing/ENG97
   node--19160.tpl.php --> landing/BIM
+  ds-1col--node-college-landing.tpl.php
 */
 /*medias*/
 /*mixins*/
@@ -14,6 +15,24 @@
   box-shadow: none;
 }
 /*--------------------------------webkits-----------------------------*/
+/*--------global less for ds-1col--node-college-landing.tpl.php ------------*/
+section.section h2 {
+  position: relative;
+  text-align: center;
+  /*margin: 0 0 39px 0;
+        font-size: 22px;*/
+}
+section.section h2:before {
+  content: "";
+  position: absolute;
+  width: 130px;
+  height: 3px;
+  background: #883ab7;
+  bottom: -10px;
+  right: calc(50% - 65px);
+  box-shadow: rgba(136, 58, 183, 0.15) 0px 1px 6px, rgba(136, 58, 183, 0.157) 0px 1px 4px;
+}
+/*--------global less for ds-1col--node-college-landing.tpl.php ------------*/
 .ghabl.mablagh {
   color: #F44336;
   font-size: 15px;
@@ -51,56 +70,67 @@
   box-shadow: rgba(136, 58, 183, 0.15) 0px 1px 6px, rgba(136, 58, 183, 0.157) 0px 1px 4px;
 }
 /*first section - the main explain of landing page*/
-section.kargah-sec {
+section.kargah-sec,
+section.section.text {
   padding: 80px 5% 30px 5%;
 }
 @media (max-width: 600px) {
-  section.kargah-sec {
+  section.kargah-sec,
+  section.section.text {
     padding: 50px 15px 30px;
   }
 }
-section.kargah-sec .first-row {
+section.kargah-sec .first-row,
+section.section.text .first-row {
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
 }
 @media (max-width: 600px) {
-  section.kargah-sec .first-row {
+  section.kargah-sec .first-row,
+  section.section.text .first-row {
     flex-direction: column-reverse;
     align-items: center;
   }
 }
-section.kargah-sec .first-row > div:first-child {
+section.kargah-sec .first-row > div:first-child,
+section.section.text .first-row > div:first-child {
   width: 800px;
 }
 @media (max-width: 600px) {
-  section.kargah-sec .first-row > div:first-child {
+  section.kargah-sec .first-row > div:first-child,
+  section.section.text .first-row > div:first-child {
     width: 100%;
     margin: 30px 0 0;
   }
 }
-section.kargah-sec .first-row > div:first-child p {
+section.kargah-sec .first-row > div:first-child p,
+section.section.text .first-row > div:first-child p {
   font-size: 14px;
   line-height: 28px;
 }
-section.kargah-sec .first-row > div:first-child li {
+section.kargah-sec .first-row > div:first-child li,
+section.section.text .first-row > div:first-child li {
   line-height: 25px;
 }
-section.kargah-sec .first-row .important {
+section.kargah-sec .first-row .important,
+section.section.text .first-row .important {
   padding: 0px 13px;
   border: solid #FF5722;
   border-width: 0 2px 0 0px;
   font-size: 13px !important;
   max-width: 700px;
 }
-section.kargah-sec .first-row .lecturer {
+section.kargah-sec .first-row .lecturer,
+section.section.text .first-row .lecturer {
   text-align: center;
   background: #fff;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 6px, rgba(0, 0, 0, 0.157) 0px 1px 4px;
   width: 300px;
   padding: 24px 15px 15px;
 }
-section.kargah-sec .first-row .lecturer > img {
+section.kargah-sec .first-row .lecturer > img,
+section.section.text .first-row .lecturer > img {
   border-radius: 50%;
   border: 2px solid #fff;
   box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
