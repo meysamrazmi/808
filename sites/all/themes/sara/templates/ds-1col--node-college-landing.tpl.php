@@ -48,7 +48,7 @@
                         <!--<p style="padding: 9px 12px 0px 0px;"> شامل پذیرایی ناهار در 2 روز اول و پکیج همراه دوره </p>
                         <p class="important" style="margin: 2px 12px 5px 0;font-weight: bold;background-color: #f5f5f5;padding: 6px 14px;display: inline-block;">به همراه پکیج مخصوص
                         </p>-->
-                        <div class="tarikh"> ۲۵ و ۲۶ آوریل سال ۲۰۱۹ معادل با ۵ و ۶ اردیبهشت سال ۹۸ از ساعت ۹:۰۰ تا ۲۰:۰۰ </div>
+                        <div class="tarikh"> ۲۶ و ۲۷ آوریل سال ۲۰۱۹ معادل با ۶ و ۷ اردیبهشت سال ۹۸ از ساعت ۹:۰۰ تا ۲۰:۰۰ </div>
                         <div class="makan"> موسسه آموزشی 808 </div>
                         <!--<div class="zaman"> دوره تئوری: 25 مهر ساعت 8 تا 17 و 26 مهر 8 تا 12، دوره نرم افزاری: 6 روز 9 تا 16 - جمعا 48 ساعت </div>-->
                         <div class="mablagh"> 300,000 تومان </div>
