@@ -2,33 +2,19 @@
     <div id="block-block-45" class="block block-block contextual-links-region first odd">
         <div class="content">
             <span class="close-banner">X</span>
-            <?php if(rand(0,1) == 0){ ?>
-                <a class="bim" href="/node/21193" target="_blank">
-                    <div class="new-title">
-                        <p id="festival-desc" style="">دوره حضوری گام های اجرایی BIM؛ مطالعه موردی: پروژه Expolink امارات
-                            <br>
-                            <span class="sub-title" style="position: relative; font-weight: bold">
-                                اردیبهشت ماه 98
-                            </span>
+            <a class="bim" href="/arch" target="_blank">
+                <div class="new-title">
+                    <p id="festival-desc" style="">
+                        70درصد تخفیف ویژه برخی پکیج های آموزشی معماری سایت 808 به مناسبت روز معمار
 
-                        </p>
-                    </div>
-                </a>
-            <?php }else{ ?>
-                <a class="herfe" href="/node/20190" target="_blank">
-                    <div class="new-title">
-                        <img class="right" src="/sites/all/themes/sara/images/banners/engineerGuy.png">
-                        <div style="margin-top: 5px;">
-                            <div>ثبت نام دوره حضوری آمادگی آزمون ورود به حرفه</div>
-                            محاسبات، نظارت و اجرا
-                        </div>
-                    </div>
-                    <div class="left">کلیک کنید
-                        <span>></span>
-                    </div>
-                    <img style="display: none;" class="left" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">
-                </a>
-            <?php }?>
+                        <br>
+                        <span class="sub-title" style="position: relative; font-weight: bold; color: #43A047;">
+                             سوم تا هفتم اردیبهشت ماه 98
+                        </span>
+
+                    </p>
+                </div>
+            </a>
         </div>
     </div>
     <style>
@@ -66,7 +52,7 @@
         }
 
         .sub-title{
-            color: #6f6f6f!important;
+            /*color: #6f6f6f!important;*/
             font-size: 11px;
             padding-top: 3px;
         }
@@ -110,6 +96,7 @@
         div#block-block-45 a.bim:before {
             content: "";
             background: url(/sites/all/themes/sara/images/banners/building-back.PNG);
+
             opacity: 0.3;
             top: 0;
             left: 0;
