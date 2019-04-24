@@ -19,14 +19,14 @@
                         lecturer: Omare Muhammad Azam
                     </li>
                     <li style="font-size: 13px;color: #909090 !important; padding: 5px 5px;">
-                        will be held on 25-26th April 2019, IRAN, Tehran
+                        will be held on 26-27th April 2019, IRAN, Tehran
                     </li>
 
                 </ul>
                 <button class="btn btn-primary has-wave"><span class="click-wave"></span>ثبت نام</button>
             </div>
             <div class="date-fan">
-                <div class="day">5</div>
+                <div class="day">6</div>
                 <div class="month">اردیبهشت</div>
                 <div class="year">1398</div>
             </div>
