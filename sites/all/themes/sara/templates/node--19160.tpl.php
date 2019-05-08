@@ -10,7 +10,7 @@
     <div class="kargah-vip" style="margin-bottom: 15px;">
         <a target="_blank" href="/node/21193">
             <div>
-                دوره حضوری مدل سازی اطلاعات ساختمان "Steps Towards Implementing BIM"
+                فیلم دوره مدل سازی اطلاعات ساختمان "Steps Towards Implementing BIM"
                 <ul>
                     <li style="font-size: 13px;color: #909090 !important; padding: 18px 5px 5px 5px;">
                         Case study example: UAE Expolink Project
@@ -19,17 +19,17 @@
                         lecturer: Omare Muhammad Azam
                     </li>
                     <li style="font-size: 13px;color: #909090 !important; padding: 5px 5px;">
-                        will be held on 26-27th April 2019, IRAN, Tehran
+                        held on 25-26th April 2019, IRAN, Tehran
                     </li>
 
                 </ul>
-                <button class="btn btn-primary has-wave"><span class="click-wave"></span>ثبت نام</button>
+                <button class="btn btn-primary has-wave"><span class="click-wave"></span>خرید</button>
             </div>
-            <div class="date-fan">
-                <div class="day">6</div>
-                <div class="month">اردیبهشت</div>
-                <div class="year">1398</div>
-            </div>
+<!--            <div class="date-fan">-->
+<!--                <div class="day">5</div>-->
+<!--                <div class="month">اردیبهشت</div>-->
+<!--                <div class="year">1398</div>-->
+<!--            </div>-->
         </a>
     </div>
 </section>
@@ -255,6 +255,7 @@
         </div>-->
 
         <div class="field field-name-body field-type-text-with-summary field-label-hidden">
+            <br>
             <!--
             <div class="main-text">
                 <p>کلمه BIM که مخفف Building Information Modeling است، به مدل اطلاعاتی ساختمان می‌پردازد. همانطور که از کلمه Information پیداست، اطلاعات موجود در مدل اهمیت بسیاری دارند. نرم‌افزارهای BIM که تاکنون در عرصه جهانی معرفی شده‌اند به نام­‌های Revit ،Bently ،ArchiCAD ،MagiCAD ،DigitalProject ،Tekla Structure ،Navis work ،Vico و … است.</p>
@@ -270,6 +271,39 @@
             <a href="/node/19162" target="_blank" style="margin: 31px auto 0;display: block;text-align: center;">
                 <img src="https://civil808.com/sites/default/files/field/image/node_19162.jpg" width="700" height="auto" alt="یادداشت تحلیلی: چگونه BIM صنعت ساختمان و شهرسازی را متحول کرد؟" title="یادداشت تحلیلی: چگونه BIM صنعت ساختمان و شهرسازی را متحول کرد؟">
             </a>
+
+            <section id="relatives">
+                <h2> موسسه 808، نماینده انحصاری نرم افزار Visicon در ایران </h2>
+                <div class="forth-wh">
+                    <div class="forth-box">
+                        <div class="forth-top">
+                            <img src="/sites/all/themes/sara/images/visicon.jpg" title="" alt="">
+                        </div>
+                        <div class="forth-bottom">
+
+                            <b>
+                                نرم‌افزار Visicon ، ابزاری قدرتمند به منظور نمایش مدل BIM
+                                <br>
+                                ویژگی‌ها و امکانات کلی نرم‌افزار:
+                            </b>
+
+                            <br>
+                            ایجاد مدل‌ها و خروجی‌ها با حجم کم
+                            <br>
+                            امکان مدلسازی گرافیکی با جزئیات بسیار زیاد
+                            <br>
+                            دسترسی سریع به مدل بدون نیاز به ایجاد حساب کاربری آنلاین
+                            <br>
+                            به مناسبت شروع فروش این نرم افزار  تا 15 اردیبهشت با 20% تخفیف عرضه میشود
+                            <br>
+                            <a href="http://Civil808.com/node/21393" target="_blank" class="btn has-wave"><span class="click-wave"></span>
+                                خرید بسته با 20% تخفیف فقط 319.2$
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
 
             <section id="relatives">
                 <h2> اخبار و رویدادهای مرتبط </h2>
@@ -440,6 +474,34 @@
 </div>
 
 <style>
+    .forth-wh {
+        text-align: center;
+        margin: 20px auto;
+    }
+    .forth-box {
+        margin: 10px 3vw;
+        padding: 15px 15px 15px 15px;
+        box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+        box-sizing: border-box;
+        position: relative;
+        max-width: 372px;
+        background-color: white;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .forth-top {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .forth-bottom {
+        font-size: 12px;
+        display: block;
+    }
+    .forth-bottom a {
+        margin-top: 10px;
+    }
     .kargah-vip{
         position: relative;
         width: 70%;

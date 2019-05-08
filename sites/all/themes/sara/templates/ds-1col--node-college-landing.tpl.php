@@ -18,7 +18,7 @@
         </div>
     </section>
     <section class="second">
-        <h2 class="text"> ثبت نام در دوره حضوری گام های اجرایی BIM </h2>
+        <h2 class="text"> خرید فیلم دوره حضوری گام های اجرایی BIM </h2>
         <!--<p style="text-align: center;margin-top: -18px;font-size: 15px;color:red;margin-bottom: 29px;">
             ظرفیت دوره رو به اتمام است.
         </p>
@@ -29,16 +29,16 @@
         <div class="takhfifat">
             <p>و<span>5 %</span> تخفیف به ازای اضافه شدن هر نفر تا سقف 20 درصد</p>
         </div>-->
-        <div class="takhfifat" style="margin-bottom: 15px;">
-            <p>
-                <span>10 %</span>تخفیف برای اعضای VIP، <a href="/landing/vip" target="_blank">عضو ویژه شوید</a>        </p>
-        </div>
-        <div class="takhfifat">
-            <p>و<span>5 %</span> تخفیف به ازای اضافه شدن هر نفر تا سقف 20 درصد</p>
-        </div>
+<!--        <div class="takhfifat" style="margin-bottom: 15px;">-->
+<!--            <p>-->
+<!--                <span>10 %</span>تخفیف برای اعضای VIP، <a href="/landing/vip" target="_blank">عضو ویژه شوید</a>        </p>-->
+<!--        </div>-->
+<!--        <div class="takhfifat">-->
+<!--            <p>و<span>5 %</span> تخفیف به ازای اضافه شدن هر نفر تا سقف 20 درصد</p>-->
+<!--        </div>-->
         <div class="tickets">
             <div>
-                <a href="/cart/add/p<?php print $node->nid; ?>?destination=cart" style="width: auto;">
+                <a href="https://civil808.com/shop/products/bim-course-omare-muhammad-azam/21394/%D9%81%DB%8C%D9%84%D9%85-%D8%AF%D9%88%D8%B1%D9%87-%DA%AF%D8%A7%D9%85-%D9%87%D8%A7%DB%8C-%D8%A7%D8%AC%D8%B1%D8%A7%DB%8C%DB%8C-bim%D8%9B-%D9%85%D8%B7%D8%A7%D9%84%D8%B9%D9%87-%D9%85%D9%88%D8%B1%D8%AF%DB%8C-%D9%BE%D8%B1%D9%88%DA%98%D9%87" style="width: auto;">
                     <div class="city-name"><span>
                             <?php print $node->title; ?>
                         </span>
@@ -48,13 +48,13 @@
                         <!--<p style="padding: 9px 12px 0px 0px;"> شامل پذیرایی ناهار در 2 روز اول و پکیج همراه دوره </p>
                         <p class="important" style="margin: 2px 12px 5px 0;font-weight: bold;background-color: #f5f5f5;padding: 6px 14px;display: inline-block;">به همراه پکیج مخصوص
                         </p>-->
-                        <div class="tarikh"> ۲۶ و ۲۷ آوریل سال ۲۰۱۹ معادل با ۶ و ۷ اردیبهشت سال ۹۸ از ساعت ۹:۰۰ تا ۲۰:۰۰ </div>
-                        <div class="makan"> موسسه آموزشی 808 </div>
+<!--                        <div class="tarikh"> ۲۵ و ۲۶ آوریل سال ۲۰۱۹ معادل با ۵ و ۶ اردیبهشت سال ۹۸ از ساعت ۹:۰۰ تا ۲۰:۰۰ </div>-->
+<!--                        <div class="makan"> موسسه آموزشی 808 </div>-->
                         <!--<div class="zaman"> دوره تئوری: 25 مهر ساعت 8 تا 17 و 26 مهر 8 تا 12، دوره نرم افزاری: 6 روز 9 تا 16 - جمعا 48 ساعت </div>-->
-                        <div class="mablagh"> 300,000 تومان </div>
+                        <div class="mablagh"> 200,000 تومان </div>
 <!--                        <div class="mablagh"> 210,000 تومان </div>-->
                     </div>
-                    <span class="sabtenam"> ثبت نام </span>
+                    <span class="sabtenam"> خرید </span>
                 </a>
             </div>
             <!--<div class="bought-tickets">سوال های خود را می توانید از طریق شماره تماس موسسه و سیستم پیغام خصوصی با ما در میان بگذارید.</div>-->

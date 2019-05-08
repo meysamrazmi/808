@@ -35,7 +35,7 @@
                 <tr style="height: 15.0pt;border-bottom: 2px solid #F44336;background: #f5f5f5;"><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری محاسبات دوره بهار 98</td></tr>
                 <tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr>
 <!--                <tr><td>20 اسفند 97</td><td>1,200,000</td></tr>-->
-                <tr><td>15 فروردین تا 5 اردیبهشت 98</td><td>1,500,000</td></tr>
+<!--                <tr><td>15 فروردین تا 5 اردیبهشت 98</td><td>1,500,000</td></tr>-->
                 <tr><td>6 اردیبهشت  تا 20 اردیبهشت 98</td><td>1,650,000</td></tr>
                 <tr><td>از 20 اردیبهشت 98 به بعد</td><td>1,800,000</td></tr>
                 <tr><td colspan="2" style="padding: 0;"><a href="/node/21058" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
@@ -62,7 +62,7 @@
                 <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری نظارت دوره بهار 98</td></tr>
                 <tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr>
 <!--                <tr><td>20 اسفند 97</td><td>1,000,000</td></tr>-->
-                <tr><td>15 فروردین تا 5 اردیبهشت 98</td><td>1,200,000</td></tr>
+<!--                <tr><td>15 فروردین تا 5 اردیبهشت 98</td><td>1,200,000</td></tr>-->
                 <tr><td>6 اردیبهشت  تا 20 اردیبهشت 98</td><td>1,300,000</td></tr>
                 <tr><td>از 20 اردیبهشت 98 به بعد</td><td>1,500,000</td></tr>
                 <tr><td colspan="2" style="padding: 0;"><a href="/node/21059" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
@@ -91,7 +91,7 @@
                 <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین محاسبات دوره بهار 98</td></tr>
                 <tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr>
 <!--                <tr><td>20 اسفند 97</td><td>900,000</td></tr>-->
-                <tr><td>15 فروردین تا 5 اردیبهشت 98</td><td>1,100,000</td></tr>
+<!--                <tr><td>15 فروردین تا 5 اردیبهشت 98</td><td>1,100,000</td></tr>-->
                 <tr><td>6 اردیبهشت  تا 20 اردیبهشت 98</td><td>1,300,000</td></tr>
                 <tr><td>از 20 اردیبهشت 98 به بعد</td><td>1,400,000</td></tr>
                 <tr><td colspan="2" style="padding: 0;"><a href="/node/21094" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
@@ -118,7 +118,7 @@
                 <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین نظارت دوره بهار 98</td></tr>
                 <tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr>
 <!--                <tr><td>20 اسفند 97</td><td>700,000</td></tr>-->
-                <tr><td>15 فروردین تا 5 اردیبهشت 98</td><td>800,000</td></tr>
+<!--                <tr><td>15 فروردین تا 5 اردیبهشت 98</td><td>800,000</td></tr>-->
                 <tr><td>6 اردیبهشت  تا 20 اردیبهشت 98</td><td>1,000,000</td></tr>
                 <tr><td>از 20 اردیبهشت 98 به بعد</td><td>1,100,000</td></tr>
                 <tr><td colspan="2" style="padding: 0;"><a href="/node/21095" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
@@ -153,7 +153,7 @@
                 <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره حضوری نظارت و اجرا معماری دوره بهار 98</td></tr>
                 <tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr>
 <!--                <tr><td>20 اسفند 97</td><td>1,400,000</td></tr>-->
-                <tr><td>15 فروردین تا 5 اردیبهشت 98</td><td>1,550,000</td></tr>
+<!--                <tr><td>15 فروردین تا 5 اردیبهشت 98</td><td>1,550,000</td></tr>-->
                 <tr><td>6 اردیبهشت  تا 20 اردیبهشت 98</td><td>1,850,000</td></tr>
                 <tr><td>از 20 اردیبهشت 98 به بعد</td><td>2,000,000</td></tr>
                 <tr><td colspan="2" style="padding: 0;"><a href="/node/21088" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
@@ -195,8 +195,6 @@
                 <tbody>
                 <tr><td colspan="2">تخفیفات&nbsp; ویژه&nbsp; دوره آنلاین نظارت و اجرا معماری دوره بهار 98</td></tr>
                 <tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr>
-<!--                <tr><td>20 اسفند 97</td><td>1,000,000</td></tr>-->
-                <tr><td>15 فروردین تا 5 اردیبهشت 98</td><td>1,200,000</td></tr>
                 <tr><td>6 اردیبهشت  تا 20 اردیبهشت 98</td><td>1,350,000</td></tr>
                 <tr><td>از 20 اردیبهشت 98 به بعد</td><td>1,500,000</td></tr>
                 <tr><td colspan="2" style="padding: 0;"><a href="/node/21089" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>

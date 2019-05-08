@@ -257,7 +257,6 @@ ul#admin-menu-menu > li:nth-child(5), ul#admin-menu-menu > li:nth-child(6), ul#a
     height: 100%;
     transition: all 0.3s ease;
     z-index: 1;
-    display: block;
 }
 .address-pane-table tr {
   border: none;
@@ -1439,6 +1438,7 @@ td {
   position: relative;
 }
 .page-shop.page-products section#main:before {
+    content: '';
   position: absolute !important;
   height: 400px;
 /*  background: linear-gradient(to bottom right,#e040fb, #ba68c8 30%, #9c27b0 80%,#ba68c8 110%);*/
@@ -1448,6 +1448,7 @@ td {
   width: 100%;
   margin-top: -15px;
 }
+
 div#block-block-38 {
   clear: both;
   width: 100vw;
@@ -2142,13 +2143,14 @@ div#latest_shop {
   margin: 0 !important;
 }
 .page-store .views_slideshow_slide > .views-row {
-  width: 18.5%;
-  max-width: 270px;
-  vertical-align: top;
-  margin: 0.5% !important;
-  display: inline-block;
-  box-sizing: border-box;
-  min-width: 175px;
+
+    width: calc(20% - 23px);
+    /* max-width: 270px; */
+    vertical-align: top;
+    margin: 10px !important;
+    display: inline-block;
+    box-sizing: border-box;
+    /* min-width: 175px; */
 }
 .pane-shop-products .pane-title,
 .pane-new-shopping .pane-title,
@@ -4337,11 +4339,16 @@ div#block-block-26 .content a:after {
   padding: 10px;
   width: 30px;
 }
+
+.important4 .pane-contnet {
+    text-align: center;
+}
+
 .important4 .views-row {
-  width: 23%;
+  width: calc(24% - 10px);
   display: inline-block;
-  margin: 0 1%;
-  float: right;
+    margin: 10px 5px;
+  /*float: right;*/
 }
 .important4 div.node-teaser {
 	  /* background: transparent; */
@@ -4373,17 +4380,22 @@ div#block-block-26 .content a:after {
     display: inline-block;
 }
 .important4 .pane-title {
-  text-align: right;
-  display: inline-block;
+  text-align: center;
+  display: block;
   padding: 0 15px;
 }
+
+.important4 a.more{
+    margin-bottom: 30px!important;
+}
+
 .important4 .pane-title:after {
-  width: 400px;
-  right: 0;
-  margin: 0;
-  border: none;
-  background: linear-gradient(to bottom left, #00fff3 ,#9104ff);
-  height: 3px;
+  /*width: 400px;*/
+  /*right: 0;*/
+  /*margin: 0;*/
+  /*border: none;*/
+  /*background: linear-gradient(to bottom left, #00fff3 ,#9104ff);*/
+  /*height: 3px;*/
 }
 .pane-new-shopping:last-child {
   padding-bottom: 130px;
@@ -5133,227 +5145,253 @@ div#block-views-exp-glrnew-page-2 div#edit-populate-wrapper >div>div {
 	padding: 75px 8%;
 	margin-bottom: 0;
 }
-.namayandegi:before {
-  content: "SEiSMOSOFT";
-  color: #999;
-  font-size: 160px;
-  letter-spacing: -10px;
-  font-weight: bold;
-  position: absolute;
-  z-index: 0;
-  opacity: 0.1;
-  bottom: 15px;
-  line-height: 0em;
-  left: 40px;
-}
-.namayandegi h2:before {
-  content: "";
-  position: absolute;
-  width: 130px;
-  height: 3px;
-  background: #883ab7;
-  bottom: -10px;
-  right: 0px;
-  box-shadow: rgba(136, 58, 183, 0.15) 0px 1px 6px, rgba(136, 58, 183, 0.157) 0px 1px 4px;
-}
-.namayandegi h2 {
-  position: relative;
-}
-#pbd-panel img.main-seismo {
-  z-index: 1;
-  position: relative;
-  width: 250px;
-  margin: -50px 20px 0;
-}
-.namayandegi .pane-content div {
-  margin: 40px 50px 0px 0;
-  max-width: 600px;
-}
-.front .namayandegi .pane-content div {
-    max-width: 695px;
-}
-.front .namayandegi .pane-content > p > a > img {
-	margin-top: -60px;
-	margin-right:10px;
-}
-.namayandegi .pane-content div p {
-  line-height: 2.4em !important;
-}
-#pbd-panel div.link-to ,
-.namayandegi div.link-to {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 0 !important;
-}
-#pbd-panel div.link-to img ,
-.namayandegi div.link-to img {
-  background: #fff;
-  position: relative;
-  padding: 6px;
-  box-shadow: 0 2px 2px #edeef0;
-  transition: all 0.2s;
-}
-#pbd-panel div.link-to img:hover ,
-.namayandegi div.link-to img:hover {
-  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-}
-#pbd-panel div.link-to p:first-child:before ,
-.namayandegi div.link-to p:first-child:before {
-  content: "\f04f";
-  font-family: mat;
-  color: #673AB7;
-  margin-left: 10px;
-  font-size: 20px;
-  vertical-align: middle;
-}
-.namayandegi .pane-content:before {
-  content: "";
-  width: 1px;
-  height: calc(100% - -30px);
-  position: absolute;
-  background: #dad1e2;
-  top: -30px;
-  right: 10px;
-}
-.namayandegi .pane-content:after {
-  content: "";
-  width: 300px;
-  height: 3px;
-  position: absolute;
-  background: #dad1e2;
-  bottom: 0;
-  right: 10px;
-}
-.namayandegi .pane-content {
-  position: relative;
-}
-#pbd-panel .introduction {
-  padding: 50px 50px 80px;
-}
-#pbd-panel .introduction h2 {
-  text-align: center;
-  margin: 0 0 30px;
-  position: relative;
-}
-#pbd-panel .introduction h2:before {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  width: 80px;
-  height: 2px;
-  background: #673AB7;
-  right: calc(50% - 40px);
-}
-#pbd-panel ul.pbd-menu a:before, 
-#pbd-panel ul.pbd-menu a:after {
-  content: "";
-  width: 10px;
-  height: 10px;
-  position: absolute;
-  right: -5px;
-  background: #673AB7;
-  border-radius: 50%;
-  top: calc(50% - 7px);
-}
-#pbd-panel ul.pbd-menu a:hover:after {
-  opacity: 0;
-  width: 30px;
-  height: 30px;
-  right: -15px;
-  top: calc(50% - 17px);
-  transition: all 0.8s ease;
-}
-#pbd-panel .kargah-register div.kargah a {
-  padding: 10px 35px;
-  border: 1px solid #ddd;
-  margin: 10px;
-  display: inline-block;
-  min-width: 60%;
-  color: #555 !important;
-  transition: all 0.2s;
-  position: relative;
-  font-weight: 500;
-}
-#pbd-panel .kargah-register .kargah {
-  width: 50%;
-}
-#pbd-panel .kargah-register {
-  background: #fff;
-  padding: 30px;
-  margin-top: 50px;
-  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-}
-#pbd-panel .kargah-register .pane-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-#pbd-panel .kargah-register div.kargah a:before {
-  content: "\f04f";
-  font-family: mat;
-  color: #673AB7;
-  font-size: 25px;
-  vertical-align: middle;
-  margin: 0 -20px 0 10px;
-}
-#pbd-panel .kargah-register div.kargah a:hover {
-  background: #f9f9f9;
-}
-#pbd-panel .introduction .pane-content {
-  background: #fefefe;
-  padding: 20px 25px 30px;
-  border-radius: 2px;
-  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-}
-.page-winter95 .first-p {
-  background: #fefefe;
-  padding: 15px 15px 15px 80px;
-  margin: 0 0 40px 0;
-  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px; 
-  position: relative;
-}
-.page-winter95 .product-section > p {
-  margin: -64px auto 60px;
-  text-align: center;
-  border-bottom: 1px solid #FF5722;
-  padding: 10px;
-  position: relative;
-  z-index: 1;
-  width: 500px;
-  background: #fff;
-  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-}
-.page-winter95 .product-section div,
-.page-winter95 .product-section img {
-  width: 40%;
-  display: inline-block;
-  vertical-align: top;
-}
-.page-winter95 .product-section div{
-  width: 60%;
-  padding: 0 5%;
-}
-.page-winter95 .product-section {
-  margin: 70px 0;
-}
-.page-winter95 .other-section {
-  margin: 150px 0 20px;
-  display: flex;
-}
-.page-winter95 p.title {
-  margin: 50px 0 0;
-  position: relative;
-  font-size: 22px !important;
-  font-weight: 500 !important;
-}
-.page-winter95 p.title:before {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 50%;
-  right: 25%;
-  /* background: #fff; */
+/*.namayandegi:before {*/
+  /*content: "SEiSMOSOFT";*/
+  /*color: #999;*/
+  /*font-size: 160px;*/
+  /*letter-spacing: -10px;*/
+  /*font-weight: bold;*/
+  /*position: absolute;*/
+  /*z-index: 0;*/
+  /*opacity: 0.1;*/
+  /*bottom: 15px;*/
+  /*line-height: 0em;*/
+  /*left: 40px;*/
+/*}*/
+.namayandegi .owl-slide.seismo:before {
+    content: "SEiSMOSOFT";
+    color: #999;
+    font-size: 160px;
+    letter-spacing: -10px;
+    font-weight: bold;
+    position: absolute;
+    z-index: 0;
+    opacity: 0.1;
+    bottom: 15px;
+    line-height: 0em;
+    left: 40px;
+    }
+.namayandegi .owl-slide.visicon:before {
+    content: "VISICON";
+    color: #999;
+    font-size: 160px;
+    letter-spacing: -10px;
+    font-weight: bold;
+    position: absolute;
+    z-index: 0;
+    opacity: 0.1;
+    bottom: 15px;
+    line-height: 0em;
+    left: 40px;
+    }
+    .namayandegi h2:before {
+      content: "";
+      position: absolute;
+      width: 130px;
+      height: 3px;
+      background: #883ab7;
+      bottom: -10px;
+      right: 0px;
+      box-shadow: rgba(136, 58, 183, 0.15) 0px 1px 6px, rgba(136, 58, 183, 0.157) 0px 1px 4px;
+    }
+    .namayandegi h2 {
+      position: relative;
+    }
+    #pbd-panel img.main-seismo {
+      z-index: 1;
+      position: relative;
+      width: 250px;
+      margin: -50px 20px 0;
+    }
+    .namayandegi .pane-content div {
+      margin: 40px 50px 0px 0;
+      max-width: 600px;
+    }
+    .front .namayandegi .pane-content div {
+        max-width: 695px;
+    }
+    .front .namayandegi .pane-content > p > a > img {
+        margin-top: -60px;
+        margin-right:10px;
+    }
+    .namayandegi .pane-content div p {
+      line-height: 2.4em !important;
+    }
+    #pbd-panel div.link-to ,
+    .namayandegi div.link-to {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0 !important;
+    }
+    #pbd-panel div.link-to img ,
+    .namayandegi div.link-to img {
+      background: #fff;
+      position: relative;
+      padding: 6px;
+      box-shadow: 0 2px 2px #edeef0;
+      transition: all 0.2s;
+    }
+    #pbd-panel div.link-to img:hover ,
+    .namayandegi div.link-to img:hover {
+      box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    }
+    #pbd-panel div.link-to p:first-child:before ,
+    .namayandegi div.link-to p:first-child:before {
+      content: "\f04f";
+      font-family: mat;
+      color: #673AB7;
+      margin-left: 10px;
+      font-size: 20px;
+      vertical-align: middle;
+    }
+    .namayandegi .pane-content:before {
+      content: "";
+      width: 1px;
+      height: calc(100% - -30px);
+      position: absolute;
+      background: #dad1e2;
+      top: -30px;
+      right: 10px;
+    }
+    .namayandegi .pane-content:after {
+      content: "";
+      width: 300px;
+      height: 3px;
+      position: absolute;
+      background: #dad1e2;
+      bottom: 0;
+      right: 10px;
+    }
+    .namayandegi .pane-content {
+      position: relative;
+    }
+    #pbd-panel .introduction {
+      padding: 50px 50px 80px;
+    }
+    #pbd-panel .introduction h2 {
+      text-align: center;
+      margin: 0 0 30px;
+      position: relative;
+    }
+    #pbd-panel .introduction h2:before {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      width: 80px;
+      height: 2px;
+      background: #673AB7;
+      right: calc(50% - 40px);
+    }
+    #pbd-panel ul.pbd-menu a:before,
+    #pbd-panel ul.pbd-menu a:after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      right: -5px;
+      background: #673AB7;
+      border-radius: 50%;
+      top: calc(50% - 7px);
+    }
+    #pbd-panel ul.pbd-menu a:hover:after {
+      opacity: 0;
+      width: 30px;
+      height: 30px;
+      right: -15px;
+      top: calc(50% - 17px);
+      transition: all 0.8s ease;
+    }
+    #pbd-panel .kargah-register div.kargah a {
+      padding: 10px 35px;
+      border: 1px solid #ddd;
+      margin: 10px;
+      display: inline-block;
+      min-width: 60%;
+      color: #555 !important;
+      transition: all 0.2s;
+      position: relative;
+      font-weight: 500;
+    }
+    #pbd-panel .kargah-register .kargah {
+      width: 50%;
+    }
+    #pbd-panel .kargah-register {
+      background: #fff;
+      padding: 30px;
+      margin-top: 50px;
+      box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    }
+    #pbd-panel .kargah-register .pane-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #pbd-panel .kargah-register div.kargah a:before {
+      content: "\f04f";
+      font-family: mat;
+      color: #673AB7;
+      font-size: 25px;
+      vertical-align: middle;
+      margin: 0 -20px 0 10px;
+    }
+    #pbd-panel .kargah-register div.kargah a:hover {
+      background: #f9f9f9;
+    }
+    #pbd-panel .introduction .pane-content {
+      background: #fefefe;
+      padding: 20px 25px 30px;
+      border-radius: 2px;
+      box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    }
+    .page-winter95 .first-p {
+      background: #fefefe;
+      padding: 15px 15px 15px 80px;
+      margin: 0 0 40px 0;
+      box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+      position: relative;
+    }
+    .page-winter95 .product-section > p {
+      margin: -64px auto 60px;
+      text-align: center;
+      border-bottom: 1px solid #FF5722;
+      padding: 10px;
+      position: relative;
+      z-index: 1;
+      width: 500px;
+      background: #fff;
+      box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    }
+    .page-winter95 .product-section div,
+    .page-winter95 .product-section img {
+      width: 40%;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .page-winter95 .product-section div{
+      width: 60%;
+      padding: 0 5%;
+    }
+    .page-winter95 .product-section {
+      margin: 70px 0;
+    }
+    .page-winter95 .other-section {
+      margin: 150px 0 20px;
+      display: flex;
+    }
+    .page-winter95 p.title {
+      margin: 50px 0 0;
+      position: relative;
+      font-size: 22px !important;
+      font-weight: 500 !important;
+    }
+    .page-winter95 p.title:before {
+      content: "";
+      position: absolute;
+      display: block;
+      width: 50%;
+      right: 25%;
+      /* background: #fff; */
   height: 4px;
   bottom: -10px;
   /* box-shadow: 0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12); */
