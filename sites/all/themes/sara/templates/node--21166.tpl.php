@@ -55,6 +55,11 @@
 </section>
 
 <section id="forth">
+    <p style="text-align: center;font-size: 15px;padding: 20px;background-color: #fafafa;margin: 0px 10%;border: 1px solid #eee;border-radius: 3px;">
+        <strong>
+            <a href="/sites/default/files/spring_sale-civil808visicon.pdf">اطلاعیه: فروش ویژه نرم افزار های سایزموسافت تا 29 اردیبهشت تا 30% تخفیف به همراه برخورداری از امتیازات شرکت در دوره چهارم طراحی عملکردی‎</a>
+        </strong>
+    </p>
     <p style="text-align: center;	margin-top: 30px; margin-bottom: 20px;	font-size: 15px;color: #888;">
         برای مشاهده ویدئوی قسمت‌هایی از دوره‌های پیشین در گالری وبسایت 808
         <a target="_blank" href="https://civil808.com/gallery/videos/playlist/2440/20150">

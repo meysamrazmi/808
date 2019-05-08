@@ -19,6 +19,9 @@
         <?php
             print($node_content->body['und'][0]['value']);
         ?>
+        <a href="/sites/default/files/spring_sale-civil808visicon.pdf" target="_blank" class="fancy-btn">
+            اطلاعیه: فروش ویژه نرم افزار های سایزموسافت تا 29 اردیبهشت تا 30% تخفیف به همراه برخورداری از امتیازات شرکت در دوره چهارم طراحی عملکردی
+        </a>
         <a href="/node/20605" target="_blank" class="fancy-btn">
             انتشار فایل گزارش مقایسه محاسبات دستی و محاسبات نرم افزار SeismoBuild 2018 مطابق با آیین نامه ASCE 41-17
         </a>
@@ -332,7 +335,7 @@
 <section id="fifth" style="background-color: #f5f5f5;">
     <h2 class="section-title"> لایسنس سخت افزاری Seismosoft </h2>
     <p style="text-align: center;	margin-top: 30px;	font-size: 15px;color: #888;">
-        خریداران می‌توانند با پرداخت 100€ و خرید USB در هر مکانی و با هر سیستم کامپیوتری از نرم‌افزارهای شرکت Seismosoft استفاده کنند.
+        خریداران می‌توانند با پرداخت 150€ و خرید USB در هر مکانی و با هر سیستم کامپیوتری از نرم‌افزارهای شرکت Seismosoft استفاده کنند.
     </p>
     <div class="fifth-wh">
         <div class="field-item even">
@@ -363,7 +366,7 @@
                 <img src="/sites/all/themes/sara/images/usb.svg" width="200px">
             </div>
         <a href="https://civil808.com/node/20641" target="_blank" class="btn">
-            خرید دانگل 100€
+            خرید دانگل 150€
         </a>
     </div>
 
