@@ -2133,6 +2133,8 @@ div#latest_shop {
 .page-shop.page-store .views_slideshow_slide,
 .page-shop.page-store .views_slideshow_cycle_main > div {
   width: 100% !important;
+  overflow : visible !important;
+  text-align: center;
 }
 .pane-shop-products .views-row,
 .page-store .node-product-kit.node-teaser,
