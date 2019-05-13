@@ -14,12 +14,12 @@
 <!--                        </p>-->
 <!--                    </div>-->
 <!--                </a>-->
-                <a class="herfe" href="/node/20190" target="_blank">
+                <a class="herfe" href="/landing/software" target="_blank">
                     <div class="new-title">
-                        <img class="right" src="/sites/all/themes/sara/images/banners/engineerGuy.png">
+                        <img class="right sq" src="https://www.htguk.com/wp-content/uploads/2017/05/container-icon-laptop.png" width="100px" height="100px">
                         <div style="margin-top: 5px;">
-                            <div>ثبت نام دوره های حضوری-آنلاین آمادگی ورود به حرفه عمران و معماری</div>
-                            محاسبات، طراحی، نظارت و اجرا
+                            <div style="color: #6ab547;">جشنواره فروش ویژه نرم افزار های تخصصی عمران و معماری داخلی و خارجی</div>
+                            تا ۳۱ اردیبهشت ماه
                         </div>
                     </div>
                     <div class="left">کلیک کنید
@@ -173,6 +173,11 @@
         div#block-block-45 a.herfe img.right{
             margin: -20px 0px 0 18px;
         }
+        div#block-block-45 a.herfe img.right.sq{
+            height: 80px !important;
+            width: 80px;
+        }
+
         div#block-block-45 a.herfe  img.left{
             transform: rotateY(180deg);
             position: absolute;
