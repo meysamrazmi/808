@@ -136,7 +136,9 @@
 				} else if(!$for_vip){ //normal vip discount
 					$message = 'برای کاربران vip :';
 					$point_needed = round(($point_needed * 0.9), -1);
-				}
+				}elseif($point_needed == 500){
+                    $message = 'دریافت فایل PDF و حمایت از ترجمه کنندگان';
+                }
               print '<span class="n-label">'. $message .'</span><span class="meghdar" style="color: #4CAF50;">' . formatMoney($point_needed) .' تومان </span>';
               ?>
           </div>
