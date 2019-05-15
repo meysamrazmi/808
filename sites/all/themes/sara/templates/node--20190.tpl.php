@@ -197,7 +197,7 @@
                 <tr><td>ثبت نام&nbsp; تا پایان&nbsp; روز کاری&nbsp;&nbsp;</td><td>قیمت&nbsp; دوره (تومان)</td></tr>
                 <tr><td>6 اردیبهشت  تا 20 اردیبهشت 98</td><td>1,350,000</td></tr>
                 <tr><td>از 20 اردیبهشت 98 به بعد</td><td>1,500,000</td></tr>
-                <tr><td colspan="2" style="padding: 0;"><a href="/node/21089" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
+                <tr><td colspan="2" style="padding: 0;"><a href="https://civil808.com/college/herfe/21087/%D8%AF%D9%88%D8%B1%D9%87-%D8%A2%D9%86%D9%84%D8%A7%DB%8C%D9%86-%D9%86%D8%B8%D8%A7%D8%B1%D8%AA-%D9%85%D8%B9%D9%85%D8%A7%D8%B1%DB%8C%D8%9B-%D8%A2%D9%85%D8%A7%D8%AF%DA%AF%DB%8C-%D8%A2%D8%B2%D9%85%D9%88%D9%86-%D9%88%D8%B1%D9%88%D8%AF-%D8%A8%D9%87-%D8%AD%D8%B1%D9%81%D9%87-%D9%86%DB%8C%D9%85%D9%87-%D8%A7%D9%88%D9%84-%D8%B3%D8%A7%D9%84-%DB%B9%DB%B8" target="_blank" class="btn btn-block btn-primary">ثبت نام</a></td></tr>
                 </tbody>
             </table>
         </div>
