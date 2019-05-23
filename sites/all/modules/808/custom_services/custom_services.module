@@ -1023,6 +1023,56 @@ function custom_services_services_resources(){
                         ),
                     ),
                 ),
+                'playlist' => array(
+                    'help' => 'Return the list of playlist',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'content_resource'),
+                    'callback' => 'content_resource_playlist',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'url',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'string',
+                            'description' => 'use for url'
+                        ),
+                        array(
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
+                        ),
+                    ),
+                ),
+                'film' => array(
+                    'help' => 'Return the list of playlist',
+                    'file' => array('type' => 'inc', 'module' => 'custom_services', 'name' => 'content_resource'),
+                    'callback' => 'content_resource_film',
+                    'access callback' => 'user_access',
+                    'access arguments' => array('access content'),
+                    'access arguments append' => FALSE,
+                    'args' => array(
+                        array(
+                            'name' => 'tid',
+                            'optional' => FALSE,
+                            'source' => array('path' => 0),
+                            'type' => 'int',
+                            'description' => 'tid of playlist'
+                        ),
+                        array(
+                            'name' => 'parameter',
+                            'type' => 'array',
+                            'description' => 'The parameter of api.',
+                            'source' => array('param' => 'parameter'),
+                            'optional' => True,
+                            'default value' => array()
+                        ),
+                    ),
+                ),
             ),
         ),
         'payment' => array(
