@@ -16,10 +16,10 @@
 <!--                </a>-->
                 <a class="herfe" href="/landing/software" target="_blank">
                     <div class="new-title">
-                        <img class="right sq" src="https://www.htguk.com/wp-content/uploads/2017/05/container-icon-laptop.png" width="100px" height="100px">
+                        <img class="right sq" src="/sites/all/themes/sara/images/laptop.png">
                         <div style="margin-top: 5px;">
                             <div style="color: #6ab547;">جشنواره فروش ویژه نرم افزار های تخصصی عمران و معماری داخلی و خارجی</div>
-                            تا ۳۱ اردیبهشت ماه
+                            تا ۱۰ خرداد ماه تمدید شد
                         </div>
                     </div>
                     <div class="left">کلیک کنید

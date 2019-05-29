@@ -47,7 +47,7 @@
                         رشته های مورد استفاده:  عمران-معماری-مکانیک-برق
                     </li>
                     <li style="font-size: 13px;color: #909090 !important; padding: 5px 5px;">
-                        مدت زمان تور:  3 روز (1 روز شرکت در آزمون- 1 روز بازدید از پروژه های در حال اجرای بیم در شهر استانبول - 1 روز آموزش رایگان نرم افزار های مرتبط در بیم در محل برگزاری آزمون در شهر استانبول) - کلاس آموزشی قبل از آزمون به مدت 8 ساعت در یکروز در محل موسسه 808 یک هفته قبل آزمون با تدریس مهندس قاسم آریانی برگزار میگردد
+                        مدت زمان تور:  3 روز (1 روز شرکت در آزمون- 1 روز بازدید از پروژه های در حال اجرای بیم در شهر استانبول - 1 روز آموزش رایگان نرم افزار های مرتبط در بیم در محل برگزاری آزمون در شهر استانبول) - کلاس آموزشی قبل از آزمون به مدت 8 ساعت در یکروز در محل موسسه 808 یک هفته قبل آزمون برگزار میگردد
                     </li>
 
                 </ul>
@@ -72,13 +72,13 @@
             print($node_content->body['und'][0]['value']);
             ?>
         </div>
-        <div class="lecturer">
-            <img src="https://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-4445-1529945699.jpg?itok=WHa8HWzj" width="150px" height="auto">
-            <p style="margin: 10px 0 0 0"><strong> مدرس </strong></p>
-            <h3 style="margin:5px"> قاسم آریانی </h3>
-            <p> مدرس تخصصی نرم افزارهای BIM </p>
-            <a href="/user/4445/iran-bim" target="_blank" class="btn btn-primary">رزومه</a>
-        </div>
+<!--        <div class="lecturer">-->
+<!--            <img src="https://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-4445-1529945699.jpg?itok=WHa8HWzj" width="150px" height="auto">-->
+<!--            <p style="margin: 10px 0 0 0"><strong> مدرس </strong></p>-->
+<!--            <h3 style="margin:5px"> قاسم آریانی </h3>-->
+<!--            <p> مدرس تخصصی نرم افزارهای BIM </p>-->
+<!--            <a href="/user/4445/iran-bim" target="_blank" class="btn btn-primary">رزومه</a>-->
+<!--        </div>-->
     </div>
 </section>
 
@@ -294,7 +294,7 @@
                             <br>
                             دسترسی سریع به مدل بدون نیاز به ایجاد حساب کاربری آنلاین
                             <br>
-                            به مناسبت شروع فروش این نرم افزار  تا 15 اردیبهشت با 20% تخفیف عرضه میشود
+                            به مناسبت شروع فروش این نرم افزار  تا 10 خرداد با 20% تخفیف عرضه میشود
                             <br>
                             <a href="http://Civil808.com/node/21393" target="_blank" class="btn has-wave"><span class="click-wave"></span>
                                 خرید بسته با 20% تخفیف فقط 319.2$
@@ -421,18 +421,7 @@
                             <div class="views-field views-field-php-1 send-pm">        <span class="field-content"><a href="/messages/new/1546">ارسال پیام</a></span>  </div>
                             <div class="views-field views-field-php">        <span class="field-content views-field-status-link"><span class="add"><a href="/relationship/1546/request/1?destination=node/19160" class="user_relationships_popup_link">ایجاد ارتباط</a></span>
     </span>  </div>  </div>
-                        <div class="views-row views-row-4 views-row-even">
 
-                            <div class="views-field views-field-counter">    <span class="views-label views-label-counter">#</span>    <span class="field-content">2</span>  </div>
-                            <div class="views-field views-field-picture">        <div class="field-content"><a href="/user/4445/iran-bim"><img src="https://civil808.com/sites/default/files/styles/200x200/public/pictures/picture-4445-1529945699.jpg?itok=WHa8HWzj" width="220" height="220" alt=""></a></div>  </div>
-                            <div class="views-field views-field-field-full-name">        <div class="field-content"><a href="/user/4445" target="_blank">قاسم آریانی</a></div>  </div>
-                            <span class="vip_icon" title="کاربر vip"></span>
-                            <div class="views-field views-field-rid">    <span class="views-label views-label-rid">نقش‌ها: </span>    <span class="field-content">Vip, مشاور, همکاران</span>  </div>
-                            <div class="views-field views-field-created">    <span class="views-label views-label-created">عضو به مدت: </span>    <span class="field-content">2 سال 7 ماه</span>  </div>
-                            <div class="views-field views-field-field-experts">        <div class="field-content"><a href="">BIM</a><a href="">Autodesk Revit Structure</a><a href="">Revit Architecture</a></div>  </div>
-                            <div class="views-field views-field-php-1 send-pm">        <span class="field-content"><a href="/messages/new/4445">ارسال پیام</a></span>  </div>
-                            <div class="views-field views-field-php">        <span class="field-content views-field-status-link"><span class="add"><a href="/relationship/4445/request/1?destination=node/19160" class="user_relationships_popup_link">ایجاد ارتباط</a></span>
-    </span>  </div>  </div>
                     </div>
                 </div>
                 <?php
