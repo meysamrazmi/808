@@ -795,8 +795,8 @@ section#profile h2 {
 	margin: 30px 70px 20px;
 }
 .panel h2 {
-	font-family: lalezar;
-	font-size: 2.5rem;
+	/*font-family: lalezar;*/
+	font-size: 25px;
 }
 section#profile h2:before {
 	content: "\f2a1";
@@ -1108,7 +1108,7 @@ p.section-title {
 }
 section#college {
     background-color: #fafafa;
-    padding: 70px 0 101px;
+    padding: 70px 0 150px;
 }
 #software img{
     margin: 0 8%;
@@ -1184,13 +1184,16 @@ h2:before {
     color: #fff !important;
     background-color: #2196f3;
 }
+#college .item img{
+    width: 100%;
+}
 #college .item {
     margin: 15px;
     box-shadow: rgba(0,0,0,0.117647) 0 1px 6px, rgba(0,0,0,0.117647) 0 1px 4px;
     background: #fff;
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 20%;
 }
 #college .item span{
     padding: 10px;
@@ -1198,10 +1201,7 @@ h2:before {
     line-height: 30px;
 }
 #college .items {
-    display: flex;
-    justify-content: space-evenly;
     width: 90%;
-    align-items: flex-start;
     margin: auto;
     margin-top: 35px;
 }
@@ -1345,4 +1345,575 @@ section#aplication {
         padding: 8vh 0 10vh 0;
     }
 
+}
+
+
+
+
+#festival-prods .card-holder{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: justify;
+}
+#festival-prods .product-catalog{
+    width: 80%;
+    margin: auto;
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    text-align: center;
+    align-content: center;
+}
+#festival-prods .product-catalog .card {
+    padding: 10px;
+    display: block;
+}
+
+#festival-prods .product-catalog .card .card-content:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+#festival-prods .product-catalog .card .card-content{
+    height: auto;
+    padding: 10px;
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    box-shadow: rgba(0, 0, 0, 0.156863) 0px 1px 6px, rgba(0, 0, 0, 0.227451) 0px 1px 6px;
+}
+#festival-prods .product-catalog .card .card-content .img{
+    /*width: calc( 50% - 20px );*/
+    padding: 10px;
+    width: 50px;
+    display: inline-block;
+    float: right;
+}
+#festival-prods .product-catalog .card .card-content .img img{
+    width: 100%;
+}
+
+#festival-prods .product-catalog .card .card-content .content .product-links {
+    display: flex;
+    flex-wrap: wrap;
+    padding-right: 0;
+    list-style: none;
+}
+
+#festival-prods .product-catalog .card .card-content .content .product-links li{
+    width: 33%;
+    display: inline-block;
+}
+#festival-prods .product-catalog .card .card-content .content .product-links li a{
+
+    display: block;
+    line-height: 32px;
+    max-width: 400px;
+    color: #26a69a;
+    transition: 0.5s;
+
+
+}
+#festival-prods .product-catalog .card .card-content .content .product-links li a:before {
+    content: '\f337';
+    font-family: mat;
+    font-size: 18px;
+    display: inline-block;
+    padding-left: 10px;
+    color: #212121;
+    transition: 0.5s;
+}
+
+#festival-prods .product-catalog .card .card-content .content .product-links li a:hover,
+#festival-prods .product-catalog .card .card-content .content .product-links li a:hover:before{
+    opacity: 0.6;
+}
+#festival-prods .product-catalog .card .card-content .content{
+    width: calc(100% - 90px);
+    text-align: right;
+    float: right;
+    padding: 10px;
+}
+#festival-prods .product-catalog .card .card-content .content .download-catalog{
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    padding: 5px 20px;
+    font-size: 15px;
+    color: #fff;
+    background: #26a69a;
+    border-radius: 2px;
+    display: inline-block;
+    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    transition: 0.5s;
+}
+
+#festival-prods .product-catalog .card .card-content .content .download-catalog:hover {
+    box-shadow: rgba(0, 0, 0, 0.117647) 3px 5px 6px, rgba(0, 0, 0, 0.117647) 3px 5px 4px;
+}
+#festival-prods .product-catalog .card .card-content .content .download-catalog:before {
+    content: "\f225";
+    font-family: mat;
+    color: white;
+    font-size: 18px;
+    position: relative;
+    top: 3px;
+    font-weight: normal;
+    display: inline-block;
+}
+
+#festival-prods .product-catalog .card .card-content .content h3 {
+    margin-top: 0;
+}
+
+
+#festival-prods .card-holder .card a {
+    color: #7B1FA2;
+}
+#festival-prods .card-holder .card {
+    width: calc(50% - 20px);
+    padding: 10px;
+    /*display: inline-block;*/
+}
+
+
+#festival-prods .card-holder .card .card-content{
+    padding: 10px;
+    height: inherit;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: rgba(0, 0, 0, 0.156863) 0px 1px 6px, rgba(0, 0, 0, 0.227451) 0px 1px 6px;
+}
+#festival-prods .card-holder .card .card-content .img{
+    width: calc( 30% - 20px );
+    padding: 10px;
+}
+#festival-prods .card-holder .card .card-content .content{
+    width: calc( 70% - 20px );
+    padding: 10px;
+}
+#festival-prods .card-holder .card .card-content .content .new-price{
+    display: inline-block;
+    padding: 0 10px;
+    color: #43A047;
+}
+#festival-prods .card-holder .card .card-content .content .linethrough{
+    padding: 0 10px;
+    display: inline-block;
+    text-decoration: line-through;
+    color: #e53935;
+}
+
+@media screen and (max-width: 1000px) {
+    #festival-prods .card-holder{
+        width: 80%;
+        margin: auto;
+        /*display: flex;*/
+        /*flex-wrap: wrap;*/
+        text-align: center;
+        align-content: center;
+    }
+    #festival-prods .card-holder .card .card-content .img{
+        width: 100%!important;
+        padding: 10px;
+    }
+    #festival-prods .card-holder .card .card-content .img img {
+        width: 50% !important;
+        display: block;
+        margin: auto;
+    }
+
+    #festival-prods .card-holder .card .card-content .content{
+        width: 100% !important;
+        padding: 10px;
+    }
+}
+@media screen and (max-width: 800px) {
+    #festival-prods .card-holder{
+        width: 100%;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        align-content: center;
+    }
+    #festival-prods .product-catalog {
+        width: 100%;
+        margin: auto;
+        /* display: flex; */
+        /* flex-wrap: wrap; */
+        text-align: center;
+        align-content: center;
+    }
+    #festival-prods .product-catalog .card .card-content .img{
+        /*width: calc( 50% - 20px );*/
+        padding: 10px;
+        width: 30px;
+        display: inline-block;
+        float: right;
+    }
+    #festival-prods .product-catalog .card .card-content .content .download-catalog{
+        position: absolute;
+        left: 30px;
+        top: 30px;
+        padding: 5px;
+        font-size: 10px;
+        line-height: 20px;
+        color: #fff;
+        background: #26a69a;
+        border-radius: 2px;
+        display: inline-block;
+        box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+        transition: 0.5s;
+    }
+    #festival-prods .card-holder .card {
+        width: 100%;
+        padding: 10px;
+    }
+    #festival-prods .card-holder .card .card-content .img img{
+        width: 100%!important;
+    }
+    #festival-prods .card-holder .card .card-content .img{
+        width: calc( 30% - 20px ) !important;
+        padding: 10px;
+    }
+    #festival-prods .card-holder .card .card-content .content{
+        width: calc( 70% - 20px )!important;
+        padding: 10px;
+    }
+
+    #festival-prods .product-catalog .card .card-content .content .product-links li{
+        width: 50%;
+        display: inline-block;
+    }
+
+}
+
+
+.contain {
+    margin: 50px 0;
+    text-align: center;
+}
+
+.contain div {
+    text-align: center;
+}
+
+.contain h3 {
+    display: inline-block;
+    margin: 30px 0 0;
+    border-bottom: 1px solid #2196F3;
+    font-size: 1.8rem;
+    text-align: center;
+    padding: 5px;
+}
+
+.contain.profit h3 {
+    margin-top: 0;
+    border-color: #F44336 !important;
+}
+.contain.profit h3:before {
+    content: "\f2a1";
+    color: #F44336;
+}
+
+.contain h3:before {
+    content: "\f346";
+    font-family: mat;
+    font-size: 3rem;
+    color: #2196F3;
+    vertical-align: middle;
+    margin-left: 15px;
+}
+
+.red-text {
+    color: #F44336 !important;
+}
+
+.item.carousel-item {
+    padding: 10px;
+    width: 250px !important;
+    margin-right: 10px;
+}
+
+
+#work-with-us .btn {
+    padding: 5px 20px;
+    font-size: 15px;
+    color: #fff !important;
+    background: #2196F3;
+    border-radius: 2px;
+    margin: 10px 0 10px;
+    display: inline-block;
+    background-image: linear-gradient(-180deg,hsla(0,0%,100%,.18),hsla(0,0%,100%,0));
+    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+}
+.work-with-us {
+    background-image: url(/96/daneshjoo23/img/bcg_slide-3.jpg);
+    background-size: cover;
+    border-bottom: 1px solid #555;
+    min-height: calc(100vh - 160px);
+    padding: 80px 0;
+    position: relative;
+}
+.work-with-us:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+.mazaya a{
+    border-radius: 2px;
+    line-height: 30px;
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    transition: all 0.2s;
+    box-shadow: rgba(0,0,0,0.117647) 0px 1px 6px, rgba(0,0,0,0.117647) 0px 1px 4px;
+    outline: none;
+    color: #2196f3 !important;
+    border: 1px solid #2196f3;
+    margin: 16px 8px 12px 8px;
+    box-sizing: border-box;
+    vertical-align: top;
+    width: 109px;
+    text-decoration: none;
+}
+.mazaya{
+    text-align: center;
+    margin: 50px auto 100px;
+    width: 100%;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+}
+.mazaya li{
+    line-height: 26px;
+    background-color: #ffffff;
+    margin: 50px 3%;
+    padding: 87px 15px 15px 15px;
+    width: 249px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    min-height: 147px;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    font-size: 16px;
+    line-height: 29px;
+}
+.mazaya li:before {
+    content: "";
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 20px 0px 30px 0px;
+    position: absolute;
+    top: -70px;
+    right: 86px;
+    box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
+    border-radius: 50%;
+    background: url(https://civil808.com/sites/all/themes/sara/images/moshaver-like.svg);
+}
+.mazaya li:nth-child(1):before{
+    background: url(https://civil808.com/sites/all/themes/sara/images/moshaver-doc.svg);
+}
+.mazaya li:nth-child(2):before{
+    background: url(http://land.civil808.com/98/eid/images/conv.png);
+    background-size: contain;
+}
+
+#slide-2 {
+    padding: 30px 0 0;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    color: #fff;
+}
+
+#webform-client-form-9969>div>div {
+    width: 51%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.node-webform .form-item {
+    transition: all .2s ease;
+    border-radius: 4px 0 0 4px;
+}
+.form-item {
+    min-height: 42px;
+}
+.form-item, .form-actions {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.form-item label {
+    font-size: 14px;
+    font-weight: 500;
+}
+.form-item label {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.webform-container-inline label {
+    display: inline;
+    margin-right: 1em;
+}
+.marker, .form-required {
+    color: #f00;
+}
+
+#webform-client-form-9969>div div input {
+    float: left;
+    width: 303px;
+}
+
+.node-webform input.form-text, .node-webform select.form-select {
+    padding: 6px 5px;
+    margin: 0;
+}
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    background-color: #f5f5f5;
+    border: 1px solid #dbdbdb;
+    box-shadow: none;
+    -webkit-transition: border linear .2s,box-shadow linear .2s;
+    -moz-transition: border linear .2s,box-shadow linear .2s;
+    -o-transition: border linear .2s,box-shadow linear .2s;
+    transition: border linear .2s,box-shadow linear .2s;
+}
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    display: inline-block;
+    font-family: irans;
+    padding: 10px 6px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #555;
+    vertical-align: middle;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 2px;
+}
+
+#webform-client-form-9969>div div input {
+    float: left;
+    width: 303px;
+}
+
+.node-webform input.form-text, .node-webform select.form-select {
+    padding: 6px 5px;
+    margin: 0;
+}
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    background-color: #f5f5f5;
+    border: 1px solid #dbdbdb;
+    box-shadow: none;
+    -webkit-transition: border linear .2s,box-shadow linear .2s;
+    -moz-transition: border linear .2s,box-shadow linear .2s;
+    -o-transition: border linear .2s,box-shadow linear .2s;
+    transition: border linear .2s,box-shadow linear .2s;
+}
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    display: inline-block;
+    padding: 10px 6px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #555;
+    vertical-align: middle;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 2px;
+}
+
+#webform-client-form-9969>div div select {
+    float: left;
+    width: 315px;
+}
+
+.node-webform input.form-text, .node-webform select.form-select {
+    padding: 6px 5px;
+    margin: 0;
+}
+.node-webform select {
+    height: 35px;
+}
+.form-textarea-wrapper textarea {
+    display: block;
+    margin: 0;
+    width: calc(100% - 1rem);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+.btn-green, .green-btn, #webform-client-form-9969 input[type="button"], #webform-client-form-9969 input[type="submit"], #webform-client-form-9969 button {
+    border: 0;
+    height: 32px;
+    border-radius: 2px;
+    line-height: 32px;
+    text-align: center;
+    padding: 0 12px;
+    text-shadow: none;
+    display: inline-block;
+    font-size: 12px;
+    font-family: irans;
+    min-width: 88px;
+    transition: all .2s;
+    text-decoration: none;
+    box-shadow: rgba(0,0,0,0.117647) 0 1px 6px, rgba(0,0,0,0.117647) 0 1px 4px;
+    outline: 0;
+    color: #fff !important;
+    background-color: #4caf50;
+    float: left;
+    cursor: pointer;
+    width: 100px !important;
+}
+.form-item label {
+    margin-right: 1rem;
+    line-height: 42px;
+}
+.form-item textarea{
+    margin-right: 1rem;
+}
+#contact {
+    padding: 80px 0;
+}
+
+#contact h3 {
+    text-align: center;
+    color: #424242;
+}
+
+#contact h3 a {
+    cursor: pointer;
+    color: #2196f3;
+}
+
+#forsat,#jazb {
+    font-size: 20px;
+    display: inline-block;
+    margin: 20px 30px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+#forsat:before,#jazb:before {
+    background: #bababa;
+    transition: 0.5s ease-in;
+}
+
+
+h2.active:before,#forsat:hover:before,#jazb:hover:before {
+    background: #4caf50 !important;
 }
