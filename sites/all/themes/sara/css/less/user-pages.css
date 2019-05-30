@@ -3548,6 +3548,23 @@ form#uc-addresses-get-address-form a.cancel-address-link:focus {
 .page-user .main-profile .pane-content .user-info .profile-information .field-name-field-emailtext .field-item {
   padding-top: 6px;
 }
+.page-user .main-profile .pane-content .user-info .profile-information .renew-vip {
+  margin-top: 30px;
+  text-align: center;
+  background-color: #fafafa;
+  padding: 15px 0px;
+  border-radius: 1px;
+  border: solid #9063e5;
+  border-width: 0px 3px;
+  box-shadow: 0 2px 2px #edeef0;
+}
+.page-user .main-profile .pane-content .user-info .profile-information .renew-vip a {
+  color: #777 !important;
+  padding: 10px 100px;
+}
+.page-user .main-profile .pane-content .user-info .profile-information .renew-vip a:hover {
+  color: #bbb !important;
+}
 .page-user .main-profile .pane-content .user-info .profile-relations {
   padding: 15px;
   text-align: center;
