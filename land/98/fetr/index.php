@@ -298,7 +298,7 @@
                         </div>
                         <div class="form-item webform-component webform-component-select webform-component--mrbwt-bh-dprtmn webform-container-inline">
                             <label for="edit-submitted-mrbwt-bh-dprtmn">مربوط به بخش </label>
-                            <select id="edit-submitted-mrbwt-bh-dprtmn" disabled name="submitted[mrbwt_bh_dprtmn]" class="form-select">
+                            <select id="edit-submitted-mrbwt-bh-dprtmn" name="submitted[mrbwt_bh_dprtmn]" class="form-select">
                                 <option value="7" selected>بخش کارآموزی</option>
                             </select>
                         </div>
@@ -341,12 +341,12 @@
                         </div>
                         <div class="form-item webform-component webform-component-select webform-component--mrbwt-bh-dprtmn webform-container-inline">
                             <label for="edit-submitted-mrbwt-bh-dprtmn">مربوط به بخش </label>
-                            <select id="edit-submitted-mrbwt-bh-dprtmn" disabled name="submitted[mrbwt_bh_dprtmn]" class="form-select">
+                            <select id="edit-submitted-mrbwt-bh-dprtmn" name="submitted[mrbwt_bh_dprtmn]" class="form-select">
                                 <option value="7" selected>بخش کارآموزی</option>
                             </select>
                         </div>
                         <div class="form-item webform-component webform-component-textarea webform-component--pygm">
-                            <label for="edit-submitted-pygm">شهر و موقعیت های مدنظر <span class="form-required" title="این فیلد اجباری است.">*</span></label>
+                            <label for="edit-submitted-pygm">شهر و موقعیت های شغلی مدنظر <span class="form-required" title="این فیلد اجباری است.">*</span></label>
                             <div class="form-textarea-wrapper resizable textarea-processed resizable-textarea">
                                 <textarea required="required" placeholder="متن خود را وارد کنید ..." id="edit-submitted-pygm" name="submitted[pygm]" cols="60" rows="5" class="form-textarea required"></textarea>
                                 <div class="grippie"></div>
