@@ -2,7 +2,7 @@
     <div id="block-block-45" class="block block-block contextual-links-region first odd">
         <div class="content">
             <span class="close-banner">X</span>
-            <?php if(rand(0,1) == 0){ ?>
+<!--            --><?php //if(rand(0,1) == 0){ ?>
 <!--                <a class="bim" href="/node/21193" target="_blank">-->
 <!--                    <div class="new-title">-->
 <!--                        <p id="festival-desc" style="">دوره حضوری گام های اجرایی BIM؛ مطالعه موردی: پروژه Expolink امارات-->
@@ -14,34 +14,34 @@
 <!--                        </p>-->
 <!--                    </div>-->
 <!--                </a>-->
-                <a class="herfe" href="/landing/software" target="_blank">
+                <a class="bim" href="http://land.civil808.com/98/fetr" target="_blank">
                     <div class="new-title">
-                        <img class="right sq" src="/sites/all/themes/sara/images/laptop.png">
-                        <div style="margin-top: 5px;">
-                            <div style="color: #6ab547;">جشنواره فروش ویژه نرم افزار های تخصصی عمران و معماری داخلی و خارجی</div>
-                            تا ۱۰ خرداد ماه تمدید شد
+<!--                        <img class="right sq" src="/sites/all/themes/sara/images/laptop.png">-->
+                        <div style="margin-top: 5px; color: #cacaca!important;">
+                            <div style="color: #fff;margin-bottom: -10px">جشنواره فروش ویژه به مناسبت فرارسیدن عید سعید فطر</div>
+                            <span style="font-size: 12px">تا ۳۵ درصد تخفیف از ۱۱ تا ۱۷ خرداد ماه </span>
                         </div>
                     </div>
-                    <div class="left">کلیک کنید
+                    <div class="left" style="color: #fff !important;">کلیک کنید
                         <span>></span>
                     </div>
                     <img style="display: none;" class="left" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">
                 </a>
-            <?php }else{ ?>
-                <a class="herfe" href="/node/20190" target="_blank">
-                    <div class="new-title">
-                        <img class="right" src="/sites/all/themes/sara/images/banners/engineerGuy.png">
-                        <div style="margin-top: 5px;">
-                            <div>ثبت نام دوره های حضوری-آنلاین آمادگی ورود به حرفه عمران و معماری</div>
-                            محاسبات، طراحی، نظارت و اجرا
-                        </div>
-                    </div>
-                    <div class="left">کلیک کنید
-                        <span>></span>
-                    </div>
-                    <img style="display: none;" class="left" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">
-                </a>
-            <?php }?>
+<!--            --><?php //}else{ ?>
+<!--                <a class="herfe" href="/node/20190" target="_blank">-->
+<!--                    <div class="new-title">-->
+<!--                        <img class="right" src="/sites/all/themes/sara/images/banners/engineerGuy.png">-->
+<!--                        <div style="margin-top: 5px;">-->
+<!--                            <div>ثبت نام دوره های حضوری-آنلاین آمادگی ورود به حرفه عمران و معماری</div>-->
+<!--                            محاسبات، طراحی، نظارت و اجرا-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="left">کلیک کنید-->
+<!--                        <span>></span>-->
+<!--                    </div>-->
+<!--                    <img style="display: none;" class="left" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">-->
+<!--                </a>-->
+<!--            --><?php //}?>
         </div>
     </div>
     <style>
@@ -122,17 +122,28 @@
         }
         div#block-block-45 a.bim:before {
             content: "";
-            background: url(/sites/all/themes/sara/images/banners/building-back.PNG);
-            opacity: 0.3;
+            background: url(/sites/all/themes/sara/images/fetr-banner.jpg);
+
             top: 0;
             left: 0;
             bottom: 0;
             right: 0;
             position: absolute;
             z-index: -1;
-            background-position-x: center;
-            background-size: 70%;
+            background-position-x: right;
+            background-size: cover;
             background-position-y: center;
+        }
+        div#block-block-45 a.bim .left{
+            position: absolute;
+            left: 9px;
+            top: 23px;
+        }
+
+        @media (max-width: 600px) {
+            div#block-block-45 a.bim .left{
+                display: none;
+            }
         }
         div#block-block-45 a.bim .new-title{
             font-size: 12px;

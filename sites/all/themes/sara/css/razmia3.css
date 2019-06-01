@@ -5572,7 +5572,7 @@ div#smile {
   padding: 20px 50px;
   border: solid #FFC107;
   border-width: 0 5px;
-  display: none;/*جشنواره festival  */
+  /*display: none;!*جشنواره festival  *!*/
 }
 #smile .festival{
   position: relative;
