@@ -2120,7 +2120,7 @@ function festivals(){
     $setting["product_kit"]["message"] = "۳۰% تخفیف جشنواره";
 
     /*free_charge*/
-    $setting["free_charge"]["price"] = 0.25; // 1 is equal to 100% extra charging
+    $setting["free_charge"]["price"] = 0.05; // 1 is equal to 100% extra charging
     /** for free charging message check festival_resource.inc, festival_information_v_1() function **/
 
     return $setting;

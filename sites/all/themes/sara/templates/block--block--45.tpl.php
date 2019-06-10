@@ -14,33 +14,33 @@
 <!--                        </p>-->
 <!--                    </div>-->
 <!--                </a>-->
-                <a class="bim" href="http://land.civil808.com/98/fetr" target="_blank">
-                    <div class="new-title">
-<!--                        <img class="right sq" src="/sites/all/themes/sara/images/laptop.png">-->
-                        <div style="margin-top: 5px; color: #cacaca!important;">
-                            <div style="color: #fff;margin-bottom: -10px">جشنواره فروش ویژه به مناسبت فرارسیدن عید سعید فطر</div>
-                            <span style="font-size: 12px">تا ۳۵ درصد تخفیف از ۱۱ تا ۱۷ خرداد ماه </span>
-                        </div>
-                    </div>
-                    <div class="left" style="color: #fff !important;">کلیک کنید
-                        <span>></span>
-                    </div>
-                    <img style="display: none;" class="left" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">
-                </a>
-<!--            --><?php //}else{ ?>
-<!--                <a class="herfe" href="/node/20190" target="_blank">-->
+<!--                <a class="bim" href="http://land.civil808.com/98/fetr" target="_blank">-->
 <!--                    <div class="new-title">-->
-<!--                        <img class="right" src="/sites/all/themes/sara/images/banners/engineerGuy.png">-->
-<!--                        <div style="margin-top: 5px;">-->
-<!--                            <div>ثبت نام دوره های حضوری-آنلاین آمادگی ورود به حرفه عمران و معماری</div>-->
-<!--                            محاسبات، طراحی، نظارت و اجرا-->
+<!--<!--                        <img class="right sq" src="/sites/all/themes/sara/images/laptop.png">-->-->
+<!--                        <div style="margin-top: 5px; color: #cacaca!important;">-->
+<!--                            <div style="color: #fff;margin-bottom: -10px">جشنواره فروش ویژه به مناسبت فرارسیدن عید سعید فطر</div>-->
+<!--                            <span style="font-size: 12px">تا ۳۵ درصد تخفیف ویژه تا ۱۸ خرداد ماه تمدید شد</span>-->
 <!--                        </div>-->
 <!--                    </div>-->
-<!--                    <div class="left">کلیک کنید-->
+<!--                    <div class="left" style="color: #fff !important;">کلیک کنید-->
 <!--                        <span>></span>-->
 <!--                    </div>-->
 <!--                    <img style="display: none;" class="left" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">-->
 <!--                </a>-->
+<!--            --><?php //}else{ ?>
+                <a class="herfe" href="/node/20190" target="_blank">
+                    <div class="new-title">
+                        <img class="right" src="/sites/all/themes/sara/images/banners/engineerGuy.png">
+                        <div style="margin-top: 5px;">
+                            <div>ثبت نام دوره های حضوری-آنلاین آمادگی ورود به حرفه عمران و معماری</div>
+                            محاسبات، طراحی، نظارت و اجرا
+                        </div>
+                    </div>
+                    <div class="left">کلیک کنید
+                        <span>></span>
+                    </div>
+                    <img style="display: none;" class="left" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">
+                </a>
 <!--            --><?php //}?>
         </div>
     </div>

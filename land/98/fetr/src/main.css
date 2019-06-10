@@ -1114,15 +1114,26 @@ section#college {
     padding: 70px 0 120px;
 }
 #software img{
-    margin: 0 8%;
-    max-width: 100%;
+    width: 60%;
     height: auto;
 }
 .softwate-text {
     text-align: center;
-    /*margin: 20px 4%;*/
+    width: 40%;
 }
-h2{
+
+@media (max-width: 900px){
+    #software img{
+        width: 100%;
+        height: auto;
+    }
+    .softwate-text {
+        text-align: center;
+        width: 100%;
+    }
+}
+
+h2 {
     font-size: 25px;
     margin-bottom: 35px;
     position: relative;
@@ -1204,7 +1215,7 @@ h2:before {
     line-height: 30px;
 }
 #college .items.playlist {
-    height: 250px;
+    height: 305px;
 }
 #college .items {
     width: 90%;
@@ -2139,4 +2150,10 @@ h2.active:before,#forsat:hover:before,#jazb:hover:before {
 .single-banner img{
     width: 100%;
     box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+}
+
+@media (max-width: 600px) {
+    .single-banner {
+        width: 90%;
+    }
 }

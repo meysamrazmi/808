@@ -114,14 +114,6 @@
           <div class="views-field-field-experts"><div><a href="/landing/members?field_experts_tid=نرم افزار اتوکد، AutoCAD">نرم افزار اتوکد، AutoCAD</a><a href="/landing/members?field_experts_tid=عمران- مهندسی محیط زیست، Environmental Engineering">عمران- مهندسی محیط زیست، Environmental Engineering</a><a href="/landing/members?field_experts_tid=بتن ژئوپلیمری، Geopolymer Concrete">بتن ژئوپلیمری، Geopolymer Concrete</a></div>  </div>  
           <div class="send-pm"><span><a href="/messages/new/12827">ارسال پیام</a></span>  </div>  ',
 
-			'    <div><div><a href="/user/9539/mahboobep"><img src="/sites/default/files/styles/200x200/public/pictures/picture-9539-1543413330.jpg?itok=gZF0ycK1" width="220" height="220" alt=""></a></div>  </div>  
-          <div class="views-field-field-full-name"><div><a href="/user/9539" target="_blank">محبوبه پوریوسفی</a></div>  </div>  
-          <span class="vip_icon" title="کاربر vip"></span>    
-          <div class="views-field-rid">    <span class="views-label-rid">نقش‌ها: </span>    <span class=" role--rid-rid role--rid-role role-administrator-editor-Vip-مترجمین-مشاور-همکاران">administrator, editor, Vip, مترجمین, مشاور, همکاران</span>  </div>  
-          <div >    <span>عضو به مدت: </span>    <span>1 سال 10 ماه</span>  </div>  
-          <div class="views-field-field-experts"><div><a href="/landing/members?field_experts_tid=نرم افزار اتوکد، AutoCAD">نرم افزار اتوکد، AutoCAD</a><a href="/landing/members?field_experts_tid=نرم افزار پلکسیز، Plaxis">نرم افزار پلکسیز، Plaxis</a><a href="/landing/members?field_experts_tid=مهندسی رودخانه، River Engineering">مهندسی رودخانه، River Engineering</a></div>  </div>  
-          <div class="send-pm"><span><a href="/messages/new/9539">ارسال پیام</a></span>  </div>  ',
-
 			'    <div><div><a href="/user/10628/alibanaei"><img src="/sites/default/files/styles/200x200/public/pictures/picture-10628-1514010785.jpg?itok=Og6NpPcC" width="220" height="220" alt=""></a></div>  </div>  
           <div class="views-field-field-full-name"><div><a href="/user/10628" target="_blank">علی بنایی</a></div>  </div>  
           <span class="vip_icon" title="کاربر vip"></span>    
@@ -130,22 +122,6 @@
           <div class="views-field-field-experts"><div><a href="/landing/members?field_experts_tid=برنامه نویسی، Computer Programming">برنامه نویسی، Computer Programming</a></div>  </div>  
           <div class="send-pm"><span><a href="/messages/new/10628">ارسال پیام</a></span>  </div>  ',
 
-			'    <div><div><a href="/user/3300/adminm"><img src="/sites/default/files/styles/200x200/public/pictures/picture-3300-1450163131.jpg?itok=4n77m3hU" width="220" height="220" alt=""></a></div>  </div>  
-          <div class="views-field-field-full-name"><div><a href="/user/3300" target="_blank">میثم رزمی</a></div>  </div>  
-          <span class="vip_icon" title="کاربر vip"></span>    
-          <div class="views-field-rid">    <span class="views-label-rid">نقش‌ها: </span>    <span class=" role--rid-rid role--rid-role role-administrator-editor-Vip-همکاران">administrator, editor, Vip, همکاران</span>  </div>  
-          <div >    <span>عضو به مدت: </span>    <span>3 سال 9 ماه</span>  </div>  
-          <div class="views-field-field-experts"><div><a href="/landing/members?field_experts_tid=برنامه نویسی، Computer Programming">برنامه نویسی، Computer Programming</a></div>  </div>  
-          <div class="send-pm"><span><a href="/messages/new/3300">ارسال پیام</a></span>  </div>  ',
-
-
-			'    <div><div><a href="/user/3989/admin2"><img src="/sites/default/files/styles/200x200/public/pictures/picture-3989-1546068933.jpg?itok=ugDoSL2l" width="220" height="220" alt=""></a></div>  </div>  
-          <div class="views-field-field-full-name"><div><a href="/user/3989" target="_blank">مرجان آشفته</a></div>  </div>  
-          <span class="vip_icon" title="کاربر vip"></span>    
-          <div class="views-field-rid">    <span class="views-label-rid">نقش‌ها: </span>    <span class=" role--rid-rid role--rid-role role-administrator-editor-Vip">administrator, editor, Vip</span>  </div>  
-          <div >    <span>عضو به مدت: </span>    <span>3 سال 6 ماه</span>  </div>  
-          <div class="views-field-field-experts"><div><a href="/landing/members?field_experts_tid=برنامه نویسی، Computer Programming">برنامه نویسی، Computer Programming</a></div>  </div>  
-          <div class="send-pm"><span><a href="/messages/new/3989">ارسال پیام</a></span>  </div>  ',
 
 			'    <div><div><a href="/user/1138/mostafadogoharani"><img src="/sites/default/files/styles/200x200/public/pictures/picture-1138-1550681043.jpg?itok=Ow9gez4I" width="220" height="220" alt=""></a></div>  </div>  
           <div class="views-field-field-full-name"><div><a href="/user/1138" target="_blank">مصطفی دوگوهرانی</a></div>  </div>  

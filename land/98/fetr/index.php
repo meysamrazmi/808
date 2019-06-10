@@ -201,9 +201,13 @@
                 </h2>
 
 
-                    <a href="https://civil808.com/node/21561" target="_blank" class="single-banner">
-                        <img src="https://civil808.com/sites/default/files/field/image/node_21561.jpg" alt="" title="">
-                    </a>
+                <a href="https://civil808.com/node/21561" target="_blank" class="single-banner">
+                    <img src="https://civil808.com/sites/default/files/field/image/node_21561.jpg" alt="" title="">
+                </a>
+
+                <div style="text-align: center">
+                    <a href="https://civil808.com/gallery/videos/playlist/5189/21581" class="btn btn-blue">معرفی صفحه راهنمای کاریابی و کارآموزی مهندسان صنعت ساختمان </a>
+                </div>
 <!--                    <a href="https://civil808.com/node/" target="_blank" class="item">-->
 <!--                        <img src="images/.jpg" alt="" title="">-->
 <!--                    </a>-->
@@ -261,12 +265,18 @@
             <div style="text-align: center" data-aos="fade-up">
                 <a href="https://civil808.com/gallery/videos/playlist/5376/21553" class="btn btn-blue">پلی لیست مجموعه فیلم های کارآموزی و راهنمای شغلی در گالری 808</a>
             </div>
-            <div data-aos="fade-up" class="items main-carousel playlist" data-flickity='{ "wrapAround": true }'>
+            <div data-aos="fade-up" class="items main-carousel playlist" data-flickity=''>
 
                 <a href="https://civil808.com/gallery/videos/playlist/5379/21566" target="_blank" class="item carousel-item">
                     <img src="https://civil808.com/sites/default/files/field/image/node_21566-capture.jpg" alt="" title="">
                     <p>
                         چگونه محل مناسبی برای کارآموزی پیدا کنیم؟
+                    </p>
+                </a>
+                <a href="https://civil808.com/gallery/videos/playlist/5376/21588" target="_blank" class="item carousel-item">
+                    <img src="https://civil808.com/sites/default/files/field/image/node_21588-capture.jpg" alt="" title="">
+                    <p>
+                        از شغل خود راضی نیستید؟ همین الان کاری انجام دهید
                     </p>
                 </a>
             </div>
