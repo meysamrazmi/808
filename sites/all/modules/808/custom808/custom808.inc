@@ -178,7 +178,7 @@ function push_notification_form_validate($form, &$form_state){
         $form_state["values"]["type"] = "";
         $form_state["values"]["nid"] = "";
     }elseif(strcmp($form_state["values"]["type"] , "link") == 0){
-        if(empty($form_state["values"]["nid"]) && strlen($form_state['values']['nid']) == 0)
+            if(empty($form_state["values"]["nid"]) && strlen($form_state['values']['nid']) == 0)
             form_set_error('nid', t('فیلد لینک اجباری است.'));
     }
     else{
@@ -242,7 +242,7 @@ function push_notification_form_submit($form, &$form_state){
         "title" => $data["title"],
         "message" => $data["message"],
         "content_type" => $data["type"],
-        "nid" => $data["type"] != "link" ? $data["nid"] : 0,
+        "nid" => $data["type"] != "link" || $data["type"] != "main" ? $data["nid"] : 0,
         "fid" => !empty($file->fid) ? $file->fid : 0,
         "picture" => $data["image"],
         "receivers" => !empty($roles) ? implode(" , " , $roles) : "",
@@ -659,7 +659,7 @@ function taxonomy_term_page($term){
                 $nodes = node_load_multiple($nids);
                 if (!isset($build[$type])) $build[$type] = array();
                 $build[$type]["#prefix"] = '<div id="' . $type . '" class="node-type-relative"><h2 class="field-label">' . $name . '</h2><div class="field-items">';
-                $build[$type]["#suffix"] = '</div></div>';
+                $build[$type]["#suffix"] = ($type == "questions") ? '</div><div> <a href="/question/list" class="btn blue-btn qa-btn has-wave" target="_blank">ورود به بخش پرسش و پاسخ</a> </div></div>' : '</div></div>';
                 $build[$type]["term"] = node_view_multiple($nodes, $view_mode);
             }
 
