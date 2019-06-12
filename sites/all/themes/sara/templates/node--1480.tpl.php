@@ -93,14 +93,14 @@ $url = "https://civil808.com/sites/default/files" . $url;
             <div class="top">عضویت</div>
             <div class="middle">شش ماهه</div>
             <div class="gheymat">۲۲۰,۰۰۰ تومان</div>
-            <!--<div class="gheymat-ghadim">۲۲۰,۰۰۰ تومان</div>-->
+<!--            <div class="gheymat-ghadim">۲۲۰,۰۰۰ تومان</div>-->
         </a>
         <a class="ozviyat" href="/cart/add/p20657_a73o231?destination=cart">
             <!--<div class="top">تخفیف ویژه عضویت</div>-->
             <div class="top">عضویت</div>
             <div class="middle">یک ساله</div>
             <div class="gheymat">۴۲۰,۰۰۰ تومان</div>
-            <!--<div class="gheymat-ghadim">۴۲۰,۰۰۰ تومان</div>-->
+<!--            <div class="gheymat-ghadim">۴۲۰,۰۰۰ تومان</div>-->
         </a>
     </div>
 </section>

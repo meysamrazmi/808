@@ -493,14 +493,14 @@ function civil808_page_accounting_charge($form, &$form_state, $uid) {
 		/*
 			برای تخفیفات گروهی برای 20 درصد شارژ هدیه
         */
-	/*$form['festival'] = array(
-		'#markup' => '<div id="smile">
-			<canvas>
-			</canvas>
-			<div class="festival">۲۰ شارژ هدیه به مناسبت جشنواره روز مهندس</div>
-			<div class="last-price">مبلغ نهایی شارژ: <span></span> تومان</div>
-			</div>',
-		);*/
+//	$form['festival'] = array(
+//		'#markup' => '<div id="smile">
+//			<canvas>
+//			</canvas>
+//			<div class="festival">۲۰ درصد شارژ هدیه به مناسبت فرارسیدن عید سعید فطر</div>
+//			<div class="last-price">مبلغ نهایی شارژ: <span></span> تومان</div>
+//			</div>',
+//		);
 
 	return $form;
 }
