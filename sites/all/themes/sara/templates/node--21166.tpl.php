@@ -191,7 +191,7 @@ node--21166.tpl.php<img src="/sites/default/files/field/image/node_21166.jpg" wi
                 <div class="inner-text">
                     <p class="text"> مدرس: پروفسور حسن مقدم </p>
                     <p style="padding: 9px 12px 0px 0px;">شامل پذیرایی ناهار و پکیج همراه دوره</p>
-                    <div class="tarikh"> بهار 1398 </div>
+                    <div class="tarikh"> 30 تیر 1398 </div>
                     <div class="makan"> موسسه آموزشی 808 </div>
                     <!--<div class="zaman">25 مهر ساعت 8 تا 17 و 26 مهر 8 تا 12 (جمعا 12 ساعت) </div>-->
                     <div class="mablagh"> 400,000 تومان </div>
@@ -207,7 +207,7 @@ node--21166.tpl.php<img src="/sites/default/files/field/image/node_21166.jpg" wi
                     <p style="padding: 9px 12px 0px 0px;"> شامل پذیرایی ناهار در 2 روز اول و پکیج همراه دوره </p>
                     <!--<p class="important" style="margin: 2px 12px 5px 0;font-weight: bold;background-color: #f5f5f5;padding: 6px 14px;display: inline-block;">به همراه پکیج مخصوص
                     </p>-->
-                    <div class="tarikh"> بهار 1398 </div>
+                    <div class="tarikh"> 30 تیر 1398 </div>
                     <div class="makan"> موسسه آموزشی 808 </div>
                     <!--<div class="zaman"> دوره تئوری: 25 مهر ساعت 8 تا 17 و 26 مهر 8 تا 12، دوره نرم افزاری: 6 روز 9 تا 16 - جمعا 48 ساعت </div>-->
                     <div class="mablagh"> 1,200,000 تومان </div>

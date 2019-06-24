@@ -240,6 +240,7 @@ function linked_in_join(){
             ),
         );
         $user = user_save('', $new_user);
+        _user_mail_notify('register_no_approval_required', $user);
         $profile = profile2_create(array('type' => 'main', 'uid' => $user->uid));
         $profile->field_full_name['und'][0]['value'] = $full_name;
         profile2_save($profile);
