@@ -2,38 +2,12 @@
     <div id="block-block-45" class="block block-block contextual-links-region first odd">
         <div class="content">
             <span class="close-banner">X</span>
-<!--            --><?php //if(rand(0,1) == 0){ ?>
-<!--                <a class="bim" href="/node/21193" target="_blank">-->
-<!--                    <div class="new-title">-->
-<!--                        <p id="festival-desc" style="">دوره حضوری گام های اجرایی BIM؛ مطالعه موردی: پروژه Expolink امارات-->
-<!--                            <br>-->
-<!--                            <span class="sub-title" style="position: relative; font-weight: bold">-->
-<!--                                اردیبهشت ماه 98-->
-<!--                            </span>-->
-<!---->
-<!--                        </p>-->
-<!--                    </div>-->
-<!--                </a>-->
-<!--                <a class="bim" href="http://land.civil808.com/98/fetr" target="_blank">-->
-<!--                    <div class="new-title">-->
-<!--<!--                        <img class="right sq" src="/sites/all/themes/sara/images/laptop.png">-->-->
-<!--                        <div style="margin-top: 5px; color: #cacaca!important;">-->
-<!--                            <div style="color: #fff;margin-bottom: -10px">جشنواره فروش ویژه به مناسبت فرارسیدن عید سعید فطر</div>-->
-<!--                            <span style="font-size: 12px">تا ۳۵ درصد تخفیف ویژه تا ۱۸ خرداد ماه تمدید شد</span>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="left" style="color: #fff !important;">کلیک کنید-->
-<!--                        <span>></span>-->
-<!--                    </div>-->
-<!--                    <img style="display: none;" class="left" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">-->
-<!--                </a>-->
-<!--            --><?php //}else{ ?>
-                <a class="herfe" href="/node/20190" target="_blank">
+                <a class="herfe" href="/landing/career" target="_blank">
                     <div class="new-title">
                         <img class="right" src="/sites/all/themes/sara/images/banners/engineerGuy.png">
                         <div style="margin-top: 5px;">
-                            <div>ثبت نام دوره های حضوری-آنلاین آمادگی ورود به حرفه عمران و معماری</div>
-                            محاسبات، طراحی، نظارت و اجرا
+                            <div>راهنمای کاریابی و کارآموزی برای مهندسان صنعت ساختمان</div>
+                            برای کارآموزی یا جذب کارآموز کلیک نمایید.
                         </div>
                     </div>
                     <div class="left">کلیک کنید
@@ -41,7 +15,6 @@
                     </div>
                     <img style="display: none;" class="left" src="/sites/default/files/attachfromftp/node-19072/banner-pic.png">
                 </a>
-<!--            --><?php //}?>
         </div>
     </div>
     <style>

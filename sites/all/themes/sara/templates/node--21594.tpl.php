@@ -125,7 +125,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </section>
 
@@ -153,6 +152,36 @@
             <a href="https://civil808.com/messages/new/1138/" class="btn btn-primary">ارسال پیام</a>
             <div style="margin-bottom: 160px"></div>
         </div>
+    </div>
+</section>
+
+<section class="consultors related-cards page-section">
+    <h2>
+        در رابطه با مشاوره
+    </h2>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card card-profile">
+                <a href="/node/21436">
+                    <img class="full" src="https://civil808.com/sites/default/files/field/image/node_21436_0.jpg" style="margin-bottom: -7px" alt="">
+                </a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card card-profile">
+                <a href="/node/5539">
+                    <img class="full" src="https://civil808.com/sites/default/files/styles/uc_product/public/field/image/node_5539.jpg?itok=V_-PlrBf" style="margin-bottom: -7px" alt="">
+                </a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card card-profile">
+                <a href="https://civil808.com/edu95/phd">
+                    <img class="full" src="https://civil808.com/sites/default/files/field/image/node_11240_0.jpg" style="margin-bottom: -7px" alt="">
+                </a>
+            </div>
+        </div>
+
     </div>
 </section>
 
@@ -259,9 +288,17 @@
         flex-wrap: wrap;
         margin-top: 100px;
     }
+    .related-cards .row {
+        margin-top: 30px;
+    }
     .col-md-3 {
         width: 33%;
         margin-top: 20px;
+    }
+    .related-cards .col-md-3 {
+        width: 33%;
+        padding: 15px;
+        margin-top: 0px;
     }
     @media (max-width: 960px) {
         .col-md-3 {
@@ -401,9 +438,13 @@
         top: 0px;
     }
 
+    section.consultors .card img.full{
+        border-radius: 6px;
+    }
     section.consultors .card {
         display: inline-block;
         position: relative;
+        padding: 5px;
         width: 100%;
         margin-bottom: 30px;
         border-radius: 6px;

@@ -1,5 +1,5 @@
 <section id="notes">
-    <div data-aos="fade-up">
+    <div >
         <h2>
             راهنمای کاریابی و کارآموزی برای مهندسان صنعت ساختمان
         </h2>
@@ -23,7 +23,7 @@
 </section>
 
 <section id="college">
-    <div data-aos="fade-up">
+    <div >
         <h2> مجموعه محتوا های آموزشی مرتبط با کارآموزی و کاریابی </h2>
         <div style="text-align: center">
             <a class="btn btn-blue" href="https://civil808.com/pedia/tag/5370/%DA%A9%D8%A7%D8%B1%D8%A2%D9%85%D9%88%D8%B2%DB%8C%D8%8C-internship">
@@ -33,67 +33,98 @@
         <div class="items main-carousel " data-flickity='{ "wrapAround": true }'>
 
             <a href="https://civil808.com/node/432" target="_blank" class="item carousel-item">
-                <img src="images/432.jpg" alt="" title="">
+                <img src="/land/98/fetr/images/432.jpg" alt="" title="">
             </a>
             <a href="https://civil808.com/node/3620" target="_blank" class="item carousel-item">
-                <img src="images/3620.jpg"  alt="" title="">
+                <img src="/land/98/fetr/images/3620.jpg"  alt="" title="">
             </a>
             <a href="https://civil808.com/node/18126" target="_blank" class="item carousel-item">
-                <img src="images/18126.jpg"  alt="" title="">
+                <img src="/land/98/fetr/images/18126.jpg"  alt="" title="">
             </a>
             <a href="https://civil808.com/node/18510" target="_blank" class="item carousel-item">
-                <img src="images/18510.jpg"  alt="" title="">
+                <img src="/land/98/fetr/images/18510.jpg"  alt="" title="">
             </a>
             <a href="https://civil808.com/node/19759" target="_blank" class="item carousel-item">
-                <img src="images/19759.jpg"  alt="" title="">
+                <img src="/land/98/fetr/images/19759.jpg"  alt="" title="">
             </a>
             <a href="https://civil808.com/node/21532" target="_blank" class="item carousel-item">
-                <img src="images/21532.jpg"  alt="" title="">
+                <img src="/land/98/fetr/images/21532.jpg"  alt="" title="">
             </a>
             <a href="https://civil808.com/node/21538" target="_blank" class="item carousel-item">
-                <img src="images/21538.jpg"  alt="" title="">
+                <img src="/land/98/fetr/images/21538.jpg"  alt="" title="">
             </a>
             <a href="https://civil808.com/node/21547" target="_blank" class="item carousel-item">
-                <img src="images/21547.jpg"  alt="" title="">
+                <img src="/land/98/fetr/images/21547.jpg"  alt="" title="">
             </a>
             <a href="https://civil808.com/node/21549" target="_blank" class="item carousel-item">
-                <img src="images/21549.jpg"  alt="" title="">
+                <img src="/land/98/fetr/images/21549.jpg"  alt="" title="">
             </a>
             <a href="https://civil808.com/node/21654" target="_blank" class="item carousel-item">
-                <img src="images/21654.jpg"  alt="" title="">
+                <img src="/land/98/fetr/images/21654.jpg"  alt="" title="">
+            </a>
+            <a href="https://civil808.com/node/21600" target="_blank" class="item carousel-item">
+                <img src="/land/98/fetr/images/21600.jpg"  alt="" title="">
             </a>
         </div>
     </div>
 
-    <h2 style="margin-top: 120px;" data-aos="fade-up">(لیست پخش) Engineering Career TV</h2>
-    <div style="text-align: center" data-aos="fade-up">
+    <h2 style="margin-top: 120px;" >(لیست پخش) Engineering Career TV</h2>
+    <div style="text-align: center" >
         <a href="https://civil808.com/gallery/videos/playlist/5376/21553" class="btn btn-blue">پلی لیست مجموعه فیلم های کارآموزی و راهنمای شغلی در گالری 808</a>
     </div>
-    <div data-aos="fade-up" class="items main-carousel playlist" data-flickity=''>
+    <div  class="items main-carousel playlist" data-flickity='{ "wrapAround": true }'>
 
         <a href="https://civil808.com/gallery/videos/playlist/5379/21566" target="_blank" class="item carousel-item">
-            <img src="https://civil808.com/sites/default/files/field/image/node_21566-capture.jpg" alt="" title="">
+            <div class="img" style="background-image: url(https://civil808.com/sites/default/files/field/image/node_21566-capture.jpg)"></div>
             <p>
                 چگونه محل مناسبی برای کارآموزی پیدا کنیم؟
             </p>
         </a>
+
         <a href="https://civil808.com/gallery/videos/playlist/5376/21588" target="_blank" class="item carousel-item">
-            <img src="https://civil808.com/sites/default/files/field/image/node_21588-capture.jpg" alt="" title="">
+            <div class="img" style="background-image: url(https://civil808.com/sites/default/files/field/image/node_21588-capture.jpg)"></div>
             <p>
                 از شغل خود راضی نیستید؟ همین الان کاری انجام دهید
             </p>
         </a>
+
+        <a href="http://Civil808.com/node/21609" target="_blank" class="item carousel-item">
+            <div class="img" style="background-image: url(https://civil808.com/sites/default/files/field/image/node_21609.jpg)"></div>
+            <p>
+                چطور کارآموزی را اصولی انجام دهیم
+            </p>
+        </a>
+
+        <a href="http://Civil808.com/node/21601" target="_blank" class="item carousel-item">
+            <div class="img" style="background-image: url(https://civil808.com/sites/default/files/field/image/node_21601-download.jpg)"></div>
+            <p>
+                اولین شغل شما به عنوان یک مهندس چقدر اهمیت دارد؟
+            </p>
+        </a>
+        <a href="http://Civil808.com/node/21648" target="_blank" class="item carousel-item">
+            <div class="img" style="background-image: url(https://civil808.com/sites/default/files/field/image/node_21648-capture.jpg)"></div>
+            <p>
+                چگونه کاری که ما را به اهدافمان نمی رساند، ترک کنیم؟
+            </p>
+        </a>
+        <a href="http://Civil808.com/node/21684" target="_blank" class="item carousel-item">
+            <div class="img" style="background-image: url(/land/98/fetr/images/21684.jpg)"></div>
+            <p>
+                بعد از بیکار شدن چه کاری باید انجام داد؟
+            </p>
+        </a>
+
     </div>
 
 </section>
 
 <section id="contact">
-    <div data-aos="fade-up" style="text-align: center">
+    <div  style="text-align: center">
         <h2  id="jazb" class="active" onclick="toggle()">جذب کارآموز </h2>
         <h2  id="forsat" onclick="toggle()">فرصت های کارآموزی </h2>
     </div>
 
-    <div id="karfarma" data-aos="fade-up">
+    <div id="karfarma" >
         <h3>به دنبال جذب کارآموز هستید؟ </h3>
 
         <form  class="webform-client-form webform-client-form-9969" action="https://civil808.com/contact-us" method="post" id="webform-client-form-9969" accept-charset="UTF-8" style="margin-top: 20px">
@@ -136,7 +167,7 @@
             </div>
         </form>
     </div>
-    <div id="karamooz" data-aos="fade-up">
+    <div id="karamooz" >
         <h3>به دنبال فرصت کارآموزی هستید؟ </h3>
 
         <form class="webform-client-form webform-client-form-9969" action="https://civil808.com/contact-us" method="post" id="webform-client-form-9969" accept-charset="UTF-8" style="margin-top: 20px">
@@ -241,18 +272,18 @@
 </section>
 
 <section id="herfe">
-    <div data-aos="fade-up">
+    <div >
         <h2> با دوره ها و محصولات آموزشی آمادگی ورود به حرفه 808 خود را برای ورود به بازار کار آماده کنید </h2>
 
         <div class="items">
             <a href="https://civil808.com/node/13759" target="_blank" class="item">
-                <img src="images/13759.jpg" alt="" title="">
+                <img src="/land/98/fetr/images/13759.jpg" alt="" title="">
             </a>
             <a href="https://civil808.com/node/21527" target="_blank" class="item">
-                <img src="images/21527.jpg" alt="" title="">
+                <img src="/land/98/fetr/images/21527.jpg" alt="" title="">
             </a>
             <a href="https://civil808.com/landing/herfe" target="_blank" class="item">
-                <img src="images/herfe.jpg" alt="" title="">
+                <img src="/land/98/fetr/images/herfe.jpg" alt="" title="">
             </a>
         </div>
     </div>
@@ -260,7 +291,7 @@
 
 <style>
     section.panel.main {
-        background: url(../images/fetr.jpg);
+        background: url(/land/98/fetr/images/fetr.jpg);
         background-size: contain;
         /*background-repeat: no-repeat;*/
         display: flex;
@@ -862,7 +893,7 @@
         padding: 50px;
     }
     section#profile {
-        background-image: url(../images/back.svg);
+        background-image: url(/land/98/fetr/images/back.svg);
         background-size: cover;
         background-position: right;
         background-repeat: no-repeat;
@@ -1233,13 +1264,13 @@
         }
     }
 
-    h2 {
+    h2:not(.block-title) {
         font-size: 25px;
         margin-bottom: 35px;
         position: relative;
         text-align: center;
     }
-    h2:before {
+    h2:not(.block-title):before {
         content: "";
         position: absolute;
         width: 130px;
@@ -1763,6 +1794,12 @@
         margin-right: 10px;
     }
 
+    .item.carousel-item .img{
+        padding-bottom: 60% ;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
 
     #work-with-us .btn {
         padding: 5px 20px;
@@ -2395,24 +2432,32 @@ https://flickity.metafizzy.co
     .flickity-page-dots .dot.is-selected {
         opacity: 1;
     }
-    [data-aos][data-aos][data-aos-duration='50'],body[data-aos-duration='50'] [data-aos]{transition-duration:50ms}[data-aos][data-aos][data-aos-delay='50'],body[data-aos-delay='50'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='50'].aos-animate,body[data-aos-delay='50'] [data-aos].aos-animate{transition-delay:50ms}[data-aos][data-aos][data-aos-duration='100'],body[data-aos-duration='100'] [data-aos]{transition-duration:.1s}[data-aos][data-aos][data-aos-delay='100'],body[data-aos-delay='100'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='100'].aos-animate,body[data-aos-delay='100'] [data-aos].aos-animate{transition-delay:.1s}[data-aos][data-aos][data-aos-duration='150'],body[data-aos-duration='150'] [data-aos]{transition-duration:.15s}[data-aos][data-aos][data-aos-delay='150'],body[data-aos-delay='150'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='150'].aos-animate,body[data-aos-delay='150'] [data-aos].aos-animate{transition-delay:.15s}[data-aos][data-aos][data-aos-duration='200'],body[data-aos-duration='200'] [data-aos]{transition-duration:.2s}[data-aos][data-aos][data-aos-delay='200'],body[data-aos-delay='200'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='200'].aos-animate,body[data-aos-delay='200'] [data-aos].aos-animate{transition-delay:.2s}[data-aos][data-aos][data-aos-duration='250'],body[data-aos-duration='250'] [data-aos]{transition-duration:.25s}[data-aos][data-aos][data-aos-delay='250'],body[data-aos-delay='250'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='250'].aos-animate,body[data-aos-delay='250'] [data-aos].aos-animate{transition-delay:.25s}[data-aos][data-aos][data-aos-duration='300'],body[data-aos-duration='300'] [data-aos]{transition-duration:.3s}[data-aos][data-aos][data-aos-delay='300'],body[data-aos-delay='300'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='300'].aos-animate,body[data-aos-delay='300'] [data-aos].aos-animate{transition-delay:.3s}[data-aos][data-aos][data-aos-duration='350'],body[data-aos-duration='350'] [data-aos]{transition-duration:.35s}[data-aos][data-aos][data-aos-delay='350'],body[data-aos-delay='350'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='350'].aos-animate,body[data-aos-delay='350'] [data-aos].aos-animate{transition-delay:.35s}[data-aos][data-aos][data-aos-duration='400'],body[data-aos-duration='400'] [data-aos]{transition-duration:.4s}[data-aos][data-aos][data-aos-delay='400'],body[data-aos-delay='400'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='400'].aos-animate,body[data-aos-delay='400'] [data-aos].aos-animate{transition-delay:.4s}[data-aos][data-aos][data-aos-duration='450'],body[data-aos-duration='450'] [data-aos]{transition-duration:.45s}[data-aos][data-aos][data-aos-delay='450'],body[data-aos-delay='450'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='450'].aos-animate,body[data-aos-delay='450'] [data-aos].aos-animate{transition-delay:.45s}[data-aos][data-aos][data-aos-duration='500'],body[data-aos-duration='500'] [data-aos]{transition-duration:.5s}[data-aos][data-aos][data-aos-delay='500'],body[data-aos-delay='500'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='500'].aos-animate,body[data-aos-delay='500'] [data-aos].aos-animate{transition-delay:.5s}[data-aos][data-aos][data-aos-duration='550'],body[data-aos-duration='550'] [data-aos]{transition-duration:.55s}[data-aos][data-aos][data-aos-delay='550'],body[data-aos-delay='550'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='550'].aos-animate,body[data-aos-delay='550'] [data-aos].aos-animate{transition-delay:.55s}[data-aos][data-aos][data-aos-duration='600'],body[data-aos-duration='600'] [data-aos]{transition-duration:.6s}[data-aos][data-aos][data-aos-delay='600'],body[data-aos-delay='600'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='600'].aos-animate,body[data-aos-delay='600'] [data-aos].aos-animate{transition-delay:.6s}[data-aos][data-aos][data-aos-duration='650'],body[data-aos-duration='650'] [data-aos]{transition-duration:.65s}[data-aos][data-aos][data-aos-delay='650'],body[data-aos-delay='650'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='650'].aos-animate,body[data-aos-delay='650'] [data-aos].aos-animate{transition-delay:.65s}[data-aos][data-aos][data-aos-duration='700'],body[data-aos-duration='700'] [data-aos]{transition-duration:.7s}[data-aos][data-aos][data-aos-delay='700'],body[data-aos-delay='700'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='700'].aos-animate,body[data-aos-delay='700'] [data-aos].aos-animate{transition-delay:.7s}[data-aos][data-aos][data-aos-duration='750'],body[data-aos-duration='750'] [data-aos]{transition-duration:.75s}[data-aos][data-aos][data-aos-delay='750'],body[data-aos-delay='750'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='750'].aos-animate,body[data-aos-delay='750'] [data-aos].aos-animate{transition-delay:.75s}[data-aos][data-aos][data-aos-duration='800'],body[data-aos-duration='800'] [data-aos]{transition-duration:.8s}[data-aos][data-aos][data-aos-delay='800'],body[data-aos-delay='800'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='800'].aos-animate,body[data-aos-delay='800'] [data-aos].aos-animate{transition-delay:.8s}[data-aos][data-aos][data-aos-duration='850'],body[data-aos-duration='850'] [data-aos]{transition-duration:.85s}[data-aos][data-aos][data-aos-delay='850'],body[data-aos-delay='850'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='850'].aos-animate,body[data-aos-delay='850'] [data-aos].aos-animate{transition-delay:.85s}[data-aos][data-aos][data-aos-duration='900'],body[data-aos-duration='900'] [data-aos]{transition-duration:.9s}[data-aos][data-aos][data-aos-delay='900'],body[data-aos-delay='900'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='900'].aos-animate,body[data-aos-delay='900'] [data-aos].aos-animate{transition-delay:.9s}[data-aos][data-aos][data-aos-duration='950'],body[data-aos-duration='950'] [data-aos]{transition-duration:.95s}[data-aos][data-aos][data-aos-delay='950'],body[data-aos-delay='950'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='950'].aos-animate,body[data-aos-delay='950'] [data-aos].aos-animate{transition-delay:.95s}[data-aos][data-aos][data-aos-duration='1000'],body[data-aos-duration='1000'] [data-aos]{transition-duration:1s}[data-aos][data-aos][data-aos-delay='1000'],body[data-aos-delay='1000'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='1000'].aos-animate,body[data-aos-delay='1000'] [data-aos].aos-animate{transition-delay:1s}[data-aos][data-aos][data-aos-duration='1050'],body[data-aos-duration='1050'] [data-aos]{transition-duration:1.05s}[data-aos][data-aos][data-aos-delay='1050'],body[data-aos-delay='1050'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='1050'].aos-animate,body[data-aos-delay='1050'] [data-aos].aos-animate{transition-delay:1.05s}[data-aos][data-aos][data-aos-duration='1100'],body[data-aos-duration='1100'] [data-aos]{transition-duration:1.1s}[data-aos][data-aos][data-aos-delay='1100'],body[data-aos-delay='1100'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='1100'].aos-animate,body[data-aos-delay='1100'] [data-aos].aos-animate{transition-delay:1.1s}[data-aos][data-aos][data-aos-duration='1150'],body[data-aos-duration='1150'] [data-aos]{transition-duration:1.15s}[data-aos][data-aos][data-aos-delay='1150'],body[data-aos-delay='1150'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='1150'].aos-animate,body[data-aos-delay='1150'] [data-aos].aos-animate{transition-delay:1.15s}[data-aos][data-aos][data-aos-duration='1200'],body[data-aos-duration='1200'] [data-aos]{transition-duration:1.2s}[data-aos][data-aos][data-aos-delay='1200'],body[data-aos-delay='1200'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='1200'].aos-animate,body[data-aos-delay='1200'] [data-aos].aos-animate{transition-delay:1.2s}[data-aos][data-aos][data-aos-duration='1250'],body[data-aos-duration='1250'] [data-aos]{transition-duration:1.25s}[data-aos][data-aos][data-aos-delay='1250'],body[data-aos-delay='1250'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='1250'].aos-animate,body[data-aos-delay='1250'] [data-aos].aos-animate{transition-delay:1.25s}[data-aos][data-aos][data-aos-duration='1300'],body[data-aos-duration='1300'] [data-aos]{transition-duration:1.3s}[data-aos][data-aos][data-aos-delay='1300'],body[data-aos-delay='1300'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='1300'].aos-animate,body[data-aos-delay='1300'] [data-aos].aos-animate{transition-delay:1.3s}[data-aos][data-aos][data-aos-duration='1350'],body[data-aos-duration='1350'] [data-aos]{transition-duration:1.35s}[data-aos][data-aos][data-aos-delay='1350'],body[data-aos-delay='1350'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='1350'].aos-animate,body[data-aos-delay='1350'] [data-aos].aos-animate{transition-delay:1.35s}[data-aos][data-aos][data-aos-duration='1400'],body[data-aos-duration='1400'] [data-aos]{transition-duration:1.4s}[data-aos][data-aos][data-aos-delay='1400'],body[data-aos-delay='1400'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='1400'].aos-animate,body[data-aos-delay='1400'] [data-aos].aos-animate{transition-delay:1.4s}[data-aos][data-aos][data-aos-duration='1450'],body[data-aos-duration='1450'] [data-aos]{transition-duration:1.45s}[data-aos][data-aos][data-aos-delay='1450'],body[data-aos-delay='1450'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='1450'].aos-animate,body[data-aos-delay='1450'] [data-aos].aos-animate{transition-delay:1.45s}[data-aos][data-aos][data-aos-duration='1500'],body[data-aos-duration='1500'] [data-aos]{transition-duration:1.5s}[data-aos][data-aos][data-aos-delay='1500'],body[data-aos-delay='1500'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='1500'].aos-animate,body[data-aos-delay='1500'] [data-aos].aos-animate{transition-delay:1.5s}[data-aos][data-aos][data-aos-duration='1550'],body[data-aos-duration='1550'] [data-aos]{transition-duration:1.55s}[data-aos][data-aos][data-aos-delay='1550'],body[data-aos-delay='1550'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='1550'].aos-animate,body[data-aos-delay='1550'] [data-aos].aos-animate{transition-delay:1.55s}[data-aos][data-aos][data-aos-duration='1600'],body[data-aos-duration='1600'] [data-aos]{transition-duration:1.6s}[data-aos][data-aos][data-aos-delay='1600'],body[data-aos-delay='1600'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='1600'].aos-animate,body[data-aos-delay='1600'] [data-aos].aos-animate{transition-delay:1.6s}[data-aos][data-aos][data-aos-duration='1650'],body[data-aos-duration='1650'] [data-aos]{transition-duration:1.65s}[data-aos][data-aos][data-aos-delay='1650'],body[data-aos-delay='1650'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='1650'].aos-animate,body[data-aos-delay='1650'] [data-aos].aos-animate{transition-delay:1.65s}[data-aos][data-aos][data-aos-duration='1700'],body[data-aos-duration='1700'] [data-aos]{transition-duration:1.7s}[data-aos][data-aos][data-aos-delay='1700'],body[data-aos-delay='1700'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='1700'].aos-animate,body[data-aos-delay='1700'] [data-aos].aos-animate{transition-delay:1.7s}[data-aos][data-aos][data-aos-duration='1750'],body[data-aos-duration='1750'] [data-aos]{transition-duration:1.75s}[data-aos][data-aos][data-aos-delay='1750'],body[data-aos-delay='1750'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='1750'].aos-animate,body[data-aos-delay='1750'] [data-aos].aos-animate{transition-delay:1.75s}[data-aos][data-aos][data-aos-duration='1800'],body[data-aos-duration='1800'] [data-aos]{transition-duration:1.8s}[data-aos][data-aos][data-aos-delay='1800'],body[data-aos-delay='1800'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='1800'].aos-animate,body[data-aos-delay='1800'] [data-aos].aos-animate{transition-delay:1.8s}[data-aos][data-aos][data-aos-duration='1850'],body[data-aos-duration='1850'] [data-aos]{transition-duration:1.85s}[data-aos][data-aos][data-aos-delay='1850'],body[data-aos-delay='1850'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='1850'].aos-animate,body[data-aos-delay='1850'] [data-aos].aos-animate{transition-delay:1.85s}[data-aos][data-aos][data-aos-duration='1900'],body[data-aos-duration='1900'] [data-aos]{transition-duration:1.9s}[data-aos][data-aos][data-aos-delay='1900'],body[data-aos-delay='1900'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='1900'].aos-animate,body[data-aos-delay='1900'] [data-aos].aos-animate{transition-delay:1.9s}[data-aos][data-aos][data-aos-duration='1950'],body[data-aos-duration='1950'] [data-aos]{transition-duration:1.95s}[data-aos][data-aos][data-aos-delay='1950'],body[data-aos-delay='1950'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='1950'].aos-animate,body[data-aos-delay='1950'] [data-aos].aos-animate{transition-delay:1.95s}[data-aos][data-aos][data-aos-duration='2000'],body[data-aos-duration='2000'] [data-aos]{transition-duration:2s}[data-aos][data-aos][data-aos-delay='2000'],body[data-aos-delay='2000'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='2000'].aos-animate,body[data-aos-delay='2000'] [data-aos].aos-animate{transition-delay:2s}[data-aos][data-aos][data-aos-duration='2050'],body[data-aos-duration='2050'] [data-aos]{transition-duration:2.05s}[data-aos][data-aos][data-aos-delay='2050'],body[data-aos-delay='2050'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='2050'].aos-animate,body[data-aos-delay='2050'] [data-aos].aos-animate{transition-delay:2.05s}[data-aos][data-aos][data-aos-duration='2100'],body[data-aos-duration='2100'] [data-aos]{transition-duration:2.1s}[data-aos][data-aos][data-aos-delay='2100'],body[data-aos-delay='2100'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='2100'].aos-animate,body[data-aos-delay='2100'] [data-aos].aos-animate{transition-delay:2.1s}[data-aos][data-aos][data-aos-duration='2150'],body[data-aos-duration='2150'] [data-aos]{transition-duration:2.15s}[data-aos][data-aos][data-aos-delay='2150'],body[data-aos-delay='2150'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='2150'].aos-animate,body[data-aos-delay='2150'] [data-aos].aos-animate{transition-delay:2.15s}[data-aos][data-aos][data-aos-duration='2200'],body[data-aos-duration='2200'] [data-aos]{transition-duration:2.2s}[data-aos][data-aos][data-aos-delay='2200'],body[data-aos-delay='2200'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='2200'].aos-animate,body[data-aos-delay='2200'] [data-aos].aos-animate{transition-delay:2.2s}[data-aos][data-aos][data-aos-duration='2250'],body[data-aos-duration='2250'] [data-aos]{transition-duration:2.25s}[data-aos][data-aos][data-aos-delay='2250'],body[data-aos-delay='2250'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='2250'].aos-animate,body[data-aos-delay='2250'] [data-aos].aos-animate{transition-delay:2.25s}[data-aos][data-aos][data-aos-duration='2300'],body[data-aos-duration='2300'] [data-aos]{transition-duration:2.3s}[data-aos][data-aos][data-aos-delay='2300'],body[data-aos-delay='2300'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='2300'].aos-animate,body[data-aos-delay='2300'] [data-aos].aos-animate{transition-delay:2.3s}[data-aos][data-aos][data-aos-duration='2350'],body[data-aos-duration='2350'] [data-aos]{transition-duration:2.35s}[data-aos][data-aos][data-aos-delay='2350'],body[data-aos-delay='2350'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='2350'].aos-animate,body[data-aos-delay='2350'] [data-aos].aos-animate{transition-delay:2.35s}[data-aos][data-aos][data-aos-duration='2400'],body[data-aos-duration='2400'] [data-aos]{transition-duration:2.4s}[data-aos][data-aos][data-aos-delay='2400'],body[data-aos-delay='2400'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='2400'].aos-animate,body[data-aos-delay='2400'] [data-aos].aos-animate{transition-delay:2.4s}[data-aos][data-aos][data-aos-duration='2450'],body[data-aos-duration='2450'] [data-aos]{transition-duration:2.45s}[data-aos][data-aos][data-aos-delay='2450'],body[data-aos-delay='2450'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='2450'].aos-animate,body[data-aos-delay='2450'] [data-aos].aos-animate{transition-delay:2.45s}[data-aos][data-aos][data-aos-duration='2500'],body[data-aos-duration='2500'] [data-aos]{transition-duration:2.5s}[data-aos][data-aos][data-aos-delay='2500'],body[data-aos-delay='2500'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='2500'].aos-animate,body[data-aos-delay='2500'] [data-aos].aos-animate{transition-delay:2.5s}[data-aos][data-aos][data-aos-duration='2550'],body[data-aos-duration='2550'] [data-aos]{transition-duration:2.55s}[data-aos][data-aos][data-aos-delay='2550'],body[data-aos-delay='2550'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='2550'].aos-animate,body[data-aos-delay='2550'] [data-aos].aos-animate{transition-delay:2.55s}[data-aos][data-aos][data-aos-duration='2600'],body[data-aos-duration='2600'] [data-aos]{transition-duration:2.6s}[data-aos][data-aos][data-aos-delay='2600'],body[data-aos-delay='2600'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='2600'].aos-animate,body[data-aos-delay='2600'] [data-aos].aos-animate{transition-delay:2.6s}[data-aos][data-aos][data-aos-duration='2650'],body[data-aos-duration='2650'] [data-aos]{transition-duration:2.65s}[data-aos][data-aos][data-aos-delay='2650'],body[data-aos-delay='2650'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='2650'].aos-animate,body[data-aos-delay='2650'] [data-aos].aos-animate{transition-delay:2.65s}[data-aos][data-aos][data-aos-duration='2700'],body[data-aos-duration='2700'] [data-aos]{transition-duration:2.7s}[data-aos][data-aos][data-aos-delay='2700'],body[data-aos-delay='2700'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='2700'].aos-animate,body[data-aos-delay='2700'] [data-aos].aos-animate{transition-delay:2.7s}[data-aos][data-aos][data-aos-duration='2750'],body[data-aos-duration='2750'] [data-aos]{transition-duration:2.75s}[data-aos][data-aos][data-aos-delay='2750'],body[data-aos-delay='2750'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='2750'].aos-animate,body[data-aos-delay='2750'] [data-aos].aos-animate{transition-delay:2.75s}[data-aos][data-aos][data-aos-duration='2800'],body[data-aos-duration='2800'] [data-aos]{transition-duration:2.8s}[data-aos][data-aos][data-aos-delay='2800'],body[data-aos-delay='2800'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='2800'].aos-animate,body[data-aos-delay='2800'] [data-aos].aos-animate{transition-delay:2.8s}[data-aos][data-aos][data-aos-duration='2850'],body[data-aos-duration='2850'] [data-aos]{transition-duration:2.85s}[data-aos][data-aos][data-aos-delay='2850'],body[data-aos-delay='2850'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='2850'].aos-animate,body[data-aos-delay='2850'] [data-aos].aos-animate{transition-delay:2.85s}[data-aos][data-aos][data-aos-duration='2900'],body[data-aos-duration='2900'] [data-aos]{transition-duration:2.9s}[data-aos][data-aos][data-aos-delay='2900'],body[data-aos-delay='2900'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='2900'].aos-animate,body[data-aos-delay='2900'] [data-aos].aos-animate{transition-delay:2.9s}[data-aos][data-aos][data-aos-duration='2950'],body[data-aos-duration='2950'] [data-aos]{transition-duration:2.95s}[data-aos][data-aos][data-aos-delay='2950'],body[data-aos-delay='2950'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='2950'].aos-animate,body[data-aos-delay='2950'] [data-aos].aos-animate{transition-delay:2.95s}[data-aos][data-aos][data-aos-duration='3000'],body[data-aos-duration='3000'] [data-aos]{transition-duration:3s}[data-aos][data-aos][data-aos-delay='3000'],body[data-aos-delay='3000'] [data-aos]{transition-delay:0}[data-aos][data-aos][data-aos-delay='3000'].aos-animate,body[data-aos-delay='3000'] [data-aos].aos-animate{transition-delay:3s}[data-aos][data-aos][data-aos-easing=linear],body[data-aos-easing=linear] [data-aos]{transition-timing-function:cubic-bezier(.25,.25,.75,.75)}[data-aos][data-aos][data-aos-easing=ease],body[data-aos-easing=ease] [data-aos]{transition-timing-function:ease}[data-aos][data-aos][data-aos-easing=ease-in],body[data-aos-easing=ease-in] [data-aos]{transition-timing-function:ease-in}[data-aos][data-aos][data-aos-easing=ease-out],body[data-aos-easing=ease-out] [data-aos]{transition-timing-function:ease-out}[data-aos][data-aos][data-aos-easing=ease-in-out],body[data-aos-easing=ease-in-out] [data-aos]{transition-timing-function:ease-in-out}[data-aos][data-aos][data-aos-easing=ease-in-back],body[data-aos-easing=ease-in-back] [data-aos]{transition-timing-function:cubic-bezier(.6,-.28,.735,.045)}[data-aos][data-aos][data-aos-easing=ease-out-back],body[data-aos-easing=ease-out-back] [data-aos]{transition-timing-function:cubic-bezier(.175,.885,.32,1.275)}[data-aos][data-aos][data-aos-easing=ease-in-out-back],body[data-aos-easing=ease-in-out-back] [data-aos]{transition-timing-function:cubic-bezier(.68,-.55,.265,1.55)}[data-aos][data-aos][data-aos-easing=ease-in-sine],body[data-aos-easing=ease-in-sine] [data-aos]{transition-timing-function:cubic-bezier(.47,0,.745,.715)}[data-aos][data-aos][data-aos-easing=ease-out-sine],body[data-aos-easing=ease-out-sine] [data-aos]{transition-timing-function:cubic-bezier(.39,.575,.565,1)}[data-aos][data-aos][data-aos-easing=ease-in-out-sine],body[data-aos-easing=ease-in-out-sine] [data-aos]{transition-timing-function:cubic-bezier(.445,.05,.55,.95)}[data-aos][data-aos][data-aos-easing=ease-in-quad],body[data-aos-easing=ease-in-quad] [data-aos]{transition-timing-function:cubic-bezier(.55,.085,.68,.53)}[data-aos][data-aos][data-aos-easing=ease-out-quad],body[data-aos-easing=ease-out-quad] [data-aos]{transition-timing-function:cubic-bezier(.25,.46,.45,.94)}[data-aos][data-aos][data-aos-easing=ease-in-out-quad],body[data-aos-easing=ease-in-out-quad] [data-aos]{transition-timing-function:cubic-bezier(.455,.03,.515,.955)}[data-aos][data-aos][data-aos-easing=ease-in-cubic],body[data-aos-easing=ease-in-cubic] [data-aos]{transition-timing-function:cubic-bezier(.55,.085,.68,.53)}[data-aos][data-aos][data-aos-easing=ease-out-cubic],body[data-aos-easing=ease-out-cubic] [data-aos]{transition-timing-function:cubic-bezier(.25,.46,.45,.94)}[data-aos][data-aos][data-aos-easing=ease-in-out-cubic],body[data-aos-easing=ease-in-out-cubic] [data-aos]{transition-timing-function:cubic-bezier(.455,.03,.515,.955)}[data-aos][data-aos][data-aos-easing=ease-in-quart],body[data-aos-easing=ease-in-quart] [data-aos]{transition-timing-function:cubic-bezier(.55,.085,.68,.53)}[data-aos][data-aos][data-aos-easing=ease-out-quart],body[data-aos-easing=ease-out-quart] [data-aos]{transition-timing-function:cubic-bezier(.25,.46,.45,.94)}[data-aos][data-aos][data-aos-easing=ease-in-out-quart],body[data-aos-easing=ease-in-out-quart] [data-aos]{transition-timing-function:cubic-bezier(.455,.03,.515,.955)}[data-aos^=fade][data-aos^=fade]{opacity:0;transition-property:opacity,transform}[data-aos^=fade][data-aos^=fade].aos-animate{opacity:1;transform:translate(0)}[data-aos=fade-up]{transform:translateY(100px)}[data-aos=fade-down]{transform:translateY(-100px)}[data-aos=fade-right]{transform:translate(-100px)}[data-aos=fade-left]{transform:translate(100px)}[data-aos=fade-up-right]{transform:translate(-100px,100px)}[data-aos=fade-up-left]{transform:translate(100px,100px)}[data-aos=fade-down-right]{transform:translate(-100px,-100px)}[data-aos=fade-down-left]{transform:translate(100px,-100px)}[data-aos^=zoom][data-aos^=zoom]{opacity:0;transition-property:opacity,transform}[data-aos^=zoom][data-aos^=zoom].aos-animate{opacity:1;transform:translate(0) scale(1)}[data-aos=zoom-in]{transform:scale(.6)}[data-aos=zoom-in-up]{transform:translateY(100px) scale(.6)}[data-aos=zoom-in-down]{transform:translateY(-100px) scale(.6)}[data-aos=zoom-in-right]{transform:translate(-100px) scale(.6)}[data-aos=zoom-in-left]{transform:translate(100px) scale(.6)}[data-aos=zoom-out]{transform:scale(1.2)}[data-aos=zoom-out-up]{transform:translateY(100px) scale(1.2)}[data-aos=zoom-out-down]{transform:translateY(-100px) scale(1.2)}[data-aos=zoom-out-right]{transform:translate(-100px) scale(1.2)}[data-aos=zoom-out-left]{transform:translate(100px) scale(1.2)}[data-aos^=slide][data-aos^=slide]{transition-property:transform}[data-aos^=slide][data-aos^=slide].aos-animate{transform:translate(0)}[data-aos=slide-up]{transform:translateY(100%)}[data-aos=slide-down]{transform:translateY(-100%)}[data-aos=slide-right]{transform:translateX(-100%)}[data-aos=slide-left]{transform:translateX(100%)}[data-aos^=flip][data-aos^=flip]{backface-visibility:hidden;transition-property:transform}[data-aos=flip-left]{transform:perspective(2500px) rotateY(-100deg)}[data-aos=flip-left].aos-animate{transform:perspective(2500px) rotateY(0)}[data-aos=flip-right]{transform:perspective(2500px) rotateY(100deg)}[data-aos=flip-right].aos-animate{transform:perspective(2500px) rotateY(0)}[data-aos=flip-up]{transform:perspective(2500px) rotateX(-100deg)}[data-aos=flip-up].aos-animate{transform:perspective(2500px) rotateX(0)}[data-aos=flip-down]{transform:perspective(2500px) rotateX(100deg)}[data-aos=flip-down].aos-animate{transform:perspective(2500px) rotateX(0)}
+
+    .btn-green, .green-btn, input[type="button"], input[type="submit"], button {
+        background: #fbfbfb;
+        border: 0;
+        height: 36px;
+        border-radius: 2px;
+        line-height: 36px;
+        text-align: center;
+        color: #444 !important;
+        padding: 0 0px;
+        text-shadow: none;
+        display: inline-block;
+        font-size: 14px;
+        min-width: 0px;
+        transition: all .2s;
+        text-decoration: none;
+        box-shadow: rgba(0,0,0,0.117647) 0 1px 6px, rgba(0,0,0,0.117647) 0 1px 4px;
+        outline: 0;
+        background-color: #4caf50;
+        float: left;
+    }
 </style>
 
-<script src="/sites/land/98/fetr/src/jquery-2.2.1.min.js"></script>
-<script src="/sites/land/98/fetr/src/flick.min.js"></script>
-<script src="/sites/land/98/fetr/src/main.min.js"></script>
-<script src="/sites/land/98/fetr/src/aos.min.js"></script>
+<script src="/land/98/fetr/src/flick.min.js"></script>
+<script src="/land/98/fetr/src/main.min.js"></script>
 
-<script>
-    AOS.init({
-        once: true,
-        offset: 200,
-        duration: 700,
-        easing: 'ease-in-sine',
-        delay: 200
-    });
-
-</script>
 <script>  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -2420,5 +2465,26 @@ https://flickity.metafizzy.co
 
     ga('create', 'UA-107721597-1', 'auto');
     ga('send', 'pageview');
+</script>
+
+<script>
+        var activeForm = true
+
+
+        $('#karamooz').hide()
+        $('#karfarma').show()
+
+    function toggle() {
+        $('#karamooz').slideToggle()
+        $('#karfarma').slideToggle()
+        if(activeForm) {
+            $('#jazb').removeClass('active')
+            $('#forsat').addClass('active')
+        }else{
+            $('#forsat').removeClass('active')
+            $('#jazb').addClass('active')
+        }
+        activeForm = !activeForm
+    }
 </script>
 
