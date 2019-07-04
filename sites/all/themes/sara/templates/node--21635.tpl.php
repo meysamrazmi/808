@@ -126,89 +126,18 @@
 
     <div id="karfarma" >
         <h3>به دنبال جذب کارآموز هستید؟ </h3>
-
-        <form  class="webform-client-form webform-client-form-9969" action="https://civil808.com/contact-us" method="post" id="webform-client-form-9969" accept-charset="UTF-8" style="margin-top: 20px">
-            <div>
-                <div class="form-item webform-component webform-component-textfield webform-component--name-and-family webform-container-inline">
-                    <label for="edit-submitted-name-and-family">شرکت / موسسه <span class="form-required" title="این فیلد اجباری است.">*</span></label>
-                    <input required="required" type="text" id="edit-submitted-name-and-family" name="submitted[name_and_family]" size="60" maxlength="128" class="form-text required">
-                </div>
-                <div class="form-item webform-component webform-component-email webform-component--adrs-ymyl webform-container-inline">
-                    <label for="edit-submitted-adrs-ymyl">آدرس ایمیل <span class="form-required" title="این فیلد اجباری است.">*</span></label>
-                    <input required="required" class="email form-text form-email required" type="email" id="edit-submitted-adrs-ymyl" name="submitted[adrs_ymyl]" size="60">
-                </div>
-                <div class="form-item webform-component webform-component-number webform-component--tlfn-tms webform-container-inline">
-                    <label for="edit-submitted-tlfn-tms">تلفن تماس <span class="form-required" title="این فیلد اجباری است.">*</span></label>
-                    <input required="required" type="text" id="edit-submitted-tlfn-tms" name="submitted[tlfn_tms]" step="any" class="form-text form-number required">
-                </div>
-                <div class="form-item webform-component webform-component-select webform-component--mrbwt-bh-dprtmn webform-container-inline">
-                    <label for="edit-submitted-mrbwt-bh-dprtmn">مربوط به بخش </label>
-                    <select id="edit-submitted-mrbwt-bh-dprtmn" name="submitted[mrbwt_bh_dprtmn]" class="form-select">
-                        <option value="7" selected>بخش کارآموزی</option>
-                    </select>
-                </div>
-                <div class="form-item webform-component webform-component-textarea webform-component--pygm">
-                    <label for="edit-submitted-pygm">ویژگی های مد نظر برای کارآموز <span class="form-required" title="این فیلد اجباری است.">*</span></label>
-                    <div class="form-textarea-wrapper resizable textarea-processed resizable-textarea">
-                        <textarea required="required" placeholder="متن پیغام خود را وارد کنید ..." id="edit-submitted-pygm" name="submitted[pygm]" cols="60" rows="5" class="form-textarea required"></textarea>
-                        <div class="grippie"></div>
-                    </div>
-                </div>
-                <input type="hidden" name="details[sid]">
-                <input type="hidden" name="details[page_num]" value="1">
-                <input type="hidden" name="details[page_count]" value="1">
-                <input type="hidden" name="details[finished]" value="0">
-                <input type="hidden" name="form_build_id" value="form-M_D4rr4mw7Hetdf9JQi0FvlZa4Ic88bdC2UEY1wtlu4">
-                <input type="hidden" name="form_token" value="gWrqvzf3Z8tLIDp0546ry0TlzPk70F6Vn5lYciUgtYo">
-                <input type="hidden" name="form_id" value="webform_client_form_9969">
-                <div class="form-actions">
-                    <input class="webform-submit button-primary form-submit has-wave" type="submit" name="op" value="ارسال">
-                </div>
-            </div>
-        </form>
+        <?
+        $block = module_invoke('webform', 'block_view', 'client-block-21750');
+        print render($block['content']);
+        ?>
     </div>
     <div id="karamooz" >
         <h3>به دنبال فرصت کارآموزی هستید؟ </h3>
 
-        <form class="webform-client-form webform-client-form-9969" action="https://civil808.com/contact-us" method="post" id="webform-client-form-9969" accept-charset="UTF-8" style="margin-top: 20px">
-            <div>
-                <div class="form-item webform-component webform-component-textfield webform-component--name-and-family webform-container-inline">
-                    <label for="edit-submitted-name-and-family">نام و نام خانوادگی کارآموز <span class="form-required" title="این فیلد اجباری است.">*</span></label>
-                    <input required="required" type="text" id="edit-submitted-name-and-family" name="submitted[name_and_family]" size="60" maxlength="128" class="form-text required">
-                </div>
-                <div class="form-item webform-component webform-component-email webform-component--adrs-ymyl webform-container-inline">
-                    <label for="edit-submitted-adrs-ymyl">آدرس ایمیل <span class="form-required" title="این فیلد اجباری است.">*</span></label>
-                    <input required="required" class="email form-text form-email required" type="email" id="edit-submitted-adrs-ymyl" name="submitted[adrs_ymyl]" size="60">
-                </div>
-                <div class="form-item webform-component webform-component-number webform-component--tlfn-tms webform-container-inline">
-                    <label for="edit-submitted-tlfn-tms">تلفن تماس <span class="form-required" title="این فیلد اجباری است.">*</span></label>
-                    <input required="required" type="text" id="edit-submitted-tlfn-tms" name="submitted[tlfn_tms]" step="any" class="form-text form-number required">
-                </div>
-                <div class="form-item webform-component webform-component-select webform-component--mrbwt-bh-dprtmn webform-container-inline">
-                    <label for="edit-submitted-mrbwt-bh-dprtmn">مربوط به بخش </label>
-                    <select id="edit-submitted-mrbwt-bh-dprtmn" name="submitted[mrbwt_bh_dprtmn]" class="form-select">
-                        <option value="7" selected>بخش کارآموزی</option>
-                    </select>
-                </div>
-                <div class="form-item webform-component webform-component-textarea webform-component--pygm">
-                    <label for="edit-submitted-pygm">شهر و موقعیت های شغلی مدنظر <span class="form-required" title="این فیلد اجباری است.">*</span></label>
-                    <div class="form-textarea-wrapper resizable textarea-processed resizable-textarea">
-                        <textarea required="required" placeholder="متن خود را وارد کنید ..." id="edit-submitted-pygm" name="submitted[pygm]" cols="60" rows="5" class="form-textarea required"></textarea>
-                        <div class="grippie"></div>
-                    </div>
-                </div>
-                <input type="hidden" name="details[sid]">
-                <input type="hidden" name="details[page_num]" value="1">
-                <input type="hidden" name="details[page_count]" value="1">
-                <input type="hidden" name="details[finished]" value="0">
-                <input type="hidden" name="form_build_id" value="form-M_D4rr4mw7Hetdf9JQi0FvlZa4Ic88bdC2UEY1wtlu4">
-                <input type="hidden" name="form_token" value="gWrqvzf3Z8tLIDp0546ry0TlzPk70F6Vn5lYciUgtYo">
-                <input type="hidden" name="form_id" value="webform_client_form_9969">
-                <div class="form-actions">
-                    <input class="webform-submit button-primary form-submit has-wave" type="submit" name="op" value="ارسال">
-                </div>
-            </div>
-        </form>
+        <?
+        $block = module_invoke('webform', 'block_view', 'client-block-21748');
+        print render($block['content']);
+        ?>
     </div>
 
 </section>
@@ -288,6 +217,37 @@
         </div>
     </div>
 </section>
+
+
+<section id="work-with-us">
+    <div class="test work-with-us" style="">
+        <div id="slide-2"  data-aos="zoom-in-up">
+            <h2 style="font-size: 30px;    padding: 0 10px;">کسب درآمد هر مهندس عمران و معماری در وبسایت ۸۰۸</h2>
+            <p style="padding: 0 10px;">با ترجمه مقالات، فیلم های تخصصی رشته خود و انتشار آن ها در سایت ۸۰۸، و یا فروش محصولات ما در وبسایت خود در آمد کسب کنید.</p>
+            <a href="https://civil808.com/cooperate" class="btn">اطلاع از نحوه همکاری</a>
+        </div>
+
+        <ol class="mazaya"  data-aos="zoom-in-up">
+            <li>با ترجمه مقالات و فیلم های تخصصی رشته خود
+                <a href="https://civil808.com/landing/translator" rel="nofollow">مترجمین ۸۰۸</a>
+            </li>
+            <li>به تیم مدرسین و مشاورین اختصاصی ۸۰۸ بپیوندید
+                <a href="https://civil808.com/landing/advisor" rel="nofollow"> مشاورین ۸۰۸ </a>
+            </li>
+            <li>با انتشار لینک محصولات ۸۰۸ در وبسایت، وبلاگ، یا در شبکه های اجتماعی خود
+                <a href="https://civil808.com/landing/affiliate" rel="nofollow"> نمایندگی فروش </a>
+            </li>
+        </ol>
+
+        <div id="slide-2"  data-aos="zoom-in-up" style="padding-top: 0px; padding-bottom: 50px">
+            <p style="padding: 0 10px;">
+                موسسه 808 در راستای تکمیل نفرات فنی خود به دنبال افراد با مهارت جهت استخدام می باشد:
+            </p>
+            <a href="http://civil808.com/landing/form/job" class="btn">اطلاع از شرایط همکاری</a>
+        </div>
+    </div>
+</section>
+
 
 <style>
     section.panel.main {
@@ -407,7 +367,7 @@
     .fajr-sections{
         position: relative;
     }
-    .contain {
+    .contain:not(.telegram) {
         display: flex;
         padding: 0 40px;
         position: relative;
@@ -902,25 +862,10 @@
         /* box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px; */
         padding: 30px;
     }
-    .node {
-        background: #fff;
-        margin: 20px 5% 80px;
-        padding: 15px;
-        display: inline-flex;
-        width: 90%;
-        box-sizing: border-box;
-        box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 10px, rgba(0, 0, 0, 0.227451) 0px 3px 10px;
-    }
-    .node > div {
-        width: 50%;
-    }
     .group-right {
         text-align: center;
         background: #fbfbfb;
         margin: -15px 15px -15px -15px;
-    }
-    .node img{
-        max-width: 100%;
     }
     section#profile h2 {
         display: inline-block;
@@ -1134,7 +1079,7 @@
 
     }
     @media (max-width:960px) {
-        .contain {
+        .contain:not(.telegram) {
             padding: 0 10px;
         }
         section.section3 {
@@ -1748,16 +1693,16 @@
     }
 
 
-    .contain {
+    .contain:(.telegram) {
         margin: 50px 0;
         text-align: center;
     }
 
-    .contain div {
+    .contain:(.telegram) div {
         text-align: center;
     }
 
-    .contain h3 {
+    .contain:(.telegram) h3 {
         display: inline-block;
         margin: 30px 0 0;
         border-bottom: 1px solid #2196F3;
@@ -1802,7 +1747,7 @@
     }
 
     #work-with-us .btn {
-        padding: 5px 20px;
+        padding: 0px 20px;
         font-size: 15px;
         color: #fff !important;
         background: #2196F3;
@@ -1902,7 +1847,7 @@
         color: #fff;
     }
 
-    #webform-client-form-9969>div>div {
+    .webform-client-form>div>div {
         width: 51%;
         margin-right: auto;
         margin-left: auto;
@@ -1921,12 +1866,20 @@
     }
 
     .form-item label {
+        float: right;
         font-size: 14px;
         font-weight: 500;
     }
     .form-item label {
         font-size: 14px;
         font-weight: 400;
+    }
+
+    .form-item.form-type-radio label, .form-item.form-type-checkbox label {
+        padding: 5px 10px 5px 0;
+        display: inline-block;
+        width: calc(100% - 50px);
+        box-sizing: border-box;
     }
 
     .webform-container-inline label {
@@ -1937,7 +1890,7 @@
         color: #f00;
     }
 
-    #webform-client-form-9969>div div input {
+    .webform-client-form>div div input {
         float: left;
         width: 303px;
     }
@@ -1969,7 +1922,7 @@
         border-radius: 2px;
     }
 
-    #webform-client-form-9969>div div input {
+    .webform-client-form>div div input {
         float: left;
         width: 303px;
     }
@@ -2000,7 +1953,7 @@
         border-radius: 2px;
     }
 
-    #webform-client-form-9969>div div select {
+    .webform-client-form>div div select {
         float: left;
         width: 315px;
     }
@@ -2022,20 +1975,20 @@
     }
 
     @media (max-width: 900px) {
-        #webform-client-form-9969 > div div select {
+        .webform-client-form > div div select {
             width: 100%;
         }
 
-        #webform-client-form-9969 > div div input {
+        .webform-client-form > div div input {
             width: 100%;
         }
 
-        #webform-client-form-9969 > div > div {
+        .webform-client-form > div > div {
             width: 90%;
         }
     }
 
-    .btn-green, .green-btn, #webform-client-form-9969 input[type="button"], #webform-client-form-9969 input[type="submit"], #webform-client-form-9969 button {
+    .btn-green, .green-btn, .webform-client-form input[type="button"], .webform-client-form input[type="submit"], .webform-client-form button {
         border: 0;
         height: 32px;
         border-radius: 2px;

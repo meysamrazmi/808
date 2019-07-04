@@ -139,8 +139,8 @@
         <div class="registration">
             <p style="color: #fff;text-align: center">برای ثبت نام اطلاعات خود را ثبت کرده تا مشاوران ما با شما تماس بگیرند.</p>
             <?
-            $block = module_invoke('webform', 'block_view', 'client-block-21604');
-            print render($block['content']);
+                $block = module_invoke('webform', 'block_view', 'client-block-21604');
+                print render($block['content']);
             ?>
         </div>
         <div class="send-msg" style="text-align: center">
