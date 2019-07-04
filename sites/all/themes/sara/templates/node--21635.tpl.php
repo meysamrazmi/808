@@ -140,6 +140,74 @@
         ?>
     </div>
 
+    <?php
+        global $user;
+        if($user->uid == 10628 || $user->uid == 21799){
+    ?>
+        <table>
+            <thead>
+        <?php
+            /*fetch the head title for table*/
+            $query = db_select("webform_component" , "head");
+            $query->fields("head" , array("name"));
+            $query->condition("head.nid" , 21748);
+            $query->orderBy("head.cid" , "ASC");
+            $head = $query->execute()->fetchCol();
+
+            /*print title*/
+            foreach ($head as $h){
+                ?>
+                    <th>
+                        <?php print $h ?>
+                    </th>
+                <?php
+            }
+            ?>
+            </thead>
+                <tbody>
+                    <?php
+                        /*fetch All data*/
+                        $query = db_select("webform_submitted_data" , "data");
+                        $query->fields("data" , array("sid" , "cid" , "data"));
+                        $query->condition("data.nid" , 21748);
+                        $query->orderBy("data.sid" , "DESC")->orderBy("data.cid" , "ASC");
+                        $result = $query->execute()->fetchAll();
+
+                        /*pack the data of each submission together*/
+                        $row = array();
+                        foreach ($result as $item){
+                            if(!isset($row[$item->sid])) $row[$item->sid] = array();
+                            array_push($row[$item->sid] , $item->data);
+                        }
+
+                        foreach ($row as $item){
+                            /*print each row*/
+                            ?>
+                            <tr>
+                                <?php
+                                    foreach ($item as $key => $value){
+                                        if($key < count($head)){
+                                            /*print each cell*/
+                                ?>
+                                <td>
+                                    <?php
+                                            empty($item[$key]) ? print "" : print $item[$key];
+                                    ?>
+                                </td>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </tr>
+                            <?php
+                        }
+                    ?>
+                </tbody>
+            </table>
+    <?php
+        }
+    ?>
+
 </section>
 
 <section id="qa">
