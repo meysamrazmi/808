@@ -62,6 +62,13 @@
     </div>
 </section>
 
+<section  class="kargah-sec">
+    <div style="margin-bottom: 15px;">
+        <h2 class="text" style="margin-bottom: 20px"> مصاحبه نحوه برگزاری آزمون های کمپانی اتودسک (Autodesk) توسط موسسه 808 </h2>
+        <div style="max-width: 840px;margin: auto;"><div style="position: relative;padding-bottom: 56.25%;"><iframe allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src ="https://www.civil808.com/file/iframe/21685" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;max-width: 840px;max-height: 472px;"></iframe></div></div>
+    </div>
+</section>
+
 <section class="kargah-sec">
     <h2><?php print $node_content->title;?></h2>
 <!--    <p style="text-align: center;margin-top: 30px;font-size: 15px;color: #888;">دوره فقط به صورت حضوری برگزار می شود.</p>-->

@@ -186,34 +186,34 @@ node--21166.tpl.php<img src="/sites/default/files/field/image/node_21166.jpg" wi
     </div>
     <div class="tickets">
         <div>
-            <a href="/cart/add/p19074_a62o194?destination=cart" target="_blank">
+            <a href="https://civil808.com/node/21734" target="_blank">
                 <div class="city-name"><span>دوره جامع آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها</span></div>
                 <div class="inner-text">
                     <p class="text"> مدرس: پروفسور حسن مقدم </p>
-                    <p style="padding: 9px 12px 0px 0px;">شامل پذیرایی ناهار و پکیج همراه دوره</p>
-                    <div class="tarikh"> 30 تیر 1398 </div>
+<!--                    <p style="padding: 9px 12px 0px 0px;">شامل پذیرایی ناهار و پکیج همراه دوره</p>-->
+                    <div class="tarikh"> زمستان ۹۷ </div>
                     <div class="makan"> موسسه آموزشی 808 </div>
                     <!--<div class="zaman">25 مهر ساعت 8 تا 17 و 26 مهر 8 تا 12 (جمعا 12 ساعت) </div>-->
-                    <div class="mablagh"> 400,000 تومان </div>
+                    <div class="mablagh"> 300,000 تومان </div>
 <!--                    <div class="mablagh"> 280,000 تومان </div>-->
                 </div>
-                <span class="sabtenam"> پیش ثبت نام </span>
+                <span class="sabtenam"> تهیه فیلم دوره </span>
             </a>
-            <a href="/cart/add/p19074_a62o195?destination=cart">
+            <a href="http://civil808.com/node/21736">
                 <div class="city-name"><span>دوره جامع آموزش اصول محاسبات، بهسازی لرزه ای و طراحی عملکردی سازه ها
  + به همراه تدریس نرم افزار توسط تیم مدرسین موسسه 808</span></div>
                 <div class="inner-text">
                     <p class="text"> مدرس: پروفسور حسن مقدم + تیم مدرسین موسسه 808 </p>
-                    <p style="padding: 9px 12px 0px 0px;"> شامل پذیرایی ناهار در 2 روز اول و پکیج همراه دوره </p>
+<!--                    <p style="padding: 9px 12px 0px 0px;"> شامل پذیرایی ناهار در 2 روز اول و پکیج همراه دوره </p>-->
                     <!--<p class="important" style="margin: 2px 12px 5px 0;font-weight: bold;background-color: #f5f5f5;padding: 6px 14px;display: inline-block;">به همراه پکیج مخصوص
                     </p>-->
-                    <div class="tarikh"> 30 تیر 1398 </div>
+                    <div class="tarikh">زمستان ۹۷ </div>
                     <div class="makan"> موسسه آموزشی 808 </div>
                     <!--<div class="zaman"> دوره تئوری: 25 مهر ساعت 8 تا 17 و 26 مهر 8 تا 12، دوره نرم افزاری: 6 روز 9 تا 16 - جمعا 48 ساعت </div>-->
-                    <div class="mablagh"> 1,200,000 تومان </div>
+                    <div class="mablagh"> 999,000 تومان </div>
 <!--                    <div class="mablagh"> 840,000 تومان </div>-->
                 </div>
-                <span class="sabtenam"> پیش ثبت نام </span>
+                <span class="sabtenam">تهیه پکیج </span>
             </a>
         </div>
         <!--<div class="bought-tickets">سوال های خود را می توانید از طریق شماره تماس موسسه و سیستم پیغام خصوصی با ما در میان بگذارید.</div>
