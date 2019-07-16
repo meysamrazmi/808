@@ -280,6 +280,9 @@
     print theme('mediaelement_video', array('attributes' => $video_attrs, 'settings' => $video_sett));
     //'poster ' => '/sites/default/files/conference-4-film' ,
     ?>
+
+    <h2 style="margin-top: 100px;margin-bottom: 20px"> مصاحبه با قبول شده های دوره هاي ورود به حرفه موسسه ٨٠٨ در آزمون بهمن ٩٧ </h2>
+    <div style="max-width: 840px;margin: auto;mar"><div style="position: relative;padding-bottom: 56.25%;"><iframe allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" src ="https://www.civil808.com/file/iframe/21631" style="position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;max-width: 840px;max-height: 472px;"></iframe></div></div>
 </section>
 
 <section style="display: none;" class="second">

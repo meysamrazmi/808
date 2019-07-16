@@ -21,6 +21,29 @@
 
     </div>
 </section>
+<?php
+    global $user;
+    if($user->uid == 10628 || $user->uid == 21799):
+?>
+<section>
+    <div >
+        <h2>
+            آخرین درخواست ها برای جذب کارآموز
+        </h2>
+
+
+        <a href="https://civil808.com/node/21561" target="_blank" class="single-banner">
+            <img src="https://civil808.com/sites/default/files/field/image/node_21561.jpg" alt="" title="">
+        </a>
+
+        <div style="text-align: center">
+            <a href="https://civil808.com/gallery/videos/playlist/5189/21581" class="btn btn-blue">معرفی صفحه راهنمای کاریابی و کارآموزی مهندسان صنعت ساختمان </a>
+        </div>
+
+    </div>
+</section>
+
+<?php endif; ?>
 
 <section id="college">
     <div >
@@ -113,6 +136,12 @@
                 بعد از بیکار شدن چه کاری باید انجام داد؟
             </p>
         </a>
+        <a href="http://Civil808.com/node/21753" target="_blank" class="item carousel-item">
+            <div class="img" style="background-image: url(https://civil808.com/sites/default/files/field/image/node_21753-images.jpg)"></div>
+            <p>
+                چه گام هایی را باید در مسیر حرفه ای طی کنیم؟
+            </p>
+        </a>
 
     </div>
 
@@ -123,12 +152,17 @@
         <h2  id="jazb" class="active" onclick="toggle()">جذب کارآموز </h2>
         <h2  id="forsat" onclick="toggle()">فرصت های کارآموزی </h2>
     </div>
-
-    <div id="karfarma" >
+    <div id="karfarma" style="text-align: center">
         <h3>به دنبال جذب کارآموز هستید؟ </h3>
         <?
         $block = module_invoke('webform', 'block_view', 'client-block-21750');
-        print render($block['content']);
+        global $user;
+        if($user->uid == 0){
+            print 'برای مشاهده این بخش ابتدا باید وارد سایت شوید. برای انتقال به صفحه ورود
+            <a href="/user?destination=/landing/career#contact">کلیک کنید.</a>';
+        } else {
+            print render($block['content']);
+        }
         ?>
     </div>
     <div id="karamooz" >
@@ -136,78 +170,102 @@
 
         <?
         $block = module_invoke('webform', 'block_view', 'client-block-21748');
-        print render($block['content']);
+        if($user->uid == 0){
+            print 'برای مشاهده این بخش ابتدا باید وارد سایت شوید. برای انتقال به صفحه ورود
+            <a href="/user?destination=/landing/career#contact">کلیک کنید.</a>';
+        } else {
+            print render($block['content']);
+        }
         ?>
     </div>
 
+
+</section>
+
+<section class="internship">
+    <h2>
+        متقاضیان کارآموزی تا این لحظه
+    </h2>
     <?php
-        global $user;
-        if($user->uid == 10628 || $user->uid == 21799){
-    ?>
-        <table>
-            <thead>
-        <?php
+    global $user;
+    if($user->uid == 10628 || $user->uid == 21799){
+        ?>
+        <div  class="items main-carousel playlist" data-flickity='{ "wrapAround": true }' style="min-height: 300px">
+            <?php
             /*fetch the head title for table*/
             $query = db_select("webform_component" , "head");
             $query->fields("head" , array("name"));
             $query->condition("head.nid" , 21748);
             $query->orderBy("head.cid" , "ASC");
             $head = $query->execute()->fetchCol();
+            ?>
 
-            /*print title*/
-            foreach ($head as $h){
+            <?php
+            /*fetch All data*/
+            $query = db_select("webform_submitted_data" , "data");
+            $query->fields("data" , array("sid" , "cid" , "data"));
+            $query->condition("data.nid" , 21748);
+            $query->orderBy("data.sid" , "DESC")->orderBy("data.cid" , "ASC");
+            $query->join("webform_submissions" , "submission" , "data.sid = submission.sid and data.nid = submission.nid");
+            $query->fields("submission" , array("uid"));
+            $result = $query->execute()->fetchAll();
+
+            /*pack the data of each submission together*/
+            $row = array();
+            $row = array();
+            foreach ($result as $item){
+                if(!isset($row[$item->sid])) {
+                    $row[$item->sid] = array("uid" => $item->uid);
+                }
+                array_push($row[$item->sid] , $item->data);
+            }
+
+//                                    var_dump($row);
+//                                    die();
+            foreach ($row as $item){
+                /*print each row*/
                 ?>
-                    <th>
-                        <?php print $h ?>
-                    </th>
-                <?php
+                <div class="internship-volonteer-card item carousel-item" style="text-align: center">
+                    <img src="https://civil808.com/sites/all/themes/sara/images/profile2front.jpg" alt="Avatar" width="64px">
+                    <div class="name">
+                        <?php
+                        print $item[0];
+                        ?>
+                    </div>
+                    <div class="city">
+                        <strong>شهر:</strong>
+                        <?php
+                        print $item[3];
+                        ?>
+                    </div>
+                    <div class="description">
+                        <strong>به دنبال فرصت های:</strong>
+                        <br>
+                        <?php
+                        print $item[4];
+                        ?>
+                    </div>
+                    <?php
+                        if ($item['uid'] == '0' || $item['uid'] == '21799'):
+                    ?>
+                        <a href="mailto:<?php print $item[1]; ?>" class="btn">ارسال ایمیل</a>
+                    <?php
+                        else:
+                    ?>
+                        <a class="btn" href="/messages/new/<?php print $item['uid']; ?>">ارسال پیام</a>
+                    <?php
+                        endif;
+                    ?>
+
+
+                </div>
+            <?php
             }
             ?>
-            </thead>
-                <tbody>
-                    <?php
-                        /*fetch All data*/
-                        $query = db_select("webform_submitted_data" , "data");
-                        $query->fields("data" , array("sid" , "cid" , "data"));
-                        $query->condition("data.nid" , 21748);
-                        $query->orderBy("data.sid" , "DESC")->orderBy("data.cid" , "ASC");
-                        $result = $query->execute()->fetchAll();
-
-                        /*pack the data of each submission together*/
-                        $row = array();
-                        foreach ($result as $item){
-                            if(!isset($row[$item->sid])) $row[$item->sid] = array();
-                            array_push($row[$item->sid] , $item->data);
-                        }
-
-                        foreach ($row as $item){
-                            /*print each row*/
-                            ?>
-                            <tr>
-                                <?php
-                                    foreach ($item as $key => $value){
-                                        if($key < count($head)){
-                                            /*print each cell*/
-                                ?>
-                                <td>
-                                    <?php
-                                            empty($item[$key]) ? print "" : print $item[$key];
-                                    ?>
-                                </td>
-                                <?php
-                                        }
-                                    }
-                                ?>
-                            </tr>
-                            <?php
-                        }
-                    ?>
-                </tbody>
-            </table>
-    <?php
-        }
+        </div>
+        <?php
+    }
     ?>
-
 </section>
 
 <section id="qa">
@@ -2120,6 +2178,11 @@
         height: 100% !important;
     }
 
+    .internship .flickity-viewport {
+        min-height: 450px !important;
+        overflow: visible;
+    }
+
     .btn.btn-blue {
         padding: 0px 20px;
         font-size: 15px;
@@ -2474,6 +2537,42 @@ https://flickity.metafizzy.co
         background-color: #4caf50;
         float: left;
     }
+
+    section.internship {
+        overflow: visible;
+        padding: 50px 0;
+    }
+    section.internship .internship-volonteer-card img {
+        border-radius: 50%;
+        width: 96px;
+        box-shadow: rgba(0,0,0,0.156863) 0 3px 10px, rgba(0,0,0,0.227451) 0 3px 10px;
+        margin-bottom: 10px;
+    }
+    section.internship .items {
+        width: 90%;
+        overflow: hidden;
+        margin: auto;
+    }
+    section.internship .item.carousel-item {
+        min-height: 300px;
+        padding: 10px;
+        width: 250px !important;
+        margin-right: 10px;
+        box-shadow: rgba(0,0,0,0.117647) 0 1px 6px, rgba(0,0,0,0.117647) 0 1px 4px;
+        background: #fff;
+    }
+    section.internship .item.carousel-item .name {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+    section.internship .item.carousel-item .city {
+        margin-bottom: 10px;
+    }
+    section.internship .item.carousel-item .description {
+        margin-bottom: 10px;
+    }
+
 </style>
 
 <script src="/land/98/fetr/src/flick.min.js"></script>
